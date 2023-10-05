@@ -891,6 +891,9 @@
     font-size: 15px; /* Réduisez davantage la taille de la police pour les écrans très petits */
   }
 }
+@media (max-width:768px){
+  
+}
 
 
 

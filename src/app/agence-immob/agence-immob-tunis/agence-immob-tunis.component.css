@@ -635,6 +635,23 @@
   font-family: system-ui; 
   margin-left: 70px;
 }
+.text-heading {
+  margin: 8px 128px 9px;
+  letter-spacing: 4px;
+  font-size: 25px; /* Réduisez l'espacement des lettres pour les écrans plus petits */
+  margin-left:122px;
+  @media only screen and (max-width: 768px) {
+    margin: 8px 40px 9px; /* Ajustez la marge pour les écrans plus petits */
+    font-size: 20px; /* Réduisez la taille de la police pour les écrans plus petits */
+  }
+
+  /* Appliquez une taille de police encore plus petite pour les écrans très petits */
+  @media only screen and (max-width: 480px) {
+    margin: 8px 20px 9px; /* Ajustez la marge pour les écrans très petits */
+    font-size: 15px; /* Réduisez davantage la taille de la police pour les écrans très petits */
+  }
+}
+
 /* Style par défaut */
 .responsive-text {
   font-size: 0.900rem;

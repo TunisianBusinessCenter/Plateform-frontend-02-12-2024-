@@ -1,0 +1,257 @@
+<div class="responsive-container">
+    <div class="responsive">
+        <button (click)="backClicked()" type="submit" class="btn animated-border-button retour">
+            <i class="fa fa-home" aria-hidden="true"></i>
+            Retour
+        </button>
+    </div>
+</div>
+<br>
+<br>
+<br><br>
+<main id="content">
+    <div class="px-3 px-lg-6 px-xxl-13 py-5 py-lg-10 my-profile">
+        <!-- *ngFor="let pieces of allProject?.categoryList"
+        *ngFor="let Testpiece of allProject?.pieces" -->
+
+        <div class="container updateMenuDetails">
+            <mat-tab-group>
+                <mat-tab *ngFor="let Pieces of Projet?.categoryList">
+                    <ng-template mat-tab-label>
+                        <span class="my-custom-class">
+                            {{Pieces}}
+                        </span>
+                    </ng-template>
+                    <br><br>
+                    <div>
+                        <div *ngFor="let piece of Projet?.pieces">
+                            <div class="row responsive-villa" *ngIf="Pieces===piece?.category"
+                                [ngClass]="{'block-display': !isDesktop}" style=" display: flex;">
+                                <div class="col-5 classcol7">
+                                    <h6 class="appname">
+                                        Vidéo de présentation
+                                    </h6>
+                                    <div *ngIf="Projet?.videoUrlProjet" class="video">
+                                        <iframe class="responsive-iframe" [src]="urlSafe">
+                                        </iframe>
+                                    </div>
+                                    <!-- <div *ngIf="Agency?.mobile_apps?.length===0 && Agency?.videoUrl">
+                                    <div class="text-primary">
+                                        <h6 class="appnameUrbat">
+                                            vidéo de présentation iframe
+                                        </h6>
+                                    </div>
+                                    <iframe class="responsive-iframe" [src]="urlSafe">
+                                    </iframe>
+                                </div> -->
+                                    <div *ngIf="Projet?.videoUrlProjet===null">
+                                        <div class="text-primary">
+
+                                        </div>
+                                        <a href="">
+                                            <img class="appimage" src="../../assets/images/HomePage/noVideo.jpg"
+                                                alt="application en cour de construction">
+                                        </a>
+                                    </div>
+
+                                    <h1 class="detail"> Détails de la propriété</h1>
+                                    <div style="display: flex; align-items: center;" class="cardxi">
+                                        <div class="icon-container">
+                                            <mat-icon class="background">apps</mat-icon>
+                                        </div>&nbsp;&nbsp;
+                                        <div style="display: flex; align-items: center;margin-top: 13px;">
+                                            <p class="type">TYPE APPARTEMENT : </p>
+
+                                            <div style="display: flex; align-items: center;">
+                                                <p class="typeP">{{piece?.type}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Description de la propriété -->
+                                    <br>
+                                    <div style="display: flex; align-items: center;" class="cardxi">
+                                        <div class="icon-container">
+                                            <mat-icon class="background">open_with</mat-icon>
+                                        </div>&nbsp;&nbsp;
+                                        <div style="display: flex; align-items: center;margin-top: 13px;">
+                                            <p class="type">SURFACE DE L'APPARTEMENT : </p>
+
+                                            <div style="display: flex; align-items: center;">
+                                                <p class="typeP">{{piece?.surface}} (M²)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <div style="display: flex; align-items: center;" class="cardxi">
+                                        <div class="icon-container">
+                                            <mat-icon class="background">account_balance_wallet</mat-icon>
+                                        </div>&nbsp;&nbsp;
+                                        <div style="display: flex; align-items: center;margin-top: 13px;">
+                                            <p class="type">PRIX APPARTEMENT : </p>
+
+                                            <div style="display: flex; align-items: center;">
+                                                <p class="typeP">
+                                                    {{piece?.prixMdt}}
+                                                  </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- <div class="cardx" style="display: flex;">
+                                        <div>
+                                            <mat-icon class="background">assignment</mat-icon>
+                                        </div>&nbsp;&nbsp;
+
+                                        <div>TYPE APPARTEMENT:Vidéo de présentation
+
+
+
+                                            <p class="type">STATUS</p>
+                                            <p style="font-weight: 700;" class="type">{{piece?.status}}</p>
+                                        </div>
+
+                                    </div>  -->
+
+                                    <!-- <h1 class="detail">Description de la propriété</h1> -->
+
+                                    <div class="">
+                                        <p class="typeDesc" *ngIf="piece?.description===null">
+                                            DESCRIPTION MANQUANTE !
+                                        </p>
+                                        
+                                        <div  class="responsiveP" style="">
+                                            <h3 class="description-heading" style="text-align: center;font: 500 20px/32px Roboto, Helvetica Neue, sans-serif;
+                                            letter-spacing: normal;
+                                            margin: 12px 0 22px 8px;                                            color: black;">Description de la propriété</h3>
+                                            <p class="  scrollable-paragraph" style="    font-family: Arial, sans-serif; 
+                                            font-size: 16px;
+                                            font-family: Arial, sans-serif;
+    max-height: 252px;
+    color: #333;
+                                            color: #333; 
+                                            line-height: 1.5;
+                                            margin: 0; 
+                                            padding: 10px; ">
+                                                {{piece?.description}}
+                                
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-7 classcol5">
+                                    <div class="row " style="margin-bottom: 11px;">
+                                        <div class="col-6">
+                                            <h1 class="piecename">{{piece?.name}}</h1>
+                                        </div>
+                                        <br> <br> <br>
+                                        <div class="col-6">
+                                            <h3 class="disponible">Disponible</h3><br><br>
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <p-galleria [value]="piece?.photos" [responsiveOptions]="responsiveOptions"
+                                        [containerStyle]="{'max-width': '800px'}" [numVisible]="3">
+                                        <ng-template pTemplate="item" let-item>
+                                            <img [src]="item" class="pgalleria" alt="pgalleria" />
+                                        </ng-template>
+                                        <ng-template pTemplate="thumbnail" let-item>
+                                            <div class="grid grid-nogutter justify-content-center">
+                                                <img [src]="item" class="imgPgalleria" alt="galleria" />
+                                            </div>
+                                        </ng-template>
+                                    </p-galleria>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br> <br>
+                                    <!-- video residence -->
+
+                                    <div class="container23" style="    color: black">
+
+                                        <div class="right-side">
+                                            <h3 style="font: 500 20px/32px Roboto, Helvetica Neue, sans-serif;
+                                  letter-spacing: normal;
+                                  margin: 0 0 16px;
+                                  color: black;text-align: center;">Contactez nous </h3>
+                                            <form (ngSubmit)="sendEmail()">
+                                                <div class="form-group">
+                                                    <label for="email" style="display: block;font-weight: bold; color: black;">Email:</label>
+                                                    <input type="email" id="from" name="from" placeholder="Your Email" [(ngModel)]="email.from" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="name" class="label-style">Subject:</label>
+                                                    <input type="text" id="subject" class="input-black" name="subject" placeholder="Subject" [(ngModel)]="email.subject" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="message" style="display: block;font-weight: bold; color: black;">Message:</label>
+                                                    <textarea id="message" name="message" placeholder="Your Message" [(ngModel)]="email.body" required></textarea>
+                                                </div>
+                                                <button type="submit" style="background: #8B0000;float: right;">Envoyer</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <!-- <mat-tab label="APPARTEMENT S+2"> APPARTEMENT S+2 </mat-tab>
+                    <mat-tab label="APPARTEMENT S+3"> APPARTEMENT S+3 </mat-tab>Description de la propriété
+ -->
+            </mat-tab-group>
+        </div>
+    </div>
+</main> <br><br><br>
+<!-- <div class="gradient-border" id="box" >
+    En cour de construction &nbsp; <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+  
+  </div>Description de la propriété -->
+
+<br><br>
+
+
+<div class="tunsian-flag-img-background " style="height: -170; ">
+
+    <div class="btn-toolbar " role="toolbar " aria-label="Toolbar with button groups ">
+        <div class="btn-group mr-2 " role="group " aria-label="First group ">
+            <a class="btn-hover-flag-img text-center  " href="promoteurs-tunis" aria-selected="true "
+                style="line-height: 1.5;"><span>Promoteurs </span><br><span> Immobiliers </span></a>
+        </div>
+        <div class="btn-group mr-2 " role="group " aria-label="Second group ">
+            <a class="btn-hover-flag-img text-center " href="equipement " aria-selected="true "
+                style="line-height: 1.5;"><span>Materiaux </span><br><span> de construction </span></a>
+        </div>
+
+        <div class="btn-group mr-2 " role="group " aria-label="Third group ">
+            <a class="btn-hover-flag-img text-center  " aria-selected="true " style="line-height: 1.5;"><span>Agences
+                </span><br><span> Immobilières</span></a>
+        </div>
+        <div class="btn-group mr-2 " role="group " aria-label="Third group ">
+            <a class="btn-hover-flag-img text-center  " href="meilleurs-bien-sousse" aria-selected="true "
+                style="line-height: 1.5;">
+                <span>Selection Des</span>
+                <br>
+                <span>Meilleurs Biens</span>
+            </a>
+        </div>
+        <div class="btn-group mr-2 " role="group " aria-label="Fourth group ">
+            <a class="btn-hover-flag-img text-center" aria-selected="true " style="line-height: 1.5;">
+                <span>Décoration</span><br> <span> Services et Arts</span> </a>
+
+        </div>
+    </div>
+</div>
+<br><br>
+<br><br>

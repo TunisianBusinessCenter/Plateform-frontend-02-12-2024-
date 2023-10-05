@@ -1,0 +1,415 @@
+<button (click)="backClicked()" type="submit" class="btn animated-border-button retour" routerLink="/home">
+	<i class="fa fa-home" aria-hidden="true"></i> Retour
+</button>
+<!-- <div class="responsive-container">
+	<div class="responsive">
+	 </div>
+	<div class="allAgSearch">
+		<p-listbox [options]="allAgencies"  [(ngModel)]="searchText" [metaKeySelection]="false" [checkbox]="false" 
+		[filter]="true" [multiple]="true" optionLabel="name"
+		[listStyle]="{'max-height':'50px'}"
+		[style]="{'width':'20rem'}" >
+			<ng-template let-country pTemplate="item" >
+				<div class="country-item res_Search" ng >
+					<img src="{{country?.logo_url}}" width="30px" />&nbsp;&nbsp;
+					<div [routerLink]="['/agency', country?.id]" >{{country?.name}}</div>
+				</div>
+			</ng-template>
+		</p-listbox>
+	</div> 
+</div> -->
+<br><br><br><br><br><br><br>
+
+<div class="carous-boutique">
+	<div class="row agency-responsive">
+		<div class="col" style="margin: auto;">
+			<img class="rounded-lg border card-img" src="{{ Agency?.logo_url }}" alt="Eco house company">
+		</div>
+		<div class="col textresponce">
+			<div class="Card">
+				<div class="ribbon"><span class="ribbon__content" *ngIf="Agency?.role==='promoteur-immobilieres'">PROMOTION</span></div>
+				<div class="ribbon"><span class="ribbon__content" *ngIf="Agency?.role==='materiaux-construction'">MATERIAUX</span></div>
+				<div class="ribbon"><span class="ribbon__content__agence" *ngIf="Agency?.role==='agence-immobilieres'">A VENDRE/A LOUER</span></div>
+				<div class="ribbon"><span class="ribbon__content__agence" *ngIf="Agency?.role==='meilleurs-biens'">A VENDRE/A LOUER</span></div>
+
+				<div class="ribbon"><span class="ribbon__content" *ngIf="Agency?.role==='agence-service'">SERVICE</span></div>
+
+				<h2 class="card-titles fs-22 lh-15 mb-1 text-dark">
+					{{ Agency?.name }}
+				</h2> 
+				<p class="card-text  Agencyadresse">
+					{{ Agency?.adresse }}
+				</p>
+	
+			
+				<div class="  align-items-sm-center  li-agency">
+					<span class="col-sm-2 px-1 AgencyDetails">Tél 1:</span>
+					<span class="col-sm-9 px-1  tele-responsive">
+						+216 {{ Agency?.phone_number }}
+					</span>
+				</div>
+				<div class="  align-items-sm-center  li-agency" *ngIf="Agency?.phone_number2">
+					<span class="col-sm-2 px-1 AgencyDetails">Tél 2:</span>
+					<span class="col-sm-9 px-1  tele-responsive">
+						+216 {{ Agency?.phone_number2}}
+					</span>
+				</div>
+				<div class="  align-items-sm-center  li-agency" *ngIf="Agency?.phone_commercial">
+					<span class="col-sm-2 px-1 AgencyDetails">Tél Commercial:</span>
+					<span class="col-sm-9 px-1  tele-responsive">
+						+216 {{ Agency?.phone_commercial}}
+					</span>
+				</div>
+				<div class="  align-items-sm-center  li-agency">
+					<span class="col-sm-2 px-1 AgencyDetails">Email:</span>
+					<span class="col-sm-9 px-1 tele-responsive">
+						{{ Agency?.email }}
+					</span>
+				</div>
+				<div class="  align-items-sm-center  li-agency">
+					<span class="px-1  AgencyDetails">Site web:</span>
+	
+					<span (click)="goToLink()" class="col-sm-9 px-1 tele-responsive"
+						style="color: #1f1e84;cursor: pointer;text-decoration:none">
+						{{Agency?.website_url}}
+					</span>
+	
+				</div> <br>
+				<div class="d-flex align-items-sm-center  li-social">
+	
+					<ul class="list-inline mb-0" style="margin-left: -48px;">
+						<ul class="social-networks bounce">
+							<li>
+								<a href="{{Agency?.twitter_url}}" class="icon-twitter">
+									Twitter
+								</a>
+							</li>
+							<li>
+								<a href="{{Agency?.facebook_url}}" class="icon-facebook">
+									Facebook
+								</a>
+							</li>
+							<li>
+								<a href="{{Agency?.instagram_url}}" class="icon-instagram">
+									Instagram
+								</a>
+							</li>
+							<li>
+								<a href="{{Agency?.linkedlin_url}}" class="icon-linkedin">
+									LinkedIn
+								</a>
+							</li>
+						</ul>
+					</ul>
+				</div>
+			  </div>
+
+			
+			
+		</div>
+		
+		
+		<br> <br>
+		<div class="col" style="margin: auto;">
+
+			<div *ngFor="let Agencyapp of Agency?.mobile_apps">
+
+
+				<div *ngIf="Agencyapp.id!==null;">
+					<div class="text-primary">
+						<h6 class="appname">
+							{{ Agencyapp?.name }}
+						</h6>
+					</div>
+					<a style=" text-decoration:none" href="{{ Agencyapp?.playstore_url }}">
+						<img class="appimage" src="{{ Agencyapp?.mobile_cover_image_url }}"
+							alt="The Interior Design The Hall On str. Filimonovo" width="80%" style="float: right;">
+						<button type="submit"
+							class="btn btn-primary btn-lg btn-block shadow-none responsive-telecharger">
+							Télecharger &nbsp;
+							<i class="fa fa-download" aria-hidden="true"></i>
+						</button>
+					</a>
+				</div>
+			</div>
+			<!-- <div *ngIf="Agency?.mobile_apps?.length===0 && Agency?.name!=='Urbat'">
+				<div class="text-primary">
+					<h6 class="appname">
+						Application en cours 		
+					</h6>
+				</div>
+			
+				<img class="appimage" src="../../assets/images/HomePage/1111.jpg" 
+				style="float: right;" width="80%" height="120%" >
+				<button type="submit"
+						class="btn btn-primary btn-lg btn-block shadow-none responsive-telecharger" >
+						Télecharger &nbsp;
+						<i class="fa fa-download" aria-hidden="true"></i>
+					</button>
+				 
+			</div>
+			
+			
+			<div  *ngIf="Agency?.mobile_apps?.length===0 && Agency?.name==='Urbat'">
+				<div class="text-primary">
+					<h6 class="appnameUrbat">
+						vidéo de présentation 		
+					</h6>
+				</div>
+			  
+				<iframe class="responsive-iframe" src="https://www.youtube.com/embed/xPTBgTbGCdc" >
+				</iframe>
+			   
+			  </div> -->
+			  <div *ngIf="Agency?.mobile_apps?.length===0 && Agency?.name!=='La Maison Des ARTS by D' && Agency.role==='promoteur-immobilieres' &&  Agency?.videoUrl!==null">
+				<div class="text-primary">
+					<h6 class="appname">
+						Application en cours
+					</h6>
+				</div>
+
+				<img class="appimage" src="../../assets/images/HomePage/1111.jpg" style="float: right;" width="80%"
+					height="120%">
+				<button type="submit" class="btn btn-primary btn-lg btn-block shadow-none responsive-telecharger">
+					Télecharger &nbsp;
+					<i class="fa fa-download" aria-hidden="true"></i>
+				</button>
+			 </div>
+
+			<div *ngIf="Agency?.mobile_apps?.length===0 && Agency?.name!=='La Maison Des ARTS by D' && Agency.role!=='promoteur-immobilieres' &&  Agency?.videoUrl===null">
+				<div class="text-primary">
+					<h6 class="appname">
+						Application en cours
+					</h6>
+				</div>
+
+				<img class="appimage" src="../../assets/images/HomePage/1111.jpg" style="float: right;" width="80%"
+					height="120%">
+				<button type="submit" class="btn btn-primary btn-lg btn-block shadow-none responsive-telecharger">
+					Télecharger &nbsp;
+					<i class="fa fa-download" aria-hidden="true"></i>
+				</button>
+
+			</div>
+			<div *ngIf="Agency?.mobile_apps?.length===0 && Agency?.name==='La Maison Des ARTS by D'">
+				<div class="text-primary">
+					<h6 class="appnameUrbat">
+						vidéo de présentation
+					</h6>
+				</div>
+
+				<iframe class="responsive-iframe" src="../../assets/video/la_maison_de_arts.mp4">
+				</iframe>
+
+
+
+			</div>
+			<div *ngIf="Agency?.mobile_apps?.length===0 && Agency?.videoUrl && Agency.role!=='promoteur-immobilieres'">
+				<div class="text-primary">
+					<h6 class="appnameUrbat">
+						vidéo de présentation
+					</h6>
+				</div>
+
+				<iframe class="responsive-iframe" [src]="urlSafe">
+				</iframe>
+			</div>
+		</div>
+
+
+	</div>
+</div>
+
+<br><br><br><br><br>
+
+
+<div *ngIf="Agency?.role==='meilleurs-biens' && Agency?.biens?.length!==0 ">
+
+<div class="carousel-boutique">
+		<div class="content-section implementation carousel-demo">
+			<div class="card">
+				<p-carousel [value]="Agency.biens" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
+					[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
+
+					<ng-template let-image pTemplate="item">
+                      <div *ngFor="let sousBiens of image.sous_biens">
+						 <div class="item-card" [routerLink]="['/descriptionAgence_Immob',sousBiens?.id]">
+							<img src="{{image?.imageUrl}}" class="card-img-top taill-image">
+							<div class="card-body">
+								<div>
+									<h5 class="card-title random">Bien immobilier</h5>
+									<button href="#" class="btn btn-prix" style="float: right;">{{image?.prix}}</button>
+								</div>
+
+								<p class="nameStyle">{{image?.name}}</p>
+
+							</div>
+						 </div>
+                       </div>
+					</ng-template>
+
+				</p-carousel> <br>
+
+
+				<a  (click)="goToLink()" class="btn btn-promotion"> {{titrePromo}} </a>
+				<br><br><br><br>
+				<div >
+				<section (click)="goToLink()">
+					<div></div>
+					<div class="container">
+						<div class="background-img" [ngStyle]="{'background-image':'url(' +image_url_biens + ')'}">
+							<div class="box">
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+								<div class="content">
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			    </div>
+
+				<!--map-->	
+
+	<!-- <div class=" container map" *ngIf="Agency.name==='A VENDRE TERRAIN A SAHLOUL'">
+		<p-gmap [options]="options" [style]="{'height':'520px'}" ></p-gmap>
+
+    </div>  -->
+
+				<!------->
+				
+				<br><br><br> <br>
+				<div class="wrapper">
+
+					<div class="fb-share-button" data-href="https://tunimmob.com/agency/{{idAgency}}"
+						data-layout="button_count" data-size="large">
+						<div class="icon">
+							<i class="fab fa-facebook-f"></i>
+						</div>
+						<a [(ngModule)]="image_url_biens" (click)="changemetaBiens(image_url_biens)" target="_blank"
+							href="https://www.facebook.com/sharer/sharer.php?u=https://tunimmob.com/agency/{{idAgency}}"
+							class="fb-xfbml-parse-ignore textfb">Partager sur Facebook</a>
+					</div>
+					<div class="button ">
+						<div class="icon">
+							<i class="fab fa-instagram"></i>
+						</div>
+						<span>Partager sur Instagram</span>
+					</div>
+
+				</div>
+				<br><br>
+
+
+			
+		</div>
+	</div>
+
+</div>
+</div>
+
+<div *ngIf="Agency?.role==='agence-immobilieres' && Agency?.biens?.length===0">
+
+	<div class="carousel-boutique">
+		<div class="content-section implementation carousel-demo">
+			<div class="card">
+				<p-carousel [value]="images2" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
+					[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
+
+					<ng-template let-image pTemplate="item">
+						<div class="item-card">
+							<img src="{{image?.picture}}" class="card-img-top taill-image">
+							<div class="card-body">
+								<div>
+									<h5 class="card-title random">bien immobilier</h5>
+									<button href="#" class="btn btn-prix" style="float: right;">PRIX: 00,00</button>
+								</div>
+
+								<p class="nameStyle">{{image?.produit}}</p>
+
+							</div>
+						</div>
+					</ng-template>
+
+				</p-carousel> <br>
+				<button (click)="goToLink()" class="btn btn-promotion"
+					style="float: right;font-size: 18px; font-weight: 600;">PROMO DE LA SEMAINE </button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<br> <br> <br>
+
+
+
+<br><br><br>
+<div class="tunsian-flag-img-background">
+	<div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
+		<div class="btn-group mr-2" role="group " aria-label="First group ">
+			<a class="btn-hover-flag-img text-center " href="promoteurs-tunis " aria-selected="true "
+				style="line-height: 1.5">
+				<span>Promoteurs</span>
+				<br>
+				<span>Immobiliers</span>
+			</a>
+		</div>
+		<div class="btn-group mr-2" role="group " aria-label="Second group ">
+			<a class="btn-hover-flag-img text-center " href="equipement " aria-selected="true "
+				style="line-height: 1.5">
+				<span>Materiaux</span>
+				<br>
+				<span>de construction</span>
+			</a>
+		</div>
+		<div class="btn-group mr-2" role="group " aria-label="Third group ">
+			<a class="btn-hover-flag-img text-center " aria-selected="true " href="agence-immob-tunis"
+				style="line-height: 1.5">
+				<span>Agences</span>
+				<br>
+				<span>Immobilières</span>
+			</a>
+		</div>
+		<div class="btn-group mr-2 "
+		role="group "
+		aria-label="Third group ">
+		<a class="btn-hover-flag-img text-center  "
+		href="meilleurs-bien-sousse"
+			aria-selected="true "
+			style="line-height: 1.5;"
+	>
+			<span>Selection Des</span> 
+			<br>
+			<span>Meilleurs Biens</span>
+		</a>
+	</div>
+		<div class="btn-group mr-2" role="group " aria-label="Fourth group ">
+			<a class="btn-hover-flag-img text-center " href="agences-de-services" aria-selected="true "
+				style="line-height: 1.5">
+				<span>Décoration</span>
+				<br>
+				<span> Services et Arts</span>
+			</a>
+		</div>
+	</div>
+</div>
+<br><br><br>
+<div class="images">
+	<img class="img-responsive center-block image1" src="../../assets/images/banque/Logo_TIJARI.jpg "
+		style=" width: 8%; margin-inline-start: 26%; padding-top: 2%">
+	<img class="img-responsive center-block" src="../../assets/images/banque/Logo_HABITAT.jpg "
+		style=" width: 10%; padding-left: 2%; padding-top: 2%">
+	<img class="img-responsive center-block" src="../../assets/images/banque/Logo_ZITOUNA.jpg "
+		style=" width: 10%; padding-left: 2%; padding-top: 2%">
+	<img class="img-responsive center-block" src="../../assets/images/banque/Logo_BIAT.jpg "
+		style=" width: 10%; padding-left: 2%; padding-top: 2%">
+	<img class="img-responsive center-block" src="../../assets/images/banque/Logo_STB.jpg "
+		style=" width: 10%; padding-left: 2%; padding-top: 2%">
+
+	<!--	<hr style="margin-block-start: 2%"> -->
+</div>
+<br>

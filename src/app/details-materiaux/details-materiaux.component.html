@@ -1,0 +1,350 @@
+<div class="responsive-container">
+
+
+  <div class="responsive">
+
+
+    <button  (click)="backClicked()" type="submit" class="btn animated-border-button   retour 
+">
+      <i class="fa fa-home" aria-hidden="true"></i>
+      Retour
+    </button>
+  </div>
+</div>
+
+
+
+<div class="px-lg-5  my-profile">
+  <div *ngFor="let allAgence of AllAgency">
+    <div *ngIf="Produit?.agencyName===allAgence?.name">
+      <div class="row agency-responsive">
+        <div class="col" style="margin: auto;">
+          <div class="Card-logo">
+            <img class="rounded-lg border card-imgg" src="{{ allAgence?.logo_url }}" alt="Eco house company">
+          </div>
+        </div>
+        <div class="col textresponce">
+          <div class="CardDetails">
+            <div class="ribbon"><span class="ribbon__content"
+                *ngIf="allAgence?.role==='promoteur-immobilieres'">PROMOTION</span></div>
+            <div class="ribbon"><span class="ribbon__content"
+                *ngIf="allAgence?.role==='materiaux-construction'">MATERIAUX</span></div>
+            <div class="ribbon"><span class="ribbon__content__agence" *ngIf="allAgence?.role==='agence-immobilieres'">A
+                VENDRE/A LOUER</span></div>
+            <div class="ribbon"><span class="ribbon__content" *ngIf="allAgence?.role==='agence-service'">SERVICE</span>
+            </div>
+            <h2 class="card-title fs-22 lh-15 mb-1 text-dark" style="font-size: 19px; margin-left: 22px;">
+              {{ allAgence?.name }}
+            </h2> <br>
+            <p class="card-text  Agencyadresse">
+              {{ allAgence?.adresse }}
+            </p>
+
+            <li class="list-group-item  align-items-sm-center  li-agency">
+              <span class="col-sm-2 px-1 AgencyDetails">Tél 1:</span>
+              <span class="col-sm-9 px-1  tele-responsive">
+                +216 {{ allAgence?.phone_number }}
+              </span>
+            </li>
+            <li class="list-group-item  align-items-sm-center  li-agency" *ngIf="allAgence?.phone_number2">
+              <span class="col-sm-2 px-1 AgencyDetails">Tél 2:</span>
+              <span class="col-sm-9 px-1  tele-responsive">
+                +216 {{ allAgence?.phone_number2}}
+              </span>
+            </li>
+            <li class="list-group-item  align-items-sm-center  li-agency" *ngIf="allAgence?.phone_commercial">
+              <span class="col-sm-2 px-1 AgencyDetails">Tél Commercial:</span>
+              <span class="col-sm-9 px-1  tele-responsive">
+                +216 {{ allAgence?.phone_commercial}}
+              </span>
+            </li>
+            <li class="list-group-item align-items-sm-center  li-agency">
+              <span class="col-sm-2 px-1 AgencyDetails">Email</span>
+              <span class="col-sm-9 px-1  tele-responsive">
+                {{ allAgence?.email }}
+              </span>
+            </li>
+            <li class="list-group-item  align-items-sm-center  li-agency">
+              <span class="col-sm-2 px-1 AgencyDetails ">Site web</span>
+              <a href="{{allAgence?.website_url}}" style="text-decoration:none">
+                <span class="col-sm-9 px-1 tele-responsive" style="color: #1f1e84;cursor: pointer">
+                  {{allAgence?.website_url}}
+                </span>
+              </a>
+            </li>
+            <br>
+            <li class="list-group-item d-flex align-items-sm-center   li-social">
+
+              <ul class="list-inline mb-0" style="margin-left: -48px;">
+                <ul class="social-networks bounce">
+                  <li>
+                    <a href="{{allAgence?.twitter_url}}" class="icon-twitter">
+                      Twitter
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{allAgence?.facebook_url}}" class="icon-facebook">
+                      Facebook
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{allAgence?.instagram_url}}" class="icon-instagram">
+                      Instagram
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{allAgence?.linkedlin_url}}" class="icon-linkedin">
+                      LinkedIn
+                    </a>
+                  </li>
+                </ul>
+              </ul>
+            </li>
+            <br>
+          </div>
+        </div>
+        <div class="col" style="margin: auto;">
+
+          <div class="Card-video" *ngFor="let Agencyapp of allAgence?.mobile_apps">
+
+
+            <div *ngIf="Agencyapp.id!==null;">
+              <div class="text-primary">
+                <h6 class="appname">
+                  {{ Agencyapp?.name }}
+                </h6>
+              </div>
+              <a style=" text-decoration:none" href="{{ Agencyapp?.playstore_url }}">
+                <img class="appimage" src="{{ Agencyapp?.mobile_cover_image_url }}">
+                <button type="submit" class="btn   responsive-telecharger">
+                  Télecharger &nbsp;
+                  <i class="fa fa-download" aria-hidden="true"></i>
+                </button>
+              </a>
+            </div>
+          </div>
+          <div class="Card-video" *ngIf="allAgence?.mobile_apps?.length===0 && Produit?.videoUrlProduit===null">
+            <div class="text-primary">
+              <h6 class="appname">
+                Application en cour
+              </h6>
+            </div>
+
+            <img class="appimage" src="../../assets/images/HomePage/1111.jpg">
+            <button type="submit" class="btn  responsive-telecharger">
+              Télecharger &nbsp;
+              <i class="fa fa-download" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="Card-video" *ngIf="allAgence?.mobile_apps?.length===0 && Produit?.videoUrlProduit">
+            <div class="text-primary">
+              <h6 class="appname">
+                vidéo de présentation
+              </h6>
+            </div>
+
+            <iframe class="responsive-iframe" [src]="urlSafe">
+            </iframe>
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row flex-lg-row flex-cloumn">
+    <div class="col-lg-5  updateMenu">
+
+      <h2 class="text-heading nameProd">
+        {{Produit?.name}}
+      </h2>
+      <hr class="hrstyle">
+    </div>
+
+  </div>
+  <!-- mat-align-tabs = "center" -->
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab style="background-color: #1f1e84" *ngFor="let categories of Produit?.categoryList;">
+      <!-- *ngIf="Produit?.categoryList?.length!==1" -->
+      <div>
+        <ng-template mat-tab-label>
+          <span class="my-custom-class">
+            {{categories}}
+          </span>
+        </ng-template>
+      </div>
+      <!-- <div *ngFor="let allagencie of AllAgency">
+            <div *ngFor="let prod of allagencie?.produits;">
+              
+           <div *ngIf="Produit?.categoryList?.length===1 && Produit?.agencyName===allagencie?.name"> 
+            
+                
+              
+                  <ng-template mat-tab-label  >
+                    <span class="my-custom-class" >
+                      {{prod.name}}
+                    </span>
+                  </ng-template>
+                </div>
+                </div>
+            </div> -->
+
+      <br>
+      <div class="responsable" *ngIf="Produit?.numCommercial!==null && Produit?.emailCommercia!==null">
+        <button class="btn  responsableBtn">
+          <mat-icon style="font-size: 20px;margin-top: 4px;">supervised_user_circle</mat-icon>
+          <h1 class="textResponsable"> <span>Responsable commercial</span> &nbsp; </h1>
+        </button>&nbsp;&nbsp;&nbsp;
+        <button class="btn  responsableBtn">
+          <mat-icon style="font-size: 20px;margin-top: 4px;">perm_phone_msg</mat-icon>
+          <h1 class="textResponsable"><span>Tél:</span> &nbsp; {{Produit?.numCommercial}}</h1>
+        </button>&nbsp;&nbsp;&nbsp;
+        <button class="btn  responsableBtn">
+          <mat-icon style="font-size: 20px;margin-top: 4px;">alternate_email</mat-icon>
+          <h1 class="textResponsable"><span>Email:</span> &nbsp; {{Produit?.emailCommercial}}</h1>
+        </button>
+      </div>
+
+      <div *ngFor="let allAgence of AllAgency">
+        <div class="responsable" *ngIf="Produit?.agencyName===allAgence?.name 
+                && Produit?.numCommercial===null">
+          <button class="btn  responsableBtn">
+            <mat-icon style="font-size: 20px;margin-top: 4px;">supervised_user_circle</mat-icon>
+            <h1 class="textResponsable"> <span>Responsable commercial</span> &nbsp; </h1>
+          </button>&nbsp;&nbsp;&nbsp;
+          <button class="btn  responsableBtn">
+            <mat-icon style="font-size: 20px;margin-top: 4px;">perm_phone_msg</mat-icon>
+            <h1 class="textResponsable"><span>Tél:</span> &nbsp; {{allAgence?.phone_number}}</h1>
+          </button>&nbsp;&nbsp;&nbsp;
+          <button class="btn  responsableBtn">
+            <mat-icon style="font-size: 20px;margin-top: 4px;">alternate_email</mat-icon>
+            <h1 class="textResponsable"><span>Email:</span> &nbsp; {{allAgence?.email}}</h1>
+          </button>
+        </div>
+      </div>
+
+      <br>
+      <div class="cardx">
+        <div *ngFor="let categorie of Produit?.sous_cat;">
+          <div *ngIf="categories===categorie?.category">
+
+            <div class="card-group card-hover-over">
+              <div class="card">
+                <img class="card-img" src="{{categorie?.image_url}}" alt="Card image" width="358" height="259">
+                <div class="card-img-overlay">
+                  <div class="card-body">
+                    <h4 class="card-titre">{{categorie?.name}}</h4>
+                    <a class="btn" [routerLink]="['/descriptionDetails', Produit?.id, categorie?.id]">PLUS DE
+                      DÉTAILS</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <br> <br>
+        </div>
+      </div>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+
+
+  <!-- <p-tabView  [scrollable]="true">
+          <p-tabPanel *ngFor="let categories of Produit?.categoryList;" header=" {{categories}}">
+            <br>
+            <div  *ngFor="let allAgence of AllAgency">
+              <div class="responsable" *ngIf="Produit?.agencyName===allAgence?.name">
+            <button  class="btn  responsableBtn"><mat-icon style="font-size: 20px;margin-top: 4px;">supervised_user_circle</mat-icon> <h1 class="textResponsable"> <span  >Responsable commercial</span>  &nbsp; </h1></button>&nbsp;&nbsp;&nbsp;
+				    <button  class="btn  responsableBtn"><mat-icon style="font-size: 20px;margin-top: 4px;">perm_phone_msg</mat-icon><h1 class="textResponsable"><span >Tél:</span>  &nbsp; {{allAgence?.phone_number}}</h1></button>&nbsp;&nbsp;&nbsp;
+				    <button  class="btn  responsableBtn"><mat-icon style="font-size: 20px;margin-top: 4px;">alternate_email</mat-icon><h1 class="textResponsable"><span >Email:</span>  &nbsp; {{allAgence?.email}}</h1></button>
+             </div>
+            </div>
+             <br>
+             <div class="cardx" >
+                  <div *ngFor="let categorie of Produit?.sous_cat;">
+                    <div *ngIf="categories===categorie?.category">
+                      <div class="card-group card-hover-over">
+                        <div class="card">
+                        <img class="card-img" src="{{categorie?.image_url}}" alt="Card image" width="358" height="259">
+                          <div class="card-img-overlay">
+                              <div class="card-body">
+                                  <h4 class="card-titre">{{categorie?.name}}</h4>
+                                  <a class="btn" [routerLink]="['/descriptionDetails', categorie?.id]" >PLUS DE DÉTAILS</a>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                    </div>
+                      <br> <br>
+                    </div>
+                </div>
+          </p-tabPanel>
+        </p-tabView> -->
+  <br><br>
+</div>
+
+
+
+<!-- <div class="gradient-border" id="box" >
+  En cour de construction &nbsp; <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+
+</div> -->
+<br>
+<br>
+<div class="tunsian-flag-img-background " style="height: -170; ">
+
+
+  <div class="btn-toolbar " role="toolbar " aria-label="Toolbar with button groups ">
+    <div class="btn-group mr-2 " role="group " aria-label="First group ">
+      <a class="btn-hover-flag-img text-center  " routerLink="/promoteurs-tunis" aria-selected="true "
+        style="line-height: 1.5;">
+        <span>Promoteurs</span>
+        <br>
+        <span>Immobiliers</span>
+      </a>
+    </div>
+    <div class="btn-group mr-2 " role="group " aria-label="Second group ">
+      <a class="btn-hover-flag-img text-center  " routerLink="/equipement" aria-selected="true "
+        style="line-height: 1.5;">
+        <span>Materiaux</span>
+        <br>
+        <span>de construction</span>
+      </a>
+    </div>
+
+
+    <div class="btn-group mr-2 " role="group " aria-label="Third group ">
+      <a class="btn-hover-flag-img text-center  " aria-selected="true " style="line-height: 1.5;"
+        routerLink="/agence-immob-tunis">
+        <span>Agences</span>
+        <br>
+        <span>Immobilières</span>
+      </a>
+    </div>
+    <div class="btn-group mr-2 " role="group " aria-label="Third group ">
+      <a class="btn-hover-flag-img text-center  " href="meilleurs-bien-sousse" aria-selected="true "
+        style="line-height: 1.5;">
+        <span>Selection Des</span>
+        <br>
+        <span>Meilleurs Biens</span>
+      </a>
+    </div>
+    <div class="btn-group mr-2 " role="group " aria-label="Fourth group ">
+      <a class="btn-hover-flag-img text-center  " aria-selected="true " style="line-height: 1.5;"
+        routerLink="/agences-de-services">
+        <span>Décoration</span>
+        <br>
+        <span> Services et Arts</span>
+      </a>
+    </div>
+  </div>
+</div>
+<br><br><br>
+
+<br>

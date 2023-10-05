@@ -1,0 +1,169 @@
+.animated-border-button {
+    background-color:#3f51b5;
+    border: none;
+    outline: none;
+    position: relative;
+    color:#ffffff;
+    text-transform: initial;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 0px;
+    margin-bottom: 50px;
+    height: 32px;
+    width: 125px;
+    margin-top: -22px;
+    
+  }
+  
+  .animated-border-button:before,
+  .animated-border-button:after {
+    border: 0 solid transparent;
+    transition: all 0.3s;
+    content: '';
+    height: 0;
+    position: absolute;
+    width: 0px;
+  }
+  
+  .animated-border-button:before {
+    border-top: 2px solid #3f51b5;
+    right: 0;
+    top: -4px;
+  }
+  
+  .animated-border-button:after {
+    border-bottom: 2px solid #3f51b5;
+    bottom: -4px;
+    left: 0;
+  }
+  
+  .animated-border-button:hover:before,
+  .animated-border-button:hover:after {
+    width: 100%;
+  }
+  @media only screen and (max-width: 630px) {
+    .animated-border-button{
+      margin-top: 10px;
+      margin-bottom: 10px;
+      }
+  }
+
+.tunsian-flag-img-background .btn-hover-flag-img {
+    width: 214px;
+    margin: 20px;
+    background-color: #1f1e84;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 10px 30px;
+    border: none;
+    cursor: pointer;
+    background-position-x: center;
+    margin-right: 10px;
+    margin-left: 10px;
+    text-transform: uppercase;
+    -webkit-text-stroke-width: thin;
+  }
+  
+  .adjust-line-height {
+    line-height: 1em;
+  }
+  
+  .tunsian-flag-img-background .btn-hover-flag-img:hover {
+    background-color: #1f1e84;
+  }
+  
+  .btn-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 1px;
+  }
+  
+  @media only screen and (max-width: 800px) {
+    .btn-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding-top: 0px;
+    }
+    .tunsian-flag-img-background .btn-hover-flag-img {
+      width: 214px;
+      margin: 20px;
+      background-color: #1f1e84;
+      color: #ffffff;
+      font-size: 8px;
+      padding: 10px 30px;
+      border: none;
+      cursor: pointer;
+      background-position-x: center;
+      margin-right: 10px;
+      margin-left: 10px;
+      text-transform: uppercase;
+      -webkit-text-stroke-width: thin;
+    }
+    
+    .tunsian-flag-img-background .btn-hover-flag-img {
+      width: 291px;
+      margin: 3px;
+      background-color: #1f1e84;
+      color: #ffffff;
+      font-size: 16px;
+      padding: 5px 10px;
+      border: none;
+      cursor: pointer;
+      background-position-x: center;
+    }
+  }
+  @media only screen and (max-width: 1200px) {
+    .btn-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: -30px;
+    }
+    
+  
+  }
+  .images{
+    margin-bottom: 30px;
+      margin-top: -60px;
+  }
+  @media only screen and (max-width: 894px) {
+    .images {
+     visibility: hidden;
+    }
+    
+  }
+
+  .textInput{
+      font-weight: 500;
+  }
+  .btnValide{
+    color: #fff;
+    background-color: #1f1e84;
+    border-color: #1f1e84;
+    width: 100%;
+}
+.cards{
+    margin-left: 0px;
+    margin-bottom: 20px;
+  }
+  .cardx{
+      margin-right: 20px;
+  }
+  @media (min-width: 300px) {
+    .cards { grid-template-columns: repeat(1, 1fr); }
+  }
+  @media (min-width: 1100) {
+    .cards { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1100px) {
+    .cards { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 1700px) {
+    .cards { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .inputDevis{
+      width: 260px;
+  }

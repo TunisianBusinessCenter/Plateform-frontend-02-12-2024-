@@ -1,0 +1,172 @@
+<div class="container">
+    <div class="responsive-container">
+
+
+        <div class="responsive">
+
+
+            <button (click)="backClicked()" type="submit" class="btn animated-border-button retour">
+                <i class="fa fa-home" aria-hidden="true"></i>
+                Retour
+                </button>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div>
+        <h3 class="titreDesc">{{sousBiens?.name}}</h3>
+    </div>
+    <div class="row cards">
+        <div class="cardx" style="display: flex;" *ngFor="let imagelist of sousBiens?.imagesList">
+            <p-image class="imageDesc" src="{{imagelist}}" alt="Image" width="300" [preview]="true">
+            </p-image>
+        </div>
+    </div>
+
+    <div  *ngIf="sousBiens.description">
+        <h3 class="titreDesc">Description</h3>
+        <p class="paragrapheDesc">{{sousBiens?.description}}</p>
+    </div>
+  
+    <br><br>
+
+
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Contactez nous</h4>
+            <a  class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
+
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="FormData" (ngSubmit)="onSubmit(FormData.value)">
+                <div class="card cardModal">
+                    <div>
+                        <label for="email" class="textInput">Email</label>
+                        <input class="form-control inputDevis" type="email" name="email" formControlName="Email"
+                            placeholder="Votre Email">
+                    </div><br>
+                    <div>
+                        <label for="Nom" class="textInput">Téléphone</label>
+                        <input class="form-control inputDevis" type="text" name="Nom" formControlName="Nom"
+                            placeholder="Téléphone">
+                    </div> <br>
+                    <label for="exampleFormControlTextarea1" class="textInput">Message</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
+                        formControlName="description" rows="3"></textarea>
+                    <br>
+                    <div>
+                    <button  type="submit" class="btn  btnValide">Valider</button>
+                <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+                    Close
+                </button>
+            </div>
+                </div>
+               
+                
+
+            </form>
+        </div>
+
+    </ng-template>
+
+ 
+
+    <button class="btn  mb-2 me-2 btnContact" (click)="openVerticallyCentered(content)">
+        Contactez-nous
+    </button>
+
+    <!-- <p-button style="float:right;" (click)="showMaximizableDialog()" icon="pi pi-external-link" label="Contactez nous">
+    </p-button>
+    <p-dialog header="Contactez nous" [(visible)]="displayMaximizable" [modal]="true" [style]="{ width: '40vw' }"
+        [maximizable]="true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+        <form [formGroup]="FormData" (ngSubmit)="onSubmit(FormData.value)">
+
+
+            <div class="row cards">
+
+                <div class="cardx">
+                    <label for="Nom" class="textInput">Nom</label>
+                    <input class="form-control inputDevis" type="text" name="Nom" formControlName="Nom"
+                        placeholder="Votre Nom">
+                </div>
+                <div class="cardx">
+                    <label for="email" class="textInput">Prénom</label>
+                    <input class="form-control inputDevis" type="text" name="Prénom" formControlName="Prénom"
+                        placeholder="Votre Prénom">
+                </div>
+                <div class="cardx">
+                    <label for="email" class="textInput">Email</label>
+                    <input class="form-control inputDevis" type="email" name="email" formControlName="Email"
+                        placeholder="Votre Email">
+                </div>
+            </div>
+
+
+
+
+            <label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
+                formControlName="description" rows="3"></textarea>
+            <br><br>
+
+            <button type="submit" class="btn btnValide" [disabled]="!FormData.valid">Valider</button>
+
+
+        </form>
+    </p-dialog> -->
+
+
+
+
+
+    <!--      
+    <a routerLink="/devisProduit" class="btnLink" style="text-decoration:none;">
+        <button class="btn btnDevis">
+         
+          <span><i class="fa fa-file-archive-o" aria-hidden="true"></i>&nbsp; Demander un devis</span>
+        
+        </button>
+      </a> 
+    -->
+</div>
+<br><br>
+<br><br>
+
+<div class="tunsian-flag-img-background " style="height: -170; ">
+
+    <div class="btn-toolbar " role="toolbar " aria-label="Toolbar with button groups ">
+        <div class="btn-group mr-2 " role="group " aria-label="First group ">
+            <a class="btn-hover-flag-img text-center  " href="promoteurs-tunis " aria-selected="true "
+                style="line-height: 1.5;"><span>Promoteurs </span><br><span> Immobiliers </span></a>
+        </div>
+        <div class="btn-group mr-2 " role="group " aria-label="Second group ">
+            <a class="btn-hover-flag-img text-center " href="equipement " aria-selected="true "
+                style="line-height: 1.5;"><span>Materiaux </span><br><span> de construction </span></a>
+        </div>
+
+        <div class="btn-group mr-2 " role="group " aria-label="Third group ">
+            <a class="btn-hover-flag-img text-center  " href="agence-immob-tunis" aria-selected="true "
+                style="line-height: 1.5;"><span>Agences </span><br><span> Immobilières</span></a>
+        </div>
+        <div class="btn-group mr-2 "
+        role="group "
+        aria-label="Third group ">
+        <a class="btn-hover-flag-img text-center  "
+        href="meilleurs-bien-sousse"
+          aria-selected="true "
+          style="line-height: 1.5;">
+          <span>Selection Des</span> 
+          <br>
+          <span>Meilleurs Biens</span>
+        </a>
+      </div>
+        <div class="btn-group mr-2 " role="group " aria-label="Fourth group ">
+            <a class="btn-hover-flag-img text-center" href="agences-de-services" aria-selected="true "
+                style="line-height: 1.5;"> <span>Décoration</span><br> <span> Services et Arts</span> </a>
+        </div>
+    </div>
+</div>
+<br><br>
+
+<br><br>

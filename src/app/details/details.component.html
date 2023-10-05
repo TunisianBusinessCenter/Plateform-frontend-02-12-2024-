@@ -1,0 +1,275 @@
+<main id="content" class="bg-patten-03">
+	<div class="px-3 px-lg-6 px-xxl-13 py-5 py-lg-10 my-profile">
+		<div class="collapse-tabs new-property-step">
+			<div class="container updateMenu">
+				<button type="submit" class="animated-border-button " (click)=" backClicked()">
+					<i class="fa fa-arrow-left" aria-hidden="true"></i>
+					Retour
+				</button>
+				<br> <br><br><br><br>
+				<div class="displayCard">
+					<p-card class="p-card1" header="{{Projet?.agencyName}}">
+						<p class="textInfo">{{Projet?.name}}</p>
+					</p-card> &nbsp;&nbsp;
+					<p-card class="p-card2">
+						<!--
+						<p class="textInfoX">À partir de <span style="color:#8b0000;">200 000
+								TND</span></p>
+						-->
+						<p (click)="showMaximizableDialog()" class="textInfofinancement"><i
+								class="fas fa-solid fa-calculator"></i>
+							Obtenir un financement &nbsp;<i class="fas fa-solid fa-play"></i></p>
+						<p-dialog [(visible)]="displayMaximizable" [modal]="true" [maximizable]="true"
+							[baseZIndex]="10000" [draggable]="false" [resizable]="false">
+							<div class="modal-header">
+								<img src="../../assets/images/banque/Logo_HABITAT.jpg" alt="Logo_TIJARI" width="30%;">
+								<h4 class="modal-title titleModal">Obtenir une offre de financement</h4>
+							</div>
+							<div class="modal-body">
+
+								<div class="card cardModal">
+									<div class="modalInputBlock1">
+										<span class="p-float-label">
+											<input type="text" id="Votre Email" pInputText />
+											<label for="Votre Email">Votre Email</label>
+										</span>
+
+										&nbsp;
+										<p-dropdown [options]="durees" placeholder="Durée" optionLabel="name"
+											[showClear]="true"></p-dropdown>
+									</div>
+									<br>
+									<label for="exampleFormControlTextarea1" class="textInput">Autofinancement</label>
+									<textarea class="form-control" id="exampleFormControlTextarea1" name="description"
+										formControlName="description" rows="3"></textarea>
+									<br>
+								</div>
+								<div class="card cardModal">
+
+									<div class="p-fluid p-grid">
+										<div class="p-field p-col-12 ">
+											<span class="p-float-label">
+												<input type="text" id="Votre Nom" pInputText />
+												<label for="Votre Nom">Votre Nom</label>
+											</span>
+										</div>
+									</div>
+									<br>
+									<div class="modalInputBlock1">
+										<span class="p-float-label">
+											<input type="text" id="Votre adresse email" pInputText
+												[(ngModel)]="contactText" />
+											<label for="Votre adresse email">Votre adresse email</label>
+										</span>
+										&nbsp;
+										<span class="p-float-label">
+											<input type="text" id="Votre Téléphone" pInputText />
+											<label for="Votre Téléphone">Votre Téléphone</label>
+										</span>
+									</div> <br>
+
+									<div class="p-fluid p-grid">
+										<div class="p-field p-col-12 ">
+											<span class="p-float-label">
+												<input type="text" id="Votre Activité" pInputText />
+												<label for="Votre Activité">Votre Activité</label>
+											</span>
+										</div>
+									</div><br>
+									<div class="p-fluid p-grid">
+										<div class="p-field p-col-12 ">
+											<span class="p-float-label">
+												<input type="text" id="Votre Ville" pInputText />
+												<label for="Votre Ville">Votre Ville</label>
+											</span>
+										</div>
+									</div>
+
+									<br>
+									<p class="politique">En validant ce formulaire, vous autorisez l'entreprise à
+										recevoir vos informations et á vous contacter,
+										et vous acceptez <span style="text-decoration: underline;">la politique de
+											protection des données personnelles</span> </p>
+								</div>
+								<div class="modal-footer valider">
+
+									<!-- <p-button href="mailto:relation.client@attijaribank.com.tn" icon="pi pi-check" label="Contacter" class="p-button-text">
+										
+									</p-button> -->
+									<a class="contacterBtn"
+										href="mailto:contact@bhbank.tn?subject=Obtenir une offre de financement&body={{contactText}}">
+										<i class="pi pi-check">&nbsp;</i>Contacter</a>
+									<a href="" class="fermerBtn" icon="pi pi-times"
+										(click)="displayMaximizable=false"><i class="pi pi-times">&nbsp;</i>Fermer</a>
+								</div>
+							</div>
+
+						</p-dialog>
+					</p-card>&nbsp;&nbsp;
+					<p-card class="p-card3" style="text-align: center;">
+						<div class="iconText">
+							<i class="fas fa-award" style="font-size:20px;color:#8b0000;"></i>
+							<p class="textInfo">Haut Standing</p>
+						</div>
+
+					</p-card>&nbsp;&nbsp;
+					<p-card class="p-card4">
+						<div class="iconText">
+							<i class="fas fa-light fa-clock" style="font-size:20px;color:#8b0000;"></i>
+							<p class="textInfo">Livraison Dans Les Délais</p>
+						</div>
+					</p-card>
+				</div>
+				<div style="display:block">
+					<h2 class="fs-35 font-weight-600 lh-15 text-heading ">
+						{{Projet?.name}}
+					</h2>
+					<div class="d-sm-flex justify-content-sm-between text-heading">
+						<div>
+
+							<p class="mb-0 " style="color: #858585;font-size: 14px;">
+								<mat-icon style="color: #858585;font-size: 16px;">location_on</mat-icon>
+								{{Projet?.adresse}}
+							</p>
+						</div>
+					</div>
+				</div>
+				<p-galleria [value]="Projet?.photos" [numScroll]="1" [responsiveOptions]="responsiveOptions"
+					[containerStyle]="{'max-width': '100%'}" [numVisible]="5" thumbnailsPosition="bottom">
+
+					<ng-template pTemplate="item" let-item>
+
+
+						<br>
+
+						<img [src]="item" style="width: 80%; display: block;">
+
+					</ng-template>
+					<ng-template pTemplate="thumbnail" style="color:aliceblue ;" let-item>
+						<div class="grid grid-nogutter justify-content-center">
+							<img [src]="item" class="taill-galery">
+
+						</div>
+					</ng-template>
+
+				</p-galleria>
+				<br>
+				<br>
+				<div class="responsable" *ngIf="Projet?.numCommercial!==null && Projet?.emailCommercial!==null">
+					<button class="btn  responsableBtn">
+						<mat-icon style="font-size: 20px;margin-top: 4px;">supervised_user_circle</mat-icon>
+						<h1 class="textResponsable"> <span>Responsable commercial</span> &nbsp; </h1>
+					</button>&nbsp;&nbsp;&nbsp;
+					<button class="btn  responsableBtn">
+						<mat-icon style="font-size: 20px;margin-top: 4px;">perm_phone_msg</mat-icon>
+						<h1 class="textResponsable"><span>Tél:</span> &nbsp; {{Projet?.numCommercial}}</h1>
+					</button>&nbsp;&nbsp;&nbsp;
+					<button class="btn  responsableBtn">
+						<mat-icon style="font-size: 20px;margin-top: 4px;">alternate_email</mat-icon>
+						<h1 class="textResponsable"><span>Email:</span> &nbsp; {{Projet?.emailCommercial}}</h1>
+					</button>
+				</div>
+
+
+				<div *ngFor="let agence of images">
+
+					<div class="responsable" *ngIf="agence.name===Projet?.agencyName && Projet?.numCommercial===null">
+						<button class="btn  responsableBtn">
+							<mat-icon style="font-size: 20px;margin-top: 4px;">supervised_user_circle</mat-icon>
+							<h1 class="textResponsable"> <span>Responsable commercial</span> &nbsp; </h1>
+						</button>&nbsp;&nbsp;&nbsp;
+						<button class="btn  responsableBtn">
+							<mat-icon style="font-size: 20px;margin-top: 4px;">perm_phone_msg</mat-icon>
+							<h1 class="textResponsable"><span>Tél:</span> &nbsp; {{agence?.phone_number}}</h1>
+						</button>&nbsp;&nbsp;&nbsp;
+						<button class="btn  responsableBtn">
+							<mat-icon style="font-size: 20px;margin-top: 4px;">alternate_email</mat-icon>
+							<h1 class="textResponsable"><span>Email:</span> &nbsp; {{agence?.email}}</h1>
+						</button>
+					</div>
+				</div>
+				<p></p>
+				<br>
+				<div class="row" style="    --bs-gutter-x: 1.5rem;
+				--bs-gutter-y: 0;
+				display: flex;
+				margin-top: calc(-1 * var(--bs-gutter-y));
+				margin-right: calc(-.5 * var(--bs-gutter-x));
+				margin-left: calc(-.5 * var(--bs-gutter-x));
+				flex-direction: row;">
+					<article class="col-lg-6">
+						<section class="pb-8 rounded-lg">
+							<ul class="list-inline d-sm-flex align-items-sm-center mb-2" style="margin-top: 7px;">
+								<li class="list-inline-item badge badge-orange mr-2">{{Projet?.agencyName}}</li>
+								<li class="list-inline-item badge badge-primary mr-3">En Cours</li>
+								&nbsp;
+								<li class="list-inline-item mt-1 mt-sm-0" style="color: #858585;">
+									<mat-icon>av_timer</mat-icon>
+								</li>
+								<li class="list-inline-item mt-1 mt-sm-0" style="color: #858585;font-size: 12px;">
+									{{ getDateDifference() }}
+								</li>
+								&nbsp;
+								<li class="list-inline-item mt-1 mt-sm-0" style="color: #858585;">
+									<mat-icon>remove_red_eye</mat-icon>
+								</li>
+								<li class="list-inline-item mt-1 mt-sm-0" style="color: #858585;font-size: 12px;">
+									{{visitorCount}}
+								</li>
+								<!-- <li class="list-inline-item mt-2 mt-sm-0"><i class="fal fa-eye mr-1"></i> 1039 vues</li> -->
+							</ul>
+
+
+							<h4 *ngIf="Projet?.description" class="fs-22 mt-6 mb-2 responsive-heading">
+								Description
+							  </h4>
+							  
+							<p class="mb-0 lh-214 scrollable-paragraph">
+								{{Projet?.description}}
+								
+							</p>
+						</section>
+					</article>
+					<aside class="col-lg-6 pl-xl-4 primary-sidebar sidebar-sticky" id="sidebar">
+						<div class="primary-sidebar-inner">
+							<section>
+								<div class="container" *ngIf="Projet?.categoryList.length!==0">
+									<h2 class="text-dark appartement">TYPE APPARTEMENT</h2>
+									<hr class="hrstyle">
+									<div *ngFor="let piece of Projet?.categoryList" class="row">
+										<!-- <div *ngFor="let pieceid of Piece?.id"> -->
+										<div [routerLink]="['/villa-details', Projet.id]" class="col-lg-12 "
+											style="margin-bottom:17px;">
+											<button class="btn buttonVillas">
+												<div class="villas">
+													<mat-icon style="font-size: 20px;">account_balance</mat-icon>
+													&nbsp;
+													{{piece}} &nbsp;
+													<mat-icon>trending_flat</mat-icon>
+												</div>
+											</button>
+											<br>
+										</div>
+										<!-- </div> -->
+									</div>
+								</div>
+							</section>
+						</div>
+					</aside>	
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--<div class="gradient-border"
+		id="box">
+		En cour de construction &nbsp;
+		<i class="fa fa-exclamation-triangle"
+			aria-hidden="true"></i>
+	    </div> -->
+	<br>
+
+	<br>
+	<br>
+
+	<br> <br>
+</main>

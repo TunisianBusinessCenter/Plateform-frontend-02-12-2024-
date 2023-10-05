@@ -1,0 +1,157 @@
+<div class="allAgSearch">
+    <!-- <form class="form-search">
+                <mat-form-field >
+                    <span matPrefix> </span>
+                    <input type="text"  [(ngModel)]="searchText" matInput placeholder="Search" name= "search"  (input)="Search()">
+                    <button matSuffix mat-button>
+                        <mat-icon > search</mat-icon></button>
+                </mat-form-field>	
+            
+        </form>  -->
+        <form  class="search-bar">
+            <input type="search" name="search"   pattern=".*\S.*"  required>
+            <button class="search-btn" type="submit">
+                <span>Search</span>
+            </button>
+        </form>
+        
+          <div  >
+          
+          </div>
+    </div>
+    
+    <main id="content">
+    
+        <div class="tunsian-flag-img-background" 
+            style="height: -170">
+            <div class="btn-toolbar"
+                role="toolbar "
+                aria-label="Toolbar with button groups ">
+                <div class="btn-group mr-2"
+                    role="group "
+                    aria-label="First group ">
+                    <a class="btn-hover-flag-img text-center "
+                       
+                        aria-selected="true "
+                        style="line-height: 1.5">
+                        <span>Promoteurs</span>
+                        <br>
+                        <span>Immobiliers</span>
+                    </a>
+                </div>
+                <div class="btn-group mr-2"
+                    role="group "
+                    aria-label="Second group ">
+                    <a class="btn-hover-flag-img text-center "
+                       
+                        aria-selected="true "
+                        style="line-height: 1.5">
+                        <span>Materiaux</span>
+                        <br>
+                        <span>de construction</span>
+                    </a>
+                </div>
+                <div class="btn-group mr-2"
+                    role="group "
+                    aria-label="Third group ">
+                    <a class="btn-hover-flag-img text-center "
+                    
+                        aria-selected="true "
+                        style="line-height: 1.5">
+                        <span>Agences</span>
+                        <br>
+                        <span>Immobilières</span>
+                    </a>
+                </div>
+                <div class="btn-group mr-2"
+                    role="group "
+                    aria-label="Third group ">
+                    <a class="btn-hover-flag-img text-center "
+                    
+                        aria-selected="true "
+                        style="line-height: 1.5">
+                        <span>Selection Des</span>
+                        <br>
+                        <span>Meilleurs Biens</span>
+                    </a>
+                </div>
+                <div class="btn-group mr-2"
+                    role="group "
+                    aria-label="Fourth group ">
+                    <a class="btn-hover-flag-img text-center "
+                    
+                        aria-selected="true "
+                        style="line-height: 1.5">
+                        <span>COMMERCES</span>
+                        <br>
+                         <span> Services et Arts</span> 
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="header-magazine">
+            <div>
+                <h2 class="responsive-font-example"
+                    style="font-weight: bold">
+                    LES DERNIÈRES ÉDITIONS DU
+                    MAGHREB IMMOBILIER MAGAZINE
+                </h2>
+            </div>
+            <hr style="color:#1f1e84; font-size: 18px;color: #1f1e84;
+                            border-top: 3px solid #1f1e84;border-radius:5px;width:58px;display: block;
+                            width: 75px;
+                            margin-top: 19px;
+                            margin-bottom: 20px;
+                            margin-left:4px">
+            <p class="mb-md-0 mb-6 pText"
+                style="color:#696969;">
+                La première revue gratuite d’annonces immobilières en Maroc
+            </p>
+        </div>
+    
+        <div class="box">
+            <div class="slick-slider arrows-inner"
+                data-slick-options='{"slidesToShow": 3,"autoplay":false,"dots":true,"arrows":true,"responsive":[{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
+                <p-carousel [value]="images"
+                    [numVisible]="4"
+                    [numScroll]="4"
+                    [circular]="true"
+                    [responsiveOptions]="responsiveOptions"
+                    styleClass="custom-carousel">
+                    <ng-template let-AgencyMagazine
+                        pTemplate="item" >
+                        <div class="product-item" >
+                            <div class="product-item-content" >
+                                <div  >
+                                    <span style="margin-left: 0%; margin-bottom: 2%"
+                                        class="badge badge-indigo">
+                                        Edition {{AgencyMagazine?.edition}}
+                                    </span>
+                                    <div class="mb-3">
+                                        <img src={{AgencyMagazine?.image}}
+                                            class="image"
+                                            alt="The third slider"
+                                            class="product-image">
+                                    </div>
+                                    <div>
+                                        <a type="submit"
+                                            href="{{AgencyMagazine?.url}}"
+                                            style="margin-top: 2%; text-decoration:none;margin-top: -9px;"
+                                            class="btn btn-primary ">
+                                            Télecharger &nbsp; <i class="fa fa-download" aria-hidden="true" style="margin-top: 3px;"></i>
+                                            
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-carousel>
+            </div>
+        </div>
+        <br> <br> <br>
+      
+        
+    </main>
+    

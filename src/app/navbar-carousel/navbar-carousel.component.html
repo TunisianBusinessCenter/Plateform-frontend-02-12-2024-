@@ -1,0 +1,189 @@
+<!-- <div class="col-md-2 faceProBannier" routerLink="/">
+	<img class="bannierLeft" src="../../assets/images/HomePage/bannierLeft.png" alt="bannier Left">
+ </div> -->
+
+<ngb-carousel (slide)="slideActivate($event)">
+
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+
+			<img style="width: 100%" src="../../assets/images/HomePage/KMC.jpg" alt="Angular Carousel 2">
+
+
+		</div>
+	</ng-template>
+	<!-- <ng-template ngbSlide>
+			<div class="picsum-img-wrapper">
+				<div class="carte">
+					<div class="id-card-tag-strip"></div>
+					<div class="id-card-hook"></div>
+					<div class="id-card-holder">
+						<div class="id-card">
+							
+							<h2>PROJET:  LAYOUNI  </h2>
+							
+							<h3>EMAIL:    immob.layouni@gmail.com</h3>						<hr>
+	
+							<div>
+								<img src="../../assets/images/HomePage/codeQR-layouni.png" width="60%">
+							</div>
+				
+						</div>
+					</div>
+				</div>
+				
+				<img style="width: 100%"
+					src="../../assets/images/HomePage/cometa.jpg"
+					alt="Angular Carousel 2">
+				
+			</div>
+		</ng-template> -->
+	<!-- <ng-template ngbSlide>
+			<div class="picsum-img-wrapper">
+				<div class="carte">
+					<div class="id-card-tag-strip"></div>
+					<div class="id-card-hook"></div>
+					<div class="id-card-holder">
+						<div class="id-card">
+							
+							<h2>PROJET:   COALLIANCE</h2>
+							
+							<h3>EMAIL:    commercial@allianceimmob.com</h3>						<hr>
+	
+							<div>
+								<img src="../../assets/images/HomePage/COALLIANCE.png" width="60%">
+							</div>
+				
+						</div>
+					</div>
+				</div>
+				
+				<img style="width: 100%"
+					src="../../assets/images/HomePage/alliace.jpg"
+					alt="Angular Carousel 2">
+					
+			</div>
+		</ng-template> -->
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+			<!-- <div class="carte">
+					<div class="id-card-tag-strip"></div>
+					<div class="id-card-hook"></div>
+					<div class="id-card-holder">
+						<div class="id-card">
+							
+							<h2>PROJET:   fOLLA</h2>
+							
+							<h3>EMAIL:    info@folla.tn</h3>						<hr>
+	
+							<div>
+								<img src="../../assets/images/HomePage/codeQR-folla.png" width="60%">
+							</div>
+				
+						</div>
+					</div>
+				</div> -->
+
+			<img style="width: 100%" src="../../assets/images/HomePage/FOLLA.jpg" alt="Angular Carousel 2">
+
+		</div>
+	</ng-template>
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+			<!-- <div class="carte">
+					<div class="id-card-tag-strip"></div>
+					<div class="id-card-hook"></div>
+					<div class="id-card-holder">
+						<div class="id-card">
+							
+							<h2>PROJET:   LCT</h2>
+							
+							<h3>EMAIL:    contact@lct.com.tn</h3><hr>
+	
+							<div>
+								<img src="../../assets/images/HomePage/LCTQRCODE.png" width="60%">
+							</div>
+				
+						</div>
+					</div>
+				</div> -->
+			<img style="width: 100%" src="../../assets/images/HomePage/LCT.jpg" alt="Angular Carousel 2">
+
+
+
+		</div>
+
+	</ng-template>
+
+</ngb-carousel>
+
+<!-- &&
+	router.url==='/home-algerie' &&
+	router.url==='/home-maroc' &&
+	router.url==='/home-lybia' &&
+	router.url==='/home' -->
+
+<div class="carte" *ngIf="router.url==='/home' || router.url==='/home-algerie' 
+|| router.url==='/home-maroc' || router.url==='/home-lybia' || router.url==='/home-mauritanie'">
+	<div class="id-card-tag-strip"></div>
+	<div class="id-card-hook"></div>
+	<div class="id-card-holder">
+		<div class="id-card" routerLink="/">
+			<div>
+				<img src="../../assets/images/HomePage/FACE-PRO-LOGO.png" width="90%" style="margin-top: -5px;">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<div *ngIf="router.url !=='/home-algerie' && router.url !=='/home-maroc'
+ && router.url !=='/home-lybia'&& router.url !=='/home-mauritanie'" class="imageCentreTunisien">
+
+	<img src="../../assets/images/tunisieimmob/LOGO-Tunisian.png" class="imgbannier" alt="logo plate forme">
+
+	<!-- <img [routerLink]="roleMateriaux ? ['/equipement'] :
+	 []" src="../../assets/images/tunisieimmob/LOGO-PLATE.png"
+		class="imgbannier" alt="logo plate forme"> -->
+
+	<!-- 
+ <div *ngIf="allAgencies.role==='meilleurs-biens'">
+	<img routerLink="/meilleurs-bien-sousse" src="../../assets/images/tunisieimmob/LOGO-PLATE.png"
+		class="imgbannier" alt="logo plate forme">
+ </div>
+
+ <div *ngIf="allAgencies.role==='agence-immobilieres'">
+	<img routerLink="/agence-immob-tunis" src="../../assets/images/tunisieimmob/LOGO-PLATE.png"
+		class="imgbannier" alt="logo plate forme">
+ </div>
+
+ <div *ngIf="allAgencies.role==='agence-service'">
+	<img routerLink="/agences-de-services" src="../../assets/images/tunisieimmob/LOGO-PLATE.png"
+		class="imgbannier" alt="logo plate forme">
+ </div> -->
+</div>
+
+<div *ngIf="router.url ==='/home-algerie'" class="imageCentreTunisien">
+	<img src="../../assets/images/HomePage/LOGO-Algérien-busniss-center.png" class="imgbannier" alt="logo plate forme">
+</div>
+
+<div *ngIf="router.url ==='/home-maroc'" class="imageCentreTunisien">
+	<img src="../../assets/images/HomePage/LOGO-morocain-business-center.png" class="imgbannier" alt="logo plate forme">
+</div>
+
+<div *ngIf="router.url ==='/home-lybia'" class="imageCentreTunisien">
+	<img src="../../assets/images/HomePage/LOGO-LYBIA-business-center.png" class="imgbannier" alt="logo plate forme">
+</div>
+
+<div *ngIf="router.url ==='/home-mauritanie'" class="imageCentreTunisien">
+	<img src="../../assets/images/HomePage/LOGO-mauritania-business-center.png" class="imgbannier"
+		alt="logo plate forme">
+</div>
+
+
+
+<br>
+<br>

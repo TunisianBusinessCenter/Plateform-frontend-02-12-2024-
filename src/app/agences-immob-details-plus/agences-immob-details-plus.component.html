@@ -1,0 +1,341 @@
+<div class="responsive-container">
+
+    <div class="responsive">
+      <button (click)="backClicked()" type="submit" class="btn animated-border-button ">
+        <i class="fa fa-home" aria-hidden="true"></i>
+        Retour
+      </button>
+    </div>
+  </div>
+  <div class="px-lg-5  my-profile">
+    <div *ngFor="let allAgence of AllAgency">
+      <div *ngIf="Biens?.agencyName===allAgence?.name">
+        <div class="row agency-responsive">
+          <div class="col" style="margin: auto;">
+            <img class="rounded-lg border card-img-logo" src="{{allAgence?.logo_url }}">
+          </div>
+          <div class="col textresponce">
+            <div class="CardDetails">
+              <div class="ribbon"><span class="ribbon__content" *ngIf="allAgence?.role==='promoteur-immobilieres'">PROMOTION</span></div>
+              <div class="ribbon"><span class="ribbon__content" *ngIf="allAgence?.role==='materiaux-construction'">MATERIAUX</span></div>
+              <div class="ribbon"><span class="ribbon__content__agence" *ngIf="allAgence?.role==='agence-immobilieres'">A VENDRE/A LOUER</span></div>
+              <div class="ribbon"><span class="ribbon__content" *ngIf="allAgence?.role==='agence-service'">SERVICE</span></div>
+            <h2 class="card-title fs-22 lh-15 mb-1 text-dark nameAgencie">
+              {{allAgence?.name}}
+            </h2> <br>
+            <p class="card-text  Agencyadresse">
+              {{allAgence?.adresse}}
+            </p>
+  
+            <li class="list-group-item  align-items-sm-center  li-agency">
+              <span class="col-sm-2 px-1 AgencyDetails">Tél 1:</span>
+              <span class="col-sm-9 px-1 tele-responsive">
+                +216 {{allAgence?.phone_number}}
+              </span>
+            </li>
+            <li class="list-group-item  align-items-sm-center  li-agency" *ngIf="allAgence?.phone_number2">
+              <span class="col-sm-2 px-1 AgencyDetails">Tél 2:</span>
+              <span class="col-sm-9 px-1  tele-responsive">
+                +216 {{allAgence?.phone_number2}}
+              </span>
+            </li>
+            <li class="list-group-item  align-items-sm-center  li-agency" *ngIf="allAgence?.phone_commercial">
+              <span class="col-sm-2 px-1 AgencyDetails">Tél Commercial:</span>
+              <span class="col-sm-9 px-1  tele-responsive">
+                +216 {{allAgence?.phone_commercial}}
+              </span>
+            </li>
+            <li class="list-group-item  align-items-sm-center  li-agency">
+              <span class="col-sm-2 px-1 AgencyDetails">Email</span>
+              <span class="col-sm-9 px-1 tele-responsive ">
+                {{ allAgence?.email }}
+              </span>
+            </li>
+            <li class="list-group-item  align-items-sm-center  li-agency">
+              <span class="col-sm-2 px-1 AgencyDetails ">Site web</span>
+              <a href="{{allAgence?.website_url}}" style="text-decoration:none">
+                <span class="col-sm-9 px-1 tele-responsive" style="color: #1f1e84;cursor: pointer">
+                  {{allAgence?.website_url}}
+                </span>
+              </a>
+            </li>
+            <li class="list-group-item d-flex align-items-sm-center  li-social">
+              <ul class="list-inline mb-0" style="margin-left: -48px;">
+                <ul class="social-networks bounce">
+                  <li>
+                    <a href="{{allAgence?.twitter_url}}" class="icon-twitter">
+                      Twitter
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{allAgence?.facebook_url}}" class="icon-facebook">
+                      Facebook
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{allAgence?.instagram_url}}" class="icon-instagram">
+                      Instagram
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{allAgence?.linkedlin_url}}" class="icon-linkedin">
+                      LinkedIn
+                    </a>
+                  </li>
+                </ul>
+              </ul>
+            </li>
+          </div> 
+          </div>
+          <br>
+          <div class="col" style="margin: auto;">
+  
+            <div *ngFor="let Agencyapp of allAgence?.mobile_apps">
+              <div *ngIf="allAgence?.mobile_apps?.length===0 && allAgence.videoUrl===null ;">
+                <div class="text-primary">
+                  <h6 class="appname">
+                    Application en cours
+                  </h6>
+                </div>
+  
+                <img class="appimage" src="../../assets/images/HomePage/1111.jpg" style="float: right;" width="80%"
+                  height="120%">
+                <button type="submit" class="btn btn-primary btn-lg btn-block shadow-none responsive-telecharger">
+                  Télecharger &nbsp;
+                  <i class="fa fa-download" aria-hidden="true"></i>
+                </button>
+              </div>
+  
+              <div *ngIf="Agencyapp.id!==null ;">
+                <div class="text-primary">
+                  <h6 class="appname">
+                    {{ Agencyapp?.name }}
+                  </h6>
+                </div>
+                <a style=" text-decoration:none" href="{{ Agencyapp?.playstore_url }}">
+                  <img class="appimage" src="{{ Agencyapp?.mobile_cover_image_url}}">
+                  <button type="submit" class="btn   responsive-telecharger">
+                    Télecharger &nbsp;
+                    <i class="fa fa-download" aria-hidden="true"></i>
+                  </button>
+                </a>
+              </div>
+            </div>
+             <!-- <div *ngFor="let allAgence of AllAgency">
+              <div *ngIf="Biens?.agencyName===allAgence?.name">
+            <div *ngIf="allAgence?.mobile_apps?.length===0 && allAgence.videoUrl">
+              <div class="text-primary">
+                <h6 class="appnameUrbat">
+                  vidéo de présentation
+                </h6>
+              </div>
+  
+              <iframe class="responsive-iframe" [src]="(urlSafe)">
+              </iframe>
+  
+            </div>
+            </div>
+            </div>  -->
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <br>
+    <!-- <div class="row flex-lg-row flex-cloumn">
+      <div class="col-lg-5 " style="margin-top: 20px;">
+  
+        <h2 class="text-heading"
+          style="font-size: 2.1rem;color: #333!important;font-family: poppins,sans-serif;font-family: system-ui;">
+          {{Biens?.name}}
+        </h2>
+        <hr class="hrstyle">
+      </div>
+  
+    </div> -->
+    
+  
+  
+      <mat-tab-group>
+  
+        <mat-tab style="background-color: #1f1e84" >
+  
+          <ng-template mat-tab-label>
+            <span class="my-custom-class">
+              {{Biens?.name}}
+            </span>
+          </ng-template>
+  
+          <br><br>
+  
+  
+          <div class="cardx" *ngFor="let categories of Biens?.categoryList;">
+            <div *ngFor="let categorie of Biens?.sous_biens;">
+              <!-- <div *ngFor="let allpjs of allpj?.pieces"> -->
+              <div *ngIf="categories===categorie?.category">
+                <div class="card-group card-hover-over">
+                  <div class="card">
+                    <!-- <button class="list-inline-item badge badge-primary mr-3">DISPONIBLE</button> -->
+                    <img class="card-img" src="{{categorie?.image_url}}" alt="Card image" width="390" height="259" [preview]="true">
+                    
+                      <div class="card-img-overlay">
+                      <div class="card-body">
+                        <h4 class="card-titre">{{categorie?.name}}</h4>
+                        <a class="btn" [routerLink]="['/descriptionAgence_Immob', categorie?.id]">PLUS DE DÉTAILS</a>
+                      </div>
+                    </div>
+                  </div>
+                 
+                </div>
+                
+              </div>
+  
+              <!-- <mat-card *ngIf="categories?.name===categorie?.category" class="example-card1"
+                    [ngStyle]="{'background-image':'url(' + categorie?.image_url+ ')'}"
+                    style="width:95%;background-repeat:no-repeat;">
+  
+                    <mat-card-actions>
+                      <li class="list-inline-item badge badge-primary mr-3">DISPONIBLE</li>
+                    </mat-card-actions>
+                    <br><br><br>
+                    <mat-card-content>
+                      <p class="descriptionVilla">
+                        {{categorie?.name}} | <br>
+                        Prix: Contactez-nous
+                      </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                      <a [routerLink]="['/descriptionAgence_Immob', categorie?.id]"
+                        class="list-inline-item badge badge-orange mr-2">PLUS DE DÉTAILS</a>
+                    </mat-card-actions>
+                  </mat-card> -->
+                  <br>
+                  
+            </div>
+          </div>
+          
+          
+          <!-- </div> -->
+         
+  
+  
+  
+        </mat-tab>
+        
+      </mat-tab-group>
+      
+  </div>
+
+  <br><br>
+  <!-- <ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Demander un devis</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="FormData" >
+            <div>
+                <div>
+                    <label for="email" class="textInput">Email</label>
+                    <input class="form-control inputDevis" type="email" name="email" formControlName="Email"
+                        placeholder="Votre Email">
+                </div><br>
+                <div>
+                    <label for="Nom" class="textInput">Téléphone</label>
+                    <input class="form-control inputDevis" type="text" name="Nom" formControlName="Nom"
+                        placeholder="Téléphone">
+                </div> <br>
+            </div>
+            <label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
+                formControlName="description" rows="3"></textarea>
+            
+            <div class="modal-footer valider">
+                <div *ngFor="let allAgence of AllAgency">
+                        <div *ngIf="Biens?.agencyName===allAgence?.name">
+                        
+                                <a mat-raised-button class="btnValider"
+                                href="mailto:{{allAgence?.email}}?subject=Sujet&body=num:{{numText}} Message:{{contactText}}"
+                                >Valider</a>
+                                  <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+                                    Close
+                                </button>
+                            
+                   </div>
+               </div>
+              
+               
+            </div>
+  
+        </form>
+    </div>
+  </ng-template> -->
+  
+      <!-- <button class="btn btnDevis" (click)="openVerticallyCentered(content)" >
+       
+        <span><i class="fa fa-file-archive-o" aria-hidden="true"></i>&nbsp; Contactez-nous</span>
+      
+      </button> -->
+  
+  
+  
+  
+  
+  <!-- <div class="gradient-border" id="box" >
+    En cour de construction &nbsp; <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+  
+  </div> -->
+  <br>
+  <br>
+  <br>
+  <div class="tunsian-flag-img-background " style="height: -170; ">
+  
+  
+    <div class="btn-toolbar " role="toolbar " aria-label="Toolbar with button groups ">
+      <div class="btn-group mr-2 " role="group " aria-label="First group ">
+        <a class="btn-hover-flag-img text-center  " href="promoteurs-tunis " aria-selected="true "
+          style="line-height: 1.5;">
+          <span>Promoteurs</span>
+          <br>
+          <span>Immobiliers</span>
+        </a>
+      </div>
+      <div class="btn-group mr-2 " role="group " aria-label="Second group ">
+        <a class="btn-hover-flag-img text-center  " href="equipement " aria-selected="true " style="line-height: 1.5;">
+          <span>Materiaux</span>
+          <br>
+          <span>de construction</span>
+        </a>
+      </div>
+  
+  
+      <div class="btn-group mr-2 " role="group " aria-label="Third group ">
+        <a class="btn-hover-flag-img text-center" href="agence-immob-tunis" aria-selected="true "
+          style="line-height: 1.5;">
+          <span>Agences</span>
+          <br>
+          <span>Immobilières</span>
+        </a>
+      </div>
+      <div class="btn-group mr-2 " role="group " aria-label="Third group ">
+        <a class="btn-hover-flag-img text-center  " href="meilleurs-bien-sousse" aria-selected="true " style="line-height: 1.5;">
+          <span>Selection Des</span>
+          <br>
+          <span>Meilleurs Biens</span>
+        </a>
+      </div>
+      <div class="btn-group mr-2 " role="group " aria-label="Fourth group ">
+        <a class="btn-hover-flag-img text-center" href="agences-de-services" aria-selected="true "
+          style="line-height: 1.5;">
+          <span>Décoration</span>
+          <br>
+          <span> Services et Arts</span>
+  
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <br> <br><br><br>
+ 

@@ -1,0 +1,53 @@
+<div style="background-image: url('../../../assets/images/HomePage/background-login.jpg');background-size: contain;
+height:937px;">
+	<img routerLink="/" src="../../../assets/images/HomePage/FACE-PRO-LOGO.png"
+		class="center">
+	<mat-card>
+		<mat-card-content>
+			<form *ngIf="!isLoggedIn"
+			name="form"
+			(ngSubmit)="f.form.valid && onSubmit()"
+			
+			novalidate>
+				<h2>Log In</h2>
+				<mat-error *ngIf="loginInvalid">
+					The username and password were not recognised
+				</mat-error>
+				<mat-form-field class="full-width-input">
+					<input 
+						name="email"
+						matInput
+						placeholder="Email"
+						required>
+					<mat-error>
+						Please provide a valid email address
+					</mat-error>
+				</mat-form-field>
+				<mat-form-field class="full-width-input">
+					<input
+						name="password"
+						matInput
+						type="password"
+						placeholder="Password"
+						required>
+					<mat-error>
+						Please provide a valid password
+					</mat-error>
+				</mat-form-field>
+				
+
+				<mat-card-actions>
+					<button style="background-color: #8b0000;"
+						mat-raised-button
+						color="primary"
+						type="submit">
+						Se connecter
+					</button> <br><br>
+                    <div routerLink="/conception/registre">
+                    <p style="float:right; color:#8b0000;font-weight: 600;cursor: pointer;text-decoration : underline">S'inscrire</p>
+                    </div>
+				</mat-card-actions>
+			</form>
+		</mat-card-content>
+	</mat-card>
+</div>

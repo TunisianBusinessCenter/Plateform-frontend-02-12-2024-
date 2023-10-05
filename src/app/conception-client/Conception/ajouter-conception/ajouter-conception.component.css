@@ -1,0 +1,27 @@
+.example-full-width{
+    width: 100%;
+}
+.card-title{
+    font-weight: 600;
+    text-align: center;    
+    font-weight: 600;
+    font-size: 17px;
+    margin-top: 15px;
+}
+@media only screen and (max-width:767px){
+.coordonnees{
+    margin-bottom: 40px; 
+    margin-left: 23px; 
+}
+
+.produitsProjets{
+    margin-left: 23px; 
+}
+
+}
+/* @media only screen and (max-width: 1185px){
+.col-md-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+} */

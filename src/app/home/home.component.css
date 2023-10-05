@@ -1,0 +1,781 @@
+.btn-companies-type {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  color: #0ec6d5;
+}
+
+.tunsian-flag-img-background .btn-hover-flag-img {
+  width: 214px;
+  margin: 20px;
+  background-color: #1f1e84;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 10px 30px;
+  border: none;
+  cursor: pointer;
+  background-position-x: center;
+  margin-right: 10px;
+  margin-left: 10px;
+  text-transform: uppercase;
+  -webkit-text-stroke-width: thin;
+}
+
+.adjust-line-height {
+  line-height: 1em;
+}
+
+@media (min-width: 1200px) {
+  .responsive-font-example {
+    font-size: 30px;
+  }
+}
+
+/* If the screen size is smaller than 1200px, set the font-size to 80px */
+
+@media (max-width: 1199.98px) {
+  .responsive-font-example {
+    font-size: 20px;
+    margin-top: 70px;
+  }
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1f1e84;
+  border-color: #1f1e84;
+  box-shadow: none;
+  font-size: 0.875rem;
+  /* border-radius: 5px; */
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #302e97;
+  border-color: #302e97;
+}
+
+.nombre {
+  background-color: #dcdcdc;
+  color: darkred;
+  padding: 10px;
+  margin: 5px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.NTelechargernt {
+  background-color: #8B0000;
+  color: white;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 650px) {
+  .btn-primary {
+    color: #fff;
+    background-color: #1f1e84;
+    border-color: #1f1e84;
+    box-shadow: none;
+    font-size: 0.875rem;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .nombre {
+    background-color: #dcdcdc;
+    color: darkred;
+    padding: 10px;
+    margin: 5px;
+    font-weight: 600;
+    font-size: 13px;
+    width: 37%;
+  }
+
+  .NTelechargernt {
+    background-color: #8B0000;
+    color: white;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 13px;
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 455px) {
+  .nombre {
+    background-color: #dcdcdc;
+    color: darkred;
+    padding: 10px;
+    margin: 5px;
+    font-weight: 600;
+    font-size: 13px;
+    width: 30%;
+  }
+
+  .NTelechargernt {
+    background-color: #8B0000;
+    color: white;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 13px;
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 2200px) {
+  .tunsian-flag-img-background .btn-hover-flag-img {
+    width: 320px;
+    margin: 20px;
+    background-color: #1f1e84;
+    color: #ffffff;
+    font-size: 28px;
+    padding: 10px 30px;
+    border: none;
+    cursor: pointer;
+    background-position-x: center;
+    margin-right: 10px;
+    margin-left: 10px;
+    text-transform: uppercase;
+    -webkit-text-stroke-width: thin;
+  }
+
+  .pText {
+    font-size: 30px;
+  }
+
+  .responsive-font-example {
+    font-size: 38px;
+  }
+
+  .btn-primary {
+    font-size: 28px;
+  }
+
+}
+
+.tunsian-flag-img-background .btn-hover-flag-img:hover {
+  background-color: #302e97;
+}
+
+.btn-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 14px;
+}
+
+.mr-2,
+.mx-2 {
+  margin: 20px;
+}
+
+@media only screen and (max-width: 800px) {
+  .btn-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 60px;
+    margin-left: 50px;
+
+  }
+
+  .mr-2,
+  .mx-2 {
+    margin: 14px;
+  }
+
+  .tunsian-flag-img-background .btn-hover-flag-img {
+    width: 220px;
+    margin: -5px;
+    background-color: #1f1e84;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 10px 30px;
+    border: none;
+    cursor: pointer;
+    background-position-x: center;
+    margin-right: 10px;
+    margin-left: 10px;
+    text-transform: uppercase;
+    -webkit-text-stroke-width: thin;
+  }
+
+  .centre-tunisien-de-limmobilier {
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+    height: 100px;
+    margin-top: 30px;
+  }
+
+  .tunsian-flag-img-background {
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 250px;
+    max-width: 1350;
+    background-position-x: right;
+  }
+
+}
+
+
+
+.mmg {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.thumbnail {
+  position: relative;
+  display: inline-block;
+}
+
+.product-item {
+  margin: 0 auto;
+}
+
+.product-item .product-item-content {
+  margin: 1.4rem;
+  padding: 1rem 0;
+}
+
+.product-item .product-image {
+  width: 100%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.badge-indigo {
+  color: #fff;
+  background-color: #8B0000;
+}
+
+.header-magazine {
+  margin-top: 100px;
+  margin-bottom: 20px;
+  padding-left: 16%;
+  padding-right: 318px;
+}
+
+@media only screen and (max-width: 1496px) {
+  .header-magazine {
+    padding-left: 256px;
+    padding-right: 80px;
+
+  }
+
+}
+
+@media only screen and (max-width: 813px) {
+  .header-magazine {
+    padding-left: 80px;
+    padding-right: 80px;
+    margin-top: 16%;
+  }
+
+}
+
+@media only screen and (max-width: 603px) {
+  .header-magazine {
+    padding-left: 99px;
+    padding-right: 80px;
+    margin-top: 55%;
+  }
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 8px;
+  font-size: 95%;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 3px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.p-carousel .p-carousel-indicators .p-carousel-indicator button {
+  background-color: #e9ecef;
+  width: 1rem;
+  height: 1rem;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+  border-radius: 50%;
+}
+
+.images {
+  margin-bottom: 30px;
+  margin-top: -60px;
+}
+
+@media only screen and (max-width: 894px) {
+  .images {
+    visibility: hidden;
+    margin-top: -204px;
+  }
+
+  :host ::ng-deep .p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
+    visibility: hidden;
+  }
+
+  :host ::ng-deep .p-carousel .p-carousel-indicators .p-carousel-indicator button {
+    visibility: hidden;
+  }
+}
+
+.box {
+  width: 75%;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 560px) {
+  .box {
+    width: 97%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .box {
+    width: 97%;
+    margin: 0 auto;
+  }
+}
+
+
+.allAgSearch {
+
+  margin-top: -3px;
+  margin-bottom: -20px;
+}
+
+.res_Search {
+  display: flex;
+}
+
+:host ::ng-deep.p-listbox .p-listbox-header {
+  padding: 0.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  color: rgba(0, 0, 0, 0.87);
+  background: #1f1e84;
+  margin: 0;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+.selectSearch {
+  margin-left: 41%;
+}
+
+@media screen and (max-width:1400px) {
+  .selectSearch {
+    margin-left: 38%;
+  }
+}
+
+@media screen and (max-width:1300px) {
+  .selectSearch {
+    margin-left: 35%;
+  }
+}
+
+@media screen and (max-width:900px) {
+  .selectSearch {
+    margin-left: 30%;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .selectSearch {
+    margin-left: 21%;
+  }
+}
+
+@media screen and (max-width:500px) {
+  .allAgSearch {
+    margin-left: 0%;
+  }
+
+  .selectSearch {
+    margin-left: 6%;
+  }
+}
+
+@media screen and (max-width:400px) {
+  .allAgSearch {
+    margin-left: 0%;
+  }
+}
+
+.mat-option {
+  white-space: nowrap;
+  WIDTH: 300PX;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  line-height: 40px;
+  height: 35px;
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  -webkit-tap-highlight-color: transparent;
+  BACKGROUND-COLOR: rgba(0, 0, 0, .04);
+
+}
+
+mat-form-field {
+  width: 50%;
+}
+
+/* search */
+
+* {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-size: calc(16px + (24 - 16)*(100vw - 320px)/(1920 - 320));
+}
+
+body,
+button,
+input {
+  font: 1em Hind, sans-serif;
+  line-height: 1.5em;
+}
+
+body,
+input {
+  color: #171717;
+}
+
+body,
+.search-bar {
+  display: flex;
+}
+
+body {
+  background: #f1f1f1;
+  height: 100vh;
+}
+
+.search-bar input,
+.search-btn,
+.search-btn:before,
+.search-btn:after {
+  transition: all 0.25s ease-out;
+}
+
+.search-bar input,
+.search-btn {
+  width: 3em;
+  height: 3em;
+}
+
+.search-bar input:invalid:not(:focus),
+.search-btn {
+  cursor: pointer;
+}
+
+.search-bar,
+.search-bar input:focus,
+.search-bar input:valid {
+  width: 100%;
+}
+
+.search-bar input:focus,
+.search-bar input:not(:focus)+.search-btn:focus {
+  outline: transparent;
+}
+
+.search-bar {
+  margin: auto;
+  padding: 1.5em;
+  justify-content: center;
+  max-width: 50em;
+}
+
+@media only screen and (max-width: 500px) {
+  .search-bar {
+    padding: 2.5em;
+    justify-content: center;
+    max-width: 50em;
+    margin-top: -45px;
+  }
+
+  .btn-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 15px;
+    margin-left: 60px;
+  }
+
+  :host ::ng-deep .p-carousel-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 70px;
+  }
+
+}
+
+.search-bar input {
+  background: transparent;
+  border-radius: 1.5em;
+  box-shadow: 0 0 0 0.4em #171717 inset;
+  padding: 0.75em;
+  transform: translate(0.5em, 0.5em) scale(0.5);
+  transform-origin: 100% 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.search-bar input::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+.search-bar input:focus,
+.search-bar input:valid {
+  background: #fff;
+  border-radius: 0.375em 0 0 0.375em;
+  box-shadow: 0 0 0 0.1em #d9d9d9 inset;
+  transform: scale(1);
+}
+
+.search-btn {
+  background: #171717;
+  border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
+  padding: 0.75em;
+  position: relative;
+  transform: translate(0.25em, 0.25em) rotate(45deg) scale(0.25, 0.125);
+  transform-origin: 0 50%;
+}
+
+.search-btn:before,
+.search-btn:after {
+  content: "";
+  display: block;
+  opacity: 0;
+  position: absolute;
+}
+
+.search-btn:before {
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.2em #f1f1f1 inset;
+  top: 0.75em;
+  left: 0.75em;
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.search-btn:after {
+  background: #f1f1f1;
+  border-radius: 0 0.25em 0.25em 0;
+  top: 51%;
+  left: 51%;
+  width: 0.75em;
+  height: 0.25em;
+  transform: translate(0.2em, 0) rotate(45deg);
+  transform-origin: 0 50%;
+}
+
+.search-btn span {
+  display: inline-block;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+}
+
+/* Active state */
+.search-bar input:focus+.search-btn,
+.search-bar input:valid+.search-btn {
+  background: #1f1e84;
+  border-radius: 0 0.375em 0.375em 0;
+  transform: scale(1);
+}
+
+.search-bar input:focus+.search-btn:before,
+.search-bar input:focus+.search-btn:after,
+.search-bar input:valid+.search-btn:before,
+.search-bar input:valid+.search-btn:after {
+  opacity: 1;
+}
+
+.search-bar input:focus+.search-btn:hover,
+.search-bar input:valid+.search-btn:hover,
+.search-bar input:valid:not(:focus)+.search-btn:focus {
+  background: #1f1e84;
+}
+
+.search-bar input:focus+.search-btn:active,
+.search-bar input:valid+.search-btn:active {
+  transform: translateY(1px);
+}
+
+@media screen and (prefers-color-scheme: dark) {
+
+  body,
+  input {
+    color: #f1f1f1;
+  }
+
+  body {
+    background: #171717;
+  }
+
+  .search-bar input {
+    box-shadow: 0 0 0 0.4em #f1f1f1 inset;
+  }
+
+  .search-bar input:focus,
+  .search-bar input:valid {
+    background: #3d3d3d;
+    box-shadow: 0 0 0 0.1em #3d3d3d inset;
+  }
+
+  .search-btn {
+    background: #f1f1f1;
+  }
+}
+
+.catalogue {
+  width: 67.5%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+@media screen and (max-width:500px) {
+  .catalogue {
+    width: 74%;
+    height: 200px;
+    display: block;
+    margin-left: 90px;
+  }
+
+  :host ::ng-deep.p-carousel,
+  .p-carousel-content {
+    display: flex;
+    flex-direction: column;
+    width: 102%;
+
+  }
+
+  :host ::ng-deep.p-carousel .p-carousel-content .p-carousel-prev {
+    width: 0.5rem;
+    height: 1rem;
+    color: rgba(0, 0, 0, 0.6);
+    border: 0 none;
+    background: transparent;
+    border-radius: 50%;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    margin: -0.5rem;
+  }
+
+  :host ::ng-deep.p-carousel .p-carousel-content .p-carousel-next {
+    width: 0.5rem;
+    height: 1rem;
+    color: rgba(0, 0, 0, 0.6);
+    border: 0 none;
+    background: transparent;
+    border-radius: 50%;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    margin: -0.5rem;
+  }
+}
+
+
+@media screen and (max-width:400px) {
+
+  :host ::ng-deep.p-carousel,
+  .p-carousel-content {
+    display: flex;
+    flex-direction: column;
+    width: 102%;
+  }
+
+  :host ::ng-deep .p-carousel-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 70px;
+  }
+}
+
+
+.btn-number {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+@media screen and (max-width:395px) {
+  .btn-number {
+    margin-left: 20px;
+  }
+}
+
+/* Define your base styles for the button */
+.btn-primary2 {
+  color: #fff;
+  background-color: #1f1e84;
+  border-color: #1f1e84;
+  box-shadow: none;
+  font-size: 0.875rem;
+  padding: 5px 10px;
+  /* border-radius: 5px; */
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  width: 100%; /* Use 100% width to fill the container */
+  max-width: 200px; /* Set a maximum width for the button */
+  margin: 0 auto; /* Center the button horizontally */
+  position: relative;
+}
+
+/* Add media queries to adjust the button for different screen sizes */
+@media (min-width: 576px) {
+  /* For small devices (>= 576px) */
+  .btn-primary2 {
+    max-width: 300px; /* Increase the maximum width for small devices */
+  }
+}
+
+@media (min-width: 768px) {
+  /* For medium devices (>= 768px) */
+  .btn-primary2 {
+    max-width: 400px; /* Increase the maximum width for medium devices */
+  }
+}
+
+@media (min-width: 992px) {
+  /* For large devices (>= 992px) */
+  .btn-primary2 {
+    max-width: 500px; /* Increase the maximum width for large devices */
+  }
+}

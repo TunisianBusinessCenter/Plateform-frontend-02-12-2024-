@@ -1,0 +1,228 @@
+    <div class="row" style="margin: 50px;">
+        <div class="row" style="justify-content:center;">
+                <div class="col-md-4 coordonnees ">
+                    <div class="card" style="background-color: #f6f5f5;">
+                        <div class="card-header card-header-danger" style="background-color:#1f1e84;color:white">
+                            <h4 class="card-title">Ajouter Vos Coordonnées </h4>
+
+                        </div>
+                        <div class="card-body">
+                            <form>
+
+
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Nom De Société" name="name" required>
+                                </mat-form-field>
+
+
+
+                                <br>
+
+                                <input #csvInput name="logo_url" name="uploadFileimg2" hidden="true" type="file">
+                                <a style="background-color: #e8e8e8;
+                                border: solid 2px #1f1e84;
+                                color: #1f1e84;
+                                font-weight: 600;" (click)="csvInput.click()" mat-flat-button
+                                    color="primary">
+                                    Ajouter Votre Logo De Société
+                                </a>
+                                <br> <br>
+                                <mat-form-field appearance="fill" class="example-full-width">
+                                    <mat-label>Type De Société</mat-label>
+                                    <mat-select name="role">
+                                        <mat-option *ngFor="let role of roles" [value]="role.value"
+                                            [(NgModel)]="agencieData.role" required>
+                                            {{role.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Description</mat-label>
+                                    <textarea name="description" matInput required
+                                        placeholder="Ex. It makes me feel..."></textarea>
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput name="email" placeholder="Email" type="text">
+                                </mat-form-field>
+
+                                <div class="row" *ngIf="agencieData.role==='materiaux-construction'">
+                                    
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Numéro de téléphone" name="phone_number"
+                                                type="text">
+                                        </mat-form-field>
+                                   
+                                    
+                                        <mat-form-field appearance="fill">
+                                            <mat-label> Construction categorie </mat-label>
+                                            <mat-select name="categorie">
+                                                <mat-option *ngFor="let construction of constructions"
+                                                    [value]="construction.value">
+                                                    {{construction.viewValue}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+
+                                   
+
+                                </div>
+
+                                <div class="row" *ngIf="agencieData.role==='agence-service'">
+
+                                   
+                                        <mat-form-field appearance="fill">
+                                            <mat-label> Categorie Service </mat-label>
+                                            <mat-select name="categorie">
+                                                <mat-option *ngFor="let catService of CategorieServices"
+                                                    [value]="catService.value">
+                                                    {{catService.viewValue}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+
+                                    
+                                </div>
+                                <div class="row"
+                                    *ngIf="agencieData.role==='agence-service' && agencieData.categorie==='servicesDivers'">
+
+                                    
+                                        <mat-form-field appearance="fill">
+                                            <mat-label> Sous Categorie Service </mat-label>
+                                            <mat-select name="sous_categorie">
+                                                <mat-option *ngFor="let sousCatService of sousCategorieServices"
+                                                    [value]="sousCatService.value">
+                                                    {{sousCatService.viewValue}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+
+                                    
+                                </div>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Numéro de téléphone 1" name="phone_number1"
+                                        type="text">
+                                </mat-form-field>
+
+
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Numéro de téléphone 2" name="phone_number2" type="text">
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput name="website_url" placeholder="Website url" type="text">
+                                </mat-form-field>
+
+
+                                <mat-form-field class="example-full-width">
+                                    <input matInput name="facebook_url" placeholder="Facebook url" type="text">
+                                </mat-form-field>
+
+
+                                <mat-form-field class="example-full-width">
+                                    <input matInput name="instagram_url" placeholder="Instagram url" type="text">
+                                </mat-form-field>
+
+                                <mat-form-field class="example-full-width">
+                                    <input matInput name="linkedin_url" placeholder="Linkedin url" type="text">
+                                </mat-form-field>
+
+
+                                <mat-form-field class="example-full-width">
+                                    <input matInput name="twitter_url" placeholder="Twitter url" type="text">
+                                </mat-form-field>
+
+                                
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 produitsProjets">
+                    <div class="card" style="background-color: #f6f5f5;">
+                        <div class="card-header card-header-danger" style="background-color:#1f1e84;color:white">
+                            <h4 class="card-title">Ajouter Votre Produits ou Votre Projets </h4>
+
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <input #csvInput name="logo_url" name="uploadFileimg2" hidden="true" type="file">
+                                <a style="background-color: #e8e8e8;
+                                border: solid 2px #1f1e84;
+                                color: #1f1e84;
+                                font-weight: 600;;" (click)="csvInput.click()" mat-flat-button
+                                    color="primary">
+                                    Ajouter Albume 1
+                                </a>
+                                <br>
+                                <br>
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Description</mat-label>
+                                    <textarea name="description" matInput required
+                                        placeholder="Ex. It makes me feel..."></textarea>
+                                </mat-form-field>
+
+                               
+                                <input #csvInput name="logo_url" name="uploadFileimg2" hidden="true" type="file">
+                                <a style="background-color: #e8e8e8;
+                                border: solid 2px #1f1e84;
+                                color: #1f1e84;
+                                font-weight: 600;" (click)="csvInput.click()" mat-flat-button
+                                    color="primary">
+                                    Ajouter Albume 2
+                                </a>
+                                <br>
+                                <br>
+
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Description</mat-label>
+                                    <textarea name="description" matInput required
+                                        placeholder="Ex. It makes me feel..."></textarea>
+                                </mat-form-field>
+                                <input #csvInput name="logo_url" name="uploadFileimg2" hidden="true" type="file">
+                                <a style="background-color: #e8e8e8;
+                                border: solid 2px #1f1e84;
+                                color: #1f1e84;
+                                font-weight: 600;" (click)="csvInput.click()" mat-flat-button
+                                    color="primary">
+                                    Ajouter Albume 3
+                                </a>
+                                <br>
+                                <br>
+
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Description</mat-label>
+                                    <textarea name="description" matInput required
+                                        placeholder="Ex. It makes me feel..."></textarea>
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="vidéo de présentation 1" name="videoUrl1" type="text">
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="vidéo de présentation 2" name="videoUrl2" type="text">
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="PRIX (MDT) TTC" name="prix" type="text">
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Surface (M²)" name="surface" type="text">
+                                </mat-form-field>
+                               
+                                <br><br> <br>
+                                <button mat-raised-button type="submit" class="btn btn-danger pull-right"
+                                    style="background-color: #8b0000;">
+                                    Envoyer
+                                </button> 
+                                <button routerLink="/conception/login" mat-raised-button class="btn btn-secondary pull-right" style="background-color: #e4e4e4;
+                            color: #8b0000;
+                            font-weight: 600;margin-right: 10px;">
+                                    Annuler
+                                </button> 
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+    </div>
+    

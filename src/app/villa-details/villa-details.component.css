@@ -921,11 +921,10 @@ textarea:focus {
   .scrollable-paragraph {
     max-height: none;
     /* Remove max-height to allow content to expand */
-    height: auto;
     /* Let the content dictate the height */
     padding: 9px 4px 1px 23px;
     margin-top: 0;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
     /* Hide vertical scrollbar on mobile */
     font-family: Arial, sans-serif;
     /* Exemple de police */
@@ -1000,7 +999,7 @@ textarea:focus {
 
 .responsiveP {
   border: solid 1px black;
-  margin: 49px 0 0px 0px;
+  margin: 45px 0 0px 0px;
   height: 382px;
   font-family: arial;
   box-shadow: -2px -2px 6px 1px rgb(0 0 0 / 20%);
@@ -1013,5 +1012,17 @@ textarea:focus {
     font-family: arial;
     box-shadow: -2px -2px 6px 1px rgb(0 0 0 / 20%);
     border: 1px solid #ccc;
+  }
+}
+/* .description-heading{
+  text-align: center;font: 500 20px/32px Roboto, Helvetica Neue, sans-serif;
+  letter-spacing: normal;
+  margin: 12px 0 22px 8px;                                            color: black;
+} */
+@media (max-width: 768px) {
+  .description-heading {
+    font: 500 19px/32px Roboto, Helvetica Neue, sans-serif;
+    letter-spacing: normal;
+    margin: 21px 0 22px 8px;                                            color: black;
   }
 }

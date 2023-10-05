@@ -238,8 +238,15 @@
   text-align: left;
   margin-left: 107px;
 
+}  
+@media (max-width: 768px) {
+  .AgencyDetails {
+    font-size: 10px;
+    color: #696969;
+    text-align: left;
+    margin-left: 86px;                                           color: black;
+  }
 }
-
 .Agencyadresse {
 
   font-size: 18px;
@@ -1104,7 +1111,7 @@ body {
 
   .container {
     margin-left: -40px;
-    padding-top: 80px;
+    padding-top: 123px;
   }
 
   .btn-promotion {
@@ -1904,7 +1911,7 @@ body {
   }
 
   .tele-responsive {
-    font-size: 14px;
+ font-size: 11px;
     font-weight: 500;
   }
 
@@ -2223,13 +2230,14 @@ body {
     float: left;
     color: #ffffff;
     text-transform: initial;
-    font-size: 13px;
-    font-weight: 500;
+   
     border-radius: 0px;
     margin-bottom: 50px;
     height: 32px;
     width: 135px;
     margin-left: 75px;
+    font-size: 13px;
+    font-weight: 500;
   }
 
   .animated-border-button:hover {

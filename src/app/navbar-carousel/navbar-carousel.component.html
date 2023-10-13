@@ -114,6 +114,32 @@
 		</div>
 
 	</ng-template>
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+			<!-- <div class="carte">
+					<div class="id-card-tag-strip"></div>
+					<div class="id-card-hook"></div>
+					<div class="id-card-holder">
+						<div class="id-card">
+							
+							<h2>PROJET:   LCT</h2>
+							
+							<h3>EMAIL:    contact@lct.com.tn</h3><hr>
+	
+							<div>
+								<img src="../../assets/images/HomePage/LCTQRCODE.png" width="60%">
+							</div>
+				
+						</div>
+					</div>
+				</div> -->
+			<img style="width: 100%" class="backgroundBan" src="../../assets/images/HomePage/nouveau qr code.png" alt="Angular Carousel 2">
+
+
+
+		</div>
+
+	</ng-template>
 
 </ngb-carousel>
 
@@ -123,8 +149,12 @@
 	router.url==='/home-lybia' &&
 	router.url==='/home' -->
 
-<div class="carte" *ngIf="router.url==='/home' || router.url==='/home-algerie' 
-|| router.url==='/home-maroc' || router.url==='/home-lybia' || router.url==='/home-mauritanie'">
+
+
+
+<div class="carte" *ngIf="router.url==='/home' || router.url==='/home-algerie' || router.url==='/home-maroc' || router.url==='/home-lybia' || router.url==='/home-mauritanie'" [appScrollHide]>
+
+
 	<div class="id-card-tag-strip"></div>
 	<div class="id-card-hook"></div>
 	<div class="id-card-holder">
@@ -134,11 +164,12 @@
 			</div>
 		</div>
 	</div>
+
+
+
+
 </div>
-
-
-
-
+  
 
 <div *ngIf="router.url !=='/home-algerie' && router.url !=='/home-maroc'
  && router.url !=='/home-lybia'&& router.url !=='/home-mauritanie'" class="imageCentreTunisien">

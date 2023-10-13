@@ -125,10 +125,28 @@
     font-style: normal;
   }
   .social-networks {
-    margin: 0px -19px 0px;
     font-size: 41px;
     text-align: center;
+    margin: -6px -17px 0px; /* Default margin for screens wider than 414px */
+  
+    @media only screen and (max-width: 375px) {
+      margin: -7px -10px -2px; /* Adjust margin for screens up to 375px wide */
+    }
+  
+    @media only screen and (max-width: 320px) {
+      font-family: "icomoon";
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      color: #696969;
+      font-size: 2px;
+      line-height: 18px;
+      margin: -1px 0; /* Modify margin for screens up to 320px wide */
+    }
   }
+  
   .social-networks li {
     display: inline-block;
   }
@@ -301,6 +319,72 @@
       text-decoration: none;
     }
   }
+
+  @media only screen and (max-width: 375px) {
+    .social-networks {
+      margin: -7px -10px -2px;
+      font-size: 41px;
+      text-align: center;
+    }
+  }
+  @media only screen and (max-width: 420px) {
+    .social-networks {
+      margin: -6px -21px -2px;
+      font-size: 41px;
+      text-align: center;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .social-networks {
+      margin: -6px -12px -2px;
+      font-size: 41px;
+      text-align: center;
+    }
+  }
+  @media only screen and (max-width: 412px) {
+    .social-networks {
+      margin: -6px -16px -2px;
+      font-size: 41px;
+      text-align: center;
+    }
+  }
+  @media only screen and (max-width: 1024px) {
+    .social-networks {
+      margin: -6px -21px -2px;
+      font-size: 41px;
+      text-align: center;
+    }
+  }
+  @media only screen and (max-width: 1280px) {
+    .social-networks {
+      margin: -6px -24px -2px;
+      font-size: 41px;
+      text-align: center;
+    }
+    
+  }
+  @media only screen and (max-width: 419px) {
+    .social-networks {
+      margin: -6px -18px -2px;
+      font-size: 41px;
+      text-align: center;
+    }
+
+  }
+  @media only screen and (max-width: 320px) {
+    .social-networks {
+     
+      font-family: "icomoon";
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      color: #696969;
+      font-size: 2px;
+      line-height: 18px;
+      margin-top: -1px;
+    }
   .mat-tab-body-content {
     height: 100%;
    overflow: hidden; 
@@ -326,7 +410,7 @@
     font-weight:600 ;
     font-size: 19px;
   }
-  
+}
   
   
   .search{
@@ -585,7 +669,8 @@
     :host ::ng-deep .p-carousel-container {
       display: flex;
       flex-direction: row;
-      margin-left: 55px;
+      margin-left: 47px;
+      width: 91%;
   }
   }
   @media screen and (max-width:700px) {
@@ -602,7 +687,7 @@
       flex-wrap: wrap;
       justify-content: center;
       padding-top: -4px;
-      margin-top: -70px;
+      margin-top: -100px;
       margin-left: 60px;
   }
    
@@ -646,3 +731,19 @@
        font-size:11px;
       }
    }
+  @media screen and (max-width:667px) {
+    
+    .cardB{
+      margin-bottom: 23px;
+    }
+ 
+    
+  }
+  @media screen and (max-width: 630px) {
+  .p-carousel-container {
+      display: flex;
+      flex-direction: row;
+      margin-left: 50px ;
+      width: 91% ;
+  }
+}

@@ -39,7 +39,7 @@
 					<img class="rounded-lg border card-img" src="{{ Agency?.logo_url }}" alt="Eco house company">
 					<p-button (click)="showMaximizableDialog()" icon="pi pi-info-circle" label="À PROPOS"></p-button>
 				</div>
-				<p-dialog  class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '70vw'}"
+				<p-dialog   class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"  [style]="{width: '70vw', 'margin-left': '50px'}"
 				[maximizable]="true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
 				<div class="row modalTheme">
 					<div class="col-md-4">
@@ -168,7 +168,8 @@
 			</p-dialog>
 			</div>
 			
-			<div class="col textresponce">
+			<div>
+				<div class="col textresponce">
 				<div class="Card">
 					<div class="ribbon"><span class="ribbon__content"
 							*ngIf="Agency?.role==='promoteur-immobilieres'">PROMOTION</span></div>
@@ -219,7 +220,7 @@
 					<div class="  align-items-sm-center  li-agency">
 						<span class="px-1  AgencyDetails">Site web:</span>
 
-						<span (click)="goToLink()" class="col-sm-9 px-1 tele-responsive"
+						<span style="font-size: 14px;"(click)="goToLink()" class="col-sm-9 px-1 "
 							style="color: #1f1e84;cursor: pointer;text-decoration:none">
 							{{Agency?.website_url}}
 						</span>
@@ -227,38 +228,42 @@
 					</div> <br>
 					<div class="d-flex align-items-sm-center  li-social">
 
-						<ul class="list-inline mb-0" style="margin-left: -50px;">
+						<ul class="list-inline mb-0" style="margin-left: -48px;">
 							<ul class="social-networks bounce">
 								<li>
-									<a href="{{Agency?.twitter_url}}" class="icon-twitter">
-										Twitter
+									<a [attr.href]="Agency?.twitter_url" class="icon-twitter" [attr.disabled]="!Agency?.twitter_url">
+									  Twitter
 									</a>
-								</li>
+								  </li>
+								  <li>
+									<a [attr.href]="Agency?.facebook_url" class="icon-facebook" [attr.disabled]="!Agency?.facebook_url">
+									  Facebook
+									</a>
+								  </li>
+								  <li>
+									<a [attr.href]="Agency?.instagram_url" class="icon-instagram" [attr.disabled]="!Agency?.instagram_url">
+									  Instagram
+									</a>
+								  </li>
+								  
 								<li>
-									<a href="{{Agency?.facebook_url}}" class="icon-facebook">
-										Facebook
+									<a [attr.href]="Agency?.linkedlin_url" class="icon-linkedin" [attr.disabled]="!Agency?.linkedlin_url">
+									  LinkedIn
 									</a>
-								</li>
-								<li>
-									<a href="{{Agency?.instagram_url}}" class="icon-instagram">
-										Instagram
-									</a>
-								</li>
-								<li>
-									<a href="{{Agency?.linkedlin_url}}" class="icon-linkedin">
-										LinkedIn
-									</a>
-								</li>
+								  </li>
+							
+								  
 							</ul>
 						</ul>
 					</div>
 				</div>
+			</div>
 
 
 
 			</div>
 		
-			<div class="col video" style="margin: auto;">
+			<div class="col video" style="margin:auto;">
 
 				<div class="Card-video" *ngFor="let Agencyapp of Agency?.mobile_apps">
 
@@ -373,7 +378,7 @@
 
 <br><br><br><br><br>
 
-<div *ngIf="Agency?.role==='promoteur-immobilieres'  && Agency?.projets?.length!==0">
+<div  *ngIf="Agency?.role==='promoteur-immobilieres'  && Agency?.projets?.length!==0">
 	<div class="carousel-boutique">
 		<div class="content-section implementation carousel-demo">
 			<div class="card">
@@ -387,7 +392,7 @@
 								<div *ngIf="image?.name==='LE LOFT'">
 									<span class="badge badge-orange">Prix à partir de 253.000 dt TTC</span>
 								</div>
-
+								<!-- btn-promotion  -->
 							</div>
 							<div class="card-body">
 								<div>
@@ -429,7 +434,6 @@
 					</ng-template>
 				</p-carousel>
 				<br><br><br>
-
 				<a *ngIf="Agency?.videoUrl===null || Agency?.videoUrl===''" (click)="goToLink()"
 					class="btn btn-promotion">
 					VIDEO DE  PRESENTATION </a>
@@ -441,7 +445,7 @@
 					<div></div>
 					<div class="container">
 						<div class="background-img" [ngStyle]="{'background-image':'url(' +image_url_pj + ')'}">
-							<div class="box">
+							<!-- <div class="box">
 								<span></span>
 								<span></span>
 								<span></span>
@@ -450,7 +454,7 @@
 
 								</div>
 
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</section>
@@ -474,8 +478,8 @@
 				<div class="wrapper">
 					<div class="fb-share-button" data-href="https://tunimmob.com/agency/{{idAgency}}"
 						data-layout="button_count" data-size="large">
-						<div class="icon" style="background-color: #1f1e84;">
-							<i class="fab fa-facebook-f"></i>
+						<div class="icon" >
+							<i  class="fab fa-facebook-f"></i>
 						</div>
 						<a [(ngModule)]="image_url_pj" (click)="shareOnFacebook()" target="_blank"
 							class="fb-xfbml-parse-ignore textfb">Partager sur Facebook</a>
@@ -494,7 +498,7 @@
 		</div>
 	</div>
 </div>
-<div *ngIf="Agency?.role==='promoteur-immobilieres' && Agency?.projets?.length===0">
+<div  *ngIf="Agency?.role==='promoteur-immobilieres' && Agency?.projets?.length===0">
 	<div class="carousel-boutique">
 		<div class="content-section implementation carousel-demo">
 			<div class="card">
@@ -578,14 +582,14 @@
 						<div></div>
 						<div class="container">
 							<div class="background-img" [ngStyle]="{'background-image':'url(' +image_url_biens + ')'}">
-								<div class="box">
+								<!-- <div class="box">
 									<span></span>
 									<span></span>
 									<span></span>
 									<span></span>
 									<div class="content">
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</section>
@@ -724,7 +728,7 @@
 					<div></div>
 					<div class="container">
 						<div class="background-img" [ngStyle]="{'background-image':'url(' +image_url + ')'}">
-							<div class="box">
+							<!-- <div class="box">
 								<span></span>
 								<span></span>
 								<span></span>
@@ -733,7 +737,7 @@
 
 								</div>
 
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</section>
@@ -866,7 +870,7 @@
 					</div>
 				</section>
 				<br><br><br> <br>
-				<div class="wrapper">
+				<div class="wrapper " style="margin-top:30px;">
 
 					<div class="fb-share-button" data-href="https://tunimmob.com/agency/{{idAgency}}"
 						data-layout="button_count" data-size="large">
@@ -961,14 +965,7 @@
 						<div></div>
 						<div class="container">
 							<div class="background-img" [ngStyle]="{'background-image':'url(' +image_url_biens + ')'}">
-								<div class="box">
-									<span></span>
-									<span></span>
-									<span></span>
-									<span></span>
-									<div class="content">
-									</div>
-								</div>
+								<button class="btn-details">Plus De  Detaills</button>
 							</div>
 						</div>
 					</section>
@@ -993,8 +990,8 @@
 
 				<!------->
 
-				<br><br><br> <br>
-				<div class="wrapper">
+				
+				<div class="wrapper " style="margin-top:150px;" >
 
 					<div class="fb-share-button" data-href="https://tunimmob.com/agency/{{idAgency}}"
 						data-layout="button_count" data-size="large">
@@ -1106,7 +1103,6 @@
 		</div>
 	</div>
 </div>
-<br><br><br>
 
-<br>
 <!-- <router-outlet></router-outlet> -->
+

@@ -95,6 +95,7 @@
     margin-left: -50px;
     font-size: 15px;
     font-weight: bold;
+    text-decoration: underline;
     ;
     /* Réduire la taille de la police pour les écrans plus petits */
   }
@@ -117,6 +118,7 @@
     margin-left: -50px;
     font-size: 17px;
     font-weight: bold;
+    text-decoration: underline;
   }
 }
 
@@ -130,7 +132,7 @@
 @media (max-width: 768px) {
   .appimage {
     width: 252%;
-    margin-left: -93px;
+    margin-left: -81px;
     height: auto;
   }
 }
@@ -430,7 +432,7 @@
 /* Styles pour les écrans de largeur maximale de 768 pixels */
 @media (max-width: 768px) {
   .type {
-    font-size: 10px;
+    font-size: 11px;
     margin-bottom: -2px;
     margin-top: -14px;
     max-width: auto;
@@ -438,15 +440,16 @@
     font-family: 'Roboto';
   }
 }
+
 @media (max-width: 768px) {
   .typeP {
-    font-size: 10px;
+    font-size: 11px;
     margin-bottom: 11px;
     margin-top: -3px;
     font-weight: 700;
     font-family: 'Roboto';
     margin-left: auto;
-    margin-left: -199px;
+    margin-left: -186px;
     letter-spacing: 0px;
   }
 }
@@ -475,8 +478,9 @@
 :host ::ng-deep .mat-tab-label,
 .mat-tab-link {
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  font-size: 16px;
+  font-size: 21px;
   font-weight: 500;
+  margin-left: 4px;
   color: #8b0000;
 }
 
@@ -514,7 +518,7 @@
   margin-bottom: 50px;
   height: 32px;
   width: 125px;
-  margin-left: 21%;
+  margin-left: 16%;
   margin-top: 30px;
 
 }
@@ -588,7 +592,7 @@
 @media (max-width: 5000px) {
   .pgalleria {
     height: 100%;
-    width: 160%;
+    width: 234%;
     display: block;
     margin-left: 26px;
   }
@@ -621,9 +625,8 @@
   }
 
   .classcol5 {
-    max-width: 90.666667%;
-    margin: 40px auto;
-
+    max-width: 46.666667%;
+    margin: 26px auto;
   }
 
   .classcol7 {
@@ -719,7 +722,7 @@ appnameUrbat {
   border: 1px solid #ccc;
   background-color: #f7f7f7;
   margin-left: 26px;
-  margin-top: -80px;
+  margin-top: 78px;
 }
 
 /* Styles pour les écrans de largeur maximale de 768 pixels */
@@ -730,6 +733,17 @@ appnameUrbat {
     margin-left: -64px;
     margin-top: -138px;
     width: 174%;
+  }
+}
+
+@media (max-width: 746px) {
+  .container23 {
+    flex-direction: column;
+    align-items: center;
+    margin-left: -74px;
+    margin-top: 14px;
+    width: 204%;
+
   }
 }
 
@@ -831,8 +845,8 @@ textarea:focus {
     align-items: center;
     color: white;
     width: 382%;
-    margin-left: -72px;
-  }
+    margin-left: -80px;
+    }
 }
 
 .texte {
@@ -856,19 +870,20 @@ textarea:focus {
   margin-bottom: 30px;
   font-weight: 500;
   line-height: 1.2;
+  float: right;
   color: #333;
   font-size: 21px;
+  margin-right: 110px;
 }
 
 /* Styles pour les écrans de largeur maximale de 768 pixels */
 @media (max-width: 768px) {
   .piecename {
     font-size: 15px;
-    /* Ajustez la taille de la police pour les écrans plus petits si nécessaire */
     margin-bottom: 20px;
     white-space: nowrap;
-    margin-left: -63px;
-    /* Ajustez la marge du bas pour les écrans plus petits si nécessaire */
+    /* margin-left: auto; */
+    margin-right: -20px;
   }
 
 }
@@ -888,13 +903,10 @@ textarea:focus {
 /* Styles pour les écrans de largeur maximale de 768 pixels */
 @media (max-width: 768px) {
   .disponible {
-    /* Supprimez la flottabilité pour les écrans plus petits */
-    margin-right: 0;
-    /* Supprimez la marge droite pour éviter les problèmes d'alignement */
-    font-size: 18px;
-    /* Ajustez la taille de la police pour les écrans plus petits si nécessaire */
-    margin-bottom: 20px;
-    /* Ajustez la marge du bas pour les écrans plus petits si nécessaire */
+    font-size: 13px;
+    margin-right: -86px;
+    margin-top: 1px;
+    margin-left: -73px
   }
 }
 
@@ -1005,15 +1017,17 @@ textarea:focus {
   box-shadow: -2px -2px 6px 1px rgb(0 0 0 / 20%);
   border: 1px solid #ccc;
 }
+
 @media (max-width: 768px) {
   .responsiveP {
-    margin: 72px -88px 0px -60px;
+    margin: -21px -93px 0px -75px;
     height: 358px;
     font-family: arial;
     box-shadow: -2px -2px 6px 1px rgb(0 0 0 / 20%);
     border: 1px solid #ccc;
   }
 }
+
 /* .description-heading{
   text-align: center;font: 500 20px/32px Roboto, Helvetica Neue, sans-serif;
   letter-spacing: normal;
@@ -1023,6 +1037,27 @@ textarea:focus {
   .description-heading {
     font: 500 19px/32px Roboto, Helvetica Neue, sans-serif;
     letter-spacing: normal;
-    margin: 21px 0 22px 8px;                                            color: black;
+    margin: 21px 0 22px 8px;
+    color: black;
   }
 }
+@media (max-width: 768px) {
+  .animated-border-button  {
+    background-color: #3f51b5;
+    border: none;
+    outline: none;
+    position: relative;
+    float: left;
+    color: #ffffff;
+    text-transform: initial;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 0px;
+    margin-bottom: 50px;
+    height: 35px;
+    width: 126px;
+    margin-left: 21%;
+    margin-top: 29px;
+  }
+}
+

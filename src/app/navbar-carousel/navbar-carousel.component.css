@@ -211,11 +211,10 @@ ngb-carousel:focus {
 	
 		
     .carte{
-		margin-top: -29.9%;
-		margin-left: 84%;
-		MARGIN-BOTTOM: 276px;
+		margin-bottom: -272px;
+		margin-top: 31px;
+		margin-left: 86%;
 		position: sticky;
-		POSITION: FIXED;
 		z-index: 1;
 		cursor: pointer;
     }
@@ -270,7 +269,7 @@ ngb-carousel:focus {
 	  @media  screen and (max-width:1600px) {
 		
 		.carte{
-			margin-top: -29.8%;
+			margin-top: -3.4%;
 			margin-left: 81%;
 			MARGIN-BOTTOM: 276px;
 			position: sticky;
@@ -396,12 +395,12 @@ ngb-carousel:focus {
 				@media  screen and (max-width:500px) {
 		
 					.carte{
-						margin-top: -32.4%;
-						margin-left: 72%;
-						MARGIN-BOTTOM: 276px;
-						position: sticky;
-						POSITION: FIXED;
-						z-index: 1;
+						margin-top: -4.4%;
+			margin-left: 71%;
+			MARGIN-BOTTOM: 276px;
+			position: sticky;
+			POSITION: FIXED;
+			z-index: 1;
 					  }
 					  .id-card-holder:before {
 						content: '';
@@ -808,4 +807,23 @@ ngb-carousel:focus {
 		cursor: pointer;
 		margin-left: 13px;
 	  }
+	  .backgroundBan{
+		height: 559px;
+	  }
+	  @media screen and (max-width: 768px) {
+		.backgroundBan {
+		  height: 114px;
+	  
+		}
+	  }
 	
+	  
+	  .hidden {
+		display: none;
+	  }
+	  .hide-on-scroll {
+		display: none;
+		opacity: 0;
+		transition: opacity 0.2s ease-in-out;
+	  }
+	  

@@ -109,6 +109,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { PromoteuresDjerbaComponent } from './promoteurs-immob/promoteures-djerba/promoteures-djerba.component';
 import { TelechargementComponent } from './telechargement/telechargement.component';
 import { ContactComponent } from './contact/contact.component';
+import { ScrollHideDirective } from './scroll-hide.directive';
 
 
 
@@ -176,6 +177,7 @@ const routes: Routes = [
     PromoteuresDjerbaComponent,
     TelechargementComponent,
     ContactComponent,
+    ScrollHideDirective,
   
   ],
   imports: [

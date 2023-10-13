@@ -21,7 +21,7 @@
           <div class="Card-logo">
             <img class="rounded-lg border card-imgg" src="{{ allAgence?.logo_url }}" alt="Eco house company">
           </div>
-          </div>
+        </div>
         <div class="col textresponce">
           <div class="CardDetails">
             <div class="ribbon"><span class="ribbon__content"
@@ -32,48 +32,51 @@
                 VENDRE/A LOUER</span></div>
             <div class="ribbon"><span class="ribbon__content" *ngIf="allAgence?.role==='agence-service'">SERVICE</span>
             </div>
-            <h2 class="card-title fs-22 lh-15 mb-1 text-dark">
+            <h2 class="card-title fs-22 lh-15 mb-1 text-dark h2Title" >
               {{ allAgence?.name }}
             </h2> <br>
             <p class="card-text  Agencyadresse">
               {{ allAgence?.adresse }}
             </p>
 
-            <li class="list-group-item  align-items-sm-center  li-agency">
-              <span class="col-sm-2 px-1 AgencyDetails">Tél 1:</span>
-              <span class="col-sm-9 px-1  tele-responsive">
-                +216 {{ allAgence?.phone_number }}
-              </span>
-            </li>
-            <li class="list-group-item  align-items-sm-center  li-agency" *ngIf="allAgence?.phone_number2">
-              <span class="col-sm-2 px-1 AgencyDetails">Tél 2:</span>
-              <span class="col-sm-9 px-1  tele-responsive">
-                +216 {{ allAgence?.phone_number2}}
-              </span>
-            </li>
-            <li class="list-group-item  align-items-sm-center  li-agency" *ngIf="allAgence?.phone_commercial">
-              <span class="col-sm-2 px-1 AgencyDetails">Tél Commercial:</span>
-              <span class="col-sm-9 px-1  tele-responsive">
-                +216 {{ allAgence?.phone_commercial}}
-              </span>
-            </li>
-            <li class="list-group-item align-items-sm-center  li-agency">
-              <span class="col-sm-2 px-1 AgencyDetails">Email</span>
-              <span class="col-sm-9 px-1  tele-responsive">
-                {{ allAgence?.email }}
-              </span>
-            </li>
-            <li class="list-group-item  align-items-sm-center  li-agency">
-              <span class="col-sm-2 px-1 AgencyDetails ">Site web</span>
-              <a href="{{allAgence?.website_url}}" style="text-decoration:none">
-                <span class="col-sm-9 px-1 tele-responsive" style="color: #1f1e84;cursor: pointer">
-                  {{allAgence?.website_url}}
+            <div class="containerCard" style="line-height: 2;">
+              <li class="list-group-item  align-items-sm-center  li-agency">
+                <span class="col-sm-2 px-1 AgencyDetails">Tél 1:</span>
+                <span class="col-sm-9 px-1  tele-responsive">
+                  +216 {{ allAgence?.phone_number }}
                 </span>
-              </a>
-            </li> <br>
+              </li>
+              <li class="list-group-item  align-items-sm-center  li-agency" *ngIf="allAgence?.phone_number2">
+                <span class="col-sm-2 px-1 AgencyDetails">Tél 2:</span>
+                <span class="col-sm-9 px-1  tele-responsive">
+                  +216 {{ allAgence?.phone_number2}}
+                </span>
+              </li>
+              <li class="list-group-item  align-items-sm-center  li-agency" *ngIf="allAgence?.phone_commercial">
+                <span class="col-sm-2 px-1 AgencyDetails">Tél Commercial:</span>
+                <span class="col-sm-9 px-1  tele-responsive">
+                  +216 {{ allAgence?.phone_commercial}}
+                </span>
+              </li>
+              <li class="list-group-item align-items-sm-center  li-agency">
+                <span class="col-sm-2 px-1 AgencyDetails">Email</span>
+                <span class="col-sm-9 px-1  tele-responsive">
+                  {{ allAgence?.email }}
+                </span>
+              </li>
+              <li class="list-group-item  align-items-sm-center  li-agency">
+                <span class="col-sm-2 px-1  ">Site web</span>
+                <a href="{{allAgence?.website_url}}" style="text-decoration:none">
+                  <span class="col-sm-9 px-1 tele-responsive" style="color: #1f1e84;cursor: pointer">
+                    {{allAgence?.website_url}}
+                  </span>
+                </a>
+              </li>
+            </div>
             <li class="list-group-item d-flex align-items-sm-center   li-social">
 
-              <ul class="list-inline mb-0" style="margin-left: -48px;">
+              <ul class="list-inline mb-0" style="margin-left: -48px;    
+              margin-left: -48px;">
                 <ul class="social-networks bounce">
                   <li>
                     <a href="{{allAgence?.twitter_url}}" class="icon-twitter">
@@ -98,11 +101,43 @@
                 </ul>
               </ul>
             </li>
+            <br>
           </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="col" style="margin: auto;">
 
-          <div  class="Card-video" *ngFor="let Agencyapp of allAgence?.mobile_apps">
+          <div class="Card-video" *ngFor="let Agencyapp of allAgence?.mobile_apps">
 
 
             <div *ngIf="Agencyapp.id!==null;">
@@ -120,10 +155,11 @@
               </a>
             </div>
           </div>
-          <div  class="Card-video" *ngIf="allAgence?.mobile_apps?.length===0 && allAgence?.name!=='La Maison Des ARTS by D'">
+          <div class="Card-video"
+            *ngIf="allAgence?.mobile_apps?.length===0 && allAgence?.name!=='La Maison Des ARTS by D'">
             <div class="text-primary">
               <h6 class="appname">
-                Application en cour
+                Application en cours
               </h6>
             </div>
 
@@ -160,7 +196,7 @@
     </div>
   </div>
   <mat-tab-group>
-    <mat-tab  *ngFor="let categories of Service?.categoryList;">
+    <mat-tab *ngFor="let categories of Service?.categoryList;">
       <ng-template mat-tab-label>
         <span class="my-custom-class">
           {{categories}}
@@ -169,7 +205,7 @@
       <br><br>
       <div class="cardx">
         <div *ngFor="let categorie of Service?.sous_services;">
-          <!-- [ngStyle]="{'background-image':'url(' + categorie?.image_url + ')'}" style="width:95%;background-repeat:no-repeat;"  -->
+          <!-- [ngStyle]="{'background-image':'url(' + categorie?.image_url + ')'}" style="width:95%;background-repeat:no-repeat;"  cardDe -->
           <div *ngIf="categories===categorie?.category">
             <!-- <mat-card-actions>
                         <div style="visibility:hidden">

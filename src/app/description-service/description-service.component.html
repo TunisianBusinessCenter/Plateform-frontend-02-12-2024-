@@ -3,13 +3,10 @@
 
 
         <div class="responsive">
-    
-    
-            <button (click)="backClicked()"
-                type="submit"
-                class="btn animated-border-button retour">
-                <i class="fa fa-home"
-                    aria-hidden="true"></i>
+
+
+            <button (click)="backClicked()" type="submit" class="btn animated-border-button retour">
+                <i class="fa fa-home" aria-hidden="true"></i>
                 Retour
             </button>
         </div>
@@ -17,36 +14,131 @@
     <br>
     <br>
     <br>
+    <!-- <div>
+     <h3 class="titreDesc">{{SousService.name}} </h3>
+    </div> -->
     <div>
-     <h3 class="titreDesc">{{SousService.name}}</h3>
+        <div class="displayCard">
+            <p-card class="p-card1">
+                <p class="textInfoX">{{SousService.name}}</p>
+            </p-card> &nbsp;&nbsp;
+
+        </div>
+
     </div>
-    <div class="row cards">
-        <div class="cardx" style="display: flex;">
+    <div class="DescriptionDisplay" classe>
+        <!-- <p-image  [ngClass]="{'responsive-image': isDesktop}" class=" cadre-noir image"  src="{{SousCategorie?.image_url}}" alt="Image"  
+
+        [preview]="true">
+     
+        </p-image> -->
+        <style>
+            .container1 {
+                position: relative;
+                display: inline-block;
+                width: 100%;
+            }
+
+
+
+            .button {
+                position: absolute;
+                top: 45%;
+                left: 53%;
+                transform: translate(-50%, -50%);
+                padding: 10px 20px;
+                background-color: #3498db;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+            }
+
+            @media (max-width: 768px) {
+                .button {
+                    position: absolute;
+                    top: 57%;
+                    left: 59%;
+                    transform: translate(-50%, -50%);
+                    padding: 10px 20px;
+                    background-color: #3498db;
+                    color: #fff;
+                    border: none;
+                    cursor: pointer;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .modal.show {
+                    overflow-x: hidden;
+                    /* Hide horizontal overflow */
+                }
+            }
+        </style>
+        <div class="container1">
+            <img class="cadre-noir image" src="{{SousService?.image_url}}" alt="">
+            <button style="    border-radius: 18px;
+            background-color: #6a777f33;" class="button" href="#galleryModal"
+                data-large-src="https://unsplash.it/1200/768.jpg?image=253" data-toggle="modal">
+                <i style="font-size: 25px;" class="fa fa-eye" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="mb-0 lh-214 cadre-noir">
+            <h3 class="titreDesc">Description</h3>
+            <div *ngIf="SousService?.description===null">
+                <p class="scrollable-paragraph paragrapheDesc">Description manquant!</p>
+            </div>
+            <div *ngIf="SousService?.description!==null">
+                <p class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
+                    {{SousService.description}}
+
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="     margin-left: 17px;   width: 90%;top:170px;">
+                <div class="modal-header">
+                    <h3 class="text-center mb-0"></h3>
+                    <button type="button" class="close float-right" aria-label="Close" data-dismiss="modal">
+                        <span aria-hidden="true">&#xD7;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-0 text-center bg-alt">
+                    <img src="{{SousService.image_url}}" id="galleryImage" class="loaded-image mx-auto img-fluid">
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row cards">
+        <div class="cardx" >
         
       
-       <p-image class="imageDesc" src="{{SousService.image_url}}" alt="Image" width="300" [preview]="true">
+       <p-image  class="imageDesc" src="{{SousService.image_url}}" alt="Image" width="300" [preview]="true">
     
        </p-image>
       
         </div>
-
-    </div>
-
-    <div>
+    <div class="cardx">
         <h3 class="titreDesc">Description</h3>
         <p class="paragrapheDesc"> {{SousService.description}}</p>
     </div>
+    </div> -->
+
+
 
     <br>
-     
+
     <ng-template #content let-modal>
         <div class="modal-header">
             <h4 class="modal-title">Demander un devis</h4>
-            <a  class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
+            <a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
 
         </div>
         <div class="modal-body">
-            <form [formGroup]="FormData" >
+            <form [formGroup]="FormData">
                 <div class="modalService">
                     <div>
                         <label for="email" class="textInput">Email</label>
@@ -59,42 +151,42 @@
                             placeholder="Téléphone">
                     </div> <br>
                     <label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
-                    formControlName="description" rows="3"></textarea>
-                
-               <br>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
+                        formControlName="description" rows="3"></textarea>
+
+                    <br>
                     <div *ngFor="let agencies of Agency">
                         <div *ngFor="let categorie of agencies?.services">
                             <div *ngFor="let categories of categorie?.categoryList">
                                 <div class="example-button-row" *ngIf="categories===SousService?.category">
                                     <a mat-raised-button style="border-color: #8B0000;
                                     background-color: #8B0000; color:aliceblue"
-                                     href="mailto:{{agencies?.email}}?subject=Sujet&body=num:{{numText}} Message:{{contactText}}">Valider</a>
-                                      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+                                        href="mailto:{{agencies?.email}}?subject=Sujet&body=num:{{numText}} Message:{{contactText}}">Valider</a>
+                                    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
                                         Close
                                     </button>
                                 </div>
                             </div>
-                       </div>
-                   
-                    <!-- <button type="submit" class="btn  btnValide"
+                        </div>
+
+                        <!-- <button type="submit" class="btn  btnValide"
                         [disabled]="!FormData.valid"></button> -->
-                   
+
+                    </div>
                 </div>
-                </div>
-                
+
 
             </form>
         </div>
     </ng-template>
 
-          <button class="btn btnDevis" (click)="openVerticallyCentered(content)" >
-           
-            <span><i class="fa fa-file-archive-o" aria-hidden="true"></i>&nbsp; Demande de prix</span>
-          
-          </button>
-         
-     
+    <button class="btn btnDevis" (click)="openVerticallyCentered(content)">
+
+        <span><i class="fa fa-file-archive-o" aria-hidden="true"></i>&nbsp; Demande de prix</span>
+
+    </button>
+
+
 </div>
 <br><br>
 <br><br>
@@ -103,29 +195,29 @@
 
     <div class="btn-toolbar " role="toolbar " aria-label="Toolbar with button groups ">
         <div class="btn-group mr-2 " role="group " aria-label="First group ">
-            <a class="btn-hover-flag-img text-center  " href="promoteurs-tunis " aria-selected="true " style="line-height: 1.5;"><span>Promoteurs    </span><br><span>   Immobiliers </span></a>
+            <a class="btn-hover-flag-img text-center  " href="promoteurs-tunis " aria-selected="true "
+                style="line-height: 1.5;"><span>Promoteurs </span><br><span> Immobiliers </span></a>
         </div>
         <div class="btn-group mr-2 " role="group " aria-label="Second group ">
-            <a class="btn-hover-flag-img text-center " href="equipement " aria-selected="true " style="line-height: 1.5;"><span>Materiaux  </span><br><span>    de construction  </span></a>
+            <a class="btn-hover-flag-img text-center " href="equipement " aria-selected="true "
+                style="line-height: 1.5;"><span>Materiaux </span><br><span> de construction </span></a>
         </div>
 
         <div class="btn-group mr-2 " role="group " aria-label="Third group ">
-            <a class="btn-hover-flag-img text-center  " href="agence-immob-tunis" aria-selected="true " style="line-height: 1.5;"><span>Agences    </span><br><span>    Immobilières</span></a>
+            <a class="btn-hover-flag-img text-center  " href="agence-immob-tunis" aria-selected="true "
+                style="line-height: 1.5;"><span>Agences </span><br><span> Immobilières</span></a>
         </div>
-        <div class="btn-group mr-2 "
-        role="group "
-        aria-label="Third group ">
-        <a class="btn-hover-flag-img text-center  "
-        href="meilleurs-bien-sousse"
-          aria-selected="true "
-          style="line-height: 1.5;">
-          <span>Selection Des</span> 
-          <br>
-          <span>Meilleurs Biens</span>
-        </a>
-      </div>
+        <div class="btn-group mr-2 " role="group " aria-label="Third group ">
+            <a class="btn-hover-flag-img text-center  " href="meilleurs-bien-sousse" aria-selected="true "
+                style="line-height: 1.5;">
+                <span>Selection Des</span>
+                <br>
+                <span>Meilleurs Biens</span>
+            </a>
+        </div>
         <div class="btn-group mr-2 " role="group " aria-label="Fourth group ">
-            <a class="btn-hover-flag-img text-center" href="agences-de-services" aria-selected="true " style="line-height: 1.5;"> <span>Décoration</span><br> <span> Services et Arts</span>  </a>
+            <a class="btn-hover-flag-img text-center" href="agences-de-services" aria-selected="true "
+                style="line-height: 1.5;"> <span>Décoration</span><br> <span> Services et Arts</span> </a>
         </div>
     </div>
 </div>

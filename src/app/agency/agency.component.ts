@@ -261,10 +261,10 @@ export class AgencyComponent implements OnInit, AfterViewInit {
     //  });
 
     this.options = {
-      center: { lat: 36.890257, lng: 30.707417 },
-      zoom: 12
+      // center: { lat: 36.890257, lng: 30.707417 },
+      // zoom: 12
     };
-    this.checkScreenWidth();
+    // this.checkScreenWidth();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -273,20 +273,20 @@ export class AgencyComponent implements OnInit, AfterViewInit {
   }
 
   checkScreenWidth() {
-    const screenWidth = window.innerWidth;
-    if (screenWidth <= 800) {
-      this.isDesktop = false;
-    } else {
-      this.isDesktop = true;
-    }
+    // const screenWidth = window.innerWidth;
+    // if (screenWidth <= 800) {
+    //   this.isDesktop = false;
+    // } else {
+    //   this.isDesktop = true;
+    // }
   }
   changeMetadata(title: string, imageUrl: string, secureImageUrl: string, description: string): void {
-    this.titleService.setTitle(title);
-    this.meta.updateTag({ property: 'og:url', content: 'https://tunimmob.com/agency/' + this.idAgency });
-    this.meta.updateTag({ property: 'og:title', content: title });
-    this.meta.updateTag({ property: 'og:image', content: imageUrl });
-    this.meta.updateTag({ property: 'og:image:secure_url', content: secureImageUrl });
-    this.meta.updateTag({ property: 'og:description', content: description });
+    // this.titleService.setTitle(title);
+    // this.meta.updateTag({ property: 'og:url', content: 'https://tunimmob.com/agency/' + this.idAgency });
+    // this.meta.updateTag({ property: 'og:title', content: title });
+    // this.meta.updateTag({ property: 'og:image', content: imageUrl });
+    // this.meta.updateTag({ property: 'og:image:secure_url', content: secureImageUrl });
+    // this.meta.updateTag({ property: 'og:description', content: description });
   }
   
   changemeta(image_url: any): void {

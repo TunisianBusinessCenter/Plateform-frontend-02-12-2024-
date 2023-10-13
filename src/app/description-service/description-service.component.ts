@@ -19,6 +19,7 @@ export class DescriptionServiceComponent implements OnInit {
   public SousService:any
   FormData: FormGroup;
   public Agency:any
+  isDesktop: boolean;
 
   constructor(private activatedRoute: ActivatedRoute,
     private serviceService:AgenceServiceService,
@@ -65,5 +66,13 @@ export class DescriptionServiceComponent implements OnInit {
   }
   backClicked() {
     this._location.back();
+  }
+  checkScreenWidth() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 800) {
+      this.isDesktop = false;
+    } else {
+      this.isDesktop = true;
+    }
   }
 }

@@ -312,6 +312,20 @@ font-weight: bold;
     width: 20rem;
     height: 60px;
     margin-bottom: -30px;
+    margin-left: 8px;
+}
+} 
+@media only screen and (max-width: 500px) {
+  .displayCard{
+    display: grid;
+    margin-left: 50px;
+    margin-bottom:-40px;
+  }
+  .p-card2{
+    width: 20rem;
+    height: 60px;
+    margin-bottom: -30px;
+    margin-left: 8px;
 }
 } 
 .cadre{
@@ -339,11 +353,14 @@ font-weight: bold;
     margin-left: 5%; /* Adjust the margin as needed for your layout */
     width: 90%; /* Adjust the width as needed */
     max-width: 100%; /* Ensure the image doesn't exceed its container */
+    margin-top: 40px;
+    
   }
 }
+
 @media (max-width: 768px) {
   .image {
-    padding: 50px; /* Use a positive padding value if needed */
+    padding: 81px 0 60px 0px;
 
   }
 }
@@ -446,4 +463,7 @@ font-weight: bold;
     margin-right: -11px;
     margin-left: -4px;
     font-weight: bold;
+}
+.cardx{
+  border:solid 1px gray;
 }

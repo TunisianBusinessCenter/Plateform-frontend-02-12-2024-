@@ -18,9 +18,9 @@
 
         </ng-template><br><br>
 
-        <div class="tab-pane tab-pane-parent fade show active px-0" id="pills-home" role="tabpanel"
+        <div  class="tab-pane tab-pane-parent fade show active px-0" id="pills-home" role="tabpanel"
             aria-labelledby="pills-home-tab" style="padding: 5px; overflow: hidden; ">
-            <p-carousel [value]="AgenciesBizerte" [numVisible]="5" [numScroll]="5" [circular]="true"
+            <p-carousel [value]="AgenciesBizerte" [numVisible]="5" [numScroll]="5" [circular]="true" 
                 [autoplayInterval]="7000" [responsiveOptions]="responsiveOptions" styleClass="custom-carousel">
 
                 <ng-template pTemplate="header">
@@ -32,20 +32,21 @@
                             </h2>
                             <hr class="hrstyle">
                             <p class="mb-md-0 mb-6"
-                                style="color:#696969;font-size:.900rem;font-family: poppins,sans-serif;font-family: system-ui;">
-                                Toute la liste des agences immobiliers dans cette région sont
-                                agrées
-                            </p>
+                            style="color:#696969;font-size:.900rem;font-family: poppins,sans-serif;font-family: system-ui;">
+                            Toute la liste des agences immobiliers dans 
+                          <br>  <span>cette région sont
+                                agrées</span>
+                        </p>
                         </div>
 
                     </div>
                 </ng-template>
-                <ng-template let-Agency | searchPipe : search pTemplate="item">
-                    <div class="product-item">
-                        <div class="product-item-content">
-                            <div class="p-mb-3"></div>
-                            <div>
-                                <div class="card shadow-hover-1 border-gray" data-animate="fadeInUp">
+                <ng-template let-Agency | searchPipe : search pTemplate="item"  >
+                    <div class="product-item responsiveCard" id="responsiveCard"   >
+                        <div class="product-item-content"  >
+                            <div class="p-mb-3" ></div>
+                            <div  >
+                                <div class="card shadow-hover-1 border-gray" data-animate="fadeInUp"  >
                                     <a [routerLink]="['/agency', Agency.id]" class="text-dark hover-primary">
                                         <div class="css">
                                             <div class="hover-change-image bg-hover-overlay rounded-lg card-img-top">

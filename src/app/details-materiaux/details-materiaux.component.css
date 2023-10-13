@@ -962,8 +962,9 @@ a.btn:hover {
 
 @media only screen and (max-width: 484px) {
   .card-hover-over .card {
-    height: 256px;
-    width: 364px;
+    height: 246px;
+    width: 287px;
+    margin-left: 9px;
 
   }
 
@@ -976,7 +977,6 @@ a.btn:hover {
 
   .card-titre {
     font: 400 18px/24px Roboto, Helvetica Neue, sans-serif;
-    text-shadow: 0 0 0.2em #000000, 0 0 0.2em #000000;
   }
 
   a.btn {
@@ -1484,15 +1484,14 @@ a.btn:hover {
 
 @media only screen and (max-width: 1200px) {
   .Card-logo{
-    height: 100%;
-    width: 90%;
+    height: 81%;
+    width: 74%;
     border-radius: 6px;
     position: relative;
     box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
     z-index: 1;
     padding: 7px;
-    margin-left: 53px;
-    margin-top: -45px;
+    margin-left: 61px;
 }
 .CardDetails{
   height: 325px;
@@ -1505,14 +1504,14 @@ a.btn:hover {
   margin-bottom: 24px;
 }
 .Card-video{
-  height: 100%;
-  width: 90%;
+  height: 81%;
+  width: 74%;
   border-radius: 6px;
   position: relative;
   box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
   z-index: 1;
   padding: 7px;
-  margin-left: 53px;
+  margin-left: 61px;
 }
   .card-imgg {
     width: 100%;
@@ -1670,7 +1669,7 @@ a.btn:hover {
 
   .CardDetails {
     height: 300px;
-    width: 79%;
+    width: 90%;
     border-radius: 6px;
     position: relative;
     z-index: 1;

@@ -25,3 +25,16 @@
     max-width: 33.333333%;
 }
 } */
+.form{
+    margin: 50px; 
+}
+@media only screen and (max-width:767px){
+    .form{
+        
+        margin:-30px -19px -36px 47px;
+
+    }
+    
+   
+    
+    }

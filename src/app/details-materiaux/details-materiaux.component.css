@@ -1031,7 +1031,7 @@ a.btn:hover {
     text-align: center;
     display: flex;
     margin-top: -111px;
-    margin-left: -4px;
+    margin-left: -20px;
 
   }
 
@@ -1642,7 +1642,7 @@ a.btn:hover {
 
   .li-agency {
     border: none;
-    margin: 0 0 0 28px;
+    margin: 0 0 0 20px;
     width: 288px;
 }
 
@@ -1651,11 +1651,10 @@ a.btn:hover {
     line-height: 0.86;
     color: #696969;
     text-align: left;
-    margin-bottom: 15px;
-    margin-top: 10px;
+    margin-bottom: 4px;
+    margin-top: 16px;
     margin-left: 24px;
   }
-
   .AgencyDetails {
     margin-right: 0px;
   }
@@ -1693,13 +1692,14 @@ a.btn:hover {
 @media only screen and (max-width: 440px) {
   .Card {
     height: 268px;
-    width: 93%;
+    width: 74%;
     border-radius: 6px;
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     z-index: 1;
-    margin-left: 45px;
-    margin-top: 24px;
+    margin-left: 74px;
+    margin-top: 22px;
+    margin-bottom: 16px;
 
   }
 }

@@ -509,7 +509,7 @@
   border: none;
   outline: none;
   position: relative;
-  float: left;
+  /* float: left; */
   color: #ffffff;
   text-transform: initial;
   font-size: 13px;
@@ -592,9 +592,12 @@
 @media (max-width: 5000px) {
   .pgalleria {
     height: 100%;
-    width: 234%;
+    width: 226%;
+    box-shadow: -1px -1px 5px #d6a5a5ba;
     display: block;
-    margin-left: 26px;
+    margin-left: 30px;
+    margin-top: -32px;
+
   }
 
   /* Réinitialisez la marge supérieure à 0 */
@@ -741,8 +744,9 @@ appnameUrbat {
     flex-direction: column;
     align-items: center;
     margin-left: -74px;
-    margin-top: 14px;
+    margin-top: 3px;
     width: 204%;
+    margin-bottom: 96px;
 
   }
 }
@@ -1046,18 +1050,30 @@ textarea:focus {
     background-color: #3f51b5;
     border: none;
     outline: none;
-    position: relative;
-    float: left;
-    color: #ffffff;
-    text-transform: initial;
-    font-size: 13px;
+     position: relative; 
+    color: #ffffff; 
+     text-transform: initial; 
+     font-size: 13px; 
     font-weight: 500;
+    bottom: -22px;
     border-radius: 0px;
-    margin-bottom: 50px;
-    height: 35px;
-    width: 126px;
-    margin-left: 21%;
-    margin-top: 29px;
+    /* margin-bottom: -13px; */
+    height: 36px;
+    width: 135px;
+    margin-left: 23%;
+    margin-top: -59px;
+
+
   }
 }
-
+@media only screen and (max-width: 375px) {
+.btn-toolbar{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 0px;
+    margin-bottom: -68px;
+    margin-top: -129px;
+    margin-left: 60px;
+}
+}

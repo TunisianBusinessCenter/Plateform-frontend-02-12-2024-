@@ -65,8 +65,11 @@
   .tunsian-flag-img-background {
     background-size: contain;
     background-repeat: no-repeat;
-    height: 200px;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    height: 204px;
     max-width: 1350;
+    margin-top: -31px;
     background-position-x: right;
   }
 
@@ -214,6 +217,7 @@
   margin-bottom: 50px;
   height: 32px;
   width: 120px;
+  margin-left: 124px;
 }
 
 
@@ -464,10 +468,12 @@
     font-size: 13px;
     font-weight: 500;
     border-radius: 0px;
-    margin-bottom: 50px;
+    margin-bottom: 16px;
     height: 32px;
-    width: 120px;
-    margin-top: 5px;
+    width: 135px;
+    margin-left: 23px;
+    margin-top: 3px;
+
   }
 
   :host ::ng-deep .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-prev {
@@ -527,7 +533,7 @@
 
   .text-heading {
     margin: 8px 128px 9px;
-    letter-spacing: 4px;
+    letter-spacing: 1px;
     font-size: 15px; /* Réduisez l'espacement des lettres pour les écrans plus petits */
   }
     
@@ -598,7 +604,8 @@
   .responsable {
     display: grid;
     justify-content: center;
-    margin-bottom: 17px;
+    margin-bottom: -9px;
+    margin-top: -38px;
   }
 
   .responsableBtn {
@@ -673,7 +680,8 @@
 @media only screen and (max-width:991px) {
   .displayCard {
     display: grid;
-    margin-top: -12px;
+    margin-top: -43px;
+
   }
 
   .textInfofinancement {
@@ -877,7 +885,7 @@
 
 .text-heading {
   margin: 8px 128px 9px;
-  letter-spacing: 4px;
+  letter-spacing: 1px;
   font-size: 25px; /* Réduisez l'espacement des lettres pour les écrans plus petits */
   margin-left:122px;
   @media only screen and (max-width: 768px) {
@@ -906,8 +914,93 @@
 
 /* Media query for smaller screens, e.g., mobile devices */
 @media (max-width: 700px) {
-  .responsive-heading {
-    font-size: 16px; /* Adjust font size for mobile */
-    margin-top: 10px; /* Adjust margin-top for mobile spacing */
+  .marg {
+    margin:auto;
   }
+}
+@media (max-width: 700px) {
+  .scrollable-paragraph {
+    max-height: 287px;
+    overflow-y: scroll;
+    width: 91%;
+    line-height: 1.5;
+    line-break: strict;
+    /* letter-spacing: 1px; */
+    margin-left: 15px;
+    max-height: 45%;
+    /* height: 84%; */
+    border-radius: 2px;
+    border: solid 1px #c2bbbb;
+    padding: 8px;
+    /* padding: 9px 0px 1px 5px; */
+    /* padding: 9px 0px 1px 5px; */
+    height: 208px;
+    margin-top: -3px;
+  }
+}
+@media (max-width: 700px) {
+  .responsive-heading {
+    font-family: Arial;
+    color: black;
+    margin-left: 14px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 700px) {
+  .details-margin {
+    padding-left: 124px;
+  }
+}
+@media (max-width: 700px) {
+  .badge-orange {
+    color: #fff;
+    background-color: #8B0000;
+    font-size: 15px;
+    max-width: 150px;
+    padding: 16px -4px;
+  }
+}
+@media (max-width: 700px) {
+  .ulDetails {
+    margin-left: -88px;
+    padding-left: -6px;
+    padding: 0 84px 0 0;
+  }
+}
+.containerText {
+  max-width: 100%;
+  padding: 20px;
+
+
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  margin-left: 109px;
+}
+
+.description {
+  font-size: 16px;
+  color: #555;
+  margin-left: 109px;
+}
+
+/* Media query for smaller screens (e.g., mobile) */
+@media (max-width: 768px) {
+  .title {
+    font-size: 13px;
+margin-left: 0;
+  }
+
+  .description {
+    font-size: 14px;
+
+    margin-left: 0;
+  }
+
+
 }

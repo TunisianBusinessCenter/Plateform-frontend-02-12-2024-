@@ -120,8 +120,9 @@
 						</div>
 					</p-card>
 				</div>
-				<div style="display:block">
-					<h2 class="fs-35 font-weight-600 lh-15 text-heading ">
+				<!-- <div style="display:block;" class="marg">
+					<h2 class="fs-35 font-weight-600 lh-15 text-heading "
+						style="    max-width: 84%;color: black;font-size: 12px;font-weight: bold;">
 						{{Projet?.name}}
 					</h2>
 					<div class="d-sm-flex justify-content-sm-between text-heading">
@@ -132,6 +133,16 @@
 								{{Projet?.adresse}}
 							</p>
 						</div>
+					</div>
+				</div> -->
+
+
+				<div class="containerText ">
+					<div class="title"> {{Projet?.name}}
+					</div>
+					<div class="description">
+						<mat-icon style="color: #858585;font-size: 16px;">location_on</mat-icon>
+						{{Projet?.adresse}}
 					</div>
 				</div>
 				<p-galleria [value]="Projet?.photos" [numScroll]="1" [responsiveOptions]="responsiveOptions"
@@ -198,35 +209,41 @@
 				margin-left: calc(-.5 * var(--bs-gutter-x));
 				flex-direction: row;">
 					<article class="col-lg-6">
-						<section class="pb-8 rounded-lg">
-							<ul class="list-inline d-sm-flex align-items-sm-center mb-2" style="margin-top: 7px;">
-								<li class="list-inline-item badge badge-orange mr-2">{{Projet?.agencyName}}</li>
-								<li class="list-inline-item badge badge-primary mr-3">En Cours</li>
-								&nbsp;
-								<li class="list-inline-item mt-1 mt-sm-0" style="color: #858585;">
-									<mat-icon>av_timer</mat-icon>
-								</li>
-								<li class="list-inline-item mt-1 mt-sm-0" style="color: #858585;font-size: 12px;">
-									{{ getDateDifference() }}
-								</li>
-								&nbsp;
-								<li class="list-inline-item mt-1 mt-sm-0" style="color: #858585;">
-									<mat-icon>remove_red_eye</mat-icon>
-								</li>
-								<li class="list-inline-item mt-1 mt-sm-0" style="color: #858585;font-size: 12px;">
-									{{visitorCount}}
-								</li>
-								<!-- <li class="list-inline-item mt-2 mt-sm-0"><i class="fal fa-eye mr-1"></i> 1039 vues</li> -->
-							</ul>
 
+						<section class="pb-8 rounded-lg">
+							<div class="ulDetails">
+								<ul class="list-inline d-sm-flex align-items-sm-center mb-2 details-margin"
+									style="margin-top: 7px;">
+									<li class="list-inline-item badge badge-orange mr-2" style="font-size: 13px;">
+										{{Projet?.agencyName}}</li>
+									<li class="list-inline-item badge badge-primary mr-3" style="font-size: 13px;">En
+										Cours</li>
+									&nbsp;
+									<li class="list-inline-item mt-1 mt-sm-0" style="color: #858585;">
+										<mat-icon>av_timer</mat-icon>
+									</li>
+									<li class="list-inline-item mt-1 mt-sm-0" style="color: #858585;font-size: 12px;">
+										{{ getDateDifference() }}
+									</li>
+									&nbsp;
+									<li class="list-inline-item mt-1 mt-sm-0" style="color: #858585;">
+										<mat-icon>remove_red_eye</mat-icon>
+									</li>
+									<li class="list-inline-item mt-1 mt-sm-0" style="color: #858585;font-size: 12px;">
+										{{visitorCount}}
+									</li>
+									<!-- <li class="list-inline-item mt-2 mt-sm-0"><i class="fal fa-eye mr-1"></i> 1039 vues</li> -->
+								</ul>
+
+							</div>
 
 							<h4 *ngIf="Projet?.description" class="fs-22 mt-6 mb-2 responsive-heading">
 								Description
-							  </h4>
-							  
+							</h4>
+
 							<p class="mb-0 lh-214 scrollable-paragraph">
 								{{Projet?.description}}
-								
+
 							</p>
 						</section>
 					</article>
@@ -255,21 +272,56 @@
 								</div>
 							</section>
 						</div>
-					</aside>	
+					</aside>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<div class="tunsian-flag-img-background" style="height: -170">
+		<div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
+			<div class="btn-group mr-2" role="group " aria-label="First group ">
+				<a class="btn-hover-flag-img text-center " href="equipement " aria-selected="true "
+					style="line-height: 1.5">
+					<span>Materiaux</span>
+					<br>
+					<span>de construction</span>
+				</a>
+			</div>
+			<div class="btn-group mr-2" role="group " aria-label="Third group ">
+				<a class="btn-hover-flag-img text-center " href="agence-immob-tunis" aria-selected="true "
+					style="line-height: 1.5">
+					<span>Agences</span>
+					<br>
+					<span>Immobilières</span>
+				</a>
+			</div>
+			<div class="btn-group mr-2 " role="group " aria-label="Third group ">
+				<a class="btn-hover-flag-img text-center  " href="meilleurs-bien-sousse" aria-selected="true "
+					style="line-height: 1.5;">
+					<span>Selection Des</span>
+					<br>
+					<span>Meilleurs Biens</span>
+				</a>
+			</div>
+			<div class="btn-group mr-2" role="group " aria-label="Fourth group ">
+				<a class="btn-hover-flag-img text-center " href="agences-de-services" aria-selected="true "
+					style="line-height: 1.5">
+					<span>Décoration</span>
+					<br>
+					<span> Services et Arts</span>
+				</a>
+			</div>
+		</div>
+	</div> <br>
+
 	<!--<div class="gradient-border"
 		id="box">
 		En cour de construction &nbsp;
 		<i class="fa fa-exclamation-triangle"
 			aria-hidden="true"></i>
 	    </div> -->
-	<br>
 
-	<br>
-	<br>
 
-	<br> <br>
+
 </main>

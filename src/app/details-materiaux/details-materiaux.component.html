@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="col textresponce">
-          <div class="CardDetails">
+          <div class="Card">
             <div class="ribbon"><span class="ribbon__content"
                 *ngIf="allAgence?.role==='promoteur-immobilieres'">PROMOTION</span></div>
             <div class="ribbon"><span class="ribbon__content"
@@ -33,7 +33,7 @@
                 VENDRE/A LOUER</span></div>
             <div class="ribbon"><span class="ribbon__content" *ngIf="allAgence?.role==='agence-service'">SERVICE</span>
             </div>
-            <h2 class="card-title fs-22 lh-15 mb-1 text-dark" style="font-size: 19px; margin-left: 22px;">
+            <h2 class="card-title fs-22 lh-15 mb-1 text-dark" style="font-size: 24px; margin-left: 22px;">
               {{ allAgence?.name }}
             </h2> <br>
             <p class="card-text  Agencyadresse">
@@ -154,15 +154,13 @@
     </div>
   </div>
   <br>
-  <div class="row flex-lg-row flex-cloumn">
-    <div class="col-lg-5  updateMenu">
-
+  <div class="">
+    <div class="col-lg-5 " style="margin-top: 20px;">
       <h2 class="text-heading nameProd">
         {{Produit?.name}}
       </h2>
       <hr class="hrstyle">
     </div>
-
   </div>
   <!-- mat-align-tabs = "center" -->
   <mat-tab-group mat-align-tabs="center">

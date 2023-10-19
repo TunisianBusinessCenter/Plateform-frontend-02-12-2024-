@@ -688,8 +688,10 @@
       flex-wrap: wrap;
       justify-content: center;
       padding-top: -4px;
-      margin-top: -100px;
+      margin-top: -75px;
       margin-left: 60px;
+      margin-bottom: -66px;
+
   }
    
   }

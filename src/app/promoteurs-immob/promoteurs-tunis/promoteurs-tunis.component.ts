@@ -11,6 +11,7 @@ export class PromoteursTunisComponent implements OnInit {
   public AgenciesTunis: any
   public lengthBoutique:any
   public testArraySort: any
+
   responsiveOptions
 
 

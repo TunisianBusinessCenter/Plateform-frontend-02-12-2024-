@@ -13,7 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { AjouterConceptionComponent } from './Conception/ajouter-conception/ajouter-conception.component';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import { AjouterConceptionComponent } from './Conception/ajouter-conception/ajou
     MatIconModule,
     MatButtonModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    FormsModule
 
 
   ]

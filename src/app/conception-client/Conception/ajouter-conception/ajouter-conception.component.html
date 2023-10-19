@@ -1,37 +1,26 @@
-    <div class="row form" style="-30px -19px 45px 47px">
+    <div class="row" style="margin: 50px;">
         <div class="row" style="justify-content:center;">
                 <div class="col-md-4 coordonnees ">
                     <div class="card" style="background-color: #f6f5f5;">
                         <div class="card-header card-header-danger" style="background-color:#1f1e84;color:white">
                             <h4 class="card-title">Ajouter Vos Coordonnées </h4>
-
                         </div>
                         <div class="card-body">
                             <form>
-
-
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Nom De Société" name="name" required>
+                                    <input matInput placeholder="Nom De Société" [(ngModel)]="societe.nom_societe" name="name" required>
                                 </mat-form-field>
-
-
-
                                 <br>
-
-                                <input #csvInput name="logo_url" name="uploadFileimg2" hidden="true" type="file">
-                                <a style="background-color: #e8e8e8;
-                                border: solid 2px #1f1e84;
-                                color: #1f1e84;
-                                font-weight: 600;" (click)="csvInput.click()" mat-flat-button
-                                    color="primary">
+                                <input type="file" accept="image/*" (change)="onLogoSelect($event)" #logoInput style="display: none;">
+                                <a style="background-color: #e8e8e8; border: solid 2px #1f1e84; color: #1f1e84; font-weight: 600;" mat-flat-button
+                                    color="primary" accept="image/*" type="file" (click)="logoInput.click()" >
                                     Ajouter Votre Logo De Société
                                 </a>
                                 <br> <br>
                                 <mat-form-field appearance="fill" class="example-full-width">
                                     <mat-label>Type De Société</mat-label>
-                                    <mat-select name="role">
-                                        <mat-option *ngFor="let role of roles" [value]="role.value"
-                                            [(NgModel)]="agencieData.role" required>
+                                    <mat-select name="role" [(ngModel)]="societe.type_societe" required>
+                                        <mat-option *ngFor="let role of roles" [value]="role.value">
                                             {{role.viewValue}}
                                         </mat-option>
                                     </mat-select>
@@ -40,20 +29,16 @@
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <mat-label>Description</mat-label>
                                     <textarea name="description" matInput required
-                                        placeholder="Ex. It makes me feel..."></textarea>
+                                        placeholder="EX. Our company is working on..." [(ngModel)]="societe.description" ></textarea>
                                 </mat-form-field>
                                 <mat-form-field class="example-full-width">
-                                    <input matInput name="email" placeholder="Email" type="text">
+                                    <input matInput name="email" placeholder="Email" type="text" [(ngModel)]="societe.email">
                                 </mat-form-field>
 
                                 <div class="row" *ngIf="agencieData.role==='materiaux-construction'">
-                                    
                                         <mat-form-field class="example-full-width">
-                                            <input matInput placeholder="Numéro de téléphone" name="phone_number"
-                                                type="text">
+                                            <input matInput placeholder="Numéro de téléphone" name="phone_number" type="text" >
                                         </mat-form-field>
-                                   
-                                    
                                         <mat-form-field appearance="fill">
                                             <mat-label> Construction categorie </mat-label>
                                             <mat-select name="categorie">
@@ -63,14 +48,9 @@
                                                 </mat-option>
                                             </mat-select>
                                         </mat-form-field>
-
-                                   
-
                                 </div>
 
                                 <div class="row" *ngIf="agencieData.role==='agence-service'">
-
-                                   
                                         <mat-form-field appearance="fill">
                                             <mat-label> Categorie Service </mat-label>
                                             <mat-select name="categorie">
@@ -80,13 +60,10 @@
                                                 </mat-option>
                                             </mat-select>
                                         </mat-form-field>
-
-                                    
                                 </div>
+
                                 <div class="row"
                                     *ngIf="agencieData.role==='agence-service' && agencieData.categorie==='servicesDivers'">
-
-                                    
                                         <mat-form-field appearance="fill">
                                             <mat-label> Sous Categorie Service </mat-label>
                                             <mat-select name="sous_categorie">
@@ -96,125 +73,103 @@
                                                 </mat-option>
                                             </mat-select>
                                         </mat-form-field>
-
-                                    
                                 </div>
-                                <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Numéro de téléphone 1" name="phone_number1"
-                                        type="text">
-                                </mat-form-field>
-
 
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Numéro de téléphone 2" name="phone_number2" type="text">
+                                    <input matInput placeholder="Numéro de téléphone 1" name="phone_number1" type="text" [(ngModel)]="societe.num_tel1">
                                 </mat-form-field>
                                 <mat-form-field class="example-full-width">
-                                    <input matInput name="website_url" placeholder="Website url" type="text">
+                                    <input matInput placeholder="Numéro de téléphone 2" name="phone_number2" type="text" [(ngModel)]="societe.num_tel2">
                                 </mat-form-field>
-
-
                                 <mat-form-field class="example-full-width">
-                                    <input matInput name="facebook_url" placeholder="Facebook url" type="text">
+                                    <input matInput name="website_url" placeholder="Website url" type="text" [(ngModel)]="societe.websiteurl">
                                 </mat-form-field>
-
-
                                 <mat-form-field class="example-full-width">
-                                    <input matInput name="instagram_url" placeholder="Instagram url" type="text">
+                                    <input matInput name="facebook_url" placeholder="Facebook url" type="text" [(ngModel)]="societe.facebookurl">
                                 </mat-form-field>
-
                                 <mat-form-field class="example-full-width">
-                                    <input matInput name="linkedin_url" placeholder="Linkedin url" type="text">
+                                    <input matInput name="instagram_url" placeholder="Instagram url" type="text" [(ngModel)]="societe.instagramurl">
                                 </mat-form-field>
-
-
                                 <mat-form-field class="example-full-width">
-                                    <input matInput name="twitter_url" placeholder="Twitter url" type="text">
+                                    <input matInput name="linkedin_url" placeholder="Linkedin url" type="text" [(ngModel)]="societe.linkedinurl">
                                 </mat-form-field>
-
-                                
-
+                                <mat-form-field class="example-full-width">
+                                    <input matInput name="twitter_url" placeholder="Twitter url" type="text" [(ngModel)]="societe.twitterurl">
+                                </mat-form-field>
                             </form>
                         </div>
                     </div>
                 </div>
+
+
                 <div class="col-md-4 produitsProjets">
                     <div class="card" style="background-color: #f6f5f5;">
                         <div class="card-header card-header-danger" style="background-color:#1f1e84;color:white">
                             <h4 class="card-title">Ajouter Votre Produits ou Votre Projets </h4>
-
                         </div>
                         <div class="card-body">
                             <form>
-                                <input #csvInput name="logo_url" name="uploadFileimg2" hidden="true" type="file">
-                                <a style="background-color: #e8e8e8;
-                                border: solid 2px #1f1e84;
-                                color: #1f1e84;
-                                font-weight: 600;;" (click)="csvInput.click()" mat-flat-button
-                                    color="primary">
-                                    Ajouter Albume 1
+
+                                <input #csvInput1 name="projet2" hidden="true" multiple accept="/image*" type="file" (change)="onselectproject1($event)">
+                                <a style="background-color: #e8e8e8; border: solid 2px #1f1e84; color: #1f1e84; font-weight: 600;" 
+                                    (click)="csvInput1.click()" mat-flat-button color="primary">
+                                    Album du premier Projet
                                 </a>
                                 <br>
                                 <br>
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <mat-label>Description</mat-label>
-                                    <textarea name="description" matInput required
-                                        placeholder="Ex. It makes me feel..."></textarea>
+                                    <textarea name="description" matInput required [(ngModel)]="projets.description1"
+                                        placeholder="Ex. this project is for..."></textarea>
                                 </mat-form-field>
 
                                
-                                <input #csvInput name="logo_url" name="uploadFileimg2" hidden="true" type="file">
-                                <a style="background-color: #e8e8e8;
-                                border: solid 2px #1f1e84;
-                                color: #1f1e84;
-                                font-weight: 600;" (click)="csvInput.click()" mat-flat-button
-                                    color="primary">
-                                    Ajouter Albume 2
+                                <input #csvInput2 name="projet2" hidden="true" multiple accept="/image*" type="file" (change)="onselectproject2($event)">
+                                <a style="background-color: #e8e8e8; border: solid 2px #1f1e84; color: #1f1e84; font-weight: 600;" 
+                                    (click)="csvInput2.click()" mat-flat-button color="primary">
+                                    Album du deuxième Projet
                                 </a>
                                 <br>
                                 <br>
-
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <mat-label>Description</mat-label>
-                                    <textarea name="description" matInput required
-                                        placeholder="Ex. It makes me feel..."></textarea>
+                                    <textarea name="description" matInput required [(ngModel)]="projets.description2"
+                                        placeholder="Ex. this project is for..."></textarea>
                                 </mat-form-field>
-                                <input #csvInput name="logo_url" name="uploadFileimg2" hidden="true" type="file">
-                                <a style="background-color: #e8e8e8;
-                                border: solid 2px #1f1e84;
-                                color: #1f1e84;
-                                font-weight: 600;" (click)="csvInput.click()" mat-flat-button
-                                    color="primary">
-                                    Ajouter Albume 3
+
+                                <input #csvInput3 name="projet3" multiple accept="/image*" hidden="true" type="file" (change)="onselectproject3($event)">
+                                <a style="background-color: #e8e8e8; border: solid 2px #1f1e84; color: #1f1e84; font-weight: 600;" 
+                                    (click)="csvInput3.click()" mat-flat-button color="primary">
+                                    Album du troisième Projet
                                 </a>
                                 <br>
                                 <br>
-
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <mat-label>Description</mat-label>
-                                    <textarea name="description" matInput required
-                                        placeholder="Ex. It makes me feel..."></textarea>
+                                    <textarea name="description" matInput required [(ngModel)]="projets.description3"
+                                        placeholder="Ex. this project is for..."></textarea>
+                                </mat-form-field>
+
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="vidéo de présentation 1" name="videoUrl1" type="text" [(ngModel)]="projets.videourl1" >
                                 </mat-form-field>
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="vidéo de présentation 1" name="videoUrl1" type="text">
+                                    <input matInput placeholder="vidéo de présentation 2" name="videoUrl2" type="text" [(ngModel)]="projets.videourl2">
                                 </mat-form-field>
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="vidéo de présentation 2" name="videoUrl2" type="text">
+                                    <input matInput placeholder="PRIX (MDT) TTC" name="prix" type="text" [(ngModel)]="projets.prix">
                                 </mat-form-field>
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="PRIX (MDT) TTC" name="prix" type="text">
-                                </mat-form-field>
-                                <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Surface (M²)" name="surface" type="text">
+                                    <input matInput placeholder="Surface (M²)" name="surface" type="text" [(ngModel)]="projets.surface">
                                 </mat-form-field>
                                
                                 <br><br> <br>
-                                <button mat-raised-button type="submit" class="btn btn-danger pull-right"
-                                    style="background-color: #8b0000;">
+                                <button mat-raised-button type="submit" class="btn btn-danger pull-right" style="background-color: #8b0000;"
+                                    (click)="send()">
                                     Envoyer
                                 </button> 
-                                <button routerLink="/conception/login" mat-raised-button class="btn btn-secondary pull-right" style="background-color: #e4e4e4;
-                            color: #8b0000;
-                            font-weight: 600;margin-right: 10px;">
+                                <button routerLink="/conception/login" mat-raised-button class="btn btn-secondary pull-right" 
+                                    style="background-color: #e4e4e4;color: #8b0000; font-weight: 600;margin-right: 10px;">
                                     Annuler
                                 </button> 
                                 <div class="clearfix"></div>

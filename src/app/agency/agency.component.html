@@ -1,7 +1,8 @@
 <!-- wrapper -->
-<div class="responsiveHome">
-	<button (click)="backClicked()" type="submit" class="btn animated-border-button retour" routerLink="/">
-		<i class="fa fa-home" aria-hidden="true"></i> Retour
+<div class="responsiveHome"  >
+	<button type="submit" class="animated-border-button " (click)=" backClicked()">
+		<i class="fa fa-arrow-left" aria-hidden="true"></i>
+		Retour
 	</button>
 
 	<!-- <div class="responsive">
@@ -34,7 +35,7 @@
 <div class="carous-boutique" >
 	<div class="agency-responsive" [ngClass]="{'block-display': !isDesktop}" style=" display: flex;">
 
-			<div class="col cadre ">
+			<div class="col cadre">
 				<div class="Card-logo ">
 					<img class="rounded-lg border card-img" src="{{ Agency?.logo_url }}" alt="Eco house company">
 					<p-button (click)="showMaximizableDialog()" icon="pi pi-info-circle" label="À PROPOS"></p-button>
@@ -182,9 +183,9 @@
 					<div class="ribbon"><span class="ribbon__content" *ngIf="Agency?.role==='agence-service'">SERVICE</span>
 					</div>
 
-					<h2 class="card-titles fs-22 lh-15 mb-1 text-dark">
+					<h4 class="card-titles fs-22 lh-15 mb-1 text-dark">
 						{{ Agency?.name }}
-					</h2>
+					</h4>
 					<p class="card-text  Agencyadresse">
 						{{ Agency?.adresse }}
 					</p>
@@ -221,7 +222,7 @@
 						<span class="px-1  AgencyDetails">Site web:</span>
 
 						<span style="font-size: 14px;"(click)="goToLink()" class="col-sm-9 px-1 "
-							style="color: #1f1e84;cursor: pointer;text-decoration:none">
+							style="color: #1f1e84;cursor: pointer;text-decoration:none " class="col-sm-9 px-1 tele-responsive">
 							{{Agency?.website_url}}
 						</span>
 
@@ -308,9 +309,9 @@
 				<div class="Card-video"
 					*ngIf="Agency?.mobile_apps?.length===0 && Agency?.videoUrl2 && Agency.role==='promoteur-immobilieres' ">
 					<div class="text-primary">
-						<h6 class="appnameUrbat">
+						<h2 class="appnameUrbat">
 							Vidéo de présentation
-						</h6>
+						</h2>
 					</div>
 
 					<iframe class="responsive-iframe" [src]="urlSafe2"></iframe>
@@ -397,10 +398,10 @@
 							<div class="card-body">
 								<div>
 									<h5 class="card-title random">{{image.agencyName}}</h5>
-									<button href="#" class="btn btn-boutique"
+									<button href="#" class="btn btn-boutique mx-1"
 										style="float: right; text-align: center;">{{image.status}}</button>
 								</div>
-								<div style="display: flex; align-items: center;">
+								<div style="display: flex; align-items: center;margin-right: -3px;">
 									<div class="text">
 										<p class="nameStyle" style="margin-right: 10px;">{{image.name }}</p>
 									</div>
@@ -415,7 +416,7 @@
 										</div>
 
 									</div>
-									<div class="social-link-container">
+									<div class="social-link-container ">
 										<a href="{{Agency?.instagram_url}}" class="social-link">
 											<i class="fab fa-instagram"></i>
 										</a>
@@ -498,7 +499,7 @@
 		</div>
 	</div>
 </div>
-<div  *ngIf="Agency?.role==='promoteur-immobilieres' && Agency?.projets?.length===0">
+<div  *ngIf="Agency?.role==='promoteur-immobilieres' && Agency?.projets?.length===0" class="marginY">
 	<div class="carousel-boutique">
 		<div class="content-section implementation carousel-demo">
 			<div class="card">
@@ -575,7 +576,7 @@
 
 
 
-				<a (click)="goToLink()" class="btn btn-promotion"> {{titrePromo}} </a>
+				<a (click)="goToLink()" class="btn btn-promotion"> {{titrePromo}} d</a>
 				<br><br><br><br>
 				<div>
 					<section *ngIf="Agency?.videoUrl2===null || Agency?.videoUrl2===''" (click)="goToLink()">
@@ -667,7 +668,7 @@
 					</ng-template>
 
 				</p-carousel> <br>
-				<button (click)="goToLink()" class="btn btn-promotion"
+				<button (click)="goToLink()" class="btn btn-promotion1"
 					style="float: right;font-size: 18px; font-weight: 600;">PROMO DE LA SEMAINE </button>
 			</div>
 		</div>
@@ -721,7 +722,7 @@
 
 				</p-carousel>
 				 <br>
-				<a (click)="goToLink()" class="btn btn-promotion">
+				<a (click)="goToLink()" class="btn btn-promotion-Decouvert " style="">
 					DÉCOUVREZ ENCORE PLUS... </a>
 				<br><br><br><br>
 				<section *ngIf="Agency?.videoUrl2===null || Agency?.videoUrl2===''" (click)="goToLink()">
@@ -804,7 +805,7 @@
 					</ng-template>
 
 				</p-carousel> <br>
-				<button (click)="goToLink()" class="btn btn-promotion"
+				<button (click)="goToLink()" class="btn btn-promotion1"
 					style="float: right;font-size: 18px; font-weight: 600;">PROMO DE LA SEMAINE </button>
 			</div>
 		</div>
@@ -870,7 +871,7 @@
 					</div>
 				</section>
 				<br><br><br> <br>
-				<div class="wrapper " style="margin-top:30px;">
+				<div class="wrapper " style="margin-top:60px;">
 
 					<div class="fb-share-button" data-href="https://tunimmob.com/agency/{{idAgency}}"
 						data-layout="button_count" data-size="large">
@@ -921,7 +922,7 @@
 					</ng-template>
 
 				</p-carousel> <br>
-				<button (click)="goToLink()" class="btn btn-promotion"
+				<button (click)="goToLink()" class="btn btn-promotion2"
 					style="float: right;font-size: 18px; font-weight: 600;">PROMOTION </button>
 			</div>
 		</div>

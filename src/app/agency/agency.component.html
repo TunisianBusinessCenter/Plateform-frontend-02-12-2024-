@@ -1,5 +1,6 @@
 <!-- wrapper -->
-<div class="responsiveHome"  >
+
+<div class="responsiveHome"  style="    display: flex;">
 	<button type="submit" class="animated-border-button " (click)=" backClicked()">
 		<i class="fa fa-arrow-left" aria-hidden="true"></i>
 		Retour
@@ -30,7 +31,6 @@
 		</p-listbox>
 	</div> -
 </div>  -->
-<br><br><br><br><br>
 
 <div class="carous-boutique" >
 	<div class="agency-responsive" [ngClass]="{'block-display': !isDesktop}" style=" display: flex;">
@@ -38,9 +38,12 @@
 			<div class="col cadre">
 				<div class="Card-logo ">
 					<img class="rounded-lg border card-img" src="{{ Agency?.logo_url }}" alt="Eco house company">
-					<p-button (click)="showMaximizableDialog()" icon="pi pi-info-circle" label="À PROPOS"></p-button>
+					<div class="aproposAnachor " (click)="showMaximizableDialog()"><span><i class="pi pi-info-circle "></i>À PROPOS</span></div>
+<!-- 
+					<p-button (click)="showMaximizableDialog()" icon="pi pi-info-circle" label="À PROPOS" ></p-button> -->
+					
 				</div>
-				<p-dialog   class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"  [style]="{width: '70vw', 'margin-left': '50px'}"
+				<p-dialog   class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"  [style]="{width: '85vw', 'margin-left': '50px'}"
 				[maximizable]="true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
 				<div class="row modalTheme">
 					<div class="col-md-4">
@@ -50,6 +53,7 @@
 						<p class="scrollable-paragraph">{{Agency.description}}.
 							
 						</p>
+						
 					</div>
 				</div>
 				<!-- <div class="row modalTheme2">
@@ -197,7 +201,9 @@
 							+216 {{ Agency?.phone_number }}
 						</span>
 					</div>
-					<div class="  align-items-sm-center  li-agency" *ngIf="Agency?.phone_number2">
+					<!-- <div class="  align-items-sm-center  li-agency" *ngIf="Agency?.phone_number2"> -->
+
+					<div class="  align-items-sm-center  li-agency" >
 						<span class="col-sm-2 px-1 AgencyDetails">Tél 2:</span>
 						<span *ngIf="Agency?.name!=='IOT MEDICAL TECHNOLOGY'" class="col-sm-9 px-1  tele-responsive">
 							+216 {{ Agency?.phone_number2}}
@@ -227,9 +233,9 @@
 						</span>
 
 					</div> <br>
-					<div class="d-flex align-items-sm-center  li-social">
+					<div class="d-flex align-items-sm-center  li-social " >
 
-						<ul class="list-inline mb-0" style="margin-left: -48px;">
+						<ul class="list-inline mb-0" style="margin-left: -96px;">
 							<ul class="social-networks bounce">
 								<li>
 									<a [attr.href]="Agency?.twitter_url" class="icon-twitter" [attr.disabled]="!Agency?.twitter_url">
@@ -504,7 +510,7 @@
 		<div class="content-section implementation carousel-demo">
 			<div class="card">
 				<p-carousel [value]="images" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
-					[circular]="true" [responsiveOptions]="responsiveOptions" [autoplayInterval]="7000">
+					[circular]="true" [responsiveOptions]="responsiveOptions" >
 					<ng-template let-image pTemplate="item">
 						<div class="item-card">
 							<img src="{{image.picture}}" class="card-img-top taill-image">
@@ -687,7 +693,7 @@
 					<!-- [routerLink]="['/details-materiaux',image.id]" -->
 					<ng-template let-image pTemplate="item">
 						<div class="item-card" [routerLink]="['/details-materiaux',image.id]">
-							<img src="{{image?.imageUrl}}" class="card-img-top taill-image">
+							<!-- <img src="{{image?.imageUrl}}" class="card-img-top taill-image">
 							<div class="card-body">
 								<div>
 									<h5 class="card-title random">Produit</h5>
@@ -709,14 +715,91 @@
 										</a>
 									</div>
 									<div class="social-link-container">
-										<a href="{{Agency?.website_url}}" class="social-link">
+											<a href="{{Agency?.website_url}}" class="social-link">
 											<i class="font">W</i>
 										</a>
 									</div>
 
 								</div>
 								</div>
+							</div> -->
+
+							<div>
+								<img src="{{image?.imageUrl}}" class="card-img-top taill-image" alt="Responsive image">
+								<div *ngIf="image?.name==='LE LOFT'">
+									<span class="badge badge-orange">Prix à partir de 253.000 dt TTC</span>
+								</div>
+								<!-- btn-promotion  -->
 							</div>
+
+
+							
+
+
+							<div class="card-body">
+								<div>
+									<h5 class="card-title random">{{image.agencyName}}</h5>
+									<button href="#" class="btn btn-boutique mx-1"
+										style="float: right; text-align: center;">{{image.status}}DETAILS</button>
+								</div>
+								<div style="display: flex; align-items: center;margin-right: -3px;">
+									<div class="text">
+										<p class="nameStyle" style="margin-right: 10px;">{{image.name }}</p>
+									</div>
+									<div class="social-icons">
+										<div class="social-link-container"
+											data-layout="button_count" data-size="large">
+											<a target="_blank"
+												href="{{Agency?.facebook_url}}"
+												class="social-link1">
+												<i class="fab fa-facebook-f"></i>
+											</a>
+										</div>
+
+									</div>
+									<div class="social-link-container ">
+										<a href="{{Agency?.instagram_url}}" class="social-link">
+											<i class="fab fa-instagram"></i>
+										</a>
+									</div>
+									<div class="social-link-container">
+										<a href="{{Agency?.website_url}}" class="social-link">
+											<i class="font">W</i>
+										</a>
+									</div>
+
+								</div>
+							</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 						</div>
 					</ng-template>
 

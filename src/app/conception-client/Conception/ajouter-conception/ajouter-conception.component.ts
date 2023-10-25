@@ -165,7 +165,7 @@ export class AjouterConceptionComponent {
       }
     );
   }
-  resetForm() {
+  resetForm() { 
     this.societe = {
       nom_societe: '',
       logo: null,

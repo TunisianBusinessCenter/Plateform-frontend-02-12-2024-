@@ -241,10 +241,29 @@
 								Description
 							</h4>
 
-							<p class="mb-0 lh-214 scrollable-paragraph">
+							<!-- <p class="mb-0 lh-214 scrollable-paragraph">
 								{{Projet?.description}}
 
-							</p>
+							</p> -->
+							<div class="mb-0 lh-214 cadre-noir">
+								<div *ngIf="Projet?.description === null">
+								  <p class="scrollable-paragraph paragrapheDesc">Description manquant!</p>
+								</div>
+								<div *ngIf="Projet?.description !== null">
+								  <p class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
+									<ng-container *ngIf="Projet?.description">
+									  <ng-container *ngFor="let sentence of Projet?.description.split('.')">
+										{{ sentence.trim() }}.<hr style="    margin: 4px 0;
+										color: inherit;
+										border: 0;
+										border-top: var(--bs-border-width) solid;
+										opacity: 0;
+									">
+									  </ng-container>
+									</ng-container>
+								  </p>
+								</div>
+							  </div>
 						</section>
 					</article>
 					<aside class="col-lg-6 pl-xl-4 primary-sidebar sidebar-sticky" id="sidebar">

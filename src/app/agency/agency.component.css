@@ -97,6 +97,7 @@
 .social-networks {
   font-size: 41px;
   text-align: center;
+  
 }
 
 /* -92 */
@@ -111,9 +112,30 @@
   width: 32px;
   height: 32px;
   font-size: 0;
+  cursor: pointer;
   line-height: 0;
   text-align: center;
   text-decoration: none;
+}
+
+@media only screen and (max-width: 820px) {
+  .social-networks a {
+    display: block;
+    position: relative;
+    margin: 0 10px;
+    width: 32px;
+    height: 32px;
+    font-size: 0;
+    line-height: 0;
+    text-align: center;
+    text-decoration: none;
+  }
+}
+
+@media only screen and (max-width: 820px) {
+  .li-social-logo {
+    margin-left: 13px;
+  }
 }
 
 .social-networks a:before {
@@ -222,9 +244,7 @@
   background: #8B0000;
 }
 
-.li-social {
-  margin-left: 100px;
-}
+
 
 .li-agency {
   border: none;
@@ -323,7 +343,7 @@
     text-transform: none;
     line-height: 1;
     color: #f8f9fa;
-    font-size: 19px;
+    font-size: 15px;
     line-height: 70px;
     margin-left: -9px;
     margin-top: -20px;
@@ -355,7 +375,7 @@
     text-transform: none;
     line-height: 1;
     color: #ffffff;
-    font-size: 20px;
+    font-size: 15px;
     line-height: 69px;
     margin-left: -4px;
     margin-top: -18px;
@@ -416,7 +436,7 @@
   FONT-SIZE: 12px;
   font-weight: 600;
   margin-top: -33px;
- 
+
   height: 24px;
   width: 95px;
   padding: 14px 17px 14px 17px;
@@ -1172,17 +1192,13 @@ body {
   }
 
   .background-img {
-
-
     height: 135px;
-    width: 99%;
+    width: 324px;
     background-repeat: no-repeat;
     background-size: cover;
-    margin: -16% 15%;
-    /* padding: 0px; */
+    margin: -11% 14%;
     border-radius: 4px;
     position: relative;
-
     margin-bottom: -109px;
   }
 
@@ -1365,6 +1381,7 @@ body {
 
 .wrapper {
   margin: 0 auto;
+  /* margin-bottom: -31px; */
 }
 
 .wrapper .fb-share-button {
@@ -1584,6 +1601,7 @@ body {
     font-weight: 700;
     font-size: 12px;
     margin: -6px 0 0;
+    min-height: 38px;
   }
 
 
@@ -1649,7 +1667,7 @@ body {
     color: #333;
     font-size: 1.1rem;
     margin-left: 0px;
-    margin-top: -14px;
+    margin-top: 2px;
   }
 
   .tele-responsive {
@@ -1789,10 +1807,10 @@ body {
 
 @media only screen and (max-width: 400px) {
   .background-vd {
-    margin: -20% 7%;
+    margin: -22% 9%;
     border-radius: 4px;
     position: relative;
-    width: 106%;
+    width: 347px;
 
   }
 
@@ -1848,6 +1866,7 @@ body {
   position: absolute;
   top: -10px;
   right: -10px;
+  font-size: 13px;
 }
 
 .ribbon__content {
@@ -2451,8 +2470,8 @@ body {
   .social-networks {
     font-size: 41px;
     text-align: center;
-    margin-top: -3px;
-    margin-left: -84px;
+    margin-top: 48px;
+    margin-left: -35px;
   }
 
 
@@ -2466,19 +2485,23 @@ body {
 
   .Agencyadresse {
     font-size: 12px;
-    line-height: 0.86;
+    line-height: .86;
     color: #696969;
     text-align: left;
-    margin-bottom: 4px;
-    margin-top: 16px;
-    margin-left: 4px;
+    margin-bottom: 14px;
+    margin-top: 5px;
+    margin-left: 3px;
+
+
+
   }
 
 
 
   .li-social {
     margin-left: 13px;
-    margin-top: -14px;
+    margin-top: -30px;
+
   }
 
 }
@@ -2605,7 +2628,7 @@ body {
 }
 
 .li-social {
-  margin-left: 100px;
+  margin-left: 154px;
 }
 
 .li-agency {
@@ -2877,11 +2900,13 @@ i.fab {
     width: 276px;
   }
 }
+
 @media only screen and (max-width: 390px) {
   .text {
     min-height: 34px;
   }
 }
+
 @media screen and (max-width: 390px) {
   .Card-logo {
     height: 238px;
@@ -2895,6 +2920,7 @@ i.fab {
     margin-top: -120px;
   }
 }
+
 /* 
 @media screen and (max-width: 390px) {
   .social-icons {
@@ -2921,9 +2947,10 @@ i.fab {
   margin-top: -98px;
   margin: -43px auto;
   margin-bottom: -82px;
-  width: 815px;
-  margin-left: 464px;
+  width: 800px;
+  margin-left: 572px;
 }
+
 @media only screen and (max-width: 390px) {
 
   .li-agency {
@@ -2934,6 +2961,7 @@ i.fab {
   }
 
 }
+
 @media only screen and (max-width: 390px) {
 
   .btn-promotion-Decouvert {
@@ -2945,21 +2973,349 @@ i.fab {
     font-weight: 500;
     margin-top: -35px;
     height: 37px;
-    margin-top: -54px;
-    margin-left: 462px;
+    /* margin-top: -54px; */
+    margin-left: 24px;
     padding: 7px;
-    margin-top: -98px;
-    margin: 0 auto;
+    margin-top: -78px;
+    margin: -58 auto;
     margin-bottom: -158px;
-    width: 83%;
+    width: 82%;
+    margin-top: -59px;
   }
 }
+
 @media only screen and (max-width: 390px) {
 
   .btn-prix {
     margin: -33px 7px 0 0;
     width: 94px;
-    background-color: rgb(31 30 132);;
+    background-color: rgb(31 30 132);
+    ;
 
   }
+}
+
+@media only screen and (max-width: 414px) {
+
+  .btn-boutique {
+    color: #fff;
+    background-color: #1f1e84;
+    border-color: #3f51b5;
+    box-shadow: none;
+    FONT-SIZE: 12px;
+    font-weight: 600;
+    margin-top: -27px;
+    height: 24px;
+    width: 95px;
+    padding: 11px 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+}
+
+@media only screen and (max-width: 414px) {
+
+  .li-agency {
+    border: none;
+    margin-left: -86px;
+    margin: 1px -55px 0px -86px;
+    white-space: nowrap;
+  }
+  .btn-promotion-Decouvert {
+    color: #ffffff;
+    background-color: #dc3346;
+    border-color: #dc3346;
+    box-shadow: none;
+    font-size: 17px;
+    font-weight: 500;
+    margin-top: -35px;
+    height: 37px;
+    /* margin-top: -54px; */
+    margin-left: 24px;
+    padding: 7px;
+    margin-top: -78px;
+    margin: -58 auto;
+    margin-bottom: -158px;
+    width: 82%;
+    margin-top: -59px;
+  }
+  
+}
+
+@media only screen and (max-width: 430px) {
+
+  .li-agency {
+    border: none;
+    margin: 3px;
+    min-width: 391px;
+    margin-left: -86px;
+    max-height: 24px;
+
+  }
+}
+
+@media only screen and (max-width: 360px) {
+
+  .Card-logo {
+    height: 238px;
+    width: 106%;
+    border-radius: 6px;
+    position: relative;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+    z-index: 1;
+    padding: 7px;
+    margin-left: 8px;
+    margin-top: -120px;
+  }
+
+}
+
+@media only screen and (max-width: 375px) {
+
+  .Card-logo {
+    height: 238px;
+    width: 101%;
+    border-radius: 6px;
+    position: relative;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+    z-index: 1;
+    padding: 7px;
+    margin-left: 13px;
+    margin-top: -120px;
+  }
+
+}
+
+@media only screen and (max-width: 360px) {
+
+  .Card-logo {
+    height: 238px;
+    width: 108%;
+    border-radius: 6px;
+    position: relative;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+    z-index: 1;
+    padding: 7px;
+    margin-left: 10px;
+    margin-top: -120px;
+  }
+}
+
+@media only screen and (max-width: 393px) {
+  .Card {
+    width: 95%;
+  }
+}
+
+@media only screen and (max-width: 820px) {
+  .container {
+    padding-top: 144px;
+    padding-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 820px) {
+  .Card-logo {
+    height: 148%;
+    width: 97%;
+    border-radius: 6px;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    z-index: 1;
+    padding: 7px;
+    margin-left: 20px;
+    margin-top: 1px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .Card-logo {
+    height: 97%;
+    width: 100%;
+    border-radius: 6px;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    z-index: 1;
+    padding: 7px;
+    margin-left: 15px;
+    margin-top: 1px;
+  }
+}
+
+@media only screen and (max-width: 393px) {
+  .Card {
+    width: 89%;
+  }
+}
+
+@media only screen and (max-width: 820px) {
+  .cadre {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    align-content: space-between;
+    justify-content: center;
+  }
+}
+
+body {
+  zoom: 2;
+}
+
+.propoButton {
+  font-size: 15px;
+  background: #1f1e84;
+  color: white;
+  width: 129px;
+  margin-left: 85px;
+  border-radius: 7px;
+  font-weight: 600;
+}
+
+/* @media only screen and (max-width: 1060px) {
+.social-networks {
+   
+}
+} */
+@media only screen and (max-width: 390px) {
+  .Card {
+    width: 96%;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .background-img {
+    height: 135px;
+    width: 320px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: -16% 15%;
+    border-radius: 4px;
+    position: relative;
+    margin-left: 49px;
+    margin-bottom: -109px;
+  }
+
+}
+
+@media only screen and (max-width: 360px) {
+  .btn-promotion {
+    background-color: #dc3346;
+    border-color: #dc3346;
+    box-shadow: none;
+    FONT-SIZE: 14px;
+    font-weight: 500;
+    height: 40px;
+    padding: 4px;
+    margin-top: -100px;
+    width: 88%;
+    margin-bottom: -78px;
+    margin-left: 20px;
+    padding: 8px 0 0 0;
+  }
+}
+
+.aproposAnachor {
+  margin: -34px 162px;
+  background: #1f1e84;
+  color: white;
+  border-radius: 4px;
+  padding: 6px 36px;
+  width: 155px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+@media only screen and (max-width: 360px) {
+  .btn-promotion {
+    background-color: #dc3346;
+    border-color: #dc3346;
+    box-shadow: none;
+    FONT-SIZE: 14px;
+    font-weight: 500;
+    height: 40px;
+    padding: 4px;
+    margin-top: -100px;
+    width: 88%;
+    margin-bottom: -78px;
+    margin-left: 20px;
+    padding: 8px 0 0 0;
+  }
+}
+.aproposAnachor {
+  margin: -34px 162px;
+  background: #1f1e84;
+  color: white;
+  border-radius: 4px;
+  padding: 6px 28px;
+  width: 155px;
+  font-weight: bold;
+  cursor: pointer;
+}
+@media only screen and (max-width: 390px) {
+  .aproposAnachor {
+    margin: 3px 79px;
+    text-align: center;
+    background: #1f1e84;
+    border: solid 1px black;
+    color: white;
+    margin-top: 10px;
+    padding: 2px 34px;
+    font-weight: bold;
+    border-radius: 4px;
+    width: 151px;
+    cursor: pointer;
+
+
+  }
+}
+@media only screen and (max-width: 393px) {
+  .aproposAnachor {
+    margin: 3px 79px;
+    text-align: center;
+    background: #1f1e84;
+    border: solid 1px black;
+    color: white;
+    margin-top: 30px;
+    padding: 2px 20px;
+    font-weight: bold;
+    border-radius: 4px;
+    width: 151px;
+    cursor: pointer;
+
+
+  }
+}
+@media only screen and (max-width: 412px) {
+  .aproposAnachor {
+    margin: 8px 87px;
+    background: #1f1e84;
+    color: white;
+    border-radius: 4px;
+    padding: 6px 28px;
+    width: 155px;
+    font-weight: bold;
+    cursor: pointer;
+    
+
+
+  }
+}
+  @media only screen and (max-width: 414px) {
+    .aproposAnachor {
+      margin: 8px 87px;
+      background: #1f1e84;
+      color: white;
+      border-radius: 4px;
+      padding: 6px 28px;
+      width: 155px;
+      font-weight: bold;
+      cursor: pointer;
+      
+  
+  
+    }
 }

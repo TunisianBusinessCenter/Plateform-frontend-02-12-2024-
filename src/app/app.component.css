@@ -96,3 +96,7 @@
        overflow-x: hidden;
      }
    }
+   ::ng-deep app-agency {
+    /* Your CSS styles for app-agency component go here */
+    zoom: 0.9;
+  }

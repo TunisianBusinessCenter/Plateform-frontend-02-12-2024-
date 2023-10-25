@@ -340,11 +340,16 @@ font-weight: bold;
   
 }
 .cadre-noir {
-  border: 0.5px solid grey;
-  padding: 0 20px 0 20px;
-  min-width: 57%;
-  min-height: 375px;
+  border: 0.5px solid #e3e1e1;
+  padding: 0 0px 0 20px;
+  min-width: 61%;
+  min-height: 466px;
   margin: 0px -30px 0 29px;
+ 
+}
+img .cadre-noir {
+ max-width: 700px;
+ 
 }
 @media (max-width: 768px) {
   .cadre-noir {
@@ -357,11 +362,28 @@ font-weight: bold;
     
   }
 }
+.cadre-noir1 {
+  border: 0.5px solid #e3e1e1;
+  padding: 0 0px 0 20px;
+  min-width: 61%;
+  min-height: 466px;
+  margin: 0px -30px 0 29px;
 
+}
+@media (max-width: 768px) {
+  .cadre-noir1 {
+    border: 1px solid grey; /* Increase border width for visibility */
+    padding: 10px; /* Use a positive padding value if needed */
+    margin-left: 5%; /* Adjust the margin as needed for your layout */
+    width: 90%; /* Adjust the width as needed */
+    max-width: 100%; /* Ensure the image doesn't exceed its container */
+    margin-top: 40px;
+    
+  }
+}
 @media (max-width: 768px) {
   .image {
-    padding: 81px 0 60px 0px;
-
+    padding: 178px 0 60px 0px;
   }
 }
 
@@ -424,13 +446,14 @@ font-weight: bold;
     }
   }
   .scrollable-paragraph {
-    overflow-y: scroll;
+     overflow-y: scroll;
     border: 1px solid #ccc;
     width: 100%;
+    line-height: 1.6;
     padding: 3px -8px 1px 5px;
     height: 419px;
-    padding: 17px;
-    margin: -7px 6px 0 -5px;
+    padding: 35px;
+    margin: -7px 6px 0 -5px; 
   }
   
   /* Use media queries to adjust the styles based on screen size */
@@ -439,9 +462,10 @@ font-weight: bold;
       overflow-y: scroll;
       border: 1px solid #ccc;
       width: 100%;
+      line-height: 1.339;
       padding: 3px -8px 1px 5px;
-      height: 300px;
-      padding: 17px;
+      height: 419px;
+      padding: 35px;
       margin: -7px 6px 0 -5px;
     }
   }
@@ -450,9 +474,10 @@ font-weight: bold;
       overflow-y: scroll;
       border: 1px solid #ccc;
       width: 100%;
+      line-height: 1.339;
       padding: 3px -8px 1px 5px;
-      height: 300px;
-      padding: 17px;
+      height: 419px;
+      padding: 35px;
       margin: -7px 6px 0 -5px;
     }
   }
@@ -467,3 +492,8 @@ font-weight: bold;
 .cardx{
   border:solid 1px gray;
 }
+/* @media (max-width: 768px) {
+  .cadre-noir1{
+    display: none;
+  }
+} */

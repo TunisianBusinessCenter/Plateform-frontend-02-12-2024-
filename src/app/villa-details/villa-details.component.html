@@ -1,9 +1,12 @@
-
+<!-- 
 <button (click)="backClicked()" type="submit" class="btn animated-border-button ">
     <i class="fa fa-arrow-left" aria-hidden="true"></i>
     Retour
+</button> -->
+<button type="submit" class="animated-border-button " (click)=" backClicked()">
+    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    Retour
 </button>
-
 <main id="content">
     <div style="margin-top: -10px;" class="px-3 px-lg-6 px-xxl-13  py-lg-10 my-profile">
         <!-- *ngFor="let pieces of allProject?.categoryList"
@@ -120,7 +123,7 @@
                                   letter-spacing: normal;
                                   margin: 7px 0 16px;
                                   color: black;text-align: center;">Description de la propriété </h3>
-                                            <p class="  scrollable-paragraph" style="    font-family: Arial, sans-serif;
+                                            <!-- <p class="  scrollable-paragraph" style="    font-family: Arial, sans-serif;
                                             font-size: 15px;
                                             font-family: Arial, sans-serif;
                                             max-height: 274px;
@@ -131,12 +134,34 @@
                                             line-height: 1.5;
                                             margin: 0;
                                             padding: 0px 56px -46px 2px; ">
+
+                            
                                                 {{piece?.description}}
                                                 <span class="typeDesc" *ngIf="piece?.description===null">
                                                     DESCRIPTION MANQUANTE !
                                                 </span>
 
-                                            </p>
+                                            </p> -->
+
+                                            <div class="mb-0 lh-214 cadre-noir">
+                                                <div *ngIf="piece?.description === null">
+                                                  <p class="scrollable-paragraph paragrapheDesc">Description manquant!</p>
+                                                </div>
+                                                <div *ngIf="piece?.description !== null">
+                                                  <p class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
+                                                    <ng-container *ngIf="piece?.description">
+                                                      <ng-container *ngFor="let sentence of piece?.description.split('.')">
+                                                        {{ sentence.trim() }}.<hr style="    margin: 4px 0;
+                                                        color: inherit;
+                                                        border: 0;
+                                                        border-top: var(--bs-border-width) solid;
+                                                        opacity: 0;
+                                                    ">
+                                                      </ng-container>
+                                                    </ng-container>
+                                                  </p>
+                                                </div>
+                                              </div>
                                         </div>
                                     </div>
 
@@ -192,7 +217,7 @@
                                                 <div class="form-group">
                                                     <label for="message"
                                                         style="display: block;font-weight: bold; color: black;">Message:</label>
-                                                    <textarea id="message" name="message" placeholder="Your Message"
+                                                    <textarea style="height: 100px;" id="message" name="message" placeholder="Your Message"
                                                         [(ngModel)]="email.body" required></textarea>
                                                 </div>
                                                 <button type="submit"

@@ -72,7 +72,7 @@
 }
         </style>
         <div class="container1">
-            <img class="cadre-noir image" src="{{SousCategorie?.image_url}}" alt="">
+            <img class="cadre-noir image" src="{{SousCategorie?.image_url}}" alt="" style="max-width: 646px;">
             <button style="    border-radius: 18px;
             background-color: #6a777f33;" class="button" href="#galleryModal" data-large-src="https://unsplash.it/1200/768.jpg?image=253"
                 data-toggle="modal">
@@ -81,20 +81,29 @@
         </div>
         <div class="mb-0 lh-214 cadre-noir">
             <h3 class="titreDesc">Description</h3>
-            <div *ngIf="SousCategorie?.description===null">
-                <p class="scrollable-paragraph paragrapheDesc">Description manquant!</p>
+            <div *ngIf="SousCategorie?.description === null">
+              <p class="scrollable-paragraph paragrapheDesc">Description manquant!</p>
             </div>
-            <div *ngIf="SousCategorie?.description!==null">
-                <p class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
-                    {{SousCategorie?.description}}
-
-                </p>
+            <div *ngIf="SousCategorie?.description !== null">
+              <p class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
+                <ng-container *ngIf="SousCategorie?.description">
+                  <ng-container *ngFor="let sentence of SousCategorie?.description.split('.')">
+                    {{ sentence.trim() }}.<hr style="    margin: 4px 0;
+                    color: inherit;
+                    border: 0;
+                    border-top: var(--bs-border-width) solid;
+                    opacity: 0;
+                ">
+                  </ng-container>
+                </ng-container>
+              </p>
             </div>
-        </div>
+          </div>
     </div>
     <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content" style="    width: 90%;top:170px;">
+            <div class="modal-content" style="    width: 90%;top:170px;    margin-left: 18px;
+            margin-top: 54px;">
                 <div class="modal-header">
                     <h3 class="text-center mb-0"></h3>
                     <button type="button" class="close float-right" aria-label="Close" data-dismiss="modal">

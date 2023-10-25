@@ -294,9 +294,9 @@
   border-radius: 0px;
   height: 32px;
   width: 125px;
-  margin-top: 29px;
-  margin-left: 119px;
-  margin-bottom: -1px;
+  margin-top: 75px;
+  margin-left: -22px;
+  margin-bottom: -69px;
 
 }
 
@@ -647,13 +647,14 @@
 .social-networks a {
   display: block;
   position: relative;
-  margin: 0 19px;
-  width: 32px;
-  height: 32px;
-  font-size: 0;
+  margin: 0 11px;
+  width: 27px;
+  height: 28px;
+  font-size: 0px;
   line-height: 0;
   text-align: center;
   text-decoration: none;
+
 }
 
 .social-networks a:before {
@@ -673,18 +674,19 @@
 
 .social-networks a:after {
   position: relative;
-  display: block;
-  font-family: "icomoon";
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  color: #f8f9fa;
-  font-size: 20px;
-  line-height: 69px;
-  margin-left: -4px;
-  margin-top: -18px;
+    display: block;
+    font-family: "icomoon";
+    font-style: normal;
+    font-weight: normal;
+    font-feature-settings: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 69px;
+    margin-left: -4px;
+    margin-top: -18px;
 
 }
 
@@ -952,8 +954,9 @@ a.btn:hover {
 
 .card-titre {
   font: 400 17px/30px Roboto, Helvetica Neue, sans-serif;
-  text-shadow: 0 0 0.2em #000000, 0 0 20em #000000;
+  /* text-shadow: 0 0 0.2em #000000, 0 0 20em #000000; */
   background: white'';
+  font-weight: bold;
   background: white;
   border: solid 1px #0000004a;
   border-radius: 6px;
@@ -1030,8 +1033,8 @@ a.btn:hover {
     font-size: 41px;
     text-align: center;
     display: flex;
-    margin-top: -111px;
-    margin-left: -20px;
+    margin-top: -93px;
+    margin-left: 16px;
 
   }
 
@@ -1209,6 +1212,7 @@ a.btn:hover {
   position: absolute;
   top: -10px;
   right: -10px;
+  font-size: 13px;
 }
 
 .ribbon__content {
@@ -1403,7 +1407,13 @@ a.btn:hover {
 
   .card-titles {
     font-size: 15px;
-    margin-left: 22px;
+    margin-left: 2px;
+    margin: 0 23px;
+  }
+  .card-title {
+    font-size: 15px;
+    margin-left: 2px;
+    margin: 0 23px;
   }
 }
 
@@ -1478,6 +1488,11 @@ a.btn:hover {
     color: #333;
     font-size: 1.5rem;
     margin-left: 16px;
+  }
+  .card-title {
+    font-size: 15px;
+    margin-left: -21px;
+    
   }
 
 }
@@ -1642,7 +1657,6 @@ a.btn:hover {
 
   .li-agency {
     border: none;
-    margin: 0 0 0 20px;
     width: 288px;
 }
 
@@ -1651,9 +1665,12 @@ a.btn:hover {
     line-height: 0.86;
     color: #696969;
     text-align: left;
-    margin-bottom: 4px;
-    margin-top: 16px;
-    margin-left: 24px;
+    margin-bottom: -14px;
+    margin-top: -44px;
+    padding: 29px 113px -1px 0;
+    /* padding: 31px; */
+    margin-left: -42px;
+    padding: 23px 48px;
   }
   .AgencyDetails {
     margin-right: 0px;
@@ -1758,8 +1775,8 @@ a.btn:hover {
 }
 @media screen and (max-width: 768px) {
   .retour {
-    right: -7px;
-    top: 22px;
-    /* Additional styles for this media query */
+    right: -13px;
+    top: -32px;
+    margin-bottom: -54px;
   }
 }

@@ -175,12 +175,21 @@
     display: grid;
     padding-left: 20px;
     padding-right: 20px;
+    
   }
   .marginfooterX{
     padding-left:32px;
     padding-right: 32px;
   }
 }
+/* @media only screen and (max-width: 800px) {
+  .footer-resp {
+    display: grid;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 99%;
+  }
+} */
 @media only screen and (max-width: 1200px) {
   .footer-responsive {
     display: grid;

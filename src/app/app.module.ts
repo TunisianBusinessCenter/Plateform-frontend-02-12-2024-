@@ -110,6 +110,7 @@ import { PromoteuresDjerbaComponent } from './promoteurs-immob/promoteures-djerb
 import { TelechargementComponent } from './telechargement/telechargement.component';
 import { ContactComponent } from './contact/contact.component';
 import { ScrollHideDirective } from './scroll-hide.directive';
+import { LineBreakPipe } from './description-details/line-break.pipe';
 
 
 
@@ -178,6 +179,8 @@ const routes: Routes = [
     TelechargementComponent,
     ContactComponent,
     ScrollHideDirective,
+    LineBreakPipe
+
   
   ],
   imports: [

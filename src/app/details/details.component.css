@@ -867,12 +867,14 @@
   text-decoration: none;
 }
 .scrollable-paragraph {
-  max-height: 287px; /* Set your desired maximum height */
-  overflow-y: scroll; /* Always show the scrollbar */
+  overflow-y: scroll;
   border: 1px solid #ccc;
-  padding: 9px 0px 1px 5px;
-  height: 208px; /* Set the fixed height for the container */
-  margin-top: -3px;
+  width: 100%;
+  line-height: 1.6;
+  padding: 4px -8px 1px 5px;
+  max-height: 217px;
+  padding: 15px 20px 0 27px;
+  margin: 0px 6px 0 -5px;
 }
 
 /* Use media queries to adjust the styles based on screen size */

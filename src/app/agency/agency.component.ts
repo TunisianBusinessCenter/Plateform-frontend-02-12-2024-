@@ -34,6 +34,8 @@ import { ShareService } from '../services/share/share.service';
 export class AgencyComponent implements OnInit, AfterViewInit {
   isDesktop: boolean = true;
   titre = 'google-maps';
+
+
   private map: google.maps.Map
   @ViewChild("myElem") MyProp: ElementRef;
   imagePath: string = 'src/assets/IMAGES PLATEFORME/PROMOTEUR IMMOBILIER/PROMOTEUR TUNIS/BOUTIQUES TUNIS/SOROUBAT/PAGE PROJET'; // Chemin initial de l'image

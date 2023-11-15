@@ -255,20 +255,60 @@
   margin-bottom: 36px;
   margin-top: -26px;
 }
+.image1{
+  max-width: 147px;
+    margin-inline-start: 14%;
+  padding-top: 2%;
+  cursor: pointer;
+
+  border-radius: 11px;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: none;
+  min-height: 89px;
+
+  -webkit-tap-highlight-color: transparent;
+  }
 @media only screen and (max-width: 894px) {
-  .images {
-   visibility: hidden;
+  .image1{
+    width: 99px;
+    margin-inline-start: 20%;
+    padding-top: 12%;
+    background: none;
+    border: none;
+    height: -8px;
+    margin-top: -33px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    margin-bottom: 8px;
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
   }
   
 }
+
+@media only screen and (max-width: 894px) {
+.hidden{
+display: none;
+}
+}
 @media only screen and (max-width: 800px) {
   .images {
-   visibility: hidden;
+   /* visibility: hidden; */
    margin-bottom: 30px;
     margin-top: 5px;;
   }
   
 }
+@media only screen and (max-width: 800px) {
+  .visibiltyImage {
+    margin-bottom: 31px;
+    margin-top: 42px;
+  }
+  
+}
+
 .contacterBtn{
   margin: 10px;
   margin: 10px;

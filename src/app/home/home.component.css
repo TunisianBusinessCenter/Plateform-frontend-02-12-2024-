@@ -38,8 +38,11 @@
 
 @media (max-width: 1199.98px) {
   .responsive-font-example {
-    font-size: 20px;
+    font-size: 15px;
     margin-top: 70px;
+    margin-left: -15px;
+    padding: 0 5px;
+    width: 132%;
   }
 }
 
@@ -126,13 +129,55 @@
   .NTelechargernt {
     background-color: #8B0000;
     color: white;
-    padding: 10px;
+    padding: 9px 3px;
     font-weight: 600;
-    font-size: 13px;
-    width: 60%;
+    font-size: 11px;
+    width: 76%;
+    margin-left: -23px;
   }
 }
+@media only screen and (max-width: 400px) {
 
+
+  .NTelechargernt {
+    background-color: #8B0000;
+    color: white;
+    padding: 9px 3px;
+    font-weight: 600;
+    font-size: 11px;
+    width: 75%;
+    margin-left: -23px;
+
+  }
+}
+@media only screen and (max-width: 412px) {
+
+
+  .NTelechargernt {
+    background-color: #8B0000;
+    color: white;
+    padding: 9px 3px;
+    font-weight: 600;
+    font-size: 11px;
+    width: 75%;
+    margin-left: -23px;
+
+  }
+}
+@media only screen and (max-width: 414px) {
+
+
+  .NTelechargernt {
+    background-color: #8B0000;
+    color: white;
+    padding: 9px 3px;
+    font-weight: 600;
+    font-size: 11px;
+    width: 75%;
+    margin-left: -23px;
+
+  }
+}
 @media only screen and (min-width: 2200px) {
   .tunsian-flag-img-background .btn-hover-flag-img {
     width: 320px;
@@ -196,7 +241,7 @@
   }
 
   .tunsian-flag-img-background .btn-hover-flag-img {
-    width: 220px;
+    width: 257px;
     margin: -5px;
     background-color: #1f1e84;
     color: #ffffff;
@@ -206,7 +251,7 @@
     cursor: pointer;
     background-position-x: center;
     margin-right: 10px;
-    margin-left: 10px;
+    margin-left: -14px;
     text-transform: uppercase;
     -webkit-text-stroke-width: thin;
   }
@@ -228,7 +273,6 @@
   }
 
 }
-
 
 
 .mmg {
@@ -325,16 +369,16 @@ a {
 
 @media only screen and (max-width: 894px) {
   .images {
-    visibility: hidden;
+    /* visibility: hidden; */
     margin-top: -204px;
   }
 
   :host ::ng-deep .p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
-    visibility: hidden;
+    /* visibility: hidden; */
   }
 
   :host ::ng-deep .p-carousel .p-carousel-indicators .p-carousel-indicator button {
-    visibility: hidden;
+    /* visibility: hidden; */
   }
 }
 
@@ -676,7 +720,8 @@ body {
     width: 74%;
     height: 200px;
     display: block;
-    margin-left: 90px;
+    margin-left: 70px;
+
   }
 
   :host ::ng-deep.p-carousel,
@@ -688,25 +733,27 @@ body {
   }
 
   :host ::ng-deep.p-carousel .p-carousel-content .p-carousel-prev {
-    width: 0.5rem;
+    width: 1.5rem;
     height: 1rem;
     color: rgba(0, 0, 0, 0.6);
     border: 0 none;
     background: transparent;
     border-radius: 50%;
     transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
-    margin: -0.5rem;
+    margin: -0.6rem;
   }
 
   :host ::ng-deep.p-carousel .p-carousel-content .p-carousel-next {
-    width: 0.5rem;
+    width: 1.5rem;
     height: 1rem;
     color: rgba(0, 0, 0, 0.6);
     border: 0 none;
     background: transparent;
     border-radius: 50%;
     transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
-    margin: -0.5rem;
+    margin: 2.5rem;
+    margin-left: -15px;
+
   }
 }
 
@@ -737,6 +784,8 @@ body {
 @media screen and (max-width:395px) {
   .btn-number {
     margin-left: 20px;
+    margin-bottom: -69px;
+  
   }
 }
 
@@ -776,6 +825,221 @@ body {
 @media (min-width: 992px) {
   /* For large devices (>= 992px) */
   .btn-primary2 {
-    max-width: 500px; /* Increase the maximum width for large devices */
+    max-width: 33%; /* Increase the maximum width for large devices */
   }
 }
+.image {
+      margin-left: 562px;
+      margin-bottom: 16px;
+      margin-top: -32px;
+      
+    }
+ 
+    @media only screen and (max-width: 894px) {
+      .image {
+        margin-left: 63px;
+      margin-bottom: 9px;
+      margin-top: -32px;
+      
+      } 
+      
+    }
+    @media (min-width: 1336px) and (max-width: 1366px) and (min-height: 1432px) and (max-height: 2048px) {
+    .image{
+      margin-left: 345px;
+      margin-bottom: 16px;
+      margin-top: -32px;
+  
+    }
+    }
+ 
+  @media only screen and (max-width:1280px) and (max-height:800px) {
+    .image {
+      margin-left: 274px;
+      margin-bottom: 16px;
+      margin-top: -32px;
+  }
+    
+  }
+  @media only screen and (max-width:1366px) and (max-height:768px) {
+    .image {
+      margin-left: 274px;
+      margin-bottom: 16px;
+      margin-top: -32px;
+  }
+    
+  }
+  @media only screen and (max-width:1440px) and (max-height:900px) {
+    .image {
+      margin-left: 274px;
+      margin-bottom: 16px;
+      margin-top: -32px;
+  }
+    
+  }
+  @media only screen and (max-width:1680px) and (max-height:1050px) {
+    .image {
+      margin-left: 400px;
+      margin-bottom: 16px;
+      margin-top: -32px;
+  }
+    
+  }
+.image1 {
+  max-width: 147px;
+  margin-inline-start: 3%;
+  /* padding-top: 3%; */
+  cursor: pointer;
+  /* border: solid 1.5px white; */
+  /* border-radius: 11px; */
+  /* -webkit-user-select: none; */
+  user-select: none;
+  touch-action: none;
+  /* min-height: 89px; */
+  /* text-align: center; */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-box-shadow: 11px -1px 103px 0px rgb(71 71 71 / 39%);
+}
+
+@media only screen and (max-width: 894px) {
+  .image1 {
+    max-width: 147px;
+    border: solid 1px gray;
+    border-radius: 3px;
+    padding: 2px;
+    margin-inline-start: 3%;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-box-shadow: 11px -1px 103px 0px rgb(71 71 71 / 39%);
+
+
+  } 
+  
+}
+@media only screen and (max-width: 800px) {
+  .image1 {
+    max-width: 147px;
+    border: solid 1px gray;
+    border-radius: 3px;
+    padding: 2px;
+    margin-inline-start: 3%;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-box-shadow: 11px -1px 103px 0px rgb(71 71 71 / 39%);
+  } 
+}
+  @media only screen and (max-width: 375px) {
+    .image1 {
+      max-width: 120px;
+      border: solid 1px gray;
+      border-radius: 3px;
+      padding: 2px;
+      margin-inline-start: 3%;
+      cursor: pointer;
+      -webkit-user-select: none;
+      user-select: none;
+      touch-action: none;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-box-shadow: 11px -1px 103px 0px rgb(71 71 71 / 39%);
+    } 
+    
+}
+@media only screen and (max-width: 360px) {
+  .image {
+    max-width: 183px;
+    margin-left: -47px;
+    /* background: #dedede45; */
+    /* border: solid 1px gray; */
+    border-radius: 3px;
+    padding: 1px;
+    margin-inline-start: -16%;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+   
+  } 
+  
+}
+@media only screen and (max-width: 1024px) and (max-height: 800px) {
+  .image {
+    margin-left: 189px;
+    margin-bottom: 16px;
+    margin-top: -32px;
+  }
+}
+
+@media only screen and (max-width: 1024px) and (max-height: 800px) {
+.image {
+    margin-left: 99px;
+    margin-bottom: 16px;
+    display: flex;
+    margin-top: -32px;
+
+    flex-wrap: wrap;
+}
+}
+@media only screen and (max-width: 1024px) and (max-height: 800px) {
+.image {
+    margin-left: 99px;
+    margin-bottom: 16px;
+    display: flex;
+    margin-top: -32px;
+
+    flex-wrap: wrap;
+}
+}
+@media only screen and (max-width: 414px) and (max-height: 896px) {
+  .image {
+      margin-left: 50px;
+      margin-bottom: 16px;
+      display: flex;
+      margin-top: -32px;
+  
+      flex-wrap: wrap;
+  }
+  }
+  @media only screen and (max-width: 320px) and (max-height: 533px) {
+    .image {
+        margin-left: 100px;
+        margin-bottom: 16px;
+        display: flex;
+        margin-top: -32px;
+    
+        flex-wrap: wrap;
+    }
+    }
+@media only screen and (max-width: 360px) {
+  .image1 {
+    max-width: 85px;
+
+  } 
+  
+}
+/* @media only screen and (max-width: 393px) {
+  .image {
+    margin-left: 56px;
+    margin-bottom: 16px;
+    display: flex;
+    margin-top: -32px;
+    flex-wrap: wrap;
+  }
+  } */
+  
+  /* @media only screen and (max-width: 688px) {
+    .image {
+        margin-left: 211px;
+    margin-bottom: 16px;
+    display: flex;
+    margin-top: -32px;
+    flex-wrap: wrap;
+    }
+    } */
+    

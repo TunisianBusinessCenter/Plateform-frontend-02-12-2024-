@@ -122,7 +122,8 @@ const appRoutes: Routes = [
   {path:'home-maroc', component:HomeMarocComponent},
   {path:'home-lybia', component:HomeLybiaComponent},
   {path:'home-mauritanie', component:HomeMauritanieComponent},
- {path: 'telechargement', component:TelechargementComponent}
+ {path: 'telechargement', component:TelechargementComponent},
+
 
 ];
 

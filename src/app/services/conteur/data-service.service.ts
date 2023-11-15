@@ -10,6 +10,9 @@ export class DataServiceService {
   clicks3 = [12767];
   clicks4 = [17457];
   clicks5 = [4637];
+  clicks6 = [22000];
+  clicks7: any;
+  clicks8: any;
 
 
   constructor() {
@@ -33,6 +36,18 @@ export class DataServiceService {
     if (storedClicks5) {
       this.clicks5 = JSON.parse(storedClicks5);
     }
+    const storedClicks6 = localStorage.getItem('clicks6');
+    if (storedClicks6) {
+      this.clicks6 = JSON.parse(storedClicks6);
+    }
+    const storedClicks7 = localStorage.getItem('clicks7');
+    if (storedClicks7) {
+      this.clicks7 = JSON.parse(storedClicks7);
+    }
+    const storedClicks8 = localStorage.getItem('clicks8');
+    if (storedClicks8) {
+      this.clicks8 = JSON.parse(storedClicks8);
+    }
   }
   getClicks1() {
     return this.clicks1[this.clicks1.length - 1];
@@ -49,7 +64,18 @@ export class DataServiceService {
   getClicks5() {
     return this.clicks5[this.clicks5.length - 1];
   }
-
+  getClicks6() {
+    return this.clicks6[this.clicks6.length - 1];
+    
+  }
+  // getClicks7() {
+  //   return this.clicks7[this.clicks7.length - 1];
+    
+  // }
+  // getClicks8() {
+  //   return this.clicks8[this.clicks8.length - 1];
+    
+  // }
   addClick1() {
     this.clicks1.push(this.clicks1[this.clicks1.length - 1] + 1);
     localStorage.setItem('clicks1', JSON.stringify(this.clicks1));
@@ -69,5 +95,17 @@ export class DataServiceService {
   addClick5() {
     this.clicks5.push(this.clicks5[this.clicks5.length - 1] + 1);
     localStorage.setItem('clicks5', JSON.stringify(this.clicks5));
+  }
+  addClick6() {
+    this.clicks6.push(this.clicks6[this.clicks6.length - 1] + 1);
+    localStorage.setItem('clicks6', JSON.stringify(this.clicks6));
+  }
+  addClick7() {
+    this.clicks7.push(this.clicks7[this.clicks7.length - 1] + 1);
+    localStorage.setItem('clicks7', JSON.stringify(this.clicks7));
+  }
+  addClick8() {
+    this.clicks8.push(this.clicks8[this.clicks8.length - 1] + 1);
+    localStorage.setItem('clicks8', JSON.stringify(this.clicks8));
   }
 }

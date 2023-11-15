@@ -412,7 +412,13 @@
   }
 }
   
-  
+.All {
+  color: #8B0000;
+  text-decoration: none;
+  background-color: transparent;
+  font-weight:600 ;
+  font-size: 19px;
+}
   .search{
     background-color: #3f51b5;
     border-color: #3f51b5 ;

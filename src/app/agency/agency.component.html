@@ -1,11 +1,12 @@
 <!-- wrapper -->
 
-<div class="responsiveHome"  style="    display: flex;">
+<div class="responsiveHome"  style="    display: flex;  ">
+	
 	<button type="submit" class="animated-border-button " (click)=" backClicked()">
 		<i class="fa fa-arrow-left" aria-hidden="true"></i>
 		Retour
 	</button>
-
+	
 	<!-- <div class="responsive">
 
         <button type="submit" class="animated-border-button-pa " routerLink="/home">
@@ -33,15 +34,16 @@
 </div>  -->
 
 <div class="carous-boutique" >
-	<div class="agency-responsive" [ngClass]="{'block-display': !isDesktop}" style=" display: flex;">
+	<div class="agency-responsive" [ngClass]="{'block-display': !isDesktop}">
 
 			<div class="col cadre">
 				<div class="Card-logo ">
 					<img class="rounded-lg border card-img" src="{{ Agency?.logo_url }}" alt="Eco house company">
-					<div class="aproposAnachor " (click)="showMaximizableDialog()"><span><i class="pi pi-info-circle "></i>À PROPOS</span></div>
+					<!-- <div class="aproposAnachor " (click)="showMaximizableDialog()"><span><i class="pi pi-info-circle "></i>À PROPOS</span></div> -->
 <!-- 
 					<p-button (click)="showMaximizableDialog()" icon="pi pi-info-circle" label="À PROPOS" ></p-button> -->
-					
+					<p-button (click)="showMaximizableDialog()" icon="pi pi-info-circle" label="À PROPOS"></p-button>
+
 				</div>
 				<p-dialog   class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"  [style]="{width: '85vw', 'margin-left': '50px'}"
 				[maximizable]="true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
@@ -173,7 +175,7 @@
 			</p-dialog>
 			</div>
 			
-			<div>
+			<div class="tablett">
 				<div class="col textresponce">
 				<div class="Card">
 					<div class="ribbon"><span class="ribbon__content"
@@ -186,54 +188,83 @@
 							VENDRE/A LOUER</span></div>
 					<div class="ribbon"><span class="ribbon__content" *ngIf="Agency?.role==='agence-service'">SERVICE</span>
 					</div>
-
-					<h4 class="card-titles fs-22 lh-15 mb-1 text-dark">
-						{{ Agency?.name }}
-					</h4>
-					<p class="card-text  Agencyadresse">
-						{{ Agency?.adresse }}
-					</p>
+<div style="    padding: 0px;
+/* background-color: red; */
+margin-top: 26px;
+margin-bottom: -16px;">
 
 
-					<div class="  align-items-sm-center  li-agency">
-						<span class="col-sm-2 px-1 AgencyDetails">Tél 1:</span>
-						<span class="col-sm-9 px-1  tele-responsive">
-							+216 {{ Agency?.phone_number }}
-						</span>
-					</div>
-					<!-- <div class="  align-items-sm-center  li-agency" *ngIf="Agency?.phone_number2"> -->
 
-					<div class="  align-items-sm-center  li-agency" >
-						<span class="col-sm-2 px-1 AgencyDetails">Tél 2:</span>
-						<span *ngIf="Agency?.name!=='IOT MEDICAL TECHNOLOGY'" class="col-sm-9 px-1  tele-responsive">
-							+216 {{ Agency?.phone_number2}}
-						</span>
-						<span *ngIf="Agency?.name==='IOT MEDICAL TECHNOLOGY'" class="col-sm-9 px-1  tele-responsive">
-							{{ Agency?.phone_number2}}
-						</span>
-					</div>
-					<div class="  align-items-sm-center  li-agency" *ngIf="Agency?.phone_commercial">
-						<span class="col-sm-2 px-1 AgencyDetails">Tél Commercial:</span>
-						<span class="col-sm-9 px-1  tele-responsive">
-							+216 {{ Agency?.phone_commercial}}
-						</span>
-					</div>
-					<div class="  align-items-sm-center  li-agency">
-						<span class="col-sm-2 px-1 AgencyDetails">Email:</span>
-						<span class="col-sm-9 px-1 tele-responsive">
-							{{ Agency?.email }}
-						</span>
-					</div>
-					<div class="  align-items-sm-center  li-agency">
-						<span class="px-1  AgencyDetails">Site web:</span>
 
-						<span style="font-size: 14px;"(click)="goToLink()" class="col-sm-9 px-1 "
-							style="color: #1f1e84;cursor: pointer;text-decoration:none " class="col-sm-9 px-1 tele-responsive">
-							{{Agency?.website_url}}
-						</span>
 
-					</div> <br>
-					<div class="d-flex align-items-sm-center  li-social " >
+
+	<h4 class="card-titles fs-22 lh-15 mb-1 text-dark">
+		{{ Agency?.name }}
+	</h4>
+	<p class="card-text  Agencyadresse">
+		{{ Agency?.adresse }}
+	</p>
+
+
+	<div class="  align-items-sm-center  li-agency">
+		<span class="col-sm-2 px-1 AgencyDetails">Tél 1:</span>
+		<span class="col-sm-9 px-1  tele-responsive">
+			+216 {{ Agency?.phone_number }}
+		</span>
+	</div>
+	<!-- <div class="  align-items-sm-center  li-agency" *ngIf="Agency?.phone_number2"> -->
+
+	<div class="  align-items-sm-center  li-agency" >
+		<span class="col-sm-2 px-1 AgencyDetails">Tél 2:</span>
+		<span *ngIf="Agency?.name!=='IOT MEDICAL TECHNOLOGY'" class="col-sm-9 px-1  tele-responsive">
+			+216 {{ Agency?.phone_number2}}
+		</span>
+		<span *ngIf="Agency?.name==='IOT MEDICAL TECHNOLOGY'" class="col-sm-9 px-1  tele-responsive">
+			{{ Agency?.phone_number2}}
+		</span>
+	</div>
+	<div class="  align-items-sm-center  li-agency" *ngIf="Agency?.phone_commercial">
+		<span class="col-sm-2 px-1 AgencyDetails">Tél Commercial:</span>
+		<span class="col-sm-9 px-1  tele-responsive">
+			+216 {{ Agency?.phone_commercial}}
+		</span>
+	</div>
+	<div class="  align-items-sm-center  li-agency">
+		<span class="col-sm-2 px-1 AgencyDetails">Email:</span>
+		<span class="col-sm-9 px-1 tele-responsive">
+			{{ Agency?.email }}
+		</span>
+	</div>
+	<div class="  align-items-sm-center  li-agency">
+		<span class="px-1  AgencyDetails">Site web:</span>
+
+		<span style="font-size: 14px;"(click)="goToLink()" class="col-sm-9 px-1 "
+			style="color: #1f1e84;cursor: pointer;text-decoration:none " class="col-sm-9 px-1 tele-responsive">
+			{{Agency?.website_url}}
+		</span>
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+					
+					<br>
+					<div class="d-flex align-items-sm-center  li-social li-social2 " >
 
 						<ul class="list-inline mb-0" style="margin-left: -96px;">
 							<ul class="social-networks bounce">
@@ -385,7 +416,7 @@
 
 <br><br><br><br><br>
 
-<div  *ngIf="Agency?.role==='promoteur-immobilieres'  && Agency?.projets?.length!==0">
+<div  *ngIf="Agency?.role==='promoteur-immobilieres'  && Agency?.projets?.length!==0" class="margin-tablett">
 	<div class="carousel-boutique">
 		<div class="content-section implementation carousel-demo">
 			<div class="card">
@@ -442,13 +473,13 @@
 				</p-carousel>
 				<br><br><br>
 				<a *ngIf="Agency?.videoUrl===null || Agency?.videoUrl===''" (click)="goToLink()"
-					class="btn btn-promotion">
+					class="btn  btn-promotion">
 					VIDEO DE  PRESENTATION </a>
-				<a *ngIf="Agency?.videoUrl" (click)="goToLink()" class="btn btn-promotion">
+				<a *ngIf="Agency?.videoUrl" (click)="goToLink()" class="btn btn-promotion btn-promotion">
 					VIDEO RESIDENCE </a>
-					
+					<br><br><br><br><br>
 
-				<section *ngIf="Agency?.videoUrl===null || Agency?.videoUrl===''" (click)="goToLink()">
+				<section  *ngIf="Agency?.videoUrl===null || Agency?.videoUrl===''" (click)="goToLink()">
 					<div></div>
 					<div class="container">
 						<div class="background-img" [ngStyle]="{'background-image':'url(' +image_url_pj + ')'}">
@@ -674,7 +705,7 @@
 					</ng-template>
 
 				</p-carousel> <br>
-				<button (click)="goToLink()" class="btn btn-promotion1"
+				<button (click)="goToLink()" class="btn btn-promotion"
 					style="float: right;font-size: 18px; font-weight: 600;">PROMO DE LA SEMAINE </button>
 			</div>
 		</div>
@@ -804,10 +835,10 @@
 					</ng-template>
 
 				</p-carousel>
-				 <br>
-				<a (click)="goToLink()" class="btn btn-promotion-Decouvert " style="">
+				 <br><br><br>
+				<a (click)="goToLink()" class="btn btn-promotion" style="">
 					DÉCOUVREZ ENCORE PLUS... </a>
-				<br><br><br><br>
+				<br><br><br><br><br>
 				<section *ngIf="Agency?.videoUrl2===null || Agency?.videoUrl2===''" (click)="goToLink()">
 					<div></div>
 					<div class="container">
@@ -888,7 +919,7 @@
 					</ng-template>
 
 				</p-carousel> <br>
-				<button (click)="goToLink()" class="btn btn-promotion1"
+				<button (click)="goToLink()" class="btn btn-promotion"
 					style="float: right;font-size: 18px; font-weight: 600;">PROMO DE LA SEMAINE </button>
 			</div>
 		</div>

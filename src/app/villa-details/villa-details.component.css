@@ -129,13 +129,7 @@
 }
 
 /* Styles pour les écrans de petite taille */
-@media (max-width: 768px) {
-  .appimage {
-    width: 252%;
-    margin-left: -81px;
-    height: auto;
-  }
-}
+
 
 
 
@@ -592,7 +586,7 @@
 @media (max-width: 5000px) {
   .pgalleria {
     height: 100%;
-    width: 226%;
+    width: 89%;
     box-shadow: -1px -1px 5px #d6a5a5ba;
     display: block;
     margin-left: 30px;
@@ -608,6 +602,26 @@
   height: 70px;
 }
 
+@media only screen and (max-width: 912px) {
+  .piecename {
+    margin-bottom: 30px;
+    font-weight: 500;
+    line-height: 1.2;
+    float: right;
+    color: #333;
+    font-size: 21px;
+    margin-right: 21px;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .classcol7 {
+    max-width: 100.666667%;
+    margin: 0 auto;
+    flex: 1 0 41.666667%;
+    margin-left: 15px;
+  }
+}
+
 @media only screen and (max-width: 1028px) {
   .background {
     background: #8b0000;
@@ -620,7 +634,16 @@
     font-size: 17px;
     border-radius: 0%;
   }
-
+  @media (max-width: 768px)  and (max-width:1024){
+  .container23{
+      flex-direction: column;
+      align-items: center;
+      margin-left: -109px;
+      margin-top: 20px;
+      width: 172%;
+      margin-bottom: 94px;
+  }
+}
   .planimg {
     width: 100%;
     margin: 0 auto;
@@ -636,6 +659,7 @@
     max-width: 100.666667%;
     margin: 0 auto;
     flex: 1 0 41.666667%;
+    
   }
 
   /* .col-6 {width: 50%;} */
@@ -701,7 +725,7 @@ appnameUrbat {
 
 @media only screen and (max-width:600px) {
   .updateMenuDetails {
-    margin-left: 27px;
+    margin-left: 6px;
 
   }
 
@@ -710,7 +734,7 @@ appnameUrbat {
     flex-wrap: wrap;
     justify-content: center;
     padding-top: 0px;
-    margin-bottom: -90px;
+    margin-bottom: -px;
     margin-top: -130px;
     margin-left: 60px;
   }
@@ -725,7 +749,7 @@ appnameUrbat {
   border: 1px solid #ccc;
   background-color: #f7f7f7;
   margin-left: 26px;
-  margin-top: 78px;
+  margin-top: 106px;
 }
 
 /* Styles pour les écrans de largeur maximale de 768 pixels */
@@ -850,7 +874,7 @@ textarea:focus {
     color: white;
     width: 382%;
     margin-left: -80px;
-    }
+  }
 }
 
 .texte {
@@ -870,7 +894,7 @@ textarea:focus {
 }
 
 /* vertical-align: inherit;white-space:nowrap;margin-left:-50px;font-size:17px;font-weight:bold; */
-.piecename {
+/* .piecename {
   margin-bottom: 30px;
   font-weight: 500;
   line-height: 1.2;
@@ -878,7 +902,7 @@ textarea:focus {
   color: #333;
   font-size: 21px;
   margin-right: 110px;
-}
+} */
 
 /* Styles pour les écrans de largeur maximale de 768 pixels */
 @media (max-width: 768px) {
@@ -1045,15 +1069,16 @@ textarea:focus {
     color: black;
   }
 }
+
 @media (max-width: 768px) {
-  .animated-border-button  {
+  .animated-border-button {
     background-color: #3f51b5;
     border: none;
     outline: none;
-     position: relative; 
-    color: #ffffff; 
-     text-transform: initial; 
-     font-size: 13px; 
+    position: relative;
+    color: #ffffff;
+    text-transform: initial;
+    font-size: 13px;
     font-weight: 500;
     bottom: -22px;
     border-radius: 0px;
@@ -1066,14 +1091,199 @@ textarea:focus {
 
   }
 }
+
 @media only screen and (max-width: 375px) {
-.btn-toolbar{
+  .btn-toolbar {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding-top: 0px;
-    margin-bottom: -68px;
+    margin-bottom: -27px;
     margin-top: -129px;
     margin-left: 60px;
+
+  }
+}
+
+/* @media (max-width: 768px) {
+.container23 {
+    flex-direction: column;
+    align-items: center;
+    margin-left: -64px;
+    margin-bottom: 108px;
+    margin-top: 11px;
+    width: 160%;
+}
+} */
+
+
+/* @media (max-width: 1024px) and (max-height:1366px) {
+  .container23 {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px;
+    box-shadow: -2px -2px 6px 1px rgb(0 0 0 / 20%);
+    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+    margin-left: 26px;
+    margin-top: 163px;
+  }
+} */
+@media (max-width: 1024px) and (max-height:1366px) {
+  .pgalleria {
+    height: 100%;
+    width: 114%;
+    box-shadow: -1px -1px 5px #d6a5a5ba;
+    display: block;
+    margin-left: 30px;
+    margin-top: -32px;
+  }
+}
+
+@media (max-width: 430px) and (max-height:932px) {
+  .pgalleria {
+    height: 100%;
+    width: 200%;
+    box-shadow: -1px -1px 5px #d6a5a5ba;
+    display: block;
+    margin-left: 30px;
+    margin-top: -32px;
+  }
+}
+
+@media (max-width: 360px) and (max-height:740px) {
+  .pgalleria {
+    height: 100%;
+    width: 200%;
+    box-shadow: -1px -1px 5px #d6a5a5ba;
+    display: block;
+    margin-left: 30px;
+    margin-top: -32px;
+  }
+}
+
+@media (max-width: 375px) and (max-height:667px) {
+  .pgalleria {
+    height: 100%;
+    width: 200%;
+    box-shadow: -1px -1px 5px #d6a5a5ba;
+    display: block;
+    margin-left: 30px;
+    margin-top: -32px;
+  }
+}
+
+@media (max-width: 912px) and (max-height:1368px) {
+  .pgalleria {
+    height: 100%;
+    width: 200%;
+    box-shadow: -1px -1px 5px #d6a5a5ba;
+    display: block;
+    margin-left: 30px;
+    margin-top: -32px;
+  }
+}
+
+@media (min-height:1180px) {
+  .pgalleria {
+    height: 100%;
+    width: 130%;
+    box-shadow: -1px -1px 5px #d6a5a5ba;
+    display: block;
+    margin-left: 30px;
+    margin-top: -32px;
+  }
+}
+
+@media (max-width: 360px) and (max-height:740px) {
+  .container23 {
+    flex-direction: column;
+    align-items: center;
+    margin-left: -58px;
+    margin-top: 3px;
+    width: 211%;
+    margin-bottom: 96px;
+  }
+
+
+}
+
+@media (max-width: 768px) {
+.appimage {
+  width: 219%;
+  margin-left: -67px;
+  height: auto;
 }
 }
+@media (max-width: 768px) and (min-height:1024px) {
+.appimage{
+    width: 219%;
+    margin-left: -154px;
+    height: auto;
+}
+}
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .cardxi {
+    display: flex;
+    background: darkred;
+    align-items: center;
+    color: white;
+    width: 230%;
+    margin-left: -73px;
+}
+  }
+  @media (max-width: 768px) and (min-height:1024px) {
+    .cardxi {
+      display: flex;
+      background: darkred;
+      align-items: center;
+      color: white;
+      width: 219%;
+      margin-left: -153px;
+  }
+  }
+/* @media (max-width: 912px) and (max-height:1368px) {
+  .container23{
+    display: flex;
+    justify-content: space-between;
+    padding: 6px;
+    box-shadow: -2px -2px 6px 1px rgb(0 0 0 / 20%);
+    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+    margin-left: 26px;
+    margin-top: 247px;
+  }
+
+
+} */
+
+/* 
+@media (max-width: 1024px) {
+  .container23 {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px;
+    box-shadow: -2px -2px 6px 1px rgb(0 0 0 / 20%);
+    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+    margin-left: 26px;
+    margin-top: 160px;
+  }
+} */
+
+/* @media (max-width: 1024px) {
+  
+  .classcol7 {
+      max-width: 100.666667%;
+      margin: 0 auto;
+      margin-left: 25px;
+      flex: 1 0 41.666667%;
+  }
+  } */

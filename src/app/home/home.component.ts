@@ -6,7 +6,10 @@ import { Observable } from 'rxjs';
 import { NavigationEnd, Router } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { DataServiceService } from '../services/conteur/data-service.service';
-
+interface Duree {
+  name: string;
+  code: string;
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,6 +21,9 @@ export class HomeComponent implements OnInit {
   clickCounter3 = 0;
   clickCounter4 = 0;
   clickCounter5 = 0;
+  clickCounter6 = 0;
+  clickCounter7 = 0;
+  clickCounter8 = 0;
   public linkFBook: any
 
   @ViewChild("myElem") MyProp: ElementRef;
@@ -36,13 +42,44 @@ export class HomeComponent implements OnInit {
   filteredStreets: Observable<string[]>;
 
   public AgenciesTunis: any
+  dataFromLocalStorage : any[]
+  lastItem: any;
+  lastItem1: any;
+  lastItem2: any;
+  lastItem3: any;
+  lastItem5: any;
+  lastItem4: any;
+  lastItem6: any;
+  displayMaximizable1: boolean;
+  displayMaximizable2: boolean;
+  displayMaximizable3: boolean;
+  displayMaximizable4: boolean;
+  displayMaximizable5: boolean;
+
+
+  durees: Duree[];
+  contactText = "";
+  numText = "";
+  agencies: any;
   constructor(private magazineservice: MagazineService,
     private agencieService: AgenciesService,
     private router: Router,
     private meta: Meta,
     private title: Title,
     private dataService: DataServiceService) {
+      this.getDataFromLocalStorage();
+      this.lastItem4 = this.getLastItemFromData();
+      this.getDataFromLocalStorage1()
+      this.lastItem1 = this.getLastItemFromData1();
+      this.getDataFromLocalStorage2()
+      this.lastItem2 = this.getLastItemFromData2();
+      this.getDataFromLocalStorage3()
+      this.lastItem3 = this.getLastItemFromData3();
+      this.getDataFromLocalStorage5()
+      this.lastItem5 = this.getLastItemFromData5();
+      this.getDataFromLocalStorage6()
 
+      this.lastItem6 = this.getLastItemFromData6();
     this.meta.addTags([
       { name: 'description', content: 'Centre Tunisien des affaires spécialiste dans le domaine de l’immobilier & de construction. Prospecter, acheter, vendre, louer en Tunisie.' },
       { name: 'author', content: 'buttercms' },
@@ -77,6 +114,10 @@ export class HomeComponent implements OnInit {
     this.clickCounter3 = dataService.getClicks3();
     this.clickCounter4 = dataService.getClicks4();
     this.clickCounter5 = dataService.getClicks5();
+    this.clickCounter6 = dataService.getClicks6();
+    // this.clickCounter7 = dataService.getClicks7();
+    // this.clickCounter8 = dataService.getClicks8();
+
 
   }
   public setTitle(newTitle: string) {
@@ -84,6 +125,16 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getDataFromLocalStorage1()
+    this.getDataFromLocalStorage2()
+    this.getDataFromLocalStorage3()
+    this.getDataFromLocalStorage();
+    this.getDataFromLocalStorage5()
+    this.getDataFromLocalStorage6()
+    this.getDataFromLocalStorage7()
+    this.getDataFromLocalStorage8()
+
+
     this.images = [
       { edition: 'Edition 210', image: 'https://tunisie-immob.s3.eu-west-3.amazonaws.com/YS0PoED210.jpg', url: 'https://www.docdroid.net/ulLZVvv/ed-210-pdf', clickCounter: this.clickCounter5 },
       { edition: 'Edition 209', image: 'https://tunisie-immob.s3.eu-west-3.amazonaws.com/0TkVYBIAS%20ED%20209.jpg', url: 'https://docdro.id/EhLxkZj', clickCounter: this.clickCounter5 },
@@ -95,7 +146,7 @@ export class HomeComponent implements OnInit {
 
     this.agencieService.getAllAgencies().subscribe((data: any) => {
       this.allAgencies = data
-      console.log('cc', this.allAgencies)
+      // console.log('cc', this.allAgencies)
       this.allAgencies1 = data
     })
 
@@ -171,6 +222,7 @@ export class HomeComponent implements OnInit {
   incrementCounter1() {
     this.clickCounter1++;
     this.dataService.addClick1();
+  
   }
   incrementCounter2() {
     this.clickCounter2++;
@@ -188,9 +240,139 @@ export class HomeComponent implements OnInit {
     this.clickCounter5++;
     this.dataService.addClick5();
   }
+  incrementCounter6() {
+    this.clickCounter6++;
+    this.dataService.addClick6();
+  }
+  incrementCounter7() {
+    this.clickCounter7++;
+    this.dataService.addClick6();
+  }
+  incrementCounter8() {
+    this.clickCounter8++;
+    this.dataService.addClick6();
+  }
   onImageClick() {
     const link = document.querySelector('img[data-link]').getAttribute('data-link');
     window.open(link, '_blank');
+  }
+  // clickMe(){
+  //   this.dataService.getClicks1().subscribe(data =>{
+  //     console.log("this is a test ")
+  //   })
+  // }
+
+
+  getDataFromLocalStorage(): void {
+    const data = localStorage.getItem('clicks4');
+    this.dataFromLocalStorage = JSON.parse(data) || [];
+  }
+ 
+  getLastItemFromData(): any {
+    if (this.dataFromLocalStorage.length > 0) {
+      return this.dataFromLocalStorage[this.dataFromLocalStorage.length - 1];
+    }
+    return null;
+  }
+
+  getDataFromLocalStorage1(): void {
+    const data = localStorage.getItem('clicks1');
+    this.dataFromLocalStorage = JSON.parse(data) || [];
+  }
+  getLastItemFromData1(): any {
+    if (this.dataFromLocalStorage.length > 0) {
+      return this.dataFromLocalStorage[this.dataFromLocalStorage.length - 1];
+    }
+    return null;
+  }
+  getDataFromLocalStorage2(): void {
+    const data = localStorage.getItem('clicks2');
+    this.dataFromLocalStorage = JSON.parse(data) || [];
+  }
+  getLastItemFromData2(): any {
+    if (this.dataFromLocalStorage.length > 0) {
+      return this.dataFromLocalStorage[this.dataFromLocalStorage.length - 1];
+    }
+    return null;
+  }
+  getDataFromLocalStorage3(): void {
+    const data = localStorage.getItem('clicks3');
+    this.dataFromLocalStorage = JSON.parse(data) || [];
+  }
+  getLastItemFromData3(): any {
+    if (this.dataFromLocalStorage.length > 0) {
+      return this.dataFromLocalStorage[this.dataFromLocalStorage.length - 1];
+    }
+    return null;
+  }
+  getDataFromLocalStorage5(): void {
+    const data = localStorage.getItem('clicks5');
+    this.dataFromLocalStorage = JSON.parse(data) || [];
+  }
+  getLastItemFromData5(): any {
+    if (this.dataFromLocalStorage.length > 0) {
+      return this.dataFromLocalStorage[this.dataFromLocalStorage.length - 1];
+    }
+    return null;
+  }
+  getDataFromLocalStorage6(): void {
+    const data = localStorage.getItem('clicks6');
+    this.dataFromLocalStorage = JSON.parse(data) || [];
+    console.log(data)
+  }
+  getLastItemFromData6(): any {
+    if (this.dataFromLocalStorage.length > 0) {
+      return this.dataFromLocalStorage[this.dataFromLocalStorage.length - 1];
+    }
+    return null;
+  }
+  getDataFromLocalStorage7(): void {
+    const data = localStorage.getItem('clicks6');
+    this.dataFromLocalStorage = JSON.parse(data) || [];
+    console.log(data)
+  }
+  getLastItemFromData7(): any {
+    if (this.dataFromLocalStorage.length > 0) {
+      return this.dataFromLocalStorage[this.dataFromLocalStorage.length - 1];
+    }
+    return null;
+  }
+  getDataFromLocalStorage8(): void {
+    const data = localStorage.getItem('clicks6');
+    this.dataFromLocalStorage = JSON.parse(data) || [];
+    console.log(data)
+  }
+  getLastItemFromData8(): any {
+    if (this.dataFromLocalStorage.length > 0) {
+      return this.dataFromLocalStorage[this.dataFromLocalStorage.length - 1];
+    }
+    return null;
+  }
+
+
+  showMaximizableDialog1() {
+    this.displayMaximizable1 = true;
+  }
+  showMaximizableDialog2() {
+    this.displayMaximizable2 = true;
+  }
+  showMaximizableDialog3() {
+    this.displayMaximizable3 = true;
+  }
+  showMaximizableDialog4() {
+    this.displayMaximizable4 = true;
+  }
+  showMaximizableDialog5() {
+    this.displayMaximizable5 = true;
+  }
+  getAgencies() {
+    this.magazineservice.getMagazine().subscribe((data: any) => {
+      this.agencies = data;
+      const lastAgency = this.agencies[this.agencies.length - 1];
+      console.log(this.agencies); // Do something with the last agency
+      console.log(lastAgency); // Do something with the last agency
+
+    });
   }
 }
 

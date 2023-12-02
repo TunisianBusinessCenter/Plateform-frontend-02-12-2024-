@@ -312,9 +312,10 @@
     }
   }
   .title {
-    margin-left: 69px;
+    margin-left: 133px;
     margin-bottom: -15px;
     margin-top: 50px;
+
   }
 
   .badge-orange {
@@ -530,10 +531,10 @@
       left: 0;
     }
     
-    .animated-border-button:hover:before,
+    /* .animated-border-button:hover:before,
     .animated-border-button:hover:after {
       width: 100%;
-    }
+    } */
     .more{
       margin-left: 250px;
       margin: 6px;
@@ -715,7 +716,9 @@
       ::ng-deep .mat-tab-label-container {
         overflow: visible !important;
       }
-      
+      ::ng-deep .mat-tab-label {
+
+      }
       ::ng-deep .mat-tab-header::-webkit-scrollbar {
         display: none;
       }
@@ -727,3 +730,4 @@
       .card-footer{
         height: 57px;
       }
+      /*  */

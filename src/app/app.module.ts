@@ -111,6 +111,9 @@ import { TelechargementComponent } from './telechargement/telechargement.compone
 import { ContactComponent } from './contact/contact.component';
 import { ScrollHideDirective } from './scroll-hide.directive';
 import { LineBreakPipe } from './description-details/line-break.pipe';
+import { NavbarCarouselHomeComponent } from './navbar-carousel-home/navbar-carousel.component';
+import { NavbarCarouselPromoComponent } from './navbar-carousel-promo/navbar-carousel.component';
+import { NavbarCarouselConstComponent } from './navbar-carousel-const/navbar-carousel.component';
 
 
 
@@ -179,7 +182,10 @@ const routes: Routes = [
     TelechargementComponent,
     ContactComponent,
     ScrollHideDirective,
-    LineBreakPipe
+    LineBreakPipe,
+    NavbarCarouselHomeComponent,
+    NavbarCarouselPromoComponent,
+    NavbarCarouselConstComponent
 
   
   ],

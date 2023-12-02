@@ -46,6 +46,7 @@
     justify-content: center;
     padding-top: 5px;
     margin-left: 60px;
+    margin-top: -113px;
   }
 
   .tunsian-flag-img-background .btn-hover-flag-img {
@@ -236,10 +237,8 @@
 
 
 .gradient-border {
-  --borderWidth: 3px;
-  background: #ffffff;
+  background: #1f1e84;
   position: relative;
-  border-radius: var(--borderWidth);
 }
 
 .gradient-border:after {
@@ -275,12 +274,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 600px;
-  height: 55px;
-  color: rgb(0, 0, 0);
-  font-size: 25px;
-  margin: 0 auto;
-
+  width: 718px;
+  border-radius: 4px;
+  height: 44px;
+  padding: 15px 24px;
+  color: rgb(255 255 255);
+  font-size: 18px;
+  margin: 106px 513px;
 }
 
 
@@ -350,45 +350,61 @@
     width: 500px;
     height: 55px;
     color: rgb(0, 0, 0);
-    font-size: 25px;
+    font-size: 19px;
     margin: 0 auto;
   }
 
   .responsive-container {
     display: unset
   }
-
+  .responsive-iframe {
+    width: 90%;
+    height: 241px;
+    border: none;
+    margin-left: 15px;
+}
 }
 
 @media only screen and (max-width: 607px) {
-
+  .responsive-iframe {
+    width: 90%;
+    height: 241px;
+    border: none;
+    margin-left: 15px;
+}
   #box {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 360px;
-    height: 55px;
-    color: rgb(0, 0, 0);
-    font-size: 19px;
+    width: 309px;
+    height: 50px;
+    color: rgb(255 255 255);
+    font-size: 14px;
     font-weight: 500;
-    margin: 0 auto;
+    margin: 0px 51px;
+
   }
 
 
 }
 
 @media only screen and (max-width: 390px) {
-
+  .responsive-iframe {
+    width: 90%;
+    height: 241px;
+    border: none;
+    margin-left: 15px;
+}
   #box {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 350px;
-    height: 50px;
-    color: rgb(0, 0, 0);
-    font-size: 18px;
+    width: 283px;
+    height: 42px;
+    color: rgb(255 255 255);
+    font-size: 14px;
     font-weight: 500;
-    margin: 0 auto;
+    margin: -7px 50px;
   }
 }
 
@@ -493,10 +509,12 @@
   margin-top: -4px;
 }
 .responsive-iframe {
-  width: 100%;
-  height: 255px;
-  border: none;
-  margin-left: 0px;
+
+    width: 100%;
+    height: 311px;
+    border: none;
+    margin-left: 0px;
+
 }
 .appname {
   margin-bottom: 0.5rem;
@@ -898,8 +916,9 @@
 .card-hover-over .card-body {
   position: relative;
   width: 100%;
-  padding: 345px 10%;
+  padding: 332px 10%;
   transition: padding.5s;
+  margin-top: -70px;
 }
 
 .card-hover-over .card-body:hover {
@@ -923,7 +942,8 @@
   WIDTH: 100%;
 }
 
-a.btn {
+a.btn { 
+
 
     background: #000002;
     padding: 6px 13px;
@@ -932,6 +952,19 @@ a.btn {
     transition-timing-function: ease-in;
     transition-timing-function: ease-out;
     transition: 0.5s;
+}
+a.btn1 {
+
+    background: #dc3346;
+    padding: 6px 13px;
+    color: white;
+    border: solid #dc3346;
+    transition-timing-function: ease-in;
+    transition-timing-function: ease-out;
+    transition: 0.5s;
+        margin: 0 23px 34px 103px;
+    width: 23px;
+    padding: 12px 14px 12px 17px;
 }
 
 a.btn:hover {
@@ -967,8 +1000,8 @@ a.btn:hover {
 
 @media only screen and (max-width: 484px) {
   .card-hover-over .card {
-    height: 246px;
-    width: 287px;
+    height: 162px;
+    width: 315px;
     margin-left: 9px;
 
   }
@@ -1111,12 +1144,48 @@ a.btn:hover {
   color: #FFFFFF;
   font-family: 'Roboto', sans-serif;
 }
+/* .responsableBtn {
+  color: #ffffff;
+  background-color: red;
+  border-color: red;
+  width: 286px;
+  height: 45px;
+  margin-left: 41px;
+  display: flex;
+  justify-content: space-evenly;
+} */
+@media only screen and (max-width: 414px) {
+  .responsableBtn {
+    color: #ffffff;
+    background-color: red;
+    border-color: red;
+    width: 286px;
+    height: 45px;
+    margin-left: 41px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
 
+@media only screen and (max-width: 484px) {
+  .responsableBtn {
+    color: #ffffff;
+    background-color: red;
+    border-color: red;
+    width: auto;
+    height: 45px;
+    margin-left: 41px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
 @media only screen and (max-width: 420px) {
   .textResponsable {
-    font-size: 16px;
-    color: #FFFFFF;
-    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    font-weight: 900;
+    font-family: Roboto,sans-serif;
   }
 }
 
@@ -1633,7 +1702,8 @@ a.btn:hover {
 
   .card-img {
     width: 100%;
-  }
+    height: 169px;
+   }
 
   .CardDetails {
     height: 300px;
@@ -1737,6 +1807,7 @@ a.btn:hover {
 .cardx {
   display: flex;
   overflow-x: auto;
+  
 }
 
 .card-group {
@@ -1782,3 +1853,149 @@ a.btn:hover {
     margin-bottom: -54px;
   }
 }
+.btn-promotion {
+  color: #ffffff;
+  background-color: #dc3346;
+  border-color: #dc3346;
+  box-shadow: none;
+  FONT-SIZE: 11px;
+  font-weight: 500;
+  margin-top: -35px;
+  height: 37px;
+  padding: 4px;
+  width: 808px;
+  margin: -81px auto;
+}
+
+.btn-promotion:hover {
+  color: #f9e7e7;
+}
+.promoVideo {
+  width: 76%;
+  height: 397px;
+  margin-left: 90px;
+  margin-top: -14px;
+
+}
+
+.background-vd {
+  margin: -5% 14%;
+  border-radius: 4px;
+  position: relative;
+
+}
+
+@media only screen and (max-width: 767px) {
+  .background-vd {
+    margin: -14% 21%;
+    border-radius: 4px;
+    position: relative;
+    width: 106%;
+  }
+
+  .promoVideo {
+    width: 100%;
+    height: 314px;
+    margin-top: -14px;
+    margin-left: -122px
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .background-vd {
+    margin: -14% 8%;
+    border-radius: 4px;
+    position: relative;
+    width: 106%;
+  }
+
+  .promoVideo {
+    width: 100%;
+    height: 314px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+@media only screen and (max-width: 590px) {
+  .background-vd {
+    margin: -14% 5%;
+    border-radius: 4px;
+    position: relative;
+    width: 100%;
+  }
+
+  .promoVideo {
+    width: 92%;
+    height: 285px;
+    margin-top: -14px;
+    margin-left: 10px;
+  }
+}
+
+
+@media only screen and (max-width: 500px) {
+  .background-vd {
+    margin: -14% 5%;
+    margin-top: -26px;
+    margin-bottom: 77px;
+    margin-left: 39px;
+    border-radius: 4px;
+    position: relative;
+    width: 94%;
+
+  }
+
+  .promoVideo {
+    width: 92%;
+    height: 285px;
+    margin-top: 40px;
+    margin-left: 0px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .background-vd {
+       
+    margin: -29px 3px 181px 38px;
+    border-radius: 4px;
+    position: relative;
+    width: 306px;
+
+
+  }
+
+  .promoVideo {
+    width: 93%;
+    height: 216px;
+    margin-top: 45px;
+    margin-left: 0px;
+  }
+}
+.Card-video-produit {
+  max-width: 100%; /* Ensure the card doesn't exceed the width of its container */
+  width: 34%; /* You can keep this percentage or adjust as needed */
+  border-radius: 6px;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  z-index: 1;
+  padding: 7px;
+  margin: 0 auto; /* Center the card horizontally */
+}
+
+/* Optional: Add a media query for smaller screens to adjust the width */
+/* @media screen and (max-width: 768px) {
+  .Card-video-produit {
+    width: 93%;
+    margin-left: 29px;
+    margin-bottom: 77px;
+  }
+}
+.cardx .card-group {
+  display: inline-block;
+  vertical-align: top;
+  white-space: normal;
+  margin: 0 16px;
+} */

@@ -1,3 +1,7 @@
+
+<app-navbar-carousel-promo></app-navbar-carousel-promo>
+
+
 <div>
     <div class="responsive">
 
@@ -46,8 +50,8 @@
                         <div class="product-item-content">
                             <div class="p-mb-3"></div>
                             <div>
-                                <div class="card shadow-hover-1 border-gray" data-animate="fadeInUp">
-                                    <a [routerLink]="['/agency', Agency.id]" class="text-dark hover-primary">
+                                <div class="card shadow-hover-1 border-gray" data-animate="fadeInUp" >
+                                    <a [routerLink]="['/agency', Agency.id]" class="text-dark hover-primary" (click)="clickMe(Agency.id)">
                                         <div class="css">
                                             <div class="hover-change-image bg-hover-overlay rounded-lg card-img-top">
                                                 <img src="{{Agency.logo_url}}" alt="Responsive image"
@@ -205,195 +209,4 @@
         </div>
     </div>
 </div>
-<!-- 
- -->
 
-<!--  
-<div class="ag-format-container ag">
-
-
-
-
-    <div id="carouselExampleControls" class="carousel slide" style="margin: 90px;">
-        <div class="carousel-inner carousel-in ">
-            <div class="carousel-item active">
-                <div class="cardis-wrapper">
-                    <div class="cardi">
-                        <div class="image-wrapper" style="text-align: center;">
-                            <button type="button" class="btn  btn-round All"
-                                routerLink="/promoteurs-sousse">Sousse</button>
-                        </div>
-                        <div class="cardi-body">
-
-                        </div>
-                    </div>
-                    <div class="cardi">
-                        <div class="image-wrapper" style="text-align: center;">
-                            <button type="button" class="btn  btn-round All"
-                                routerLink="/promoteurs-monastir">Monastir</button>
-
-                        </div>
-                        <div class="cardi-body">
-
-                        </div>
-                    </div>
-                    <div class="cardi">
-                        <div class="image-wrapper" style="text-align: center;">
-                            <button type="button" class="btn  btn-round All"
-                                routerLink="/promoteurs-monastir">Monastir</button>
-
-                        </div>
-                        <div class="cardi-body">
-
-                        </div>
-                    </div>
-                    <div class="cardi">
-                        <div class="image-wrapper" style="text-align: center;">
-                            <button type="button" class="btn  btn-round All"
-                                routerLink="/promoteurs-mahdia">Mahdia</button>
-
-                        </div>
-                        <div class="cardi-body">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="cardis-wrapper">
-                    <div class="cardi">
-                        <div class="image-wrapper" style="text-align: center;">
-                            <button type="button" class="btn  btn-round All"
-                                routerLink="/promoteurs-mahdia">Mahdia</button>
-
-                        </div>
-                        <div class="cardi-body">
-
-                        </div>
-                    </div>
-                    <div class="cardi">
-                        <div class="image-wrapper" style="text-align: center;">
-                            <button type="button" class="btn  btn-round All" routerLink="/promoteurs-sfax">Sfax</button>
-
-                        </div>
-                        <div class="cardi-body">
-
-                        </div>
-                    </div>
-                    <div class="cardi">
-                        <div class="image-wrapper" style="text-align: center;">
-                            <button type="button" class="btn  btn-round All"
-                                routerLink="/promoteurs-nabeul">Nabeul</button>
-
-                        </div>
-                        <div class="cardi-body">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="cardis-wrapper">
-                    <div class="cardi">
-                        <div class="image-wrapper" style="text-align: center;">
-                            <button type="button" class="btn  btn-round All"
-                                routerLink="/promoteurs-bizerte">Bizerte</button>
-
-                        </div>
-                        <div class="cardi-body">
-
-                        </div>
-                    </div>
-                    <div class="cardi">
-                        <div class="image-wrapper" style="text-align: center;">
-                            <button type="button" class="btn  btn-round All"
-                                routerLink="/promoteurs-tabarka">Tabarka</button>
-
-                        </div>
-                        <div class="cardi-body">
-
-                        </div>
-                    </div>
-                    <div class="cardi">
-                        <div class="image-wrapper" style="text-align: center;">
-                            <button type="button" class="btn  btn-round All"
-                                routerLink="/promoteurs-djerba">Djerba</button>
-
-                        </div>
-                        <div class="cardi-body">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev prev" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next next" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-        <hr style="    margin: 0px 19px 0 25px;
-        color: #575760;
-        border: solid 1px #d6a4a4; ">
-
-    </div>
-
-    <style>
-        .cardi {
-            border: none;
-            border-radius: 0;
-            box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
-        }
-
-        .carousel-inner {
-            padding: 1em;
-        }
-
-        .carousel-control-prev,
-        .carousel-control-next {
-            background-color: #00000070;
-            width: 5vh;
-            height: 5vh;
-            border-radius: 50%;
-            top: 50%;
-            transform: translateY(-100%);
-        }
-
-        .carousel-control-prev span,
-        .carousel-control-next span {
-            width: 1.5rem;
-            height: 1.5rem;
-        }
-
-        @media screen and (min-width: 577px) {
-            .cardis-wrapper {
-                display: flex;
-            }
-
-            .cardi {
-                margin: 0 0.5em;
-                width: calc(100% / 2);
-            }
-
-            .image-wrapper {
-                height: 2vw;
-                margin: 0 auto;
-            }
-        }
-
-        @media screen and (max-width: 576px) {
-            .cardi:not(:first-child) {
-                display: none;
-            }
-        }
-
-        .image-wrapper img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-    </style> -->

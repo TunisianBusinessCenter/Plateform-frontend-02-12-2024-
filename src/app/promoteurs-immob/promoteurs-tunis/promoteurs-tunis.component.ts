@@ -13,10 +13,11 @@ export class PromoteursTunisComponent implements OnInit {
   public testArraySort: any
 
   responsiveOptions
+  idA: number;
 
 
 
-  constructor(private agencieService: AgenciesService) {
+  constructor(private agencieService: AgenciesService,private sharedDataService:AgenciesService) {
     this.responsiveOptions = [
       {
         breakpoint: '2000px',
@@ -65,4 +66,7 @@ export class PromoteursTunisComponent implements OnInit {
     })
   }
 
+  clickMe(agencyId: number) {
+    this.sharedDataService.updateAgencyId(agencyId);
+  }
 }

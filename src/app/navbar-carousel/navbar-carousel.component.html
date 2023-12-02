@@ -2,16 +2,76 @@
 	<img class="bannierLeft" src="../../assets/images/HomePage/bannierLeft.png" alt="bannier Left">
  </div> -->
 
-<ngb-carousel (slide)="slideActivate($event)">
+<ngb-carousel (slide)="slideActivate($event)" *ngIf="name === 'MEUBLE DOUGAZ'">
 
 	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+
+
+			<img style="width: 100%" src="../../assets/images/HomePage/new-ban/PUB-DOUGAZ--WEB.jpg"
+				alt="Angular Carousel 2">
+
+		</div>
+	</ng-template>
+
+
+</ngb-carousel>
+
+
+<ngb-carousel (slide)="slideActivate($event)" *ngIf="name === 'BERGACHI MEUBLES'">
+
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+
+
+			<img style="width: 100%" src="../../assets/images/HomePage/new-ban/PUB-Bergachi-WEB.jpg"
+				alt="Angular Carousel 2">
+
+		</div>
+	</ng-template>
+</ngb-carousel>
+
+
+<ngb-carousel (slide)="slideActivate($event)" *ngIf="name === 'LA PLAINE'">
+
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+
+
+			<img style="width: 100%" src="../../assets/images/promoteurs tunis/soroubat/BANIERE-CLIENT-PROMOTEURS/la-plaine.jpg"
+				alt="Angular Carousel 2">
+
+		</div>
+	</ng-template>
+</ngb-carousel>
+
+
+
+
+
+<ngb-carousel (slide)="slideActivate($event)" *ngIf="role === 'promoteur-immobilieres' && (name !== 'MEUBLE DOUGAZ' && name !== 'BERGACHI MEUBLES' && name !== 'LA PLAINE')">
+	<ng-template ngbSlide>
+	  <div class="picsum-img-wrapper">
+		<img style="width: 100%" [src]="getSelectedImagePathPromo()" alt="Angular Carousel 2">
+	  </div>
+	</ng-template>
+  </ngb-carousel>
+  
+
+<!-- if materiaux-construction -->
+
+<ngb-carousel
+  (slide)="slideActivate($event)"
+  *ngIf="categorie === 'equipement' && (name !== 'MEUBLE DOUGAZ' && name !== 'BERGACHI MEUBLES' && name !== 'LA PLAINE')"
+>
+	<!-- <ng-template ngbSlide>
 		<div class="picsum-img-wrapper">
 
 			<img style="width: 100%" src="../../assets/images/HomePage/KMC.jpg" alt="Angular Carousel 2">
 
 
 		</div>
-	</ng-template>
+	</ng-template> -->
 	<!-- <ng-template ngbSlide>
 			<div class="picsum-img-wrapper">
 				<div class="carte">
@@ -84,7 +144,7 @@
 					</div>
 				</div> -->
 
-			<img style="width: 100%" src="../../assets/images/HomePage/FOLLA.jpg" alt="Angular Carousel 2">
+			<img style="width: 100%" src="../../assets/images/HomePage/new-ban/4--PUB-PLATE-FORME--WEB.jpg" alt="Angular Carousel 2">
 
 		</div>
 	</ng-template>
@@ -107,7 +167,7 @@
 						</div>
 					</div>
 				</div> -->
-			<img style="width: 100%" src="../../assets/images/HomePage/LCT.jpg" alt="Angular Carousel 2">
+			<img  style="width: 100%" src="../../assets/images/HomePage/new-ban/2--PUB-PLATE-FORME--WEB.jpg" alt="Angular Carousel 2">
 
 
 
@@ -134,7 +194,7 @@
 					</div>
 				</div> -->
 			<!-- <img style="width: 100%" class="backgroundBan" src="../../assets/images/HomePage/nouveau qr code.png" alt="Angular Carousel 2"> -->
-			<img style="max-width: 78%;" src="../../assets/images/HomePage/nouveau qr code.png" alt="Angular Carousel 2">
+			<img  style="width: 100%" src="../../assets/images/HomePage/new-ban/3--PUB-PLATE-FORME--WEB.jpg" alt="Angular Carousel 2">
 
 
 
@@ -144,7 +204,18 @@
 	</ng-template>
 
 </ngb-carousel>
+<!-- if meuble -->
 
+
+
+<ngb-carousel (slide)="slideActivate($event)" *ngIf="categorie === 'meuble' && (name !== 'MEUBLE DOUGAZ' && name !== 'BERGACHI MEUBLES' && name !== 'LA PLAINE')">
+	<ng-template ngbSlide>
+	  <div class="picsum-img-wrapper">
+		<img style="width: 100%" [src]="getSelectedImagePath()" alt="Angular Carousel 2">
+	  </div>
+	</ng-template>
+  </ngb-carousel>
+  
 <!-- &&
 	router.url==='/home-algerie' &&
 	router.url==='/home-maroc' &&
@@ -154,7 +225,11 @@
 
 
 
-<div class="carte" *ngIf="router.url==='/home' || router.url==='/home-algerie' || router.url==='/home-maroc' || router.url==='/home-lybia' || router.url==='/home-mauritanie'" [appScrollHide]>
+
+
+<div class="carte"
+	*ngIf="router.url==='/home' || router.url==='/home-algerie' || router.url==='/home-maroc' || router.url==='/home-lybia' || router.url==='/home-mauritanie'"
+	[appScrollHide]>
 
 
 	<div class="id-card-tag-strip"></div>
@@ -171,7 +246,7 @@
 
 
 </div>
-  
+
 
 <div *ngIf="router.url !=='/home-algerie' && router.url !=='/home-maroc'
  && router.url !=='/home-lybia'&& router.url !=='/home-mauritanie'" class="imageCentreTunisien">

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AgenciesService } from 'src/app/services/agencies/agencies.service';
 import { MateriauxService } from 'src/app/services/materiaux/materiaux.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class MeubleComponent implements OnInit {
   public MateriauxMeuble:any
   responsiveOptions;
 
-  constructor(private Servicemateriaux: MateriauxService) {
+  constructor(private Servicemateriaux: MateriauxService,private sharedDataService:AgenciesService) {
 
     this.responsiveOptions = [
       {
@@ -51,7 +52,9 @@ export class MeubleComponent implements OnInit {
   ngOnInit(): void {
     this.Servicemateriaux.getMateriauxMeuble().subscribe((data: any) => {
       this.MateriauxMeuble = data;
-      console.log(this.MateriauxMeuble)
+      console.log('here',data)
+
+      console.log('here',this.MateriauxMeuble[0].categorie)
       this.filtredMeuble = this.MateriauxMeuble.reverse();
     })
   }
@@ -68,5 +71,7 @@ export class MeubleComponent implements OnInit {
       this.allAgencies = this.allAgencies1
     }
   }
-
+  clickMe(agencyId: number) {
+    this.sharedDataService.updateAgencyId(agencyId);
+  }
 }

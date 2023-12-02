@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +52,10 @@ export class AgenciesService {
   getImageExemple(){
     return this.http.get('https://api.unsplash.com/photos/?client_id=1a28e59e586593faf822eb102154d46e8f56c830d3e5d896a0293804233f991a&per_page=30&page=1')
   }
+  private agencyIdSource = new BehaviorSubject<number>(null);
+  currentAgencyId = this.agencyIdSource.asObservable();
 
+  updateAgencyId(agencyId: number) {
+    this.agencyIdSource.next(agencyId);
+  }
 }

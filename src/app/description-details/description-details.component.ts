@@ -56,7 +56,7 @@ export class DescriptionDetailsComponent implements OnInit {
     this.produitService.getSousCategorieById(this.idSousCategorie).subscribe(Response => {
       this.SousCategorie = Response;
 
-      console.log(this.SousCategorie)
+      console.log(this.SousCategorie,'here')
 
     });
 

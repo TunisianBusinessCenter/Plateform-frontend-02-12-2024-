@@ -1,12 +1,13 @@
 <!-- wrapper -->
+<app-navbar-carousel></app-navbar-carousel>
 
 <div class="responsiveHome"  style="    display: flex;  ">
-	
+<!-- 	
 	<button type="submit" class="animated-border-button " (click)=" backClicked()">
 		<i class="fa fa-arrow-left" aria-hidden="true"></i>
 		Retour
 	</button>
-	
+	 -->
 	<!-- <div class="responsive">
 
         <button type="submit" class="animated-border-button-pa " routerLink="/home">
@@ -308,20 +309,41 @@ margin-bottom: -16px;">
 
 					<div *ngIf="Agencyapp.id!==null;">
 						<div class="text-primary">
-							<h6 class="appname">
+							<!-- <h6 class="appname">
 								{{ Agencyapp?.name }}
-							</h6>
+							</h6> -->
 						</div>
+						<!-- *ngIf="Agency?.role==='promoteur-immobilieres'" -->
 						<a style=" text-decoration:none" href="{{ Agencyapp?.playstore_url }}">
-							<img class="appimage" src="{{ Agencyapp?.mobile_cover_image_url }}"
-								alt="The Interior Design The Hall On str. Filimonovo" width="80%">
-							<button type="submit"
-								class="btn btn-primary btn-lg btn-block shadow-none responsive-telecharger" >
-								<div class="btn-content">
-								Télecharger &nbsp;
-								<i class="fa fa-download" aria-hidden="true" style="display: flex;"></i>
-							</div>
+							<!-- <img class="appimage" src="{{ Agencyapp?.mobile_cover_image_url }}" -->
+							<!-- <img *ngIf="Agency?.role==='materiaux-construction'" class="appimage" src="../../assets/images/HomePage/APPLICATION-METRIAUX-PRODUIT.jpg" 
+							alt="The Interior Design The Hall On str. Filimonovo" width="80%"> -->
+							<img *ngIf="Agency.role==='materiaux-construction'"class="appimage" src="../../assets/images/HomePage/APPLICATION-METRIAUX-PRODUIT.jpg">
+					<img *ngIf="Agency.role==='promoteur-immobilieres'"class="appimage" src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
+							<button type="submit" class="btn btn-google btn-lg btn-block shadow-none responsive-telecharger">
+								Google Play store &nbsp;
+								<!-- <i class="fa fa-android" aria-hidden="true"></i> -->
 							</button>
+
+						
+							<!-- <a class="btn btn-google" href="#" title="Google Play">Google Play</a> -->
+							<b:if cond='data:blog.pageType == &quot;item&quot;'>
+		<style type='text/css'>
+		/*<![CDATA[*/
+		@font-face{font-family:"fontfutura";src:url("https://fonts.googleapis.com/css?family=Open+Sans") format("ttf");font-weight:normal;font-style:normal;}
+		a.btn-google{color:#fff}
+		.btn{padding:10px 16px;margin:5px;font-size:18px;line-height:1.3333333;border-radius:6px;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;font-weight:500;text-decoration:none;display:inline-block}
+		.btn:active:focus,.btn:focus{outline:0}
+		.btn:focus,.btn:hover{color:#333;text-decoration:none;outline:0}
+		.btn:active{outline:0;-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);box-shadow:inset 0 3px 5px rgba(0,0,0,.125)}
+		.btn-google{color:#fff;background-color:#111;border-color:#000;padding:15px 16px 5px 40px;position:relative;font-family:fontfutura;font-weight:600}
+		.btn-google:focus{color:#fff;background-color:#555;border-color:#000}
+		.btn-google:active,.btn-google:hover{color:#fff;background-color:#555;border-color:#000;}
+		.btn-google:before{content:"";background-image:url(https://4.bp.blogspot.com/-52U3eP2JDM4/WSkIT1vbUxI/AAAAAAAArQA/iF1BeARv2To-2FGQU7V6UbNPivuv_lccACLcB/s30/nexus2cee_ic_launcher_play_store_new-1.png);background-size:cover;background-repeat:no-repeat;width:30px;height:30px;position:absolute;left:6px;top:50%;margin-top:-15px}
+		.btn-google:after{content:"GET IT ON";position:absolute;top:5px;left:40px;font-size:10px;font-weight:400;}
+		/*]]>*/
+		</style>
+		</b:if>
 						</a>
 					</div>
 				</div>
@@ -332,7 +354,7 @@ margin-bottom: -16px;">
 						</h6>
 					</div>
 				
-					<img class="appimage" src="../../assets/images/HomePage/1111.jpg" 
+					<img class="appimage" src="../../assets/images/HomePage/APPLICATION-METRIAUX-PRODUIT.jpg" 
 					style="float: right;" width="80%" height="120%" >
 					<button type="submit"
 							class="btn btn-primary btn-lg btn-block shadow-none responsive-telecharger" >
@@ -342,7 +364,7 @@ margin-bottom: -16px;">
 					
 				</div>
 				-->
-
+<!-- 
 				<div class="Card-video"
 					*ngIf="Agency?.mobile_apps?.length===0 && Agency?.videoUrl2 && Agency.role==='promoteur-immobilieres' ">
 					<div class="text-primary">
@@ -352,38 +374,42 @@ margin-bottom: -16px;">
 					</div>
 
 					<iframe class="responsive-iframe" [src]="urlSafe2"></iframe>
-				</div>
+				</div> -->
 				<div class="Card-video"
-					*ngIf="Agency?.mobile_apps?.length===0 && Agency.role==='promoteur-immobilieres'  && Agency?.videoUrl2===null">
+					*ngIf="Agency?.mobile_apps?.length===0   ">
 					<div class="text-primary">
 						<h6 class="appname">
-							Application en cours
+							<!-- Application en cours -->
 						</h6>
 					</div>
+					<img *ngIf="Agency.role==='materiaux-construction'"class="appimage" src="../../assets/images/HomePage/APPLICATION-METRIAUX-PRODUIT.jpg">
+					<img *ngIf="Agency.role==='promoteur-immobilieres'"class="appimage" src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
 
-					<img class="appimage" src="../../assets/images/HomePage/1111.jpg">
-					<button type="submit" class="btn btn-primary btn-lg btn-block shadow-none responsive-telecharger">
-						Télecharger &nbsp;
-						<i class="fa fa-download" aria-hidden="true" style="margin-left: 89px;
-						margin-top: -16px;"></i>
-					</button>
+					<a type="submit"  class="btn btn-google btn-lg btn-block shadow-none responsive-telecharger" (click)="checkRoute()">
+						Google Play store &nbsp;
+						<!-- <i class="fa fa-android" aria-hidden="true"></i> -->
+					</a>
+					
+					<b:if cond='data:blog.pageType == &quot;item&quot;'>
+						<style type='text/css'>
+						/*<![CDATA[*/
+						@font-face{font-family:"fontfutura";src:url("https://fonts.googleapis.com/css?family=Open+Sans") format("ttf");font-weight:normal;font-style:normal;}
+						a.btn-google{color:#fff}
+						.btn{padding:10px 16px;margin:5px;font-size:18px;line-height:1.3333333;border-radius:6px;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;font-weight:500;text-decoration:none;display:inline-block}
+						.btn:active:focus,.btn:focus{outline:0}
+						.btn:focus,.btn:hover{color:#333;text-decoration:none;outline:0}
+						.btn:active{outline:0;-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);box-shadow:inset 0 3px 5px rgba(0,0,0,.125)}
+						.btn-google{color:#fff;background-color:#111;border-color:#000;padding:15px 16px 5px 40px;position:relative;font-family:fontfutura;font-weight:600}
+						.btn-google:focus{color:#fff;background-color:#555;border-color:#000}
+						.btn-google:active,.btn-google:hover{color:#fff;background-color:#555;border-color:#000;}
+						.btn-google:before{content:"";background-image:url(https://4.bp.blogspot.com/-52U3eP2JDM4/WSkIT1vbUxI/AAAAAAAArQA/iF1BeARv2To-2FGQU7V6UbNPivuv_lccACLcB/s30/nexus2cee_ic_launcher_play_store_new-1.png);background-size:cover;background-repeat:no-repeat;width:30px;height:30px;position:absolute;left:6px;top:50%;margin-top:-15px}
+						.btn-google:after{content:"GET IT ON";position:absolute;top:5px;left:40px;font-size:10px;font-weight:400;}
+						/*]]>*/
+						</style>
+						</b:if>
 				</div>
 
-				<div class="Card-video" *ngIf="Agency?.mobile_apps?.length===0  
-					&& Agency.role!=='promoteur-immobilieres' &&  Agency?.videoUrl===null && Agency?.videoUrl2===null">
-					<div class="text-primary">
-						<h6 class="appname">
-							Application en cours
-						</h6>
-					</div>
-
-					<img class="appimage" src="../../assets/images/HomePage/1111.jpg">
-					<button type="submit" class="btn btn-primary btn-lg btn-block shadow-none responsive-telecharger">
-						Télecharger &nbsp;
-						<i class="fa fa-download" aria-hidden="true"></i>
-					</button>
-
-				</div>
+			
 				<!-- <div *ngIf="Agency?.mobile_apps?.length===0 && Agency?.name==='La Maison Des ARTS by D'">
 					<div class="text-primary">
 						<h6 class="appnameUrbat">
@@ -397,7 +423,7 @@ margin-bottom: -16px;">
 
 
 				</div> -->
-				<div class="Card-video"
+				<!-- <div class="Card-video"
 					*ngIf="Agency?.mobile_apps?.length===0  && Agency.role!=='promoteur-immobilieres' && Agency?.videoUrl">
 					<div class="text-primary">
 						<h6 class="appnameUrbat">
@@ -407,7 +433,7 @@ margin-bottom: -16px;">
 
 					<iframe class="responsive-iframe" [src]="urlSafe">
 					</iframe>
-				</div>
+				</div> -->
 			</div>
 
 
@@ -416,7 +442,7 @@ margin-bottom: -16px;">
 
 <br><br><br><br><br>
 
-<div  *ngIf="Agency?.role==='promoteur-immobilieres'  && Agency?.projets?.length!==0" class="margin-tablett">
+<div  *ngIf="Agency?.role==='promoteur-immobilieres'  && Agency?.projets?.length!==0" class="margin-tablett" >
 	<div class="carousel-boutique">
 		<div class="content-section implementation carousel-demo">
 			<div class="card">
@@ -436,7 +462,7 @@ margin-bottom: -16px;">
 								<div>
 									<h5 class="card-title random">{{image.agencyName}}</h5>
 									<button href="#" class="btn btn-boutique mx-1"
-										style="float: right; text-align: center;">{{image.status}}</button>
+										style="float: right; text-align: center;text-transform: uppercase;">{{image.status}} </button>
 								</div>
 								<div style="display: flex; align-items: center;margin-right: -3px;">
 									<div class="text">
@@ -706,7 +732,7 @@ margin-bottom: -16px;">
 
 				</p-carousel> <br>
 				<button (click)="goToLink()" class="btn btn-promotion"
-					style="float: right;font-size: 18px; font-weight: 600;">PROMO DE LA SEMAINE </button>
+				style="float: right;font-size: 18px; font-weight: 600;margin-bottom: 50px;margin-top:1px;">PROMO DE LA SEMAINE </button>
 			</div>
 		</div>
 	</div>
@@ -773,7 +799,7 @@ margin-bottom: -16px;">
 									<button href="#" class="btn btn-boutique mx-1"
 										style="float: right; text-align: center;">{{image.status}}DETAILS</button>
 								</div>
-								<div style="display: flex; align-items: center;margin-right: -3px;">
+								<div style="display: flex; align-items: center;margin-right: -1px;">
 									<div class="text">
 										<p class="nameStyle" style="margin-right: 10px;">{{image.name }}</p>
 									</div>
@@ -856,7 +882,8 @@ margin-bottom: -16px;">
 						</div>
 					</div>
 				</section>
-				<section *ngIf="Agency?.videoUrl2">
+				
+				<section *ngIf="Agency?.videoUrl2" >
 					<div></div>
 					<div class="container">
 						<div class="background-vd">
@@ -920,7 +947,7 @@ margin-bottom: -16px;">
 
 				</p-carousel> <br>
 				<button (click)="goToLink()" class="btn btn-promotion"
-					style="float: right;font-size: 18px; font-weight: 600;">PROMO DE LA SEMAINE </button>
+					style="float: right;font-size: 18px; font-weight: 600;margin-bottom: 50px;margin-top:1px;">PROMO DE LA SEMAINE </button>
 			</div>
 		</div>
 	</div>
@@ -964,8 +991,8 @@ margin-bottom: -16px;">
 					</ng-template>
 
 				</p-carousel> <br>
-				<a (click)="goToLink()" class="btn btn-promotion">
-					PROMOTION </a>
+				<button (click)="goToLink()" class="btn btn-promotion"
+				style="float: right;font-size: 18px; font-weight: 600;margin-bottom: 50px;margin-top:1px;">PROMO DE LA SEMAINE </button>
 				<br><br><br><br>
 				<section (click)="goToLink()">
 					<div></div>
@@ -1036,8 +1063,8 @@ margin-bottom: -16px;">
 					</ng-template>
 
 				</p-carousel> <br>
-				<button (click)="goToLink()" class="btn btn-promotion2"
-					style="float: right;font-size: 18px; font-weight: 600;">PROMOTION </button>
+				<button (click)="goToLink()" class="btn btn-promotion"
+				style="float: right;font-size: 18px; font-weight: 600;margin-bottom: 50px;margin-top:1px;">PROMO DE LA SEMAINE </button>
 			</div>
 		</div>
 	</div>
@@ -1159,7 +1186,8 @@ margin-bottom: -16px;">
 
 				</p-carousel> <br>
 				<button (click)="goToLink()" class="btn btn-promotion"
-					style="float: right;font-size: 18px; font-weight: 600;">PROMO DE LA SEMAINE </button>
+				style="float: right;font-size: 18px; font-weight: 600;margin-bottom: 50px;margin-top:1px;">PROMO DE LA SEMAINE </button>
+
 			</div>
 		</div>
 	</div>
@@ -1218,6 +1246,3 @@ margin-bottom: -16px;">
 		</div>
 	</div>
 </div>
-
-<!-- <router-outlet></router-outlet> -->
-

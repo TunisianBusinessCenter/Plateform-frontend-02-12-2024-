@@ -19,7 +19,7 @@ export class EquipementComponent implements OnInit {
 
 
   constructor(private Servicemateriaux: MateriauxService,
-    private agencieService: AgenciesService) { 
+    private agencieService: AgenciesService,private sharedDataService:AgenciesService) { 
       this.responsiveOptions = [
         {
           breakpoint: '2000px',
@@ -77,5 +77,7 @@ export class EquipementComponent implements OnInit {
       this.allAgencies = this.allAgencies1
     }
   }
-
+  clickMe(agencyId: number) {
+    this.sharedDataService.updateAgencyId(agencyId);
+  }
 }

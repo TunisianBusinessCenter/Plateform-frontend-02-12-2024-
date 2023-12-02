@@ -312,9 +312,10 @@ color: #228b93;
   }
 }
 .title {
-  margin-left: 69px;
+  margin-left: 133px;
   margin-bottom: -15px;
   margin-top: 50px;
+
 }
 
 .badge-orange {
@@ -530,10 +531,10 @@ a{
     left: 0;
   }
   
-  .animated-border-button:hover:before,
+  /* .animated-border-button:hover:before,
   .animated-border-button:hover:after {
     width: 100%;
-  }
+  } */
   .more{
     margin-left: 250px;
     margin: 6px;
@@ -726,4 +727,14 @@ a{
     }
     .card-footer{
       height: 57px;
+    }
+    @media only screen and (max-width: 1366px) and (max-height:768px) {
+      .All {
+        color: #8B0000;
+        /* text-decoration: none; */
+        background-color: transparent;
+        font-weight: 600;
+        margin: -36px;
+        font-size: 16px;
+    }
     }

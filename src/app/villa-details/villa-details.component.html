@@ -3,6 +3,8 @@
     <i class="fa fa-arrow-left" aria-hidden="true"></i>
     Retour
 </button> -->
+<app-navbar-carousel></app-navbar-carousel>
+
 <button type="submit" class="animated-border-button " (click)=" backClicked()">
     <i class="fa fa-arrow-left" aria-hidden="true"></i>
     Retour
@@ -20,6 +22,8 @@
                             {{Pieces}}
                         </span>
                     </ng-template>
+                    <br><br>
+
                     <br><br>
                     <div>
                         <div *ngFor="let piece of Projet?.pieces">

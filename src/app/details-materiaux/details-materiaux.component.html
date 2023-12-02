@@ -1,3 +1,6 @@
+
+<app-navbar-carousel></app-navbar-carousel>
+
 <div class="responsive-container">
 
 
@@ -157,80 +160,81 @@
   <br>
   <div class="">
     <div class="col-lg-5 " style="margin-top: 20px;">
-      <h2 class="text-heading nameProd">
+      <h2 class="text-heading nameProd" style="text-transform: uppercase;">
         {{Produit?.name}}
       </h2>
       <hr class="hrstyle">
     </div>
   </div>
+  <div *ngFor="let allAgence of AllAgency">
+    <div class="responsable" *ngIf="Produit?.agencyName === allAgence?.name && Produit?.numCommercial === null">
+      <button class="btn responsableBtn">
+        <mat-icon style="font-size: 20px; margin-top: 4px;">supervised_user_circle</mat-icon>
+        <h1 class="textResponsable"><span>Responsable commercial</span>&nbsp;</h1>
+      </button>&nbsp;&nbsp;&nbsp;
+      <button class="btn responsableBtn">
+        <mat-icon style="font-size: 20px; margin-top: 4px;">perm_phone_msg</mat-icon>
+        <h1 class="textResponsable"><span>Tél:</span>&nbsp;{{allAgence?.phone_number}}</h1>
+      </button>&nbsp;&nbsp;&nbsp;
+      <button class="btn responsableBtn">
+        <mat-icon style="font-size: 20px; margin-top: 4px;">alternate_email</mat-icon>
+        <h1 class="textResponsable"><span>Email:</span>&nbsp;{{allAgence?.email}}</h1>
+      </button>
+    </div>
+  </div>
   <!-- mat-align-tabs = "center" -->
-  <div fxLayout="row" fxLayoutAlign="center center">
-    <mat-tab-group mat-align-tabs="center" fxLayout="column" fxLayout.gt-sm="row">
-      <mat-tab style="background-color: #1f1e84" *ngFor="let categories of Produit?.categoryList;">
-        <div>
-          <ng-template mat-tab-label>
-            <span class="my-custom-class">
-              {{categories}}
-            </span>
-          </ng-template>
-        </div>
-  
-        <br>
-        <div class="responsable" *ngIf="Produit?.numCommercial !== null && Produit?.emailCommercia!==null">
-          <button class="btn  responsableBtn">
-            <mat-icon style="font-size: 20px;margin-top: 4px;">supervised_user_circle</mat-icon>
-            <h1 class="textResponsable"> <span>Responsable commercial</span> &nbsp; </h1>
-          </button>&nbsp;&nbsp;&nbsp;
-          <button class="btn  responsableBtn">
-            <mat-icon style="font-size: 20px;margin-top: 4px;">perm_phone_msg</mat-icon>
-            <h1 class="textResponsable"><span>Tél:</span> &nbsp; {{Produit?.numCommercial}}</h1>
-          </button>&nbsp;&nbsp;&nbsp;
-          <button class="btn  responsableBtn">
-            <mat-icon style="font-size: 20px;margin-top: 4px;">alternate_email</mat-icon>
-            <h1 class="textResponsable"><span>Email:</span> &nbsp; {{Produit?.emailCommercial}}</h1>
-          </button>
-        </div>
-  
-        <div *ngFor="let allAgence of AllAgency">
-          <div class="responsable" *ngIf="Produit?.agencyName === allAgence?.name && Produit?.numCommercial === null">
-            <button class="btn  responsableBtn">
-              <mat-icon style="font-size: 20px;margin-top: 4px;">supervised_user_circle</mat-icon>
-              <h1 class="textResponsable"> <span>Responsable commercial</span> &nbsp; </h1>
-            </button>&nbsp;&nbsp;&nbsp;
-            <button class="btn  responsableBtn">
-              <mat-icon style="font-size: 20px;margin-top: 4px;">perm_phone_msg</mat-icon>
-              <h1 class="textResponsable"><span>Tél:</span> &nbsp; {{allAgence?.phone_number}}</h1>
-            </button>&nbsp;&nbsp;&nbsp;
-            <button class="btn  responsableBtn">
-              <mat-icon style="font-size: 20px;margin-top: 4px;">alternate_email</mat-icon>
-              <h1 class="textResponsable"><span>Email:</span> &nbsp; {{allAgence?.email}}</h1>
-            </button>
-          </div>
-        </div>
-  
-        <br>
-        <div class="cardx">
-          <div *ngFor="let categorie of Produit?.sous_cat;">
-            <div *ngIf="categories === categorie?.category">
-              <div class="card-group card-hover-over">
-                <div class="card">
-                  <img class="card-img" src="{{categorie?.image_url}}" alt="Card image" width="358" height="259">
-                  <div class="card-img-overlay">
-                    <div class="card-body">
-                      <h4 class="card-titre">{{categorie?.name}}</h4>
-                      <a class="btn" [routerLink]="['/descriptionDetails', Produit?.id, categorie?.id]">PLUS DE
-                        DÉTAILS</a>
-                    </div>
+ <div fxLayout="column" fxLayoutAlign="center center">
+  <mat-tab-group mat-align-tabs="center" fxLayout="column" fxLayout.gt-sm="row">
+    <mat-tab style="background-color: #1f1e84" *ngFor="let categories of Produit?.categoryList;">
+      <!-- Category Label -->
+      <div>
+        <ng-template mat-tab-label>
+          <span class="my-custom-class">{{categories}}</span>
+        </ng-template>
+      </div>
+
+      <!-- Responsable Commercial Section -->
+      <div class="responsable" *ngIf="Produit?.numCommercial !== null && Produit?.emailCommercia !== null">
+        <button class="btn responsableBtn">
+          <mat-icon style="font-size: 20px; margin-top: 4px;">supervised_user_circle</mat-icon>
+          <h1 class="textResponsable"><span>Responsable commercial</span>&nbsp;</h1>
+        </button>&nbsp;&nbsp;&nbsp;
+        <button class="btn responsableBtn">
+          <mat-icon style="font-size: 20px; margin-top: 4px;">perm_phone_msg</mat-icon>
+          <h1 class="textResponsable"><span>Tél:</span>&nbsp;{{Produit?.numCommercial}}</h1>
+        </button>&nbsp;&nbsp;&nbsp;
+        <button class="btn responsableBtn">
+          <mat-icon style="font-size: 20px; margin-top: 4px;">alternate_email</mat-icon>
+          <h1 class="textResponsable"><span>Email:</span>&nbsp;{{Produit?.emailCommercial}}</h1>
+        </button>
+      </div>
+
+     
+
+      <!-- Subcategories Section -->
+      <div class="cardx">
+        <div *ngFor="let categorie of Produit?.sous_cat;">
+          <div *ngIf="categories === categorie?.category">
+            <div class="card-group card-hover-over">
+              <div class="card">
+                <img class="card-img" src="{{categorie?.image_url}}" alt="Card image" width="358" height="259">
+                <div class="card-img-overlay">
+                  <div class="card-body">
+                    <h4 class="card-titre">{{categorie?.name}}</h4>
+                    <a class="btn" [routerLink]="['/descriptionDetails', Produit?.id, categorie?.id]">PLUS DE
+                      DÉTAILS</a>
                   </div>
                 </div>
               </div>
             </div>
-            <br> <br>
           </div>
+          <br><br>
         </div>
-      </mat-tab>
-    </mat-tab-group>
-  </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
 
 
 
@@ -265,17 +269,73 @@
                 </div>
           </p-tabPanel>
         </p-tabView> -->
+
+        <!-- <a (click)="goToLink()" class="btn btn-promotion" style="">
+					DÉCOUVREZ ENCORE PLUS... </a> -->
+				<!-- <br><br><br><br><br>
+				<section *ngIf="Produit?.videoUrlProduit===null || Produit?.videoUrlProduit===''" (click)="goToLink()">
+					<div></div>
+					<div class="container">
+						<div class="background-img" [ngStyle]="{'background-image':'url(' +image_url + ')'}">
+				
+						</div>
+					</div>
+				</section>
+        <section style="text-align: center;">
+					<div></div>
+					<div class="container">
+						<div class="background-vd">
+							<iframe class="promoVideo" [src]="urlSafe">
+							</iframe>
+
+						</div>
+					</div>  
   <br><br>
 </div>
 
+<br><br>  <br><br>  <br>
+
+<!-- -->
+<style>
+  .conatiner-new {
+  }
+</style>
+  <div *ngIf="urlSafe!==null " >
+    <div class="conatiner-new">
+      <div class="gradient-border" id="box" >
+      
+        Vidéo de présentation
+          <!-- &nbsp; <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> -->
+          &nbsp; <i aria-hidden="true"></i>
+      
+      </div>
+      
+    
+    </div>
+    <section >
+      <div></div>
+      <div class="container">
+        <div class="background-vd">
+          <iframe class="promoVideo" *ngIf="Produit?.videoUrlProduit!==null"  [src]="urlSafe"></iframe>
+    
+    <img class="promoVideo" *ngIf="Produit?.videoUrlProduit===null || Produit?.videoUrlProduit===''"    src="assets/images/HomePage/noVideo.jpg" alt="Placeholder Image">
+          <!-- Placeholder image if no video is available -->
+        </div>
+      </div>
+    </section>
+  </div>
 
 
-<!-- <div class="gradient-border" id="box" >
-  En cour de construction &nbsp; <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
 
-</div> -->
+
+
+
+
 <br>
 <br>
+
+
+
 <div class="tunsian-flag-img-background " style="height: -170; ">
 
 
@@ -327,3 +387,5 @@
 <br><br><br>
 
 <br>
+<br><br><br>
+

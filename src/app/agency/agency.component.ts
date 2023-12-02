@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild,Renderer2,HostListener } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, Renderer2, HostListener, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer, Meta, SafeResourceUrl, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AgenciesService } from '../services/agencies/agencies.service';
@@ -29,17 +29,19 @@ import { ShareService } from '../services/share/share.service';
       :host ::ng-deep .p-dialog .p-button {
           min-width: 6rem;
       }
-         `]
+         `],
+
 })
 export class AgencyComponent implements OnInit, AfterViewInit {
   isDesktop: boolean = true;
   titre = 'google-maps';
 
+  result: boolean = false;
 
   private map: google.maps.Map
   @ViewChild("myElem") MyProp: ElementRef;
   imagePath: string = 'src/assets/IMAGES PLATEFORME/PROMOTEUR IMMOBILIER/PROMOTEUR TUNIS/BOUTIQUES TUNIS/SOROUBAT/PAGE PROJET'; // Chemin initial de l'image
- 
+
 
   public idAgency: any
   public Agency: any
@@ -95,7 +97,8 @@ export class AgencyComponent implements OnInit, AfterViewInit {
     private _location: Location,
     private router: Router,
     public _seoService: ShareService,
-    private renderer: Renderer2, private el: ElementRef
+    private renderer: Renderer2, private el: ElementRef,
+    private route:ActivatedRoute
   ) {
     this.idAgency = this.activatedRoute.snapshot.paramMap.get('id')
     this.agencieService.getAgencieById(this.idAgency).subscribe(data => {
@@ -116,8 +119,8 @@ export class AgencyComponent implements OnInit, AfterViewInit {
       },
       {
         breakpoint: '1400px',
-        numVisible: 3,
-        numScroll: 3
+        numVisible: 4,
+        numScroll: 4
       },
       {
         breakpoint: '1200px',
@@ -134,14 +137,14 @@ export class AgencyComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.idAgency = this.activatedRoute.snapshot.paramMap.get('id')
     this.agencieService.getAgencieById(this.idAgency).subscribe(data => {
-      console.log(data,"test")
+      console.log(data, "test")
       this.Agency = data;
       this.reverseAgPromoteurs = this.Agency?.projets?.reverse();
     })
   }
 
   ngOnInit(): void {
-    
+
     this.changeMetadata(
       "Property Listing Title",
       "{{ image.photos[0] }}", // URL of the property image
@@ -172,22 +175,22 @@ export class AgencyComponent implements OnInit, AfterViewInit {
       //promo produit
       for (let ImagePromoProduit of this.Agency?.produits) {
         this.image_url = ImagePromoProduit.promoImg
-        this.image_name=ImagePromoProduit.promoTitle
+        this.image_name = ImagePromoProduit.promoTitle
       }
-      console.log(this.image_url,this.image_name)
+      console.log(this.image_url, this.image_name)
       this.changemeta(this.image_url);
       this.changemeta(this.image_name)
 
     }),
       this.agencieService.getAgencieById(this.idAgency).subscribe(data => {
-        console.log(data)
+        console.log('this is my target 2 ', data)
         this.Agency = data;
         console.log(this.Agency?.role)
         //promo projet  
         for (let ImagePromoProjet of this.Agency?.projets) {
 
           this.image_url_pj = ImagePromoProjet.promoImg;
-        
+
         }
         console.log(this.image_url_pj)
 
@@ -290,53 +293,65 @@ export class AgencyComponent implements OnInit, AfterViewInit {
     // this.meta.updateTag({ property: 'og:image:secure_url', content: secureImageUrl });
     // this.meta.updateTag({ property: 'og:description', content: description });
   }
-  
+
   changemeta(image_url: any): void {
     this.changeMetadata("Boutique.", image_url, '', "Boutique description");
   }
-  
+
   changemetaPj(image_url_pj: any): void {
     this.changeMetadata("Boutique", image_url_pj, image_url_pj, "Boutique description");
   }
-  
+
   changemetaSer(image_url_ser: any): void {
     this.changeMetadata("Boutique", image_url_ser, '', "Boutique description");
   }
-  
+
   changemetaBiens(image_url_biens: any): void {
     this.changeMetadata("Boutique", image_url_biens, '', "Boutique description");
   }
-  
+
   goToLink() {
     window.open(this.Agency.website_url, '_blank');
   }
-  
+
   backClicked() {
     this._location.back();
   }
-  
+
   displayMaximizable: boolean;
   showMaximizableDialog() {
     this.displayMaximizable = true;
   }
-  
+
   generateShareableLink(imageUrl: string, name: string): string {
     const baseURL = 'https://www.yourwebsite.com/share-page'; // Remplacez par votre URL réelle
     const queryParams = new URLSearchParams({
       image: imageUrl,
       name: name
     });
-  
+
     return `${baseURL}?${queryParams.toString()}`;
   }
   changeImageSource() {
     this.imagePath = 'src/assets/IMAGES PLATEFORME/PROMOTEUR IMMOBILIER/PROMOTEUR TUNIS/BOUTIQUES TUNIS/SOROUBAT/PAGE PROJET'; // Nouveau chemin de l'image
   }
 
-  shareOnFacebook():void{
+  shareOnFacebook(): void {
     const facebookShareURL = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(this.Agency.videoUrl)}`;
-    window.open(facebookShareURL,'_blank')
+    window.open(facebookShareURL, '_blank')
   }
+//   fn() {
 
+//     if (this.Agency.name == "LA PLAINE") {
 
+//       let url = "https://play.google.com/store/apps/details?id=com.im.android.lapleine&hl=fr&gl=US"
+
+// console.log
+//     }
+   
+
+//   }
+checkRoute() {
+console.log('testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest')
+}
 }

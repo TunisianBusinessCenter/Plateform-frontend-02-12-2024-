@@ -1,3 +1,5 @@
+<app-navbar-carousel-home></app-navbar-carousel-home>
+
 <div class="allAgSearch">
 	<!-- <form class="form-search">
 			<mat-form-field >
@@ -18,7 +20,102 @@
 		</div>
 	</div>
 </div>
+<!-- <style>
+	:root{
+	--dark-blue: #1c2739;
+	--darker-blue: #141c29;
+	--light-blue: #3c4759;
+	--text-color: #dadada;
+	--dark-blue-shadow: #111822ab;
+}
+body{
+	background: linear-gradient(var(--dark-blue),var(--darker-blue));
+	font-family: sans-serif;
+	display: grid;
+	place-items: center;
+	align-content: center;
+	min-height: 100dvh;
+	margin: 0;
+}
+h1{
+	font-weight: 100;
+	text-transform: uppercase;
+	color: var(--text-color);
+	text-shadow: 5px 5px 1px var(--dark-blue-shadow);
+}
+#container{
+	width: 50vw;
+	mask: linear-gradient(90deg, transparent, white 40%, white 60%, transparent);
+	-webkit-mask: linear-gradient(90deg, transparent, white 40%, white 60%, transparent);
+}
+ul{
+	display: flex;
+	gap: 10px;
+	list-style: none;
+	padding: 0;
+}
+li{
+	background: var(--light-blue);
+	color: var(--text-color);
+	padding: 10px 20px;
+	border-radius: 7px;
+/* 	border: 1px outset var(--text-color); */
+	box-shadow: 
+		2px 2px 2px var(--dark-blue-shadow),		
+		2px 3px 3px var(--dark-blue-shadow),
+		2px 5px 5px var(--dark-blue-shadow),
+		2px 8px 8px var(--dark-blue-shadow);
+}
 
+#container[data-animated]{
+	overflow: hidden;
+}
+#container[data-animated] #list{
+	width: max-content;
+	animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll{
+	to{
+		translate: calc(-50% - 5px);
+	}
+}
+</style>
+<script>
+	const list = document.querySelector("#list");
+const listContent = Array.from(list.children);
+
+listContent.forEach(item => {
+	const duplicatedItem = item.cloneNode(true);
+	duplicatedItem.setAttribute("aria-hidden",true);
+	list.appendChild(duplicatedItem);
+});
+</script>
+<div style="margin-left: 400px;">
+<div id="container" data-animated>
+	<ul id="list">
+		<li>First</li>
+		<li>Second</li>
+		<li>Third</li>
+		<li>Fourth</li>
+		<li>Fifth</li>
+		<li>First</li>
+		<li>Second</li>
+		<li>Third</li>
+		<li>Fourth</li>
+		<li>Fifth</li><li>First</li>
+		<li>Second</li>
+		<li>Third</li>
+		<li>Fourth</li>
+		<li>Fifth</li>
+		<li>First</li>
+		<li>Second</li>
+		<li>Third</li>
+		<li>Fourth</li>
+		<li>Fifth</li>
+	</ul>
+</div>
+</div> -->
 <main id="content">
 
 	<div class="tunsian-flag-img-background" style="height: -170">
@@ -90,9 +187,10 @@
 	-->
 	<div>
 		<a type="submit"
-		href="https://www.docdroid.net/HtLoDfE/edition-218-pdf"
+		href="https://www.docdroid.net/FtbKFZO/edition-219-pdf"
 		target="_blank"
-		style="text-decoration:none; margin-bottom: 20px; font-weight: 600; font-size: 12px;"
+		style="margin-top: 2%; text-decoration:none;margin-top: -9px;margin-bottom: 20px;font-weight: 600;    width: 289px;"
+
 		class="btn btn-primary2">Télécharger  &nbsp; 
 		<i class="fa fa-download" aria-hidden="true"style="margin-top: 3px;"></i>
 		</a>
@@ -787,3 +885,5 @@
 
 <!--	<hr style="margin-block-start: 2%"> -->
 </div>
+
+

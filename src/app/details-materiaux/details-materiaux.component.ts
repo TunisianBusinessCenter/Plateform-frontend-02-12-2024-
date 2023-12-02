@@ -20,7 +20,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class DetailsMateriauxComponent implements OnInit {
   @ViewChild("myElem") MyProp: ElementRef;
-  
+  @ViewChild('tabGroup') tabGroup: any;
+  @ViewChild('scrollContainer') scrollContainer: ElementRef | undefined;
   public idAgency: any
   public Agency: any
   public AllAgency:any
@@ -36,7 +37,7 @@ export class DetailsMateriauxComponent implements OnInit {
   dataDisplay: any;
   materiauId: any;
   agencyId: any;
-
+   image_url_pj ="../../assets/images/BANIERE-CLIENTS-MEUBLE (-)/PUB-2.jpg"
 
   constructor(private activatedRoute: ActivatedRoute,
     private produitService:ProduitsService,
@@ -57,7 +58,7 @@ export class DetailsMateriauxComponent implements OnInit {
     this.agencieService.getAllMateriaux().subscribe(data => {
 
       this.AllAgency = data;
-      console.log(data)
+      console.log('here',data)
       this.reverseAg= this.AllAgency.produits.reverse();
     
     })
@@ -65,11 +66,13 @@ export class DetailsMateriauxComponent implements OnInit {
       this.idProduit= this.activatedRoute.snapshot.paramMap.get('id')
       this.produitService.getProduitById(this.idProduit).subscribe(data => {
         this.Produit = data;
-        console.log(this.Produit)
+        console.log('this',this.Produit)
+        console.log('this',this.Produit.videoUrlProduit)
+
 
            //Video_Url
-      this.urlSafe= this.sanitizer.bypassSecurityTrustResourceUrl(this.Produit.videoUrlProduit);
-      
+            this.urlSafe= this.sanitizer.bypassSecurityTrustResourceUrl(this.Produit.videoUrlProduit);
+
 
         for(let categorie of this.Produit?.sous_cat){
           this.webSite = categorie.website
@@ -104,5 +107,28 @@ export class DetailsMateriauxComponent implements OnInit {
   backClicked() {
     this._location.back();
   }
- 
+//  getCategorieName() {
+//   this.
+//  }
+
+getTheFirstDescription(){
+  
+}
+scrollToPreviousCategory() {
+  this.tabGroup.selectedIndex = Math.max(this.tabGroup.selectedIndex - 1, 0);
+  this.scrollToView();
+}
+
+// Function to scroll to the next category
+scrollToNextCategory() {
+  this.tabGroup.selectedIndex = Math.min(this.tabGroup.selectedIndex + 1, this.tabGroup._tabs.length - 1);
+  this.scrollToView();
+}
+
+// Function to scroll the selected category into view
+scrollToView() {
+  if (this.scrollContainer && this.scrollContainer.nativeElement) {
+    this.scrollContainer.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  }
+}
 }

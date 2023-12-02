@@ -13,5 +13,35 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 [mat-align-tabs=center]>.mat-tab-header .mat-tab-labels {
   justify-content: center;
-  
+
 }
+.mat-tab-header{
+  /* display: none !important; */
+}
+.p-image-preview-container {
+  position: relative;
+  width: 100% !important;
+  height: 100% !important;
+  display: inline-block;
+}
+.p-button {
+  min-width: 8rem;
+    background-color: #844a1e;
+    height: 29px !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 5px;
+    margin-top: -32px;
+
+}
+@media screen and (max-width: 1280px) and (max-height: 800px) {
+
+.p-button {
+  
+  margin-top: -12px !important ;
+}
+}
+
+

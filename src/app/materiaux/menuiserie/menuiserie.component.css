@@ -312,9 +312,10 @@ color: #228b93;
   }
 }
 .title {
-  margin-left: 69px;
+  margin-left: 133px;
   margin-bottom: -15px;
   margin-top: 50px;
+
 }
 
 .badge-orange {
@@ -530,10 +531,10 @@ a{
     left: 0;
   }
   
-  .animated-border-button:hover:before,
+  /* .animated-border-button:hover:before,
   .animated-border-button:hover:after {
     width: 100%;
-  }
+  } */
   .more{
     margin-left: 250px;
     margin: 6px;

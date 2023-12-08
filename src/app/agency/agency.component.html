@@ -202,9 +202,9 @@ margin-bottom: -16px;">
 	<h4 class="card-titles fs-22 lh-15 mb-1 text-dark">
 		{{ Agency?.name }}
 	</h4>
-	<p class="card-text  Agencyadresse">
+	<h4 class="card-text  Agencyadresse">
 		{{ Agency?.adresse }}
-	</p>
+	</h4>
 
 
 	<div class="  align-items-sm-center  li-agency">
@@ -307,7 +307,7 @@ margin-bottom: -16px;">
 				<div class="Card-video" *ngFor="let Agencyapp of Agency?.mobile_apps">
 
 
-					<div *ngIf="Agencyapp.id!==null;">
+					<div >
 						<div class="text-primary">
 							<!-- <h6 class="appname">
 								{{ Agencyapp?.name }}
@@ -320,6 +320,8 @@ margin-bottom: -16px;">
 							alt="The Interior Design The Hall On str. Filimonovo" width="80%"> -->
 							<img *ngIf="Agency.role==='materiaux-construction'"class="appimage" src="../../assets/images/HomePage/APPLICATION-METRIAUX-PRODUIT.jpg">
 					<img *ngIf="Agency.role==='promoteur-immobilieres'"class="appimage" src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
+					<img *ngIf="Agency.role==='agence-immobilieres'"class="appimage" src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
+					<img *ngIf="Agency.role==='agence-service'"class="appimage" src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
 							<button type="submit" class="btn btn-google btn-lg btn-block shadow-none responsive-telecharger">
 								Google Play store &nbsp;
 								<!-- <i class="fa fa-android" aria-hidden="true"></i> -->
@@ -384,7 +386,9 @@ margin-bottom: -16px;">
 					</div>
 					<img *ngIf="Agency.role==='materiaux-construction'"class="appimage" src="../../assets/images/HomePage/APPLICATION-METRIAUX-PRODUIT.jpg">
 					<img *ngIf="Agency.role==='promoteur-immobilieres'"class="appimage" src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
-
+					<img *ngIf="Agency.role==='agence-immobilieres'"class="appimage" src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
+					<img *ngIf="Agency.role==='agence-service'"class="appimage" src="../../assets/images/HomePage/APPLICATION-METRIAUX-PRODUIT.jpg">
+					<img *ngIf="Agency.role==='meilleurs-biens'"class="appimage" src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
 					<a type="submit"  class="btn btn-google btn-lg btn-block shadow-none responsive-telecharger" (click)="checkRoute()">
 						Google Play store &nbsp;
 						<!-- <i class="fa fa-android" aria-hidden="true"></i> -->
@@ -394,7 +398,7 @@ margin-bottom: -16px;">
 						<style type='text/css'>
 						/*<![CDATA[*/
 						@font-face{font-family:"fontfutura";src:url("https://fonts.googleapis.com/css?family=Open+Sans") format("ttf");font-weight:normal;font-style:normal;}
-						a.btn-google{color:#fff}
+						a.btn-google{color:#fff} 
 						.btn{padding:10px 16px;margin:5px;font-size:18px;line-height:1.3333333;border-radius:6px;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;font-weight:500;text-decoration:none;display:inline-block}
 						.btn:active:focus,.btn:focus{outline:0}
 						.btn:focus,.btn:hover{color:#333;text-decoration:none;outline:0}

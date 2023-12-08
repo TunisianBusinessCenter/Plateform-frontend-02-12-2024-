@@ -187,13 +187,14 @@ listContent.forEach(item => {
 	-->
 	<div>
 		<a type="submit"
-		href="https://www.docdroid.net/FtbKFZO/edition-219-pdf"
-		target="_blank"
-		style="margin-top: 2%; text-decoration:none;margin-top: -9px;margin-bottom: 20px;font-weight: 600;    width: 289px;"
-
-		class="btn btn-primary2">Télécharger  &nbsp; 
-		<i class="fa fa-download" aria-hidden="true"style="margin-top: 3px;"></i>
-		</a>
+		target="_blank" 
+		style="margin-top: 2%; text-decoration:none; margin-top: -9px; margin-bottom: 20px; font-weight: 600; width: 289px;"
+		class="btn btn-primary2"
+		[href]="firstMagazin.download_link">
+		Télécharger  &nbsp; 
+		<i class="fa fa-download" aria-hidden="true" style="margin-top: 3px;"></i>
+	 </a>
+	 
 		<!-- <a type="submit"
 	
 		target="_blank"

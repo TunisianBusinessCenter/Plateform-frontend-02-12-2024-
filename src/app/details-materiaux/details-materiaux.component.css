@@ -177,13 +177,15 @@
     margin-top: 20px;
   }
 }
+
 .cardx-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
   overflow: hidden;
-  flex-direction: row; /* Set the flex direction to row */
+  flex-direction: row;
+  /* Set the flex direction to row */
 }
 
 .cardx {
@@ -199,14 +201,14 @@
 }
 
 .cardx-container .slider-arrow {
- background: rgb(255 255 255 / 0%);
-    color: white;
-    padding: 10px 15px;
-    color: #7e6e6e;
-    border: none;
-    cursor: pointer;
-    /* width: 121px; */
-    font-size: 37px;
+  background: rgb(255 255 255 / 0%);
+  color: white;
+  padding: 10px 15px;
+  color: #7e6e6e;
+  border: none;
+  cursor: pointer;
+  /* width: 121px; */
+  font-size: 37px;
 }
 
 
@@ -274,14 +276,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 718px;
-  border-radius: 4px;
+  width: 40%;
+  /* border-radius: 4px; */
   height: 44px;
   padding: 15px 24px;
   color: rgb(255 255 255);
   font-size: 18px;
-  margin: 106px 513px;
+  margin: 102px 515px;
 }
+
+.container-new {
+  max-width: 100%;
+}
+
+.promoVideo {
+  width: 100%;
+  height: 100%;
+}
+
+/* Add media query for smaller screens */
+@media (max-width: 768px) {
+  #box {
+    width: 80%;
+    /* Adjust width for smaller screens */
+    margin: 20px auto;
+    /* Center the element */
+  }
+
+  /* Add more responsive styles as needed */
+}
+
 
 
 .animated-border-button {
@@ -357,12 +381,13 @@
   .responsive-container {
     display: unset
   }
+
   .responsive-iframe {
     width: 90%;
     height: 241px;
     border: none;
     margin-left: 15px;
-}
+  }
 }
 
 @media only screen and (max-width: 607px) {
@@ -371,7 +396,8 @@
     height: 241px;
     border: none;
     margin-left: 15px;
-}
+  }
+
   #box {
     display: flex;
     align-items: center;
@@ -394,7 +420,8 @@
     height: 241px;
     border: none;
     margin-left: 15px;
-}
+  }
+
   #box {
     display: flex;
     align-items: center;
@@ -508,14 +535,16 @@
   margin-left: 89px;
   margin-top: -4px;
 }
+
 .responsive-iframe {
 
-    width: 100%;
-    height: 311px;
-    border: none;
-    margin-left: 0px;
+  width: 100%;
+  height: 311px;
+  border: none;
+  margin-left: 0px;
 
 }
+
 .appname {
   margin-bottom: 0.5rem;
   font-weight: 500;
@@ -694,19 +723,19 @@
 
 .social-networks a:after {
   position: relative;
-    display: block;
-    font-family: "icomoon";
-    font-style: normal;
-    font-weight: normal;
-    font-feature-settings: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    color: #ffffff;
-    font-size: 14px;
-    line-height: 69px;
-    margin-left: -4px;
-    margin-top: -18px;
+  display: block;
+  font-family: "icomoon";
+  font-style: normal;
+  font-weight: normal;
+  font-feature-settings: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 69px;
+  margin-left: -4px;
+  margin-top: -18px;
 
 }
 
@@ -855,26 +884,29 @@
     font-size: 20px;
   }
 }
-.updateMenu{
+
+.updateMenu {
   margin-top: 20px;
 }
+
 @media only screen and (max-width: 630px) {
-  .updateMenu{
+  .updateMenu {
     margin-top: 20px;
     margin-left: 50px;
   }
+
   .animated-border-button {
     margin-top: -13px;
     margin-bottom: 30px;
     margin-left: 76px;
   }
-  
-:host ::ng-deep .mat-tab-group {
-  display: flex;
-  flex-direction: column;
-  max-width: 90%;
-  margin-left: 50px;
-}
+
+  :host ::ng-deep .mat-tab-group {
+    display: flex;
+    flex-direction: column;
+    max-width: 90%;
+    margin-left: 50px;
+  }
 
 }
 
@@ -942,39 +974,40 @@
   WIDTH: 100%;
 }
 
-a.btn { 
+a.btn {
 
 
-    background: #000002;
-    padding: 6px 13px;
-    color: white;
-    border: solid rgb(0, 0, 0) 1px;
-    transition-timing-function: ease-in;
-    transition-timing-function: ease-out;
-    transition: 0.5s;
+  background: #000002;
+  padding: 6px 13px;
+  color: white;
+  border: solid rgb(0, 0, 0) 1px;
+  transition-timing-function: ease-in;
+  transition-timing-function: ease-out;
+  transition: 0.5s;
 }
+
 a.btn1 {
 
-    background: #dc3346;
-    padding: 6px 13px;
-    color: white;
-    border: solid #dc3346;
-    transition-timing-function: ease-in;
-    transition-timing-function: ease-out;
-    transition: 0.5s;
-        margin: 0 23px 34px 103px;
-    width: 23px;
-    padding: 12px 14px 12px 17px;
+  background: #dc3346;
+  padding: 6px 13px;
+  color: white;
+  border: solid #dc3346;
+  transition-timing-function: ease-in;
+  transition-timing-function: ease-out;
+  transition: 0.5s;
+  margin: 0 23px 34px 103px;
+  width: 23px;
+  padding: 12px 14px 12px 17px;
 }
 
 a.btn:hover {
-    background: #000002;
-    padding: 6px 13px;
-    color: white;
-    border: solid rgb(0, 0, 0) 1px;
-    transition-timing-function: ease-in;
-    transition-timing-function: ease-out;
-    transition: 0.5s;
+  background: #000002;
+  padding: 6px 13px;
+  color: white;
+  border: solid rgb(0, 0, 0) 1px;
+  transition-timing-function: ease-in;
+  transition-timing-function: ease-out;
+  transition: 0.5s;
 
 }
 
@@ -1079,11 +1112,12 @@ a.btn:hover {
     color: #696969;
     text-align: left;
   }
+
   .animated-border-button {
     margin-top: -13px;
     margin-bottom: 60px;
     margin-left: 75px;
-}
+  }
 
   /* .badge-orange {
             color: #fff;
@@ -1144,6 +1178,7 @@ a.btn:hover {
   color: #FFFFFF;
   font-family: 'Roboto', sans-serif;
 }
+
 /* .responsableBtn {
   color: #ffffff;
   background-color: red;
@@ -1179,13 +1214,14 @@ a.btn:hover {
     justify-content: space-evenly;
   }
 }
+
 @media only screen and (max-width: 420px) {
   .textResponsable {
     font-size: 15px;
     font-weight: bold;
     color: #fff;
     font-weight: 900;
-    font-family: Roboto,sans-serif;
+    font-family: Roboto, sans-serif;
   }
 }
 
@@ -1239,6 +1275,7 @@ a.btn:hover {
   margin-left: 44px;
   margin-top: -19px;
 }
+
 @media (max-width: 576px) {
   .CardDetails {
     height: 268px;
@@ -1247,8 +1284,8 @@ a.btn:hover {
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     z-index: 1;
-    margin-left:  45px;
-    margin-top: 24px; 
+    margin-left: 45px;
+    margin-top: 24px;
   }
 }
 
@@ -1481,6 +1518,7 @@ a.btn:hover {
     margin-left: 2px;
     margin: 0 23px;
   }
+
   .card-title {
     font-size: 15px;
     margin-left: 2px;
@@ -1560,16 +1598,17 @@ a.btn:hover {
     font-size: 1.5rem;
     margin-left: 16px;
   }
+
   .card-title {
     font-size: 15px;
     margin-left: -21px;
-    
+
   }
 
 }
 
 @media only screen and (max-width: 1200px) {
-  .Card-logo{
+  .Card-logo {
     height: 81%;
     width: 74%;
     border-radius: 6px;
@@ -1578,32 +1617,35 @@ a.btn:hover {
     z-index: 1;
     padding: 7px;
     margin-left: 61px;
-}
-.CardDetails{
-  height: 325px;
-  width: 90%;
-  border-radius: 6px;
-  position: relative;
-  z-index: 1;
-  margin-left: 75px;
-  margin-top: 24px;
-  margin-bottom: 24px;
-}
-.Card-video{
-  height: 81%;
-  width: 74%;
-  border-radius: 6px;
-  position: relative;
-  box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
-  z-index: 1;
-  padding: 7px;
-  margin-left: 61px;
-}
+  }
+
+  .CardDetails {
+    height: 325px;
+    width: 90%;
+    border-radius: 6px;
+    position: relative;
+    z-index: 1;
+    margin-left: 75px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  .Card-video {
+    height: 81%;
+    width: 74%;
+    border-radius: 6px;
+    position: relative;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+    z-index: 1;
+    padding: 7px;
+    margin-left: 61px;
+  }
+
   .card-imgg {
     width: 100%;
     margin: 0px;
     margin-top: 0px;
-}
+  }
 }
 
 @media only screen and (max-width: 1060px) {
@@ -1625,7 +1667,7 @@ a.btn:hover {
     margin-right: 10px;
   }
 
- 
+
 
   .appname {
     margin-bottom: 0.5rem;
@@ -1673,7 +1715,7 @@ a.btn:hover {
   .li-social {
     margin-top: -18px;
   }
- 
+
   .appimage {
     width: 100%;
     margin-left: 0px;
@@ -1703,7 +1745,7 @@ a.btn:hover {
   .card-img {
     width: 100%;
     height: 169px;
-   }
+  }
 
   .CardDetails {
     height: 300px;
@@ -1730,7 +1772,7 @@ a.btn:hover {
   .li-agency {
     border: none;
     width: 288px;
-}
+  }
 
   .Agencyadresse {
     font-size: 12px;
@@ -1744,6 +1786,7 @@ a.btn:hover {
     margin-left: -42px;
     padding: 23px 48px;
   }
+
   .AgencyDetails {
     margin-right: 0px;
   }
@@ -1753,7 +1796,8 @@ a.btn:hover {
   }
 
 }
-@media only screen and (max-width: 400px){
+
+@media only screen and (max-width: 400px) {
 
   .CardDetails {
     height: 300px;
@@ -1764,7 +1808,7 @@ a.btn:hover {
     margin-left: 64px;
     margin-top: 24px;
   }
-  
+
 }
 
 .Card {
@@ -1778,6 +1822,7 @@ a.btn:hover {
   padding: 7px;
   margin-left: 66px;
 }
+
 @media only screen and (max-width: 440px) {
   .Card {
     height: 268px;
@@ -1792,27 +1837,32 @@ a.btn:hover {
 
   }
 }
+
 .cardx-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  overflow: hidden; /* Add this line to hide overflow */
+  overflow: hidden;
+  /* Add this line to hide overflow */
 }
 
 .cardx-wrapper {
-  display: flex; /* Change to flex */
+  display: flex;
+  /* Change to flex */
   transition: transform 0.3s ease;
 }
 
 .cardx {
   display: flex;
   overflow-x: auto;
-  
+
 }
 
 .card-group {
-  flex: 0 0 100%; /* Add this line */
-  max-width: 100%; /* Add this line */
+  flex: 0 0 100%;
+  /* Add this line */
+  max-width: 100%;
+  /* Add this line */
 }
 
 @media (max-width: 768px) {
@@ -1825,27 +1875,35 @@ a.btn:hover {
     margin-top: 10px;
   }
 }
+
 /* Default styles for large screens */
 .cardx .col {
-  flex-basis: calc(25% - 20px); /* Adjust the width based on your requirements */
-  margin-right: 20px; /* Add some margin between cards */
+  flex-basis: calc(25% - 20px);
+  /* Adjust the width based on your requirements */
+  margin-right: 20px;
+  /* Add some margin between cards */
 }
 
 /* Media query for medium-sized screens (e.g., tablets) */
 @media (max-width: 992px) {
   .cardx .col {
-    flex-basis: calc(33.3333% - 20px); /* Adjust the width for medium-sized screens */
+    flex-basis: calc(33.3333% - 20px);
+    /* Adjust the width for medium-sized screens */
   }
 }
 
 /* Media query for small-sized screens (e.g., mobile devices) */
 @media (max-width: 768px) {
   .cardx .col {
-    flex-basis: 100%; /* Make cards occupy the full width on small screens */
-    margin-right: 0; /* Remove margin to stack cards vertically */
-    margin-bottom: 20px; /* Add some bottom margin between stacked cards */
+    flex-basis: 100%;
+    /* Make cards occupy the full width on small screens */
+    margin-right: 0;
+    /* Remove margin to stack cards vertically */
+    margin-bottom: 20px;
+    /* Add some bottom margin between stacked cards */
   }
 }
+
 @media screen and (max-width: 768px) {
   .retour {
     right: -13px;
@@ -1853,6 +1911,7 @@ a.btn:hover {
     margin-bottom: -54px;
   }
 }
+
 .btn-promotion {
   color: #ffffff;
   background-color: #dc3346;
@@ -1870,11 +1929,13 @@ a.btn:hover {
 .btn-promotion:hover {
   color: #f9e7e7;
 }
+
 .promoVideo {
-  width: 76%;
+  width: 80%;
   height: 397px;
   margin-left: 90px;
-  margin-top: -14px;
+  margin-top: 49px;
+  border-radius: 2px;
 
 }
 
@@ -1939,12 +2000,10 @@ a.btn:hover {
 @media only screen and (max-width: 500px) {
   .background-vd {
     margin: -14% 5%;
-    margin-top: -26px;
     margin-bottom: 77px;
     margin-left: 39px;
     border-radius: 4px;
     position: relative;
-    width: 94%;
 
   }
 
@@ -1958,11 +2017,9 @@ a.btn:hover {
 
 @media only screen and (max-width: 400px) {
   .background-vd {
-       
-    margin: -29px 3px 181px 38px;
+
     border-radius: 4px;
     position: relative;
-    width: 306px;
 
 
   }
@@ -1974,15 +2031,19 @@ a.btn:hover {
     margin-left: 0px;
   }
 }
+
 .Card-video-produit {
-  max-width: 100%; /* Ensure the card doesn't exceed the width of its container */
-  width: 34%; /* You can keep this percentage or adjust as needed */
+  max-width: 100%;
+  /* Ensure the card doesn't exceed the width of its container */
+  width: 34%;
+  /* You can keep this percentage or adjust as needed */
   border-radius: 6px;
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   z-index: 1;
   padding: 7px;
-  margin: 0 auto; /* Center the card horizontally */
+  margin: 0 auto;
+  /* Center the card horizontally */
 }
 
 /* Optional: Add a media query for smaller screens to adjust the width */
@@ -1999,3 +2060,24 @@ a.btn:hover {
   white-space: normal;
   margin: 0 16px;
 } */
+@media only screen and (max-width: 1366px) and (max-height:768px) {
+  .btn-outline-primary {
+    border: 1.5px solid #ffffff;
+    background: #6766d3;
+    transition-duration: .25s;
+    margin: 0 0;
+    transform-style: ease-in-out;
+    margin-left: 15px;
+  }
+
+
+  .btnB {
+    margin-left: 60px;
+    position: relative;
+    padding: 15px;
+    width: 644px;
+    max-width: 100%;
+    transition: 2s all;
+    background-color: blue;
+  }
+}

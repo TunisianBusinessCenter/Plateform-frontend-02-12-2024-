@@ -61,6 +61,7 @@ export class HomeComponent implements OnInit {
   contactText = "";
   numText = "";
   agencies: any;
+  firstMagazin: any;
   constructor(private magazineservice: MagazineService,
     private agencieService: AgenciesService,
     private router: Router,
@@ -170,7 +171,9 @@ export class HomeComponent implements OnInit {
           console.log("test link", this.linkFBook)
         }
       }
-      console.log(this.Magazine)
+      this.firstMagazin=this.Magazine[0]
+      console.log("this is my magazin",this.Magazine[0])
+      
     });
 
 

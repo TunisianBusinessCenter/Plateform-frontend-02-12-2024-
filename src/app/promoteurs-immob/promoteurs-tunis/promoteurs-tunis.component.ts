@@ -9,7 +9,7 @@ import { AgenciesService } from 'src/app/services/agencies/agencies.service';
 export class PromoteursTunisComponent implements OnInit {
 
   public AgenciesTunis: any
-  public lengthBoutique:any
+  public lengthBoutique: any
   public testArraySort: any
 
   responsiveOptions
@@ -17,7 +17,7 @@ export class PromoteursTunisComponent implements OnInit {
 
 
 
-  constructor(private agencieService: AgenciesService,private sharedDataService:AgenciesService) {
+  constructor(private agencieService: AgenciesService, private sharedDataService: AgenciesService) {
     this.responsiveOptions = [
       {
         breakpoint: '2000px',
@@ -45,26 +45,38 @@ export class PromoteursTunisComponent implements OnInit {
         numScroll: 1
       }
     ];
-   }
+  }
 
   ngOnInit(): void {
     this.agencieService.getAgencieTunis().subscribe((data: any) => {
       this.AgenciesTunis = data;
-      for(let lengthProjets of  this.AgenciesTunis.projets){
-        this.lengthBoutique = lengthProjets.length
-        console.log("length of boutique",this.lengthBoutique)
-
-      }
-      
-     
-      if(this.lengthBoutique!==0){
-        
-      }
-      this.testArraySort=this.AgenciesTunis.sort((a:any, b:any) => a - b)
-        console.log("arraySort",this.testArraySort)
-        
-    })
+  
+      // Sort AgenciesTunis first by projets, then by createdAt (reversed)
+      this.AgenciesTunis.sort((a, b) => {
+        // Check if projets is null in a and b
+        const projetsAIsNull = a.projets === null || a.projets.length === 0;
+        const projetsBIsNull = b.projets === null || b.projets.length === 0;
+  
+        // Sort agencies with non-null projets before agencies with null projets
+        if (projetsAIsNull && !projetsBIsNull) {
+          return 1;
+        } else if (!projetsAIsNull && projetsBIsNull) {
+          return -1;
+        } else {
+          // If projets are the same, sort by createdAt in reversed order
+          const createdAtA = new Date(a.createdAt.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")).getTime();
+          const createdAtB = new Date(b.createdAt.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")).getTime();
+  
+          return createdAtB - createdAtA;
+        }
+      });
+  
+      // Log the sorted array to the console
+      console.log('Sorted AgenciesTunis:', this.AgenciesTunis);
+    });
   }
+  
+
 
   clickMe(agencyId: number) {
     this.sharedDataService.updateAgencyId(agencyId);

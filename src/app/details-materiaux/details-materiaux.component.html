@@ -182,9 +182,27 @@
       </button>
     </div>
   </div>
+  <br>
+
   <!-- mat-align-tabs = "center" -->
  <div fxLayout="column" fxLayoutAlign="center center">
-  <mat-tab-group mat-align-tabs="center" fxLayout="column" fxLayout.gt-sm="row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <mat-tab-group mat-align-tabs="center" fxLayout="column" fxLayout.gt-sm="row" [(selectedIndex)]="activeTabIndex">
     <mat-tab style="background-color: #1f1e84" *ngFor="let categories of Produit?.categoryList;">
       <!-- Category Label -->
       <div>
@@ -192,8 +210,7 @@
           <span class="my-custom-class">{{categories}}</span>
         </ng-template>
       </div>
-
-      <!-- Responsable Commercial Section -->
+  
       <div class="responsable" *ngIf="Produit?.numCommercial !== null && Produit?.emailCommercia !== null">
         <button class="btn responsableBtn">
           <mat-icon style="font-size: 20px; margin-top: 4px;">supervised_user_circle</mat-icon>
@@ -209,15 +226,22 @@
         </button>
       </div>
 
-     
+      <br>
+      <br>
 
       <!-- Subcategories Section -->
+      
       <div class="cardx">
+     
+        
         <div *ngFor="let categorie of Produit?.sous_cat;">
+          
           <div *ngIf="categories === categorie?.category">
+            
             <div class="card-group card-hover-over">
               <div class="card">
-                <img class="card-img" src="{{categorie?.image_url}}" alt="Card image" width="358" height="259">
+                
+                <img class="card-img" src="{{categorie?.image_url}}"  alt="Card image" width="358" height="259">
                 <div class="card-img-overlay">
                   <div class="card-body">
                     <h4 class="card-titre">{{categorie?.name}}</h4>
@@ -225,16 +249,93 @@
                       DÉTAILS</a>
                   </div>
                 </div>
+
+
+                
               </div>
             </div>
+            
           </div>
+          
           <br><br>
         </div>
-      </div>
+        
+      </div>  
+      <div id="nav-buttons" class="navigation-buttons" style="text-align: center;">
+        <button class="btnB btn-outline-primary btn-rounded">
+          <a class = "a" href="abhishekdana.tk">Vidéo de présentation  </a>
+        </button>
+
+            </div>
+      <br><br>
+  
+      <!-- Navigation Buttons -->
+     
     </mat-tab>
   </mat-tab-group>
-</div>
+  
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
 
 
 
@@ -297,34 +398,68 @@
 
 <!-- -->
 <style>
-  .conatiner-new {
+
+.btnB {
+  position: relative;
+    padding: 15px;
+    width: 745px;
+    max-width: 100%;
+    transition: 2s all;
+    background-color: blue;
+}
+
+.btn-outline-primary {
+  border: 1.5px solid #ffffff;
+    background: #6766d3;
+    transition-duration: .25s;
+    /* height: 41px; */
+    padding: 8px 0;
+    font-weight: 600;
+    margin: 0 0;
+    transform-style: ease-in-out;
+  
+}
+
+.btn-outline-primary:hover {
+  background: linear-gradient(to right , #00000085 , #3402e9);
+      
+  & a{
+    color : white;
   }
+}
+
+.btn-rounded {
+  border-radius: 5px;
+}
+
+.a {
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  font-family: arial;
+  color: white;
+}
 </style>
-  <div *ngIf="urlSafe!==null " >
-    <div class="conatiner-new">
-      <div class="gradient-border" id="box" >
-      
-        Vidéo de présentation
-          <!-- &nbsp; <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> -->
-          &nbsp; <i aria-hidden="true"></i>
-      
-      </div>
-      
+
+<div *ngIf="urlSafe !== null" >
+  
+  <div >
+
     
-    </div>
-    <section >
-      <div></div>
-      <div class="container">
-        <div class="background-vd">
-          <iframe class="promoVideo" *ngIf="Produit?.videoUrlProduit!==null"  [src]="urlSafe"></iframe>
-    
-    <img class="promoVideo" *ngIf="Produit?.videoUrlProduit===null || Produit?.videoUrlProduit===''"    src="assets/images/HomePage/noVideo.jpg" alt="Placeholder Image">
-          <!-- Placeholder image if no video is available -->
-        </div>
-      </div>
-    </section>
   </div>
 
+  <section>
+  
+    <div class="container">
+      <div class="background-vd">
+        <iframe class="promoVideo" *ngIf="Produit?.videoUrlProduit !== null" [src]="urlSafe"></iframe>
+
+        <img class="promoVideo" *ngIf="Produit?.videoUrlProduit === null || Produit?.videoUrlProduit === ''" src="assets/images/HomePage/noVideo.jpg" alt="Placeholder Image">
+        <!-- Placeholder image if no video is available -->
+      </div>
+    </div>
+  </section>
+</div>
 
 
 

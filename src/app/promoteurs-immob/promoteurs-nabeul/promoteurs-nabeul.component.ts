@@ -48,6 +48,24 @@ export class PromoteursNabeulComponent implements OnInit {
   ngOnInit(): void {
     this.agencieService.getAgencieNabeul().subscribe((data: any) => {
       this.AgenciesNabeul = data;
+      this.AgenciesNabeul.sort((a, b) => {
+        // Check if projets is null in a and b
+        const projetsAIsNull = a.projets === null || a.projets.length === 0;
+        const projetsBIsNull = b.projets === null || b.projets.length === 0;
+  
+        // Sort agencies with non-null projets before agencies with null projets
+        if (projetsAIsNull && !projetsBIsNull) {
+          return 1;
+        } else if (!projetsAIsNull && projetsBIsNull) {
+          return -1;
+        } else {
+          // If projets are the same, sort by createdAt in reversed order
+          const createdAtA = new Date(a.createdAt.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")).getTime();
+          const createdAtB = new Date(b.createdAt.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3")).getTime();
+  
+          return createdAtB - createdAtA;
+        }
+      });
       console.log(this.AgenciesNabeul)
     })
     this.primengConfig.ripple = true;

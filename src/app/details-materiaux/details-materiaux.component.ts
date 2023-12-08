@@ -28,6 +28,8 @@ export class DetailsMateriauxComponent implements OnInit {
   public idProduit:any
   public Produit:any
   public webSite:any
+  activeTabIndex: number = 0;
+
   public idSousCategorie:any
   public SousCategorie:any
   urlSafe:SafeResourceUrl;
@@ -129,6 +131,18 @@ scrollToNextCategory() {
 scrollToView() {
   if (this.scrollContainer && this.scrollContainer.nativeElement) {
     this.scrollContainer.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+goToPreviousTab() {
+  if (this.activeTabIndex > 0) {
+    this.activeTabIndex--;
+  }
+}
+
+goToNextTab() {
+  if (this.activeTabIndex < (this.Produit?.categoryList.length - 1)) {
+    this.activeTabIndex++;
   }
 }
 }

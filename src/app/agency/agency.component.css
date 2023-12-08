@@ -2981,6 +2981,11 @@ body {
 
   .appimage {
     width: 100%;
+    border-radius: 6px;
+    margin-top: 0px;
+    border-style: groove;
+    border: solid 3px black;
+
   }
 
   .card-img {
@@ -3016,12 +3021,12 @@ body {
 
   .Card-video {
     height: 100%;
-    width: 104%;
+    width: 100%;
     border-radius: 6px;
     position: relative;
     box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
     z-index: 1;
-    margin-left: 5px;
+    margin-left: 11px;
     margin-top: 20px;
   }
 
@@ -3419,14 +3424,14 @@ i.fab {
 @media screen and (max-width: 360px) {
   .Card-video {
     height: auto;
-    width: 110%;
+    width: 103%;
     border-radius: 6px;
     position: relative;
     box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
     z-index: 1;
     padding: 7px;
     margin-left: 8px;
-    margin-top: 16px;
+    margin-top: 16px;  
   }
 }
 
@@ -4613,7 +4618,7 @@ body {
 @media only screen and (min-device-width: 360px) and (max-device-width: 740px) and (-webkit-device-pixel-ratio: 4) and (orientation: portrait) {
   .Card-video {
     height: auto;
-    width: 110%;
+    width: 103%;
     border-radius: 6px;
     position: relative;
     box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
@@ -4627,14 +4632,13 @@ body {
 
 @media only screen and (max-width: 1060px) {
   .Card {
-    height: 287px;
-        width: 98%;
+    height: 300px;
+    width: 100%;
     border-radius: 6px;
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     z-index: 1;
-    margin-left: 21px;
-
+    margin-left: 16px;
     margin-top: 24px;
   }
 }
@@ -4931,33 +4935,29 @@ body {
   
 
   .Card{
-    height: 304px;
-    width: 142%;
+    height: 323px;
     border-radius: 6px;
+    width: 427px;
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     z-index: 1;
-    margin-left: -77px;
+    margin-left: -22px;
     margin-top: 24px;
-
-
 }
 .Card-video {
-  height: 302px;
+  height: 323px;
   width: 26rem;
   border-radius: 6px;
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   z-index: 1;
   margin-right: -55px;
-  margin-left: 101px;
+  margin-left: 44px;
   margin-top: 24px;
-
-
 }
 
 .Card-logo {
-  height: 302px;
+  height: 323px;
   width: 25rem;
   border-radius: 6px;
   position: relative;
@@ -4992,33 +4992,29 @@ body {
 
   
 
-  .Card{
+
+  .Card {
     height: 304px;
-    width: 116%;
+    /* width: 116%; */
     border-radius: 6px;
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     z-index: 1;
-    margin-left: -44px;
+    margin-left: 14px;
     margin-top: 24px;
+  }
 
 
-
-}
-.Card-video {
-  height: 302px;
-  width: 25rem;
-  border-radius: 6px;
-  position: relative;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  z-index: 1;
-  /* margin-right: -138px; */
-  margin-left: -6px;
-  margin-top: 24px;
-
-
-}
-
+  .Card-video {
+    height: 302px;
+    width: 25rem;
+    border-radius: 6px;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    z-index: 1;
+    margin-left: 9px;
+    margin-top: 24px;
+  }
 .Card-logo {
   height: 302px;
   width: 23rem;
@@ -5026,8 +5022,13 @@ body {
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   z-index: 1;
-
-  margin-left: 49px;
+  margin-left: 9px;
   margin-top: 26px;
+  }
+  
 }
-}
+
+
+
+
+

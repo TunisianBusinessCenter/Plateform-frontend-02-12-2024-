@@ -731,3 +731,65 @@
         height: 57px;
       }
       /*  */
+      :host ::ng-deep .p-carousel .p-carousel-content .p-carousel-prev {
+        width: 4rem !important;
+        z-index: 1;
+        height: 4rem !important;
+        color: rgba(0, 0, 0, 0.6) !important;
+        border: solid 5px rgb(253 253 253) !important;
+        background: #1f1e84a8 !important;
+        border-radius: 50%;
+        transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+       
+        margin: 3px -45px 1px 0px !important;
+      }
+      
+      :host ::ng-deep .p-carousel .p-carousel-content .p-carousel-next {
+        width: 4rem !important;
+        z-index: 1;
+        height: 4rem !important;
+        color: rgba(0, 0, 0, 0.6) !important;
+        border: solid 5px rgb(253 253 253) !important;
+        background: #1f1e84a8 !important;
+        border-radius: 50%;
+        transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+      
+      
+        margin: 3px 10px 2px -45px !important;
+      }
+      
+      :host ::ng-deep .pi-chevron-left:before {
+        content: "\e900";
+        color: white;
+      }
+      
+      :host ::ng-deep .pi-chevron-right:before {
+        content: "\e901";
+        color: white;
+      }
+      
+      @media only screen and (max-width: 767px) {
+        :host ::ng-deep .p-carousel .p-carousel-content .p-carousel-prev {
+          width: 2rem !important;
+          z-index: 1;
+          height: 2rem !important;
+          color: rgba(0, 0, 0, 0.6) !important;
+          border: solid 2px rgb(253 253 253) !important;
+          background: #1f1e84a8 !important;
+          border-radius: 50%;
+          transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+          margin: 3px -22px 2px 0px !important;
+        }
+        :host ::ng-deep .p-carousel .p-carousel-content .p-carousel-next {
+          width: 2rem !important;
+          z-index: 1;
+          height: 2rem !important;
+          color: rgba(0, 0, 0, 0.6) !important;
+          border: solid 2px rgb(253 253 253) !important;
+          background: #1f1e84a8 !important;
+          border-radius: 50%;
+          transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+        
+          margin: 3px 10px 2px -22px !important;
+        }
+      }

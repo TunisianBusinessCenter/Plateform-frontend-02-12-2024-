@@ -1,10 +1,106 @@
+
+<div class="main-container" >
+    <nav class="main-menu">
+        <ul>
+            <li>
+                <a routerLink="/home">
+                    <i class="fa fa-home fa-2x"></i>
+                    <span class="nav-text">
+                        Page d'accueil
+                    </span>
+                </a>
+              
+            </li>
+            <li class="has-subnav">
+                <a >
+                    <i class="fa fa-laptop fa-2x"></i>
+                    <span class="nav-text">
+                        Espace Publicitaire
+                    </span>
+                </a>
+                
+            </li>
+            <li>
+                <a routerLink="/conception/ajouterConception">
+                   <i class="fa fa-plus fa-2x"></i>
+                    <span class="nav-text">
+                        Ajouter du contenu boutique
+                    </span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a routerLink="/conception/registre">
+                   <i class="fa fa-list fa-2x"></i>
+                    <span class="nav-text">
+                        Abonnements
+                    </span>
+                </a>
+                
+            </li>
+            <li class="has-subnav">
+                <a >
+                   <i class="fa fa-folder-open fa-2x"></i>
+                    <span class="nav-text">
+                        Contact B2B
+                    </span>
+                </a>
+               
+            </li>
+            <li>
+                <a >
+                    <i class="fa fa-bar-chart-o fa-2x"></i>
+                    <span class="nav-text">
+                        Graphs and Statistics
+                    </span>
+                </a>
+            </li>
+    
+          
+            <li>
+                <a href="mailto:dcgenerale@gmail.com" >
+                    
+                     <i class="fa fa-envelope-o fa-2x"></i>
+                     <span class="nav-text">
+                         Contactez-nous
+                     </span>
+                 </a>
+             </li>
+             <li>
+                <a>
+                    <i class="fa fa-info-circle fa-2x"></i>
+                    <span class="nav-text">
+                        À Propos 
+                    </span>
+                </a>
+            </li>
+        </ul>
+    
+        <ul class="logout">
+            <li>
+               <a routerLink="conception/login">
+                     <i class="fa fa-power-off fa-2x"></i>
+                    <span class="nav-text">
+                        Logout
+                    </span>
+                </a>
+            </li>  
+        </ul>
+        &nbsp;
+    </nav>
+    
+</div>
+
+
+
+
+
 <app-navbar-carousel></app-navbar-carousel>
 
 <div class="container">
     <div class="responsive-container">
         <div class="responsive">
             <button (click)="backClicked()" type="submit" class="btn animated-border-button retour">
-                <i class="fa fa-home" aria-hidden="true"></i>
+                <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
                 Retour
             </button>
         </div>
@@ -59,6 +155,7 @@
     cursor: pointer;
 
   }
+  
 }
             @media (max-width: 768px) {
   .modal.show {
@@ -190,7 +287,7 @@
         </div>
     </ng-template>
     <button class="btn btnDevis" (click)="openVerticallyCentered(content)">
-        <span><i class="fa fa-file-archive-o" aria-hidden="true"></i>&nbsp; Demander un devis</span>
+        <span>&nbsp; Demander un devis</span>
     </button>
 </div>
 <br><br>

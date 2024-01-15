@@ -45,6 +45,7 @@ export class DetailsComponent implements OnInit {
   public idAgency: any
   public Agency: any
   displayMaximizable: boolean;
+  displayMaximizabled1: boolean;
   contactText = "";
   numText = "";
 
@@ -71,6 +72,22 @@ export class DetailsComponent implements OnInit {
   item: string;
   visitorCount: number;
   routeId: string;
+  isValid: boolean; // Do not initialize here
+
+  agencyId: any;
+  NameAgency: any;
+  AgencyID: any;
+  routerIdLink: any;
+  DetailsAgency: void;
+  description: any;
+  ProjetRealise: any;
+  ProjetEnCours: any;
+  logo_url: any;
+  ProjetDisponoble: any;
+  ProjetDispo: any;
+  ProjetId: any;
+  check: any;
+  foundAgency: any;
   constructor(private activatedRoute: ActivatedRoute,
     private agencieService: AgenciesService,
     private projetService: ProjetsService,
@@ -94,18 +111,42 @@ export class DetailsComponent implements OnInit {
 
     this.idAgency = this.activatedRoute.snapshot.paramMap.get('id')
 
-    this.agencieService.getAgencieById(this.idAgency).subscribe(data => {
+    this.agencieService.getAgencieById(this.routerIdLink).subscribe(data => {
       this.Agency = data;
+      
       console.log("agencyId", this.Agency)
     }),
+    this.agencieService.getAgencieTunis().subscribe((data: any[]) => {
+      // Assuming data is an array of agencies
+      console.log('foundAgency :',data)
+      let foundAgency = data.find(agency => agency.name === this.NameAgency);
+      console.log('foundAgency :',foundAgency)
 
-      this.agencieService.getAllAgencies().subscribe((data: any) => {
+      if (foundAgency) {
+        this.agencyId = foundAgency.id;
+        this.description = foundAgency.description
+        this.logo_url = foundAgency.logo_url
 
-        this.images = data;
-        console.log("allAgency", this.images)
-      })
-
-
+        // this.ProjetEnCours = foundAgency.description
+        this.ProjetEnCours = foundAgency?.projets
+        this.check =this.ProjetEnCours
+        console.log('disponible',this.check)
+        if (this.check) {
+          this.isValid= true; // Initialize it to false or true based on your initial condition
+          console.log('disponible',this.isValid)
+        } 
+        this.ProjetId=this.ProjetEnCours.id
+        console.log('cours',this.ProjetEnCours)
+        this.ProjetDispo = foundAgency?.projets.filter(project => project.status === 'DISPONIBLE');
+        console.log('dispo',this.ProjetDispo)
+        console.log("Found Agency", this.agencyId);
+        this.routerIdLink = this.agencyId;
+      } else {
+        console.log("Agency not found");
+        // Handle the case when the agency is not found
+      }
+    });
+  
     //   this.agencieService.getAgencieTunis().subscribe((images: any) => {
 
     //     this.images = images;
@@ -115,6 +156,7 @@ export class DetailsComponent implements OnInit {
     this.projetService.getProjetById(this.idProjet).subscribe(data => {
       console.log(data)
       this.Projet = data;
+      this.NameAgency =this.Projet.agencyName
     })
     this.projetService.getListProjet().subscribe((data) => {
       this.agenciesProjet = data;
@@ -149,6 +191,13 @@ export class DetailsComponent implements OnInit {
   }
   showMaximizableDialog() {
     this.displayMaximizable = true;
+  
+
+  }
+  showMaximizableDialog1() {
+    this.displayMaximizabled1 = true;
+  
+
   }
 
 
@@ -173,6 +222,16 @@ export class DetailsComponent implements OnInit {
       return `il y a ${duration.years()} ans`;
     }
   }
+  showSubMenu: boolean = false;
 
-
+    toggleSubMenu() {
+        this.showSubMenu = !this.showSubMenu;
+    }
+    refreshPage(): void {
+      // Add a delay of 2 seconds (2000 milliseconds) before reloading the page
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
+    }
+   
 }

@@ -49,7 +49,7 @@
 
 
 
-<ngb-carousel (slide)="slideActivate($event)" *ngIf="role === 'promoteur-immobilieres' && (name !== 'MEUBLE DOUGAZ' && name !== 'BERGACHI MEUBLES' && name !== 'LA PLAINE')">
+<ngb-carousel (slide)="slideActivate($event)" *ngIf="role === 'promoteur-immobilieres' && (name !== 'MEUBLE DOUGAZ' && name !== 'BERGACHI MEUBLES' && name !== 'LA PLAINE' )">
 	<ng-template ngbSlide>
 	  <div class="picsum-img-wrapper">
 		<img style="width: 100%" [src]="getSelectedImagePathPromo()" alt="Angular Carousel 2">

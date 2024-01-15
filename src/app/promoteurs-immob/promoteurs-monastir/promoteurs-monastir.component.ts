@@ -11,7 +11,7 @@ export class PromoteursMonastirComponent implements OnInit {
   public AgenciesMonastir:any
   responsiveOptions
 
-  constructor(private agencieService: AgenciesService) {
+  constructor(private agencieService: AgenciesService , private sharedDataService:AgenciesService) {
 
     this.responsiveOptions = [
       {
@@ -65,6 +65,9 @@ export class PromoteursMonastirComponent implements OnInit {
       });
       console.log(this.AgenciesMonastir)
     })
+  }
+  clickMe(agencyId: number) {
+    this.sharedDataService.updateAgencyId(agencyId);
   }
 
 }

@@ -92,7 +92,7 @@
   .appname {
     vertical-align: inherit;
     white-space: nowrap;
-    margin-left: -50px;
+    margin-left: -66px;
     font-size: 15px;
     font-weight: bold;
     text-decoration: underline;
@@ -403,7 +403,7 @@
 }
 
 .type {
-  font-size: 13px;
+  font-size: 16px;
   margin-bottom: 5px;
   margin-top: -3px;
   font-weight: 700;
@@ -411,6 +411,7 @@
   margin-left: -4px;
   min-width: 347px;
   letter-spacing: 3px;
+
 }
 
 .typeP {
@@ -426,7 +427,7 @@
 /* Styles pour les écrans de largeur maximale de 768 pixels */
 @media (max-width: 768px) {
   .type {
-    font-size: 11px;
+    font-size: 13px;
     margin-bottom: -2px;
     margin-top: -14px;
     max-width: auto;
@@ -576,7 +577,7 @@
 }
 
 .pgalleria {
-  height: 402px;
+  height: 414px;
   width: 100%;
   top: 39px;
   display: block;
@@ -585,7 +586,7 @@
 
 @media (max-width: 5000px) {
   .pgalleria {
-    height: 100%;
+    height: 414px;
     width: 89%;
     box-shadow: -1px -1px 5px #d6a5a5ba;
     display: block;
@@ -704,10 +705,11 @@ appnameUrbat {
 }
 
 .responsive-iframe {
-  width: 77%;
+  width: 88%;
   /* Par défaut, occupe 100% de la largeur du conteneur parent */
   height: 305px;
   border: none;
+  margin-top: -30px;
 }
 
 
@@ -717,7 +719,7 @@ appnameUrbat {
   .responsive-iframe {
     width: 245%;
     height: 207px;
-    margin-left: -58px;
+    margin-left: -75px;
     margin-top: -28px;
   }
 }
@@ -767,7 +769,18 @@ appnameUrbat {
   .container23 {
     flex-direction: column;
     align-items: center;
-    margin-left: -74px;
+    margin-left: -52px;
+    margin-top: 3px;
+    width: 204%;
+    margin-bottom: 96px;
+
+  }
+}
+@media (max-width: 414px) {
+  .container23 {
+    flex-direction: column;
+    align-items: center;
+    margin-left: -63px;
     margin-top: 3px;
     width: 204%;
     margin-bottom: 96px;
@@ -874,6 +887,8 @@ textarea:focus {
     color: white;
     width: 382%;
     margin-left: -80px;
+    height: 44px;
+    border-radius: 4px;
   }
 }
 
@@ -918,14 +933,19 @@ textarea:focus {
 
 
 .disponible {
-  margin-bottom: 30px;
+ 
   font-weight: 500;
   line-height: 1.2;
   color: #333;
   font-size: 21px;
-  font-weight: 500;
+  
   float: right;
   margin-left: 0px;
+  margin-bottom: 30px;
+  font-weight: 500;
+  
+  color: #333;
+  font-size: 25px;
 }
 
 /* Styles pour les écrans de largeur maximale de 768 pixels */
@@ -1039,10 +1059,10 @@ textarea:focus {
 
 .responsiveP {
   border: solid 1px black;
-  margin: 45px 0 0px 0px;
+  margin: 78px 0 0;
   height: 419px;
   font-family: arial;
-  box-shadow: -2px -2px 6px 1px rgb(0 0 0 / 20%);
+  box-shadow: -2px -2px 6px 1px #0003;
   border: 1px solid #ccc;
 }
 
@@ -1237,6 +1257,8 @@ textarea:focus {
     color: white;
     width: 230%;
     margin-left: -73px;
+    height: 44px;
+    border-radius: 4px;
 }
   }
   @media (max-width: 768px) and (min-height:1024px) {
@@ -1247,6 +1269,7 @@ textarea:focus {
       color: white;
       width: 219%;
       margin-left: -153px;
+      
   }
   }
 /* @media (max-width: 912px) and (max-height:1368px) {
@@ -1287,3 +1310,178 @@ textarea:focus {
       flex: 1 0 41.666667%;
   }
   } */
+  .Card-logo {
+
+    height: 336px;
+    width: 30rem;
+    border-radius: 6px;
+    position: relative;
+    box-shadow: rgb(0 0 0 / 32%) 0px 3px 8px 2px;
+    z-index: 1;
+    padding: 7px;
+    margin-left: 66px;
+    border: solid 1px #808080a3;
+  
+  }
+  /* side css */
+
+  
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+.fa-2x {
+font-size: 2em;
+}
+.fa   {
+position: relative;
+display: table-cell;
+width: 60px;
+height: 60px;
+text-align: center;
+vertical-align: middle;
+font-size:20px;
+color: white;
+}
+
+
+.main-menu:hover,nav.main-menu.expanded {
+width:250px;
+overflow:visible;
+}
+
+.main-menu {
+background:#1f1e84;
+border-right:1px solid ;
+position:fixed;
+/* top: 679px; */
+bottom:0;
+height:100%;
+left:0;
+width:60px;
+overflow:hidden;
+-webkit-transition:width .05s linear;
+transition:width .05s linear;
+-webkit-transform:translateZ(0) scale(1,1);
+z-index:5;
+}
+
+.main-menu>div>ul {
+margin:92px 0;
+}
+.main-menu>div>ul>li {
+  margin-top: 19px;
+}
+
+.main-menu li {
+position:relative;
+display:block;
+width:250px;
+}
+
+.main-menu li>a {
+position:relative;
+display:table;
+border-collapse:collapse;
+border-spacing:0;
+color:#999;
+ font-family: arial;
+font-size: 14px;
+text-decoration:none;
+-webkit-transform:translateZ(0) scale(1,1);
+-webkit-transition:all .1s linear;
+transition:all .1s linear;
+  
+}
+
+.main-menu .nav-icon {
+position:relative;
+display:table-cell;
+width:60px;
+height:36px;
+text-align:center;
+vertical-align:middle;
+font-size:18px;
+}
+
+.main-menu .nav-text {
+position:relative;
+display:table-cell;
+vertical-align:middle;
+width:190px;
+color: white;
+font-weight: 600;
+font-size: 13px;
+}
+
+.main-menu>ul.logout {
+position:absolute;
+left:0;
+bottom:0;
+}
+
+.no-touch .scrollable.hover {
+overflow-y:hidden;
+}
+
+.no-touch .scrollable.hover:hover {
+overflow-y:auto;
+overflow:visible;
+}
+
+a:hover,a:focus {
+text-decoration:none;
+}
+
+nav {
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+-o-user-select:none;
+user-select:none;
+}
+
+nav ul,nav li {
+outline:0;
+margin:0;
+padding:0;
+}
+.main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
+color:#fff;
+background-color:#5fa2db;
+}
+.area {
+float: left;
+background: #e2e2e2;
+width: 100%;
+height: 100%;
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
+}
+
+/* ::ng-deep .p-dialog{
+  left: 350%;
+} */
+@media only screen and (max-width: 622px) {
+  .main-menu {
+    background: #1f1e84;
+    border-right: 1px solid;
+    position: fixed;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    width: 46px;
+    overflow: hidden;
+    transition: width .05s linear;
+    -webkit-transform: translateZ(0) scale(1,1);
+    z-index: 5;
+  }
+}
+@media only screen and (max-width: 622px) {
+  .fa {
+right: 6px;
+font-size: 17px;
+  }
+}

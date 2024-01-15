@@ -85,6 +85,11 @@ export class AgencyComponent implements OnInit, AfterViewInit {
   urlSafe2: SafeResourceUrl;
 
   title = 'firstApp';
+  AgencyP: number;
+  ProjetEnCours: any;
+  ProjetDispo: any;
+  ProduitEnCours: any;
+  ProduitDispo: any;
 
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -106,6 +111,9 @@ export class AgencyComponent implements OnInit, AfterViewInit {
       this.Agency = data;
       this.reverseAgPromoteurs = this.Agency?.projets?.reverse();
     })
+       // Log the dynamically generated routerLink to the console
+       const routerLink = ['/', this.Agency?.id];
+       console.log('Generated routerLink:', routerLink);
     this.responsiveOptions = [
       {
         breakpoint: '2700px',
@@ -160,6 +168,24 @@ export class AgencyComponent implements OnInit, AfterViewInit {
     this.agencieService.getAgencieById(this.idAgency).subscribe(data => {
       console.log(data)
       this.Agency = data;
+      this.AgencyP = this.Agency?.projets;
+      console.log(this.AgencyP,'ici')
+      console.log(this.Agency,'ici')
+      let result;
+
+if (this.Agency.projets) {
+  result = this.Agency.projets;
+} else {
+  result = this.Agency.produits;
+}
+      this.ProjetEnCours  = result.filter(project => project.status === 'EN COURS');
+      // this.ProduitEnCours  = result.filter(project => project.status === 'EN COURS');
+      this.ProduitEnCours  = result
+      
+      console.log('cours',this.ProduitEnCours)
+      this.ProjetDispo = result.filter(project => project.status === 'DISPONIBLE');
+      this.ProduitDispo = result.filter(project => project.status === 'VENDU');
+
       // this.reverseAgPromoteurs= this.Agency.projets.reverse();
 
       //Video_Url2
@@ -351,7 +377,20 @@ export class AgencyComponent implements OnInit, AfterViewInit {
    
 
 //   }
+
 checkRoute() {
-console.log('testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest')
+
+    window.open(this.Agency.videoUrl, '_blank');
+  
 }
+
+
+getRouterLink(): string[] {
+  // Log the dynamically generated routerLink to the console
+  const routerLink = ['/', this.Agency?.id];
+  console.log('Generated routerLink:', routerLink);
+  
+  return routerLink;
+}
+
 }

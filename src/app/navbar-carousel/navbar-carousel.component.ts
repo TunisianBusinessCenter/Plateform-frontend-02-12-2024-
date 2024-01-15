@@ -53,6 +53,7 @@ agencyData: any;
   ];
   // Variable to store the selected image index
   selectedImageIndex: number;
+  banner: any;
  constructor(public router:Router,
   private agencyService: AgenciesService, private route:ActivatedRoute,private as:AgenciesService,private sharedDataService: AgenciesService){
         this.check = false;
@@ -60,7 +61,13 @@ agencyData: any;
   }
   
   ngOnInit(): void {
-  
+    // setTimeout(() => {
+    //   this.getById();
+    // }, 5000);
+    //   this.route.paramMap.subscribe((params: ParamMap) => {
+    //     this.currentId = params.get('id');
+    //     console.log('Current ID:', this.currentId);
+    //   });
     this.selectedImageIndex = Math.floor(Math.random() * this.images.length);
     this.selectedImageIndex = Math.floor(Math.random() * this.imagesPromo.length);
 
@@ -144,6 +151,9 @@ this.agencyService.getAllAgencies().subscribe(data => {
             this.role=agencyData.role
             this.id=agencyData.id
             this.categorie=agencyData.categorie
+            this.banner=agencyData.mobile_apps
+            this.banner=agencyData.mobile_apps[0].mobile_cover_image_url;
+            console.log('Agency Banner:', this.banner);
 
             console.log('Agency Name:', this.name);
             console.log('Agency Role:', this.role);

@@ -45,6 +45,16 @@ export class VillaDetailsComponent implements OnInit {
           numVisible: 1
       }
   ];
+  AgencyProjet: Object;
+  agencyId: any;
+  description: any;
+  logo_url: any;
+  ProjetEnCours: any;
+  check: any;
+  isValid: boolean;
+  ProjetId: any;
+  ProjetDispo: any;
+  routerIdLink: any;
   constructor(private projetService:ProjetsService,
     private agencieService:AgenciesService,
     private activatedRoute: ActivatedRoute,
@@ -58,6 +68,51 @@ export class VillaDetailsComponent implements OnInit {
     public email_promoteur: String ='' ;
 
   ngOnInit(): void {
+
+    this.agencieService.getAgencieTunis().subscribe((data: any[]) => {
+      // Assuming data is an array of agencies
+      console.log('foundAgency :',data)
+      let foundAgency = data.find(agency => agency.name === this.AgencyProjet);
+      console.log('foundAgency :',foundAgency)
+
+      if (foundAgency) {
+        this.agencyId = foundAgency.id;
+        this.description = foundAgency.description
+        this.logo_url = foundAgency.logo_url
+
+        // this.ProjetEnCours = foundAgency.description
+        this.ProjetEnCours = foundAgency?.projets
+        this.check =this.ProjetEnCours
+        console.log('disponible',this.check)
+        if (this.check) {
+          this.isValid= true; // Initialize it to false or true based on your initial condition
+          console.log('disponible',this.isValid)
+        } 
+        this.ProjetId=this.ProjetEnCours.id
+        console.log('cours',this.ProjetEnCours)
+        this.ProjetDispo = foundAgency?.projets.filter(project => project.status === 'DISPONIBLE');
+        console.log('dispo',this.ProjetDispo)
+        console.log("Found Agency", this.agencyId);
+        this.routerIdLink = this.agencyId;
+      } else {
+        console.log("Agency not found");
+        // Handle the case when the agency is not found
+      }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     this.projetService.getListProjet().subscribe((data:any) => {
       this.allProject = data
       console.log(this.allProject)
@@ -68,12 +123,14 @@ export class VillaDetailsComponent implements OnInit {
       
       // this.testpiecess(this.testPieceName2,this.testPieceName)
       }
+      
     })
     this.idProjet = this.activatedRoute.snapshot.paramMap.get('id')
 
     this.projetService.getProjetById(this.idProjet).subscribe(data => {
 
       this.Projet = data;
+      this.AgencyProjet = this.Projet.agencyName;
       console.log("projet",this.Projet);
       this.email_promoteur= this.Projet.emailCommercial ;
       console.log("email promoteur",this.email_promoteur);
@@ -171,6 +228,11 @@ export class VillaDetailsComponent implements OnInit {
       }
     }
   }
-
+  displayMaximizable: boolean;
+  showMaximizableDialog() {
+    this.displayMaximizable = true;
+    
+  }
+  
 }
 

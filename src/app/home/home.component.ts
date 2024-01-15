@@ -1,11 +1,12 @@
 import { MagazineService } from './../services/magazine/magazine.service';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild,Renderer2  } from '@angular/core';
 import { AgenciesService } from '../services/agencies/agencies.service';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { NavigationEnd, Router } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { DataServiceService } from '../services/conteur/data-service.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 interface Duree {
   name: string;
   code: string;
@@ -63,11 +64,16 @@ export class HomeComponent implements OnInit {
   agencies: any;
   firstMagazin: any;
   constructor(private magazineservice: MagazineService,
+    private breakpointObserver: BreakpointObserver,
+
+    private renderer: Renderer2,
     private agencieService: AgenciesService,
     private router: Router,
     private meta: Meta,
     private title: Title,
     private dataService: DataServiceService) {
+     
+
       this.getDataFromLocalStorage();
       this.lastItem4 = this.getLastItemFromData();
       this.getDataFromLocalStorage1()
@@ -135,6 +141,16 @@ export class HomeComponent implements OnInit {
     this.getDataFromLocalStorage7()
     this.getDataFromLocalStorage8()
 
+     // ... other initialization logic ...
+
+    // Determine the scroll offset based on device mode
+    const scrollOffset = this.breakpointObserver.isMatched(Breakpoints.Handset) ? 400 : 1100;
+
+    // Delay the scrolling by 3 seconds
+    setTimeout(() => {
+      this.scrollDown(scrollOffset);
+    }, 1000);
+
 
     this.images = [
       { edition: 'Edition 210', image: 'https://tunisie-immob.s3.eu-west-3.amazonaws.com/YS0PoED210.jpg', url: 'https://www.docdroid.net/ulLZVvv/ed-210-pdf', clickCounter: this.clickCounter5 },
@@ -186,8 +202,8 @@ export class HomeComponent implements OnInit {
 
     //    });
     //methode2:
-    const element = document.getElementById("box");
-    element.scrollIntoView({ block: "start", behavior: "auto" });
+    // const element = document.getElementById("box");
+    // element.scrollIntoView({ block: "start", behavior: "auto" });
 
   }
   private _filter(value: string): string[] {
@@ -377,5 +393,17 @@ export class HomeComponent implements OnInit {
 
     });
   }
+  private scrollDown(offset: number): void {
+    // Scroll the window down by the specified offset
+    window.scrollTo({ top: offset, behavior: 'auto' });
+  }
+  chunkArray(array: any[], size: number): any[] {
+    const chunkedArray = [];
+    for (let i = 0; i < array.length; i += size) {
+      chunkedArray.push(array.slice(i, i + size));
+    }
+    return chunkedArray;
+  }
+  
 }
 

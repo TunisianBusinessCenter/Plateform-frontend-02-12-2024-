@@ -58,4 +58,8 @@ export class AgenciesService {
   updateAgencyId(agencyId: number) {
     this.agencyIdSource.next(agencyId);
   }
+  processData(data: any) {
+    // Your logic to process the data goes here
+    console.log('Processing data in the service:', data);
+  }
 }

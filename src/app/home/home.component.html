@@ -1,5 +1,5 @@
 <app-navbar-carousel-home></app-navbar-carousel-home>
-
+<app-sidebar></app-sidebar>
 <div class="allAgSearch">
 	<!-- <form class="form-search">
 			<mat-form-field >
@@ -167,11 +167,11 @@ listContent.forEach(item => {
 		<div>
 			<h2 class="responsive-font-example" style="font-weight: bold">
 				LES DERNIÈRES ÉDITIONS DU
-				TUNISIE IMMOBILIER MAGAZINE
+				TUNISIE IMMOBILIER DIGITALE
 			</h2>
-			<p class="mb-md-0 mb-6 pText" style="color:#696969;">
-				La première revue gratuite d’annonces immobilières en Tunisie
-			</p>
+			<h4 class="mb-md-4 mb-8  pText" style="color:#696969;    width: 254px;">
+				La première revue digitale d’annonces immobilières en Tunisie
+			</h4>
 		</div>
 		<hr style="color:#1f1e84; font-size: 18px;color: #1f1e84;
 						border-top: 3px solid #1f1e84;border-radius:5px;width:58px;display: block;
@@ -270,11 +270,21 @@ listContent.forEach(item => {
 										Télecharger &nbsp; <i class="fa fa-download" aria-hidden="true"
 											style="margin-top: 3px;"></i>
 									</a>  -->
+								
 
-									<div class="btn-number">
-										<button class="NTelechargernt">N. Télechargement</button>
-										<button class="nombre">{{AgencyMagazine?.nbr_telechargement}}</button>
-									</div>
+									<a type="submit"
+										style="margin-top: 2%;
+										text-decoration: none;
+										margin-top: -9px;
+										/* font-size: 14px; */
+										margin-bottom: 3px;
+										font-weight: 800;
+										background-color: #8B0000;
+										border: none;
+										"
+										class="btn btn-primary" href="{{AgencyMagazine?.download_link}}">
+										N. Télechargement &nbsp;:  {{AgencyMagazine?.nbr_telechargement}} 
+									</a>
 
 								</div>
 								
@@ -870,21 +880,4 @@ listContent.forEach(item => {
 					et vous acceptez <span style="text-decoration: underline;">la politique de
 						protection des données personnelles</span> </p>
 			</div>
-			<div class="modal-footer valider">
-				
-				<!-- <p-button href="mailto:relation.client@attijaribank.com.tn" icon="pi pi-check" label="Contacter" class="p-button-text">
-					
-				</p-button> -->
-				 <a class="contacterBtn" href="mailto:stb@stb.com.tn?subject=Obtenir une offre de financement&body={{contactText}}">
-				 <i class="pi pi-check">&nbsp;</i>Contacter</a>
-				<a href="" class="fermerBtn" icon="pi pi-times" (click)="displayMaximizable5=false"
-					><i class="pi pi-times">&nbsp;</i>Fermer</a>
-			</div>
-		</div>
-
-	</p-dialog>
-
-<!--	<hr style="margin-block-start: 2%"> -->
-</div>
-
-
+		

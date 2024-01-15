@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Agencies } from 'src/app/model/Agencies';
 import { AgenceImmobilieresService } from 'src/app/services/agence-immob/agence-immobilieres.service';
 import { Injectable } from '@angular/core';
+import { Location } from '@angular/common';
 
 interface Role {
   value: string;
@@ -72,7 +73,7 @@ export class AjouterConceptionComponent {
   ];
 
 
-  constructor(private agenceImmobServices: AgenceImmobilieresService, private http: HttpClient) {
+  constructor(private agenceImmobServices: AgenceImmobilieresService, private http: HttpClient,private _location:Location) {
     this.agencieData = new Agencies;
 
 
@@ -194,7 +195,9 @@ export class AjouterConceptionComponent {
     };
   }
   
-
+  backClicked() {
+    this._location.back();
+  }
 }
 
 

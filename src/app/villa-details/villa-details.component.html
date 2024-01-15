@@ -1,12 +1,185 @@
-<!-- 
-<button (click)="backClicked()" type="submit" class="btn animated-border-button ">
-    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-    Retour
-</button> -->
+<!-- wrapper -->
+
+<div class="main-container">
+	<nav class="main-menu">
+		<div>
+			<li>
+				<a   [routerLink]="'/agency/' + routerIdLink">
+					<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+	
+					<span class="nav-text">
+									<p>{{ Projet?.agencyName }}</p>
+	
+					</span>
+				</a>
+			  
+			</li>
+			<ul>
+				<li>
+					<a routerLink="/home">
+						<i class="fa fa-home fa-2x"></i>
+						<span class="nav-text">Page d'accueil</span>
+					</a>
+				</li>
+
+				<li class="dropdown">
+					<a [routerLink]="'/agency/' + routerIdLink">
+						<i class="fa fa-book fa-2x"></i>
+						<span class="nav-text">Nos projets</span>
+					</a>
+					<div class="dropdown-content" >
+						<a *ngIf="ProjetEnCours?.length > 0" >En cours</a>
+						
+
+						<div class="submenu" *ngFor="let project of ProjetEnCours">
+
+							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="['/details', project?.id]">
+								{{ project?.name }}
+							</a>
+						</div>
+					
+						<a *ngIf="ProjetDispo?.length > 0" >Disponible</a>
+						
+						<div class="submenu" *ngFor="let project of ProjetDispo ; index as i">
+	
+							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="'/details/' + project.id">
+								{{ project?.name }}
+	
+							</a>
+
+						</div>
+					</div>
+				</li>
+				<style>
+					.show-subnav {
+    display: block;
+}
+				</style>
+
+				<li>
+					<a routerLink="/conception/ajouterConception">
+						<i class="fa fa-plus fa-2x"></i>
+						<span class="nav-text">Ajouter du contenu boutique</span>
+					</a>
+				</li>
+
+				<li class="dropdown">
+					<a routerLink="/conception/registre">
+						<i class="fa fa-envelope fa-2x"></i>
+						<span class="nav-text">Contacter nous</span>
+					</a>
+					
+				</li>
+				
+				
+<style>
+	/* Initially hide the dropdown content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1f1e84;
+    min-width: 160px;
+	
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+}
+.dropdown-content > a {
+	margin: 0px 23px;
+    font-style: none;
+    transform-style: none;
+    color: yellow;
+}
+
+/* Show the dropdown content when the parent is hovered */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Style the dropdown options as blocks with margin */
+.dropdown-content .submenu {
+    padding: 10px; /* Adjust the padding as needed */
+}
+
+.dropdown-content .submenu a {
+	display: block;
+    font-size: 9px;
+    width: 196px;
+    margin: -7px 11px;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    background-color: rgb(10, 10, 211)e84;
+    transition: background-color 0.3s;
+    border: solid 1px rgb(255 255 255 / 16%);
+    border-radius: 7px;
+}
+
+/* Add a little margin between the dropdown options */
+.dropdown-content .submenu a + a {
+    margin-top: 5px; /* Adjust the margin as needed */
+	
+}
+
+/* Add hover effect */
+.dropdown-content .submenu a {
+
+    font-size: 10px; /* Set the initial font size */
+    transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease; /* Add smooth transition for both background color and font size */
+}
+
+.dropdown-content .submenu a:hover {
+    font-size: 11px; /* Change font size on hover */
+	color: yellow;
+	border: solid 1px gray;
+}
+
+@media only screen and (max-width: 767px) {
+  
+
+    .dropdown-content .submenu a:hover {
+		transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease; /* Add smooth transition for both background color and font size */
+
+    }
+}
+</style>			
+
+				<li>
+					<a (click)="showMaximizableDialog()">
+						<i class="fa fa-info-circle fa-2x"></i>
+						<span class="nav-text">A propos</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		&nbsp;
+	</nav>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <app-navbar-carousel></app-navbar-carousel>
 
 <button type="submit" class="animated-border-button " (click)=" backClicked()">
-    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    <!-- <i class="fa fa-arrow-left" aria-hidden="true"></i> -->
     Retour
 </button>
 <main id="content">
@@ -62,10 +235,10 @@
                                             <mat-icon class="background">apps</mat-icon>
                                         </div>&nbsp;&nbsp;
                                         <div style="display: flex; align-items: center;margin-top: 13px;">
-                                            <p class="type">TYPE APPARTEMENT : </p>
+                                            <p class="type">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;{{piece?.type}} </p>
 
                                             <div style="display: flex; align-items: center;">
-                                                <p class="typeP">{{piece?.type}}</p>
+                                                <!-- <p class="typeP">{{piece?.type}}</p> -->
                                             </div>
                                         </div>
                                     </div>
@@ -76,11 +249,14 @@
                                             <mat-icon class="background">open_with</mat-icon>
                                         </div>&nbsp;&nbsp;
                                         <div style="display: flex; align-items: center;margin-top: 13px;">
-                                            <p class="type">SURFACE D'APPARTEMENT : </p>
+                                            <p class="type" [ngStyle]="{'font-size': piece?.surface?.length > 30 ? '14px' : '16'}">
+                                                SURFACE &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{piece?.surface}} (M²)
+                                              </p>
+                                              
 
-                                            <div style="display: flex; align-items: center;">
-                                                <p class="typeP">{{piece?.surface}} (M²)</p>
-                                            </div>
+                                            <!-- <div style="display: flex; align-items: center;">
+                                                <p class="typeP"></p>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <br>
@@ -90,14 +266,14 @@
                                             <mat-icon class="background">account_balance_wallet</mat-icon>
                                         </div>&nbsp;&nbsp;
                                         <div style="display: flex; align-items: center;margin-top: 13px;">
-                                            <p class="type">PRIX APPARTEMENT : </p>
+                                            <p style="text-transform: capitalize !important;"  class="type">PRIX &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;{{piece?.prixMdt}} (Mdt) </p>
 
-                                            <div style="display: flex; align-items: center;">
+                                            <!-- <div style="display: flex; align-items: center;">
                                                 <p class="typeP">
                                                     {{piece?.prixMdt}}
 
                                                 </p>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
 
@@ -156,8 +332,8 @@
                                                     <p class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
                                                         <ng-container *ngIf="piece?.description">
                                                             <ng-container
-                                                                *ngFor="let sentence of piece?.description.split('.')">
-                                                                {{ sentence.trim() }}.
+                                                                *ngFor="let sentence of piece?.description.split(',')">
+                                                                {{ sentence.trim() }}
                                                                 <hr style="    margin: 4px 0;
                                                         color: inherit;
                                                         border: 0;
@@ -174,9 +350,25 @@
 
                                 </div>
                                 <div class="col-7 classcol5">
-                                    <div class="row " style="margin-bottom: 11px;">
-                                        <div class="col-6">
-                                            <h1 class="piecename">{{piece?.name}}</h1>
+                                    <style>
+#cl{
+    margin-bottom: 11px;
+                                    width: 92%;
+                                    margin-left: 43px;
+}
+@media (max-width: 768px) {
+  #cl {
+    font-size: 13px;
+    margin-right: -86px;
+    margin-top: 1px;
+    margin-left: -0
+  }
+}
+
+                                    </style>                                 
+                                    <div class="row " id="cl" >
+                                        <div class="col-6 ">
+                                            <h1 class="appname">{{ piece?.name | lowercase }}</h1>
                                         </div>
                                         <br> <br> <br>
                                         <div class="col-6">
@@ -185,8 +377,14 @@
                                         </div>
 
                                     </div>
-
-
+                                  
+<!-- 
+                                    <div style="display: flex;    display: flex;
+                                    justify-content: space-between;
+                                    margin-bottom: 19px;">
+                                        <h2 style="    margin-left: -53px;">titre 1</h2>
+                                        <h2 style="    margin-right: -80px;">titre 2</h2>
+                                    </div> -->
 
                                     <p-galleria [value]="piece?.photos" [responsiveOptions]="responsiveOptions"
                                         [containerStyle]="{'max-width': '800px'}" [numVisible]="3">
@@ -286,4 +484,6 @@
         </div>
     </div>
 </div>
-<br><br>
+<br>
+<br>
+

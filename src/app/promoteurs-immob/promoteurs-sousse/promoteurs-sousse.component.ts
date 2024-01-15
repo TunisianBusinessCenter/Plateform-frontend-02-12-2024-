@@ -14,7 +14,7 @@ export class PromoteursSousseComponent implements OnInit {
 
   responsiveOptions
 
-  constructor(private agencieService: AgenciesService) {
+  constructor(private agencieService: AgenciesService, private sharedDataService: AgenciesService) {
     this.responsiveOptions = [
       {
         breakpoint: '2000px',
@@ -100,6 +100,8 @@ export class PromoteursSousseComponent implements OnInit {
   //   });
   // }
 
-
+  clickMe(agencyId: number) {
+    this.sharedDataService.updateAgencyId(agencyId);
+  }
 
 }

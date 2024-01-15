@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class SidebarComponent implements OnInit {
 
   displayMaximizable:boolean
-  constructor(public router:Router) { }
+  constructor(public router:Router,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
@@ -24,4 +24,15 @@ slideActivate(ngbSlideEvent: NgbSlideEvent) {
   console.log(NgbSlideEventSource.ARROW_LEFT);
   console.log(NgbSlideEventSource.ARROW_RIGHT);
 }
+showNavigation(): boolean {
+  // Get the current full route path
+  const currentPath = this.route.snapshot['_routerState'].url;
+
+  // Check if the current path starts with the specified routes
+  return currentPath.startsWith('/details/') || currentPath.startsWith('/agency/' ) || currentPath.startsWith('/villa-details/' );
 }
+
+
+
+}
+

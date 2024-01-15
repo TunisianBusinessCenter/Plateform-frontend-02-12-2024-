@@ -1,4 +1,248 @@
+<!-- wrapper -->
 
+
+
+
+
+
+
+
+
+<!-- <div class="main-container" *ngIf="Agency?.role==='promoteur-immobilieres'"	 > -->
+	<div class="main-container" 	 >
+		<nav class="main-menu">
+			<style>
+				.banner {
+				  text-align: center;
+				  padding: 10px;
+				  background-color: #434388; /* Set your desired background color */
+				  color: #fff; /* Set the text color */
+				  font-size: 16px; /* Adjust the font size */
+				}
+			  
+				.logo-container {
+				  text-align: center;
+				  padding: 10px;
+				  border-radius: 5%;
+				  overflow: hidden;
+				  background-color: #fff;
+				}
+			  
+				.logo-container img {
+				  max-width: 100%;
+				  height: auto;
+				  border-radius: 40%;
+				}
+			  
+				.hr {
+				  width: 20px;
+				  height: 20px;
+				  background-color: white;
+				}
+			  </style>
+			  
+		
+			
+			<li>
+				<a  >
+					<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+	
+					<span class="nav-text">
+									<p>{{ Agency?.name }}</p>
+	
+					</span>
+				</a>
+			  
+			</li>
+		   
+		   <div>
+			<hr>
+	<hr>
+			
+			   <ul>
+			
+				<li>
+					<a  routerLink="/home">
+						<i class="fa fa-home fa-2x"></i>
+						<span class="nav-text">
+							Page d'accueil 
+						</span>
+					</a>
+				  
+				</li>
+			   
+				<li class="dropdown">
+					<a [routerLink]="'/agency/' + idAgency">
+						<i class="fa fa-book fa-2x"></i>
+						<span class="nav-text">Nos projets</span>
+					</a>
+					<!-- <div class="dropdown-content" >
+						<a *ngIf="ProjetEnCours.length > 0 || ProduitEnCours.length > 0">En cours</a>
+	
+						<div class="submenu" *ngFor="let project of ProjetEnCours">
+	
+							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="['/details', project.id]">
+								{{ project.name }}
+	
+							</a>
+						</div>
+	
+						<a *ngIf="ProjetDispo.length > 0">Disponible</a>
+						<div class="submenu" *ngFor="let project of ProjetDispo ; index as i">
+	
+							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="'/details/' + project.id">
+								{{ project.name }}
+	
+							</a>
+						</div>
+	
+					</div> -->
+					<div class="dropdown-content" *ngIf="Agency?.role==='materiaux-construction'">
+						<a *ngIf=" ProduitEnCours.length > 0">Produits</a>
+	
+						<div class="submenu" *ngFor="let project of ProduitEnCours">
+	
+							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="['/details-materiaux', project.id]">
+								{{ project.name }}
+	
+							</a>
+						</div>
+						<!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
+	
+					</div>
+				</li>
+				<style>
+					.show-subnav {
+	display: block;
+	}
+				</style>
+	
+				<li>
+					<a routerLink="/conception/ajouterConception">
+						<i class="fa fa-plus fa-2x"></i>
+						<span class="nav-text">Ajouter du contenu boutique</span>
+					</a>
+				</li>
+	
+				<li class="dropdown">
+					<a routerLink="/conception/registre">
+						<i class="fa fa-envelope fa-2x"></i>
+						<span class="nav-text">Contacter nous</span>
+					</a>
+					
+				</li>
+				
+				
+	<style>
+	/* Initially hide the dropdown content */
+	.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #1f1e84;
+	min-width: 160px;
+	
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	z-index: 5;
+	}
+	.dropdown-content > a {
+	margin: 0px 23px;
+	font-style: none;
+	transform-style: none;
+	color: yellow;
+	}
+	
+	/* Show the dropdown content when the parent is hovered */
+	.dropdown:hover .dropdown-content {
+	display: block;
+	}
+	
+	/* Style the dropdown options as blocks with margin */
+	.dropdown-content .submenu {
+	padding: 10px; /* Adjust the padding as needed */
+	}
+	
+	.dropdown-content .submenu a {
+	display: block;
+	font-size: 9px;
+	width: 196px;
+	margin: -7px 11px;
+	padding: 10px;
+	text-decoration: none;
+	color: white;
+	background-color: rgb(10, 10, 211)e84;
+	transition: background-color 0.3s;
+	border: solid 1px rgb(255 255 255 / 16%);
+	border-radius: 7px;
+	}
+	
+	/* Add a little margin between the dropdown options */
+	.dropdown-content .submenu a + a {
+	margin-top: 5px; /* Adjust the margin as needed */
+	
+	}
+	
+	/* Add hover effect */
+	.dropdown-content .submenu a {
+	
+	font-size: 10px; /* Set the initial font size */
+	transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease; /* Add smooth transition for both background color and font size */
+	}
+	
+	.dropdown-content .submenu a:hover {
+	font-size: 11px; /* Change font size on hover */
+	color: yellow;
+	border: solid 1px gray;
+	}
+	
+	@media only screen and (max-width: 767px) {
+	
+	
+	.dropdown-content .submenu a:hover {
+		transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease; /* Add smooth transition for both background color and font size */
+	
+	}
+	}
+	</style>			
+	
+			
+				
+	
+	
+			  
+			   
+				<li>
+					<a>
+						<i class="fa fa-info-circle fa-2x"></i>
+						<span class="nav-text">
+							A propos
+						</span>
+					</a>
+				  
+				</li>
+			 
+			</ul>
+		   </div>
+		
+			<!-- <ul class="logout">
+				<li>
+				   <a routerLink="conception/login">
+						 <i class="fa fa-power-off fa-2x"></i>
+						<span class="nav-text">
+							Logout
+						</span>
+					</a>
+				</li>  
+			</ul> -->
+			&nbsp;
+		</nav>
+		
+	</div>
+	
+	
+	
+	
+	
+	
 <app-navbar-carousel></app-navbar-carousel>
 
 <div class="responsive-container">
@@ -9,7 +253,7 @@
 
     <button  (click)="backClicked()" type="submit" class="btn animated-border-button   retour 
 ">
-      <i class="fa fa-home" aria-hidden="true"></i>
+      <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
       Retour
     </button>
   </div>

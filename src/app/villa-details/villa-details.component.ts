@@ -6,6 +6,7 @@ import {Location} from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';  
 import { VillaDetailsServiceService } from './villa-details-service.service';
 import { HttpClient } from '@angular/common/http';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -55,6 +56,11 @@ export class VillaDetailsComponent implements OnInit {
   ProjetId: any;
   ProjetDispo: any;
   routerIdLink: any;
+  foundAgency: any;
+  AgencyBaniere: any;
+  ProduitVendu: any;
+  facebook_url: any;
+  website_url: any;
   constructor(private projetService:ProjetsService,
     private agencieService:AgenciesService,
     private activatedRoute: ActivatedRoute,
@@ -63,34 +69,39 @@ export class VillaDetailsComponent implements OnInit {
     private sanitizer:DomSanitizer,
     private renderer: Renderer2, 
     private el: ElementRef,
+    private modalService: NgbModal,
+
     private emailService : VillaDetailsServiceService) { }
 
     public email_promoteur: String ='' ;
 
   ngOnInit(): void {
 
-    this.agencieService.getAgencieTunis().subscribe((data: any[]) => {
+    this.agencieService.getAllAgencies().subscribe((data: any[]) => {
       // Assuming data is an array of agencies
       console.log('foundAgency :',data)
       let foundAgency = data.find(agency => agency.name === this.AgencyProjet);
-      console.log('foundAgency :',foundAgency)
+      this.foundAgency=foundAgency?.mobile_apps[0]
+      this.AgencyBaniere = this.foundAgency?.mobile_cover_image_url;
+      console.log("AgencyBaniere", this.AgencyBaniere)
+      console.log('foundAgency 1:',foundAgency)
 
       if (foundAgency) {
         this.agencyId = foundAgency.id;
         this.description = foundAgency.description
         this.logo_url = foundAgency.logo_url
+        this.facebook_url= foundAgency.facebook_url
+        this.website_url= foundAgency.website_url
 
         // this.ProjetEnCours = foundAgency.description
-        this.ProjetEnCours = foundAgency?.projets
+        this.ProjetEnCours = foundAgency?.projets.filter(project => project.status === 'EN COURS' || project.status === 'EN COURS ');
         this.check =this.ProjetEnCours
-        console.log('disponible',this.check)
-        if (this.check) {
-          this.isValid= true; // Initialize it to false or true based on your initial condition
-          console.log('disponible',this.isValid)
-        } 
+      
         this.ProjetId=this.ProjetEnCours.id
         console.log('cours',this.ProjetEnCours)
-        this.ProjetDispo = foundAgency?.projets.filter(project => project.status === 'DISPONIBLE');
+        this.ProjetDispo = foundAgency?.projets.filter(project => project.status === 'DISPONIBLE' || project.status === 'Disponible');
+        this.ProduitVendu = foundAgency?.projets.filter(project => project.status === 'VENDU');
+
         console.log('dispo',this.ProjetDispo)
         console.log("Found Agency", this.agencyId);
         this.routerIdLink = this.agencyId;
@@ -233,6 +244,8 @@ export class VillaDetailsComponent implements OnInit {
     this.displayMaximizable = true;
     
   }
-  
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
+    }
 }
 

@@ -10,6 +10,7 @@
 
 .tunsian-flag-img-background .btn-hover-flag-img {
   width: 214px;
+  text-decoration: none;
   margin: 20px;
   background-color: #1f1e84;
   color: #ffffff;
@@ -31,6 +32,7 @@
 
 .tunsian-flag-img-background .btn-hover-flag-img:hover {
   background-color: #3532c9;
+  text-decoration: underline;
 }
 
 .btn-toolbar {
@@ -121,9 +123,18 @@
     text-decoration: underline;
   }
 }
-
+@media (max-width: 768px) {
+  .dropdownAppartement{
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
+.dropdownAppartement{
+  display: flex;
+  flex-direction: row;
+}
 .appimage {
-  width: 86%;
+  width: 98%;
   margin-left: 10px;
   height: 310px;
 }
@@ -1338,7 +1349,7 @@ width: 60px;
 height: 60px;
 text-align: center;
 vertical-align: middle;
-font-size:20px;
+font-size:21px;
 color: white;
 }
 
@@ -1482,6 +1493,45 @@ height: 100%;
 @media only screen and (max-width: 622px) {
   .fa {
 right: 6px;
-font-size: 17px;
+font-size: 19px;
   }
+}
+:host ::ng-deep .p-dialog {
+  display: flex;
+  flex-direction: column;
+  max-height: 84%;
+  width: 361px;
+  transform: scale(1);
+  position: relative;
+}
+.modalTheme {
+  margin: 20px;
+  padding: 20px;
+  background-color: #eff0f1;
+}
+
+.modalTheme2 {
+  margin: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+@media only screen and (max-width: 800px) {
+  .modalTheme {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+  }
+
+  .modalTheme2 {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+  }
+}
+
+.card-img-modal {
+  width: 100%;
+  margin-bottom: 20px;
+
 }

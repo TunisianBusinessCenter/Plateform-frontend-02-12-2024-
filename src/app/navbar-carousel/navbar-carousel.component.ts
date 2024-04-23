@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { NgbCarouselConfig, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
 import { AgenciesService } from '../services/agencies/agencies.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-navbar-carousel',
@@ -14,7 +15,7 @@ import { AgenciesService } from '../services/agencies/agencies.service';
   `]
 })
 export class NavbarCarouselComponent implements OnInit {
-
+  @Input() AgencyBaniere: any;
   agenceID ='5494'
   allAgencies:any
   roleMateriaux:boolean=false;
@@ -54,13 +55,26 @@ agencyData: any;
   // Variable to store the selected image index
   selectedImageIndex: number;
   banner: any;
+  currentId: string;
  constructor(public router:Router,
-  private agencyService: AgenciesService, private route:ActivatedRoute,private as:AgenciesService,private sharedDataService: AgenciesService){
+  private agencyService: AgenciesService, private route:ActivatedRoute,private as:AgenciesService,private sharedDataService: AgenciesService,private http: HttpClient){
         this.check = false;
 
   }
   
   ngOnInit(): void {
+    this.agencyService.AgencyBaniere$.subscribe((AgencyBaniere) => {
+      // Log the AgencyBaniere data to the console
+      console.log('NavbarCarouselComponent - AgencyBaniere:', AgencyBaniere);
+
+      // ... other logic with AgencyBaniere data
+    });
+
+    // ... other existing code
+  
+    this.getCurrentRouteAndGetData();
+    console.log('NavbarCarouselComponent - AgencyBaniere:', this.AgencyBaniere);
+
     // setTimeout(() => {
     //   this.getById();
     // }, 5000);
@@ -106,6 +120,32 @@ this.agencyService.getAllAgencies().subscribe(data => {
     console.log(NgbSlideEventSource.INDICATOR);
     console.log(NgbSlideEventSource.ARROW_LEFT);
     console.log(NgbSlideEventSource.ARROW_RIGHT);
+  }
+  getCurrentRouteAndGetData() {
+    // Get the current route
+    const currentRoute = this.route.snapshot.url.join('/');
+
+    // Extract the ID from the route (assuming it's the last segment)
+    const segments = currentRoute.split('/');
+    this.currentId = segments[segments.length - 1];
+
+    // Log the ID to the console
+    console.log('Current ID:', this.currentId);
+
+    // Construct the URL based on the current route
+    const url = `${currentRoute}`;
+
+    // Make the HTTP request
+    this.http.get(url).subscribe(
+      (data) => {
+        console.log('Response:', data);
+        // Handle the response data as needed
+      },
+      (error) => {
+        console.error('Error:', error);
+        // Handle the error
+      }
+    );
   }
 
   checkRoute() {
@@ -175,6 +215,14 @@ this.agencyService.getAllAgencies().subscribe(data => {
   }
   getSelectedImagePathPromo(): string {
     return this.imagesPromo[this.selectedImageIndex];
+  }
+  redirect(): void {
+    // Navigate to the home route
+    this.router.navigate(['/home']).then(() => {
+      console.log('here')
+      // Reload the current route to refresh the page
+      window.location.reload();
+    });
   }
 }
 

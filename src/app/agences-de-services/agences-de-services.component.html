@@ -1,3 +1,4 @@
+<app-sidebar></app-sidebar>
 <app-navbar-carousel-home></app-navbar-carousel-home>
 <main id="content">
     <br><br>
@@ -40,7 +41,7 @@
                                 <div class="p-mb-3"></div>
                                 <div>
                                     <div class="card shadow-hover-1 border-gray" data-animate="fadeInUp">
-                                        <a [routerLink]="['/agency', Agency.id]" class="text-dark hover-primary">
+                                        <a  [href]="Agency.phone_number_commercial" class="text-dark hover-primary">
                                             <div class="css">
                                                 <div
                                                     class="hover-change-image bg-hover-overlay rounded-lg card-img-top">
@@ -108,6 +109,7 @@
                 </p-carousel>
             </div>
         </mat-tab>
+ 
         <mat-tab>
             <ng-template mat-tab-label>
 
@@ -211,6 +213,7 @@
                 </p-carousel>
             </div>
         </mat-tab>
+        
         <!-- <mat-tab>
                 <ng-template mat-tab-label>
         
@@ -379,6 +382,104 @@
                                                         <div>
                                                             <span
                                                                 class="badge badge-orange mr-2">{{Agency.region}}</span>
+                                                            <span class="badge badge-primary">Tunisia</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </a>
+                                        <div class="card-body pt-3 border-dark" >
+                                            <h2 class="card-title fs-16 lh-2 mb-0" >
+                                                <a routerLink="agency" class="text-dark hover-primary">
+                                                    {{ Agency.name }}.
+                                                </a>
+                                            </h2>
+                                            <p class="card-text font-weight-500 text-gray-light mb-2"
+                                                >
+                                                {{ Agency.adresse }}
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="card-footer border-gray bg-transparent d-flex justify-content-between align-items-center py-3">
+                                            <p style="font-size: 13px;
+                    font-weight: 600;
+                    margin-top: 10px;text-transform: capitalize;">{{ Agency.region }}</p>
+                                            <ul class="list-inline mb-0">
+                                                <ul class="social-networks bounce">
+                                                    <li>
+                                                        <a href="{{Agency.twitter_url}}" class="icon-twitter">
+                                                            Twitter
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{Agency.facebook_url}}" class="icon-facebook">
+                                                            Facebook
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{Agency.instagram_url}}" class="icon-instagram">
+                                                            Instagram
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{Agency.linkedlin_url}}" class="icon-linkedin">
+                                                            LinkedIn
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+
+                </p-carousel>
+            </div>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <button type="button" class="btn  btn-round All">Salon de thé </button>
+            </ng-template><br><br>
+            <div class="tab-pane tab-pane-parent fade show active px-0" id="pills-home" role="tabpanel"
+                aria-labelledby="pills-home-tab" style="padding: 5px;overflow: hidden;">
+                <p-carousel *ngIf="agencieCoffee$ | async as agencieCoffee; "
+                [value]="agencieCoffee" [numVisible]="5" [numScroll]="5" [circular]="true"
+                    [autoplayInterval]="7000" [responsiveOptions]="responsiveOptions" styleClass="custom-carousel">
+                    <ng-template pTemplate="header">
+                        <div class="row">
+                            <div class="col-md-6 title">
+                                <h2 class="text-heading"
+                                    style="font-size: 2.1rem;color: #333!important;font-family: poppins,sans-serif;font-family: system-ui;">
+                                    Salon de thé 
+                                </h2>
+                                <hr class="hrstyle">
+                                <p class="mb-md-0 mb-6"
+                                    style="color:#696969;font-size:.900rem;font-family: poppins,sans-serif;font-family: system-ui;">
+                                    Toute la liste des coffee
+                                </p>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-Agency pTemplate="item">
+                        <div class="product-item">
+                            <div class="product-item-content">
+                                <div class="p-mb-3"></div>
+                                <div>
+                                    <div class="card shadow-hover-1 border-gray" data-animate="fadeInUp">
+                                        <a  [routerLink]="['/agency', Agency.id]" class="text-dark hover-primary">
+                                            <div class="css">
+                                                <div
+                                                    class="hover-change-image bg-hover-overlay rounded-lg card-img-top">
+                                                    <img src="{{ Agency.logo_url }}" alt="Responsive image"
+                                                        style="height: 100%; width: 100%">
+                                                    <div class="card-img-overlay p-2 d-flex flex-column">
+                                                        <div>
+                                                            <span
+                                                                class="badge badge-orange mr-2">{{Agency.name}}</span>
                                                             <span class="badge badge-primary">Tunisia</span>
                                                         </div>
                                                     </div>

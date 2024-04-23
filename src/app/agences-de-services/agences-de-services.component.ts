@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AgenceImmobilieresService } from '../services/agence-immob/agence-immobilieres.service';
 import { AgenceServiceService } from '../services/agence-service/agence-service.service';
+import { AgenciesService } from '../services/agencies/agencies.service';
+import { Observable, map } from 'rxjs';
 
 interface SousCat {
   name: string,
@@ -47,8 +49,9 @@ export class AgencesDeServicesComponent implements OnInit {
     {name: 'Commerces', value: 'Commerces '},
     {name: 'Sociétés des Services', value: 'SocDesServices '},
   ];
+  agencieCoffee: any;
 
-  constructor(private agenceServicesServices: AgenceServiceService) {
+  constructor(private agenceServicesServices: AgenceServiceService,private as:AgenciesService) {
     this.responsiveOptions = [
       {
         breakpoint: '2000px',
@@ -81,13 +84,16 @@ export class AgencesDeServicesComponent implements OnInit {
     
 
   }
+  agencieCoffee$: Observable<any>;
 
   ngOnInit(): void {
     this.agenceServicesServices.getAgencieAssurances().subscribe((data: any) => {
       this.AgencieAssurances = data;
       console.log(this.AgencieAssurances)
     })
-
+    this.agencieCoffee$ = this.as.getAllAgencies().pipe(
+      map((data: any) => data.filter(item => item.categorie === 'coffee'))
+    );
     this.agenceServicesServices.getAgencieBanque().subscribe((data: any) => {
       this.AgencieBanque = data;
       console.log(this.AgencieBanque)
@@ -109,6 +115,16 @@ export class AgencesDeServicesComponent implements OnInit {
       console.log(this.AgenciesDecoration)
     })
 
+    this.agenceServicesServices.getAgencieServicesDivers().subscribe((data: any) => {
+      this.ServicesDivers = data;
+      console.log(this.ServicesDivers)
+      this.filtredServicesDivers1= data
+
+      this.filtredServicesDivers = this.filtredServicesDivers1.filter((item: { sous_categorie: string; }) => item.sous_categorie);
+      console.log(this.filtredServicesDivers)
+      this.filtredServicesDivers2 = this.filtredServicesDivers;
+    })
+      
     this.agenceServicesServices.getAgencieServicesDivers().subscribe((data: any) => {
       this.ServicesDivers = data;
       console.log(this.ServicesDivers)

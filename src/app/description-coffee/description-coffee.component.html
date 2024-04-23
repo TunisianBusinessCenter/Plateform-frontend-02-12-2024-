@@ -1,0 +1,534 @@
+
+
+<!-- wrapper -->
+
+
+
+
+
+
+
+
+<!-- <div class="main-container" *ngIf="Agency?.role==='promoteur-immobilieres'"	 > -->
+    <div class="main-container">
+        <nav class="main-menu">
+            <style>
+                .banner {
+                    text-align: center;
+                    padding: 10px;
+                    background-color: #434388;
+                    /* Set your desired background color */
+                    color: #fff;
+                    /* Set the text color */
+                    font-size: 16px;
+                    /* Adjust the font size */
+                }
+    
+                .logo-container {
+                    text-align: center;
+                    padding: 10px;
+                    border-radius: 5%;
+                    overflow: hidden;
+                    background-color: #fff;
+                }
+    
+                .logo-container img {
+                    max-width: 100%;
+                    height: auto;
+                    border-radius: 40%;
+                }
+    
+                .hr {
+                    width: 20px;
+                    height: 20px;
+                    background-color: white;
+                }
+            </style>
+    
+    
+    
+            <li>
+                <a >
+                    <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+    
+                    <span class="nav-text">
+                        <p>{{ agencyName }}</p>
+    
+                    </span>
+                </a>
+    
+            </li>
+    
+            <div>
+    
+    
+                <ul>
+    
+                    <li *ngIf="agencyId">
+                        <a [routerLink]="'/coffeeAgency/' + agencyId">
+                            <i class="fa fa-home fa-2x"></i>
+                            <span class="nav-text">
+                                Page d'accueil
+                            </span>
+                        </a>
+    
+                    </li>
+                  <li>
+                    <a  *ngIf="!agencyId">
+                        <i class="fa fa-home fa-2x"></i>
+                        <span class="nav-text">
+                               Page d'accueil
+                        </span>
+                    </a>
+                  </li>
+    
+                    <li class="dropdown">
+                        <a>
+                            <i class="fa fa-book fa-2x"></i>
+                            <span class="nav-text">Nos Produits</span>
+                        </a>
+    
+                        <div class="dropdown-content">
+                            <!-- <a *ngIf=" ProduitEnCours?.length > 0">Produits</a> -->
+    
+                            <div class="submenu" *ngFor="let project of ProduitEnCours">
+    
+                                <a style="background-color: #1e466e59;" (click)="refreshPage()"
+                                    [routerLink]="['/coffee-details/', project.id]">
+                                    {{ project.name }}
+    
+                                </a>
+                          
+                            </div>
+                            <!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
+    
+                        </div>
+                    </li>
+                    <style>
+                        .show-subnav {
+                            display: block;
+                        }
+                    </style>
+    
+                    <!-- <li>
+                        <a routerLink="/conception/ajouterConception">
+                            <i class="fa fa-plus fa-2x"></i>
+                            <span class="nav-text">Ajouter contenu </span>
+                        </a>
+                    </li> -->
+    
+                    <li class="dropdown">
+                        <a>
+                            <i class="fa fa-envelope fa-2x"></i>
+                            <span class="nav-text">Contacter nous</span>
+                        </a>
+    
+                    </li>
+    
+    
+                    <style>
+                        /* Initially hide the dropdown content */
+                        .dropdown-content {
+    
+                            display: none;
+                            position: absolute;
+                            background-color: #1f1e84;
+                            min-width: 42px;
+                            width: 248px;
+                            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                            z-index: 5;
+    
+                        }
+    
+                        .dropdown-content>a {
+                            margin: 0px 23px;
+                            font-style: none;
+                            transform-style: none;
+                            color: yellow;
+                        }
+    
+                        /* Show the dropdown content when the parent is hovered */
+                        .dropdown:hover .dropdown-content {
+                            display: block;
+                        }
+    
+                        /* Style the dropdown options as blocks with margin */
+                        .dropdown-content .submenu {
+                            padding: 10px;
+                            /* Adjust the padding as needed */
+                        }
+    
+                        .dropdown-content .submenu a {
+                            display: block;
+                            font-size: 9px;
+                            width: 222px;
+                            margin: -7px 11px;
+                            padding: 10px;
+                            text-decoration: none;
+                            color: white;
+                            background-color: rgb(10, 10, 211)e84;
+                            transition: background-color 0.3s;
+                            border: solid 1px rgb(255 255 255 / 16%);
+                            border-radius: 7px;
+                        }
+    
+                        /* Add a little margin between the dropdown options */
+                        .dropdown-content .submenu a+a {
+                            margin-top: 5px;
+                            /* Adjust the margin as needed */
+    
+                        }
+    
+                        /* Add hover effect */
+                        .dropdown-content .submenu a {
+                            font-size: 12px;
+                            font-weight: bold;
+                            transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+                        }
+    
+                        .dropdown-content .submenu a:hover {
+                            font-size: 13px;
+                            color: yellow;
+                            border: solid 1px gray;
+                            font-weight: 600;
+    
+                        }
+    
+                        @media only screen and (max-width: 767px) {
+    
+    
+                            .dropdown-content .submenu a:hover {
+                                transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+                                /* Add smooth transition for both background color and font size */
+    
+                            }
+                        }
+                    </style>
+    
+    
+    
+    
+    
+    
+                    <li>
+                        <a (click)="showMaximizableDialog()">
+                            <i class="fa fa-info-circle fa-2x"></i>
+                            <span class="nav-text">
+                                A propos
+                            </span>
+                        </a>
+    
+                    </li>
+    
+                </ul>
+            </div>
+    
+            <!-- <ul class="logout">
+                    <li>
+                       <a routerLink="conception/login">
+                             <i class="fa fa-power-off fa-2x"></i>
+                            <span class="nav-text">
+                                Logout
+                            </span>
+                        </a>
+                    </li>  
+                </ul> -->
+        </nav>
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <app-navbar-carousel></app-navbar-carousel>
+
+    <div class="responsive-container"  style="display: flex;">
+        <div class="responsive">
+            <button (click)="backClicked()" type="submit" class="btn animated-border-button retour">
+                <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
+                Retour
+            </button>
+            
+        </div>
+    </div>
+
+<div class = "card-wrapper">
+    <div class = "card">
+      <!-- card left -->
+      <div class = "product-imgs">
+        <div class = "img-display">
+          <div class = "img-showcase">
+            <img src = "{{SousCategorie?.image_url}}" alt = "shoe image">
+           
+          </div>
+        </div>
+      
+      </div>
+      <!-- card right -->
+      <div class = "product-content">
+        <h2 class = "product-title">{{SousCategorie?.name}}</h2>
+        <a href = "#" class = "product-link">{{SousCategorie?.category}}</a>
+        <div class = "product-rating">
+          <i class = "fas fa-star"></i>
+          <i class = "fas fa-star"></i>
+          <i class = "fas fa-star"></i>
+          <i class = "fas fa-star"></i>
+          <i class = "fas fa-star-half-alt"></i>
+        </div>
+  
+        <div class = "product-price">
+          <p >Prix: <span>{{SousCategorie?.prix}}</span></p>
+        </div>
+  
+        <div class = "product-detail">
+          <h2>Description: </h2>
+          <p>{{SousCategorie?.description}}</p>
+      
+        </div>
+  
+        <!-- <div class = "purchase-info">
+          <input type = "number" min = "0" value = "1">
+          <button type = "button" class = "btn">
+            Add to Cart <i class = "fas fa-shopping-cart"></i>
+          </button>
+          <button type = "button" class = "btn">Compare</button>
+        </div>
+  
+        <div class = "social-links">
+          <p>Share At: </p>
+          <a href = "#">
+            <i class = "fab fa-facebook-f"></i>
+          </a>
+          <a href = "#">
+            <i class = "fab fa-twitter"></i>
+          </a>
+          <a href = "#">
+            <i class = "fab fa-instagram"></i>
+          </a>
+          <a href = "#">
+            <i class = "fab fa-whatsapp"></i>
+          </a>
+          <a href = "#">
+            <i class = "fab fa-pinterest"></i>
+          </a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <style>
+
+
+.card-wrapper{
+    max-width: 1100px;
+    margin: 0 8px 25px 54px;
+    }
+img{
+width: 100%;
+display: block;
+}
+.img-display{
+overflow: hidden;
+}
+.img-showcase{
+display: flex;
+width: 100%;
+transition: all 0.5s ease;
+}
+.img-showcase img{
+min-width: 100%;
+}
+.img-select{
+display: flex;
+}
+.img-item{
+margin: 0.3rem;
+}
+.img-item:nth-child(1),
+.img-item:nth-child(2),
+.img-item:nth-child(3){
+margin-right: 0;
+}
+.img-item:hover{
+opacity: 0.8;
+}
+.product-content{
+padding: 2rem 1rem;
+}
+.product-title{
+    font-size: 29px;
+    text-transform: capitalize;
+    font-weight: 700;
+    line-height: 1;
+    width: 333px;
+    position: relative;
+    color: #12263a;
+    margin: 1rem 0;
+}
+
+.product-link{
+text-decoration: none;
+text-transform: uppercase;
+font-weight: 400;
+font-size: 0.9rem;
+display: inline-block;
+margin-bottom: 0.5rem;
+background: #256eff;
+color: #fff;
+padding: 0 0.3rem;
+transition: all 0.5s ease;
+}
+.product-link:hover{
+opacity: 0.9;
+}
+.product-rating{
+color: #ffc107;
+}
+.product-rating span{
+font-weight: 600;
+color: #252525;
+}
+.product-price{
+margin: 1rem 0;
+font-size: 1rem;
+font-weight: 700;
+
+}
+
+.last-price span{
+color: #f64749;
+text-decoration: line-through;
+}
+.new-price span{
+color: #256eff;
+}
+.product-detail h2{
+text-transform: capitalize;
+color: #12263a;
+padding-bottom: 0.6rem;
+}
+.product-detail p{
+font-size: 0.9rem;
+padding: 0.3rem;
+opacity: 0.8;
+}
+.product-detail ul{
+margin: 1rem 0;
+font-size: 0.9rem;
+}
+.product-detail ul li{
+margin: 0;
+list-style: none;
+background: url(https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/checked.png) left center no-repeat;
+background-size: 18px;
+padding-left: 1.7rem;
+margin: 0.4rem 0;
+font-weight: 600;
+opacity: 0.9;
+}
+.product-detail ul li span{
+font-weight: 400;
+}
+.purchase-info{
+margin: 1.5rem 0;
+}
+.purchase-info input,
+.purchase-info .btn{
+border: 1.5px solid #ddd;
+border-radius: 25px;
+text-align: center;
+padding: 0.45rem 0.8rem;
+outline: 0;
+margin-right: 0.2rem;
+margin-bottom: 1rem;
+}
+.purchase-info input{
+width: 60px;
+}
+.purchase-info .btn{
+cursor: pointer;
+color: #fff;
+}
+.purchase-info .btn:first-of-type{
+background: #256eff;
+}
+.purchase-info .btn:last-of-type{
+background: #f64749;
+}
+.purchase-info .btn:hover{
+opacity: 0.9;
+}
+.social-links{
+display: flex;
+align-items: center;
+}
+.social-links a{
+display: flex;
+align-items: center;
+justify-content: center;
+width: 32px;
+height: 32px;
+color: #000;
+border: 1px solid #000;
+margin: 0 0.2rem;
+border-radius: 50%;
+text-decoration: none;
+font-size: 0.8rem;
+transition: all 0.5s ease;
+}
+.social-links a:hover{
+background: #000;
+border-color: transparent;
+color: #fff;
+}
+
+@media screen and (min-width: 992px){
+.card{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5rem;
+}
+.card-wrapper{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.product-imgs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.product-content{
+    padding-top: 0;
+}
+}
+  </style>
+  <script>
+    const imgs = document.querySelectorAll('.img-select a');
+const imgBtns = [...imgs];
+let imgId = 1;
+
+imgBtns.forEach((imgItem) => {
+imgItem.addEventListener('click', (event) => {
+    event.preventDefault();
+    imgId = imgItem.dataset.id;
+    slideImage();
+});
+});
+
+function slideImage(){
+const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+
+document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+}
+
+window.addEventListener('resize', slideImage);
+  </script>

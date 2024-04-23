@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Inscription } from 'src/app/model/inscription';
 import { RegistreService } from 'src/app/services/registre/registre.service';
 
@@ -12,6 +13,7 @@ interface Role {
   templateUrl: './registre.component.html',
   styleUrls: ['./registre.component.css']
 })
+
 export class RegistreComponent implements OnInit {
 
   

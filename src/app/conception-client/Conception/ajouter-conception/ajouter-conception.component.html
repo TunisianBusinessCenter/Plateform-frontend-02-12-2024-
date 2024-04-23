@@ -1,4 +1,4 @@
-<div class="row"  style="margin:50px;">
+<div class="row"  >
     <div class="row" style="justify-content:center;">
             <div class="col-md-4 coordonnees ">
                 <div class="card" style="background-color: #f6f5f5;">
@@ -169,7 +169,7 @@
                                 Envoyer
                             </button> 
                             <!-- (click)="backClicked()" -->
-                            <button routerLink="/conception/login" mat-raised-button class="btn btn-secondary pull-right" 
+                            <button (click)=" backClicked()" mat-raised-button class="btn btn-secondary pull-right" 
                                 style="background-color: #e4e4e4;color: #8b0000; font-weight: 600;margin-right: 10px;">
                                 Annuler
                             </button> 

@@ -45,11 +45,11 @@
 
 	<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-240062683-1"></script>
 	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
-		gtag('js', new Date());
-		gtag('config', 'UA-240062683-1');
-	</script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-240062683-1');
+    </script>
   <!-- <link rel="manifest" href="js13kpwa.webmanifest"> -->
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0&appId=YOUR_APP_ID&autoLogAppEvents=1" nonce="RANDOM_NONCE"></script>
 
@@ -58,36 +58,48 @@
 </head>
 <body class="mat-typography">
 
-	<!-- Messenger Plugin de discussion Code -->
-	<div id="fb-root"></div>
+	<!-- <div id="fb-root"></div>
 
-	<!-- Your Plugin de discussion code -->
 	<div style="background-color: #1f1e84;" id="fb-customer-chat" class="fb-customerchat">
-	</div>
+	</div> -->
 
-	<script>
+	<!-- <script>
 		var chatbox = document.getElementById('fb-customer-chat');
 		chatbox.setAttribute("page_id", "107797522000485");
 		chatbox.setAttribute("attribution", "biz_inbox");
-	</script>
+	</script> -->
 
 	<!-- Your SDK code -->
-	<script>
-		window.fbAsyncInit = function () {
-			FB.init({
-				xfbml: true,
-				version: 'v14.0'
-			});
-		};
+	<!-- <script>
+	  var chatboxInitialized = false;
+
+function initializeChatbox() {
+	if (!chatboxInitialized) {
+		var chatbox = document.getElementById('fb-customer-chat');
+		chatbox.setAttribute("page_id", "107797522000485");
+		chatbox.setAttribute("attribution", "biz_inbox");
+
+		chatboxInitialized = true;
+	}
+}
+
+window.fbAsyncInit = function () {
+	FB.init({
+		xfbml: true,
+		version: 'v14.0'
+	});
+};
 
 		(function (d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = 'https://connect.facebook.net/fr_FR/sdk/xfbml.customerchat.js';
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-	</script>
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/fr_FR/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+
+            js.onload = initializeChatbox;
+        }(document, 'script', 'facebook-jssdk'));
+	</script> -->
 	
 	<app-root></app-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>

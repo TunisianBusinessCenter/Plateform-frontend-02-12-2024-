@@ -56,25 +56,40 @@ import { HomeMarocComponent } from './maroc/home-maroc/home-maroc.component';
 import { PromoteuresDjerbaComponent } from './promoteurs-immob/promoteures-djerba/promoteures-djerba.component';
 import { GardVisitorService } from './services/GardVisitor/gard-visitor.service';
 import { TelechargementComponent } from './telechargement/telechargement.component';
+import { ContactComponent } from './contact/contact.component';
+import { PrivacyComponent } from './privacy/privacy.component';
+import { DescriptionCoffeeComponent } from './description-coffee/description-coffee.component';
+import { CoffeeAgencyComponent } from './coffee-agency/coffee-agency.component';
+import { CoffeeListComponent } from './coffee-list/coffee-list.component';
+import { CoffeeListTunisComponent } from './coffee-list/coffee-list-tunis/coffee-list-tunis.component';
+import { CoffeeListSousseComponent } from './coffee-list/coffee-list-sousse/coffee-list-sousse.component';
+import { CoffeeDetailsComponent } from './coffee-details/coffee-details.component';
 
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'privacy', component: PrivacyComponent },
   { path: 'details/:id', component: DetailsComponent , canActivate: [GardVisitorService]},
   { path: 'agency/:id', component: AgencyComponent },
+  { path: 'coffeeAgency/:id', component: CoffeeAgencyComponent },
+  { path: 'coffee-details/:id', component: CoffeeDetailsComponent },
+  { path: 'descriptionCoffee/:id1/:id', component: DescriptionCoffeeComponent },
+
+  { path: 'coffeeListTunis', component: CoffeeListTunisComponent },
+  { path: 'coffeeListSousse', component: CoffeeListSousseComponent },
   { path: 'villa-details/:id', component: VillaDetailsComponent },
   { path: 'villa-exemple/:id', component: VillaExempleComponent },
   { path: 'details-materiaux/:id', component: DetailsMateriauxComponent },
   { path: 'agences-de-services', component: AgencesDeServicesComponent },
   { path: 'agences-immobiliere-details/:id', component: AgencesImmobDetailsComponent },
   { path: 'agences-immob-details-plus/:id' , component: AgencesImmobDetailsPlusComponent}, 
-  { path: 'descriptionDetails/:id/:id', component: DescriptionDetailsComponent },
+  { path: 'descriptionDetails/:id1/:id', component: DescriptionDetailsComponent },
   { path: 'descriptionAgence_Immob/:id', component: DescriptionAgenceImmobComponent },
   { path: 'devisProduit', component: DevisProduitComponent },
   { path: 'devisService', component: DevisServicesComponent },
   { path: 'details-service/:id', component: DetailsServicesComponent },
   { path: 'descriptionService/:id', component: DescriptionServiceComponent },
-
+  {path:'contact',component:ContactComponent},
 { path: 'agence-immob-sousse', component: AgenceImmobSousseComponent },
  { path: 'agence-immob-tunis', component: AgenceImmobTunisComponent },
 { path: 'agence-immob-monastir', component: AgenceImmobMonastirComponent },

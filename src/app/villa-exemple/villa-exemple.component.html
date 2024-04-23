@@ -1,99 +1,61 @@
-<!-- <style>
-	.container {
-		display: grid;
-		width: 100%;
-		height: 100%;
-		grid-template-columns: 200px 1fr  1fr;
-		grid-template-rows: 10% 1fr 1fr 10%;
-		grid-gap: 1rem;
-	            }
-
-	.header {
-		grid-row: 1 / 2;
-		grid-column: 1 / 4 	;
-	        }
-
-	.sidebar {
-		grid-row: 2 / 4;
-		grid-column: 1 / 2;
-	}
-
-	.content-1 {
-		grid-row: 2 / 3;
-		grid-column: 2 / 4;
-	}
-
-	.content-2 {
-		grid-row: 3 / 4;
-		grid-column: 2 / 3;
-	}
-
-	.content-3 {
-		grid-row: 3 / 4;
-		grid-column: 3 / 4;
-	}
-
-	.footer {
-		grid-row: 4 / 5;
-		grid-column: 1 / 4;
-	}
-
-
-
-
-
-	/* OTHER STYLES */
-
-	body {
-		padding: 200px;
-		background-color: #3b404e;
-		display: flex;
-		justify-content: center;
-		padding: 20px;
-		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-	}
-
-	.item {
-		background-color: #1EAAFC;
-		background-image: linear-gradient(130deg, #6C52D9 0%, #1EAAFC 85%, #3EDFD7 100%);
-		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-		color: #ffffff;
-		border-radius: 4px;
-		border: 6px solid #171717;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		font-size: 18px;
-		font-weight: bold;
-	}
-
-	.header {
-		background-color: #1EAAFC;
-		background-image: linear-gradient(160deg, #6C52D9 0%, #9B8AE6 127%);
-	}
-
-	.sidebar {
-		background-image: linear-gradient(203deg, #3EDFD7 0%, #29A49D 90%)
-	}
-
-	.content-1,
-	.content-2,
-	.content-3 {
-		background-image: linear-gradient(130deg, #6C52D9 0%, #1EAAFC 85%, #3EDFD7 100%);
-	}
-
-	.footer {
-		background-color: #6C52D9;
-		background-image: linear-gradient(160deg, #6C52D9 0%, #9B8AE6 127%);
-	}
-</style>
-<br><br><br>
 <div class="container">
-	<div class="item header">header</div>
-	<div class="item sidebar">sidebar</div>
-	<div class="item content-1">Content-1</div>
-	<div class="item content-2">Content-2</div>
-	<div class="item content-3">Content-3</div>
-	<div class="item footer">footer</div>
-</div>
-<br><br><br> -->
+	<!-- <h1>
+	  Responsive Column Rows
+	</h1>
+	<p>Resize window to see the column grid change. <a href="https://getbootstrap.com/docs/4.4/components/card/#grid-cards" target="_blank">Read Docs</a></p>
+	
+	<ul>
+	  <li class="xs">1 column xs</li>
+	  <li class="sm">2 column sm</li>
+	  <li class="md">3 column md</li>
+	  <li class="lg">4 column lg</li>
+	  <li class="xl">5 column xl</li>
+	</ul> -->
+  
+	
+	<!-- <h2>Responsive card deck example</h2> -->
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+	<div class="col mb-4">
+	  <div class="card">
+		<img src="https://dummyimage.com/600x400/000/fff.jpg" class="card-img-top" alt="...">
+		<div class="card-body">
+		  <h5 class="card-title">Card title</h5>
+		  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+		</div>
+	  </div>
+	</div>
+
+
+  </div>
+	
+
+	
+	
+  </div>
+  <!-- /.container -->
+  <style>
+	@media (max-width: 576px) {  
+  .xs {color:red;font-weight:bold;}
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width:768px) {  
+  .sm {color:red;font-weight:bold;}
+}
+ 
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) and (max-width:992px) {  
+ .md {color:red;font-weight:bold;}
+}
+ 
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width:1200px) { 
+ .lg {color:red;font-weight:bold;}
+}
+ 
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  
+    .xl {color:red;font-weight:bold;}
+}
+ 
+  </style>

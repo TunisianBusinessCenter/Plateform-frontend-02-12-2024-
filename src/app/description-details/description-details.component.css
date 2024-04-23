@@ -15,7 +15,6 @@
   height: 32px;
   width: 125px;
   margin-top: -22px;
-  margin-left: 30px;
 }
 @media (min-width: 300px) {
   .animated-border-button {
@@ -29,11 +28,11 @@
     font-size: 13px;
     font-weight: 500;
     border-radius: 0px;
-    margin-bottom: 50px;
+    margin-bottom: 18px;
     height: 32px;
     width: 125px;
-    margin-top: -22px;
-    margin-left: 3px;
+    margin-top: -30px;
+    margin-left: 54px;
     }
 }
 .animated-border-button:before,
@@ -121,6 +120,7 @@ margin-left: 70px;
 .tunsian-flag-img-background .btn-hover-flag-img {
   width: 214px;
   margin: 20px;
+  text-decoration: none;
   background-color: #1f1e84;
   color: #ffffff;
   font-size: 16px;
@@ -141,6 +141,7 @@ margin-left: 70px;
 
 .tunsian-flag-img-background .btn-hover-flag-img:hover {
   background-color: #3532c9;
+  text-decoration: underline;
 }
 
 .btn-toolbar {
@@ -314,8 +315,12 @@ font-weight: 600;
 
 
 .displayCard{
-display: flex;
-margin-left: 3px;
+  display: flex;
+  margin-left: 52px;
+  margin-right: -50px;
+
+
+
 }
 .p-card1 {
 width:20rem;
@@ -330,16 +335,28 @@ height: 65px
   font-size: 12px;
   margin-top: -18px;
   margin-left: -8px;
-  color: #8b0000;
+  color: white
 
 }
+
 :host ::ng-deep.p-card-body{
-  height: 44px;
-  background-color: #e3e1e1;
+  height: 33px;
+  background-color: #1f1e84;
   text-align: center;
-
+  width: 297px;
+  margin-left: -10px;
 }
 
+@media only screen and (max-width: 610px) {
+
+  :host ::ng-deep.p-card-body{
+    height: 33px;
+    background-color: #1f1e84;
+    text-align: center;
+    width: 130px;
+    margin-left: -10px;
+  }
+} 
 @media only screen and (max-width: 610px) {
 
 .displayCard{
@@ -486,9 +503,10 @@ transition: opacity .3s;}
 }
 @media screen and (max-width: 768px) {
   .retour {
-    right: -10px;
-    top: -3px;
-    /* Additional styles for this media query */
+    right: -14px;
+    top: -37px;
+    margin-bottom: -15px;
+  
   }
 }
 @media screen and (max-width: 768px) {
@@ -515,7 +533,7 @@ transition: opacity .3s;}
   .scrollable-paragraph {
     overflow-y: scroll;
     border: 1px solid #928c8c;
-    width: 77%;
+    width: 111%;
     line-height: 1.339;
     padding: 11px 13px 15px 15px;
     height: 351px;
@@ -564,7 +582,7 @@ transition: opacity .3s;}
 }
 @media (max-width: 700px) {
   #imagDesc1 {
-    width: 76%;
+    width: 85%;
     border: solid 1px #928c8c;
     height: 194px;
     margin-top: -4px;
@@ -629,10 +647,10 @@ padding-top: 20px;
 }
 
 .displayCard {
-  margin-left: 22px;
+  margin-left: 35px;
   width: 79%;
   display: flex;
-  margin-bottom: 16px;
+  margin-bottom: 4px;
 }
 
 .btn-toolbar {
@@ -652,7 +670,8 @@ padding-top: 20px;
 
 @media only screen and (max-width: 767px) {
 .textInfoX {
-  font-size: 9px;
+  font-size: 8px;
+  color: white;
 }
 }
 
@@ -670,7 +689,7 @@ and (max-device-width: 740px)
 and (-webkit-min-device-pixel-ratio: 3) 
 and (orientation: portrait) {
 .textInfoX {
-  font-size: 9px;
+  font-size: 8px;
 }
 }
 
@@ -680,7 +699,7 @@ and (max-device-width: 360px)
 and (-webkit-min-device-pixel-ratio: 3) 
 and (orientation: landscape) {
 .textInfoX {
-  font-size: 9px;
+  font-size: 8px;
 
 }
 }
@@ -736,7 +755,6 @@ and (orientation: landscape) {
       .isDisplay{
         display: flex;
         flex-direction: row !important;
-      
       }
       /* .btnDevis{
         margin-left: 95%;
@@ -881,11 +899,11 @@ margin-left: 1100px;
 
 
 .imagDesc1 {
-width: 98%;
-border: solid 1px #736a6a;
-height: 430px;
-
-margin-top: -5px;
+  width: 98%;
+  border: solid 1px #736a6a;
+  height: 430px;
+  margin-left: 56px;
+  margin-top: 29px;
 
 }
 .width-desc{
@@ -899,19 +917,19 @@ margin-top: -5px;
   }
 }
 /* css side bar  */
-  @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
-  @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 .fa-2x {
 font-size: 2em;
 }
-.fa {
+.fa   {
 position: relative;
 display: table-cell;
 width: 60px;
 height: 60px;
 text-align: center;
 vertical-align: middle;
-font-size:20px;
+font-size:21px;
 color: white;
 }
 
@@ -938,11 +956,11 @@ z-index:5;
 }
 
 .main-menu>div>ul {
-margin:29px 0;
+margin:92px 0;
 }
-/* .main-menu>div>ul>li {
-  margin-top: 15px;
-} */
+.main-menu>div>ul>li {
+  margin-top: 19px;
+}
 
 .main-menu li {
 position:relative;
@@ -1055,6 +1073,37 @@ height: 100%;
 @media only screen and (max-width: 622px) {
   .fa {
 right: 6px;
-font-size: 22px;
+font-size: 23px;
   }
+}
+.modalTheme {
+  margin: 20px;
+  padding: 20px;
+  background-color: #eff0f1;
+}
+
+.modalTheme2 {
+  margin: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+@media only screen and (max-width: 800px) {
+  .modalTheme {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+  }
+
+  .modalTheme2 {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+  }
+}
+
+.card-img-modal {
+  width: 100%;
+  margin-bottom: 20px;
+
 }

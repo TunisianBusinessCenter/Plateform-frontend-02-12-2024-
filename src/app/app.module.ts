@@ -114,6 +114,13 @@ import { LineBreakPipe } from './description-details/line-break.pipe';
 import { NavbarCarouselHomeComponent } from './navbar-carousel-home/navbar-carousel.component';
 import { NavbarCarouselPromoComponent } from './navbar-carousel-promo/navbar-carousel.component';
 import { NavbarCarouselConstComponent } from './navbar-carousel-const/navbar-carousel.component';
+import { PrivacyComponent } from './privacy/privacy.component';
+import { DescriptionCoffeeComponent } from './description-coffee/description-coffee.component';
+import { CoffeeAgencyComponent } from './coffee-agency/coffee-agency.component';
+import { CoffeeListComponent } from './coffee-list/coffee-list.component';
+import { CoffeeListTunisComponent } from './coffee-list/coffee-list-tunis/coffee-list-tunis.component';
+import { CoffeeListSousseComponent } from './coffee-list/coffee-list-sousse/coffee-list-sousse.component';
+import { CoffeeDetailsComponent } from './coffee-details/coffee-details.component';
 
 
 
@@ -185,7 +192,14 @@ const routes: Routes = [
     LineBreakPipe,
     NavbarCarouselHomeComponent,
     NavbarCarouselPromoComponent,
-    NavbarCarouselConstComponent
+    NavbarCarouselConstComponent,
+    PrivacyComponent,
+    DescriptionCoffeeComponent,
+    CoffeeAgencyComponent,
+    CoffeeListComponent,
+    CoffeeListTunisComponent,
+    CoffeeListSousseComponent,
+    CoffeeDetailsComponent
 
   
   ],

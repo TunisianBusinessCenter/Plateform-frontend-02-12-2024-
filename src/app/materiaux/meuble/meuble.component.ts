@@ -52,11 +52,18 @@ export class MeubleComponent implements OnInit {
   ngOnInit(): void {
     this.Servicemateriaux.getMateriauxMeuble().subscribe((data: any) => {
       this.MateriauxMeuble = data;
-      console.log('here',data)
-
-      console.log('here',this.MateriauxMeuble[0].categorie)
-      this.filtredMeuble = this.MateriauxMeuble.reverse();
-    })
+  
+      // Filtrer les éléments ayant un tableau non vide pour la propriété 'videoUrl'
+      const meubleAvecApps = this.MateriauxMeuble.filter((element: any) => element.videoUrl && element.videoUrl.length > 0);
+  
+      // Filtrer les éléments ayant un tableau vide pour la propriété 'videoUrl'
+      const meubleSansApps = this.MateriauxMeuble.filter((element: any) => !element.videoUrl || element.videoUrl.length === 0);
+  
+      // Déplacer les éléments sans 'videoUrl' en tête du tableau
+      this.filtredMeuble = meubleAvecApps.concat(meubleSansApps);
+  });
+  
+  
   }
   Search() {
     if (this.searchText !== "") {

@@ -57,7 +57,7 @@ export class EquipementComponent implements OnInit {
     })
 
     this.Servicemateriaux.getMateriauxEquipement().subscribe((data: any) => {
-      this.MateriauxEquipement = data;
+      this.MateriauxEquipement =data.filter((agency: any) => agency.phone_number_commercial != "yes");       
       console.log(this.MateriauxEquipement)
       this.filtredEquipement = this.MateriauxEquipement.reverse();
           console.log("reverce equipement",this.filtredEquipement)

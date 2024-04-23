@@ -29,6 +29,11 @@
 
   }
 }
+
+:host ::ng-deep p-button {
+  background-color: red !important;
+  width: 100px;
+}
 @media only screen and (max-width: 420px) {
 
   .sk-chase {
@@ -97,6 +102,10 @@
      }
    }
    ::ng-deep app-agency {
+    /* Your CSS styles for app-agency component go here */
+    zoom: 0.9;
+  }
+   ::ng-deep app-coffee-agency {
     /* Your CSS styles for app-agency component go here */
     zoom: 0.9;
   }

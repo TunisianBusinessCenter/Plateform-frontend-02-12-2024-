@@ -44,13 +44,13 @@ export class MeilleursBienTunisComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.meilleursBiensService.getMeilleursBiensTunis().subscribe((data: any) => {
-    
-      this.AgenciesTunis = data;
-     
-        console.log(this.AgenciesTunis)
-         
+  
 
-    })
-  }
+  this.meilleursBiensService.getMeilleursBiensTunis().subscribe((data: any) => {
+    this.AgenciesTunis = data.filter((agency: any) => agency.phone_number_commercial != "yes");
+    console.log(this.AgenciesTunis)
+ 
+  })
+}
+
 }

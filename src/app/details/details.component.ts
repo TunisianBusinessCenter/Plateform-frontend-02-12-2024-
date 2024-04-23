@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AgenciesService } from '../services/agencies/agencies.service';
 import { ProjetsService } from '../services/projets/projets.service';
@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { SelectItem } from 'primeng/api';
 import { VisitorCounterService } from '../services/VisitorCounter/visitor-counter.service';
 import * as moment from 'moment';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 interface Duree {
   name: string;
@@ -48,6 +49,7 @@ export class DetailsComponent implements OnInit {
   displayMaximizabled1: boolean;
   contactText = "";
   numText = "";
+  @HostListener('window:resize', ['$event'])
 
   responsiveOptions: any[] = [
     {
@@ -73,7 +75,7 @@ export class DetailsComponent implements OnInit {
   visitorCount: number;
   routeId: string;
   isValid: boolean; // Do not initialize here
-
+ 
   agencyId: any;
   NameAgency: any;
   AgencyID: any;
@@ -88,11 +90,16 @@ export class DetailsComponent implements OnInit {
   ProjetId: any;
   check: any;
   foundAgency: any;
+  AgencyBaniere: any;
+  ProduitVendu: any;
+  website_url: any;
+  facebook_url: any;
   constructor(private activatedRoute: ActivatedRoute,
     private agencieService: AgenciesService,
     private projetService: ProjetsService,
     private _location: Location,
     private router: Router,
+    private modalService: NgbModal,
     private visitorCounterService: VisitorCounterService) {
     this.items = [];
     for (let i = 0; i < 10000; i++) {
@@ -113,22 +120,27 @@ export class DetailsComponent implements OnInit {
 
     this.agencieService.getAgencieById(this.routerIdLink).subscribe(data => {
       this.Agency = data;
-      
-      console.log("agencyId", this.Agency)
+    
     }),
-    this.agencieService.getAgencieTunis().subscribe((data: any[]) => {
-      // Assuming data is an array of agencies
-      console.log('foundAgency :',data)
+    this.agencieService.getAllAgencies().subscribe((data: any[]) => {
+      console.log('foundAgency : s',data)
       let foundAgency = data.find(agency => agency.name === this.NameAgency);
       console.log('foundAgency :',foundAgency)
+      this.foundAgency=foundAgency?.mobile_apps[0]
+      this.AgencyBaniere = this.foundAgency?.mobile_cover_image_url;
+      console.log("AgencyBaniere", this.AgencyBaniere)
+
+      this.agencieService.setAgencyBaniere(this.AgencyBaniere);
+      console.log("agencyId", this.AgencyBaniere)
 
       if (foundAgency) {
         this.agencyId = foundAgency.id;
         this.description = foundAgency.description
         this.logo_url = foundAgency.logo_url
-
+        this.facebook_url= foundAgency.facebook_url
+        this.website_url= foundAgency.website_url
         // this.ProjetEnCours = foundAgency.description
-        this.ProjetEnCours = foundAgency?.projets
+        this.ProjetEnCours = foundAgency?.projets.filter(project => project.status === 'EN COURS' || project.status === 'EN COURS ');
         this.check =this.ProjetEnCours
         console.log('disponible',this.check)
         if (this.check) {
@@ -137,8 +149,11 @@ export class DetailsComponent implements OnInit {
         } 
         this.ProjetId=this.ProjetEnCours.id
         console.log('cours',this.ProjetEnCours)
-        this.ProjetDispo = foundAgency?.projets.filter(project => project.status === 'DISPONIBLE');
+        this.ProjetDispo = foundAgency?.projets.filter(project => project.status === 'DISPONIBLE' || project.status === 'Disponible');
+        this.ProduitVendu = foundAgency?.projets.filter(project => project.status === 'VENDU');
+        
         console.log('dispo',this.ProjetDispo)
+        
         console.log("Found Agency", this.agencyId);
         this.routerIdLink = this.agencyId;
       } else {
@@ -233,5 +248,24 @@ export class DetailsComponent implements OnInit {
         location.reload();
       }, 1000);
     }
-   
-}
+    openVerticallyCentered(content) {
+      this.modalService.open(content, { centered: true });
+    }
+
+
+    displayDialog: boolean = false;
+    selectedImage: string = '';
+    openImageInDialog(imageUrl: string): void {
+    
+      if (this.isMobile()) {
+        this.selectedImage = imageUrl;
+        this.displayDialog = true;
+        console.log(this.selectedImage,imageUrl)
+      }
+    }
+    private isMobile(): boolean {
+      // Set a threshold for mobile screen width (adjust as needed)
+      const mobileScreenWidth = 768;
+      return window.innerWidth < mobileScreenWidth;
+  }
+  }  

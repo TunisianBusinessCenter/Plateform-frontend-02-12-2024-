@@ -1,14 +1,6 @@
-<!-- wrapper -->
-
-
-
-
-
-
-
-
 
 <!-- <div class="main-container" *ngIf="Agency?.role==='promoteur-immobilieres'"	 > -->
+
 	<div class="main-container" 	 >
 		<nav class="main-menu">
 			<style>
@@ -33,8 +25,8 @@
 				  height: auto;
 				  border-radius: 40%;
 				}
-			  
-				.hr {
+		  
+				hr {
 				  width: 20px;
 				  height: 20px;
 				  background-color: white;
@@ -56,13 +48,12 @@
 			</li>
 		   
 		   <div>
-			<hr>
-	<hr>
+	
 			
 			   <ul>
 			
 				<li>
-					<a  routerLink="/home">
+					<a >
 						<i class="fa fa-home fa-2x"></i>
 						<span class="nav-text">
 							Page d'accueil 
@@ -72,12 +63,15 @@
 				</li>
 			   
 				<li class="dropdown">
-					<a [routerLink]="'/agency/' + idAgency">
+					<a >
 						<i class="fa fa-book fa-2x"></i>
-						<span class="nav-text">Nos projets</span>
+						<span class="nav-text" *ngIf="Agency?.role!=='materiaux-construction'   && Agency?.role!=='agence-service' " >Nos projets</span>
+						<span *ngIf="Agency?.role==='materiaux-construction' && ProduitEnCours.length > 0" class="nav-text">Nos produits</span>
+						<span *ngIf="Agency?.role==='agence-service' && ProduitEnCours.length > 0" class="nav-text">Nos Menus</span>
+						
 					</a>
 					<div class="dropdown-content" >
-						<a *ngIf="ProjetEnCours.length > 0 || ProduitEnCours.length > 0">En cours</a>
+						<a *ngIf="ProjetEnCours.length > 0 ">En cours</a>
 	
 						<div class="submenu" *ngFor="let project of ProjetEnCours">
 	
@@ -96,14 +90,35 @@
 	
 							</a>
 						</div>
+						<a *ngIf="ProduitVendu.length > 0">Vendu</a>
+						<div class="submenu" *ngFor="let project of ProduitVendu ; index as i">
+	
+							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="'/details/' + project.id">
+								{{ project.name }}
+	
+							</a>
+						</div>
 	
 					</div>
 					<div class="dropdown-content" *ngIf="Agency?.role==='materiaux-construction'">
-						<a *ngIf=" ProduitEnCours.length > 0">Produits</a>
+						<!-- <a *ngIf=" ProduitEnCours.length > 0">Produits</a> -->
 	
 						<div class="submenu" *ngFor="let project of ProduitEnCours">
 	
 							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="['/details-materiaux', project.id]">
+								{{ project.name }}
+	
+							</a>
+						</div>
+						<!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
+	
+					</div>
+					<div class="dropdown-content" *ngIf="Agency?.role==='agence-service'">
+						<!-- <a *ngIf=" ProduitEnCours.length > 0">Produits</a> -->
+	
+						<div class="submenu" *ngFor="let project of ProduitEnCours">
+	
+							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="['/descriptionCoffee', project.id]">
 								{{ project.name }}
 	
 							</a>
@@ -118,15 +133,16 @@
 	}
 				</style>
 	
-				<li>
+				<!-- <li>
 					<a routerLink="/conception/ajouterConception">
 						<i class="fa fa-plus fa-2x"></i>
-						<span class="nav-text">Ajouter du contenu boutique</span>
+						<span class="nav-text">Ajouter contenu </span>
 					</a>
-				</li>
+				</li> -->
 	
 				<li class="dropdown">
-					<a routerLink="/conception/registre">
+					<!-- <a routerLink="/conception/registre"> -->
+					<a (click)="openVerticallyCentered(content)">
 						<i class="fa fa-envelope fa-2x"></i>
 						<span class="nav-text">Contacter nous</span>
 					</a>
@@ -137,13 +153,15 @@
 	<style>
 	/* Initially hide the dropdown content */
 	.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #1f1e84;
-	min-width: 160px;
 	
-	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-	z-index: 5;
+		display: none;
+    position: absolute;
+    background-color: #1f1e84;
+    min-width: 42px;
+    width: 248px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+
 	}
 	.dropdown-content > a {
 	margin: 0px 23px;
@@ -165,7 +183,7 @@
 	.dropdown-content .submenu a {
 	display: block;
 	font-size: 9px;
-	width: 196px;
+	width: 222px;
 	margin: -7px 11px;
 	padding: 10px;
 	text-decoration: none;
@@ -184,15 +202,17 @@
 	
 	/* Add hover effect */
 	.dropdown-content .submenu a {
-	
-	font-size: 10px; /* Set the initial font size */
-	transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease; /* Add smooth transition for both background color and font size */
+		font-size: 12px;
+    font-weight: bold;
+    transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease;
 	}
 	
 	.dropdown-content .submenu a:hover {
-	font-size: 11px; /* Change font size on hover */
-	color: yellow;
-	border: solid 1px gray;
+	    font-size: 13px;
+    color: yellow;
+    border: solid 1px gray;
+    font-weight: 600;
+
 	}
 	
 	@media only screen and (max-width: 767px) {
@@ -206,12 +226,12 @@
 	</style>			
 	
 			
-				
+
 	
 	
 			  
 			   
-				<li>
+				<li style="cursor: pointer;" class="dropdown">
 					<a (click)="showMaximizableDialog()">
 						<i class="fa fa-info-circle fa-2x"></i>
 						<span class="nav-text">
@@ -261,7 +281,7 @@
 	
 	
 	
-	<app-navbar-carousel></app-navbar-carousel>
+	<app-navbar-carousel [AgencyBaniere]="this.AgencyBaniere"></app-navbar-carousel>
 	
 	<div class="responsiveHome"  style="    display: flex;  ">
 	<!-- 	
@@ -305,7 +325,7 @@
 						<!-- <div class="aproposAnachor " (click)="showMaximizableDialog()"><span><i class="pi pi-info-circle "></i>À PROPOS</span></div> -->
 	<!-- 
 						<p-button (click)="showMaximizableDialog()" icon="pi pi-info-circle" label="À PROPOS" ></p-button> -->
-						<p-button (click)="showMaximizableDialog()" icon="pi pi-info-circle" label="À PROPOS"></p-button>
+						<p-button (click)="showMaximizableDialog()"  icon="pi pi-info-circle" label="À PROPOS"></p-button>
 	
 					</div>
 					<p-dialog   class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"  [style]="{width: '85vw', 'margin-left': '50px'}"
@@ -315,127 +335,86 @@
 							<img class="rounded-lg border card-img-modal" src="{{ Agency?.logo_url }}" alt="Eco house company">
 						</div>
 						<div class="col-md-8">
-							<p class="scrollable-paragraph">{{Agency.description}}
-								
-							</p>
-							
+							<p class="scrollable-paragraph" id="agencyDescription">{{ Agency.description }}</p>
 						</div>
 					</div>
-					<!-- <div class="row modalTheme2">
-				<div class="col-md-8">
-					<p>{{Agency.description}}.</p>
-				</div>
-				<div class="col-md-4">
-					<img class="rounded-lg border card-img-modal" src="{{ Agency?.logo_url }}" alt="Eco house company">				
-				</div>
-			</div>
-			<div class="row modalTheme">
-				<div class="col-md-4">
-					<img class="rounded-lg border card-img-modal" src="{{ Agency?.logo_url }}" alt="Eco house company">				
-				</div>
-				<div class="col-md-8">
-					<p>{{Agency.description}}.</p>
-				</div>
-			</div> -->
-					<!-- <div class="col textresponce">
-						<div class="Card">
-							<div class="ribbon"><span class="ribbon__content"
-									*ngIf="Agency?.role==='promoteur-immobilieres'">PROMOTION</span></div>
-							<div class="ribbon"><span class="ribbon__content"
-									*ngIf="Agency?.role==='materiaux-construction'">MATERIAUX</span></div>
-							<div class="ribbon"><span class="ribbon__content__agence"
-									*ngIf="Agency?.role==='agence-immobilieres'">A
-									VENDRE/A LOUER</span></div>
-							<div class="ribbon"><span class="ribbon__content__agence" *ngIf="Agency?.role==='meilleurs-biens'">A
-									VENDRE/A LOUER</span></div>
-							<div class="ribbon"><span class="ribbon__content"
-									*ngIf="Agency?.role==='agence-service'">SERVICE</span>
-							</div>
-	
-							<h2 class="card-titles fs-22 lh-15 mb-1 text-dark">
-								{{ Agency?.name }}
-							</h2>
-							<p class="card-text  Agencyadresse">
-								{{ Agency?.adresse }}
-							</p>
-	
-	
-							<div class="  align-items-sm-center  li-agency">
-								<span class="col-sm-2 px-1 AgencyDetails">Tél 1:</span>
-								<span class="col-sm-9 px-1  tele-responsive">
-									+216 {{ Agency?.phone_number }}
-								</span>
-							</div>
-							<div class="  align-items-sm-center  li-agency" *ngIf="Agency?.phone_number2">
-								<span class="col-sm-2 px-1 AgencyDetails">Tél 2:</span>
-								<span *ngIf="Agency?.name!=='IOT MEDICAL TECHNOLOGY'" class="col-sm-9 px-1  tele-responsive">
-									+216 {{ Agency?.phone_number2}}
-								</span>
-								<span *ngIf="Agency?.name==='IOT MEDICAL TECHNOLOGY'" class="col-sm-9 px-1  tele-responsive">
-									{{ Agency?.phone_number2}}
-								</span>
-							</div>
-							<div class="  align-items-sm-center  li-agency" *ngIf="Agency?.phone_commercial">
-								<span class="col-sm-2 px-1 AgencyDetails">Tél Commercial:</span>
-								<span class="col-sm-9 px-1  tele-responsive">
-									+216 {{ Agency?.phone_commercial}}
-								</span>
-							</div>
-							<div class="  align-items-sm-center  li-agency">
-								<span class="col-sm-2 px-1 AgencyDetails">Email:</span>
-								<span class="col-sm-9 px-1 tele-responsive">
-									{{ Agency?.email }}
-								</span>
-							</div>
-							<div class="  align-items-sm-center  li-agency" >
-								<span class="px-1  AgencyDetails">Site web:</span>
-	
-								<span (click)="goToLink()" class="col-sm-9 px-1 tele-responsive"
-									style="color: #1f1e84;cursor: pointer;text-decoration:none">
-									{{Agency?.website_url}}
-								</span>
-	
-							</div> <br>
-							<div class="d-flex align-items-sm-center  li-social">
-	
-								<ul class="list-inline mb-0" style="margin-left: -48px;">
-									<ul class="social-networks bounce">
-										<li>
-											<a href="{{Agency?.twitter_url}}" class="icon-twitter">
-												Twitter
-											</a>
-										</li>
-										<li>
-											<a href="{{Agency?.facebook_url}}" class="icon-facebook">
-												Facebook
-											</a>
-										</li>
-										<li>
-											<a href="{{Agency?.instagram_url}}" class="icon-instagram">
-												Instagram
-											</a>
-										</li>
-										<li>
-											<a href="{{Agency?.linkedlin_url}}" class="icon-linkedin">
-												LinkedIn
-											</a>
-										</li>
-									</ul>
-								</ul>
-							</div>
-						</div>
-	
-	
-	
-					</div> -->
-	
-	
-					<!-- <ng-template pTemplate="footer">
-						<p-button icon="pi pi-times" (click)="displayMaximizable=false" label="Fermer"></p-button>
-					</ng-template> -->
-	
-					<!-- LinkedIn  -->
+					
+					<style>
+						.modalTheme {
+							/* Add your modal styling here */
+						}
+					
+						.scrollable-paragraph {
+							line-height: 1.5;
+							max-height: 325px; /* Set a maximum height for the paragraph to enable scrolling */
+							overflow-y: auto; /* Enable vertical scrolling if content overflows */
+							white-space: pre-line; /* Preserve newlines and line breaks */
+						}
+					</style>
+					
+					<script>
+						// JavaScript to add line breaks at points (.) with a space before it in the description
+						document.addEventListener("DOMContentLoaded", function () {
+							const descriptionElement = document.getElementById("agencyDescription");
+							if (descriptionElement) {
+								// Get the text content
+								let descriptionText = descriptionElement.textContent;
+					
+								// Add line breaks at points (.) with a space before it
+								descriptionText = descriptionText.replace(/ \./g, '.\n');
+					            
+								// Set the modified text back to the element
+								descriptionElement.textContent = descriptionText;
+							}
+						});
+					</script>
+					
+			
 				</p-dialog>
+					<p-dialog   class="p-diag" header="À Propos" [(visible)]="displayMaximizable1" [modal]="true"  [style]="{width: '85vw', 'margin-left': '50px'}"
+					[maximizable]="true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+					<div class="row modalTheme">
+						<div class="col-md-4">
+							<img class="rounded-lg border card-img-modal" src="{{ Agency?.logo_url }}" alt="Eco house company">
+						</div>
+						<div class="col-md-8">
+							<p class="scrollable-paragraph" id="agencyDescription">{{ Agency.description }}</p>
+						</div>
+					</div>
+					
+					<style>
+						.modalTheme {
+							/* Add your modal styling here */
+						}
+					
+						.scrollable-paragraph {
+							line-height: 1.5;
+							max-height: 325px; /* Set a maximum height for the paragraph to enable scrolling */
+							overflow-y: auto; /* Enable vertical scrolling if content overflows */
+							white-space: pre-line; /* Preserve newlines and line breaks */
+						}
+					</style>
+					
+					<script>
+						// JavaScript to add line breaks at points (.) with a space before it in the description
+						document.addEventListener("DOMContentLoaded", function () {
+							const descriptionElement = document.getElementById("agencyDescription");
+							if (descriptionElement) {
+								// Get the text content
+								let descriptionText = descriptionElement.textContent;
+					
+								// Add line breaks at points (.) with a space before it
+								descriptionText = descriptionText.replace(/ \./g, '.\n');
+					            
+								// Set the modified text back to the element
+								descriptionElement.textContent = descriptionText;
+							}
+						});
+					</script>
+					
+			
+				</p-dialog>
+				
 				</div>
 				
 				<div class="tablett">
@@ -451,10 +430,7 @@
 								VENDRE/A LOUER</span></div>
 						<div class="ribbon"><span class="ribbon__content" *ngIf="Agency?.role==='agence-service'">SERVICE</span>
 						</div>
-	<div style="    padding: 0px;
-	/* background-color: red; */
-	margin-top: 26px;
-	margin-bottom: -16px;">
+	<div style=" " class="cardText">
 	
 	
 	
@@ -576,7 +552,7 @@
 								</h6> -->
 							</div>
 							<!-- *ngIf="Agency?.role==='promoteur-immobilieres'" -->
-							<a style=" text-decoration:none" href="{{ Agencyapp?.playstore_url }}">
+							<a style=" text-decoration:none" >
 								<!-- <img class="appimage" src="{{ Agencyapp?.mobile_cover_image_url }}" -->
 								<!-- <img *ngIf="Agency?.role==='materiaux-construction'" class="appimage" src="../../assets/images/HomePage/APPLICATION-METRIAUX-PRODUIT.jpg" 
 								alt="The Interior Design The Hall On str. Filimonovo" width="80%"> -->
@@ -584,7 +560,7 @@
 						<img *ngIf="Agency.role==='promoteur-immobilieres'"class="appimage" src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
 						<img *ngIf="Agency.role==='agence-immobilieres'"class="appimage" src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
 						<img *ngIf="Agency.role==='agence-service'"class="appimage" src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
-								<button onclick="window.open('videoUrl', '_blank')" type="submit" class="btn btn-google btn-lg btn-block shadow-none responsive-telecharger">
+								<button (click)="checkRoute()"  type="submit" class="btn btn-google btn-lg btn-block shadow-none responsive-telecharger">
 									Google Play store &nbsp;
 									<!-- <i class="fa fa-android" aria-hidden="true"></i> -->
 								</button>
@@ -598,7 +574,7 @@
 			a.btn-google{color:#fff}
 			.btn{padding:10px 16px;margin:5px;font-size:18px;line-height:1.3333333;border-radius:6px;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;font-weight:500;text-decoration:none;display:inline-block}
 			.btn:active:focus,.btn:focus{outline:0}
-			.btn:focus,.btn:hover{color:#333;text-decoration:none;outline:0}
+			/* .btn:focus,.btn:hover{color:#333;text-decoration:none;outline:0} */
 			.btn:active{outline:0;-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);box-shadow:inset 0 3px 5px rgba(0,0,0,.125)}
 			.btn-google{color:#fff;background-color:#111;border-color:#000;padding:15px 16px 5px 40px;position:relative;font-family:fontfutura;font-weight:600}
 			.btn-google:focus{color:#fff;background-color:#555;border-color:#000}
@@ -611,34 +587,7 @@
 							</a>
 						</div>
 					</div>
-					<!-- <div *ngIf="Agency?.mobile_apps?.length===0 && Agency?.name!=='Urbat'">
-						<div class="text-primary">
-							<h6 class="appname">
-								Application en cours 		
-							</h6>
-						</div>
 					
-						<img class="appimage" src="../../assets/images/HomePage/APPLICATION-METRIAUX-PRODUIT.jpg" 
-						style="float: right;" width="80%" height="120%" >
-						<button type="submit"
-								class="btn btn-primary btn-lg btn-block shadow-none responsive-telecharger" >
-								Télecharger &nbsp;
-								<i class="fa fa-download" aria-hidden="true"></i>
-							</button>
-						
-					</div>
-					-->
-	<!-- 
-					<div class="Card-video"
-						*ngIf="Agency?.mobile_apps?.length===0 && Agency?.videoUrl2 && Agency.role==='promoteur-immobilieres' ">
-						<div class="text-primary">
-							<h2 class="appnameUrbat">
-								Vidéo de présentation
-							</h2>
-						</div>
-	
-						<iframe class="responsive-iframe" [src]="urlSafe2"></iframe>
-					</div> -->
 					<div class="Card-video"
 						*ngIf="Agency?.mobile_apps?.length===0   ">
 						<div class="text-primary">
@@ -661,9 +610,9 @@
 							/*<![CDATA[*/
 							@font-face{font-family:"fontfutura";src:url("https://fonts.googleapis.com/css?family=Open+Sans") format("ttf");font-weight:normal;font-style:normal;}
 							a.btn-google{color:#fff} 
-							.btn{padding:10px 16px;margin:5px;font-size:18px;line-height:1.3333333;border-radius:6px;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;font-weight:500;text-decoration:none;display:inline-block}
+							/* .btn{padding:10px 16px;margin:5px;font-size:18px;line-height:1.3333333;border-radius:6px;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;font-weight:500;text-decoration:none;display:inline-block} */
 							.btn:active:focus,.btn:focus{outline:0}
-							.btn:focus,.btn:hover{color:#333;text-decoration:none;outline:0}
+							/* .btn:focus,.btn:hover{color:#333;text-decoration:none;outline:0} */
 							.btn:active{outline:0;-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);box-shadow:inset 0 3px 5px rgba(0,0,0,.125)}
 							.btn-google{color:#fff;background-color:#111;border-color:#000;padding:15px 16px 5px 40px;position:relative;font-family:fontfutura;font-weight:600}
 							.btn-google:focus{color:#fff;background-color:#555;border-color:#000}
@@ -716,9 +665,9 @@
 						[circular]="true" [responsiveOptions]="responsiveOptions" [autoplayInterval]="7000">
 	
 						<ng-template let-image pTemplate="item">
-							<div class="item-card" [routerLink]="['/details', image.id]">
+							<div class="item-card" >
 								<div>
-									<img src="{{image.photos[0]}}" class="card-img-top taill-image" alt="Responsive image">
+									<img [routerLink]="['/details', image.id]" src="{{image.photos[0]}}" class="card-img-top taill-image" alt="Responsive image">
 									<div *ngIf="image?.name==='LE LOFT'">
 										<span class="badge badge-orange">Prix à partir de 253.000 dt TTC</span>
 									</div>
@@ -739,14 +688,14 @@
 												data-layout="button_count" data-size="large">
 												<a target="_blank"
 													href="{{Agency?.facebook_url}}"
-													class="social-link1">
+													class="social-link">
 													<i class="fab fa-facebook-f"></i>
 												</a>
 											</div>
 	
 										</div>
 										<div class="social-link-container ">
-											<a href="{{Agency?.instagram_url}}" class="social-link">
+											<a href="{{Agency?.instagram_url}}" class="social-link1">
 												<i class="fab fa-instagram"></i>
 											</a>
 										</div>
@@ -768,13 +717,13 @@
 						class="btn  btn-promotion">
 						VIDEO DE  PRESENTATION </a>
 					<a *ngIf="Agency?.videoUrl2" (click)="goToLink()" class="btn btn-promotion btn-promotion">
-						VIDEO RESIDENCE </a>
+						VIDEO RÉFÉRENCE </a>
 						<br><br><br><br><br>
 	
 					<section  *ngIf="Agency?.videoUrl2===null || Agency?.videoUrl2===''" (click)="goToLink()">
 						<div></div>
 						<div class="container">
-							<div class="background-img" [ngStyle]="{'background-image':'url(' +image_url_pj + ')'}">
+							<div class="background-img" [ngStyle]="{'background-image':'url(' +'assets/v3.jpg'+ ')'}">
 								<!-- <div class="box">
 									<span></span>
 									<span></span>
@@ -805,7 +754,7 @@
 	
 	
 					<br><br><br> <br>
-					<div class="wrapper">
+					<!-- <div class="wrapper">
 						<div class="fb-share-button" data-href="https://tunimmob.com/agency/{{idAgency}}"
 							data-layout="button_count" data-size="large">
 							<div class="icon" >
@@ -815,13 +764,13 @@
 								class="fb-xfbml-parse-ignore textfb">Partager sur Facebook</a>
 						</div>
 	
-						<div class="button ">
+						<div class="button " (click)="shareOnInstagram()"	>
 							<div class="icon" style="background-color: #E1306C;">
 								<i class="fab fa-instagram"></i>
 							</div>
 							<span>Partager sur Instagram</span>
 						</div>
-					</div>
+					</div> -->
 	
 					<br>
 				</div>
@@ -945,7 +894,7 @@
 					<!------->
 	
 					<br><br><br> <br>
-					<div class="wrapper">
+					<!-- <div class="wrapper">
 	
 						<div class="fb-share-button" data-href="https://tunimmob.com/agency/{{idAgency}}"
 							data-layout="button_count" data-size="large">
@@ -963,7 +912,7 @@
 							<span>Partager sur Instagram</span>
 						</div>
 	
-					</div>
+					</div> -->
 					<br><br>
 	
 	
@@ -1074,7 +1023,7 @@
 												data-layout="button_count" data-size="large">
 												<a target="_blank"
 													href="{{Agency?.facebook_url}}"
-													class="social-link1">
+													class="social-link">
 													<i class="fab fa-facebook-f"></i>
 												</a>
 											</div>
@@ -1087,7 +1036,7 @@
 										</div>
 										<div class="social-link-container">
 											<a href="{{Agency?.website_url}}" class="social-link">
-												<i class="font">W</i>
+												<i class="">W</i>
 											</a>
 										</div>
 	
@@ -1134,7 +1083,7 @@
 					<section *ngIf="Agency?.videoUrl2===null || Agency?.videoUrl2===''" (click)="goToLink()">
 						<div></div>
 						<div class="container">
-							<div class="background-img" [ngStyle]="{'background-image':'url(' +image_url + ')'}">
+							<div class="background-img" [ngStyle]="{'background-image':'url(' +'../../assets/v3.jpg'+ ')'}">
 								<!-- <div class="box">
 									<span></span>
 									<span></span>
@@ -1161,7 +1110,7 @@
 					</section>
 	
 					<br><br><br> <br>
-					<div class="wrapper">
+					<!-- <div class="wrapper">
 	
 						<div class="fb-share-button" data-href="https://tunimmob.com/agency/{{idAgency}}"
 							data-layout="button_count" data-size="large">
@@ -1180,8 +1129,7 @@
 							<span>Partager sur Instagram</span>
 						</div>
 	
-					</div>
-					<br><br>
+					</div> -->
 	
 	
 				</div>
@@ -1241,7 +1189,7 @@
 					<p-carousel [value]="Agency.services" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
 						[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
 	
-						<ng-template let-image pTemplate="item">
+						<ng-template let-image pTemplate="item" >
 							<div class="item-card" [routerLink]="['/details-service',image.id]">
 								<img src="{{image?.imageUrl}}" class="card-img-top taill-image">
 								<div class="card-body">
@@ -1255,16 +1203,59 @@
 								</div>
 							</div>
 						</ng-template>
+
+						<!-- <div *ngIf="Agency?.services?.sous_services?.length===0 && allAgence.videoUrl===null ;"> -->
+
+							<ng-template #homeLink>
+								<div class="item-card" [routerLink]="['/home']">
+								  <!-- Content when condition is false -->
+								</div>
+							  </ng-template>
+						<ng-template let-image pTemplate="item" *ngIf="Agency?.categorie==='coffee'     ">
+							<div class="item-card" >
+								<img src="{{image?.imageUrl}}" class="card-img-top taill-image" [routerLink]="['/descriptionCoffee', image.id]">
+								<div class="card-body">
+									<div>
+										<h5 class="card-title random">Service</h5>
+										<button   class="btn btn-prix" style="float: right;" >Notre Menus</button>
+										<!-- <button  class="btn btn-prix" style="float: right;" *ngIf="image.sous_services && image.sous_services.length === 0; ">{{image?.prix}}</button> -->
+									</div>
 	
-					</p-carousel> <br>
-					<button (click)="goToLink()" class="btn btn-promotion"
-					style="float: right;font-size: 18px; font-weight: 600;margin-bottom: 50px;margin-top:1px;">PROMO DE LA SEMAINE </button>
-					<br><br><br><br>
-					<section (click)="goToLink()">
-						<div></div>
+									<p class="nameStyle">{{image?.name}}</p>
+	
+								</div>
+							</div>
+							<!-- <section *ngIf="Agency?.videoUrl2">
+								<div></div>
+								<div class="container">
+									<div class="background-vd">
+										<iframe class="promoVideo" [src]="urlSafe2">
+										</iframe>
+									</div>
+								</div>
+							</section> -->
+						</ng-template>
+	
+					</p-carousel> 
+					<br><br><br>
+					<a (click)="goToLink()" class="btn btn-promotion" style="">
+						Menu Du Jour </a>
+						<br><br><br><br>
+					<!-- <button (click)="goToLink()" class="btn btn-promotion"
+					style="float:right;font-size: 18px; font-weight: 600;margin-bottom: -30px;margin-top:-33px;">Menu Du Jour</button> -->
+					<br>
+					<!-- <section (click)="goToLink()">
 						<div class="container">
 							<div class="background-img" [ngStyle]="{'background-image':'url(' +image_url_ser + ')'}">
-								<div class="box">
+								
+							</div>
+						</div>
+					</section> -->
+					<section *ngIf="Agency?.videoUrl2===null || Agency?.videoUrl2===''" (click)="goToLink()">
+						<div></div>
+						<div class="container">
+							<div class="background-img" [ngStyle]="{'background-image':'url(' +'../../assets/v3.jpg'+ ')'}">
+								<!-- <div class="box">
 									<span></span>
 									<span></span>
 									<span></span>
@@ -1273,29 +1264,25 @@
 	
 									</div>
 	
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</section>
-					<br><br><br> <br>
+					
+					<section *ngIf="Agency?.videoUrl2" >
+						<div></div>
+						<div class="container">
+							<div class="background-vd">
+								<iframe class="promoVideo" [src]="urlSafe2">
+								</iframe>
+	
+							</div>
+						</div>
+					</section>
+					<br><br>
 					<div class="wrapper " style="margin-top:60px;">
 	
-						<div class="fb-share-button" data-href="https://tunimmob.com/agency/{{idAgency}}"
-							data-layout="button_count" data-size="large">
-							<div class="icon">
-								<i class="fab fa-facebook-f"></i>
-							</div>
-							<a [(ngModule)]="image_url_ser" (click)="changemetaSer(image_url_ser)" target="_blank"
-								href="https://www.facebook.com/sharer/sharer.php?u=https://tunimmob.com/agency/{{idAgency}}"
-								class="fb-xfbml-parse-ignore textfb">Partager sur Facebook</a>
-						</div>
-	
-						<div class="button ">
-							<div class="icon">
-								<i class="fab fa-instagram"></i>
-							</div>
-							<span>Partager sur Instagram</span>
-						</div>
+						
 	
 					</div>
 					<br><br>
@@ -1469,6 +1456,62 @@
 	
 	<br><br><br>
 	<div class="tunsian-flag-img-background">
+		<div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups " >
+			<div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie!='coffee'">
+				<a (click)="showMaximizableDialog1()"  class="btn-hover-flag-img text-center "  aria-selected="true "
+					style="line-height: 1.5">
+					<span style="letter-spacing: 3px;">NOS</span>
+					<br>
+					<span style="letter-spacing: 3px;">REFERENCES</span>
+				</a>
+			</div>
+			<div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie=='coffee'">
+				<a [attr.href]="Agency.instagram_url"  class="btn-hover-flag-img text-center "  aria-selected="true "
+					style="line-height: 1.5">
+					<span style="letter-spacing: 3px;">NOTRE</span>
+					<br>
+					<span style="letter-spacing: 3px;">INSTAGRAM</span>
+				</a>
+			</div>
+			<div class="btn-group mr-2" role="group " aria-label="Second group ">
+				<a [attr.href]="Agency.website_url" target="_blank" class="btn-hover-flag-img text-center "  aria-selected="true "
+					style="line-height: 1.5">
+					<span style="letter-spacing: 3px;">NOTRE </span>
+					<br>
+					<span style="letter-spacing: 3px;">SITE WEB</span>
+				</a>
+			</div>
+			<div class="btn-group mr-2" role="group " aria-label="Third group ">
+				<a [attr.href]="Agency.facebook_url" target="_blank" class="btn-hover-flag-img text-center " aria-selected="true " 
+					style="line-height: 1.5">
+					<span style="letter-spacing: 3px;">PAGE</span>
+					<br>
+					<span style="letter-spacing: 3px;">FACEBOOK</span>
+				</a>
+			</div>
+			<div class="btn-group mr-2 " role="group " aria-label="Third group ">
+				<a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  "  aria-selected="true "
+					style="line-height: 1.5;">
+					<span style="letter-spacing: 3px;">CONTACTEZ-</span>
+				
+				
+					<br>
+					<span style="letter-spacing: 3px;">
+						NOUS
+					</span>
+				</a>
+			</div>
+			<!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
+				<a class="btn-hover-flag-img text-center " aria-selected="true "
+					style="line-height: 1.5">
+					<span>COMMERCES</span>
+					<br>
+					<span> Services et Arts</span>
+				</a>
+			</div> -->
+		</div>
+	</div>
+	<!-- <div class="tunsian-flag-img-background">
 		<div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
 			<div class="btn-group mr-2" role="group " aria-label="First group ">
 				<a class="btn-hover-flag-img text-center " href="promoteurs-tunis " aria-selected="true "
@@ -1511,5 +1554,98 @@
 				</a>
 			</div>
 		</div>
-	</div>
+	</div> -->
+	<ng-template #content let-modal>
+		<div class="modal-header">
+			<h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
+			<a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
+		</div>
+		<div class="modal-body">
+			<form>
+				<div class=" cardModal">
+					<div>
+						<label for="email" class="textInput">Email</label>
+						<input class="form-control inputDevis" type="email" name="email" placeholder="Votre Email">
+					</div><br>
+					<div>
+						<label for="Nom" class="textInput">Téléphone</label>
+						<input class="form-control inputDevis" type="text" [(ngModule)]="numText" name="Nom"
+							placeholder="Téléphone">
+					</div> <br>
+					<label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
+					<textarea class="form-control" id="exampleFormControlTextarea1" name="description"
+						rows="3"></textarea>
+					<br>
+					<!-- <div *ngFor="let agencies of Agency">
+						<div *ngFor="let categorie of agencies?.produits">
+							<div *ngFor="let categories of categorie?.categoryList"> -->
+					<!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
+					<div class="example-button-row">
+						<a mat-raised-button style="border-color: #8B0000;
+									background-color: #8B0000; color:aliceblue"
+							href="mailto:dcgeneral@gmail.com?subject=Sujet&body=num:{{numText}} Message:{{contactText}}">Valider</a>
+						<button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+							Close
+						</button>
+						<!-- </div>
+							</div>
+						</div> -->
+	  
+					</div>
+	  
+				</div>
+	  
+				<div class="modal-footer valider">
+	  
+				</div>
+			</form>
+		</div>
+	  </ng-template>
+	  <ng-template #content let-modal>
+		<div class="modal-header">
+			<br><br>
+			<h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
+			<a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
+		</div>
+		<div class="modal-body">
+			<form>
+				<div class="">
+					<div>
+						<label for="email" class="textInput">Email</label>
+						<input class="form-control inputDevis" type="email" name="email" placeholder="Votre Email">
+					</div><br>
+					<div>
+						<label for="Nom" class="textInput">Téléphone</label>
+						<input class="form-control inputDevis" type="text" [(ngModule)]="numText" name="Nom"
+							placeholder="Téléphone">
+					</div> <br>
+					<label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
+					<textarea class="form-control" id="exampleFormControlTextarea1" name="description"
+						rows="3"></textarea>
+					<br>
+					<!-- <div *ngFor="let agencies of Agency">
+						<div *ngFor="let categorie of agencies?.produits">
+							<div *ngFor="let categories of categorie?.categoryList"> -->
+					<!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
+					<div class="example-button-row">
+						<a mat-raised-button style="border-color: #8B0000;
+									background-color: #8B0000; color:aliceblue"
+							href="mailto:dcgeneral@gmail.com?subject=Sujet&body=num:{{numText}} Message:{{contactText}}">Valider</a>
+						<a type="a" class="btn btn-light" (click)="modal.close('Close click')">
+							Close
+						</a>
+						<!-- </div>
+							</div>
+						</div> -->
+	  
+					</div>
+	  
+				</div>
+	  
+				<div class="modal-footer valider">
+	  
+				</div>
+			</form>
+		</div>
+	  </ng-template>
 	

@@ -43,12 +43,14 @@ export class MeilleursBienSousseComponent implements OnInit {
     ];
    }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
     this.meilleursBiensService.getMeilleursBiensSousse().subscribe((data: any) => {
-      this.AgenciesSousse = data;
-      console.log(this.AgenciesSousse)
-   
-    })
+      // Filter data where phone_number_commercial is "yes"
+      this.AgenciesSousse = data.filter((agency: any) => agency.phone_number_commercial != "yes");
+      console.log(this.AgenciesSousse);
+    });
   }
+  
 
+  
 }

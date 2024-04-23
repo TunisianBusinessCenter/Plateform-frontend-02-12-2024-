@@ -1,14 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AgenciesService {
+  private AgencyBaniereSubject = new BehaviorSubject<any>(null);
+  public AgencyBaniere$ = this.AgencyBaniereSubject.asObservable();
+  id: any;
+  private myVariableSubject: BehaviorSubject<any>;
 
-  constructor(private http:HttpClient) { }
+  private agencyIdSubject = new BehaviorSubject<string>('');
+  myVariable: any;
+  private idSource = new BehaviorSubject<string>(''); // Initial value is an empty string
+  currentId = this.idSource.asObservable();
+  constructor(private http:HttpClient) { 
+    const initialValue = localStorage.getItem('myVariable');
+    this.myVariableSubject = new BehaviorSubject<any>(initialValue ? JSON.parse(initialValue) : null);
+  }
+  
 
+  setAgencyBaniere(AgencyBaniere: any) {
+    this.AgencyBaniereSubject.next(AgencyBaniere);
+  }
   getAllAgencies(){
     return this.http.get('https://app.titv-store-api.com/agencies/all')
   }
@@ -61,5 +76,62 @@ export class AgenciesService {
   processData(data: any) {
     // Your logic to process the data goes here
     console.log('Processing data in the service:', data);
+  }
+  private sharedVariableSource = new BehaviorSubject<any>(null);
+  sharedVariable$ = this.sharedVariableSource.asObservable();
+
+  setSharedVariable(data: any) {
+    this.sharedVariableSource.next(data);
+  }
+  // private idSource = new BehaviorSubject<number>(0);
+  currentId$ = this.idSource.asObservable();
+
+  // changeId(newId: number) {
+  //   this.idSource.next(newId);
+  // }
+  private sharedData: any;
+
+  setSharedData(data: any) {
+    this.sharedData = data;
+  }
+
+  getSharedData() {
+    return this.sharedData;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  setVariable(value: any) {
+    this.myVariable=value
+  }
+
+  getVariable(): Observable<any> {
+    return this.myVariableSubject.asObservable();
+  }
+
+  changeId(id: string) {
+    localStorage.setItem('coffeeId', id); // Store the ID in localStorage
+    this.idSource.next(id);
+  }
+
+  getStoredId(): string {
+    return localStorage.getItem('coffeeId');
   }
 }

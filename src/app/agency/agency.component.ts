@@ -6,6 +6,7 @@ import { ProduitsService } from '../services/produits/produits.service';
 import { ProjetsService } from '../services/projets/projets.service';
 import { Location } from '@angular/common';
 import { ShareService } from '../services/share/share.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-agency',
@@ -90,6 +91,10 @@ export class AgencyComponent implements OnInit, AfterViewInit {
   ProjetDispo: any;
   ProduitEnCours: any;
   ProduitDispo: any;
+  AgencyBaniere: Object;
+  ProduitVendu: any;
+  sharedVariable: any;
+  message: string;
 
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -103,12 +108,19 @@ export class AgencyComponent implements OnInit, AfterViewInit {
     private router: Router,
     public _seoService: ShareService,
     private renderer: Renderer2, private el: ElementRef,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private modalService: NgbModal,
+
   ) {
     this.idAgency = this.activatedRoute.snapshot.paramMap.get('id')
     this.agencieService.getAgencieById(this.idAgency).subscribe(data => {
       console.log(data)
+
       this.Agency = data;
+      this.AgencyBaniere = this.Agency.mobile_apps[0].mobile_cover_image_url;
+      this.agencieService.setAgencyBaniere(this.AgencyBaniere);
+
+      console.log('AgencyBaniere',this.AgencyBaniere)
       this.reverseAgPromoteurs = this.Agency?.projets?.reverse();
     })
        // Log the dynamically generated routerLink to the console
@@ -149,10 +161,11 @@ export class AgencyComponent implements OnInit, AfterViewInit {
       this.Agency = data;
       this.reverseAgPromoteurs = this.Agency?.projets?.reverse();
     })
+    this.setSharedVariable();
   }
 
   ngOnInit(): void {
-
+    this.startSendingData()
     this.changeMetadata(
       "Property Listing Title",
       "{{ image.photos[0] }}", // URL of the property image
@@ -172,27 +185,30 @@ export class AgencyComponent implements OnInit, AfterViewInit {
       console.log(this.AgencyP,'ici')
       console.log(this.Agency,'ici')
       let result;
-
-if (this.Agency.projets) {
-  result = this.Agency.projets;
-} else {
-  result = this.Agency.produits;
-}
-      this.ProjetEnCours  = result.filter(project => project.status === 'EN COURS');
+      if (this.Agency.projets && this.Agency.projets.length > 0) {
+        result = this.Agency.projets;
+      } else if (this.Agency.produits && this.Agency.produits.length > 0) {
+        result = this.Agency.produits;
+      } else {
+        result = this.Agency.services;
+      }
+      
+      
+      this.ProjetEnCours  = result.filter(project => project.status === 'EN COURS' || project.status === 'EN COURS ')
+      
       // this.ProduitEnCours  = result.filter(project => project.status === 'EN COURS');
       this.ProduitEnCours  = result
-      
       console.log('cours',this.ProduitEnCours)
-      this.ProjetDispo = result.filter(project => project.status === 'DISPONIBLE');
+      this.ProjetDispo = result.filter(project => project.status === 'DISPONIBLE'       || project.status === 'Disponible'      );
       this.ProduitDispo = result.filter(project => project.status === 'VENDU');
-
+      this.ProduitVendu = result.filter(project => project.status === 'VENDU');
       // this.reverseAgPromoteurs= this.Agency.projets.reverse();
 
       //Video_Url2
       this.urlSafe2 = this.sanitizer.bypassSecurityTrustResourceUrl(this.Agency.videoUrl2);
       console.log('ccccccccccccc', this.Agency.videoUrl2)
       //Video_Url
-      this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.Agency.videoUrl);
+      this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.Agency?.videoUrl);
       this.reverseAg = this.Agency?.produits?.reverse();
       this.reverseAgBiens = this.Agency?.biens?.reverse();
 
@@ -311,6 +327,8 @@ if (this.Agency.projets) {
     //   this.isDesktop = true;
     // }
   }
+
+
   changeMetadata(title: string, imageUrl: string, secureImageUrl: string, description: string): void {
     // this.titleService.setTitle(title);
     // this.meta.updateTag({ property: 'og:url', content: 'https://tunimmob.com/agency/' + this.idAgency });
@@ -337,7 +355,7 @@ if (this.Agency.projets) {
   }
 
   goToLink() {
-    window.open(this.Agency.website_url, '_blank');
+    // window.open(this.Agency.website_url, '_blank');
   }
 
   backClicked() {
@@ -346,6 +364,10 @@ if (this.Agency.projets) {
 
   displayMaximizable: boolean;
   showMaximizableDialog() {
+    this.displayMaximizable = true;
+  }
+  displayMaximizable1: boolean;
+  showMaximizableDialog1() {
     this.displayMaximizable = true;
   }
 
@@ -363,8 +385,12 @@ if (this.Agency.projets) {
   }
 
   shareOnFacebook(): void {
-    const facebookShareURL = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(this.Agency.videoUrl)}`;
+    const facebookShareURL = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(this.Agency.videoUrl2)}`;
     window.open(facebookShareURL, '_blank')
+  }
+  shareOnInstagram() {
+    const instagramShareURL = `https://www.instagram.com/?url=${encodeURIComponent(this.Agency.videoUrl2)}`;
+    window.open(instagramShareURL, '_blank');
   }
 //   fn() {
 
@@ -380,8 +406,9 @@ if (this.Agency.projets) {
 
 checkRoute() {
 
-    window.open(this.Agency.videoUrl, '_blank');
-  
+    window.open(this.Agency?.videoUrl, '_blank');
+    console.log('Generated routerLink:', this.Agency?.videoUrl);
+
 }
 
 
@@ -392,5 +419,22 @@ getRouterLink(): string[] {
   
   return routerLink;
 }
-
+ setSharedVariable() {
+  let data = this.Agency;
+  this.agencieService.setSharedVariable(data);
+  console.log("this data", data); // Corrected to use the 'data' variable
+  //  this.message ="data sended successfully"
+}
+openVerticallyCentered(content) {
+  this.modalService.open(content, { centered: true });
+}
+// sendData() {
+//   this.agencieService.setSharedData(this.Agency.id);
+// }
+startSendingData() {
+  setInterval(() => {
+ 
+    this.agencieService.setSharedData(this.Agency.id);
+  }, 1000); // 1000 milliseconds = 1 second
+}
 }

@@ -14,6 +14,7 @@
   background-color: #1f1e84;
   color: #ffffff;
   font-size: 16px;
+  text-decoration: none;
   padding: 10px 30px;
   border: none;
   cursor: pointer;
@@ -30,6 +31,7 @@
 
 .tunsian-flag-img-background .btn-hover-flag-img:hover {
   background-color: #2f2d99;
+  text-decoration: unde;
 }
 
 .btn-toolbar {
@@ -85,6 +87,7 @@
 
   .tunsian-flag-img-background .btn-hover-flag-img {
     width: 291px;
+    text-decoration: none;
     margin: 3px;
     background-color: #1f1e84;
     color: #ffffff;
@@ -1209,7 +1212,7 @@ a.btn:hover {
     border-color: red;
     width: auto;
     height: 45px;
-    margin-left: 41px;
+    margin-left: 20px;
     display: flex;
     justify-content: space-evenly;
   }
@@ -2026,7 +2029,7 @@ a.btn:hover {
 
   .promoVideo {
     width: 93%;
-    height: 216px;
+    height: 180px;
     margin-top: 45px;
     margin-left: 0px;
   }
@@ -2081,6 +2084,7 @@ a.btn:hover {
     background-color: blue;
   }
 }
+
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 .fa-2x {
@@ -2093,7 +2097,7 @@ width: 60px;
 height: 60px;
 text-align: center;
 vertical-align: middle;
-font-size:20px;
+font-size:21px;
 color: white;
 }
 
@@ -2119,9 +2123,7 @@ transition:width .05s linear;
 z-index:5;
 }
 
-.main-menu>div>ul {
-margin:92px 0;
-}
+
 .main-menu>div>ul>li {
   margin-top: 19px;
 }
@@ -2237,6 +2239,11 @@ height: 100%;
 @media only screen and (max-width: 622px) {
   .fa {
 right: 6px;
-font-size: 17px;
+font-size: 23px;
   }
+}
+.card-img-modal {
+  width: 100%;
+  margin-bottom: 20px;
+
 }

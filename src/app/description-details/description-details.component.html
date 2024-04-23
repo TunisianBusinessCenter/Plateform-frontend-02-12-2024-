@@ -1,94 +1,245 @@
+<!-- wrapper -->
 
-<div class="main-container" >
+
+
+
+
+
+
+
+<!-- <div class="main-container" *ngIf="Agency?.role==='promoteur-immobilieres'"	 > -->
+<div class="main-container">
     <nav class="main-menu">
-        <ul>
-            <li>
-                <a routerLink="/home">
+        <style>
+            .banner {
+                text-align: center;
+                padding: 10px;
+                background-color: #434388;
+                /* Set your desired background color */
+                color: #fff;
+                /* Set the text color */
+                font-size: 16px;
+                /* Adjust the font size */
+            }
+
+            .logo-container {
+                text-align: center;
+                padding: 10px;
+                border-radius: 5%;
+                overflow: hidden;
+                background-color: #fff;
+            }
+
+            .logo-container img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 40%;
+            }
+
+            .hr {
+                width: 20px;
+                height: 20px;
+                background-color: white;
+            }
+        </style>
+
+
+
+        <li>
+            <a [routerLink]="'/agency/' + agencyId">
+                <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+
+                <span class="nav-text">
+                    <p>{{ agencyName }}</p>
+
+                </span>
+            </a>
+
+        </li>
+
+        <div>
+
+
+            <ul>
+
+                <li *ngIf="agencyId">
+                    <a [routerLink]="'/agency/' + agencyId">
+                        <i class="fa fa-home fa-2x"></i>
+                        <span class="nav-text">
+                            Page d'accueil
+                        </span>
+                    </a>
+
+                </li>
+              <li>
+                <a  *ngIf="!agencyId">
                     <i class="fa fa-home fa-2x"></i>
                     <span class="nav-text">
-                        Page d'accueil
+                           Page d'accueil
                     </span>
                 </a>
-              
-            </li>
-            <li class="has-subnav">
-                <a >
-                    <i class="fa fa-laptop fa-2x"></i>
-                    <span class="nav-text">
-                        Espace Publicitaire
-                    </span>
-                </a>
-                
-            </li>
-            <li>
-                <a routerLink="/conception/ajouterConception">
-                   <i class="fa fa-plus fa-2x"></i>
-                    <span class="nav-text">
-                        Ajouter du contenu boutique
-                    </span>
-                </a>
-            </li>
-            <li class="has-subnav">
-                <a routerLink="/conception/registre">
-                   <i class="fa fa-list fa-2x"></i>
-                    <span class="nav-text">
-                        Abonnements
-                    </span>
-                </a>
-                
-            </li>
-            <li class="has-subnav">
-                <a >
-                   <i class="fa fa-folder-open fa-2x"></i>
-                    <span class="nav-text">
-                        Contact B2B
-                    </span>
-                </a>
-               
-            </li>
-            <li>
-                <a >
-                    <i class="fa fa-bar-chart-o fa-2x"></i>
-                    <span class="nav-text">
-                        Graphs and Statistics
-                    </span>
-                </a>
-            </li>
-    
-          
-            <li>
-                <a href="mailto:dcgenerale@gmail.com" >
-                    
-                     <i class="fa fa-envelope-o fa-2x"></i>
-                     <span class="nav-text">
-                         Contactez-nous
-                     </span>
-                 </a>
-             </li>
-             <li>
-                <a>
-                    <i class="fa fa-info-circle fa-2x"></i>
-                    <span class="nav-text">
-                        À Propos 
-                    </span>
-                </a>
-            </li>
-        </ul>
-    
-        <ul class="logout">
-            <li>
-               <a routerLink="conception/login">
-                     <i class="fa fa-power-off fa-2x"></i>
-                    <span class="nav-text">
-                        Logout
-                    </span>
-                </a>
-            </li>  
-        </ul>
-        &nbsp;
+              </li>
+
+                <li class="dropdown">
+                    <a>
+                        <i class="fa fa-book fa-2x"></i>
+                        <span class="nav-text">Nos Produits</span>
+                    </a>
+
+                    <div class="dropdown-content">
+                        <!-- <a *ngIf=" ProduitEnCours?.length > 0">Produits</a> -->
+
+                        <div class="submenu" *ngFor="let project of ProduitEnCours">
+
+                            <a style="background-color: #1e466e59;" (click)="refreshPage()"
+                                [routerLink]="['/details-materiaux', project.id]">
+                                {{ project.name }}
+
+                            </a>
+                        </div>
+                        <!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
+
+                    </div>
+                </li>
+                <style>
+                    .show-subnav {
+                        display: block;
+                    }
+                </style>
+
+                <!-- <li>
+                    <a routerLink="/conception/ajouterConception">
+                        <i class="fa fa-plus fa-2x"></i>
+                        <span class="nav-text">Ajouter contenu </span>
+                    </a>
+                </li> -->
+
+                <li class="dropdown">
+                    <a>
+                        <i class="fa fa-envelope fa-2x"></i>
+                        <span class="nav-text">Contacter nous</span>
+                    </a>
+
+                </li>
+
+
+                <style>
+                    /* Initially hide the dropdown content */
+                    .dropdown-content {
+
+                        display: none;
+                        position: absolute;
+                        background-color: #1f1e84;
+                        min-width: 42px;
+                        width: 248px;
+                        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                        z-index: 5;
+
+                    }
+
+                    .dropdown-content>a {
+                        margin: 0px 23px;
+                        font-style: none;
+                        transform-style: none;
+                        color: yellow;
+                    }
+
+                    /* Show the dropdown content when the parent is hovered */
+                    .dropdown:hover .dropdown-content {
+                        display: block;
+                    }
+
+                    /* Style the dropdown options as blocks with margin */
+                    .dropdown-content .submenu {
+                        padding: 10px;
+                        /* Adjust the padding as needed */
+                    }
+
+                    .dropdown-content .submenu a {
+                        display: block;
+                        font-size: 9px;
+                        width: 222px;
+                        margin: -7px 11px;
+                        padding: 10px;
+                        text-decoration: none;
+                        color: white;
+                        background-color: rgb(10, 10, 211)e84;
+                        transition: background-color 0.3s;
+                        border: solid 1px rgb(255 255 255 / 16%);
+                        border-radius: 7px;
+                    }
+
+                    /* Add a little margin between the dropdown options */
+                    .dropdown-content .submenu a+a {
+                        margin-top: 5px;
+                        /* Adjust the margin as needed */
+
+                    }
+
+                    /* Add hover effect */
+                    .dropdown-content .submenu a {
+                        font-size: 12px;
+                        font-weight: bold;
+                        transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+                    }
+
+                    .dropdown-content .submenu a:hover {
+                        font-size: 13px;
+                        color: yellow;
+                        border: solid 1px gray;
+                        font-weight: 600;
+
+                    }
+
+                    @media only screen and (max-width: 767px) {
+
+
+                        .dropdown-content .submenu a:hover {
+                            transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+                            /* Add smooth transition for both background color and font size */
+
+                        }
+                    }
+                </style>
+
+
+
+
+
+
+                <li>
+                    <a (click)="showMaximizableDialog()">
+                        <i class="fa fa-info-circle fa-2x"></i>
+                        <span class="nav-text">
+                            A propos
+                        </span>
+                    </a>
+
+                </li>
+
+            </ul>
+        </div>
+
+        <!-- <ul class="logout">
+				<li>
+				   <a routerLink="conception/login">
+						 <i class="fa fa-power-off fa-2x"></i>
+						<span class="nav-text">
+							Logout
+						</span>
+					</a>
+				</li>  
+			</ul> -->
     </nav>
-    
+
 </div>
+
+
+
+
+
+
+
 
 
 
@@ -97,19 +248,18 @@
 <app-navbar-carousel></app-navbar-carousel>
 
 <div class="container">
-    <div class="responsive-container">
+    <div class="responsive-container"  style="display: flex;">
         <div class="responsive">
             <button (click)="backClicked()" type="submit" class="btn animated-border-button retour">
                 <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
                 Retour
             </button>
+            
         </div>
     </div>
-    <br>
-    <br>
-    <br>
+
     <div>
-    
+
 
     </div>
 
@@ -140,49 +290,53 @@
                 border: none;
                 cursor: pointer;
             }
-      
-            
-            @media (max-width: 768px) {
-  .button {
-    position: absolute;
-    top: 57%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    cursor: pointer;
 
-  }
-  
-}
+
             @media (max-width: 768px) {
-  .modal.show {
-      overflow-x: hidden; /* Hide horizontal overflow */
-  }
-}
+                .button {
+                    position: absolute;
+                    top: 57%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    padding: 10px 20px;
+                    background-color: #3498db;
+                    color: #fff;
+                    border: none;
+                    cursor: pointer;
+
+                }
+
+            }
+
+            @media (max-width: 768px) {
+                .modal.show {
+                    overflow-x: hidden;
+                    /* Hide horizontal overflow */
+                }
+            }
         </style>
-            <div >
-                <div class="displayCard " >
-                    <p-card class="p-card2" >
-                        <h6 class="textInfoX">{{SousCategorie?.name}}</h6>
-                    </p-card> &nbsp;&nbsp;
-                    <p-card class="p-card2">
-                        <p class="textInfoX" > PRIX: A CONSULTER</p>   
-                    </p-card>&nbsp;&nbsp;
-                </div>
-                
-                
-                <br >
-               
-             <div class="imagDesc1" id="imagDesc1" >
-                <p-image   class="imageDesc" src="{{SousCategorie?.image_url}}" alt="Image" width="100%" height="100%" [preview]="true">
+        <div>
+            <div class="displayCard ">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <p-card class="">
+                    <h6 class="textInfoX">{{SousCategorie?.name}}</h6>
+                </p-card> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <p-card class="">
+                    <p class="textInfoX"> PRIX: A CONSULTER</p>
+                </p-card>&nbsp;&nbsp;
+            </div>
+
+
+            <br>
+
+            <div class="imagDesc1" id="imagDesc1">
+                <p-image class="imageDesc" src="{{SousCategorie?.image_url}}" alt="Image" width="100%" height="100%"
+                    [preview]="true">
                     <!-- <p-image   class="imageDesc" src="{{SousCategorie?.image_url}}" alt="Image" width="640px" height="100%" [preview]="true"> -->
 
                 </p-image>
-             </div>
             </div>
+        </div>
         <!-- <div class="container1">
             <img class="cadre-noir image" src="{{SousCategorie?.image_url}}" alt="" style="max-width: 646px;">
             <button style="    border-radius: 18px;
@@ -192,30 +346,31 @@
             </button>
         </div> -->
         <div class="mb-0 lh-214">
-            <p class="textDesc" id="textDescr" >Description</p>   
+            <p class="textDesc" id="textDescr">Description</p>
 
-            <div *ngIf="SousCategorie?.description === null" >
-              <p class="scrollable-paragraph paragrapheDesc">Description manquant!</p>
+            <div *ngIf="SousCategorie?.description === null">
+                <p class="scrollable-paragraph paragrapheDesc">Description manquant!</p>
             </div>
             <div *ngIf="SousCategorie?.description !== null">
-            <div class="content-p">
-                <p class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
-                    <ng-container *ngIf="SousCategorie?.description">
-                      <ng-container *ngFor="let sentence of SousCategorie?.description.split('.')">
-                        {{ sentence.trim() }}.<hr style="    margin: 4px 0;
+                <div class="content-p">
+                    <p class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
+                        <ng-container *ngIf="SousCategorie?.description">
+                            <ng-container *ngFor="let sentence of SousCategorie?.description.split('.')">
+                                {{ sentence.trim() }}
+                                <hr style="    margin: 4px 0;
                         color: inherit;
                         border: 0;
                         border-top: var(--bs-border-width) solid;
                         opacity: 0;
                     ">
-                      </ng-container>
-                    </ng-container>
-                  </p>
+                            </ng-container>
+                        </ng-container>
+                    </p>
+                </div>
             </div>
-            </div>
-          </div>
+        </div>
     </div>
-    
+
     <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="    width: 90%;top:170px;    margin-left: 18px;
@@ -223,7 +378,7 @@
                 <div class="modal-header">
                     <h3 class="text-center mb-0"></h3>
                     <button type="button" class="close float-right" aria-label="Close" data-dismiss="modal">
-                      <span aria-hidden="true">&#xD7;</span>
+                        <span aria-hidden="true">&#xD7;</span>
                     </button>
                 </div>
                 <div class="modal-body p-0 text-center bg-alt">
@@ -235,9 +390,9 @@
         </div>
     </div>
     <script>
-            $('#galleryModal').on('show.bs.modal', function (e) {
-       $('#galleryImage').attr("src",$(e.relatedTarget).data("large-src"));
-    });
+        $('#galleryModal').on('show.bs.modal', function (e) {
+            $('#galleryImage').attr("src", $(e.relatedTarget).data("large-src"));
+        });
     </script>
     <br>
     <ng-template #content let-modal>
@@ -292,32 +447,94 @@
 </div>
 <br><br>
 <br><br>
-<div class="tunsian-flag-img-background " style="height: -170; ">
-
-    <div class="btn-toolbar " role="toolbar " aria-label="Toolbar with button groups ">
-        <div class="btn-group mr-2 " role="group " aria-label="First group ">
-            <a class="btn-hover-flag-img text-center  " href="promoteurs-tunis " aria-selected="true "
-                style="line-height: 1.5;"><span>Promoteurs </span><br><span> Immobiliers </span></a>
-        </div>
-        <div class="btn-group mr-2 " role="group " aria-label="Second group ">
-            <a class="btn-hover-flag-img text-center " href="equipement " aria-selected="true "
-                style="line-height: 1.5;"><span>Materiaux </span><br><span> de construction </span></a>
-        </div>
-        <div class="btn-group mr-2 " role="group " aria-label="Third group ">
-            <a class="btn-hover-flag-img text-center  " href="agence-immob-tunis" aria-selected="true "
-                style="line-height: 1.5;"><span>Agences </span><br><span> Immobilières</span></a>
-        </div>
-        <div class="btn-group mr-2 " role="group " aria-label="Third group ">
-            <a class="btn-hover-flag-img text-center  " aria-selected="true " href="meilleurs-bien-sousse"
-                style="line-height: 1.5;">
-                <span>Selection Des</span>
+<div class="tunsian-flag-img-background">
+    <div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
+        <div class="btn-group mr-2" role="group " aria-label="First group ">
+            <a class="btn-hover-flag-img text-center " aria-selected="true " style="line-height: 1.5">
+                <span style="letter-spacing: 3px;">NOS</span>
                 <br>
-                <span>Meilleurs Biens</span>
+                <span style="letter-spacing: 3px;">REFERENCES</span>
             </a>
         </div>
-        <div class="btn-group mr-2 " role="group " aria-label="Fourth group ">
-            <a class="btn-hover-flag-img text-center" href="agences-de-services" aria-selected="true "
-                style="line-height: 1.5;"> <span>COMMERCES</span><br> <span> Services et Arts</span> </a>
+        <div class="btn-group mr-2" role="group " aria-label="Second group ">
+            <a class="btn-hover-flag-img text-center " aria-selected="true " style="line-height: 1.5">
+                <span style="letter-spacing: 3px;">NOTRE </span>
+                <br>
+                <span style="letter-spacing: 3px;">SITE WEB</span>
+            </a>
         </div>
+        <div class="btn-group mr-2" role="group " aria-label="Third group ">
+            <a class="btn-hover-flag-img text-center " aria-selected="true " style="line-height: 1.5">
+                <span style="letter-spacing: 3px;">PAGE</span>
+                <br>
+                <span style="letter-spacing: 3px;">FACEBOOK</span>
+            </a>
+        </div>
+        <div class="btn-group mr-2 " role="group " aria-label="Third group ">
+            <a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
+                style="line-height: 1.5;">
+                <span style="letter-spacing: 3px;">CONTACTEZ-</span>
+
+
+                <br>
+                <span style="letter-spacing: 3px;">
+                    NOUS
+                </span>
+            </a>
+        </div>
+        <!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
+            <a class="btn-hover-flag-img text-center " aria-selected="true "
+                style="line-height: 1.5">
+                <span>COMMERCES</span>
+                <br>
+                <span> Services et Arts</span>
+            </a>
+        </div> -->
     </div>
-</div>
+</div> <br><br><br><br>
+
+<p-dialog class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"
+    [style]="{width: '85vw', 'margin-left': '50px'}" [maximizable]="true" [baseZIndex]="10000" [draggable]="false"
+    [resizable]="false">
+    <div class="row modalTheme">
+        <div class="col-md-4">
+            <img class="rounded-lg border card-img-modal" src="{{ logo_url }}" alt="Eco house company">
+        </div>
+        <div class="col-md-8">
+            <p class="scrollable-paragraph-menu">{{description}}
+
+            </p>
+
+        </div>
+        <style>
+            .modalTheme {
+                /* Add your modal styling here */
+            }
+
+            .scrollable-paragraph {
+                overflow-y: auto;
+                /* Enable vertical scrolling if content overflows */
+                white-space: pre-line;
+                /* Preserve newlines and line breaks */
+            }
+        </style>
+
+        <script>
+            // JavaScript to add line breaks at points (.) with a space before it in the description
+            document.addEventListener("DOMContentLoaded", function () {
+                const descriptionElement = document.getElementById("agencyDescription");
+                if (descriptionElement) {
+                    // Get the text content
+                    let descriptionText = descriptionElement.textContent;
+
+                    // Add line breaks at points (.) with a space before it
+                    descriptionText = descriptionText.replace(/ \./g, '.\n');
+
+                    // Set the modified text back to the element
+                    descriptionElement.textContent = descriptionText;
+                }
+            });
+        </script>
+    </div>
+
+</p-dialog>

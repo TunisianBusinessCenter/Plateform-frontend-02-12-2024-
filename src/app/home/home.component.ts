@@ -1,5 +1,5 @@
 import { MagazineService } from './../services/magazine/magazine.service';
-import { Component, ElementRef, OnInit, ViewChild,Renderer2  } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, Renderer2 } from '@angular/core';
 import { AgenciesService } from '../services/agencies/agencies.service';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
   filteredStreets: Observable<string[]>;
 
   public AgenciesTunis: any
-  dataFromLocalStorage : any[]
+  dataFromLocalStorage: any[]
   lastItem: any;
   lastItem1: any;
   lastItem2: any;
@@ -72,21 +72,21 @@ export class HomeComponent implements OnInit {
     private meta: Meta,
     private title: Title,
     private dataService: DataServiceService) {
-     
 
-      this.getDataFromLocalStorage();
-      this.lastItem4 = this.getLastItemFromData();
-      this.getDataFromLocalStorage1()
-      this.lastItem1 = this.getLastItemFromData1();
-      this.getDataFromLocalStorage2()
-      this.lastItem2 = this.getLastItemFromData2();
-      this.getDataFromLocalStorage3()
-      this.lastItem3 = this.getLastItemFromData3();
-      this.getDataFromLocalStorage5()
-      this.lastItem5 = this.getLastItemFromData5();
-      this.getDataFromLocalStorage6()
 
-      this.lastItem6 = this.getLastItemFromData6();
+    this.getDataFromLocalStorage();
+    this.lastItem4 = this.getLastItemFromData();
+    this.getDataFromLocalStorage1()
+    this.lastItem1 = this.getLastItemFromData1();
+    this.getDataFromLocalStorage2()
+    this.lastItem2 = this.getLastItemFromData2();
+    this.getDataFromLocalStorage3()
+    this.lastItem3 = this.getLastItemFromData3();
+    this.getDataFromLocalStorage5()
+    this.lastItem5 = this.getLastItemFromData5();
+    this.getDataFromLocalStorage6()
+
+    this.lastItem6 = this.getLastItemFromData6();
     this.meta.addTags([
       { name: 'description', content: 'Centre Tunisien des affaires spécialiste dans le domaine de l’immobilier & de construction. Prospecter, acheter, vendre, louer en Tunisie.' },
       { name: 'author', content: 'buttercms' },
@@ -130,7 +130,12 @@ export class HomeComponent implements OnInit {
   public setTitle(newTitle: string) {
     this.title.setTitle(newTitle);
   }
+  showMessage: boolean = false;
 
+
+  showAlert() {
+    this.showMessage = true;
+  }
   ngOnInit(): void {
     this.getDataFromLocalStorage1()
     this.getDataFromLocalStorage2()
@@ -141,15 +146,13 @@ export class HomeComponent implements OnInit {
     this.getDataFromLocalStorage7()
     this.getDataFromLocalStorage8()
 
-     // ... other initialization logic ...
+    // ... other initialization logic ...
 
     // Determine the scroll offset based on device mode
-    const scrollOffset = this.breakpointObserver.isMatched(Breakpoints.Handset) ? 400 : 1100;
+    // const scrollOffset = this.breakpointObserver.isMatched(Breakpoints.Handset) ? 400 : 1100;
 
-    // Delay the scrolling by 3 seconds
-    setTimeout(() => {
-      this.scrollDown(scrollOffset);
-    }, 1000);
+    // this.scrollDown(scrollOffset);
+
 
 
     this.images = [
@@ -187,9 +190,9 @@ export class HomeComponent implements OnInit {
           console.log("test link", this.linkFBook)
         }
       }
-      this.firstMagazin=this.Magazine[0]
-      console.log("this is my magazin",this.Magazine[0])
-      
+      this.firstMagazin = this.Magazine[0]
+      console.log("this is my magazin", this.Magazine[0])
+
     });
 
 
@@ -241,7 +244,7 @@ export class HomeComponent implements OnInit {
   incrementCounter1() {
     this.clickCounter1++;
     this.dataService.addClick1();
-  
+
   }
   incrementCounter2() {
     this.clickCounter2++;
@@ -286,7 +289,7 @@ export class HomeComponent implements OnInit {
     const data = localStorage.getItem('clicks4');
     this.dataFromLocalStorage = JSON.parse(data) || [];
   }
- 
+
   getLastItemFromData(): any {
     if (this.dataFromLocalStorage.length > 0) {
       return this.dataFromLocalStorage[this.dataFromLocalStorage.length - 1];
@@ -404,6 +407,6 @@ export class HomeComponent implements OnInit {
     }
     return chunkedArray;
   }
-  
+
 }
 

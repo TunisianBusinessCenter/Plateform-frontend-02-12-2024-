@@ -1,46 +1,48 @@
+<footer style="width: 99%;" class="bg-dark pt-8 pb-6 footer text-muted" *ngIf="this.sharedVariable">
 
-<footer style="width: 99%;" class="bg-dark pt-8 pb-6 footer text-muted">
-	
-<br>
+	<br>
 	<div class="flex-container">
 		<div class="row footer-responsive">
-			<div class="col marginfooterL"
-				>
-				<h3 style="color: white;font-size: 20px;font-family: poppins,sans-serif;">Tunis</h3>
-				<p class="mb-0"
-					style="color:#ababab!important;">
-					Adresse: 2 éme étage ,1 rue du royaume d’arabie saoudite
+			<div class="col marginfooterL">
+
+				<img style="    width: 113px;
+				margin: 1px -2px;
+				height: 73px;
+				border: solid 2px gray;
+				border-radius: 9px;" src="{{this.sharedVariable.logo_url}}" alt="">
+				<h3 style="color: white;font-size: 20px;font-family: poppins,sans-serif;">{{this.sharedVariable.name}}
+				</h3>
+
+				<p class="mb-0" style="color:#ababab!important;">
+					Tél 1: {{this.sharedVariable.phone_number}}
 				</p>
-				<a class="d-block  hover-white"
-					href="mailto:contact@homeid.com "
-					style="color:#ababab!important;">
-					Email: tunisieimmob@planet.tn
+				<a class="d-block  hover-white" href="mailto:contact@homeid.com " style="color:#ababab!important;">
+					Tél 2: {{this.sharedVariable.phone_number2}}
 				</a>
-				<a class="d-block text-lighter font-weight-bold fs-15 hover-white"
+				<a style="text-decoration-line: underline;color: #2b74c2;;" href="https://www.tunimmob.com/privacy" target="">Privacy & policy</a>
+
+				<!-- <a class="d-block text-lighter font-weight-bold fs-15 hover-white"
 					href="tel:(+68)122109876 "
 					style="color:#ababab!important;font-size:15px">
 					Tél: (+216) 71 894 500
-				</a>
-				
+				</a> -->
+
 			</div>
 			<div class="col marginfooterX">
 				<div style="padding-top: 2%; margin-left: -17px;">
-					<h3 style="color: white;font-size: 20px;font-family: poppins,sans-serif;">Sousse</h3>
+					<h3 style="color: white;font-size: 20px;font-family: poppins,sans-serif;">
+						{{this.sharedVariable.region}}</h3>
 
-					<p class="mb-0"
-						style="color:#ababab!important;">
-						Adresse: 2 Rue Mongi Slim immeuble Ferdaws Corniche 4000 Sousse
+					<p class="mb-0" style="color:#ababab!important;">
+						Adresse: {{this.sharedVariable.adresse}}
 					</p>
-					<a class="d-block  hover-white"
-						href="mailto:contact@homeid.com "
-						style="color:#ababab!important;">
-						Email: contact@tunisieimmob.net
+					<a class="d-block  hover-white" href="mailto:contact@homeid.com " style="color:#ababab!important;">
+						Email: {{this.sharedVariable.email}}
 					</a>
-					<a class="d-block text-lighter font-weight-bold fs-15 hover-white"
-						href="tel:(+68)122109876 "
+					<!-- <a class="d-block text-lighter font-weight-bold fs-15 hover-white"
 						style="color:#ababab!important;font-size:15px">
-						Tél: (+216) 73 210 566
-					</a>
+						Tél Commercial : {{this.sharedVariable.phone_number_commercial}}
+					</a> -->
 
 				</div>
 				<!-- <div class="row">
@@ -99,13 +101,11 @@
 				<h4 class="text-white fs-16 my-4 font-weight-500">Inscrivez-vous</h4>
 				<form>
 					<div class="input-group input-group-lg mb-6" style="width: 100%;height: 33px">
-						<input type="email "
-							name="email "
+						<input type="email " name="email "
 							class="form-control bg-white shadow-none border-0 z-index-1 res-input"
 							placeholder="Votre E-mail ">
 						<div class="input-responsive">
-							<button routerLink="/conception/registre" class="btn inscrire"
-								>
+							<button routerLink="/conception/registre" class="btn inscrire">
 								S'INSCRIRE
 							</button>
 						</div>
@@ -113,27 +113,43 @@
 				</form>
 				<ul class="list-inline mb-0">
 					<ul class="social-networks bounce">
-						<li>
-							<a href="https://twitter.com/"
-								class="icon-twitter">
+						<li *ngIf="this.sharedVariable.twitter_url">
+							<a href="{{this.sharedVariable.twitter_url}}" class="icon-twitter">
 								Twitter
 							</a>
 						</li>
-						<li>
-							<a href="https://www.facebook.com/TunisieImmobilierTv"
-								class="icon-facebook">
+						<li *ngIf="!this.sharedVariable.twitter_url">
+							<a  class="icon-twitter">
+								Twitter
+							</a>
+						</li>
+						<li *ngIf="this.sharedVariable.facebook_url">
+							<a href="{{this.sharedVariable.facebook_url}}" class="icon-facebook">
 								Facebook
 							</a>
 						</li>
-						<li>
-							<a href="https://instagram.com"
-								class="icon-instagram">
+						<li *ngIf="!this.sharedVariable.facebook_url">
+							<a  class="icon-facebook">
+								Facebook
+							</a>
+						</li>
+						<li *ngIf="this.sharedVariable.instagram_url">
+							<a href="{{this.sharedVariable.instagram_url}}" class="icon-instagram">
 								Instagram
 							</a>
 						</li>
-						<li>
-							<a href="https://www.linkedin.com/"
-								class="icon-linkedin">
+						<li *ngIf="!this.sharedVariable.instagram_url">
+							<a  class="icon-instagram">
+								Instagram
+							</a>
+						</li>
+						<li *ngIf="this.sharedVariable.linkedin_url">
+							<a href="{{this.sharedVariable.linkedin_url}}" class="icon-linkedin">
+								LinkedIn
+							</a>
+						</li>
+						<li *ngIf="!this.sharedVariable.linkedin_url">
+							<a  class="icon-linkedin">
 								LinkedIn
 							</a>
 						</li>
@@ -151,4 +167,162 @@
 	</div>
 	<br>
 	<br>
+
 </footer>
+
+
+
+
+
+<footer style="width: 99%;" class="bg-dark pt-8 pb-6 footer text-muted" *ngIf="!this.sharedVariable">
+	
+	<br>
+		<div class="flex-container">
+			<div class="row footer-responsive">
+				<div class="col marginfooterL"
+					>
+					<h3 style="color: white;font-size: 20px;font-family: poppins,sans-serif;">Tunis</h3>
+					<p class="mb-0"
+						style="color:#ababab!important;">
+						Adresse: 2 éme étage ,1 rue du royaume d’arabie saoudite
+					</p>
+					<a class="d-block  hover-white"
+						href="mailto:contact@homeid.com "
+						style="color:#ababab!important;">
+						Email: tunisieimmob@planet.tn
+					</a>
+					<a class="d-block text-lighter font-weight-bold fs-15 hover-white"
+						href="tel:(+68)122109876 "
+						style="color:#ababab!important;font-size:15px">
+						Tél: (+216) 71 894 500
+					</a>
+					<a style="text-decoration-line: underline;color: #2b74c2;;" href="https://www.tunimmob.com/privacy" target="_blank">Privacy & policy</a>
+				</div>
+				<div class="col marginfooterX">
+					<div style="padding-top: 2%; margin-left: -17px;">
+						<h3 style="color: white;font-size: 20px;font-family: poppins,sans-serif;">Sousse</h3>
+	
+						<p class="mb-0"
+							style="color:#ababab!important;">
+							Adresse: 2 Rue Mongi Slim immeuble Ferdaws Corniche 4000 Sousse
+						</p>
+						<a class="d-block  hover-white"
+							href="mailto:contact@homeid.com "
+							style="color:#ababab!important;">
+							Email: contact@tunisieimmob.net
+						</a>
+						<a class="d-block text-lighter font-weight-bold fs-15 hover-white"
+							href="tel:(+68)122109876 "
+							style="color:#ababab!important;font-size:15px">
+							Tél: (+216) 73 210 566
+						</a>
+	
+					</div>
+					<!-- <div class="row">
+						<img src="../../assets/images/ste/1.jpg "
+							alt="HomeID "
+							style="height: 6%;
+							width: 6%;
+							padding-block-start: 3%;">
+						<strong class="partenaire">
+							INGENIERIE ET ARCHITECTURE
+						</strong>
+					</div>
+					<div class="row">
+						<img src="../../assets/images/ste/3.jpg "
+							alt="HomeID "
+							style="height: 6%;
+							width: 6%;
+							padding-block-start: 3%;">
+						<strong  class="partenaire" >
+							TUNISIE IMMOBILIER TV
+						</strong>
+					</div>
+					<div class="row">
+						<img src="../../assets/images/ste/2.jpg "
+							alt="HomeID "
+							style="height: 6%;
+							width: 6%;
+							padding-block-start: 3%;">
+						<strong class="partenaire">
+							IMAGE + PRODUCTION
+						</strong>
+					</div>
+					<div class="row">
+						<img src="../../assets/images/ste/4.jpg "
+							alt="HomeID "
+							style="height: 6%;
+							width: 6%;
+							padding-block-start: 3%;">
+						<strong class="partenaire" >
+							SAHEL TUNISIAN VOICE
+						</strong>
+					</div> -->
+					<div style="
+				padding-top: 3%;
+				margin-left: -16px;
+				font-family: cursive;
+				font-size: 15px;
+				color: white;
+			  ">
+						<strong>
+							Vous avez le produit , Nous avons la force de vente....
+						</strong>
+					</div>
+				</div>
+				<div class="col marginfooterR">
+					<h4 class="text-white fs-16 my-4 font-weight-500">Inscrivez-vous</h4>
+					<form>
+						<div class="input-group input-group-lg mb-6" style="width: 100%;height: 33px">
+							<input type="email "
+								name="email "
+								class="form-control bg-white shadow-none border-0 z-index-1 res-input"
+								placeholder="Votre E-mail ">
+							<div class="input-responsive">
+								<button routerLink="/conception/registre" class="btn inscrire"
+									>
+									S'INSCRIRE
+								</button>
+							</div>
+						</div>
+					</form>
+					<ul class="list-inline mb-0">
+						<ul class="social-networks bounce">
+							<li>
+								<a href="https://twitter.com/"
+									class="icon-twitter">
+									Twitter
+								</a>
+							</li>
+							<li>
+								<a href="https://www.facebook.com/TunisieImmobilierTv"
+									class="icon-facebook">
+									Facebook
+								</a>
+							</li>
+							<li>
+								<a href="https://instagram.com"
+									class="icon-instagram">
+									Instagram
+								</a>
+							</li>
+							<li>
+								<a href="https://www.linkedin.com/"
+									class="icon-linkedin">
+									LinkedIn
+								</a>
+							</li>
+						</ul>
+					</ul>
+					<!-- <div style="margin-top: 5%">
+						<a href="https://play.google.com/store/apps/details?id=io.tunimob.tunisietv ">
+							<img src="../../assets/images/tunisieimmob/IPTV LOGO POUR BOUTIQUE.png "
+								style=" width: 80%" alt="logo boutique">
+						</a>
+					</div> -->
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+	</footer>

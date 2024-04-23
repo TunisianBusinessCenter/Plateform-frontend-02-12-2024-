@@ -4,10 +4,8 @@ height:937px;">
 		class="center">
 	<mat-card>
 		<mat-card-content>
-			<form *ngIf="!isLoggedIn"
-			name="form"
-			(ngSubmit)="f.form.valid && onSubmit()"
-			novalidate>
+			<form *ngIf="!isLoggedIn" #f="ngForm" name="form" (ngSubmit)="f.form.valid && onSubmit()" novalidate>
+
 				<h2>S’inscrire</h2>
 				<mat-error *ngIf="loginInvalid">
 					The username and password were not recognised

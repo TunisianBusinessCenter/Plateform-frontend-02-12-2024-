@@ -11,6 +11,7 @@
 .tunsian-flag-img-background .btn-hover-flag-img {
   width: 214px;
   margin: 20px;
+  text-decoration: none;
   background-color: #1f1e84;
   color: #ffffff;
   font-size: 16px;
@@ -30,6 +31,7 @@
 
 .tunsian-flag-img-background .btn-hover-flag-img:hover {
   background-color: #1f1e84;
+  text-decoration: underline;
 }
 
 .btn-toolbar {
@@ -581,10 +583,11 @@
   color: #ffffff;
   background-color: red;
   border-color: red;
-  width: 100%;
+  width: 310px;
   height: 45px;
   display: flex;
   justify-content: center;
+  margin-left: -10px;
 }
 
 .textResponsable {
@@ -631,8 +634,9 @@
 
 :host ::ng-deep.p-card-body {
   height: 65px;
-  background-color: #e3e1e1;
+  background-color: #1f1e84;
   text-align: center;
+  color:white;
 }
 
 .p-card1 {
@@ -677,7 +681,7 @@
   font-size: 15px;
   font-weight: 700;
   margin-bottom: -0.5rem;
-  color: #8b0000;
+  color: #ffe233;
 }
 
 :host ::ng-deep.p-dialog {
@@ -701,7 +705,7 @@
 
   :host ::ng-deep.p-card-body {
     height: 45px;
-    background-color: #e3e1e1;
+    background-color: #1f1e84;
     text-align: center;
   }
 
@@ -718,7 +722,7 @@
   :host ::ng-deep.p-card .p-card-title {
     font-size: 15px;
     font-weight: 700;
-    color: #8b0000;
+    color: #ffe233;
     margin-top: -10px;
     margin-bottom: -11px;
   }
@@ -801,9 +805,6 @@
     visibility: hidden;
   }
 
-  :host ::ng-deep.p-dialog {
-    width: 400px
-  }
 
   .cardModal {
     margin: 9px;
@@ -1031,7 +1032,7 @@ width: 60px;
 height: 60px;
 text-align: center;
 vertical-align: middle;
-font-size:20px;
+font-size:21px;
 color: white;
 }
 
@@ -1083,6 +1084,31 @@ text-decoration:none;
 -webkit-transition:all .1s linear;
 transition:all .1s linear;
   
+}
+.modalTheme {
+  margin: 20px;
+  padding: 20px;
+  background-color: #eff0f1;
+}
+
+.modalTheme2 {
+  margin: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+@media only screen and (max-width: 800px) {
+  .modalTheme {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+  }
+
+  .modalTheme2 {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+  }
 }
 
 .main-menu .nav-icon {
@@ -1175,6 +1201,50 @@ height: 100%;
 @media only screen and (max-width: 622px) {
   .fa {
 right: 6px;
-font-size: 17px;
+font-size: 19xpx;
   }
+}
+.card-img-modal {
+  width: 100%;
+  margin-bottom: 20px;
+
+}
+.modalTheme {
+  margin: 20px;
+  padding: 20px;
+  background-color: #eff0f1;
+}
+
+.modalTheme2 {
+  margin: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+@media only screen and (max-width: 800px) {
+  .modalTheme {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+  }
+
+  .modalTheme2 {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+  }
+}
+.scrollable-paragraph {
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  width: 100%;
+  padding: 3px -8px 1px 5px;
+  height: 419px;
+  padding: 17px;
+  margin: -7px 6px 0 -5px;
+}
+.card-img-modal {
+  width: 100%;
+  margin-bottom: 20px;
+
 }

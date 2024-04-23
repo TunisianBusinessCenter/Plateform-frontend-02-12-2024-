@@ -43,7 +43,7 @@ export class MeilleursBienMahdiaComponent implements OnInit {
 
   ngOnInit(): void {
     this.meilleursBiensService.getMeilleursBiensMahdia().subscribe((data: any) => {
-      this.AgenciesMahdia = data;
+      this.AgenciesMahdia = data.filter((agency: any) => agency.phone_number_commercial != "yes");
       console.log(this.AgenciesMahdia)
    
     })

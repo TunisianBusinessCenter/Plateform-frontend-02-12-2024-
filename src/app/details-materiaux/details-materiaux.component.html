@@ -1,8 +1,3 @@
-<!-- wrapper -->
-
-
-
-
 
 
 
@@ -44,11 +39,11 @@
 		
 			
 			<li>
-				<a  >
+				<a  [routerLink]="'/agency/' + agencyId">
 					<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
 	
-					<span class="nav-text">
-									<p>{{ Agency?.name }}</p>
+					<span class="nav-text" >
+									<p>{{NameAgency}}</p>
 	
 					</span>
 				</a>
@@ -57,12 +52,12 @@
 		   
 		   <div>
 			<hr>
-	<hr>
+      <hr>	<br>
 			
 			   <ul>
 			
-				<li>
-					<a  routerLink="/home">
+				<li *ngIf="agencyId">
+					<a  [routerLink]="'/agency/' + agencyId">
 						<i class="fa fa-home fa-2x"></i>
 						<span class="nav-text">
 							Page d'accueil 
@@ -70,11 +65,18 @@
 					</a>
 				  
 				</li>
-			   
+			   <li *ngIf="!agencyId">
+          <a>
+            <i class="fa fa-home fa-2x"></i>
+            <span class="nav-text">
+              Page d'accueil
+            </span>
+          </a>
+         </li>
 				<li class="dropdown">
-					<a [routerLink]="'/agency/' + idAgency">
+					<a >
 						<i class="fa fa-book fa-2x"></i>
-						<span class="nav-text">Nos projets</span>
+						<span class="nav-text">Nos Produits</span>
 					</a>
 					<!-- <div class="dropdown-content" >
 						<a *ngIf="ProjetEnCours.length > 0 || ProduitEnCours.length > 0">En cours</a>
@@ -97,121 +99,124 @@
 						</div>
 	
 					</div> -->
-					<div class="dropdown-content" *ngIf="Agency?.role==='materiaux-construction'">
-						<a *ngIf=" ProduitEnCours.length > 0">Produits</a>
+					<div class="dropdown-content" >
+						<!-- <a *ngIf=" ProduitEnCours?.length > 0">Produits</a> -->
 	
 						<div class="submenu" *ngFor="let project of ProduitEnCours">
 	
 							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="['/details-materiaux', project.id]">
-								{{ project.name }}
+								{{ project?.name }} 
 	
 							</a>
 						</div>
 						<!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
 	
 					</div>
+          
 				</li>
 				<style>
-					.show-subnav {
-	display: block;
+					.show-subnav {  
+	    display: block;
 	}
 				</style>
 	
-				<li>
+				<!-- <li>
 					<a routerLink="/conception/ajouterConception">
 						<i class="fa fa-plus fa-2x"></i>
-						<span class="nav-text">Ajouter du contenu boutique</span>
+						<span class="nav-text">Ajouter contenu </span>
 					</a>
-				</li>
+				</li> -->
 	
 				<li class="dropdown">
-					<a routerLink="/conception/registre">
+					<a >
 						<i class="fa fa-envelope fa-2x"></i>
 						<span class="nav-text">Contacter nous</span>
 					</a>
 					
 				</li>
 				
-				
-	<style>
-	/* Initially hide the dropdown content */
-	.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #1f1e84;
-	min-width: 160px;
-	
-	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-	z-index: 5;
-	}
-	.dropdown-content > a {
-	margin: 0px 23px;
-	font-style: none;
-	transform-style: none;
-	color: yellow;
-	}
-	
-	/* Show the dropdown content when the parent is hovered */
-	.dropdown:hover .dropdown-content {
-	display: block;
-	}
-	
-	/* Style the dropdown options as blocks with margin */
-	.dropdown-content .submenu {
-	padding: 10px; /* Adjust the padding as needed */
-	}
-	
-	.dropdown-content .submenu a {
-	display: block;
-	font-size: 9px;
-	width: 196px;
-	margin: -7px 11px;
-	padding: 10px;
-	text-decoration: none;
-	color: white;
-	background-color: rgb(10, 10, 211)e84;
-	transition: background-color 0.3s;
-	border: solid 1px rgb(255 255 255 / 16%);
-	border-radius: 7px;
-	}
-	
-	/* Add a little margin between the dropdown options */
-	.dropdown-content .submenu a + a {
-	margin-top: 5px; /* Adjust the margin as needed */
-	
-	}
-	
-	/* Add hover effect */
-	.dropdown-content .submenu a {
-	
-	font-size: 10px; /* Set the initial font size */
-	transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease; /* Add smooth transition for both background color and font size */
-	}
-	
-	.dropdown-content .submenu a:hover {
-	font-size: 11px; /* Change font size on hover */
-	color: yellow;
-	border: solid 1px gray;
-	}
-	
-	@media only screen and (max-width: 767px) {
-	
-	
-	.dropdown-content .submenu a:hover {
-		transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease; /* Add smooth transition for both background color and font size */
-	
-	}
-	}
-	</style>			
-	
-			
+        <style>
+          /* Initially hide the dropdown content */
+          .dropdown-content {
+          
+            display: none;
+            position: absolute;
+            background-color: #1f1e84;
+            min-width: 42px;
+            width: 248px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 5;
+        
+          }
+          .dropdown-content > a {
+          margin: 0px 23px;
+          font-style: none;
+          transform-style: none;
+          color: yellow;
+          }
+          
+          /* Show the dropdown content when the parent is hovered */
+          .dropdown:hover .dropdown-content {
+          display: block;
+          }
+          
+          /* Style the dropdown options as blocks with margin */
+          .dropdown-content .submenu {
+          padding: 10px; /* Adjust the padding as needed */
+          }
+          
+          .dropdown-content .submenu a {
+          display: block;
+          font-size: 9px;
+          width: 222px;
+          margin: -7px 11px;
+          padding: 10px;
+          text-decoration: none;
+          color: white;
+          background-color: rgb(10, 10, 211)e84;
+          transition: background-color 0.3s;
+          border: solid 1px rgb(255 255 255 / 16%);
+          border-radius: 7px;
+          }
+          
+          /* Add a little margin between the dropdown options */
+          .dropdown-content .submenu a + a {
+          margin-top: 5px; /* Adjust the margin as needed */
+          
+          }
+          
+          /* Add hover effect */
+          .dropdown-content .submenu a {
+            font-size: 12px;
+            font-weight: bold;
+            transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease;
+          }
+          
+          .dropdown-content .submenu a:hover {
+              font-size: 13px;
+            color: yellow;
+            border: solid 1px gray;
+            font-weight: 600;
+        
+          }
+          
+          @media only screen and (max-width: 767px) {
+          
+          
+          .dropdown-content .submenu a:hover {
+            transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease; /* Add smooth transition for both background color and font size */
+          
+          }
+          }
+          </style>			
+          
 				
 	
 	
 			  
 			   
 				<li>
-					<a>
+					<a (click)="showMaximizableDialog()">
 						<i class="fa fa-info-circle fa-2x"></i>
 						<span class="nav-text">
 							A propos
@@ -233,17 +238,17 @@
 					</a>
 				</li>  
 			</ul> -->
-			&nbsp;
+		
 		</nav>
 		
 	</div>
 	
 	
+	<app-navbar-carousel [AgencyBaniere]="this.AgencyBaniere"></app-navbar-carousel>
+
 	
 	
 	
-	
-<app-navbar-carousel></app-navbar-carousel>
 
 <div class="responsive-container">
 
@@ -500,7 +505,7 @@
             </div>
             
           </div>
-          
+        
           <br><br>
         </div>
         
@@ -698,7 +703,7 @@
       <div class="background-vd">
         <iframe class="promoVideo" *ngIf="Produit?.videoUrlProduit !== null" [src]="urlSafe"></iframe>
 
-        <img class="promoVideo" *ngIf="Produit?.videoUrlProduit === null || Produit?.videoUrlProduit === ''" src="assets/images/HomePage/noVideo.jpg" alt="Placeholder Image">
+        <img class="promoVideo" *ngIf="Produit?.videoUrlProduit === null || Produit?.videoUrlProduit === ''" src="assets/v3.jpg" alt="Placeholder Image">
         <!-- Placeholder image if no video is available -->
       </div>
     </div>
@@ -706,6 +711,52 @@
 </div>
 
 
+<ng-template #content let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
+      <a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
+  </div>
+  <div class="modal-body">
+      <form>
+          <div class=" cardModal">
+              <div>
+                  <label for="email" class="textInput">Email</label>
+                  <input class="form-control inputDevis" type="email" name="email" placeholder="Votre Email">
+              </div><br>
+              <div>
+                  <label for="Nom" class="textInput">Téléphone</label>
+                  <input class="form-control inputDevis" type="text" [(ngModule)]="numText" name="Nom"
+                      placeholder="Téléphone">
+              </div> <br>
+              <label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
+                  rows="3"></textarea>
+              <br>
+              <!-- <div *ngFor="let agencies of Agency">
+                  <div *ngFor="let categorie of agencies?.produits">
+                      <div *ngFor="let categories of categorie?.categoryList"> -->
+              <!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
+              <div class="example-button-row">
+                  <a mat-raised-button style="border-color: #8B0000;
+                              background-color: #8B0000; color:aliceblue"
+                      href="mailto:dcgeneral@gmail.com?subject=Sujet&body=num:{{numText}} Message:{{contactText}}">Valider</a>
+                  <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+                      Close
+                  </button>
+                  <!-- </div>
+                      </div>
+                  </div> -->
+
+              </div>
+
+          </div>
+
+          <div class="modal-footer valider">
+
+          </div>
+      </form>
+  </div>
+</ng-template>
 
 
 
@@ -715,56 +766,284 @@
 
 
 
-<div class="tunsian-flag-img-background " style="height: -170; ">
-
-
-  <div class="btn-toolbar " role="toolbar " aria-label="Toolbar with button groups ">
-    <div class="btn-group mr-2 " role="group " aria-label="First group ">
-      <a class="btn-hover-flag-img text-center  " routerLink="/promoteurs-tunis" aria-selected="true "
-        style="line-height: 1.5;">
-        <span>Promoteurs</span>
+<div class="tunsian-flag-img-background">
+  <div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
+    <div class="btn-group mr-2" role="group " aria-label="First group ">
+      <a class="btn-hover-flag-img text-center "  aria-selected="true "
+        style="line-height: 1.5">
+        <span style="letter-spacing: 3px;">NOS</span>
         <br>
-        <span>Immobiliers</span>
+        <span style="letter-spacing: 3px;">REFERENCES</span>
       </a>
     </div>
-    <div class="btn-group mr-2 " role="group " aria-label="Second group ">
-      <a class="btn-hover-flag-img text-center  " routerLink="/equipement" aria-selected="true "
-        style="line-height: 1.5;">
-        <span>Materiaux</span>
+    <div class="btn-group mr-2" role="group " aria-label="Second group ">
+      <a class="btn-hover-flag-img text-center "  aria-selected="true "
+        style="line-height: 1.5">
+        <span style="letter-spacing: 3px;">NOTRE </span>
         <br>
-        <span>de construction</span>
+        <span style="letter-spacing: 3px;">SITE WEB</span>
       </a>
     </div>
-
-
-    <div class="btn-group mr-2 " role="group " aria-label="Third group ">
-      <a class="btn-hover-flag-img text-center  " aria-selected="true " style="line-height: 1.5;"
-        routerLink="/agence-immob-tunis">
-        <span>Agences</span>
+    <div class="btn-group mr-2" role="group " aria-label="Third group ">
+      <a class="btn-hover-flag-img text-center " aria-selected="true " 
+        style="line-height: 1.5">
+        <span style="letter-spacing: 3px;">PAGE</span>
         <br>
-        <span>Immobilières</span>
+        <span style="letter-spacing: 3px;">FACEBOOK</span>
       </a>
     </div>
     <div class="btn-group mr-2 " role="group " aria-label="Third group ">
-      <a class="btn-hover-flag-img text-center  " href="meilleurs-bien-sousse" aria-selected="true "
+      <a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  "  aria-selected="true "
         style="line-height: 1.5;">
-        <span>Selection Des</span>
+        <span style="letter-spacing: 3px;">CONTACTEZ-</span>
+      
+      
         <br>
-        <span>Meilleurs Biens</span>
+        <span style="letter-spacing: 3px;">
+          NOUS
+        </span>
       </a>
     </div>
-    <div class="btn-group mr-2 " role="group " aria-label="Fourth group ">
-      <a class="btn-hover-flag-img text-center  " aria-selected="true " style="line-height: 1.5;"
-        routerLink="/agences-de-services">
-        <span>Décoration</span>
+    <!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
+      <a class="btn-hover-flag-img text-center " aria-selected="true "
+        style="line-height: 1.5">
+        <span>COMMERCES</span>
         <br>
         <span> Services et Arts</span>
       </a>
+    </div> -->
+  </div>
+</div> <br><br><br><br>
+
+<!-- 
+<div id="carouselExampleControls" class="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="https://codingyaar.com/wp-content/uploads/multiple-items-carousel-slide-1-card-1.jpg" alt="...">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Card title 1</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+            the card's content.</p>
+          <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="https://codingyaar.com/wp-content/uploads/multiple-items-carousel-slide-1-card-2.jpg" alt="...">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Card title 2</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+            the card's content.</p>
+          <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="https://codingyaar.com/wp-content/uploads/multiple-items-carousel-slide-1-card-3.jpg" alt="...">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Card title 3</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+            the card's content.</p>
+          <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="https://codingyaar.com/wp-content/uploads/multiple-items-carousel-slide-2-card-1.jpg" alt="...">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Card title 4</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+            the card's content.</p>
+          <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="https://codingyaar.com/wp-content/uploads/multiple-items-carousel-slide-2-card-2.jpg" alt="...">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Card title 5</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+            the card's content.</p>
+          <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="https://codingyaar.com/wp-content/uploads/multiple-items-carousel-slide-2-card-3.jpg" alt="...">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Card title 6</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+            the card's content.</p>
+          <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="https://codingyaar.com/wp-content/uploads/bootstrap-multiple-items-carousel-slide-3-card-1.jpg" alt="...">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Card title 7</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+            the card's content.</p>
+          <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="https://codingyaar.com/wp-content/uploads/multiple-items-carousel-slide-3-card-2.jpg" alt="...">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Card title 8</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+            the card's content.</p>
+          <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="https://codingyaar.com/wp-content/uploads/multiple-items-carousel-slide-3-card-3.jpg" alt="...">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Card title 9</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+            the card's content.</p>
+          <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+      </div>
     </div>
   </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
-<br><br><br>
 
-<br>
-<br><br><br>
+<p class="mt-5 text-center">Get a step-by-step written explanation here: <a href="https://codingyaar.com/bootstrap-carousel-multiple-items-increment-by-1/" target="_blank">Bootstrap 5 carousel multiple items responsive</a> </p>
 
+<p class="mt-5 text-center">Get a step-by-step video explanation here: <a href="https://youtu.be/nS_Ht0lT-uQ" target="_blank">Bootstrap 5 carousel multiple items responsive</a> </p>
+<style>
+  .img-wrapper {
+  max-width: 100%;
+  height: 65vw;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+@media screen and (min-width: 576px) {
+  .carousel-inner {
+    display: flex;
+  }
+  .carousel-item {
+    display: block;
+    margin-right: 0;
+    flex: 0 0 calc(100% / 3);
+  }
+  .img-wrapper {
+    height: 21vw;
+  }
+}
+.carousel-inner {
+  padding: 1em;
+}
+.card {
+  margin: 0 0.5em;
+  border-radius: 0;
+  box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+  font-size: 0.9em;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 6vh;
+  height: 6vh;
+  background-color: #e1e1e1;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.5;
+}
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  opacity: 0.8;
+}
+
+</style>
+
+<script>
+  const multipleItemCarousel = document.querySelector("#carouselExampleControls");
+
+if (window.matchMedia("(min-width:576px)").matches) {
+  const carousel = new bootstrap.Carousel(multipleItemCarousel, {
+    interval: false
+  });
+
+  var carouselWidth = $(".carousel-inner")[0].scrollWidth;
+  var cardWidth = $(".carousel-item").width();
+
+  var scrollPosition = 0;
+
+  $(".carousel-control-next").on("click", function () {
+    if (scrollPosition < carouselWidth - cardWidth * 4) {
+      scrollPosition = scrollPosition + cardWidth;
+      $(".carousel-inner").animate({ scrollLeft: scrollPosition }, 600);
+    }
+  });
+  $(".carousel-control-prev").on("click", function () {
+    if (scrollPosition > 0) {
+      scrollPosition = scrollPosition - cardWidth;
+      $(".carousel-inner").animate({ scrollLeft: scrollPosition }, 600);
+    }
+  });
+} else {
+  $(multipleItemCarousel).addClass("slide");
+}
+</script> -->
+
+
+<p-dialog   class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"  [style]="{width: '85vw', 'margin-left': '50px'}"
+[maximizable]="true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+<div class="row modalTheme">
+    <div class="col-md-4">
+        <img class="rounded-lg border card-img-modal" src="{{ logo_url }}" alt="Eco house company">
+    </div>
+    <div class="col-md-8">
+        <p class="scrollable-paragraph">{{description}}
+            
+        </p>
+        
+    </div>
+</div>
+
+</p-dialog>

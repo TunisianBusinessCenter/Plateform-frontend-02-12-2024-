@@ -44,7 +44,7 @@ export class MeilleursBienBizerteComponent implements OnInit {
 
   ngOnInit(): void {
     this.meilleursBiensService.getAgencieMeilleursBiens().subscribe((data: any) => {
-      this.MeilleursBiensAgency = data;
+      this.MeilleursBiensAgency = data.filter((agency: any) => agency.phone_number_commercial != "yes");
       console.log(this.MeilleursBiensAgency)
  
     })

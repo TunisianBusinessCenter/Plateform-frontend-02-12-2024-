@@ -2,44 +2,14 @@
 	<img class="bannierLeft" src="../../assets/images/HomePage/bannierLeft.png" alt="bannier Left">
  </div> -->
 
-<ngb-carousel (slide)="slideActivate($event)" *ngIf="name === 'MEUBLE DOUGAZ'">
+
+ <ngb-carousel (slide)="slideActivate($event)" *ngIf="AgencyBaniere">
 
 	<ng-template ngbSlide>
 		<div class="picsum-img-wrapper">
 
 
-			<img style="width: 100%" src="../../assets/images/HomePage/new-ban/PUB-DOUGAZ--WEB.jpg"
-				alt="Angular Carousel 2">
-
-		</div>
-	</ng-template>
-
-
-</ngb-carousel>
-
-
-<ngb-carousel (slide)="slideActivate($event)" *ngIf="name === 'BERGACHI MEUBLES'">
-
-	<ng-template ngbSlide>
-		<div class="picsum-img-wrapper">
-
-
-			<img style="width: 100%" src="../../assets/images/HomePage/new-ban/PUB-Bergachi-WEB.jpg"
-				alt="Angular Carousel 2">
-
-		</div>
-	</ng-template>
-</ngb-carousel>
-
-
-<ngb-carousel (slide)="slideActivate($event)" *ngIf="name === 'LA PLAINE'">
-
-	<ng-template ngbSlide>
-		<div class="picsum-img-wrapper">
-
-
-			<img style="width: 100%" src="../../assets/images/promoteurs tunis/soroubat/BANIERE-CLIENT-PROMOTEURS/la-plaine.jpg"
-				alt="Angular Carousel 2">
+			<img style="width: 100%" [src]="AgencyBaniere" alt="Angular Carousel 2">
 
 		</div>
 	</ng-template>
@@ -48,22 +18,19 @@
 
 
 
-
-<ngb-carousel (slide)="slideActivate($event)" *ngIf="role === 'promoteur-immobilieres' && (name !== 'MEUBLE DOUGAZ' && name !== 'BERGACHI MEUBLES' && name !== 'LA PLAINE' )">
+<ngb-carousel (slide)="slideActivate($event)" *ngIf="!AgencyBaniere && role === 'promoteur-immobilieres'">
 	<ng-template ngbSlide>
-	  <div class="picsum-img-wrapper">
-		<img style="width: 100%" [src]="getSelectedImagePathPromo()" alt="Angular Carousel 2">
-	  </div>
+		<div class="picsum-img-wrapper">
+			<img style="width: 100%" [src]="getSelectedImagePathPromo()" alt="Angular Carousel 2">
+		</div>
 	</ng-template>
-  </ngb-carousel>
-  
+</ngb-carousel>
+
 
 <!-- if materiaux-construction -->
+<ngb-carousel (slide)="slideActivate($event)" *ngIf="(!AgencyBaniere || AgencyBaniere.length === 0) && role === 'equipement'  ">
 
-<ngb-carousel
-  (slide)="slideActivate($event)"
-  *ngIf="categorie === 'equipement' && (name !== 'MEUBLE DOUGAZ' && name !== 'BERGACHI MEUBLES' && name !== 'LA PLAINE')"
->
+
 	<!-- <ng-template ngbSlide>
 		<div class="picsum-img-wrapper">
 
@@ -144,7 +111,8 @@
 					</div>
 				</div> -->
 
-			<img style="width: 100%" src="../../assets/images/HomePage/new-ban/4--PUB-PLATE-FORME--WEB.jpg" alt="Angular Carousel 2">
+			<img style="width: 100%" src="../../assets/images/HomePage/new-ban/4--PUB-PLATE-FORME--WEB.jpg"
+				alt="Angular Carousel 2">
 
 		</div>
 	</ng-template>
@@ -167,7 +135,8 @@
 						</div>
 					</div>
 				</div> -->
-			<img  style="width: 100%" src="../../assets/images/HomePage/new-ban/2--PUB-PLATE-FORME--WEB.jpg" alt="Angular Carousel 2">
+			<img style="width: 100%" src="../../assets/images/HomePage/new-ban/2--PUB-PLATE-FORME--WEB.jpg"
+				alt="Angular Carousel 2">
 
 
 
@@ -194,7 +163,8 @@
 					</div>
 				</div> -->
 			<!-- <img style="width: 100%" class="backgroundBan" src="../../assets/images/HomePage/nouveau qr code.png" alt="Angular Carousel 2"> -->
-			<img  style="width: 100%" src="../../assets/images/HomePage/new-ban/3--PUB-PLATE-FORME--WEB.jpg" alt="Angular Carousel 2">
+			<img style="width: 100%" src="../../assets/images/HomePage/new-ban/3--PUB-PLATE-FORME--WEB.jpg"
+				alt="Angular Carousel 2">
 
 
 
@@ -208,14 +178,18 @@
 
 
 
-<ngb-carousel (slide)="slideActivate($event)" *ngIf="categorie === 'meuble' && (name !== 'MEUBLE DOUGAZ' && name !== 'BERGACHI MEUBLES' && name !== 'LA PLAINE')">
+<ngb-carousel (slide)="slideActivate($event)"
+	
+	*ngIf="(!AgencyBaniere || AgencyBaniere.length === 0) && categorie === 'meuble'  "
+	>
+	
 	<ng-template ngbSlide>
-	  <div class="picsum-img-wrapper">
-		<img style="width: 100%" [src]="getSelectedImagePath()" alt="Angular Carousel 2">
-	  </div>
+		<div class="picsum-img-wrapper">
+			<img style="width: 100%" [src]="getSelectedImagePath()" alt="Angular Carousel 2">
+		</div>
 	</ng-template>
-  </ngb-carousel>
-  
+</ngb-carousel>
+
 <!-- &&
 	router.url==='/home-algerie' &&
 	router.url==='/home-maroc' &&
@@ -251,8 +225,45 @@
 <div *ngIf="router.url !=='/home-algerie' && router.url !=='/home-maroc'
  && router.url !=='/home-lybia'&& router.url !=='/home-mauritanie'" class="imageCentreTunisien">
 
-	<img src="../../assets/images/tunisieimmob/LOGO-Tunisian.png" class="imgbannier" alt="logo plate forme">
+	<div id="image-container">
+		<a  id="logo-link" (click)="redirect()"   class="Ban"></a>
+		<!-- <a id="text-link" href="#" style="top: 150px; left: 200px; width: 150px; height: 50px;"></a> -->
+		<img  class="imgbannier" src="../../assets/images/tunisieimmob/LOGO-Tunisian.png" alt="Your Image" />
+	</div>
+	<style>
+        /* Add your own styles if needed */
+        #image-container {
+            position: relative;
+        }
 
+        #logo-link, #text-link {
+            position: absolute;
+            cursor: pointer;
+            display: block;
+        }
+	
+	@media screen and (max-width: 912px) {
+		.backgroundBan {
+			height: 264px;	  
+		}
+	  }
+	  .Ban {
+		top: 20px;
+    left: 763px;
+    width: 197px;
+    height: 80px;
+		
+}
+	  
+	@media screen and (max-width: 912px) {
+		.Ban {
+			top: 7px;
+    left: 116px;
+    width: 53px;
+    height: 30px;
+}
+	  }
+    </style>
 	<!-- <img [routerLink]="roleMateriaux ? ['/equipement'] :
 	 []" src="../../assets/images/tunisieimmob/LOGO-PLATE.png"
 		class="imgbannier" alt="logo plate forme"> -->

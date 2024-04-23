@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AgenciesService } from '../services/agencies/agencies.service';
 interface Duree {
   name: string;
   code: string;
@@ -26,6 +27,8 @@ interface Duree {
   `]
 })
 export class FooterComponent implements OnInit {
+
+
   displayMaximizable1: boolean;
   displayMaximizable2: boolean;
   displayMaximizable3: boolean;
@@ -36,9 +39,19 @@ export class FooterComponent implements OnInit {
   durees: Duree[];
   contactText = "";
   numText = "";
-  constructor() { }
+  sharedVariable: any;
+  constructor(private as:AgenciesService) { }
 
   ngOnInit(): void {
+    this.click()
+  
+  }
+  click(){
+    this.as.sharedVariable$.subscribe((data) => {
+      this.sharedVariable = data;
+      console.log('got me', this.sharedVariable);
+    });
+  
   }
   showMaximizableDialog1() {
     this.displayMaximizable1 = true;

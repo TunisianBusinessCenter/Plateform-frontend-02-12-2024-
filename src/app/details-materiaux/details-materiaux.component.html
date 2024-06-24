@@ -1,8 +1,4 @@
 
-
-
-
-
 <!-- <div class="main-container" *ngIf="Agency?.role==='promoteur-immobilieres'"	 > -->
 	<div class="main-container" 	 >
 		<nav class="main-menu">
@@ -39,7 +35,7 @@
 		
 			
 			<li>
-				<a  [routerLink]="'/agency/' + agencyId">
+				<a  >
 					<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
 	
 					<span class="nav-text" >
@@ -56,8 +52,8 @@
 			
 			   <ul>
 			
-				<li *ngIf="agencyId">
-					<a  [routerLink]="'/agency/' + agencyId">
+				<li *ngIf="idAgency">
+					<a  [routerLink]="'/agency/' + idAgency">
 						<i class="fa fa-home fa-2x"></i>
 						<span class="nav-text">
 							Page d'accueil 
@@ -65,7 +61,7 @@
 					</a>
 				  
 				</li>
-			   <li *ngIf="!agencyId">
+			   <li *ngIf="!idAgency">
           <a>
             <i class="fa fa-home fa-2x"></i>
             <span class="nav-text">
@@ -73,7 +69,7 @@
             </span>
           </a>
          </li>
-				<li class="dropdown">
+				<li class="dropdown" *ngIf="ProduitEnCours">
 					<a >
 						<i class="fa fa-book fa-2x"></i>
 						<span class="nav-text">Nos Produits</span>
@@ -104,7 +100,7 @@
 	
 						<div class="submenu" *ngFor="let project of ProduitEnCours">
 	
-							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="['/details-materiaux', project.id]">
+							<a style="background-color: #1e466e59;" (click)="navigateAndRefresh(project)" >
 								{{ project?.name }} 
 	
 							</a>
@@ -259,8 +255,12 @@
     <button  (click)="backClicked()" type="submit" class="btn animated-border-button   retour 
 ">
       <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
-      Retour
+      Retour 
     </button>
+    <br>
+    <!-- <button   type="submit" class="btn animated-border-button   retour "  style="background-color: red;">
+      id : {{ idAgency }}
+    </button> -->
   </div>
 </div>
 
@@ -415,7 +415,7 @@
       <hr class="hrstyle">
     </div>
   </div>
-  <div *ngFor="let allAgence of AllAgency">
+  <!-- <div *ngFor="let allAgence of AllAgency">
     <div class="responsable" *ngIf="Produit?.agencyName === allAgence?.name && Produit?.numCommercial === null">
       <button class="btn responsableBtn">
         <mat-icon style="font-size: 20px; margin-top: 4px;">supervised_user_circle</mat-icon>
@@ -430,7 +430,7 @@
         <h1 class="textResponsable"><span>Email:</span>&nbsp;{{allAgence?.email}}</h1>
       </button>
     </div>
-  </div>
+  </div> -->
   <br>
 
   <!-- mat-align-tabs = "center" -->
@@ -448,80 +448,62 @@
 
 
 
-
-
-
   <mat-tab-group mat-align-tabs="center" fxLayout="column" fxLayout.gt-sm="row" [(selectedIndex)]="activeTabIndex">
-    <mat-tab style="background-color: #1f1e84" *ngFor="let categories of Produit?.categoryList;">
+    <mat-tab style="background-color: #1f1e84" *ngFor="let category of Produit?.categoryList;">
       <!-- Category Label -->
       <div>
         <ng-template mat-tab-label>
-          <span class="my-custom-class">{{categories}}</span>
+          <span class="my-custom-class">{{category}}</span>
         </ng-template>
       </div>
-  
-      <div class="responsable" *ngIf="Produit?.numCommercial !== null && Produit?.emailCommercia !== null">
+<!--   
+      <div class="responsable" *ngIf="Produit?.numCommercial && Produit?.emailCommercial">
         <button class="btn responsableBtn">
           <mat-icon style="font-size: 20px; margin-top: 4px;">supervised_user_circle</mat-icon>
           <h1 class="textResponsable"><span>Responsable commercial</span>&nbsp;</h1>
-        </button>&nbsp;&nbsp;&nbsp;
+        </button>
         <button class="btn responsableBtn">
           <mat-icon style="font-size: 20px; margin-top: 4px;">perm_phone_msg</mat-icon>
           <h1 class="textResponsable"><span>Tél:</span>&nbsp;{{Produit?.numCommercial}}</h1>
-        </button>&nbsp;&nbsp;&nbsp;
+        </button>
         <button class="btn responsableBtn">
           <mat-icon style="font-size: 20px; margin-top: 4px;">alternate_email</mat-icon>
           <h1 class="textResponsable"><span>Email:</span>&nbsp;{{Produit?.emailCommercial}}</h1>
         </button>
-      </div>
-
-      <br>
-      <br>
-
-      <!-- Subcategories Section -->
-      
-      <div class="cardx">
-     
-        
-        <div *ngFor="let categorie of Produit?.sous_cat;">
-          
-          <div *ngIf="categories === categorie?.category">
-            
-            <div class="card-group card-hover-over">
-              <div class="card">
-                
-                <img class="card-img" src="{{categorie?.image_url}}"  alt="Card image" width="358" height="259">
-                <div class="card-img-overlay">
-                  <div class="card-body">
-                    <h4 class="card-titre">{{categorie?.name}}</h4>
-                    <a class="btn" [routerLink]="['/descriptionDetails', Produit?.id, categorie?.id]">PLUS DE
-                      DÉTAILS</a>
-                  </div>
-                </div>
-
-
-                
-              </div>
-            </div>
-            
-          </div>
-        
-          <br><br>
-        </div>
-        
-      </div>  
-      <div id="nav-buttons" class="navigation-buttons" style="text-align: center;">
-        <button class="btnB btn-outline-primary btn-rounded">
-          <a class = "a" href="abhishekdana.tk">Vidéo de présentation  </a>
-        </button>
-
-            </div>
+      </div> -->
+  
+      <!-- Add spacing between elements -->
       <br><br>
   
-      <!-- Navigation Buttons -->
-     
+      <!-- Subcategories Section -->
+      <div class="cardx" fxLayout="row wrap" fxLayoutGap="16px">
+        <div *ngFor="let subCategory of Produit?.sous_cat;" fxFlex="1 1 calc(33.333% - 16px)" fxFlex.lt-md="1 1 100%">
+          <div *ngIf="category === subCategory?.category">
+            <div class="card-group card-hover-over">
+              <div class="card">
+                <img class="card-img" src="{{subCategory?.image_url}}" alt="Card image" width="100%">
+                <div class="card-img-overlay">
+                  <div class="card-body">
+                    <h4 class="card-titre">{{subCategory?.name}}</h4>
+                    <a class="btn" [routerLink]="['/descriptionDetails', Produit?.id, subCategory?.id]">PLUS DE DÉTAILS</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div id="nav-buttons" class="navigation-buttons" fxLayout="row" fxLayoutAlign="center center">
+        <!-- <button class="btnB btn-outline-primary btn-rounded">
+          <a class="a">Vidéo de présentation</a>
+        </button> -->
+      </div>
+  
+      <br> <br>
     </mat-tab>
   </mat-tab-group>
+  
   
 
 

@@ -7,6 +7,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ContactService } from '../services/contact/contact.service';
 import { PrimeNGConfig } from 'primeng-lts/api';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SharedAgenceImmobilierService } from '../services/shared-agence-immobilier.service';
+import { AgenciesService } from '../services/agencies/agencies.service';
 
 
 @Component({
@@ -34,13 +36,17 @@ export class DescriptionAgenceImmobComponent implements OnInit {
   public sousBiens:any
   FormData: FormGroup;
   closeResult: string;
+  biens: any;
+  agenceName: any;
 
   constructor(private biensImoobService:AgenceImmobilieresService,
+    private agencieService:AgenciesService,
     private activatedRoute: ActivatedRoute,
     private _location:Location,
     private router:Router,
     private builder: FormBuilder,
     private contact:ContactService,
+    private sharedService:SharedAgenceImmobilierService,
     private primengConfig: PrimeNGConfig,
     private modalService: NgbModal) { 
     }
@@ -50,9 +56,13 @@ export class DescriptionAgenceImmobComponent implements OnInit {
     }
  
   
-    
+    idAgence: any;
+
 
   ngOnInit(): void {
+    this.idAgence = this.sharedService.getIdAgency();
+    this.getAgency()
+
     this.primengConfig.ripple = true;
 
     this.FormData = this.builder.group({
@@ -99,5 +109,14 @@ export class DescriptionAgenceImmobComponent implements OnInit {
 
   backClicked() {
     this._location.back();
+  }
+  
+  getAgency(){
+    this.agencieService.getAgencieById(this.idAgence).subscribe((data:any) => {
+      this.biens=data?.biens
+      this.agenceName = data?.name
+      console.log(this.biens);
+      
+    })
   }
 }

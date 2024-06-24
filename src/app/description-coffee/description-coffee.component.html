@@ -6,6 +6,7 @@
 
 
 
+<app-navbar-carousel ></app-navbar-carousel>
 
 
 
@@ -13,6 +14,7 @@
     <div class="main-container">
         <nav class="main-menu">
             <style>
+                
                 .banner {
                     text-align: center;
                     padding: 10px;
@@ -84,14 +86,17 @@
     
                     <li class="dropdown">
                         <a>
-                            <i class="fa fa-book fa-2x"></i>
-                            <span class="nav-text">Nos Produits</span>
+                            <!-- <i class="fa fa-book fa-2x"></i>
+                            <i class="fa fa-utensils fa-2x"></i> -->
+                            <i class="fa fa-coffee fa-2x"></i>
+
+                            <span class="nav-text">Nos Menus</span>
                         </a>
     
                         <div class="dropdown-content">
                             <!-- <a *ngIf=" ProduitEnCours?.length > 0">Produits</a> -->
     
-                            <div class="submenu" *ngFor="let project of ProduitEnCours">
+                            <div class="submenu" *ngFor="let project of coffeeMenu">
     
                                 <a style="background-color: #1e466e59;" (click)="refreshPage()"
                                     [routerLink]="['/coffee-details/', project.id]">
@@ -118,7 +123,7 @@
                     </li> -->
     
                     <li class="dropdown">
-                        <a>
+                        <a (click)="openVerticallyCentered(content)">
                             <i class="fa fa-envelope fa-2x"></i>
                             <span class="nav-text">Contacter nous</span>
                         </a>
@@ -248,81 +253,10 @@
     
     
     
-    <app-navbar-carousel></app-navbar-carousel>
 
-    <div class="responsive-container"  style="display: flex;">
-        <div class="responsive">
-            <button (click)="backClicked()" type="submit" class="btn animated-border-button retour">
-                <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
-                Retour
-            </button>
-            
-        </div>
-    </div>
+    
 
-<div class = "card-wrapper">
-    <div class = "card">
-      <!-- card left -->
-      <div class = "product-imgs">
-        <div class = "img-display">
-          <div class = "img-showcase">
-            <img src = "{{SousCategorie?.image_url}}" alt = "shoe image">
-           
-          </div>
-        </div>
-      
-      </div>
-      <!-- card right -->
-      <div class = "product-content">
-        <h2 class = "product-title">{{SousCategorie?.name}}</h2>
-        <a href = "#" class = "product-link">{{SousCategorie?.category}}</a>
-        <div class = "product-rating">
-          <i class = "fas fa-star"></i>
-          <i class = "fas fa-star"></i>
-          <i class = "fas fa-star"></i>
-          <i class = "fas fa-star"></i>
-          <i class = "fas fa-star-half-alt"></i>
-        </div>
-  
-        <div class = "product-price">
-          <p >Prix: <span>{{SousCategorie?.prix}}</span></p>
-        </div>
-  
-        <div class = "product-detail">
-          <h2>Description: </h2>
-          <p>{{SousCategorie?.description}}</p>
-      
-        </div>
-  
-        <!-- <div class = "purchase-info">
-          <input type = "number" min = "0" value = "1">
-          <button type = "button" class = "btn">
-            Add to Cart <i class = "fas fa-shopping-cart"></i>
-          </button>
-          <button type = "button" class = "btn">Compare</button>
-        </div>
-  
-        <div class = "social-links">
-          <p>Share At: </p>
-          <a href = "#">
-            <i class = "fab fa-facebook-f"></i>
-          </a>
-          <a href = "#">
-            <i class = "fab fa-twitter"></i>
-          </a>
-          <a href = "#">
-            <i class = "fab fa-instagram"></i>
-          </a>
-          <a href = "#">
-            <i class = "fab fa-whatsapp"></i>
-          </a>
-          <a href = "#">
-            <i class = "fab fa-pinterest"></i>
-          </a>
-        </div> -->
-      </div>
-    </div>
-  </div>
+>
   <style>
 
 
@@ -363,11 +297,11 @@ opacity: 0.8;
 padding: 2rem 1rem;
 }
 .product-title{
-    font-size: 29px;
+    font-size: 20px;
     text-transform: capitalize;
     font-weight: 700;
     line-height: 1;
-    width: 333px;
+    width: auto;
     position: relative;
     color: #12263a;
     margin: 1rem 0;
@@ -496,10 +430,11 @@ color: #fff;
     grid-gap: 1.5rem;
 }
 .card-wrapper{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 55vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 25%;
 }
 .product-imgs{
     display: flex;
@@ -511,24 +446,348 @@ color: #fff;
 }
 }
   </style>
-  <script>
-    const imgs = document.querySelectorAll('.img-select a');
-const imgBtns = [...imgs];
-let imgId = 1;
 
-imgBtns.forEach((imgItem) => {
-imgItem.addEventListener('click', (event) => {
-    event.preventDefault();
-    imgId = imgItem.dataset.id;
-    slideImage();
-});
-});
 
-function slideImage(){
-const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
 
-document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
-}
 
-window.addEventListener('resize', slideImage);
-  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+    <div class="responsive-container"  style="display: flex;">
+        <div class="responsive">
+            <button (click)="backClicked()" type="submit" class="btn animated-border-button retour">
+                <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
+                Retour
+            </button>
+            <!-- <button   type="submit" class="btn animated-border-button   retour "  style="background-color: red;">
+                id : {{ idAgency }}
+              </button> -->
+        </div>
+    </div>
+
+    <div>
+
+
+    </div>
+
+    <div classe [ngClass]="{'block-display': !isDesktop}" class="isDisplay">
+        <!-- <p-image  [ngClass]="{'responsive-image': isDesktop}" class=" cadre-noir image"  src="{{SousCategorie?.image_url}}" alt="Image"  
+
+        [preview]="true">
+     
+        </p-image> -->
+        <style>
+            .container1 {
+                position: relative;
+                display: inline-block;
+            }
+
+            .cadre-noir {
+                /* Your image styles go here */
+            }
+
+            .button {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 10px 20px;
+                background-color: #3498db;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+            }
+
+
+            @media (max-width: 768px) {
+                .button {
+                    position: absolute;
+                    top: 57%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    padding: 10px 20px;
+                    background-color: #3498db;
+                    color: #fff;
+                    border: none;
+                    cursor: pointer;
+
+                }
+
+            }
+
+            @media (max-width: 768px) {
+                .modal.show {
+                    overflow-x: hidden;
+                    /* Hide horizontal overflow */
+                }
+            }
+        </style>
+        <div>
+          
+
+
+            <br>
+
+            <div class="imagDesc1" id="imagDesc1">
+                <p-image class="imageDesc" src="{{SousCategorie?.image_url}}" alt="Image" width="100%" height="100%"
+                    [preview]="true">
+                    <!-- <p-image   class="imageDesc" src="{{SousCategorie?.image_url}}" alt="Image" width="640px" height="100%" [preview]="true"> -->
+
+                </p-image>
+            </div>
+        </div>
+        <!-- <div class="container1">
+            <img class="cadre-noir image" src="{{SousCategorie?.image_url}}" alt="" style="max-width: 646px;">
+            <button style="    border-radius: 18px;
+            background-color: #6a777f33;" class="button" href="#galleryModal" data-large-src="https://unsplash.it/1200/768.jpg?image=253"
+                data-toggle="modal">
+                <i style="font-size: 25px;" class="fa fa-eye" aria-hidden="true"></i>
+            </button>
+        </div> -->
+        <div class="mb-0 lh-214">
+<div class="textDesc" id="textDescr">
+    <h2 class = "product-title">{{SousCategorie?.name}}</h2>
+    <a href = "#" class = "product-link">{{SousCategorie?.category}}</a>
+    <div class = "product-rating">
+        <i class = "fas fa-star"></i>
+        <i class = "fas fa-star"></i>
+        <i class = "fas fa-star"></i>
+        <i class = "fas fa-star"></i>
+        <i class = "fas fa-star-half-alt"></i>
+      </div>
+</div>
+            <div *ngIf="SousCategorie?.description === null">
+                <p class="scrollable-paragraph paragrapheDesc">Description manquant!</p>
+            </div>
+            <div *ngIf="SousCategorie?.description !== null" >
+                <div class="content-p" >
+                    <p  [innerHTML]="getDescriptionWithBoldText()"  class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
+                        <ng-container   *ngIf="SousCategorie?.description">
+                            <ng-container    *ngFor="let sentence of SousCategorie?.description.split('-')">
+                                {{ sentence.trim() }} 
+                                <hr style="    margin: 4px 0;
+                        color: inherit;
+                        border: 0;
+                        border-top: var(--bs-border-width) solid;
+                        opacity: 0;
+                    ">
+                            </ng-container>
+                        </ng-container>
+                        
+                    </p>
+                    
+            
+  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="    width: 90%;top:170px;    margin-left: 18px;
+            margin-top: 54px;">
+                <div class="modal-header">
+                    <h3 class="text-center mb-0"></h3>
+                    <button type="button" class="close float-right" aria-label="Close" data-dismiss="modal">
+                        <span aria-hidden="true">&#xD7;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-0 text-center bg-alt">
+                    <img src="{{SousCategorie?.image_url}}" id="galleryImage" class="loaded-image mx-auto img-fluid">
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#galleryModal').on('show.bs.modal', function (e) {
+            $('#galleryImage').attr("src", $(e.relatedTarget).data("large-src"));
+        });
+    </script>
+    <br>
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
+            <a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="card cardModal">
+                    <div>
+                        <label for="email" class="textInput">Email</label>
+                        <input class="form-control inputDevis" type="email" name="email" placeholder="Votre Email">
+                    </div><br>
+                    <div>
+                        <label for="Nom" class="textInput">Téléphone</label>
+                        <input class="form-control inputDevis" type="text" [(ngModule)]="numText" name="Nom"
+                            placeholder="Téléphone">
+                    </div> <br>
+                    <label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
+                        rows="3"></textarea>
+                    <br>
+                    <!-- <div *ngFor="let agencies of Agency">
+                        <div *ngFor="let categorie of agencies?.produits">
+                            <div *ngFor="let categories of categorie?.categoryList"> -->
+                    <!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
+                    <div class="example-button-row">
+                        <a mat-raised-button style="border-color: #8B0000;
+                                    background-color: #8B0000; color:aliceblue"
+                            href="mailto:dcgeneral@gmail.com?subject=Sujet&body=num:{{numText}} Message:{{contactText}}">Valider</a>
+                        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+                            Close
+                        </button>
+                        <!-- </div>
+                            </div>
+                        </div> -->
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer valider">
+
+                </div>
+            </form>
+        </div>
+    </ng-template>
+   
+</div>
+
+<div class="tunsian-flag-img-background">
+    <div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
+        <div class="btn-group mr-2" role="group " aria-label="First group ">
+            <a  [attr.href]="Agency?.instagram_url"  class="btn-hover-flag-img text-center " aria-selected="true " style="line-height: 1.5">
+                <span style="letter-spacing: 3px;">PAGE</span>
+                <br>
+                <span style="letter-spacing: 3px;">INSTAGRAM</span>
+            </a>
+        </div>
+        <div class="btn-group mr-2" role="group " aria-label="Second group ">
+            <a  [attr.href]="Agency?.website_url" class="btn-hover-flag-img text-center " aria-selected="true " style="line-height: 1.5">
+                <span style="letter-spacing: 3px;">NOTRE </span>
+                <br>
+                <span style="letter-spacing: 3px;">SITE WEB</span>
+            </a>
+        </div>
+        <div class="btn-group mr-2" role="group " aria-label="Third group ">
+            <a  [attr.href]="Agency?.facebook_url" class="btn-hover-flag-img text-center " aria-selected="true " style="line-height: 1.5">
+                <span style="letter-spacing: 3px;">PAGE</span>
+                <br>
+                <span style="letter-spacing: 3px;">FACEBOOK</span>
+            </a>
+        </div>
+        <div class="btn-group mr-2 " role="group " aria-label="Third group ">
+            <a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
+                style="line-height: 1.5;">
+                <span style="letter-spacing: 3px;">CONTACTEZ-</span>
+
+
+                <br>
+                <span style="letter-spacing: 3px;">
+                    NOUS
+                </span>
+            </a>
+        </div>
+        <!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
+            <a class="btn-hover-flag-img text-center " aria-selected="true "
+                style="line-height: 1.5">
+                <span>COMMERCES</span>
+                <br>
+                <span> Services et Arts</span>
+            </a>
+        </div> -->
+    </div>
+</div>
+
+<p-dialog class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"
+    [style]="{width: '85vw', 'margin-left': '50px'}" [maximizable]="true" [baseZIndex]="10000" [draggable]="false"
+    [resizable]="false">
+    <div class="row modalTheme">
+        <div class="col-md-4">
+            <img class="rounded-lg border card-img-modal" src="{{ Agency.logo_url }}" alt="Eco house company">
+        </div>
+        <div class="col-md-8">
+            <p class="scrollable-paragraph-menu">{{Agency.description}}
+
+            </p>
+
+        </div>
+        <style>
+            .modalTheme {
+                /* Add your modal styling here */
+            }
+
+            .scrollable-paragraph {
+                overflow-y: auto;
+                /* Enable vertical scrolling if content overflows */
+                white-space: pre-line;
+                /* Preserve newlines and line breaks */
+            }
+        </style>
+
+        <script>
+            // JavaScript to add line breaks at points (.) with a space before it in the description
+            document.addEventListener("DOMContentLoaded", function () {
+                const descriptionElement = document.getElementById("agencyDescription");
+                if (descriptionElement) {
+                    // Get the text content
+                    let descriptionText = descriptionElement.textContent;
+
+                    // Add line breaks at points (.) with a space before it
+                    descriptionText = descriptionText.replace(/ \./g, '.\n');
+
+                    // Set the modified text back to the element
+                    descriptionElement.textContent = descriptionText;
+                }
+            });
+        </script>
+    </div>
+
+</p-dialog>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -226,44 +226,10 @@
  && router.url !=='/home-lybia'&& router.url !=='/home-mauritanie'" class="imageCentreTunisien">
 
 	<div id="image-container">
-		<a  id="logo-link" (click)="redirect()"   class="Ban"></a>
 		<!-- <a id="text-link" href="#" style="top: 150px; left: 200px; width: 150px; height: 50px;"></a> -->
-		<img  class="imgbannier" src="../../assets/images/tunisieimmob/LOGO-Tunisian.png" alt="Your Image" />
+		<img (click)="redirect()" class="imgbannier" src="../../assets/images/tunisieimmob/LOGO-Tunisian.png" alt="Your Image" />
 	</div>
-	<style>
-        /* Add your own styles if needed */
-        #image-container {
-            position: relative;
-        }
 
-        #logo-link, #text-link {
-            position: absolute;
-            cursor: pointer;
-            display: block;
-        }
-	
-	@media screen and (max-width: 912px) {
-		.backgroundBan {
-			height: 264px;	  
-		}
-	  }
-	  .Ban {
-		top: 20px;
-    left: 763px;
-    width: 197px;
-    height: 80px;
-		
-}
-	  
-	@media screen and (max-width: 912px) {
-		.Ban {
-			top: 7px;
-    left: 116px;
-    width: 53px;
-    height: 30px;
-}
-	  }
-    </style>
 	<!-- <img [routerLink]="roleMateriaux ? ['/equipement'] :
 	 []" src="../../assets/images/tunisieimmob/LOGO-PLATE.png"
 		class="imgbannier" alt="logo plate forme"> -->

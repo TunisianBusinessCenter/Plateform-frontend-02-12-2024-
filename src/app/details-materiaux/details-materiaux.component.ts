@@ -1,10 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AgenciesService } from '../services/agencies/agencies.service';
-import { ProduitsService } from '../services/produits/produits.service';
 import {Location} from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { filter } from 'rxjs';
+import { ProduitsService } from '../services/produits/produits.service';
+import { SharedAgenceImmobilierService } from '../services/shared-agence-immobilier.service';
 
 
 @Component({
@@ -20,6 +22,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 `]
 })
 export class DetailsMateriauxComponent implements OnInit {
+  private storageKey = 'idAgency'
   @ViewChild("myElem") MyProp: ElementRef;
   @ViewChild('tabGroup') tabGroup: any;
   @ViewChild('scrollContainer') scrollContainer: ElementRef | undefined;
@@ -63,15 +66,21 @@ export class DetailsMateriauxComponent implements OnInit {
     private router:Router,
     private sanitizer:DomSanitizer,
     private modalService: NgbModal,
+    private sharedService:SharedAgenceImmobilierService
 
     ) {
       
      }
 
   ngOnInit(): void {
+this.idAgency = this.sharedService.getIdAgency()
 
-
-    
+    this.router.events
+    .pipe(filter(event => event instanceof NavigationEnd))
+    .subscribe((event: NavigationEnd) => {
+      // Scroll to the top of the page
+      window.scrollTo(0, 0);
+    });
     // this.activatedRoute.parent.params.subscribe(parentParams => {
     //   this.agencyId = parentParams['id'];
     // });
@@ -98,25 +107,7 @@ export class DetailsMateriauxComponent implements OnInit {
           this.agencieService.setAgencyBaniere(this.AgencyBaniere);
           console.log("agencyId", this.AgencyBaniere)
     
-          if (foundAgency) {
-            this.agencyId = foundAgency.id;
-            this.description = foundAgency.description
-            this.logo_url = foundAgency.logo_url
-    
-            // this.ProduitEnCours  = foundAgency.description
-            this.ProduitEnCours = foundAgency?.produits
-          
-         
-            this.ProjetId=this.ProduitEnCours?.id
-            console.log('cours',this.ProduitEnCours)
-            this.ProjetDispo = foundAgency?.projets.filter(project => project.status === 'DISPONIBLE');
-            console.log('dispo',this.ProjetDispo)
-            console.log("Found Agency", this.agencyId);
-            this.routerIdLink = this.agencyId;
-          } else {
-            console.log("Agency not found");
-            // Handle the case when the agency is not found
-          }
+     
         });
         console.log('result',this.Produit)
         console.log('this',this.Produit.videoUrlProduit)
@@ -133,9 +124,11 @@ export class DetailsMateriauxComponent implements OnInit {
         
       });
       this.idSousCategorie= this.activatedRoute.snapshot.paramMap.get('id')
-      this.agencieService.getAgencieById(this.idSousCategorie).subscribe(data => {
+      this.agencieService.getAgencieById(this.idAgency).subscribe((data:any) => {
         console.log(data)
-        this.SousCategorie = data;
+        this.description=data.description
+        this.logo_url=data.logo_url
+        this.ProduitEnCours = data?.produits;
       })
   ///methode1:
     // this.router.events.subscribe((evt) => {
@@ -198,12 +191,7 @@ goToNextTab() {
     this.activeTabIndex++;
   }
 }
-refreshPage(): void {
-  // Add a delay of 2 seconds (2000 milliseconds) before reloading the page
-  setTimeout(() => {
-    location.reload();
-  }, 1000);
-}
+
 prevClick() {
   const totalMovementSize = this.getTotalMovementSize();
   if (this.leftValue !== 0) {
@@ -255,5 +243,27 @@ showMaximizableDialog() {
 openVerticallyCentered(content) {
   this.modalService.open(content, { centered: true });
 }
+navigateAndRefresh(project: any) {
+  // Extract the id from the project object
+  const projectId = project.id;
 
+  // Navigate to the specified route
+ 
+  this.router.navigate(['/details-materiaux', project.id])
+    .then(() => {
+      // If navigation is successful, call the refresh function
+      this.refresh();
+    });
+}
+refresh(): void {
+  this.router.navigateByUrl("/refreshMat", { skipLocationChange: true }).then(() => {
+    console.log(decodeURI(this._location.path()));
+    this.router.navigate([decodeURI(this._location.path())]);
+
+    // Set timeout to call the refresh function again after 2 seconds
+
+  });
+}
+
+ 
 }

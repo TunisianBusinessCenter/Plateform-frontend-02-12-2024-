@@ -379,6 +379,11 @@
     margin-left: 86px;
     color: black;
   }
+  .myClass {
+    width: 368px;
+    height: 13px;
+    text-align: center;
+}
 }
 
 .Agencyadresse {
@@ -889,7 +894,7 @@
   .responsive-container {
     display: grid;
     margin: 0 auto
-  }
+  } 
 
   .retour {
     top: -5%;
@@ -1308,10 +1313,10 @@ body {
 
   .background-img {
     height: 193px;
-    width: 368px;
+    width: 327px;
     background-repeat: no-repeat;
     background-size: cover;
-    margin: -63px 11% -76px;
+    margin: -35px 11% -76px;
     border-radius: 4px;
     position: relative;
   }
@@ -2590,7 +2595,7 @@ body {
     width: 319px;
 
   }
-
+ 
   .carousel-item {
     position: relative;
     display: none;
@@ -3142,7 +3147,7 @@ body {
   }
 
   .card-titles {
-    font-size: 17px;
+    font-size: 19px;
     margin-left: 2px;
     padding: 3px 65px 0 0;
   }
@@ -3164,6 +3169,7 @@ body {
   height: 419px;
   padding: 17px;
   margin: -7px 6px 0 -5px;
+  text-align: justify;
 }
 
 @media (max-width: 700px) {
@@ -3325,10 +3331,9 @@ body {
 /* Style pour les écrans étroits (mobiles) */
 @media (max-width: 576px) {
   .social-link-container {
-    width: 23px;
-    height: 23px;
-    margin-top: -6px;
-    margin-right: 9px;
+    height: 28px;
+    /* margin-top: -6px; */
+    /* margin-right: 8px; */
     border-radius: 3px;
   }
 }
@@ -3345,11 +3350,6 @@ body {
 
 }
 
-i.fab {
-  margin: 0;
-  width: 20px;
-  color: white;
-}
 
 
 
@@ -3369,7 +3369,7 @@ i.fab {
 }
 
 .font {
-  margin-right: 14px;
+  margin-right: 7px;
 }
 
 .titre {
@@ -3421,6 +3421,12 @@ i.fab {
 @media only screen and (max-width: 375px) {
   .Card {
     width: 90%;
+  }
+  .myClass {
+    width: 292px;
+          height: 13px;
+          margin-left: 12px;
+          text-align: center;
   }
 }
 
@@ -3512,6 +3518,7 @@ i.fab {
   .Card {
     width: 276px;
   }
+ 
 }
 
 @media only screen and (max-width: 390px) {
@@ -3729,11 +3736,12 @@ i.fab {
 }
 
 @media only screen and (max-width: 414px) {
-  i.fab {
-    margin: 4px;
-    width: 41px;
-    color: white;
-  }
+  .myClass
+  {
+   width: 353px;
+   height: 13px;
+   text-align: center;
+}
   .btn-boutique {
     color: #fff;
     background-color: #1f1e84;
@@ -3745,7 +3753,7 @@ i.fab {
     margin-top: -31px;
     height: 27px;
     border: none;
-    width: 94px;
+    width: 103px;
     padding: 11px 17px;
     display: flex;
     justify-content: center;
@@ -3788,7 +3796,7 @@ i.fab {
 
   .li-agency {
     border: none;
-    margin: 3px;
+    margin: 7px 0 0 0;
     min-width: 391px;
     margin-left: -86px;
     max-height: 24px;
@@ -4323,6 +4331,11 @@ body {
   .Card {
     width: 96%;
   }
+  .myClass {
+    width: 297px;
+    height: 13px;
+    text-align: center;
+}
 }
 
 @media screen and (max-width: 360px) {
@@ -4330,7 +4343,7 @@ body {
     width: 320px;
     background-repeat: no-repeat;
     background-size: cover;
-    margin: -34% 0%;
+    margin: -12% 0%;
     border-radius: 4px;
     position: relative;
     margin-left: 40px;
@@ -4689,7 +4702,7 @@ body {
 
 @media only screen and (max-width: 1060px) {
   .Card {
-    height: 300px;
+    height: 305px;
     width: 100%;
     border-radius: 6px;
     position: relative;
@@ -5322,3 +5335,16 @@ font-size: 19px ;
   margin: 4px 0px 0px 34px;
   padding: 0;
 }
+
+@media only screen and (max-width: 600px) and (max-height: 1080px) {
+  .btn-promotion {
+    margin-left: 23px;
+    width: 360px;
+  }
+  }
+@media only screen and (max-width: 600px) and (max-height: 1440px) {
+  .btn-promotion {
+    margin-left: 23px;
+    width: 300px;
+  }
+  }

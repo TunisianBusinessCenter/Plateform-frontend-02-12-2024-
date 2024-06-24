@@ -19,14 +19,16 @@ export class AppComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public loader: LoadingService,
   ) { }
+  isLoading = true; // Initial loading state
 
   ngOnInit() {
+    
     this.router.events.subscribe((RouterEvent: Event) => {
       if (RouterEvent instanceof NavigationStart) {
         this.displayLodingIndicator = true
       }
       if (RouterEvent instanceof NavigationEnd) {
-        this.displayLodingIndicator = false
+        this.displayLodingIndicator = true
       }
     })
   }

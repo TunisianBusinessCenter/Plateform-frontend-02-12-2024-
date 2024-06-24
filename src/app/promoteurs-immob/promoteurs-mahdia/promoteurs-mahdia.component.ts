@@ -62,7 +62,6 @@ export class PromoteursMahdiaComponent implements OnInit {
           return createdAtB - createdAtA;
         }
       });
-      console.log(this.AgenciesMahdia)
     })
   }
 

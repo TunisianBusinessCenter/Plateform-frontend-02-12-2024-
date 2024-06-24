@@ -60,7 +60,6 @@ export class PromoteuresDjerbaComponent implements OnInit {
           return createdAtB - createdAtA;
         }
       });
-      console.log(this.AgenciesDjerba)
     })
   }
 }

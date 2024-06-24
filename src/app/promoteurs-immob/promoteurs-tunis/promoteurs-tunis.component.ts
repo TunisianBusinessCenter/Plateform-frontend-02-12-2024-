@@ -72,7 +72,6 @@ export class PromoteursTunisComponent implements OnInit {
       });
   
       // Log the sorted array to the console
-      console.log('Sorted AgenciesTunis:', this.AgenciesTunis);
     });
   }
   

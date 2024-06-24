@@ -1,4 +1,3 @@
-
 .btn-companies-type {
   background-color: transparent;
   background-repeat: no-repeat;
@@ -50,6 +49,7 @@
     line-height: 2.1;
   }
 }
+
 @media (width: 375px) {
   .responsive-font-example {
     font-size: 12px;
@@ -59,6 +59,7 @@
     line-height: 2.1;
   }
 }
+
 @media (width: 390px) {
   .responsive-font-example {
     font-size: 12px;
@@ -68,6 +69,7 @@
     line-height: 2.1;
   }
 }
+
 @media (width: 360px) {
   .responsive-font-example {
     font-size: 12px;
@@ -77,6 +79,7 @@
     line-height: 2.1;
   }
 }
+
 @media (width: 320px) {
   .responsive-font-example {
     font-size: 12px;
@@ -86,6 +89,7 @@
     line-height: 2.1;
   }
 }
+
 @media (width: 414px) {
   .responsive-font-example {
     font-size: 12px;
@@ -631,7 +635,10 @@ body {
   :host ::ng-deep .p-carousel-container {
     display: flex;
     flex-direction: row;
-    margin-left: 70px;
+    margin: 0 32px 12px 80px;
+    /* margin-left: 121px; */
+    align-content: flex-start;
+    justify-content: space-around;
   }
 
 }
@@ -822,8 +829,8 @@ body {
   :host ::ng-deep .p-carousel-container {
     display: flex;
     flex-direction: row;
-    margin-left: 70px;
-  }
+    margin-left: 83px;
+    }
 }
 
 
@@ -906,6 +913,7 @@ body {
   }
 
 }
+
 @media (width: 360px) {
   .image {
     margin-left: 101px;
@@ -1169,3 +1177,114 @@ body {
   content: "\e901";
   color: white;
 }
+
+:host ::ng-deep .p-carousel .p-carousel-indicators {
+  display: none;
+}
+
+:host ::ng-deep .p-carousel-content {
+  overflow: auto;
+  margin: -30px -3px -40px -20px;
+}
+/* :host ::ng-deep .p-carousel-items-content {
+  overflow: hidden;
+  width: 93%;
+} */
+.p-carousel-container {
+  touch-action: pan-y !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

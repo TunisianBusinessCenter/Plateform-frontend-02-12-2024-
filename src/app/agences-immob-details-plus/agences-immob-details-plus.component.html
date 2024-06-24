@@ -1,148 +1,253 @@
 <app-navbar-carousel-home></app-navbar-carousel-home>
 <div class="responsive-container">
 
+<!-- <div class="main-container" *ngIf="Agency?.role==='promoteur-immobilieres'"	 > -->
+	<div class="main-container" 	 >
+		<nav class="main-menu">
+			<style>
+				.banner {
+				  text-align: center;
+				  padding: 10px;
+				  background-color: #434388; /* Set your desired background color */
+				  color: #fff; /* Set the text color */
+				  font-size: 16px; /* Adjust the font size */
+				}
+			  
+				.logo-container {
+				  text-align: center;
+				  padding: 10px;
+				  border-radius: 5%;
+				  overflow: hidden;
+				  background-color: #fff;
+				}
+			  
+				.logo-container img {
+				  max-width: 100%;
+				  height: auto;
+				  border-radius: 40%;
+				}
+			  
+				.hr {
+				  width: 20px;
+				  height: 20px;
+				  background-color: white;
+				}
+			  </style>
+			  
+			
+			<li>
+				<a  [routerLink]="'/agency/' + idAgence">
+					<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+	
+					<span class="nav-text" >
+									<p>{{NameAgency}}</p>
+	
+					</span>
+				</a>
+			  
+			</li>
+		   
+		   <div>
+			<hr>
+      <hr>	<br>
+			
+			   <ul>
+			
+				<li *ngIf="idAgence">
+					<a  [routerLink]="'/agency/' + idAgence">
+						<i class="fa fa-home fa-2x"></i>
+						<span class="nav-text">
+							Page d'accueil 
+						</span>
+					</a>
+				  
+				</li>
+			   <li *ngIf="!idAgence">
+          <a>
+            <i class="fa fa-home fa-2x"></i>
+            <span class="nav-text">
+              Page d'accueil
+            </span>
+          </a>
+         </li>
+				<li class="dropdown">
+					<a >
+						<i class="fa fa-book fa-2x"></i>
+						<span class="nav-text">Nos Produits</span>
+					</a>
+					<!-- <div class="dropdown-content" >
+						<a *ngIf="ProjetEnCours.length > 0 || ProduitEnCours.length > 0">En cours</a>
+	
+						<div class="submenu" *ngFor="let project of ProjetEnCours">
+	
+							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="['/details', project.id]">
+								{{ project.name }}
+	
+							</a>
+						</div>
+	
+						<a *ngIf="ProjetDispo.length > 0">Disponible</a>
+						<div class="submenu" *ngFor="let project of ProjetDispo ; index as i">
+	
+							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="'/details/' + project.id">
+								{{ project.name }}
+	
+							</a>
+						</div>
+	
+					</div> -->
+					<div class="dropdown-content" >
+						<!-- <a *ngIf=" ProduitEnCours?.length > 0">Produits</a> -->
+	
+            <div class="submenu" *ngFor="let project of biens">
+              <a style="background-color: #1e466e59;" (click)="navigateAndRefresh(project)">
+                  {{ project?.name }} 
+              </a>
+          </div>
+          
+						<!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
+	
+					</div>
+          
+				</li>
+				<style>
+					.show-subnav {  
+	    display: block;
+	}
+				</style>
+	
+				<!-- <li>
+					<a routerLink="/conception/ajouterConception">
+						<i class="fa fa-plus fa-2x"></i>
+						<span class="nav-text">Ajouter contenu </span>
+					</a>
+				</li> -->
+	
+				<li class="dropdown">
+					<a >
+						<i class="fa fa-envelope fa-2x"></i>
+						<span class="nav-text">Contacter nous</span>
+					</a>
+					
+				</li>
+				
+        <style>
+          /* Initially hide the dropdown content */
+          .dropdown-content {
+          
+            display: none;
+            position: absolute;
+            background-color: #1f1e84;
+            min-width: 42px;
+            width: 248px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 5;
+        
+          }
+          .dropdown-content > a {
+          margin: 0px 23px;
+          font-style: none;
+          transform-style: none;
+          color: yellow;
+          }
+          
+          /* Show the dropdown content when the parent is hovered */
+          .dropdown:hover .dropdown-content {
+          display: block;
+          }
+          
+          /* Style the dropdown options as blocks with margin */
+          .dropdown-content .submenu {
+          padding: 10px; /* Adjust the padding as needed */
+          }
+          
+          .dropdown-content .submenu a {
+          display: block;
+          font-size: 9px;
+          width: 222px;
+          margin: -7px 11px;
+          padding: 10px;
+          text-decoration: none;
+          color: white;
+          background-color: rgb(10, 10, 211)e84;
+          transition: background-color 0.3s;
+          border: solid 1px rgb(255 255 255 / 16%);
+          border-radius: 7px;
+          }
+          
+          /* Add a little margin between the dropdown options */
+          .dropdown-content .submenu a + a {
+          margin-top: 5px; /* Adjust the margin as needed */
+          
+          }
+          
+          /* Add hover effect */
+          .dropdown-content .submenu a {
+            font-size: 12px;
+            font-weight: bold;
+            transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease;
+          }
+          
+          .dropdown-content .submenu a:hover {
+              font-size: 13px;
+            color: yellow;
+            border: solid 1px gray;
+            font-weight: 600;
+        
+          }
+          
+          @media only screen and (max-width: 767px) {
+          
+          
+          .dropdown-content .submenu a:hover {
+            transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease; /* Add smooth transition for both background color and font size */
+          
+          }
+          }
+          </style>			
+          
+				
+	
+	
+			  
+			   
+				<li>
+					<a >
+						<i class="fa fa-info-circle fa-2x"></i>
+						<span class="nav-text">
+							A propos
+						</span>
+					</a>
+				  
+				</li>
+			 
+			</ul>
+		   </div>
+		
+			<!-- <ul class="logout">
+				<li>
+				   <a routerLink="conception/login">
+						 <i class="fa fa-power-off fa-2x"></i>
+						<span class="nav-text">
+							Logout
+						</span>
+					</a>
+				</li>  
+			</ul> -->
+		
+		</nav>
+		
+	</div>
     <div class="responsive">
       <button (click)="backClicked()" type="submit" class="btn animated-border-button ">
-        <i class="fa fa-home" aria-hidden="true"></i>
+        <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
         Retour
       </button>
-    </div>
+    </div> <br><br>
+
   </div>
   <div class="px-lg-5  my-profile">
-    <div *ngFor="let allAgence of AllAgency">
-      <div *ngIf="Biens?.agencyName===allAgence?.name">
-        <div class="row agency-responsive">
-          <div class="col" style="margin: auto;">
-            <img class="rounded-lg border card-img-logo" src="{{allAgence?.logo_url }}">
-          </div>
-          <div class="col textresponce">
-            <div class="CardDetails">
-              <div class="ribbon"><span class="ribbon__content" *ngIf="allAgence?.role==='promoteur-immobilieres'">PROMOTION</span></div>
-              <div class="ribbon"><span class="ribbon__content" *ngIf="allAgence?.role==='materiaux-construction'">MATERIAUX</span></div>
-              <div class="ribbon"><span class="ribbon__content__agence" *ngIf="allAgence?.role==='agence-immobilieres'">A VENDRE/A LOUER</span></div>
-              <div class="ribbon"><span class="ribbon__content" *ngIf="allAgence?.role==='agence-service'">SERVICE</span></div>
-            <h2 class="card-title fs-22 lh-15 mb-1 text-dark nameAgencie">
-              {{allAgence?.name}}
-            </h2> <br>
-            <p class="card-text  Agencyadresse">
-              {{allAgence?.adresse}}
-            </p>
-  
-            <li class="list-group-item  align-items-sm-center  li-agency">
-              <span class="col-sm-2 px-1 AgencyDetails">Tél 1:</span>
-              <span class="col-sm-9 px-1 tele-responsive">
-                +216 {{allAgence?.phone_number}}
-              </span>
-            </li>
-            <li class="list-group-item  align-items-sm-center  li-agency" *ngIf="allAgence?.phone_number2">
-              <span class="col-sm-2 px-1 AgencyDetails">Tél 2:</span>
-              <span class="col-sm-9 px-1  tele-responsive">
-                +216 {{allAgence?.phone_number2}}
-              </span>
-            </li>
-            <li class="list-group-item  align-items-sm-center  li-agency" *ngIf="allAgence?.phone_commercial">
-              <span class="col-sm-2 px-1 AgencyDetails">Tél Commercial:</span>
-              <span class="col-sm-9 px-1  tele-responsive">
-                +216 {{allAgence?.phone_commercial}}
-              </span>
-            </li>
-            <li class="list-group-item  align-items-sm-center  li-agency">
-              <span class="col-sm-2 px-1 AgencyDetails">Email</span>
-              <span class="col-sm-9 px-1 tele-responsive ">
-                {{ allAgence?.email }}
-              </span>
-            </li>
-            <li class="list-group-item  align-items-sm-center  li-agency">
-              <span class="col-sm-2 px-1 AgencyDetails ">Site web</span>
-              <a href="{{allAgence?.website_url}}" style="text-decoration:none">
-                <span class="col-sm-9 px-1 tele-responsive" style="color: #1f1e84;cursor: pointer">
-                  {{allAgence?.website_url}}
-                </span>
-              </a>
-            </li>
-            <li class="list-group-item d-flex align-items-sm-center  li-social">
-              <ul class="list-inline mb-0" style="margin-left: -48px;">
-                <ul class="social-networks bounce">
-                  <li>
-                    <a href="{{allAgence?.twitter_url}}" class="icon-twitter">
-                      Twitter
-                    </a>
-                  </li>
-                  <li>
-                    <a href="{{allAgence?.facebook_url}}" class="icon-facebook">
-                      Facebook
-                    </a>
-                  </li>
-                  <li>
-                    <a href="{{allAgence?.instagram_url}}" class="icon-instagram">
-                      Instagram
-                    </a>
-                  </li>
-                  <li>
-                    <a href="{{allAgence?.linkedlin_url}}" class="icon-linkedin">
-                      LinkedIn
-                    </a>
-                  </li>
-                </ul>
-              </ul>
-            </li>
-          </div> 
-          </div>
-          <br>
-          <div class="col" style="margin: auto;">
-  
-            <div *ngFor="let Agencyapp of allAgence?.mobile_apps">
-              <div *ngIf="allAgence?.mobile_apps?.length===0 && allAgence.videoUrl===null ;">
-                <div class="text-primary">
-                  <h6 class="appname">
-                    Application en cours
-                  </h6>
-                </div>
-  
-                <img class="appimage" src="../../assets/images/HomePage/1111.jpg" style="float: right;" width="80%"
-                  height="120%">
-                <button type="submit" class="btn btn-primary btn-lg btn-block shadow-none responsive-telecharger">
-                  Télecharger &nbsp;
-                  <i class="fa fa-download" aria-hidden="true"></i>
-                </button>
-              </div>
-  
-              <div *ngIf="Agencyapp.id!==null ;">
-                <div class="text-primary">
-                  <h6 class="appname">
-                    {{ Agencyapp?.name }}
-                  </h6>
-                </div>
-                <a style=" text-decoration:none" href="{{ Agencyapp?.playstore_url }}">
-                  <img class="appimage" src="{{ Agencyapp?.mobile_cover_image_url}}">
-                  <button type="submit" class="btn   responsive-telecharger">
-                    Télecharger &nbsp;
-                    <i class="fa fa-download" aria-hidden="true"></i>
-                  </button>
-                </a>
-              </div>
-            </div>
-             <!-- <div *ngFor="let allAgence of AllAgency">
-              <div *ngIf="Biens?.agencyName===allAgence?.name">
-            <div *ngIf="allAgence?.mobile_apps?.length===0 && allAgence.videoUrl">
-              <div class="text-primary">
-                <h6 class="appnameUrbat">
-                  vidéo de présentation
-                </h6>
-              </div>
-  
-              <iframe class="responsive-iframe" [src]="(urlSafe)">
-              </iframe>
-  
-            </div>
-            </div>
-            </div>  -->
-  
-          </div>
-        </div>
-      </div>
-    </div>
-  
+
     <br>
     <!-- <div class="row flex-lg-row flex-cloumn">
       <div class="col-lg-5 " style="margin-top: 20px;">

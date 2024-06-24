@@ -42,14 +42,26 @@ export class CoffeeListSousseComponent implements OnInit {
       }
     ];
    }
-  ngOnInit(): void {
+   ngOnInit(): void {
     this.Servicemateriaux.getMateriauxEquipement().subscribe((data: any) => {
-      // Filter the data where phone_number_commercial is "yes"
-      this.AgenciesCoffee = data.filter((item: any) => item.phone_number_commercial === "yes" && item.region === "sousse");
-      console.log(this.AgenciesCoffee);
-      this.AgenciesCoffee
-  });
- 
-  }
+        // Filter the data where phone_number_commercial is "yes"
+        this.AgenciesCoffee = data.filter((item: any) => item.phone_number_commercial === "yes" && item.region === "sousse");
+
+        // Sort the filtered data by the number at the beginning of the name
+        this.AgenciesCoffee.sort((a: any, b: any) => {
+            // Extract the number from the beginning of the name
+            const numA = parseInt(a.name.match(/^\d+/));
+            const numB = parseInt(b.name.match(/^\d+/));
+            
+            // Handle cases where the number might not be present
+            if (isNaN(numA)) return 1;
+            if (isNaN(numB)) return -1;
+
+            return numA - numB;
+        });
+
+        console.log(this.AgenciesCoffee);
+    });
+}
 
 }

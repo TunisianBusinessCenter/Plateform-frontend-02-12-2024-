@@ -1,211 +1,218 @@
-
 <!-- <div class="main-container" *ngIf="Agency?.role==='promoteur-immobilieres'"	 > -->
+<app-navbar-carousel ></app-navbar-carousel>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-	<div class="main-container" 	 >
-		<nav class="main-menu">
-			<style>
-				.banner {
-				  text-align: center;
-				  padding: 10px;
-				  background-color: #434388; /* Set your desired background color */
-				  color: #fff; /* Set the text color */
-				  font-size: 16px; /* Adjust the font size */
-				}
-			  
-				.logo-container {
-				  text-align: center;
-				  padding: 10px;
-				  border-radius: 5%;
-				  overflow: hidden;
-				  background-color: #fff;
-				}
-			  
-				.logo-container img {
-				  max-width: 100%;
-				  height: auto;
-				  border-radius: 40%;
-				}
-		  
-				hr {
-				  width: 20px;
-				  height: 20px;
-				  background-color: white;
-				}
-			  </style>
-			  
-		
-			
-			<li>
-				<a  >
-					<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
-	
-					<span   class="nav-text">
-									<p>{{agencyName }}</p>
-	
-					</span>
-				</a>
-			  
-			</li>
-		   
-		   <div>
-	
-			
-			   <ul>
-			
-				<li>
-					<a [routerLink]="'/coffeeAgency/' + agencyId">
-						<i class="fa fa-home fa-2x"></i>
-						<span class="nav-text">
-							Page d'accueil 
-						</span>
-					</a>
-				  
-				</li>
-			   
-			
-				<li class="dropdown">
-					<a >
-						<i class="fa fa-book fa-2x"></i>
-		
-						<span  class="nav-text">Nos Menus </span>
-						
-					</a>
-					<div class="dropdown-content" >
-	
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<div class="main-container">
+  <nav class="main-menu">
+    <style>
+      .banner {
+        text-align: center;
+        padding: 10px;
+        background-color: #434388;
+        /* Set your desired background color */
+        color: #fff;
+        /* Set the text color */
+        font-size: 16px;
+        /* Adjust the font size */
+      }
+
+      .logo-container {
+        text-align: center;
+        padding: 10px;
+        border-radius: 5%;
+        overflow: hidden;
+        background-color: #fff;
+      }
+
+      .logo-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 40%;
+      }
+
+      hr {
+        width: 20px;
+        height: 20px;
+        background-color: white;
+      }
+    </style>
+
+
+
+    <li>
+      <a>
+        <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+
+        <span class="nav-text">
+          <p>{{agencyName }}</p>
+
+        </span>
+      </a>
+
+    </li>
+
+    <div>
+
+
+      <ul>
+
+        <li>
+          <a [routerLink]="'/coffeeAgency/' + agencyId">
+            <i class="fa fa-home fa-2x"></i>
+            <span class="nav-text">
+              Page d'accueil
+            </span>
+          </a>
+
+        </li>
+
+
+        <li class="dropdown">
+          <a>
+            <i class="fa fa-coffee fa-2x"></i>
+
+            <span class="nav-text">Nos Menus</span>
+
+          </a>
+          <div class="dropdown-content">
+
             <div class="submenu" *ngFor="let image of agency">
-              <a style="background-color: #1e466e59;" (click)="refreshPage()"
-              [routerLink]="['/coffee-details', image?.id]" >
+              <a style="background-color: #1e466e59;" (click)="navigateAndRefresh(image)"
+                [routerLink]="['/coffee-details', image?.id]">
                 <!-- [routerLink]="['/descriptionCoffee', agency.biens.sous_biens[0].id]" -->
-                  {{ image.name }}
+                {{ image?.name }}
               </a>
+            </div>
+
+
+
           </div>
-          
-					
-	
-					</div>
-			
-					
-				</li>
-				<style>
-					.show-subnav {
-	display: block;
-	}
-				</style>
-	
-				<!-- <li>
+
+
+        </li>
+        <style>
+          .show-subnav {
+            display: block;
+          }
+        </style>
+
+        <!-- <li>
 					<a routerLink="/conception/ajouterConception">
 						<i class="fa fa-plus fa-2x"></i>
 						<span class="nav-text">Ajouter contenu </span>
 					</a>
 				</li> -->
-	
-				<li class="dropdown">
-					<!-- <a routerLink="/conception/registre"> -->
+
+        <li class="dropdown">
+          <!-- <a routerLink="/conception/registre"> -->
 					<a >
-						<i class="fa fa-envelope fa-2x"></i>
-						<span class="nav-text">Contacter nous</span>
-					</a>
-					
-				</li>
-				
-				
-	<style>
-	/* Initially hide the dropdown content */
-	.dropdown-content {
-	
-		display: none;
-    position: absolute;
-    background-color: #1f1e84;
-    min-width: 42px;
-    width: 248px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 5;
+            <i class="fa fa-envelope fa-2x"></i>
+            <span class="nav-text">Contacter nous</span>
+          </a>
 
-	}
-	.dropdown-content > a {
-	margin: 0px 23px;
-	font-style: none;
-	transform-style: none;
-	color: yellow;
-	}
-	
-	/* Show the dropdown content when the parent is hovered */
-	.dropdown:hover .dropdown-content {
-	display: block;
-	}
-	
-	/* Style the dropdown options as blocks with margin */
-	.dropdown-content .submenu {
-	padding: 10px; /* Adjust the padding as needed */
-	}
-	
-	.dropdown-content .submenu a {
-	display: block;
-	font-size: 9px;
-	width: 222px;
-	margin: -7px 11px;
-	padding: 10px;
-	text-decoration: none;
-	color: white;
-	background-color: rgb(10, 10, 211)e84;
-	transition: background-color 0.3s;
-	border: solid 1px rgb(255 255 255 / 16%);
-	border-radius: 7px;
-	}
-	
-	/* Add a little margin between the dropdown options */
-	.dropdown-content .submenu a + a {
-	margin-top: 5px; /* Adjust the margin as needed */
-	
-	}
-	
-	/* Add hover effect */
-	.dropdown-content .submenu a {
-		font-size: 12px;
-    font-weight: bold;
-    transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease;
-	}
-	
-	.dropdown-content .submenu a:hover {
-	    font-size: 13px;
-    color: yellow;
-    border: solid 1px gray;
-    font-weight: 600;
+        </li>
 
-	}
-	
-	@media only screen and (max-width: 767px) {
-	
-	
-	.dropdown-content .submenu a:hover {
-		transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease; /* Add smooth transition for both background color and font size */
-	
-	}
-	}
-	</style>			
-	
-			
 
-	
-	
-			  
-			   
-				<li style="cursor: pointer;" class="dropdown">
-					<a (click)="showMaximizableDialog()"
-          >
-						<i class="fa fa-info-circle fa-2x"></i>
-						<span class="nav-text">
-							A propos
-						</span>
-					</a>
-				  
-				</li>
-			 
-			</ul>
-		   </div>
-		
-			<!-- <ul class="logout">
+        <style>
+          /* Initially hide the dropdown content */
+          .dropdown-content {
+
+            display: none;
+            position: absolute;
+            background-color: #1f1e84;
+            min-width: 42px;
+            width: 248px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 5;
+
+          }
+
+          .dropdown-content>a {
+            margin: 0px 23px;
+            font-style: none;
+            transform-style: none;
+            color: yellow;
+          }
+
+          /* Show the dropdown content when the parent is hovered */
+          .dropdown:hover .dropdown-content {
+            display: block;
+          }
+
+          /* Style the dropdown options as blocks with margin */
+          .dropdown-content .submenu {
+            padding: 10px;
+            /* Adjust the padding as needed */
+          }
+
+          .dropdown-content .submenu a {
+            display: block;
+            font-size: 9px;
+            width: 222px;
+            margin: -7px 11px;
+            padding: 10px;
+            text-decoration: none;
+            color: white;
+            background-color: rgb(10, 10, 211)e84;
+            transition: background-color 0.3s;
+            border: solid 1px rgb(255 255 255 / 16%);
+            border-radius: 7px;
+          }
+
+          /* Add a little margin between the dropdown options */
+          .dropdown-content .submenu a+a {
+            margin-top: 5px;
+            /* Adjust the margin as needed */
+
+          }
+
+          /* Add hover effect */
+          .dropdown-content .submenu a {
+            font-size: 12px;
+            font-weight: bold;
+            transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+          }
+
+          .dropdown-content .submenu a:hover {
+            font-size: 13px;
+            color: yellow;
+            border: solid 1px gray;
+            font-weight: 600;
+
+          }
+
+          @media only screen and (max-width: 767px) {
+
+
+            .dropdown-content .submenu a:hover {
+              transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+              /* Add smooth transition for both background color and font size */
+
+            }
+          }
+        </style>
+
+
+
+
+
+
+
+        <li style="cursor: pointer;" class="dropdown">
+          <a (click)="showMaximizableDialog()">
+            <i class="fa fa-info-circle fa-2x"></i>
+            <span class="nav-text">
+              A propos
+            </span>
+          </a>
+
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- <ul class="logout">
 				<li>
 				   <a routerLink="conception/login">
 						 <i class="fa fa-power-off fa-2x"></i>
@@ -215,11 +222,10 @@
 					</a>
 				</li>  
 			</ul> -->
-			&nbsp;
-		</nav>
-		
-	</div>
-	
+    &nbsp;
+  </nav>
+
+</div>
 
 
 
@@ -238,436 +244,493 @@
 
 
 
-<app-navbar-carousel ></app-navbar-carousel>
+
 <main id="content" class="bg-patten-03">
-	<div class="px-3 px-lg-6 px-xxl-13 py-5 py-lg-10 my-profile">
-		<div class="collapse-tabs new-property-step">
-			<div class="container updateMenu">
-				<button (click)="backClicked()" type="submit" class="animated-border-button " >
-					<!-- <i class="fa fa-arrow-left" aria-hidden="true"></i> -->
-					Retour
-				</button>
-				<br> <br><br><br><br>
-				
-			
-
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-    
-<div class="container">
-
+  <div class="px-3 px-lg-6 px-xxl-13 py-5 py-lg-10 my-profile">
+    <div class="collapse-tabs new-property-step">
+      <div class="container updateMenu">
+        <button (click)="backClicked()" type="submit" class="animated-border-button ">
+          <!-- <i class="fa fa-arrow-left" aria-hidden="true"></i> -->
+          Retour
+        </button>
    
+        <br> <br><br><br><br>
 
-		<div id="menu">
-			<div class="heading">
-				<h3 style="">{{sousBiens?.name}}</h3>
-				<div id="wrapper">
 
-					<img [src]="sousBiens?.promoImg" (click)="openImageInDialog(sousBiens?.promoImg)" alt="12 Apostles Landmark" />
-				  </div>
-				  <style>
-					body {
-            background:#147;
-            font-family:sans-serif;
-            margin:0;
-            padding:0;
-        }
-        #wrapper {
-            margin:0 auto;
-            width:100%;
-            background:#fff;
-            text-align:center;
-        }
-        #wrapper img {
-          width: 90%;
-    border-style: double;
-    border: solid 1px gray;
-    height: auto;
-    border-color: #332d2473;
-    margin: 0 5% 5% 5%;
-        }
-        .instructions {
-            font-size:1.2rem;
-            padding:20px 5% 20px 5%;
-            width:90%;
-            text-align:left;
-            line-height:1.4;
-        }
-        .columns {
-            display:grid;
-            grid-template-columns:1fr;
-        }
-        #wrapper code {
-            font-family:"Lucida Console",monaco,"Courier New",monospace;
-            font-size:1rem;text-align:center;
-        }
-        #wrapper h1 {
-            text-align:center;
-            font-size:1.75rem;
-        }
-        @media screen and (min-width: 900px) {
-            #wrapper {
-                width:90%;
+
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+
+        <div class="container">
+
+
+
+          <div id="menu">
+            <div class="heading">
+              <h3 style="">{{sousBiens?.name}}</h3>
+              <div id="wrapper">
+
+                <img [src]="sousBiens?.imageUrl" (click)="openImageInDialog(sousBiens?.image_url)"
+                  alt="12 Apostles Landmark" />
+              </div>
+              <style>
+                body {
+                  background: #147;
+                  font-family: sans-serif;
+                  margin: 0;
+                  padding: 0;
+                }
+
+                #wrapper {
+                  margin: 0 auto;
+                  width: 100%;
+                  background: #fff;
+                  text-align: center;
+                }
+
+                #wrapper img {
+                  width: 90%;
+                  border-style: double;
+                  border: solid 1px gray;
+                  height: auto;
+                  border-color: #332d2473;
+                  margin: 0 5% 5% 5%;
+                }
+
+                .instructions {
+                  font-size: 1.2rem;
+                  padding: 20px 5% 20px 5%;
+                  width: 90%;
+                  text-align: left;
+                  line-height: 1.4;
+                }
+
+                .columns {
+                  display: grid;
+                  grid-template-columns: 1fr;
+                }
+
+                #wrapper code {
+                  font-family: "Lucida Console", monaco, "Courier New", monospace;
+                  font-size: 1rem;
+                  text-align: center;
+                }
+
+                #wrapper h1 {
+                  text-align: center;
+                  font-size: 1.75rem;
+                }
+
+                @media screen and (min-width: 900px) {
+                  #wrapper {
+                    width: 90%;
+                  }
+
+                  .columns {
+                    grid-template-columns: 1fr 1fr;
+                    grid-gap: 50px;
+                  }
+
+                  #wrapper code {
+                    grid-column: 1/-1;
+                  }
+                }
+
+                @media screen and (min-width: 1200px) {
+                  #wrapper {
+                    width: 90%;
+                  }
+
+                  .columns {
+                    grid-template-columns: 1fr 1fr 1fr;
+                    grid-gap: 50px;
+                  }
+
+                  #wrapper code {
+                    grid-column: auto;
+                    align-self: center;
+                  }
+                }
+              </style>
+              <br>
+              <h3>NOS DÉLICES</h3>
+              <select style="     padding: 8px 72px 8px 25px;
+        border: solid 2px #00000054;
+        border-radius: 5px;
+        margin: -1px 0px 14px 0;
+        font-weight: 500;
+        font-size: 16px;
+        text-align: center;
+    " [(ngModel)]="selectedCategory">
+                <option value="">Toutes Les Catégories</option>
+                <option *ngFor="let category of categoryList" [value]="category">{{ category }}</option>
+              </select>
+            </div>
+            <!-- Add a dropdown menu for category filtering -->
+
+
+            <!-- Loop through the images and apply filtering -->
+            <div *ngFor="let image of sousBiens?.sous_cat">
+              <!-- Check if the category matches the selected category -->
+              <ng-container *ngIf="!selectedCategory || image.category.trim() === selectedCategory.trim()">
+                <div class="card">
+                  <img [src]="image?.image_url" (click)="openImageInDialog(image.image_url)">
+                  <div class="details">
+                    <div class="details-sub">
+                      <h2 style="    text-align: center;
+                      margin: -7px 0;
+                      font: 500 15px / 32px Roboto, sans-serif;" class="price">{{image?.name}}</h2><br>
+                      <!-- Add other details as needed -->
+                    </div>
+                    <button [routerLink]="['/descriptionCoffee', sousBiens?.id, image?.id]">Découvrir <i
+                        class="fas fa-eye"></i></button>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+
+
+
+          </div>
+
+
+
+          <p-dialog header="Aperçu d'image" [(visible)]="displayDialog" [modal]="true" [responsive]="true"
+            [contentStyle]="{'min-width': '100%','overflow': 'visible'}">
+
+            <img [src]="selectedImage" style="width: 100%;">
+          </p-dialog>
+
+
+
+          <style>
+            #home {
+              display: flex;
+
+              text-align: center;
+              flex-direction: column;
+              padding: 220px 200px;
+              color: #fff;
+              justify-content: center;
+              align-items: center;
+
+              text-align: center;
             }
-            .columns {
-                grid-template-columns:1fr 1fr;
-                grid-gap:50px;
+
+            .overlay {
+              background: rgb(0, 0, 0, -5);
+              height: 100vh;
             }
-            #wrapper code {
-                grid-column:1/-1;
+
+            #mobile {
+              display: none;
+              height: 70px;
+              line-height: 40px;
+              /* background-color: rgba(0, 0, 0, 0.200); */
+              background-color: #262626;
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              z-index: 9999;
+              overflow: hidden;
+
             }
-        }
-        @media screen and (min-width: 1200px) {
-            #wrapper {
-                width:90%;
+
+            #mobile ul li {
+
+              justify-content: flex-end;
+              padding: -25px 5px;
+              margin: -38px 0;
+              font-size: 1rem;
+              color: white;
             }
-            .columns {
-                grid-template-columns:1fr 1fr 1fr;
-                grid-gap:50px;
+
+            #mobile ul li a {
+              display: flex;
+              text-decoration: none;
+              color: white;
             }
-            #wrapper code {
-                grid-column:auto;
-                align-self:center;
+
+            @media screen and (max-width:768px) {
+              #mobile {
+                display: block;
+              }
+
+              #navbar {
+                display: none;
+
+              }
+
+              #home {
+                display: flex;
+
+                margin-top: 20px;
+
+                text-align: center;
+
+                color: #fff;
+                justify-content: center;
+                align-items: center;
+
+                text-align: center;
+              }
+
+              .logo1 {
+
+
+                justify-content: flex-start;
+                align-items: flex-start;
+                font-size: 1.8rem;
+                color: #fff;
+
+
+                margin-left: 20px;
+                margin-right: 500px;
+                margin-top: 15px;
+              }
+
+              a:hover {
+                background-color: rgb(22, 22, 94);
+                border-radius: 16px;
+                padding: 6px 8px 6px 8px;
+                margin: -7px;
+              }
+
+              header {
+
+                background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url(https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80);
+                background-position: center;
+                background-size: cover;
+
+                height: 180vh;
+              }
+
             }
-        }
-				  </style>
-          <br>
-				<h3 >NOS DÉLICES</h3>
-				
-			</div>
-			<div *ngFor="let image of sousBiens?.sous_cat" class="card">
-				<img [src]="image?.image_url"  (click)="openImageInDialog(image.image_url)" >
-				<div class="details">
-					<div class="details-sub">
-						<h2 style="text-align: justify;    margin: -7px 0;" class="price"> {{image?.name}}</h2><br>
-            <!-- <h4 style="text-align: justify;    margin: 4px 0;" class="price"> {{image?.description}}</h4> -->
-            <h4 style="text-align: justify; margin: 4px 0;" class="price">{{ truncateSentence(image?.description) }}</h4><br> 
 
-						<h5 style="text-align: justify;" class="price">PRIX : &nbsp;{{image?.prix}}&nbsp;   <i class="fas fa-heart "></i></h5>
-						
-					</div>
-          
-					<!-- <p>{{sousBiens?.name}}</p> -->
-					<!-- <button (click)="openImageInDialog(image)">open image </button> -->
-          
-					<button [routerLink]="['/descriptionCoffee', sousBiens?.id, image?.id]">Découvrir <i class="fas fa-eye "></i> <!-- Replace "fa-icon-name" with the actual Font Awesome icon class -->
-          </button>
-          
-          
+            .title {
+              text-align: center;
+              width: 100%;
+              color: yellow;
 
-          
-				</div>
-			</div>
-			
-	
-			
-		</div>
+            }
 
 
+            #menu {
+              padding: 0;
+              display: grid;
+              margin-left: 23px;
+              grid-template-columns: repeat(auto-fit, minmax(299px, 1fr));
+              grid-gap: 20px 40px;
+              background: rgb(245, 242, 242);
+              min-height: 100vh;
+            }
 
-		<p-dialog header="Aperçu d'image" [(visible)]="displayDialog" [modal]="true" [responsive]="true"
-					[contentStyle]="{'min-width': '100%','overflow': 'visible'}">
+            .heading {
+              background: rgb(245, 242, 242);
+              color: #373333;
+              margin-bottom: -59px;
+              padding: 0px 0 30px 0;
+              grid-column: 1 / -1;
+              text-align: center;
+            }
 
-					<img  [src]="selectedImage" style="width: 100%;">
-				</p-dialog>
+            .heading>h3 {
+              font-weight: 600;
+              font-size: 22px;
+              letter-spacing: 5px;
+            }
 
+            .card {
+              display: grid;
+              position: relative;
+              grid-template-rows: auto 1fr;
+              border-radius: 15px;
+              box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+              margin: 10px -2px;
+              /* width: 100%; */
+            }
 
-
-<style>
-
-#home{
-    display: flex;
-  
-    text-align: center;
-    flex-direction: column;
-    padding: 220px 200px;
-    color: #fff;
-    justify-content: center;
-    align-items: center;
-    
-    text-align: center;
-}
-.overlay{
-    background: rgb(0,0,0,-5);
-    height: 100vh;
-}
-#mobile{
-  display: none;
-  height: 70px;
-  line-height: 40px;
-  /* background-color: rgba(0, 0, 0, 0.200); */
-  background-color: #262626;
-  position:fixed;
-    top:0;
-    left: 0;
-    width: 100%;
-    z-index: 9999;
-    overflow: hidden;
-  
-}
-
-#mobile ul li{
-
-  justify-content: flex-end;
-  padding: -25px 5px;
-  margin: -38px 0;
-  font-size: 1rem;
-  color: white;
-}
-#mobile ul li a{
-  display: flex;
-  text-decoration: none;
-  color: white;
-}
-@media screen and (max-width:768px) {
-  #mobile{
-    display: block;
-  }
-  #navbar{
-    display: none;
-    
-  }
-  #home{
-    display: flex;
-   
-    margin-top: 20px;
-    
-    text-align: center;
-   
-    color: #fff;
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-}
-  
-  .logo1{
-    
-
-    justify-content: flex-start;
-  align-items: flex-start;
-    font-size: 1.8rem;
-    color: #fff;
-    
-   
-    margin-left: 20px;
-    margin-right: 500px;
-    margin-top: 15px;
-  }
-  a:hover{
-    background-color: rgb(22, 22, 94);
-    border-radius: 16px;
-    padding: 6px 8px 6px 8px;
-    margin: -7px;
-  }
-  header{
-    
-    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.2)),url(https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80);
-    background-position: center;
-    background-size: cover;
-  
-    height: 180vh;
-}
-
-}
-.title{
-    text-align: center;
-    width: 100%;
-   color: yellow;
-  
-}
+            .card img {
+              position: relative;
+              width: 100%;
+              /* height: 23vh; */
+              border-radius: 15px 15px 0 0;
+            }
 
 
-#menu{
-  padding: 0;
-    display: grid;
-    margin-left: 23px;
-    grid-template-columns: repeat(auto-fit, minmax(299px, 1fr));
-    grid-gap: 20px 40px;
-    background: rgb(245, 242, 242);
-    min-height: 100vh;
-}
-.heading{
-	background: rgb(245, 242, 242);
-    color: #373333;
-    margin-bottom: -59px;
-    padding: 0px 0 30px 0;
-    grid-column: 1 / -1;
-    text-align: center;
-}
-.heading>h3{
-    font-weight: 600;
-    font-size: 22px;
-    letter-spacing: 5px;
-}
-.card{
-    display: grid;
-    position: relative;
-    grid-template-rows: auto 1fr;
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    margin: 10px 20px;
-}
+            .details {
+              padding: 20px 10px;
+              display: grid;
+              /* grid-template-rows: auto 1fr 50px; */
+              grid-row-gap: 0px;
+            }
 
-.card img{
-    position: relative;
-    width: 100%;
-    /* height: 23vh; */
-    border-radius: 15px 15px 0 0;
-}
+            .details-sub {
+              display: grid;
+              grid-template-columns: auto auto;
+            }
 
+            .details-sub h5 {
+              font-weight: 600;
+              font-size: 13px;
+            }
 
-.details{
-	padding: 20px 10px;
-    display: grid;
-    /* grid-template-rows: auto 1fr 50px; */
-    grid-row-gap: 0px;
-}
-.details-sub{
-    display: grid;
-    grid-template-columns: auto auto;
-}
-.details-sub h5{
-    font-weight: 600;
-    font-size: 13px;
-}
-.price{
-    text-align: right;
-}
-.details p{
-    color: #6f6f6f;
-    font-size: 15px;
-    line-height: 25px;
-    align-self: stretch;
-}
-.details button{
-  border: none;
-    color: #ffffff;
-    font-size: 16px;
-    border: solid 3px white;
-    font-weight: 600;
-    border-radius: 6px;
-    border-style: double;
-    letter-spacing: 4.5px;
-    height: 40px;
-}
+            .price {
+              text-align: right;
+            }
+
+            .details p {
+              color: #6f6f6f;
+              font-size: 15px;
+              line-height: 25px;
+              align-self: stretch;
+            }
+
+            .details button {
+              border: none;
+              color: #ffffff;
+              font-size: 16px;
+              border: solid 3px white;
+              font-weight: 600;
+              border-radius: 6px;
+              margin-bottom: -12px;
+              margin-top: 13px;
+              border-style: double;
+              letter-spacing: 4.5px;
+              height: 40px;
+            }
 
 
 
 
 
-  #about{
-padding: 25px 0;
-  }
-  .about_row{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 0 100px;
-  }
-  .about_column{
-    flex: 1;
-  }
-  #btn1{
-  margin-top: 20px;
-  padding: 10px 10px;
-  border-radius: 15px;
-  }
-  .about_column img{
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    object-fit: fill;
-    margin: auto;
-  }
-  .title{
-    color: #373333;
-    margin-bottom: 30px;
-    padding: 50px 0 30px 0;
-    text-align: center;
-  }
+            #about {
+              padding: 25px 0;
+            }
+
+            .about_row {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-wrap: wrap;
+              padding: 0 100px;
+            }
+
+            .about_column {
+              flex: 1;
+            }
+
+            #btn1 {
+              margin-top: 20px;
+              padding: 10px 10px;
+              border-radius: 15px;
+            }
+
+            .about_column img {
+              width: 500px;
+              height: 500px;
+              border-radius: 50%;
+              object-fit: fill;
+              margin: auto;
+            }
+
+            .title {
+              color: #373333;
+              margin-bottom: 30px;
+              padding: 50px 0 30px 0;
+              text-align: center;
+            }
 
 
-#order {
-  background: rgb(245, 242, 242);
-    color: white;
-    min-height: 100vh;
-  }
-  .title1{
-    color: #373333;
-    margin-bottom: 30px;
-    padding: 50px 0 30px 0;
-    text-align: center;
-  }
-  form{
-    width: 450px;
-    background-color: white;
+            #order {
+              background: rgb(245, 242, 242);
+              color: white;
+              min-height: 100vh;
+            }
 
-    box-shadow: 0 0 20px 0 rgb(213, 212, 210);
-    margin: auto;
-    margin-top: -20px;
-    margin-bottom: 10px;
-    border-radius: 20px;
-  }
-  .inp_box{
-    width: 350px;
-    height: 37px;
-    /* margin-top: 20px; */
-    margin: 25px 45px 0 45px;
-   
-    padding: 0 10px;
-border-radius: 14px;
-    border:1px solid #777;
-    outline: none;
-  }
-  .text_area{
-    height: 160px;
-    padding-top: 10px;
-  }
-  .btn2{
-    border-radius: 20px;
-    margin: 20px 45px;
-    padding: 0 10px;
-    /* margin: auto; */
-    width: 30%;
-  }
+            .title1 {
+              color: #373333;
+              margin-bottom: 30px;
+              padding: 50px 0 30px 0;
+              text-align: center;
+            }
 
-  textarea{
-    height: 150px;
-    padding-top: 10px;
-  }
-  .btn2{
-border-radius: 15px;
-color: #fff;
-margin-top: 18px;
-padding: 10px;
+            form {
+              width: 450px;
+              background-color: white;
 
-  }
-  button{
-    background-color: rgb(41 156 61);
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  button:hover{
-    background-color: rgb(94, 158, 61);
- }
-footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem 2rem;
-    width: 100%;
-    background-color: #262626;
-    color: white;
-}
-</style>
+              box-shadow: 0 0 20px 0 rgb(213, 212, 210);
+              margin: auto;
+              margin-top: -20px;
+              margin-bottom: 10px;
+              border-radius: 20px;
+            }
+
+            .inp_box {
+              width: 350px;
+              height: 37px;
+              /* margin-top: 20px; */
+              margin: 25px 45px 0 45px;
+
+              padding: 0 10px;
+              border-radius: 14px;
+              border: 1px solid #777;
+              outline: none;
+            }
+
+            .text_area {
+              height: 160px;
+              padding-top: 10px;
+            }
+
+            .btn2 {
+              border-radius: 20px;
+              margin: 20px 45px;
+              padding: 0 10px;
+              /* margin: auto; */
+              width: 30%;
+            }
+
+            textarea {
+              height: 150px;
+              padding-top: 10px;
+            }
+
+            .btn2 {
+              border-radius: 15px;
+              color: #fff;
+              margin-top: 18px;
+              padding: 10px;
+
+            }
+
+            button {
+              background-color: rgb(41 156 61);
+              color: white;
+              border: none;
+              cursor: pointer;
+            }
+
+            button:hover {
+              background-color: rgb(94, 158, 61);
+            }
+
+            footer {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding: 1rem 2rem;
+              width: 100%;
+              background-color: #262626;
+              color: white;
+            }
+          </style>
 
 
 
-<!-- /////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- <div class="displayCard" id="middleSection">
+          <!-- /////////////////////////////////////////////////////////////////////////////////////////////////// -->
+          <!-- <div class="displayCard" id="middleSection">
 	<p-card class="p-card1" header="{{sousBiens?.agencyName}}" >
 		<p class="textInfo" >{{sousBiens?.name}}</p>
 	</p-card> &nbsp;&nbsp;
@@ -770,55 +833,102 @@ style="line-height: 1.5;">
 </div>
 </div> <br><br><br><br><br><br>
  -->
- <p-dialog [(visible)]="displayMaximizable5" [modal]="true" [maximizable]="true" [baseZIndex]="10000"
+ <p-dialog class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"
+ [style]="{width: '85vw', 'margin-left': '50px'}" [maximizable]="true" [baseZIndex]="10000"
  [draggable]="false" [resizable]="false">
- <div class="modal-header">
-   <!-- <img src="../../assets/images/842897.webp" alt="Logo_TIJARI" width="100%;"> -->
-   <h4 class="modal-title titleModal">Commander un Plat au Restauran</h4>
+ <div class="row modalTheme">
+   <div class="col-md-4">
+     <img class="rounded-lg border card-img-modal"  src="{{logo}}"
+       alt="Eco house company">
+   </div>
+   <div class="col-md-8">
+     <p class="scrollable-paragraph" id="agencyDescription">{{ agencyDescription }}</p>
+   </div>
  </div>
- <div class="modal-body">
 
-   <div class="card cardModal">
-     <div class="modalInputBlock1">
-       <span class="p-float-label">
-         <input type="text" id="Votre Email" pInputText />
-         <label for="Votre Email">Votre Numéro de table</label>
-       </span>
+ <style>
+   .modalTheme {
+     /* Add your modal styling here */
+   }
 
-       &nbsp;
-       <p-dropdown [options]="date" placeholder="Date" optionLabel="name"
-         [showClear]="true"></p-dropdown>
-     </div>
-     <br>
-     <!-- <label for="exampleFormControlTextarea1" class="textInput">Autofinancement</label> -->
-     <!-- <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
+   .scrollable-paragraph {
+     line-height: 1.5;
+     max-height: 325px;
+     /* Set a maximum height for the paragraph to enable scrolling */
+     overflow-y: auto;
+     /* Enable vertical scrolling if content overflows */
+     white-space: pre-line;
+     /* Preserve newlines and line breaks */
+   }
+ </style>
+
+ <script>
+   // JavaScript to add line breaks at points (.) with a space before it in the description
+   document.addEventListener("DOMContentLoaded", function () {
+     const descriptionElement = document.getElementById("agencyDescription");
+     if (descriptionElement) {
+       // Get the text content
+       let descriptionText = descriptionElement.textContent;
+
+       // Add line breaks at points (.) with a space before it
+       descriptionText = descriptionText.replace(/ \./g, '.\n');
+
+       // Set the modified text back to the element
+       descriptionElement.textContent = descriptionText;
+     }
+   });
+ </script>
+
+
+</p-dialog>
+          <p-dialog [(visible)]="displayMaximizable5" [modal]="true" [maximizable]="true" [baseZIndex]="10000"
+            [draggable]="false" [resizable]="false">
+            <div class="modal-header">
+              <!-- <img src="../../assets/images/842897.webp" alt="Logo_TIJARI" width="100%;"> -->
+              <h4 class="modal-title titleModal">Commander un Plat au Restauran</h4>
+            </div>
+            <div class="modal-body">
+
+              <div class="card cardModal">
+                <div class="modalInputBlock1">
+                  <span class="p-float-label">
+                    <input type="text" id="Votre Email" pInputText />
+                    <label for="Votre Email">Votre Numéro de table</label>
+                  </span>
+
+                  &nbsp;
+                  <p-dropdown [options]="date" placeholder="Date" optionLabel="name" [showClear]="true"></p-dropdown>
+                </div>
+                <br>
+                <!-- <label for="exampleFormControlTextarea1" class="textInput">Autofinancement</label> -->
+                <!-- <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
        formControlName="description" rows="3"></textarea>
      <br> -->
-   </div>
-   <div class="card cardModal">
+              </div>
+              <div class="card cardModal">
 
-     <div class="p-fluid p-grid">
-       <div class="p-field p-col-12 ">
-         <span class="p-float-label">
-           <input type="text" id="Votre Nom" pInputText />
-           <label for="Votre Nom">Votre Adresse</label>
-         </span>
-       </div>
-     </div>
-     <br>
-     <div class="modalInputBlock1">
-       <span class="p-float-label">
-         <input type="text" id="Votre adresse email" pInputText [(ngModel)]="contactText" />
-         <label for="Votre adresse email">Votre adresse email</label>
-       </span>
-       &nbsp;
-       <span class="p-float-label">
-         <input type="text" id="Votre Téléphone" pInputText />
-         <label for="Votre Téléphone">Votre Téléphone</label>
-       </span>
-     </div> <br>
+                <div class="p-fluid p-grid">
+                  <div class="p-field p-col-12 ">
+                    <span class="p-float-label">
+                      <input type="text" id="Votre Nom" pInputText />
+                      <label for="Votre Nom">Votre Adresse</label>
+                    </span>
+                  </div>
+                </div>
+                <br>
+                <div class="modalInputBlock1">
+                  <span class="p-float-label">
+                    <input type="text" id="Votre adresse email" pInputText [(ngModel)]="contactText" />
+                    <label for="Votre adresse email">Votre adresse email</label>
+                  </span>
+                  &nbsp;
+                  <span class="p-float-label">
+                    <input type="text" id="Votre Téléphone" pInputText />
+                    <label for="Votre Téléphone">Votre Téléphone</label>
+                  </span>
+                </div> <br>
 
-     <!-- <div class="p-fluid p-grid">
+                <!-- <div class="p-fluid p-grid">
        <div class="p-field p-col-12 ">
          <span class="p-float-label">
            <input type="text" id="Votre Activité" pInputText />
@@ -826,21 +936,26 @@ style="line-height: 1.5;">
          </span>
        </div>
      </div><br> -->
-     <div class="p-fluid p-grid">
-       <div class="p-field p-col-12 ">
-         <span class="p-float-label">
-           <input type="text" id="Votre Ville" pInputText />
-           <label for="Votre Ville">Votre Ville</label>
-         </span>
-       </div>
-     </div>
+                <div class="p-fluid p-grid">
+                  <div class="p-field p-col-12 ">
+                    <span class="p-float-label">
+                      <input type="text" id="Votre Ville" pInputText />
+                      <label for="Votre Ville">Votre Ville</label>
+                    </span>
+                  </div>
+                </div>
 
-     <br>
-     <!-- <p class="politique">En validant ce formulaire, vous autorisez l'entreprise à
+                <br>
+                <!-- <p class="politique">En validant ce formulaire, vous autorisez l'entreprise à
        recevoir vos informations et á vous contacter,
        et vous acceptez <span style="text-decoration: underline;">la politique de
          protection des données personnelles</span> </p> -->
-   </div>
 
- </div>
- 
+
+              </div>
+              
+              <div class="main-container">
+            
+              </div>
+
+          

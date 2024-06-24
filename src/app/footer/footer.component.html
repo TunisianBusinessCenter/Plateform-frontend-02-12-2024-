@@ -13,10 +13,10 @@
 				<h3 style="color: white;font-size: 20px;font-family: poppins,sans-serif;">{{this.sharedVariable.name}}
 				</h3>
 
-				<p class="mb-0" style="color:#ababab!important;">
+				<p *ngIf="this.sharedVariable.phone_number" class="mb-0" style="color:#ababab!important;">
 					Tél 1: {{this.sharedVariable.phone_number}}
 				</p>
-				<a class="d-block  hover-white" href="mailto:contact@homeid.com " style="color:#ababab!important;">
+				<a *ngIf="this.sharedVariable.phone_number2" class="d-block  hover-white" href="mailto:contact@homeid.com " style="color:#ababab!important;">
 					Tél 2: {{this.sharedVariable.phone_number2}}
 				</a>
 				<a style="text-decoration-line: underline;color: #2b74c2;;" href="https://www.tunimmob.com/privacy" target="">Privacy & policy</a>

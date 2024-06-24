@@ -1,11 +1,12 @@
 import { Component, ElementRef, Input, OnInit, ViewChild,Renderer2,HostListener } from '@angular/core';
 import { Location } from '@angular/common';
-import { ProduitsService } from '../services/produits/produits.service';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from '../services/contact/contact.service';
 import { AgenciesService } from '../services/agencies/agencies.service';
+import { ProduitsService } from '../services/produits/produits.service';
+import { SharedAgenceImmobilierService } from '../services/shared-agence-immobilier.service';
 
 
 
@@ -43,6 +44,7 @@ export class DescriptionDetailsComponent implements OnInit {
   ProjetId: any;
   ProjetDispo: any;
   routerIdLink: any;
+  idAgency: any;
   constructor(private activatedRoute: ActivatedRoute,
     private produitService: ProduitsService,
     private _location: Location,
@@ -51,7 +53,9 @@ export class DescriptionDetailsComponent implements OnInit {
     private builder: FormBuilder,
     private agencieService: AgenciesService,
     private renderer: Renderer2, private el: ElementRef,
-    private projetService:ProduitsService
+    private projetService:ProduitsService,
+    private sharedService:SharedAgenceImmobilierService
+
     ) { }
 
   openVerticallyCentered(content) {
@@ -60,6 +64,13 @@ export class DescriptionDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     
+    this.idAgency = this.sharedService.getIdAgency()
+    this.agencieService.getAgencieById(this.idAgency).subscribe((data:any) => {
+      console.log(data)
+      this.description=data?.description
+      this.logo_url=data?.logo_url
+      this.ProduitEnCours = data?.produits;
+    })
     this.agencieService.getAllMateriaux().subscribe((data: any[]) => {
       // Assuming data is an array of agencies
       console.log('foundAgency : ',data)

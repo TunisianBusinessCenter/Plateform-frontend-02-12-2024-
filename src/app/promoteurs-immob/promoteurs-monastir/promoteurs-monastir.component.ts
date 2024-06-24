@@ -63,7 +63,6 @@ export class PromoteursMonastirComponent implements OnInit {
           return createdAtB - createdAtA;
         }
       });
-      console.log(this.AgenciesMonastir)
     })
   }
   clickMe(agencyId: number) {

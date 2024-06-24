@@ -1,13 +1,14 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, Renderer2, HostListener, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer, Meta, SafeResourceUrl, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { AgenciesService } from '../services/agencies/agencies.service';
-import { ProduitsService } from '../services/produits/produits.service';
-import { ProjetsService } from '../services/projets/projets.service';
 import { Location } from '@angular/common';
 import { ShareService } from '../services/share/share.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { interval } from 'rxjs';
+import { filter, interval } from 'rxjs';
+import { ProjetsService } from '../services/projets/projets.service';
+import { AgenciesService } from '../services/agencies/agencies.service';
+import { CoffeeAgencyService } from '../services/coffee/coffee-agency.service';
+import { ProduitsService } from '../services/produits/produits.service';
 
 @Component({
   selector: 'app-coffee-agency',
@@ -107,10 +108,11 @@ export class CoffeeAgencyComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private _location: Location,
     private router: Router,
-    public _seoService: ShareService,
+    // public _seoService: ShareService,
     private renderer: Renderer2, private el: ElementRef,
     private route:ActivatedRoute,
     private modalService: NgbModal,
+    private coffeeService : CoffeeAgencyService
 
   ) {
     this.idAgency = this.activatedRoute.snapshot.paramMap.get('id')
@@ -166,6 +168,12 @@ export class CoffeeAgencyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.router.events
+    .pipe(filter(event => event instanceof NavigationEnd))
+    .subscribe((event: NavigationEnd) => {
+      // Scroll to the top of the page
+      window.scrollTo(0, 0);
+    });
     this.startSendingData()
     this.changeMetadata(
       "Property Listing Title",
@@ -207,13 +215,13 @@ export class CoffeeAgencyComponent implements OnInit {
 
       //Video_Url2
       this.urlSafe2 = this.sanitizer.bypassSecurityTrustResourceUrl(this.Agency.videoUrl2);
-      console.log('ccccccccccccc', this.Agency.videoUrl2)
+      console.log(  this.Agency.videoUrl2)
       //Video_Url
       this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.Agency?.videoUrl);
-      this.reverseAg = this.Agency?.produits?.reverse();
+      this.reverseAg = this.Agency?.produits.reverse()
       this.reverseAgBiens = this.Agency?.biens?.reverse();
 
-this.sendId() 
+this.setIdCoffee() 
 
       //promo produit
       for (let ImagePromoProduit of this.Agency?.produits) {
@@ -463,11 +471,9 @@ startSendingData() {
 
 
 
-sendId() {
-  console.log('Sending ID before:', this.Agency.id);
+setIdCoffee() {
 
-  this.agencieService.changeId(this.Agency.id);
-  console.log('Sending ID:', this.Agency.id);
+  this.coffeeService.setIdAgency(this.Agency.id)
 
 }
 }

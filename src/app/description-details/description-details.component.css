@@ -503,7 +503,7 @@ transition: opacity .3s;}
 }
 @media screen and (max-width: 768px) {
   .retour {
-    right: -14px;
+    right: -11px;
     top: -37px;
     margin-bottom: -15px;
   
@@ -670,7 +670,7 @@ padding-top: 20px;
 
 @media only screen and (max-width: 767px) {
 .textInfoX {
-  font-size: 8px;
+  font-size: 13px;
   color: white;
 }
 }
@@ -689,7 +689,7 @@ and (max-device-width: 740px)
 and (-webkit-min-device-pixel-ratio: 3) 
 and (orientation: portrait) {
 .textInfoX {
-  font-size: 8px;
+  font-size: 10px;
 }
 }
 
@@ -699,7 +699,7 @@ and (max-device-width: 360px)
 and (-webkit-min-device-pixel-ratio: 3) 
 and (orientation: landscape) {
 .textInfoX {
-  font-size: 8px;
+  font-size: 13px;
 
 }
 }

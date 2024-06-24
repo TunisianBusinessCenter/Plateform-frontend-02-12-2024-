@@ -134,7 +134,13 @@ export class NavbarCarouselHomeComponent implements OnInit {
       }
     });
   }
-
+  redirect(): void {
+    this.router.navigate(['/home']).then(() => {
+      console.log('here')
+      window.location.reload();
+    });
+  }
+  
 }
 
 

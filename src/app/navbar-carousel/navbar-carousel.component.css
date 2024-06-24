@@ -830,4 +830,7 @@ ngb-carousel:focus {
 		opacity: 0;
 		transition: opacity 0.2s ease-in-out;
 	  }
-	  
+	  :host ::ng-deep .carousel-control-next-icon {
+		visibility: collapse;
+
+	  }

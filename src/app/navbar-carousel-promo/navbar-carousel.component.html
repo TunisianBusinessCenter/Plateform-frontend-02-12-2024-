@@ -103,7 +103,7 @@
 <div *ngIf="router.url !=='/home-algerie' && router.url !=='/home-maroc'
  && router.url !=='/home-lybia'&& router.url !=='/home-mauritanie'" class="imageCentreTunisien">
 
-	<img src="../../assets/images/tunisieimmob/LOGO-Tunisian.png" class="imgbannier" alt="logo plate forme">
+	<img (click)="redirect()" src="../../assets/images/tunisieimmob/LOGO-Tunisian.png" class="imgbannier" alt="logo plate forme">
 
 	<!-- <img [routerLink]="roleMateriaux ? ['/equipement'] :
 	 []" src="../../assets/images/tunisieimmob/LOGO-PLATE.png"

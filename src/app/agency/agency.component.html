@@ -1,236 +1,269 @@
-
 <!-- <div class="main-container" *ngIf="Agency?.role==='promoteur-immobilieres'"	 > -->
 
-	<div class="main-container" 	 >
-		<nav class="main-menu">
-			<style>
-				.banner {
-				  text-align: center;
-				  padding: 10px;
-				  background-color: #434388; /* Set your desired background color */
-				  color: #fff; /* Set the text color */
-				  font-size: 16px; /* Adjust the font size */
-				}
-			  
-				.logo-container {
-				  text-align: center;
-				  padding: 10px;
-				  border-radius: 5%;
-				  overflow: hidden;
-				  background-color: #fff;
-				}
-			  
-				.logo-container img {
-				  max-width: 100%;
-				  height: auto;
-				  border-radius: 40%;
-				}
-		  
-				hr {
-				  width: 20px;
-				  height: 20px;
-				  background-color: white;
-				}
-			  </style>
-			  
-		
-			
-			<li>
-				<a  >
-					<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
-	
-					<span class="nav-text">
-									<p>{{ Agency?.name }}</p>
-	
-					</span>
-				</a>
-			  
-			</li>
-		   
-		   <div>
-	
-			
-			   <ul>
-			
+
+
+
+<div class="main-container">
+	<nav class="main-menu">
+		<style>
+			.banner {
+				text-align: center;
+				padding: 10px;
+				background-color: #434388;
+				/* Set your desired background color */
+				color: #fff;
+				/* Set the text color */
+				font-size: 16px;
+				/* Adjust the font size */
+			}
+
+			.logo-container {
+				text-align: center;
+				padding: 10px;
+				border-radius: 5%;
+				overflow: hidden;
+				background-color: #fff;
+			}
+
+			.logo-container img {
+				max-width: 100%;
+				height: auto;
+				border-radius: 40%;
+			}
+
+			hr {
+				width: 20px;
+				height: 20px;
+				background-color: white;
+			}
+		</style>
+
+
+
+		<li>
+			<a>
+				<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+
+				<span class="nav-text">
+					<p>{{ Agency?.name }}</p>
+
+				</span>
+			</a>
+
+		</li>
+
+		<div>
+
+
+			<ul>
+
 				<li>
-					<a >
+					<a>
 						<i class="fa fa-home fa-2x"></i>
 						<span class="nav-text">
-							Page d'accueil 
+							Page d'accueil
 						</span>
 					</a>
-				  
+
 				</li>
-			   
+
 				<li class="dropdown">
-					<a >
+					<a>
 						<i class="fa fa-book fa-2x"></i>
-						<span class="nav-text" *ngIf="Agency?.role!=='materiaux-construction'   && Agency?.role!=='agence-service' " >Nos projets</span>
-						<span *ngIf="Agency?.role==='materiaux-construction' && ProduitEnCours.length > 0" class="nav-text">Nos produits</span>
-						<span *ngIf="Agency?.role==='agence-service' && ProduitEnCours.length > 0" class="nav-text">Nos Menus</span>
-						
+						<span class="nav-text"
+							*ngIf="Agency?.role!=='materiaux-construction'   && Agency?.role!=='agence-service' ">Nos
+							projets</span>
+						<span *ngIf="Agency?.role==='materiaux-construction' && ProduitEnCours.length > 0"
+							class="nav-text">Nos produits</span>
+						<span *ngIf="Agency?.role==='agence-service' && ProduitEnCours.length > 0" class="nav-text">Nos
+							Menus</span>
+
 					</a>
-					<div class="dropdown-content" >
-						<a *ngIf="ProjetEnCours.length > 0 ">En cours</a>
-	
+					<div class="dropdown-content">
+						<a *ngIf="ProjetEnCours?.length > 0 ">En cours</a>
+
 						<div class="submenu" *ngFor="let project of ProjetEnCours">
-	
-							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="['/details', project.id]">
+
+							<a style="background-color: #1e466e59;" (click)="refreshPage()"
+								[routerLink]="['/details', project.id]">
 								{{ project.name }}
-	
+
 							</a>
 						</div>
 						<!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
-	
-						<a *ngIf="ProjetDispo.length > 0">Disponible</a>
+
+						<a *ngIf="ProjetDispo?.length > 0">Disponible</a>
 						<div class="submenu" *ngFor="let project of ProjetDispo ; index as i">
-	
-							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="'/details/' + project.id">
+
+							<a style="background-color: #1e466e59;" (click)="refreshPage()"
+								[routerLink]="'/details/' + project.id">
 								{{ project.name }}
-	
+
 							</a>
 						</div>
-						<a *ngIf="ProduitVendu.length > 0">Vendu</a>
+						<a *ngIf="ProduitVendu?.length > 0">Vendu</a>
 						<div class="submenu" *ngFor="let project of ProduitVendu ; index as i">
-	
-							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="'/details/' + project.id">
+
+							<a style="background-color: #1e466e59;" (click)="refreshPage()"
+								[routerLink]="'/details/' + project.id">
 								{{ project.name }}
-	
+
 							</a>
 						</div>
-	
+
 					</div>
 					<div class="dropdown-content" *ngIf="Agency?.role==='materiaux-construction'">
 						<!-- <a *ngIf=" ProduitEnCours.length > 0">Produits</a> -->
-	
+
 						<div class="submenu" *ngFor="let project of ProduitEnCours">
-	
-							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="['/details-materiaux', project.id]">
+
+							<a style="background-color: #1e466e59;" (click)="refreshPage()"
+								[routerLink]="['/details-materiaux', project.id]">
 								{{ project.name }}
-	
+
 							</a>
 						</div>
 						<!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
-	
+
+					</div>
+
+					<div class="dropdown-content" *ngIf="Agency?.role==='agence-immobilieres'">
+						<!-- <a *ngIf=" ProduitEnCours.length > 0">Produits</a> -->
+
+						<div class="submenu" *ngFor="let project of agenceImmob">
+
+							<a style="background-color: #1e466e59;" (click)="refreshPage()"
+								[routerLink]="['/agences-immob-details-plus', project?.id]">
+								{{ project?.name }}
+
+							</a>
+						</div>
+						<!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
+
 					</div>
 					<div class="dropdown-content" *ngIf="Agency?.role==='agence-service'">
 						<!-- <a *ngIf=" ProduitEnCours.length > 0">Produits</a> -->
-	
+
 						<div class="submenu" *ngFor="let project of ProduitEnCours">
-	
-							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="['/descriptionCoffee', project.id]">
+
+							<a style="background-color: #1e466e59;" (click)="refreshPage()"
+								[routerLink]="['/descriptionCoffee', project.id]">
 								{{ project.name }}
-	
+
 							</a>
 						</div>
 						<!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
-	
+
 					</div>
 				</li>
 				<style>
 					.show-subnav {
-	display: block;
-	}
+						display: block;
+					}
 				</style>
-	
+
 				<!-- <li>
 					<a routerLink="/conception/ajouterConception">
 						<i class="fa fa-plus fa-2x"></i>
 						<span class="nav-text">Ajouter contenu </span>
 					</a>
 				</li> -->
-	
+
 				<li class="dropdown">
 					<!-- <a routerLink="/conception/registre"> -->
 					<a (click)="openVerticallyCentered(content)">
 						<i class="fa fa-envelope fa-2x"></i>
 						<span class="nav-text">Contacter nous</span>
 					</a>
-					
+
 				</li>
-				
-				
-	<style>
-	/* Initially hide the dropdown content */
-	.dropdown-content {
-	
-		display: none;
-    position: absolute;
-    background-color: #1f1e84;
-    min-width: 42px;
-    width: 248px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 5;
 
-	}
-	.dropdown-content > a {
-	margin: 0px 23px;
-	font-style: none;
-	transform-style: none;
-	color: yellow;
-	}
-	
-	/* Show the dropdown content when the parent is hovered */
-	.dropdown:hover .dropdown-content {
-	display: block;
-	}
-	
-	/* Style the dropdown options as blocks with margin */
-	.dropdown-content .submenu {
-	padding: 10px; /* Adjust the padding as needed */
-	}
-	
-	.dropdown-content .submenu a {
-	display: block;
-	font-size: 9px;
-	width: 222px;
-	margin: -7px 11px;
-	padding: 10px;
-	text-decoration: none;
-	color: white;
-	background-color: rgb(10, 10, 211)e84;
-	transition: background-color 0.3s;
-	border: solid 1px rgb(255 255 255 / 16%);
-	border-radius: 7px;
-	}
-	
-	/* Add a little margin between the dropdown options */
-	.dropdown-content .submenu a + a {
-	margin-top: 5px; /* Adjust the margin as needed */
-	
-	}
-	
-	/* Add hover effect */
-	.dropdown-content .submenu a {
-		font-size: 12px;
-    font-weight: bold;
-    transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease;
-	}
-	
-	.dropdown-content .submenu a:hover {
-	    font-size: 13px;
-    color: yellow;
-    border: solid 1px gray;
-    font-weight: 600;
 
-	}
-	
-	@media only screen and (max-width: 767px) {
-	
-	
-	.dropdown-content .submenu a:hover {
-		transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease; /* Add smooth transition for both background color and font size */
-	
-	}
-	}
-	</style>			
-	
-			
+				<style>
+					/* Initially hide the dropdown content */
+					.dropdown-content {
 
-	
-	
-			  
-			   
+						display: none;
+						position: absolute;
+						background-color: #1f1e84;
+						min-width: 42px;
+						width: 248px;
+						box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+						z-index: 5;
+
+					}
+
+					.dropdown-content>a {
+						margin: 0px 23px;
+						font-style: none;
+						transform-style: none;
+						color: yellow;
+					}
+
+					/* Show the dropdown content when the parent is hovered */
+					.dropdown:hover .dropdown-content {
+						display: block;
+					}
+
+					/* Style the dropdown options as blocks with margin */
+					.dropdown-content .submenu {
+						padding: 10px;
+						/* Adjust the padding as needed */
+					}
+
+					.dropdown-content .submenu a {
+						display: block;
+						font-size: 9px;
+						width: 222px;
+						margin: -7px 11px;
+						padding: 10px;
+						text-decoration: none;
+						color: white;
+						background-color: rgb(10, 10, 211)e84;
+						transition: background-color 0.3s;
+						border: solid 1px rgb(255 255 255 / 16%);
+						border-radius: 7px;
+					}
+
+					/* Add a little margin between the dropdown options */
+					.dropdown-content .submenu a+a {
+						margin-top: 5px;
+						/* Adjust the margin as needed */
+
+					}
+
+					/* Add hover effect */
+					.dropdown-content .submenu a {
+						font-size: 12px;
+						font-weight: bold;
+						transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+					}
+
+					.dropdown-content .submenu a:hover {
+						font-size: 13px;
+						color: yellow;
+						border: solid 1px gray;
+						font-weight: 600;
+
+					}
+
+					@media only screen and (max-width: 767px) {
+
+
+						.dropdown-content .submenu a:hover {
+							transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+							/* Add smooth transition for both background color and font size */
+
+						}
+					}
+				</style>
+
+
+
+
+
+
+
 				<li style="cursor: pointer;" class="dropdown">
 					<a (click)="showMaximizableDialog()">
 						<i class="fa fa-info-circle fa-2x"></i>
@@ -238,13 +271,13 @@
 							A propos
 						</span>
 					</a>
-				  
+
 				</li>
-			 
+
 			</ul>
-		   </div>
-		
-			<!-- <ul class="logout">
+		</div>
+
+		<!-- <ul class="logout">
 				<li>
 				   <a routerLink="conception/login">
 						 <i class="fa fa-power-off fa-2x"></i>
@@ -254,51 +287,50 @@
 					</a>
 				</li>  
 			</ul> -->
-			&nbsp;
-		</nav>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<app-navbar-carousel [AgencyBaniere]="this.AgencyBaniere"></app-navbar-carousel>
-	
-	<div class="responsiveHome"  style="    display: flex;  ">
+		&nbsp;
+	</nav>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<app-navbar-carousel [AgencyBaniere]="this.AgencyBaniere"></app-navbar-carousel>
+<div class="responsiveHome" style="    display: flex;  ">
 	<!-- 	
 		<button type="submit" class="animated-border-button " (click)=" backClicked()">
 			<i class="fa fa-arrow-left" aria-hidden="true"></i>
 			Retour
 		</button>
 		 -->
-		<!-- <div class="responsive">
+	<!-- <div class="responsive">
 	
 			<button type="submit" class="animated-border-button-pa " routerLink="/home">
 				<i class="fa fa-home" aria-hidden="true"></i> Page d'Accueil
 			</button>
 		</div> -->
-	
-	</div>
-	<!-- <div class="responsive-container">
+
+</div>
+<!-- <div class="responsive-container">
 		<div class="responsive">
 		 </div>
 		<div class="allAgSearch">
@@ -315,128 +347,295 @@
 			</p-listbox>
 		</div> -
 	</div>  -->
-	
-	<div class="carous-boutique" >
-		<div class="agency-responsive" [ngClass]="{'block-display': !isDesktop}">
-	
-				<div class="col cadre">
-					<div class="Card-logo ">
-						<img class="rounded-lg border card-img" src="{{ Agency?.logo_url }}" alt="Eco house company">
-						<!-- <div class="aproposAnachor " (click)="showMaximizableDialog()"><span><i class="pi pi-info-circle "></i>À PROPOS</span></div> -->
-	<!-- 
+
+<div class="carous-boutique">
+	<div class="agency-responsive" [ngClass]="{'block-display': !isDesktop}">
+
+		<div class="col cadre">
+			<div class="Card-logo ">
+				<img class="rounded-lg border card-img" src="{{ Agency?.logo_url }}" alt="Eco house company">
+				<!-- <div class="aproposAnachor " (click)="showMaximizableDialog()"><span><i class="pi pi-info-circle "></i>À PROPOS</span></div> -->
+				<!-- 
 						<p-button (click)="showMaximizableDialog()" icon="pi pi-info-circle" label="À PROPOS" ></p-button> -->
-						<p-button (click)="showMaximizableDialog()"  icon="pi pi-info-circle" label="À PROPOS"></p-button>
-	
+				<p-button (click)="showMaximizableDialog()" icon="pi pi-info-circle" label="À PROPOS"></p-button>
+
+			</div>
+			<p-dialog class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"
+				[style]="{width: '85vw', 'margin-left': '50px'}" [maximizable]="true" [baseZIndex]="10000"
+				[draggable]="false" [resizable]="false">
+				<div class="row modalTheme">
+					<div class="col-md-4">
+						<img class="rounded-lg border card-img-modal" src="{{ Agency?.logo_url }}"
+							alt="Eco house company">
 					</div>
-					<p-dialog   class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"  [style]="{width: '85vw', 'margin-left': '50px'}"
-					[maximizable]="true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
-					<div class="row modalTheme">
-						<div class="col-md-4">
-							<img class="rounded-lg border card-img-modal" src="{{ Agency?.logo_url }}" alt="Eco house company">
-						</div>
-						<div class="col-md-8">
-							<p class="scrollable-paragraph" id="agencyDescription">{{ Agency.description }}</p>
-						</div>
+					<div class="col-md-8">
+						<p class="scrollable-paragraph" id="agencyDescription">{{ Agency.description }}</p>
 					</div>
-					
-					<style>
-						.modalTheme {
-							/* Add your modal styling here */
-						}
-					
-						.scrollable-paragraph {
-							line-height: 1.5;
-							max-height: 325px; /* Set a maximum height for the paragraph to enable scrolling */
-							overflow-y: auto; /* Enable vertical scrolling if content overflows */
-							white-space: pre-line; /* Preserve newlines and line breaks */
-						}
-					</style>
-					
-					<script>
-						// JavaScript to add line breaks at points (.) with a space before it in the description
-						document.addEventListener("DOMContentLoaded", function () {
-							const descriptionElement = document.getElementById("agencyDescription");
-							if (descriptionElement) {
-								// Get the text content
-								let descriptionText = descriptionElement.textContent;
-					
-								// Add line breaks at points (.) with a space before it
-								descriptionText = descriptionText.replace(/ \./g, '.\n');
-					            
-								// Set the modified text back to the element
-								descriptionElement.textContent = descriptionText;
-							}
-						});
-					</script>
-					
-			
-				</p-dialog>
-					<p-dialog   class="p-diag" header="À Propos" [(visible)]="displayMaximizable1" [modal]="true"  [style]="{width: '85vw', 'margin-left': '50px'}"
-					[maximizable]="true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
-					<div class="row modalTheme">
-						<div class="col-md-4">
-							<img class="rounded-lg border card-img-modal" src="{{ Agency?.logo_url }}" alt="Eco house company">
-						</div>
-						<div class="col-md-8">
-							<p class="scrollable-paragraph" id="agencyDescription">{{ Agency.description }}</p>
-						</div>
-					</div>
-					
-					<style>
-						.modalTheme {
-							/* Add your modal styling here */
-						}
-					
-						.scrollable-paragraph {
-							line-height: 1.5;
-							max-height: 325px; /* Set a maximum height for the paragraph to enable scrolling */
-							overflow-y: auto; /* Enable vertical scrolling if content overflows */
-							white-space: pre-line; /* Preserve newlines and line breaks */
-						}
-					</style>
-					
-					<script>
-						// JavaScript to add line breaks at points (.) with a space before it in the description
-						document.addEventListener("DOMContentLoaded", function () {
-							const descriptionElement = document.getElementById("agencyDescription");
-							if (descriptionElement) {
-								// Get the text content
-								let descriptionText = descriptionElement.textContent;
-					
-								// Add line breaks at points (.) with a space before it
-								descriptionText = descriptionText.replace(/ \./g, '.\n');
-					            
-								// Set the modified text back to the element
-								descriptionElement.textContent = descriptionText;
-							}
-						});
-					</script>
-					
-			
-				</p-dialog>
-				
 				</div>
-				
-				<div class="tablett">
-					<div class="col textresponce">
-					<div class="Card">
-						<div class="ribbon"><span class="ribbon__content"
-								*ngIf="Agency?.role==='promoteur-immobilieres'">PROMOTION</span></div>
-						<div class="ribbon"><span class="ribbon__content"
-								*ngIf="Agency?.role==='materiaux-construction'">MATERIAUX</span></div>
-						<div class="ribbon"><span class="ribbon__content__agence" *ngIf="Agency?.role==='agence-immobilieres'">A
-								VENDRE/A LOUER</span></div>
-						<div class="ribbon"><span class="ribbon__content__agence" *ngIf="Agency?.role==='meilleurs-biens'">A
-								VENDRE/A LOUER</span></div>
-						<div class="ribbon"><span class="ribbon__content" *ngIf="Agency?.role==='agence-service'">SERVICE</span>
+
+				<style>
+					.modalTheme {
+						/* Add your modal styling here */
+					}
+
+					.scrollable-paragraph {
+						line-height: 1.5;
+						max-height: 325px;
+						/* Set a maximum height for the paragraph to enable scrolling */
+						overflow-y: auto;
+						/* Enable vertical scrolling if content overflows */
+						white-space: pre-line;
+						/* Preserve newlines and line breaks */
+					}
+				</style>
+
+				<script>
+					// JavaScript to add line breaks at points (.) with a space before it in the description
+					document.addEventListener("DOMContentLoaded", function () {
+						const descriptionElement = document.getElementById("agencyDescription");
+						if (descriptionElement) {
+							// Get the text content
+							let descriptionText = descriptionElement.textContent;
+
+							// Add line breaks at points (.) with a space before it
+							descriptionText = descriptionText.replace(/ \./g, '.\n');
+
+							// Set the modified text back to the element
+							descriptionElement.textContent = descriptionText;
+						}
+					});
+				</script>
+
+
+			</p-dialog>
+			<p-dialog class="p-diag" header="À Propos" [(visible)]="displayMaximizable1" [modal]="true"
+				[style]="{width: '85vw', 'margin-left': '50px'}" [maximizable]="true" [baseZIndex]="10000"
+				[draggable]="false" [resizable]="false">
+				<div class="row modalTheme">
+					<div class="col-md-4">
+						<img class="rounded-lg border card-img-modal" src="{{ Agency?.logo_url }}"
+							alt="Eco house company">
+					</div>
+					<div class="col-md-8">
+						<p class="scrollable-paragraph" id="agencyDescription">{{ Agency.description }}</p>
+					</div>
+				</div>
+
+				<style>
+					.modalTheme {
+						/* Add your modal styling here */
+					}
+
+					.scrollable-paragraph {
+						line-height: 1.5;
+						max-height: 325px;
+						/* Set a maximum height for the paragraph to enable scrolling */
+						overflow-y: auto;
+						/* Enable vertical scrolling if content overflows */
+						white-space: pre-line;
+						/* Preserve newlines and line breaks */
+					}
+				</style>
+
+				<script>
+					// JavaScript to add line breaks at points (.) with a space before it in the description
+					document.addEventListener("DOMContentLoaded", function () {
+						const descriptionElement = document.getElementById("agencyDescription");
+						if (descriptionElement) {
+							// Get the text content
+							let descriptionText = descriptionElement.textContent;
+
+							// Add line breaks at points (.) with a space before it
+							descriptionText = descriptionText.replace(/ \./g, '.\n');
+
+							// Set the modified text back to the element
+							descriptionElement.textContent = descriptionText;
+						}
+					});
+				</script>
+
+
+			</p-dialog>
+
+		</div>
+
+		<div class="tablett">
+			<div class="col textresponce">
+				<div class="Card">
+					<div class="ribbon"><span class="ribbon__content"
+							*ngIf="Agency?.role==='promoteur-immobilieres'">PROMOTION</span></div>
+					<div class="ribbon"><span class="ribbon__content"
+							*ngIf="Agency?.role==='materiaux-construction'">MATERIAUX</span></div>
+					<div class="ribbon"><span class="ribbon__content__agence"
+							*ngIf="Agency?.role==='agence-immobilieres'">A
+							VENDRE/A LOUER</span></div>
+					<div class="ribbon"><span class="ribbon__content__agence" *ngIf="Agency?.role==='meilleurs-biens'">A
+							VENDRE/A LOUER</span></div>
+					<div class="ribbon"><span class="ribbon__content"
+							*ngIf="Agency?.role==='agence-service'">SERVICE</span>
+					</div>
+					<div style=" " class="cardText">
+
+
+						<style>
+							.title {
+								font: 500 18px / 32px Roboto, "Helvetica Neue", sans-serif;
+								letter-spacing: normal;
+								margin: -1px 13px 4px;
+							}
+						</style>
+
+						<!-- <h4 class="card-titles fs-22 lh-15 mb-1 text-dark">
+			{{ Agency?.name }}
+		</h4>
+		
+		<h3 class="title">{{ Agency?.adresse }}</h3>
+		<h2 class="title"><span>Tél 1: : </span>+216 {{ Agency?.phone_number }}</h2>
+		<h2 class="title"><span>Tél 2: : </span>{{ Agency?.phone_number2}}</h2>
+		<h2 class="title"><span>Email : : </span>{{ Agency?.email }}</h2>
+		<h2 class="title"><span>Site web : </span>{{Agency?.website_url}}</h2> -->
+						<h4 class="card-titles fs-22 lh-15 mb-1 text-dark">
+							{{ Agency?.name }}
+						</h4>
+						<br>
+
+						<h4 class="card-text  Agencyadresse">
+							{{ Agency?.adresse }}
+						</h4>
+						<!-- <div class="  align-items-sm-center  li-agency">
+			<span class="col-sm-2 px-1 AgencyDetails">Region:</span>
+			<span class="col-sm-9 px-1  tele-responsive">
+				{{Agency?.region}}
+
+			</span>
+		</div>	 -->
+						<div class="  align-items-sm-center  li-agency">
+							<span class="col-sm-2 px-1 AgencyDetails">Tél 1:</span>
+							<span class="col-sm-9 px-1  tele-responsive">
+								+216 {{ Agency?.phone_number }}
+							</span>
 						</div>
-	<div style=" " class="cardText">
+						<div class="  align-items-sm-center  li-agency">
+							<span class="col-sm-2 px-1 AgencyDetails">Tél 2:</span>
+							<span class="col-sm-9 px-1  tele-responsive">
+								+216 {{ Agency?.phone_number2}}
+							</span>
+						</div>
+						<div class="  align-items-sm-center  li-agency">
+							<span class="col-sm-2 px-1 AgencyDetails">Email:</span>
+							<span class="col-sm-9 px-1  tele-responsive">
+								{{ Agency?.email }}
+							</span>
+						</div>
+						<div class="  align-items-sm-center  li-agency">
+							<span class="col-sm-2 px-1 AgencyDetails">Site Web:</span>
+							<span class="col-sm-9 px-1  tele-responsive">
+								{{Agency?.website_url}}
+
+							</span>
+						</div>
+						<div class="  align-items-sm-center  li-agency">
+							<span class="col-sm-2 px-1 AgencyDetails"></span>
+							<span class="col-sm-9 px-1  tele-responsive">
+
+
+							</span>
+						</div>
+						<!-- <div class="  align-items-sm-center  li-agency">
+							<style>
+								.myClass {
+								
+								}
+							</style>
+							<span class="col-sm-2 px-1 AgencyDetails "><button style="    background: #1f1e84;
+								border: solid 0px white;
+								/* border-style: double; */
+								border-radius: 7px;
+								box-shadow: -1px 0px 10px 1px rgba(0, 0, 0, 0.59);
+								-webkit-box-shadow: -1px 0px 10px 1px rgba(0, 0, 0, 0.59);" class="btn btn-success myClass"></button>
+							</span>
+
+						</div> -->
+
+						<!-- <div class="  align-items-sm-center  li-agency">
+			<style>
+				.myImg {
+					width: 100px;
+					wig
+				}
+			</style>
+			<span class="col-sm-2 px-1 AgencyDetails" style="background-color: red;"></span>
+			
+		</div>	 -->
+
+						<!-- <div class="  align-items-sm-center  li-agency">
+			<span class="col-sm-2 px-1 AgencyDetails"></span>
+			<span class="col-sm-9 px-1  tele-responsive">
+			
+<img  style="    width: 35%;
+height: 82px;
+margin: -8px -16px 5px 95px;" src="https://logos-world.net/wp-content/uploads/2020/12/Google-Play-Logo.png" width="74%" height="46px" alt="ici">
+			</span>
+		</div>	 -->
+						<style>
+							.responsive-class {
+								background: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(31 30 132), rgba(0, 0, 0, 0));
+								height: 15px;
+								margin: 49px 0 0 0;
+								/* Adjusted margin */
+							}
+
+							@media screen and (max-width: 768px) {
+								.responsive-class {
+									width: 90%;
+									/* Adjusted width for smaller screens */
+									margin: 27px auto 0 auto;
+								}
+							}
+
+							@media screen and (max-width: 375px) {
+								.responsive-class {
+									width: 90%;
+									/* Adjusted width for smaller screens */
+
+									margin: 15px auto 0 auto;
+								}
+							}
+
+							@media (width: 390px) {
+								.responsive-class {
+									margin: 15px auto 0 auto;
+									width: 90%;
+									/* Adjusted width for smaller screens */
+
+								}
+							}
+
+							@media screen and (max-width: 480px) {
+								.responsive-class {
+
+									width: 80%;
+									/* Further adjusted width for even smaller screens */
+								}
+							}
+
+							@media screen and (max-width: 360px) {
+								.Card {
+									height: 301px;
+									width: 100%;
+									border-radius: 6px;
+									position: relative;
+									box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+									z-index: 1;
+									margin-left: 16px;
+									margin-top: 24px;
+								}
+							}
+						</style>
+						<!-- <div class="responsive-class" >
 	
-	
-	
-	
-	
-	
+		</div> -->
+						<!-- 	
 		<h4 class="card-titles fs-22 lh-15 mb-1 text-dark">
 			{{ Agency?.name }}
 		</h4>
@@ -451,7 +650,6 @@
 				+216 {{ Agency?.phone_number }}
 			</span>
 		</div>
-		<!-- <div class="  align-items-sm-center  li-agency" *ngIf="Agency?.phone_number2"> -->
 	
 		<div class="  align-items-sm-center  li-agency" >
 			<span class="col-sm-2 px-1 AgencyDetails">Tél 2:</span>
@@ -482,28 +680,28 @@
 				{{Agency?.website_url}}
 			</span>
 	
-		</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	</div>
-						
-						<br>
-						<div class="d-flex align-items-sm-center  li-social li-social2 " >
+		</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					</div>
+
+					<br>
+					<!-- <div class="d-flex align-items-sm-center  li-social li-social2 " >
 	
 							<ul class="list-inline mb-0" style="margin-left: -96px;">
 								<ul class="social-networks bounce">
@@ -532,100 +730,247 @@
 									  
 								</ul>
 							</ul>
-						</div>
-					</div>
+						</div> -->
 				</div>
-	
-	
-	
-				</div>
-			
-				<div class="col video" style="margin:auto;">
-	
-					<div class="Card-video" *ngFor="let Agencyapp of Agency?.mobile_apps">
-	
-	
-						<div >
-							<div class="text-primary">
-								<!-- <h6 class="appname">
+			</div>
+
+
+
+		</div>
+
+		<div class="col video" style="margin:auto;">
+
+			<div class="Card-video" *ngFor="let Agencyapp of Agency?.mobile_apps">
+
+
+				<div>
+					<div class="text-primary">
+						<!-- <h6 class="appname">
 									{{ Agencyapp?.name }}
 								</h6> -->
-							</div>
-							<!-- *ngIf="Agency?.role==='promoteur-immobilieres'" -->
-							<a style=" text-decoration:none" >
-								<!-- <img class="appimage" src="{{ Agencyapp?.mobile_cover_image_url }}" -->
-								<!-- <img *ngIf="Agency?.role==='materiaux-construction'" class="appimage" src="../../assets/images/HomePage/APPLICATION-METRIAUX-PRODUIT.jpg" 
-								alt="The Interior Design The Hall On str. Filimonovo" width="80%"> -->
-								<img *ngIf="Agency.role==='materiaux-construction'"class="appimage" src="../../assets/images/HomePage/APPLICATION-METRIAUX-PRODUIT.jpg">
-						<img *ngIf="Agency.role==='promoteur-immobilieres'"class="appimage" src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
-						<img *ngIf="Agency.role==='agence-immobilieres'"class="appimage" src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
-						<img *ngIf="Agency.role==='agence-service'"class="appimage" src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
-								<button (click)="checkRoute()"  type="submit" class="btn btn-google btn-lg btn-block shadow-none responsive-telecharger">
-									Google Play store &nbsp;
-									<!-- <i class="fa fa-android" aria-hidden="true"></i> -->
-								</button>
-	
-							
-								<!-- <a class="btn btn-google" href="#" title="Google Play">Google Play</a> -->
-								<b:if cond='data:blog.pageType == &quot;item&quot;'>
-			<style type='text/css'>
-			/*<![CDATA[*/
-			@font-face{font-family:"fontfutura";src:url("https://fonts.googleapis.com/css?family=Open+Sans") format("ttf");font-weight:normal;font-style:normal;}
-			a.btn-google{color:#fff}
-			.btn{padding:10px 16px;margin:5px;font-size:18px;line-height:1.3333333;border-radius:6px;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;font-weight:500;text-decoration:none;display:inline-block}
-			.btn:active:focus,.btn:focus{outline:0}
-			/* .btn:focus,.btn:hover{color:#333;text-decoration:none;outline:0} */
-			.btn:active{outline:0;-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);box-shadow:inset 0 3px 5px rgba(0,0,0,.125)}
-			.btn-google{color:#fff;background-color:#111;border-color:#000;padding:15px 16px 5px 40px;position:relative;font-family:fontfutura;font-weight:600}
-			.btn-google:focus{color:#fff;background-color:#555;border-color:#000}
-			.btn-google:active,.btn-google:hover{color:#fff;background-color:#555;border-color:#000;}
-			.btn-google:before{content:"";background-image:url(https://4.bp.blogspot.com/-52U3eP2JDM4/WSkIT1vbUxI/AAAAAAAArQA/iF1BeARv2To-2FGQU7V6UbNPivuv_lccACLcB/s30/nexus2cee_ic_launcher_play_store_new-1.png);background-size:cover;background-repeat:no-repeat;width:30px;height:30px;position:absolute;left:6px;top:50%;margin-top:-15px}
-			.btn-google:after{content:"GET IT ON";position:absolute;top:5px;left:40px;font-size:10px;font-weight:400;}
-			/*]]>*/
-			</style>
-			</b:if>
-							</a>
-						</div>
 					</div>
-					
-					<div class="Card-video"
-						*ngIf="Agency?.mobile_apps?.length===0   ">
-						<div class="text-primary">
-							<h6 class="appname">
-								<!-- Application en cours -->
-							</h6>
-						</div>
-						<img *ngIf="Agency.role==='materiaux-construction'"class="appimage" src="../../assets/images/HomePage/APPLICATION-METRIAUX-PRODUIT.jpg">
-						<img *ngIf="Agency.role==='promoteur-immobilieres'"class="appimage" src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
-						<img *ngIf="Agency.role==='agence-immobilieres'"class="appimage" src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
-						<img *ngIf="Agency.role==='agence-service'"class="appimage" src="../../assets/images/HomePage/APPLICATION-METRIAUX-PRODUIT.jpg">
-						<img *ngIf="Agency.role==='meilleurs-biens'"class="appimage" src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
-						<a type="submit"  class="btn btn-google btn-lg btn-block shadow-none responsive-telecharger" (click)="checkRoute()">
+					<!-- *ngIf="Agency?.role==='promoteur-immobilieres'" -->
+					<a style=" text-decoration:none">
+						<!-- <img class="appimage" src="{{ Agencyapp?.mobile_cover_image_url }}" -->
+						<!-- <img *ngIf="Agency?.role==='materiaux-construction'" class="appimage" src="../../assets/images/HomePage/APPLICATION-METRIAUX-PRODUIT.jpg" 
+								alt="The Interior Design The Hall On str. Filimonovo" width="80%"> -->
+						<img *ngIf="Agency.role==='materiaux-construction'" class="appimage"
+							src="../../assets/images/HomePage/APPLICATION-METRIAUX-PRODUIT.jpg">
+						<img *ngIf="Agency.role==='promoteur-immobilieres'" class="appimage"
+							src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
+						<img *ngIf="Agency.role==='agence-immobilieres'" class="appimage"
+							src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
+						<img *ngIf="Agency.role==='agence-service'" class="appimage"
+							src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
+						<button (click)="checkRoute()" type="submit"
+							class="btn btn-google btn-lg btn-block shadow-none responsive-telecharger">
 							Google Play store &nbsp;
 							<!-- <i class="fa fa-android" aria-hidden="true"></i> -->
-						</a>
-						
+						</button>
+
+
+						<!-- <a class="btn btn-google" href="#" title="Google Play">Google Play</a> -->
 						<b:if cond='data:blog.pageType == &quot;item&quot;'>
 							<style type='text/css'>
-							/*<![CDATA[*/
-							@font-face{font-family:"fontfutura";src:url("https://fonts.googleapis.com/css?family=Open+Sans") format("ttf");font-weight:normal;font-style:normal;}
-							a.btn-google{color:#fff} 
-							/* .btn{padding:10px 16px;margin:5px;font-size:18px;line-height:1.3333333;border-radius:6px;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;font-weight:500;text-decoration:none;display:inline-block} */
-							.btn:active:focus,.btn:focus{outline:0}
-							/* .btn:focus,.btn:hover{color:#333;text-decoration:none;outline:0} */
-							.btn:active{outline:0;-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);box-shadow:inset 0 3px 5px rgba(0,0,0,.125)}
-							.btn-google{color:#fff;background-color:#111;border-color:#000;padding:15px 16px 5px 40px;position:relative;font-family:fontfutura;font-weight:600}
-							.btn-google:focus{color:#fff;background-color:#555;border-color:#000}
-							.btn-google:active,.btn-google:hover{color:#fff;background-color:#555;border-color:#000;}
-							.btn-google:before{content:"";background-image:url(https://4.bp.blogspot.com/-52U3eP2JDM4/WSkIT1vbUxI/AAAAAAAArQA/iF1BeARv2To-2FGQU7V6UbNPivuv_lccACLcB/s30/nexus2cee_ic_launcher_play_store_new-1.png);background-size:cover;background-repeat:no-repeat;width:30px;height:30px;position:absolute;left:6px;top:50%;margin-top:-15px}
-							.btn-google:after{content:"GET IT ON";position:absolute;top:5px;left:40px;font-size:10px;font-weight:400;}
-							/*]]>*/
+								/*<![CDATA[*/
+								@font-face {
+									font-family: "fontfutura";
+									src: url("https://fonts.googleapis.com/css?family=Open+Sans") format("ttf");
+									font-weight: normal;
+									font-style: normal;
+								}
+
+								a.btn-google {
+									color: #fff
+								}
+
+								.btn {
+									padding: 10px 16px;
+									margin: 5px;
+									font-size: 18px;
+									line-height: 1.3333333;
+									border-radius: 6px;
+									text-align: center;
+									white-space: nowrap;
+									vertical-align: middle;
+									-ms-touch-action: manipulation;
+									touch-action: manipulation;
+									cursor: pointer;
+									-webkit-user-select: none;
+									-moz-user-select: none;
+									-ms-user-select: none;
+									user-select: none;
+									border: 1px solid transparent;
+									font-weight: 500;
+									text-decoration: none;
+									display: inline-block
+								}
+
+								.btn:active:focus,
+								.btn:focus {
+									outline: 0
+								}
+
+								/* .btn:focus,.btn:hover{color:#333;text-decoration:none;outline:0} */
+								.btn:active {
+									outline: 0;
+									-webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+									box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125)
+								}
+
+								.btn-google {
+									color: #fff;
+									background-color: #111;
+									border-color: #000;
+									padding: 15px 16px 5px 40px;
+									position: relative;
+									font-family: fontfutura;
+									font-weight: 600
+								}
+
+								.btn-google:focus {
+									color: #fff;
+									background-color: #555;
+									border-color: #000
+								}
+
+								.btn-google:active,
+								.btn-google:hover {
+									color: #fff;
+									background-color: #555;
+									border-color: #000;
+								}
+
+								.btn-google:before {
+									content: "";
+									background-image: url(https://4.bp.blogspot.com/-52U3eP2JDM4/WSkIT1vbUxI/AAAAAAAArQA/iF1BeARv2To-2FGQU7V6UbNPivuv_lccACLcB/s30/nexus2cee_ic_launcher_play_store_new-1.png);
+									background-size: cover;
+									background-repeat: no-repeat;
+									width: 30px;
+									height: 30px;
+									position: absolute;
+									left: 6px;
+									top: 50%;
+									margin-top: -15px
+								}
+
+								.btn-google:after {
+									content: "GET IT ON";
+									position: absolute;
+									top: 5px;
+									left: 40px;
+									font-size: 10px;
+									font-weight: 400;
+								}
+
+								/*]]>*/
 							</style>
-							</b:if>
-					</div>
-	
-				
-					<!-- <div *ngIf="Agency?.mobile_apps?.length===0 && Agency?.name==='La Maison Des ARTS by D'">
+						</b:if>
+					</a>
+				</div>
+			</div>
+
+			<div class="Card-video" *ngIf="Agency?.mobile_apps?.length===0   ">
+				<div class="text-primary">
+					<h6 class="appname">
+						<!-- Application en cours -->
+					</h6>
+				</div>
+				<img *ngIf="Agency.role==='materiaux-construction'" class="appimage"
+					src="../../assets/images/HomePage/APPLICATION-METRIAUX-PRODUIT.jpg">
+				<img *ngIf="Agency.role==='promoteur-immobilieres'" class="appimage"
+					src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
+				<img *ngIf="Agency.role==='agence-immobilieres'" class="appimage"
+					src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
+				<img *ngIf="Agency.role==='agence-service'" class="appimage"
+					src="../../assets/images/HomePage/APPLICATION-METRIAUX-PRODUIT.jpg">
+				<img *ngIf="Agency.role==='meilleurs-biens'" class="appimage"
+					src="../../assets/images/HomePage/APPLICATION-PROMOTEURS-PROJET.jpg">
+				<a type="submit" class="btn btn-google btn-lg btn-block shadow-none responsive-telecharger"
+					(click)="checkRoute()">
+					Google Play store &nbsp;
+					<!-- <i class="fa fa-android" aria-hidden="true"></i> -->
+				</a>
+
+				<b:if cond='data:blog.pageType == &quot;item&quot;'>
+					<style type='text/css'>
+						/*<![CDATA[*/
+						@font-face {
+							font-family: "fontfutura";
+							src: url("https://fonts.googleapis.com/css?family=Open+Sans") format("ttf");
+							font-weight: normal;
+							font-style: normal;
+						}
+
+						a.btn-google {
+							color: #fff
+						}
+
+						/* .btn{padding:10px 16px;margin:5px;font-size:18px;line-height:1.3333333;border-radius:6px;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;font-weight:500;text-decoration:none;display:inline-block} */
+						.btn:active:focus,
+						.btn:focus {
+							outline: 0
+						}
+
+						/* .btn:focus,.btn:hover{color:#333;text-decoration:none;outline:0} */
+						.btn:active {
+							outline: 0;
+							-webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+							box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125)
+						}
+
+						.btn-google {
+							color: #fff;
+							background-color: #111;
+							border-color: #000;
+							padding: 15px 16px 5px 40px;
+							position: relative;
+							font-family: fontfutura;
+							font-weight: 600
+						}
+
+						.btn-google:focus {
+							color: #fff;
+							background-color: #555;
+							border-color: #000
+						}
+
+						.btn-google:active,
+						.btn-google:hover {
+							color: #fff;
+							background-color: #555;
+							border-color: #000;
+						}
+
+						.btn-google:before {
+							content: "";
+							background-image: url(https://4.bp.blogspot.com/-52U3eP2JDM4/WSkIT1vbUxI/AAAAAAAArQA/iF1BeARv2To-2FGQU7V6UbNPivuv_lccACLcB/s30/nexus2cee_ic_launcher_play_store_new-1.png);
+							background-size: cover;
+							background-repeat: no-repeat;
+							width: 30px;
+							height: 30px;
+							position: absolute;
+							left: 6px;
+							top: 50%;
+							margin-top: -15px
+						}
+
+						.btn-google:after {
+							content: "GET IT ON";
+							position: absolute;
+							top: 5px;
+							left: 40px;
+							font-size: 10px;
+							font-weight: 400;
+						}
+
+						/*]]>*/
+					</style>
+				</b:if>
+			</div>
+
+
+			<!-- <div *ngIf="Agency?.mobile_apps?.length===0 && Agency?.name==='La Maison Des ARTS by D'">
 						<div class="text-primary">
 							<h6 class="appnameUrbat">
 								vidéo de présentation
@@ -638,7 +983,7 @@
 	
 	
 					</div> -->
-					<!-- <div class="Card-video"
+			<!-- <div class="Card-video"
 						*ngIf="Agency?.mobile_apps?.length===0  && Agency.role!=='promoteur-immobilieres' && Agency?.videoUrl">
 						<div class="text-primary">
 							<h6 class="appnameUrbat">
@@ -649,82 +994,85 @@
 						<iframe class="responsive-iframe" [src]="urlSafe">
 						</iframe>
 					</div> -->
-				</div>
-	
-	
-			</div>
+		</div>
+
+
 	</div>
-	
-	<br><br><br><br><br>
-	
-	<div  *ngIf="Agency?.role==='promoteur-immobilieres'  && Agency?.projets?.length!==0" class="margin-tablett" >
-		<div class="carousel-boutique">
-			<div class="content-section implementation carousel-demo">
-				<div class="card">
-					<p-carousel [value]="reverseAgPromoteurs" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
-						[circular]="true" [responsiveOptions]="responsiveOptions" [autoplayInterval]="7000">
-	
-						<ng-template let-image pTemplate="item">
-							<div class="item-card" >
-								<div>
-									<img [routerLink]="['/details', image.id]" src="{{image.photos[0]}}" class="card-img-top taill-image" alt="Responsive image">
-									<div *ngIf="image?.name==='LE LOFT'">
-										<span class="badge badge-orange">Prix à partir de 253.000 dt TTC</span>
-									</div>
-									<!-- btn-promotion  -->
+</div>
+
+<br><br><br><br><br>
+
+<div *ngIf="Agency?.role==='promoteur-immobilieres'  && Agency?.projets?.length!==0" class="margin-tablett">
+	<div class="carousel-boutique">
+		<div class="content-section implementation carousel-demo">
+			<div class="card">
+				<p-carousel [value]="reverseAgPromoteurs" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
+					[circular]="true" [responsiveOptions]="responsiveOptions" [autoplayInterval]="7000">
+
+					<ng-template let-image pTemplate="item">
+						<div class="item-card">
+							<div>
+								<img [routerLink]="['/details', image.id]" src="{{image.photos[0]}}"
+									class="card-img-top taill-image" alt="Responsive image">
+								<div *ngIf="image?.name==='LE LOFT'">
+									<span class="badge badge-orange">Prix à partir de 253.000 dt TTC</span>
 								</div>
-								<div class="card-body">
-									<div>
-										<h5 class="card-title random">{{image.agencyName}}</h5>
-										<button href="#" class="btn btn-boutique mx-1"
-											style="float: right; text-align: center;text-transform: uppercase;">{{image.status}} </button>
+								<!-- btn-promotion  -->
+							</div>
+							<div class="card-body">
+								<div>
+									<h5 class="card-title random">{{image.agencyName}}</h5>
+									<button href="#" class="btn btn-boutique mx-1"
+										style="float: right; text-align: center;text-transform: uppercase;">{{image.status}}
+									</button>
+								</div>
+								<div style="display: flex; align-items: center;margin-right: -3px;">
+									<div class="text">
+										<p class="nameStyle" style="margin-right: 10px;">{{image.name }}</p>
 									</div>
-									<div style="display: flex; align-items: center;margin-right: -3px;">
-										<div class="text">
-											<p class="nameStyle" style="margin-right: 10px;">{{image.name }}</p>
-										</div>
-										<div class="social-icons">
-											<div class="social-link-container" src="{{image.photos[0]}}"
-												data-layout="button_count" data-size="large">
-												<a target="_blank"
-													href="{{Agency?.facebook_url}}"
-													class="social-link">
-													<i class="fab fa-facebook-f"></i>
-												</a>
-											</div>
-	
-										</div>
-										<div class="social-link-container ">
-											<a href="{{Agency?.instagram_url}}" class="social-link1">
-												<i class="fab fa-instagram"></i>
+									<div class="social-icons">
+										<div class="social-link-container" src="{{image.photos[0]}}"
+											data-layout="button_count" data-size="large">
+											<a target="_blank" href="{{Agency?.facebook_url}}" class="social-link">
+												<i class="fab fa-facebook-f"></i>
 											</a>
 										</div>
-										<div class="social-link-container">
-											<a href="{{Agency?.website_url}}" class="social-link">
-												<i class="font">W</i>
-											</a>
-										</div>
-	
+
 									</div>
+									<div class="social-link-container ">
+										<a href="{{Agency?.instagram_url}}" class="social-link1">
+											<i class="fab fa-instagram"></i>
+										</a>
+									</div>
+									<div class="social-link-container">
+										<a href="{{Agency?.website_url}}" class="social-link1">
+											<i class="font">W</i>
+										</a>
+									</div>
+
 								</div>
 							</div>
-	
-	
-						</ng-template>
-					</p-carousel>
-					<br><br><br>
-					<a *ngIf="Agency?.videoUrl2===null || Agency?.videoUrl2===''" (click)="goToLink()"
-						class="btn  btn-promotion">
-						VIDEO DE  PRESENTATION </a>
-					<a *ngIf="Agency?.videoUrl2" (click)="goToLink()" class="btn btn-promotion btn-promotion">
-						VIDEO RÉFÉRENCE </a>
-						<br><br><br><br><br>
-	
-					<section  *ngIf="Agency?.videoUrl2===null || Agency?.videoUrl2===''" (click)="goToLink()">
-						<div></div>
-						<div class="container">
-							<div class="background-img" [ngStyle]="{'background-image':'url(' +'assets/v3.jpg'+ ')'}">
-								<!-- <div class="box">
+						</div>
+
+
+					</ng-template>
+				</p-carousel>
+				<br><br><br>
+				<a *ngIf="Agency?.videoUrl2===null || Agency?.videoUrl2===''" (click)="goToLink()"
+					class="btn  btn-promotion">
+					VIDEO DE PRESENTATION </a>
+				<a *ngIf="Agency?.videoUrl2" (click)="goToLink()" class="btn btn-promotion btn-promotion">
+					VIDEO RÉFÉRENCE </a>
+				<br><br><br><br><br>
+
+
+
+				<!-- contactez -->
+				<section *ngIf="Agency?.videoUrl2===null || Agency?.videoUrl2===''" (click)="goToLink()">
+					<div></div>
+					<div class="container">
+						<div class="background-img" [ngStyle]="{'background-image':'url(' +'assets/v3.jpg'+ ')'}">
+							<!-- <div class="box">
 									<span></span>
 									<span></span>
 									<span></span>
@@ -734,27 +1082,25 @@
 									</div>
 	
 								</div> -->
-							</div>
 						</div>
-					</section>
-	
-	<!-- contactez -->
-					<section *ngIf="Agency?.videoUrl2">
-						<div></div>
-						<div class="container">
-							<div class="background-vd">
-								<iframe class="promoVideo" [src]="urlSafe2">
-								</iframe>
-							</div>
+					</div>
+				</section>
+				<section *ngIf="Agency?.videoUrl2">
+					<div></div>
+					<div class="container">
+						<div class="background-vd">
+							<iframe class="promoVideo" [src]="urlSafe2">
+							</iframe>
 						</div>
-					</section>
-	
-					<!-- <iframe class="container promoVideo"  [src]="urlSafe">
+					</div>
+				</section>
+
+				<!-- <iframe class="container promoVideo"  [src]="urlSafe">
 						</iframe> -->
-	
-	
-					<br><br><br> <br>
-					<!-- <div class="wrapper">
+
+
+				<br><br><br> <br>
+				<!-- <div class="wrapper">
 						<div class="fb-share-button" data-href="https://tunimmob.com/agency/{{idAgency}}"
 							data-layout="button_count" data-size="large">
 							<div class="icon" >
@@ -771,130 +1117,134 @@
 							<span>Partager sur Instagram</span>
 						</div>
 					</div> -->
-	
-					<br>
-				</div>
+
+				<br>
 			</div>
 		</div>
 	</div>
-	<div  *ngIf="Agency?.role==='promoteur-immobilieres' && Agency?.projets?.length===0" class="marginY">
-		<div class="carousel-boutique">
-			<div class="content-section implementation carousel-demo">
-				<div class="card">
-					<p-carousel [value]="images" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
-						[circular]="true" [responsiveOptions]="responsiveOptions" >
-						<ng-template let-image pTemplate="item">
-							<div class="item-card">
-								<img src="{{image.picture}}" class="card-img-top taill-image">
-								<div class="card-body">
-									<div>
-										<h5 class="card-title random">{{image.random}}</h5>
-										<button href="#" class="btn btn-boutique" style="float: right;">EN COURS</button>
-									</div>
-	
-									<p class="nameStyle">{{image.title}}</p>
-									<p class="card-text random">Description projet.</p>
-	
+</div>
+<div *ngIf="Agency?.role==='promoteur-immobilieres' && Agency?.projets?.length===0" class="marginY">
+	<div class="carousel-boutique">
+		<div class="content-section implementation carousel-demo">
+			<div class="card">
+				<p-carousel [value]="images" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
+					[circular]="true" [responsiveOptions]="responsiveOptions">
+					<ng-template let-image pTemplate="item">
+						<div class="item-card">
+							<img src="{{image.picture}}" class="card-img-top taill-image">
+							<div class="card-body">
+								<div>
+									<h5 class="card-title random">{{image.random}}</h5>
+									<button href="#" class="btn btn-boutique" style="float: right;">EN COURS</button>
 								</div>
+
+								<p class="nameStyle">{{image.title}}</p>
+								<p class="card-text random">Description projet.</p>
+
 							</div>
-						</ng-template>
-					</p-carousel> <br>
-	
-	
-	
-					<br>
-				</div>
+						</div>
+					</ng-template>
+				</p-carousel> <br>
+
+
+
+				<br>
 			</div>
 		</div>
 	</div>
-	
-	
-	
-	<div *ngIf="Agency?.role==='agence-immobilieres' && Agency?.biens?.length!==0 ">
-	
-		<div class="carousel-boutique">
-			<div class="content-section implementation carousel-demo">
-				<div class="card">
-					<p-carousel [value]="Agency.biens" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
-						[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
-	
-						<ng-template let-image pTemplate="item">
-							<div *ngIf="image.type!=='PLUSIEURE'" class="item-card"
-								[routerLink]="['/agences-immobiliere-details',image.id]">
-								<img src="{{image?.imageUrl}}" class="card-img-top taill-image">
-								<div class="card-body">
-									<div>
-										<h5 class="card-title random">Bien immobilier</h5>
-										<button href="#" class="btn btn-prix" style="float: right;">{{image?.prix}}</button>
-									</div>
-	
-									<p class="nameStyle">{{image?.name}}</p>
-	
+</div>
+
+
+
+<div *ngIf="Agency?.role==='agence-immobilieres' && Agency?.biens?.length!==0 ">
+
+	<div class="carousel-boutique">
+		<div class="content-section implementation carousel-demo">
+			<div class="card">
+				<p-carousel [value]="Agency.biens" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
+					[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
+
+					<ng-template let-image pTemplate="item">
+						<div *ngIf="image.type!=='PLUSIEURE'" class="item-card"
+							[routerLink]="['/agences-immobiliere-details',image.id]">
+							<img src="{{image?.imageUrl}}" class="card-img-top taill-image">
+							<div class="card-body">
+								<div>
+									<h5 class="card-title random">Bien immobilier</h5>
+									<button href="#" class="btn btn-prix" style="float: right;">{{image?.prix}}</button>
 								</div>
+
+								<p class="nameStyle">{{image?.name}}</p>
+
 							</div>
-							<div *ngIf="image.type=='PLUSIEURE'" class="item-card"
-								[routerLink]="['/agences-immob-details-plus',image.id]">
-								<img src="{{image?.imageUrl}}" class="card-img-top taill-image">
-								<div class="card-body">
-									<div>
-										<h5 class="card-title random">Bien immobilier</h5>
-										<button href="#" class="btn btn-prix" style="float: right;">{{image?.prix}}</button>
-									</div>
-	
-									<p class="nameStyle">{{image?.name}}</p>
-	
+						</div>
+						<div *ngIf="image.type=='PLUSIEURE'" class="item-card"
+							[routerLink]="['/agences-immob-details-plus',image.id]">
+							<img src="{{image?.imageUrl}}" class="card-img-top taill-image">
+							<div class="card-body">
+								<div>
+									<h5 class="card-title random">Bien immobilier</h5>
+									<button href="#" class="btn btn-prix" style="float: right;">DISPONIBLE</button>
 								</div>
+
+								<p class="nameStyle">{{image?.name}}</p>
+
 							</div>
-	
-	
-						</ng-template>
-	
-					</p-carousel> <br>
-	
-	
-	
-	
-					<a (click)="goToLink()" class="btn btn-promotion"> {{titrePromo}} d</a>
-					<br><br><br><br>
-					<div>
-						<section *ngIf="Agency?.videoUrl2===null || Agency?.videoUrl2===''" (click)="goToLink()">
-							<div></div>
-							<div class="container">
-								<div class="background-img" [ngStyle]="{'background-image':'url(' +image_url_biens + ')'}">
-									<!-- <div class="box">
+						</div>
+
+
+					</ng-template>
+
+				</p-carousel> <br><br><br>
+
+
+
+
+
+
+
+				<a (click)="goToLink()" class="btn btn-promotion" style="">
+					DÉCOUVREZ ENCORE PLUS... </a>
+				<br><br><br><br><br>
+				<section *ngIf="Agency?.videoUrl2===null || Agency?.videoUrl2===''" (click)="goToLink()">
+					<div class="container">
+						<div class="background-img" [ngStyle]="{'background-image':'url(' +'../../assets/v3.jpg'+ ')'}">
+							<!-- <div class="box">
 										<span></span>
 										<span></span>
 										<span></span>
 										<span></span>
 										<div class="content">
+		
 										</div>
+		
 									</div> -->
-								</div>
-							</div>
-						</section>
-						<section *ngIf="Agency?.videoUrl2">
-							<div></div>
-							<div class="container">
-								<div class="background-vd">
-									<iframe class="promoVideo" [src]="urlSafe2">
-									</iframe>
-	
-								</div>
-							</div>
-						</section>
+						</div>
 					</div>
-	
-					<!--map-->
-	
-					<!-- <div class=" container map" *ngIf="Agency.name==='A VENDRE TERRAIN A SAHLOUL'">
+				</section>
+				<section *ngIf="Agency?.videoUrl2">
+					<div></div>
+					<div class="container">
+						<div class="background-vd">
+							<iframe class="promoVideo" [src]="urlSafe2">
+							</iframe>
+
+						</div>
+					</div>
+				</section>
+
+
+				<!--map-->
+
+				<!-- <div class=" container map" *ngIf="Agency.name==='A VENDRE TERRAIN A SAHLOUL'">
 			<p-gmap [options]="options" [style]="{'height':'520px'}" ></p-gmap>
 	
 		</div>  -->
-	
-					<!------->
-	
-					<br><br><br> <br>
-					<!-- <div class="wrapper">
+
+				<!------->
+
+				<br><br><br> <br>
+				<!-- <div class="wrapper">
 	
 						<div class="fb-share-button" data-href="https://tunimmob.com/agency/{{idAgency}}"
 							data-layout="button_count" data-size="large">
@@ -913,59 +1263,60 @@
 						</div>
 	
 					</div> -->
-					<br><br>
-	
-	
-	
-				</div>
+				<br><br>
+
+
+
 			</div>
-	
 		</div>
+
 	</div>
-	<div *ngIf="Agency?.role==='agence-immobilieres' && Agency?.biens?.length===0">
-	
-		<div class="carousel-boutique">
-			<div class="content-section implementation carousel-demo">
-				<div class="card">
-					<p-carousel [value]="images2" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
-						[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
-	
-						<ng-template let-image pTemplate="item">
-							<div class="item-card">
-								<img src="{{image?.picture}}" class="card-img-top taill-image">
-								<div class="card-body">
-									<div>
-										<h5 class="card-title random">bien immobilier</h5>
-										<button href="#" class="btn btn-prix" style="float: right;">PRIX: 00,00</button>
-									</div>
-	
-									<p class="nameStyle">{{image?.produit}}</p>
-	
+</div>
+<div *ngIf="Agency?.role==='agence-immobilieres' && Agency?.biens?.length===0">
+
+	<div class="carousel-boutique">
+		<div class="content-section implementation carousel-demo">
+			<div class="card">
+				<p-carousel [value]="images2" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
+					[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
+
+					<ng-template let-image pTemplate="item">
+						<div class="item-card">
+							<img src="{{image?.picture}}" class="card-img-top taill-image">
+							<div class="card-body">
+								<div>
+									<h5 class="card-title random">bien immobilier</h5>
+									<button href="#" class="btn btn-prix" style="float: right;">PRIX: 00,00</button>
 								</div>
+
+								<p class="nameStyle">{{image?.produit}}</p>
+
 							</div>
-						</ng-template>
-	
-					</p-carousel> <br>
-					<button (click)="goToLink()" class="btn btn-promotion"
-					style="float: right;font-size: 18px; font-weight: 600;margin-bottom: 50px;margin-top:1px;">PROMO DE LA SEMAINE </button>
-				</div>
+						</div>
+					</ng-template>
+
+				</p-carousel> <br>
+				<button (click)="goToLink()" class="btn btn-promotion"
+					style="float: right;font-size: 18px; font-weight: 600;margin-bottom: 50px;margin-top:1px;">PROMO DE
+					LA SEMAINE </button>
 			</div>
 		</div>
 	</div>
-	
-	
-	<div *ngIf="Agency?.role==='materiaux-construction' && Agency?.produits?.length!==0 ">
-	
-	
-		<div class="carousel-boutique">
-			<div class="content-section implementation carousel-demo">
-				<div class="card">
-					<p-carousel [value]="Agency.produits" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
-						[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
-						<!-- [routerLink]="['/details-materiaux',image.id]" -->
-						<ng-template let-image pTemplate="item">
-							<div class="item-card" [routerLink]="['/details-materiaux',image.id]">
-								<!-- <img src="{{image?.imageUrl}}" class="card-img-top taill-image">
+</div>
+
+
+<div *ngIf="Agency?.role==='materiaux-construction' && Agency?.produits?.length!==0 ">
+
+
+	<div class="carousel-boutique">
+		<div class="content-section implementation carousel-demo">
+			<div class="card">
+				<p-carousel [value]="Agency.produits" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
+					[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
+					<!-- [routerLink]="['/details-materiaux',image.id]" -->
+					<ng-template let-image pTemplate="item">
+						<div class="item-card" >
+							<!-- <img src="{{image?.imageUrl}}" class="card-img-top taill-image">
 								<div class="card-body">
 									<div>
 										<h5 class="card-title random">Produit</h5>
@@ -995,96 +1346,93 @@
 									</div>
 									</div>
 								</div> -->
-	
-								<div>
-									<img src="{{image?.imageUrl}}" class="card-img-top taill-image" alt="Responsive image">
-									<div *ngIf="image?.name==='LE LOFT'">
-										<span class="badge badge-orange">Prix à partir de 253.000 dt TTC</span>
-									</div>
-									<!-- btn-promotion  -->
+
+							<div>
+								<img src="{{image?.imageUrl}}" class="card-img-top taill-image" alt="Responsive image" [routerLink]="['/details-materiaux',image.id]">
+								<div *ngIf="image?.name==='LE LOFT'">
+									<span class="badge badge-orange">Prix à partir de 253.000 dt TTC</span>
 								</div>
-	
-	
-								
-	
-	
-								<div class="card-body">
-									<div>
-										<h5 class="card-title random">{{image.agencyName}}</h5>
-										<button href="#" class="btn btn-boutique mx-1"
-											style="float: right; text-align: center;">DETAILS</button>
-									</div>
-									<div style="display: flex; align-items: center;margin-right: -1px;">
-										<div class="text">
-											<p class="nameStyle" style="margin-right: 10px;">{{image.name }}</p>
-										</div>
-										<div class="social-icons">
-											<div class="social-link-container"
-												data-layout="button_count" data-size="large">
-												<a target="_blank"
-													href="{{Agency?.facebook_url}}"
-													class="social-link">
-													<i class="fab fa-facebook-f"></i>
-												</a>
-											</div>
-	
-										</div>
-										<div class="social-link-container ">
-											<a href="{{Agency?.instagram_url}}" class="social-link">
-												<i class="fab fa-instagram"></i>
-											</a>
-										</div>
-										<div class="social-link-container">
-											<a href="{{Agency?.website_url}}" class="social-link">
-												<i class="">W</i>
-											</a>
-										</div>
-	
-									</div>
-								</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+								<!-- btn-promotion  -->
 							</div>
-						</ng-template>
-	
-					</p-carousel>
-					 <br><br><br>
-					<a (click)="goToLink()" class="btn btn-promotion" style="">
-						DÉCOUVREZ ENCORE PLUS... </a>
-					<br><br><br><br><br>
-					<section *ngIf="Agency?.videoUrl2===null || Agency?.videoUrl2===''" (click)="goToLink()">
-						<div></div>
-						<div class="container">
-							<div class="background-img" [ngStyle]="{'background-image':'url(' +'../../assets/v3.jpg'+ ')'}">
-								<!-- <div class="box">
+
+
+
+
+
+							<div class="card-body">
+								<div>
+									<h5 class="card-title random">{{image.agencyName}}</h5>
+									<button href="#" class="btn btn-boutique mx-1"
+										style="float: right; text-align: center;">DETAILS</ button>
+								</div>
+								<div style="display: flex; align-items: center;margin-right: -1px;">
+									<div class="text">
+										<p class="nameStyle" style="margin-right: 10px;">{{image.name }}</p>
+									</div>
+									<div class="social-icons">
+										<div class="social-link-container" data-layout="button_count" data-size="large">
+											<a target="_blank" href="{{Agency?.facebook_url}}" class="social-link">
+												<i class="fab fa-facebook-f"></i>
+											</a>
+										</div>
+
+									</div>
+									<div class="social-link-container ">
+										<a target="_blank" href="{{Agency?.instagram_url}}" class="social-link">
+											<i class="fab fa-instagram"></i>
+										</a>
+									</div>
+									<div class="social-link-container">
+										<a href="{{Agency?.website_url}}" class="social-link">
+											<i class="">W</i>
+										</a>
+									</div>
+
+								</div>
+							</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						</div>
+					</ng-template>
+
+				</p-carousel>
+				<br><br><br>
+				<a (click)="goToLink()" class="btn btn-promotion" style="">
+					DÉCOUVREZ ENCORE PLUS... </a>
+				<br><br><br><br><br>
+				<section *ngIf="Agency?.videoUrl2===null || Agency?.videoUrl2===''" (click)="goToLink()">
+					<div></div>
+					<div class="container">
+						<div class="background-img" [ngStyle]="{'background-image':'url(' +'../../assets/v3.jpg'+ ')'}">
+							<!-- <div class="box">
 									<span></span>
 									<span></span>
 									<span></span>
@@ -1094,23 +1442,23 @@
 									</div>
 	
 								</div> -->
-							</div>
 						</div>
-					</section>
-					
-					<section *ngIf="Agency?.videoUrl2" >
-						<div></div>
-						<div class="container">
-							<div class="background-vd">
-								<iframe class="promoVideo" [src]="urlSafe2">
-								</iframe>
-	
-							</div>
+					</div>
+				</section>
+
+				<section *ngIf="Agency?.videoUrl2">
+					<div></div>
+					<div class="container">
+						<div class="background-vd">
+							<iframe class="promoVideo" [src]="urlSafe2">
+							</iframe>
+
 						</div>
-					</section>
-	
-					<br><br><br> <br>
-					<!-- <div class="wrapper">
+					</div>
+				</section>
+
+				<br><br><br> <br>
+				<!-- <div class="wrapper">
 	
 						<div class="fb-share-button" data-href="https://tunimmob.com/agency/{{idAgency}}"
 							data-layout="button_count" data-size="large">
@@ -1130,102 +1478,104 @@
 						</div>
 	
 					</div> -->
-	
-	
-				</div>
+
+
 			</div>
 		</div>
 	</div>
-	<div *ngIf="Agency?.role==='materiaux-construction' && Agency?.produits?.length===0">
-	
-		<div class="carousel-boutique">
-			<div class="content-section implementation carousel-demo">
-				<div class="card">
-					<p-carousel [value]="images2" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
-						[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
-	
-						<ng-template let-image pTemplate="item">
-							<div class="item-card">
-								<img src="{{image?.picture}}" class="card-img-top taill-image">
-								<div class="card-body">
-									<div>
-										<h5 class="card-title random">Produit</h5>
-										<button href="#" class="btn btn-prix" style="float: right;">PRIX: 00,00</button>
-									</div>
-	
-									<p class="nameStyle" >{{image?.produit}}</p>
-	
+</div>
+<div *ngIf="Agency?.role==='materiaux-construction' && Agency?.produits?.length===0">
+
+	<div class="carousel-boutique">
+		<div class="content-section implementation carousel-demo">
+			<div class="card">
+				<p-carousel [value]="images2" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
+					[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
+
+					<ng-template let-image pTemplate="item">
+						<div class="item-card">
+							<img src="{{image?.picture}}" class="card-img-top taill-image">
+							<div class="card-body">
+								<div>
+									<h5 class="card-title random">Produit</h5>
+									<button href="#" class="btn btn-prix" style="float: right;">PRIX: 00,00</button>
 								</div>
+
+								<p class="nameStyle">{{image?.produit}}</p>
+
 							</div>
-						</ng-template>
-	
-					</p-carousel> <br>
-					<button (click)="goToLink()" class="btn btn-promotion"
-						style="float: right;font-size: 18px; font-weight: 600;margin-bottom: 50px;margin-top:1px;">PROMO DE LA SEMAINE </button>
-				</div>
+						</div>
+					</ng-template>
+
+				</p-carousel> <br>
+				<button (click)="goToLink()" class="btn btn-promotion"
+					style="float: right;font-size: 18px; font-weight: 600;margin-bottom: 50px;margin-top:1px;">PROMO DE
+					LA SEMAINE </button>
 			</div>
 		</div>
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div *ngIf="Agency?.role==='agence-service' && Agency?.services?.length!==0 ">
-	
-	
-		<div class="carousel-boutique">
-			<div class="content-section implementation carousel-demo">
-				<div class="card">
-					<p-carousel [value]="Agency.services" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
-						[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
-	
-						<ng-template let-image pTemplate="item" >
-							<div class="item-card" [routerLink]="['/details-service',image.id]">
-								<img src="{{image?.imageUrl}}" class="card-img-top taill-image">
-								<div class="card-body">
-									<div>
-										<h5 class="card-title random">Service</h5>
-										<button href="#" class="btn btn-prix" style="float: right;">{{image?.prix}}</button>
-									</div>
-	
-									<p class="nameStyle">{{image?.name}}</p>
-	
-								</div>
-							</div>
-						</ng-template>
+</div>
 
-						<!-- <div *ngIf="Agency?.services?.sous_services?.length===0 && allAgence.videoUrl===null ;"> -->
 
-							<ng-template #homeLink>
-								<div class="item-card" [routerLink]="['/home']">
-								  <!-- Content when condition is false -->
+
+
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="Agency?.role==='agence-service' && Agency?.services?.length!==0 ">
+
+
+	<div class="carousel-boutique">
+		<div class="content-section implementation carousel-demo">
+			<div class="card">
+				<p-carousel [value]="Agency.services" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
+					[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
+
+					<ng-template let-image pTemplate="item">
+						<div class="item-card" [routerLink]="['/details-service',image.id]">
+							<img src="{{image?.imageUrl}}" class="card-img-top taill-image">
+							<div class="card-body">
+								<div>
+									<h5 class="card-title random">Service</h5>
+									<button href="#" class="btn btn-prix" style="float: right;">{{image?.prix}}</button>
 								</div>
-							  </ng-template>
-						<ng-template let-image pTemplate="item" *ngIf="Agency?.categorie==='coffee'     ">
-							<div class="item-card" >
-								<img src="{{image?.imageUrl}}" class="card-img-top taill-image" [routerLink]="['/descriptionCoffee', image.id]">
-								<div class="card-body">
-									<div>
-										<h5 class="card-title random">Service</h5>
-										<button   class="btn btn-prix" style="float: right;" >Notre Menus</button>
-										<!-- <button  class="btn btn-prix" style="float: right;" *ngIf="image.sous_services && image.sous_services.length === 0; ">{{image?.prix}}</button> -->
-									</div>
-	
-									<p class="nameStyle">{{image?.name}}</p>
-	
-								</div>
+
+								<p class="nameStyle">{{image?.name}}</p>
+
 							</div>
-							<!-- <section *ngIf="Agency?.videoUrl2">
+						</div>
+					</ng-template>
+
+					<!-- <div *ngIf="Agency?.services?.sous_services?.length===0 && allAgence.videoUrl===null ;"> -->
+
+					<ng-template #homeLink>
+						<div class="item-card" [routerLink]="['/home']">
+							<!-- Content when condition is false -->
+						</div>
+					</ng-template>
+					<ng-template let-image pTemplate="item" *ngIf="Agency?.categorie==='coffee'     ">
+						<div class="item-card">
+							<img src="{{image?.imageUrl}}" class="card-img-top taill-image"
+								[routerLink]="['/descriptionCoffee', image.id]">
+							<div class="card-body">
+								<div>
+									<h5 class="card-title random">Service</h5>
+									<button class="btn btn-prix" style="float: right;">Notre Menus</button>
+									<!-- <button  class="btn btn-prix" style="float: right;" *ngIf="image.sous_services && image.sous_services.length === 0; ">{{image?.prix}}</button> -->
+								</div>
+
+								<p class="nameStyle">{{image?.name}}</p>
+
+							</div>
+						</div>
+						<!-- <section *ngIf="Agency?.videoUrl2">
 								<div></div>
 								<div class="container">
 									<div class="background-vd">
@@ -1234,28 +1584,28 @@
 									</div>
 								</div>
 							</section> -->
-						</ng-template>
-	
-					</p-carousel> 
-					<br><br><br>
-					<a (click)="goToLink()" class="btn btn-promotion" style="">
-						Menu Du Jour </a>
-						<br><br><br><br>
-					<!-- <button (click)="goToLink()" class="btn btn-promotion"
+					</ng-template>
+
+				</p-carousel>
+				<br><br><br>
+				<a (click)="goToLink()" class="btn btn-promotion" style="">
+					Menu Du Jour </a>
+				<br><br><br><br>
+				<!-- <button (click)="goToLink()" class="btn btn-promotion"
 					style="float:right;font-size: 18px; font-weight: 600;margin-bottom: -30px;margin-top:-33px;">Menu Du Jour</button> -->
-					<br>
-					<!-- <section (click)="goToLink()">
+				<br>
+				<!-- <section (click)="goToLink()">
 						<div class="container">
 							<div class="background-img" [ngStyle]="{'background-image':'url(' +image_url_ser + ')'}">
 								
 							</div>
 						</div>
 					</section> -->
-					<section *ngIf="Agency?.videoUrl2===null || Agency?.videoUrl2===''" (click)="goToLink()">
-						<div></div>
-						<div class="container">
-							<div class="background-img" [ngStyle]="{'background-image':'url(' +'../../assets/v3.jpg'+ ')'}">
-								<!-- <div class="box">
+				<section *ngIf="Agency?.videoUrl2===null || Agency?.videoUrl2===''" (click)="goToLink()">
+					<div></div>
+					<div class="container">
+						<div class="background-img" [ngStyle]="{'background-image':'url(' +'../../assets/v3.jpg'+ ')'}">
+							<!-- <div class="box">
 									<span></span>
 									<span></span>
 									<span></span>
@@ -1265,127 +1615,127 @@
 									</div>
 	
 								</div> -->
+						</div>
+					</div>
+				</section>
+
+				<section *ngIf="Agency?.videoUrl2">
+					<div></div>
+					<div class="container">
+						<div class="background-vd">
+							<iframe class="promoVideo" [src]="urlSafe2">
+							</iframe>
+
+						</div>
+					</div>
+				</section>
+				<br><br>
+				<div class="wrapper " style="margin-top:60px;">
+
+
+
+				</div>
+				<br><br>
+
+
+			</div>
+		</div>
+	</div>
+</div>
+<div *ngIf="Agency?.role==='agence-service' && Agency?.services?.length===0">
+
+	<div class="carousel-boutique">
+		<div class="content-section implementation carousel-demo">
+			<div class="card">
+				<p-carousel [value]="images2" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
+					[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
+
+					<ng-template let-image pTemplate="item">
+						<div class="item-card">
+							<img src="{{image?.picture}}" class="card-img-top taill-image">
+							<div class="card-body">
+								<div>
+									<h5 class="card-title random">Service</h5>
+									<button href="#" class="btn btn-prix" style="float: right;">OFFRE</button>
+								</div>
+
+								<p class="nameStyle">{{image?.produit}}</p>
+
+							</div>
+						</div>
+					</ng-template>
+
+				</p-carousel> <br>
+				<button (click)="goToLink()" class="btn btn-promotion"
+					style="float: right;font-size: 18px; font-weight: 600;margin-bottom: 50px;margin-top:1px;">PROMO DE
+					LA SEMAINE </button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div *ngIf="Agency?.role==='meilleurs-biens' && Agency?.biens?.length!==0 ">
+
+	<div class="carousel-boutique">
+		<div class="content-section implementation carousel-demo">
+			<div class="card">
+				<p-carousel [value]="reverseAgBiens" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
+					[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
+
+					<ng-template let-image pTemplate="item">
+						<div *ngFor="let sousBiens of image.sous_biens">
+							<div class="item-card" [routerLink]="['/descriptionAgence_Immob',sousBiens?.id]">
+								<img src="{{image?.imageUrl}}" class="card-img-top taill-image">
+								<div class="card-body">
+									<div>
+										<h5 class="card-title random">Bien immobilier</h5>
+										<button href="#" class="btn btn-prix" style="float: right;">DETAILS</button>
+									</div>
+
+									<p class="nameStyle">{{image?.name}}</p>
+
+								</div>
+							</div>
+						</div>
+					</ng-template>
+
+				</p-carousel> <br>
+
+				<br><br>
+				<a (click)="goToLink()" class="btn btn-promotion"> NOS MEILLEURS PROPOSITION </a>
+				<br><br><br><br>
+				<div>
+					<section *ngIf="Agency?.videoUrl2===null || Agency?.videoUrl2===''" (click)="goToLink()">
+						<div></div>
+						<div class="container">
+							<div class="background-img" [ngStyle]="{'background-image':'url(' +image_url_biens + ')'}">
+								<!-- <button class="btn-details">Plus De  Detaills</button> -->
 							</div>
 						</div>
 					</section>
-					
-					<section *ngIf="Agency?.videoUrl2" >
+					<section *ngIf="Agency?.videoUrl2">
 						<div></div>
 						<div class="container">
 							<div class="background-vd">
 								<iframe class="promoVideo" [src]="urlSafe2">
 								</iframe>
-	
+
 							</div>
 						</div>
 					</section>
-					<br><br>
-					<div class="wrapper " style="margin-top:60px;">
-	
-						
-	
-					</div>
-					<br><br>
-	
-	
 				</div>
-			</div>
-		</div>
-	</div>
-	<div *ngIf="Agency?.role==='agence-service' && Agency?.services?.length===0">
-	
-		<div class="carousel-boutique">
-			<div class="content-section implementation carousel-demo">
-				<div class="card">
-					<p-carousel [value]="images2" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
-						[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
-	
-						<ng-template let-image pTemplate="item">
-							<div class="item-card">
-								<img src="{{image?.picture}}" class="card-img-top taill-image">
-								<div class="card-body">
-									<div>
-										<h5 class="card-title random">Service</h5>
-										<button href="#" class="btn btn-prix" style="float: right;">OFFRE</button>
-									</div>
-	
-									<p class="nameStyle">{{image?.produit}}</p>
-	
-								</div>
-							</div>
-						</ng-template>
-	
-					</p-carousel> <br>
-					<button (click)="goToLink()" class="btn btn-promotion"
-					style="float: right;font-size: 18px; font-weight: 600;margin-bottom: 50px;margin-top:1px;">PROMO DE LA SEMAINE </button>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	
-	<div *ngIf="Agency?.role==='meilleurs-biens' && Agency?.biens?.length!==0 ">
-	
-		<div class="carousel-boutique">
-			<div class="content-section implementation carousel-demo">
-				<div class="card">
-					<p-carousel [value]="reverseAgBiens" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
-						[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
-	
-						<ng-template let-image pTemplate="item">
-							<div *ngFor="let sousBiens of image.sous_biens">
-								<div class="item-card" [routerLink]="['/descriptionAgence_Immob',sousBiens?.id]">
-									<img src="{{image?.imageUrl}}" class="card-img-top taill-image">
-									<div class="card-body">
-										<div>
-											<h5 class="card-title random">Bien immobilier</h5>
-											<button href="#" class="btn btn-prix"
-												style="float: right;">{{image?.prix}}</button>
-										</div>
-	
-										<p class="nameStyle">{{image?.name}}</p>
-	
-									</div>
-								</div>
-							</div>
-						</ng-template>
-	
-					</p-carousel> <br>
-	
-	
-					<a (click)="goToLink()" class="btn btn-promotion"> NOS MEILLEURS PROPOSITION </a>
-					<br><br><br><br>
-					<div>
-						<section *ngIf="Agency?.videoUrl2===null || Agency?.videoUrl2===''" (click)="goToLink()">
-							<div></div>
-							<div class="container">
-								<div class="background-img" [ngStyle]="{'background-image':'url(' +image_url_biens + ')'}">
-									<button class="btn-details">Plus De  Detaills</button>
-								</div>
-							</div>
-						</section>
-						<section *ngIf="Agency?.videoUrl2">
-							<div></div>
-							<div class="container">
-								<div class="background-vd">
-									<iframe class="promoVideo" [src]="urlSafe2">
-									</iframe>
-	
-								</div>
-							</div>
-						</section>
-					</div>
-	
-					<!--map-->
-	
-					<!-- <div class=" container map" *ngIf="Agency.name==='A VENDRE TERRAIN A SAHLOUL'">
+
+				<!--map-->
+
+				<!-- <div class=" container map" *ngIf="Agency.name==='A VENDRE TERRAIN A SAHLOUL'">
 				<p-gmap [options]="options" [style]="{'height':'520px'}" ></p-gmap>
 		
 			</div>  -->
-	
-					<!------->
-	
-					
+
+				<!------->
+
+				<!-- 					
 					<div class="wrapper " style="margin-top:150px;" >
 	
 						<div class="fb-share-button" data-href="https://tunimmob.com/agency/{{idAgency}}"
@@ -1404,104 +1754,108 @@
 							<span>Partager sur Instagram</span>
 						</div>
 	
-					</div>
-					<br><br>
-	
-	
-	
-				</div>
+					</div> -->
+				<br><br>
+				<br><br>
+				<br><br>
+
+
+
+
 			</div>
-	
 		</div>
+
 	</div>
-	<div *ngIf="Agency?.role==='meilleurs-biens' && Agency?.biens?.length===0">
-	
-		<div class="carousel-boutique">
-			<div class="content-section implementation carousel-demo">
-				<div class="card">
-					<p-carousel [value]="images2" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
-						[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
-	
-						<ng-template let-image pTemplate="item">
-							<div class="item-card">
-								<img src="{{image?.picture}}" class="card-img-top taill-image">
-								<div class="card-body">
-									<div>
-										<h5 class="card-title random">bien immobilier</h5>
-										<button href="#" class="btn btn-prix" style="float: right;">PRIX: 00,00</button>
-									</div>
-	
-									<p class="nameStyle">{{image?.produit}}</p>
-	
+</div>
+<div *ngIf="Agency?.role==='meilleurs-biens' && Agency?.biens?.length===0">
+
+	<div class="carousel-boutique">
+		<div class="content-section implementation carousel-demo">
+			<div class="card">
+				<p-carousel [value]="images2" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1"
+					[circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
+
+					<ng-template let-image pTemplate="item">
+						<div class="item-card">
+							<img src="{{image?.picture}}" class="card-img-top taill-image">
+							<div class="card-body">
+								<div>
+									<h5 class="card-title random">bien immobilier</h5>
+									<button href="#" class="btn btn-prix" style="float: right;">PRIX: 00,00</button>
 								</div>
+
+								<p class="nameStyle">{{image?.produit}}</p>
+
 							</div>
-						</ng-template>
-	
-					</p-carousel> <br>
-					<button (click)="goToLink()" class="btn btn-promotion"
-					style="float: right;font-size: 18px; font-weight: 600;margin-bottom: 50px;margin-top:1px;">PROMO DE LA SEMAINE </button>
-	
-				</div>
+						</div>
+					</ng-template>
+
+				</p-carousel> <br>
+				<button (click)="goToLink()" class="btn btn-promotion"
+					style="float: right;font-size: 18px; font-weight: 600;margin-bottom: 50px;margin-top:1px;">PROMO DE
+					LA SEMAINE </button>
+
 			</div>
 		</div>
 	</div>
-	
-	
-	<br> <br> <br>
-	
-	<!-- <div class="gradient-border" id="box" *ngIf="Agency?.projets?.length===0 || Agency?.produits?.length===0 ">
+</div>
+
+
+<br> <br> <br>
+
+<!-- <div class="gradient-border" id="box" *ngIf="Agency?.projets?.length===0 || Agency?.produits?.length===0 ">
 		Boutique en attente d'approbation &nbsp; <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
 	
 	  </div> -->
-	
-	<br><br><br>
-	<div class="tunsian-flag-img-background">
-		<div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups " >
-			<div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie!='coffee'">
-				<a (click)="showMaximizableDialog1()"  class="btn-hover-flag-img text-center "  aria-selected="true "
-					style="line-height: 1.5">
-					<span style="letter-spacing: 3px;">NOS</span>
-					<br>
-					<span style="letter-spacing: 3px;">REFERENCES</span>
-				</a>
-			</div>
-			<div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie=='coffee'">
-				<a [attr.href]="Agency.instagram_url"  class="btn-hover-flag-img text-center "  aria-selected="true "
-					style="line-height: 1.5">
-					<span style="letter-spacing: 3px;">NOTRE</span>
-					<br>
-					<span style="letter-spacing: 3px;">INSTAGRAM</span>
-				</a>
-			</div>
-			<div class="btn-group mr-2" role="group " aria-label="Second group ">
-				<a [attr.href]="Agency.website_url" target="_blank" class="btn-hover-flag-img text-center "  aria-selected="true "
-					style="line-height: 1.5">
-					<span style="letter-spacing: 3px;">NOTRE </span>
-					<br>
-					<span style="letter-spacing: 3px;">SITE WEB</span>
-				</a>
-			</div>
-			<div class="btn-group mr-2" role="group " aria-label="Third group ">
-				<a [attr.href]="Agency.facebook_url" target="_blank" class="btn-hover-flag-img text-center " aria-selected="true " 
-					style="line-height: 1.5">
-					<span style="letter-spacing: 3px;">PAGE</span>
-					<br>
-					<span style="letter-spacing: 3px;">FACEBOOK</span>
-				</a>
-			</div>
-			<div class="btn-group mr-2 " role="group " aria-label="Third group ">
-				<a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  "  aria-selected="true "
-					style="line-height: 1.5;">
-					<span style="letter-spacing: 3px;">CONTACTEZ-</span>
-				
-				
-					<br>
-					<span style="letter-spacing: 3px;">
-						NOUS
-					</span>
-				</a>
-			</div>
-			<!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
+
+<br><br><br>
+<div class="tunsian-flag-img-background">
+	<div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
+		<div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie!='coffee'">
+			<a (click)="showMaximizableDialog1()" class="btn-hover-flag-img text-center " aria-selected="true "
+				style="line-height: 1.5">
+				<span style="letter-spacing: 3px;">NOS</span>
+				<br>
+				<span style="letter-spacing: 3px;">REFERENCES</span>
+			</a>
+		</div>
+		<div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie=='coffee'">
+			<a [attr.href]="Agency.instagram_url" class="btn-hover-flag-img text-center " aria-selected="true "
+				style="line-height: 1.5">
+				<span style="letter-spacing: 3px;">NOTRE</span>
+				<br>
+				<span style="letter-spacing: 3px;">INSTAGRAM</span>
+			</a>
+		</div>
+		<div class="btn-group mr-2" role="group " aria-label="Second group ">
+			<a [attr.href]="Agency.website_url" target="_blank" class="btn-hover-flag-img text-center "
+				aria-selected="true " style="line-height: 1.5">
+				<span style="letter-spacing: 3px;">NOTRE </span>
+				<br>
+				<span style="letter-spacing: 3px;">SITE WEB</span>
+			</a>
+		</div>
+		<div class="btn-group mr-2" role="group " aria-label="Third group ">
+			<a [attr.href]="Agency.facebook_url" target="_blank" class="btn-hover-flag-img text-center "
+				aria-selected="true " style="line-height: 1.5">
+				<span style="letter-spacing: 3px;">PAGE</span>
+				<br>
+				<span style="letter-spacing: 3px;">FACEBOOK</span>
+			</a>
+		</div>
+		<div class="btn-group mr-2 " role="group " aria-label="Third group ">
+			<a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
+				style="line-height: 1.5;">
+				<span style="letter-spacing: 3px;">CONTACTEZ-</span>
+
+
+				<br>
+				<span style="letter-spacing: 3px;">
+					NOUS
+				</span>
+			</a>
+		</div>
+		<!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
 				<a class="btn-hover-flag-img text-center " aria-selected="true "
 					style="line-height: 1.5">
 					<span>COMMERCES</span>
@@ -1509,9 +1863,9 @@
 					<span> Services et Arts</span>
 				</a>
 			</div> -->
-		</div>
 	</div>
-	<!-- <div class="tunsian-flag-img-background">
+</div>
+<!-- <div class="tunsian-flag-img-background">
 		<div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
 			<div class="btn-group mr-2" role="group " aria-label="First group ">
 				<a class="btn-hover-flag-img text-center " href="promoteurs-tunis " aria-selected="true "
@@ -1555,97 +1909,94 @@
 			</div>
 		</div>
 	</div> -->
-	<ng-template #content let-modal>
-		<div class="modal-header">
-			<h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
-			<a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
-		</div>
-		<div class="modal-body">
-			<form>
-				<div class=" cardModal">
-					<div>
-						<label for="email" class="textInput">Email</label>
-						<input class="form-control inputDevis" type="email" name="email" placeholder="Votre Email">
-					</div><br>
-					<div>
-						<label for="Nom" class="textInput">Téléphone</label>
-						<input class="form-control inputDevis" type="text" [(ngModule)]="numText" name="Nom"
-							placeholder="Téléphone">
-					</div> <br>
-					<label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1" name="description"
-						rows="3"></textarea>
-					<br>
-					<!-- <div *ngFor="let agencies of Agency">
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
+		<a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class=" cardModal">
+				<div>
+					<label for="email" class="textInput">Email</label>
+					<input class="form-control inputDevis" type="email" name="email" placeholder="Votre Email">
+				</div><br>
+				<div>
+					<label for="Nom" class="textInput">Téléphone</label>
+					<input class="form-control inputDevis" type="text" [(ngModule)]="numText" name="Nom"
+						placeholder="Téléphone">
+				</div> <br>
+				<label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
+				<textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
+				<br>
+				<!-- <div *ngFor="let agencies of Agency">
 						<div *ngFor="let categorie of agencies?.produits">
 							<div *ngFor="let categories of categorie?.categoryList"> -->
-					<!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
-					<div class="example-button-row">
-						<a mat-raised-button style="border-color: #8B0000;
+				<!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
+				<div class="example-button-row">
+					<a mat-raised-button style="border-color: #8B0000;
 									background-color: #8B0000; color:aliceblue"
-							href="mailto:dcgeneral@gmail.com?subject=Sujet&body=num:{{numText}} Message:{{contactText}}">Valider</a>
-						<button type="button" class="btn btn-light" (click)="modal.close('Close click')">
-							Close
-						</button>
-						<!-- </div>
+						href="mailto:dcgeneral@gmail.com?subject=Sujet&body=num:{{numText}} Message:{{contactText}}">Valider</a>
+					<button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+						Close
+					</button>
+					<!-- </div>
 							</div>
 						</div> -->
-	  
-					</div>
-	  
+
 				</div>
-	  
-				<div class="modal-footer valider">
-	  
-				</div>
-			</form>
-		</div>
-	  </ng-template>
-	  <ng-template #content let-modal>
-		<div class="modal-header">
-			<br><br>
-			<h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
-			<a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
-		</div>
-		<div class="modal-body">
-			<form>
-				<div class="">
-					<div>
-						<label for="email" class="textInput">Email</label>
-						<input class="form-control inputDevis" type="email" name="email" placeholder="Votre Email">
-					</div><br>
-					<div>
-						<label for="Nom" class="textInput">Téléphone</label>
-						<input class="form-control inputDevis" type="text" [(ngModule)]="numText" name="Nom"
-							placeholder="Téléphone">
-					</div> <br>
-					<label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1" name="description"
-						rows="3"></textarea>
-					<br>
-					<!-- <div *ngFor="let agencies of Agency">
+
+			</div>
+
+			<div class="modal-footer valider">
+
+			</div>
+		</form>
+	</div>
+</ng-template>
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<br><br>
+		<h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
+		<a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class="">
+				<div>
+					<label for="email" class="textInput">Email</label>
+					<input class="form-control inputDevis" type="email" name="email" placeholder="Votre Email">
+				</div><br>
+				<div>
+					<label for="Nom" class="textInput">Téléphone</label>
+					<input class="form-control inputDevis" type="text" [(ngModule)]="numText" name="Nom"
+						placeholder="Téléphone">
+				</div> <br>
+				<label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
+				<textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
+				<br>
+				<!-- <div *ngFor="let agencies of Agency">
 						<div *ngFor="let categorie of agencies?.produits">
 							<div *ngFor="let categories of categorie?.categoryList"> -->
-					<!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
-					<div class="example-button-row">
-						<a mat-raised-button style="border-color: #8B0000;
+				<!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
+				<div class="example-button-row">
+					<a mat-raised-button style="border-color: #8B0000;
 									background-color: #8B0000; color:aliceblue"
-							href="mailto:dcgeneral@gmail.com?subject=Sujet&body=num:{{numText}} Message:{{contactText}}">Valider</a>
-						<a type="a" class="btn btn-light" (click)="modal.close('Close click')">
-							Close
-						</a>
-						<!-- </div>
+						href="mailto:dcgeneral@gmail.com?subject=Sujet&body=num:{{numText}} Message:{{contactText}}">Valider</a>
+					<a type="a" class="btn btn-light" (click)="modal.close('Close click')">
+						Close
+					</a>
+					<!-- </div>
 							</div>
 						</div> -->
-	  
-					</div>
-	  
+
 				</div>
-	  
-				<div class="modal-footer valider">
-	  
-				</div>
-			</form>
-		</div>
-	  </ng-template>
-	
+
+			</div>
+
+			<div class="modal-footer valider">
+
+			</div>
+		</form>
+	</div>
+</ng-template>

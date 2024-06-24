@@ -62,7 +62,6 @@ export class PromoteursBizerteComponent implements OnInit {
           return createdAtB - createdAtA;
         }
       });
-      console.log(this.AgenciesBizerte)
     })
   }
 

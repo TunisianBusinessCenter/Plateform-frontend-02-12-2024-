@@ -121,6 +121,13 @@ import { CoffeeListComponent } from './coffee-list/coffee-list.component';
 import { CoffeeListTunisComponent } from './coffee-list/coffee-list-tunis/coffee-list-tunis.component';
 import { CoffeeListSousseComponent } from './coffee-list/coffee-list-sousse/coffee-list-sousse.component';
 import { CoffeeDetailsComponent } from './coffee-details/coffee-details.component';
+import { CoffeeListMonastirComponent } from './coffee-list/coffee-list-monastir/coffee-list-monastir.component';
+import { CoffeeListMahdiaComponent } from './coffee-list/coffee-list-mahdia/coffee-list-mahdia.component';
+import { CoffeeListSfaxComponent } from './coffee-list/coffee-list-sfax/coffee-list-sfax.component';
+import { CoffeeListNabeulComponent } from './coffee-list/coffee-list-nabeul/coffee-list-nabeul.component';
+import { CoffeeListBizerteComponent } from './coffee-list/coffee-list-bizerte/coffee-list-bizerte.component';
+import { BoldParenthesesDirective } from './description-coffee/bold-parentheses.directive';
+
 
 
 
@@ -199,11 +206,17 @@ const routes: Routes = [
     CoffeeListComponent,
     CoffeeListTunisComponent,
     CoffeeListSousseComponent,
-    CoffeeDetailsComponent
-
+    CoffeeDetailsComponent,
+    CoffeeListMonastirComponent,
+    CoffeeListMahdiaComponent,
+    CoffeeListSfaxComponent,
+    CoffeeListNabeulComponent,
+    CoffeeListBizerteComponent,
+    BoldParenthesesDirective
   
   ],
   imports: [
+    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot(routes, { useHash: true }),

@@ -61,7 +61,6 @@ export class PromoteursTabarkaComponent implements OnInit {
           return createdAtB - createdAtA;
         }
       });
-      console.log(this.AgenciesTabarka)
     })
   }
 

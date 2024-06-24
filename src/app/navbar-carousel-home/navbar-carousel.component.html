@@ -10,6 +10,14 @@
 		<div class="picsum-img-wrapper">
 		
 
+			<img style="width: 100%" src="../../assets/images/HomePage/new-ban/5--PUB-PLATE-FORME--WEB.jpg" alt="Angular Carousel 2">
+
+		</div>
+	</ng-template>
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+		
+
 			<img style="width: 100%" src="../../assets/images/HomePage/new-ban/4--PUB-PLATE-FORME--WEB.jpg" alt="Angular Carousel 2">
 
 		</div>
@@ -71,7 +79,7 @@
 <div *ngIf="router.url !=='/home-algerie' && router.url !=='/home-maroc'
  && router.url !=='/home-lybia'&& router.url !=='/home-mauritanie'" class="imageCentreTunisien">
 
-	<img src="../../assets/images/tunisieimmob/LOGO-Tunisian.png" class="imgbannier" alt="logo plate forme">
+	<img (click)="redirect()" src="../../assets/images/tunisieimmob/LOGO-Tunisian.png" class="imgbannier" alt="logo plate forme">
 
 	<!-- <img [routerLink]="roleMateriaux ? ['/equipement'] :
 	 []" src="../../assets/images/tunisieimmob/LOGO-PLATE.png"

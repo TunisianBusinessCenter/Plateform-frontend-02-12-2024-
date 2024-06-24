@@ -129,7 +129,12 @@ this.agencyService.getAllAgencies().subscribe(data => {
       }
     });
   }
-  
+  redirect(): void {
+    this.router.navigate(['/home']).then(() => {
+      console.log('here')
+      window.location.reload();
+    });
+  }
 }
 
 

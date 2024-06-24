@@ -1,82 +1,357 @@
+<app-navbar-carousel></app-navbar-carousel>
 <div class="container">
-    <div class="responsive-container">
+
+    <!-- <div class="main-container" *ngIf="Agency?.role==='promoteur-immobilieres'"	 > -->
+
+<!-- <div class="main-container" *ngIf="Agency?.role==='promoteur-immobilieres'"	 > -->
+	<div class="main-container" 	 >
+		<nav class="main-menu">
+			<style>
+				.banner {
+				  text-align: center;
+				  padding: 10px;
+				  background-color: #434388; /* Set your desired background color */
+				  color: #fff; /* Set the text color */
+				  font-size: 16px; /* Adjust the font size */
+				}
+			  
+				.logo-container {
+				  text-align: center;
+				  padding: 10px;
+				  border-radius: 5%;
+				  overflow: hidden;
+				  background-color: #fff;
+				}
+			  
+				.logo-container img {
+				  max-width: 100%;
+				  height: auto;
+				  border-radius: 40%;
+				}
+			  
+				.hr {
+				  width: 20px;
+				  height: 20px;
+				  background-color: white;
+				}
+			  </style>
+			  
+			
+			<li>
+				<a  [routerLink]="'/agency/' + idAgence">
+					<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+	
+				
+                    <span class="nav-text" >
+                        {{agenceName}}
+
+        </span>
+				</a>
+			  
+			</li>
+		   
+		   <div>
+			<hr>
+      <hr>	<br>
+			
+			   <ul>
+			
+				<li *ngIf="idAgence">
+					<a  [routerLink]="'/agency/' + idAgence">
+						<i class="fa fa-home fa-2x"></i>
+						<span class="nav-text">
+							Page d'accueil 
+						</span>
+					</a>
+				  
+				</li>
+			   <li *ngIf="!idAgence">
+          <a>
+            <i class="fa fa-home fa-2x"></i>
+            <span class="nav-text">
+              Page d'accueil
+            </span>
+          </a>
+         </li>
+				<li class="dropdown">
+					<a >
+						<i class="fa fa-book fa-2x"></i>
+						<span class="nav-text">Nos Produits</span>
+					</a>
+					<!-- <div class="dropdown-content" >
+						<a *ngIf="ProjetEnCours.length > 0 || ProduitEnCours.length > 0">En cours</a>
+	
+						<div class="submenu" *ngFor="let project of ProjetEnCours">
+	
+							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="['/details', project.id]">
+								{{ project.name }}
+	
+							</a>
+						</div>
+	
+						<a *ngIf="ProjetDispo.length > 0">Disponible</a>
+						<div class="submenu" *ngFor="let project of ProjetDispo ; index as i">
+	
+							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="'/details/' + project.id">
+								{{ project.name }}
+	
+							</a>
+						</div>
+	
+					</div> -->
+					<div class="dropdown-content" >
+						<!-- <a *ngIf=" ProduitEnCours?.length > 0">Produits</a> -->
+	
+						<div class="submenu" *ngFor="let project of biens">
+	
+							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="['/agences-immob-details-plus', project.id]">
+								{{ project?.name }} 
+	
+							</a>
+						</div>
+						<!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
+	
+					</div>
+          
+				</li>
+				<style>
+					.show-subnav {  
+	    display: block;
+	}
+				</style>
+	
+				<!-- <li>
+					<a routerLink="/conception/ajouterConception">
+						<i class="fa fa-plus fa-2x"></i>
+						<span class="nav-text">Ajouter contenu </span>
+					</a>
+				</li> -->
+	
+				<li class="dropdown">
+					<a >
+						<i class="fa fa-envelope fa-2x"></i>
+						<span class="nav-text">Contacter nous</span>
+					</a>
+					
+				</li>
+				
+        <style>
+          /* Initially hide the dropdown content */
+          .dropdown-content {
+          
+            display: none;
+            position: absolute;
+            background-color: #1f1e84;
+            min-width: 42px;
+            width: 248px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 5;
+        
+          }
+          .dropdown-content > a {
+          margin: 0px 23px;
+          font-style: none;
+          transform-style: none;
+          color: yellow;
+          }
+          
+          /* Show the dropdown content when the parent is hovered */
+          .dropdown:hover .dropdown-content {
+          display: block;
+          }
+          
+          /* Style the dropdown options as blocks with margin */
+          .dropdown-content .submenu {
+          padding: 10px; /* Adjust the padding as needed */
+          }
+          
+          .dropdown-content .submenu a {
+          display: block;
+          font-size: 9px;
+          width: 222px;
+          margin: -7px 11px;
+          padding: 10px;
+          text-decoration: none;
+          color: white;
+          background-color: rgb(10, 10, 211)e84;
+          transition: background-color 0.3s;
+          border: solid 1px rgb(255 255 255 / 16%);
+          border-radius: 7px;
+          }
+          
+          /* Add a little margin between the dropdown options */
+          .dropdown-content .submenu a + a {
+          margin-top: 5px; /* Adjust the margin as needed */
+          
+          }
+          
+          /* Add hover effect */
+          .dropdown-content .submenu a {
+            font-size: 12px;
+            font-weight: bold;
+            transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease;
+          }
+          
+          .dropdown-content .submenu a:hover {
+              font-size: 13px;
+            color: yellow;
+            border: solid 1px gray;
+            font-weight: 600;
+        
+          }
+          
+          @media only screen and (max-width: 767px) {
+          
+          
+          .dropdown-content .submenu a:hover {
+            transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease; /* Add smooth transition for both background color and font size */
+          
+          }
+          }
+          </style>			
+          
+				
+	
+	
+			  
+			   
+				<li>
+					<a >
+						<i class="fa fa-info-circle fa-2x"></i>
+						<span class="nav-text">
+							A propos
+						</span>
+					</a>
+				  
+				</li>
+			 
+			</ul>
+		   </div>
+		
+			<!-- <ul class="logout">
+				<li>
+				   <a routerLink="conception/login">
+						 <i class="fa fa-power-off fa-2x"></i>
+						<span class="nav-text">
+							Logout
+						</span>
+					</a>
+				</li>  
+			</ul> -->
+		
+		</nav>
+		
+	</div>
 
 
-        <div class="responsive">
 
 
-            <button (click)="backClicked()" type="submit" class="btn animated-border-button retour">
-                <i class="fa fa-home" aria-hidden="true"></i>
-                Retour
-                </button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="container">
+        <div class="responsive-container">
+
+
+            <div class="responsive">
+
+
+                <button (click)="backClicked()" type="submit" class="btn animated-border-button retour">
+                    <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
+                    Retour
+                </button>&nbsp;&nbsp;&nbsp;&nbsp;   
+                <br>           
+            </div>
         </div>
-    </div>
-    <br>
-    <br>
-    <br>
-    <div>
-        <h3 class="titreDesc">{{sousBiens?.name}}</h3>
-    </div>
-    <div class="row cards">
-        <div class="cardx" style="display: flex;" *ngFor="let imagelist of sousBiens?.imagesList">
-            <p-image class="imageDesc" src="{{imagelist}}" alt="Image" width="300" [preview]="true">
-            </p-image>
-        </div>
-    </div>
 
-    <div  *ngIf="sousBiens.description">
+        <div>
+            <h3 class="titreDesc">{{sousBiens?.name}}</h3>
+        </div>
+
+        
+        <div class="descriptionAgence">
+            <h2 class="titleAgence">Description</h2><br>
+            <h4>{{sousBiens?.description}}</h4>
+        </div>
+        <div class="row cards p" >
+            <div class="cardx" style="display: flex;
+        text-align: center;
+        flex-direction: row-reverse;
+        flex-wrap: wrap;
+        justify-content: flex-start;" *ngFor="let imagelist of sousBiens?.imagesList">
+                <p-image class="imageDesc" src="{{imagelist}}" alt="Image" width="300" [preview]="true">
+                </p-image>
+            </div>
+        </div>
+
+        <!-- <div  *ngIf="sousBiens.description">
         <h3 class="titreDesc">Description</h3>
         <p class="paragrapheDesc">{{sousBiens?.description}}</p>
-    </div>
-  
-    <br><br>
+    </div> -->
 
 
-    <ng-template #content let-modal>
-        <div class="modal-header">
-            <h4 class="modal-title">Contactez nous</h4>
-            <a  class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
 
-        </div>
-        <div class="modal-body">
-            <form [formGroup]="FormData" (ngSubmit)="onSubmit(FormData.value)">
-                <div class="card cardModal">
-                    <div>
-                        <label for="email" class="textInput">Email</label>
-                        <input class="form-control inputDevis" type="email" name="email" formControlName="Email"
-                            placeholder="Votre Email">
-                    </div><br>
-                    <div>
-                        <label for="Nom" class="textInput">Téléphone</label>
-                        <input class="form-control inputDevis" type="text" name="Nom" formControlName="Nom"
-                            placeholder="Téléphone">
-                    </div> <br>
-                    <label for="exampleFormControlTextarea1" class="textInput">Message</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
-                        formControlName="description" rows="3"></textarea>
-                    <br>
-                    <div>
-                    <button  type="submit" class="btn  btnValide">Valider</button>
-                <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
-                    Close
-                </button>
+        <ng-template #content let-modal>
+            <div class="modal-header">
+                <h4 class="modal-title">Contactez nous</h4>
+                <a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
+
             </div>
-                </div>
-               
-                
+            <div class="modal-body">
+                <form [formGroup]="FormData" (ngSubmit)="onSubmit(FormData.value)">
+                    <div class="card cardModal">
+                        <div>
+                            <label for="email" class="textInput">Email</label>
+                            <input class="form-control inputDevis" type="email" name="email" formControlName="Email"
+                                placeholder="Votre Email">
+                        </div><br>
+                        <div>
+                            <label for="Nom" class="textInput">Téléphone</label>
+                            <input class="form-control inputDevis" type="text" name="Nom" formControlName="Nom"
+                                placeholder="Téléphone">
+                        </div> <br>
+                        <label for="exampleFormControlTextarea1" class="textInput">Message</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
+                            formControlName="description" rows="3"></textarea>
+                        <br>
+                        <div>
+                            <button type="submit" class="btn  btnValide">Valider</button>
+                            <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+                                Close
+                            </button>
+                        </div>
+                    </div>
 
-            </form>
-        </div>
 
-    </ng-template>
 
- 
+                </form>
+            </div>
 
-    <button class="btn  mb-2 me-2 btnContact" (click)="openVerticallyCentered(content)">
-        Contactez-nous
-    </button>
+        </ng-template>
 
-    <!-- <p-button style="float:right;" (click)="showMaximizableDialog()" icon="pi pi-external-link" label="Contactez nous">
+
+
+
+
+
+        <!-- <p-button style="float:right;" (click)="showMaximizableDialog()" icon="pi pi-external-link" label="Contactez nous">
     </p-button>
     <p-dialog header="Contactez nous" [(visible)]="displayMaximizable" [modal]="true" [style]="{ width: '40vw' }"
         [maximizable]="true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
@@ -120,7 +395,7 @@
 
 
 
-    <!--      
+        <!--      
     <a routerLink="/devisProduit" class="btnLink" style="text-decoration:none;">
         <button class="btn btnDevis">
          
@@ -129,44 +404,186 @@
         </button>
       </a> 
     -->
-</div>
-<br><br>
-<br><br>
+    </div>
 
-<div class="tunsian-flag-img-background " style="height: -170; ">
 
-    <div class="btn-toolbar " role="toolbar " aria-label="Toolbar with button groups ">
-        <div class="btn-group mr-2 " role="group " aria-label="First group ">
-            <a class="btn-hover-flag-img text-center  " href="promoteurs-tunis " aria-selected="true "
-                style="line-height: 1.5;"><span>Promoteurs </span><br><span> Immobiliers </span></a>
-        </div>
-        <div class="btn-group mr-2 " role="group " aria-label="Second group ">
-            <a class="btn-hover-flag-img text-center " href="equipement " aria-selected="true "
-                style="line-height: 1.5;"><span>Materiaux </span><br><span> de construction </span></a>
-        </div>
+    <div class="tunsian-flag-img-background " style="height: -170; ">
 
-        <div class="btn-group mr-2 " role="group " aria-label="Third group ">
-            <a class="btn-hover-flag-img text-center  " href="agence-immob-tunis" aria-selected="true "
-                style="line-height: 1.5;"><span>Agences </span><br><span> Immobilières</span></a>
-        </div>
-        <div class="btn-group mr-2 "
-        role="group "
-        aria-label="Third group ">
-        <a class="btn-hover-flag-img text-center  "
-        href="meilleurs-bien-sousse"
-          aria-selected="true "
-          style="line-height: 1.5;">
-          <span>Selection Des</span> 
-          <br>
-          <span>Meilleurs Biens</span>
-        </a>
-      </div>
-        <div class="btn-group mr-2 " role="group " aria-label="Fourth group ">
-            <a class="btn-hover-flag-img text-center" href="agences-de-services" aria-selected="true "
-                style="line-height: 1.5;"> <span>Décoration</span><br> <span> Services et Arts</span> </a>
+        <div class="btn-toolbar " role="toolbar " aria-label="Toolbar with button groups ">
+            <div class="btn-group mr-2 " role="group " aria-label="First group ">
+                <a class="btn-hover-flag-img text-center  " href="promoteurs-tunis " aria-selected="true "
+                    style="line-height: 1.5;"><span>Promoteurs </span><br><span> Immobiliers </span></a>
+            </div>
+            <div class="btn-group mr-2 " role="group " aria-label="Second group ">
+                <a class="btn-hover-flag-img text-center " href="equipement " aria-selected="true "
+                    style="line-height: 1.5;"><span>Materiaux </span><br><span> de construction </span></a>
+            </div>
+
+            <div class="btn-group mr-2 " role="group " aria-label="Third group ">
+                <a class="btn-hover-flag-img text-center  " href="agence-immob-tunis" aria-selected="true "
+                    style="line-height: 1.5;"><span>Agences </span><br><span> Immobilières</span></a>
+            </div>
+            <div class="btn-group mr-2 " role="group " aria-label="Third group ">
+                <a class="btn-hover-flag-img text-center  " href="meilleurs-bien-sousse" aria-selected="true "
+                    style="line-height: 1.5;">
+                    <span>Selection Des</span>
+                    <br>
+                    <span>Meilleurs Biens</span>
+                </a>
+            </div>
+            <div class="btn-group mr-2 " role="group " aria-label="Fourth group ">
+                <a class="btn-hover-flag-img text-center" href="agences-de-services" aria-selected="true "
+                    style="line-height: 1.5;"> <span>Décoration</span><br> <span> Services et Arts</span> </a>
+            </div>
         </div>
     </div>
-</div>
-<br><br>
+    <br><br>
 
+    <br><br>
+
+
+
+
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            /* margin: 0; */
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1,
+        h2 {
+            font: inherit;
+        }
+
+        body {
+            font: 16px/1.2 'Poppins', sans-serif;
+            background:
+                linear-gradient(45deg, hsl(236, 100%, 80%, .4), rgba(205, 155, 225, .3));
+        }
+
+        .gallery {
+            --anim-time--hi: 266ms;
+            --anim-time--med: 400ms;
+            --anim-time--lo: 600ms;
+
+            display: flex;
+            place-content: center;
+            max-width: clamp(30rem, 95%, 50rem);
+            width: max(22.5rem, 100%);
+            min-height: 100vh;
+            margin-inline: auto;
+            padding: clamp(0px, (30rem - 100vw) * 9999, 1rem);
+
+        }
+
+        .gallery__content--flow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .gallery__content--flow>* {
+            flex-grow: 1;
+            flex-basis: calc((30rem - 100% - 1rem) * 999);
+        }
+
+        figure {
+            display: flex;
+            min-width: 14rem;
+            max-height: 16rem;
+            position: relative;
+            border-radius: .35rem;
+            box-shadow:
+                rgb(40, 40, 40, 0.1) 0px 2px 3px,
+                rgb(20, 20, 20, 0.2) 0px 5px 8px,
+                rgb(0, 0, 0, 0.25) 0px 10px 12px;
+            overflow: hidden;
+            transition: transform var(--anim-time--med) ease;
+        }
+
+        figure::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top,
+                    hsla(0, 0%, 0%, 0.8) 0%,
+                    hsla(0, 0%, 0%, 0.7) 12%,
+                    hsla(0, 0%, 0%, 0.2) 41.6%,
+                    hsla(0, 0%, 0%, 0.125) 50%,
+                    hsla(0, 0%, 0%, 0.01) 59.9%,
+                    hsla(0, 0%, 0%, 0) 100%);
+            opacity: 0;
+            transition-property: opacity, transform;
+            transition-duration: var(--anim-time--med), var(--anim-time--med);
+            transition-timing-function: ease, ease;
+            z-index: 4;
+        }
+
+        .header__caption {
+            z-index: 10;
+            position: absolute;
+            display: inline-flex;
+            flex-direction: column;
+            align-self: flex-end;
+            width: 100%;
+            gap: 0.5rem;
+            padding: 1rem;
+            justify-content: center;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform var(--anim-time--hi) linear,
+                opacity var(--anim-time--hi) linear;
+        }
+
+        figure:hover::before {
+            opacity: 0.8;
+        }
+
+        figure:hover .header__caption {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        figure:hover img {
+            transform: scale(1);
+        }
+
+        .title {
+            color: #fff;
+
+        }
+
+        .title--primary {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .title--secondary {
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+            height: 100%;
+            transform: scale(1.15);
+            aspect-ratio: 16 / 13;
+            transition: 400ms ease-in-out;
+        }
+    </style>
+</div>
+<style>
+    .container {
+        width: 75%;
+        /* height :50%;
+        background: red; */
+    }
+</style>
 <br><br>

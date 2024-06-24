@@ -166,7 +166,6 @@ export class HomeComponent implements OnInit {
 
     this.agencieService.getAllAgencies().subscribe((data: any) => {
       this.allAgencies = data
-      // console.log('cc', this.allAgencies)
       this.allAgencies1 = data
     })
 
@@ -187,11 +186,10 @@ export class HomeComponent implements OnInit {
       for (let linkBook of this.Magazine) {
         if (linkBook.id === 3933) {
           this.linkFBook = linkBook.flip_book_link
-          console.log("test link", this.linkFBook)
+       
         }
       }
       this.firstMagazin = this.Magazine[0]
-      console.log("this is my magazin", this.Magazine[0])
 
     });
 
@@ -221,11 +219,11 @@ export class HomeComponent implements OnInit {
     this.agencieService.getAllAgencies().subscribe((data: any) => {
       this.allAgencies = data
     })
-    console.log("listAgence")
+
   }
   tableListBoxSelectEvent(event) {
-    console.log('this.choosenTable >> ' + JSON.stringify(event));
-    console.log('this.choosenTable >> ' + JSON.stringify(event.value));
+    // console.log('this.choosenTable >> ' + JSON.stringify(event));
+    // console.log('this.choosenTable >> ' + JSON.stringify(event.value));
   }
 
   Search() {
@@ -340,7 +338,7 @@ export class HomeComponent implements OnInit {
   getDataFromLocalStorage6(): void {
     const data = localStorage.getItem('clicks6');
     this.dataFromLocalStorage = JSON.parse(data) || [];
-    console.log(data)
+    // console.log(data)
   }
   getLastItemFromData6(): any {
     if (this.dataFromLocalStorage.length > 0) {
@@ -351,7 +349,7 @@ export class HomeComponent implements OnInit {
   getDataFromLocalStorage7(): void {
     const data = localStorage.getItem('clicks6');
     this.dataFromLocalStorage = JSON.parse(data) || [];
-    console.log(data)
+    // console.log(data)
   }
   getLastItemFromData7(): any {
     if (this.dataFromLocalStorage.length > 0) {
@@ -362,7 +360,7 @@ export class HomeComponent implements OnInit {
   getDataFromLocalStorage8(): void {
     const data = localStorage.getItem('clicks6');
     this.dataFromLocalStorage = JSON.parse(data) || [];
-    console.log(data)
+    // console.log(data)
   }
   getLastItemFromData8(): any {
     if (this.dataFromLocalStorage.length > 0) {
@@ -391,8 +389,8 @@ export class HomeComponent implements OnInit {
     this.magazineservice.getMagazine().subscribe((data: any) => {
       this.agencies = data;
       const lastAgency = this.agencies[this.agencies.length - 1];
-      console.log(this.agencies); // Do something with the last agency
-      console.log(lastAgency); // Do something with the last agency
+      // console.log(this.agencies); 
+      // console.log(lastAgency);
 
     });
   }

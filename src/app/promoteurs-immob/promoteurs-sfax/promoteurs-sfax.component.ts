@@ -62,7 +62,6 @@ export class PromoteursSfaxComponent implements OnInit {
           return createdAtB - createdAtA;
         }
       });
-      console.log(this.AgenciesSfax)
     })
   }
 

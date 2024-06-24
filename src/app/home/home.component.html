@@ -21,6 +21,99 @@
 			</div>
 		</div>
 	</div>
+	<div class="box">
+		<div class="slick-slider arrows-inner nobile-bold-itali"
+			data-slick-options='{"slidesToShow": 3,"autoplay":false,"dots":true,"arrows":true,"responsive":[{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
+			<p-carousel [value]="Magazine" [numVisible]="4" [numScroll]="4" [circular]="true"
+				[responsiveOptions]="responsiveOptions" styleClass="custom-carousel">
+				<ng-template let-AgencyMagazine pTemplate="item">
+					<div class="product-item">
+						<div class="product-item-content">
+							<div>
+								<span style="margin-left: 0%; margin-bottom: 2%" class="badge badge-indigo">
+									Edition {{AgencyMagazine?.name}}
+								</span>
+								<div class="mb-3">
+									<img src={{AgencyMagazine?.imageUrl}} class="image" alt="The third slider"
+										class="product-image">
+								</div>
+								<div>
+									<!-- href="{{AgencyMagazine?.url}}" -->
+									<a type="submit"
+										style="margin-top: 2%; text-decoration:none;margin-top: -9px;margin-bottom: 20px;font-weight: 600;"
+										class="btn btn-primary " href="{{AgencyMagazine?.download_link}}">
+										Télecharger &nbsp; <i class="fa fa-download" aria-hidden="true"
+											style="margin-top: 3px;"></i>
+									</a>
+
+									<!-- <a *ngIf="AgencyMagazine?.name==='209'" type="submit"
+													style="margin-top: 2%; text-decoration:none;margin-top: -9px;margin-bottom: 20px;font-weight: 600;"
+													class="btn btn-primary " href="{{AgencyMagazine?.download_link}}"
+													(click)="incrementCounter5()">
+													Télecharger &nbsp; <i class="fa fa-download" aria-hidden="true"
+														style="margin-top: 3px;"></i>
+												</a>
+												<a *ngIf="AgencyMagazine?.name==='208'" type="submit"
+													style="margin-top: 2%; text-decoration:none;margin-top: -9px;margin-bottom: 20px;font-weight: 600;"
+													class="btn btn-primary " href="{{AgencyMagazine?.download_link}}"
+													(click)="incrementCounter1()">
+													Télecharger &nbsp; <i class="fa fa-download" aria-hidden="true"
+														style="margin-top: 3px;"></i>
+												</a>
+			
+			
+												<a *ngIf="AgencyMagazine?.name==='207'" type="submit"
+													style="margin-top: 2%; text-decoration:none;margin-top: -9px;margin-bottom: 20px;font-weight: 600;"
+													class="btn btn-primary " href="{{AgencyMagazine?.download_link}}"
+													(click)="incrementCounter2()">
+													Télecharger &nbsp; <i class="fa fa-download" aria-hidden="true"
+														style="margin-top: 3px;"></i>
+												</a>
+												<a *ngIf="AgencyMagazine?.name==='206'" type="submit"
+													style="margin-top: 2%; text-decoration:none;margin-top: -9px;margin-bottom: 20px;font-weight: 600;"
+													class="btn btn-primary " href="{{AgencyMagazine?.download_link}}"
+													(click)="incrementCounter3()">
+													Télecharger &nbsp; <i class="fa fa-download" aria-hidden="true"
+														style="margin-top: 3px;"></i>
+												</a>
+			
+			
+												<a *ngIf="AgencyMagazine?.name==='205'" type="submit"
+													style="margin-top: 2%; text-decoration:none;margin-top: -9px;margin-bottom: 20px;font-weight: 600;"
+													class="btn btn-primary " href="{{AgencyMagazine?.download_link}}"
+													(click)="incrementCounter4()">
+													Télecharger &nbsp; <i class="fa fa-download" aria-hidden="true"
+														style="margin-top: 3px;"></i>
+												</a>  -->
+
+
+									<a type="submit" style="margin-top: 2%;
+													text-decoration: none;
+													margin-top: -9px;
+													/* font-size: 14px; */
+													margin-bottom: 3px;
+													font-weight: 800;
+													background-color: #8B0000;
+													border: none;
+													" class="btn btn-primary" href="{{AgencyMagazine?.download_link}}">
+										N. Télechargement &nbsp;: {{AgencyMagazine?.nbr_telechargement}}
+									</a>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</ng-template>
+			</p-carousel>
+
+		</div>
+
+	</div>
+
 	<!-- <style>
 					:root{
 					--dark-blue: #1c2739;
@@ -266,7 +359,7 @@
 					<a class="btn-hover-flag-img-coffee text-center btn-coffee" href="coffeeListSousse" aria-selected="true">
 					<!-- <a class="btn-hover-flag-img-coffee text-center btn-coffee" aria-selected="true"> -->
 				
-						<span style="    font-size: 15px;
+						<span style="    font: 400 15px / 20px Roboto, Helvetica Neue, sans-serif;
 						">Cafés Et Restaurants</span>
 
 					</a>
@@ -299,8 +392,9 @@
 						class="btn btn-primary2" (click)="getAgencies()">Télécharger  &nbsp; 
 						<i class="fa fa-download" aria-hidden="true"style="margin-top: 3px;"></i>
 						</a> -->
-			<img src="../../assets/AFFICHE-CAFE-PUB-PLATE-FORME.jpg" class="catalogue" alt="imageOffre"
-				data-link="https://www.docdroid.net/HtLoDfE/edition-218-pdf" (click)="onImageClick()">
+			<img src="../../assets/coffee.jpg" class="catalogue" alt="imageOffre"
+				(click)="onImageClick()">
+				<!-- data-link="https://www.docdroid.net/HtLoDfE/edition-218-pdf" (click)="onImageClick()"> -->
 			<style>
 				.titleMag {
 					text-align: left;
@@ -367,107 +461,15 @@
 
 			</div>
 		</div>
-		<div class="box">
-			<div class="slick-slider arrows-inner nobile-bold-itali"
-				data-slick-options='{"slidesToShow": 3,"autoplay":false,"dots":true,"arrows":true,"responsive":[{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
-				<p-carousel [value]="Magazine" [numVisible]="4" [numScroll]="4" [circular]="true"
-					[responsiveOptions]="responsiveOptions" styleClass="custom-carousel">
-					<ng-template let-AgencyMagazine pTemplate="item">
-						<div class="product-item">
-							<div class="product-item-content">
-								<div>
-									<span style="margin-left: 0%; margin-bottom: 2%" class="badge badge-indigo">
-										Edition {{AgencyMagazine?.name}}
-									</span>
-									<div class="mb-3">
-										<img src={{AgencyMagazine?.imageUrl}} class="image" alt="The third slider"
-											class="product-image">
-									</div>
-									<div>
-										<!-- href="{{AgencyMagazine?.url}}" -->
-										<a type="submit"
-											style="margin-top: 2%; text-decoration:none;margin-top: -9px;margin-bottom: 20px;font-weight: 600;"
-											class="btn btn-primary " href="{{AgencyMagazine?.download_link}}">
-											Télecharger &nbsp; <i class="fa fa-download" aria-hidden="true"
-												style="margin-top: 3px;"></i>
-										</a>
-
-										<!-- <a *ngIf="AgencyMagazine?.name==='209'" type="submit"
-														style="margin-top: 2%; text-decoration:none;margin-top: -9px;margin-bottom: 20px;font-weight: 600;"
-														class="btn btn-primary " href="{{AgencyMagazine?.download_link}}"
-														(click)="incrementCounter5()">
-														Télecharger &nbsp; <i class="fa fa-download" aria-hidden="true"
-															style="margin-top: 3px;"></i>
-													</a>
-													<a *ngIf="AgencyMagazine?.name==='208'" type="submit"
-														style="margin-top: 2%; text-decoration:none;margin-top: -9px;margin-bottom: 20px;font-weight: 600;"
-														class="btn btn-primary " href="{{AgencyMagazine?.download_link}}"
-														(click)="incrementCounter1()">
-														Télecharger &nbsp; <i class="fa fa-download" aria-hidden="true"
-															style="margin-top: 3px;"></i>
-													</a>
-				
-				
-													<a *ngIf="AgencyMagazine?.name==='207'" type="submit"
-														style="margin-top: 2%; text-decoration:none;margin-top: -9px;margin-bottom: 20px;font-weight: 600;"
-														class="btn btn-primary " href="{{AgencyMagazine?.download_link}}"
-														(click)="incrementCounter2()">
-														Télecharger &nbsp; <i class="fa fa-download" aria-hidden="true"
-															style="margin-top: 3px;"></i>
-													</a>
-													<a *ngIf="AgencyMagazine?.name==='206'" type="submit"
-														style="margin-top: 2%; text-decoration:none;margin-top: -9px;margin-bottom: 20px;font-weight: 600;"
-														class="btn btn-primary " href="{{AgencyMagazine?.download_link}}"
-														(click)="incrementCounter3()">
-														Télecharger &nbsp; <i class="fa fa-download" aria-hidden="true"
-															style="margin-top: 3px;"></i>
-													</a>
-				
-				
-													<a *ngIf="AgencyMagazine?.name==='205'" type="submit"
-														style="margin-top: 2%; text-decoration:none;margin-top: -9px;margin-bottom: 20px;font-weight: 600;"
-														class="btn btn-primary " href="{{AgencyMagazine?.download_link}}"
-														(click)="incrementCounter4()">
-														Télecharger &nbsp; <i class="fa fa-download" aria-hidden="true"
-															style="margin-top: 3px;"></i>
-													</a>  -->
-
-
-										<a type="submit" style="margin-top: 2%;
-														text-decoration: none;
-														margin-top: -9px;
-														/* font-size: 14px; */
-														margin-bottom: 3px;
-														font-weight: 800;
-														background-color: #8B0000;
-														border: none;
-														" class="btn btn-primary" href="{{AgencyMagazine?.download_link}}">
-											N. Télechargement &nbsp;: {{AgencyMagazine?.nbr_telechargement}}
-										</a>
-
-									</div>
-
-								</div>
-
-							</div>
-
-						</div>
-
-					</ng-template>
-				</p-carousel>
-
-			</div>
-
-		</div>
-
+		
 		<br><br>
 
 
 	</main>
 	<div class="image visibiltyImage">
-		<img class="img-responsive center-block image1" mat-raised-button matTooltip="Obtenir une offre de financement"
+		<!-- <img class="img-responsive center-block image1" mat-raised-button matTooltip="Obtenir une offre de financement"
 			aria-label="Button that displays a tooltip when focused or hovered over" (click)="showMaximizableDialog1()"
-			src="../../assets/images/banque/Logo_TIJARI.jpg" style=" ">
+			src="../../assets/images/banque/Logo_TIJARI.jpg" style=" "> -->
 
 		<p-dialog [(visible)]="displayMaximizable1" [modal]="true" [maximizable]="true" [baseZIndex]="10000"
 			[draggable]="false" [resizable]="false">
@@ -557,10 +559,10 @@
 
 
 
-		<img class="img-responsive center-block width image1" mat-raised-button
+		<!-- <img class="img-responsive center-block width image1" mat-raised-button
 			matTooltip="Obtenir une offre de financement"
 			aria-label="Button that displays a tooltip when focused or hovered over" (click)="showMaximizableDialog3()"
-			src="../../assets/images/banque/Logo_ZITOUNA.jpg ">
+			src="../../assets/images/banque/Logo_ZITOUNA.jpg "> -->
 
 		<p-dialog [(visible)]="displayMaximizable3" [modal]="true" [maximizable]="true" [baseZIndex]="10000"
 			[draggable]="false" [resizable]="false">
@@ -648,10 +650,10 @@
 
 		</p-dialog>
 
-
+<!-- 
 		<img class="img-responsive center-block image1" mat-raised-button matTooltip="Obtenir une offre de financement"
 			aria-label="Button that displays a tooltip when focused or hovered over" (click)="showMaximizableDialog4()"
-			src="../../assets/images/banque/Logo_BIAT.jpg ">
+			src="../../assets/images/banque/Logo_BIAT.jpg "> -->
 
 		<p-dialog [(visible)]="displayMaximizable4" [modal]="true" [maximizable]="true" [baseZIndex]="10000"
 			[draggable]="false" [resizable]="false">
@@ -859,9 +861,9 @@
 
 
 
-		<img class="img-responsive center-block image1" mat-raised-button matTooltip="Obtenir une offre de financement"
+		<!-- <img class="img-responsive center-block image1" mat-raised-button matTooltip="Obtenir une offre de financement"
 			aria-label="Button that displays a tooltip when focused or hovered over" (click)="showMaximizableDialog2()"
-			src="../../assets/images/banque/Logo_HABITAT.jpg ">
+			src="../../assets/images/banque/Logo_HABITAT.jpg "> -->
 
 
 		<p-dialog [(visible)]="displayMaximizable2" [modal]="true" [maximizable]="true" [baseZIndex]="10000"

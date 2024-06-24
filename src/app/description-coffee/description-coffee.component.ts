@@ -1,11 +1,13 @@
 import { Component, ElementRef, Input, OnInit, ViewChild,Renderer2,HostListener } from '@angular/core';
 import { Location } from '@angular/common';
-import { ProduitsService } from '../services/produits/produits.service';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from '../services/contact/contact.service';
 import { AgenciesService } from '../services/agencies/agencies.service';
+import { ProduitsService } from '../services/produits/produits.service';
+import { SharedAgenceImmobilierService } from '../services/shared-agence-immobilier.service';
+import { CoffeeAgencyService } from '../services/coffee/coffee-agency.service';
 
 
 
@@ -43,6 +45,11 @@ export class DescriptionCoffeeComponent implements OnInit {
   ProjetId: any;
   ProjetDispo: any;
   routerIdLink: any;
+  modifiedText: string;
+  idCoffee: any;
+  mobile_apps: any;
+  ProjetEnCours: any;
+  coffeeMenu: any;
   constructor(private activatedRoute: ActivatedRoute,
     private produitService: ProduitsService,
     private _location: Location,
@@ -51,15 +58,22 @@ export class DescriptionCoffeeComponent implements OnInit {
     private builder: FormBuilder,
     private agencieService: AgenciesService,
     private renderer: Renderer2, private el: ElementRef,
-    private projetService:ProduitsService
+    private projetService:ProduitsService,
+    private coffeeService : CoffeeAgencyService
     ) { }
 
-  openVerticallyCentered(content) {
-    this.modalService.open(content, { centered: true });
-  }
-
+ 
   ngOnInit(): void {
-    
+this.idCoffee = this.coffeeService.getIdAgency()
+this.agencieService.getAgencieById(this.idCoffee).subscribe(data => {
+  this.Agency =data
+  // this.mobile_apps = this.Agency.mobile_apps[0]?.mobile_cover_image_url;
+
+  // this.ProjetEnCours =this.Agency?.projets.filter(project => project.status === 'EN COURS' || project.status === 'EN COURS ');
+  this.coffeeMenu =this.Agency?.produits
+
+
+}),
     this.agencieService.getAllMateriaux().subscribe((data: any[]) => {
       // Assuming data is an array of agencies
       console.log('foundAgency : ',data)
@@ -68,6 +82,26 @@ export class DescriptionCoffeeComponent implements OnInit {
       this.foundAgency=foundAgency?.mobile_apps[0]
       this.AgencyBaniere = this.foundAgency?.mobile_cover_image_url;
       console.log("AgencyBaniere", this.AgencyBaniere)
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
 
       this.agencieService.setAgencyBaniere(this.AgencyBaniere);
       console.log("agencyId", this.AgencyBaniere)
@@ -92,6 +126,7 @@ export class DescriptionCoffeeComponent implements OnInit {
         // Handle the case when the agency is not found
       }
     });
+   
     this.idSousCategorie = this.activatedRoute.snapshot.paramMap.get('id')
 
     this.produitService.getSousCategorieById(this.idSousCategorie).subscribe(Response => {
@@ -172,4 +207,35 @@ export class DescriptionCoffeeComponent implements OnInit {
   showMaximizableDialog() {
     this.displayMaximizable = true;
   }
+  
+  addLineBreaks(text: string): string {
+    if (text && text.includes('-')) {
+      // If the text contains '-', split the text at '-' and join with '<br>'
+      return text.split('-').join('<br>');
+    } else {
+      // If the text does not contain '-', return the original text
+      return text;
+    }
+    
+  }
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
+  }
+
+  getDescriptionWithLineBreaks(): string {
+    if (!this.SousCategorie || !this.SousCategorie.description) {
+      return '';
+    }
+    return this.SousCategorie.description.replace(/-/g, '<br>');
+  }
+  getDescriptionWithBoldText(): string {
+    if (!this.SousCategorie?.description) {
+      return '';
+    }
+    return this.SousCategorie.description
+      .replace(/\(([^)]+)\)/g, '<h4 style="margin: -22px 0 16px !important;">$1</h4>')
+      .replace(/-/g, '<br>');
+  }
+  
+  
 }

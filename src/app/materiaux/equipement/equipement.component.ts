@@ -61,6 +61,18 @@ export class EquipementComponent implements OnInit {
       console.log(this.MateriauxEquipement)
       this.filtredEquipement = this.MateriauxEquipement.reverse();
           console.log("reverce equipement",this.filtredEquipement)
+          this.filtredEquipement.sort((a: any, b: any) => {
+            // Extract the number from the beginning of the name
+            const numA = parseInt(a.name.match(/^\d+/));
+            const numB = parseInt(b.name.match(/^\d+/));
+            
+            // Handle cases where the number might not be present
+            if (isNaN(numA)) return 1;
+            if (isNaN(numB)) return -1;
+
+            return numA - numB;
+        });
+
     })
   }
 

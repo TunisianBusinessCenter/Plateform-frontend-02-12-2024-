@@ -2,11 +2,12 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, Renderer2, Hos
 import { DomSanitizer, Meta, SafeResourceUrl, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AgenciesService } from '../services/agencies/agencies.service';
-import { ProduitsService } from '../services/produits/produits.service';
-import { ProjetsService } from '../services/projets/projets.service';
 import { Location } from '@angular/common';
-import { ShareService } from '../services/share/share.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SharedAgenceImmobilierService } from '../services/shared-agence-immobilier.service';
+import { ProjetsService } from '../services/projets/projets.service';
+import { ProduitsService } from '../services/produits/produits.service';
+import { ShareService } from '../services/share/share.service';
 
 @Component({
   selector: 'app-agency',
@@ -95,9 +96,11 @@ export class AgencyComponent implements OnInit, AfterViewInit {
   ProduitVendu: any;
   sharedVariable: any;
   message: string;
+  agenceImmob: any;
 
 
   constructor(private activatedRoute: ActivatedRoute,
+    private sharedService:SharedAgenceImmobilierService,
     private agencieService: AgenciesService,
     private projetService: ProjetsService,
     private produitService: ProduitsService,
@@ -165,6 +168,7 @@ export class AgencyComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.setIdAgency()
     this.startSendingData()
     this.changeMetadata(
       "Property Listing Title",
@@ -181,6 +185,7 @@ export class AgencyComponent implements OnInit, AfterViewInit {
     this.agencieService.getAgencieById(this.idAgency).subscribe(data => {
       console.log(data)
       this.Agency = data;
+      this.agenceImmob = this.Agency?.biens
       this.AgencyP = this.Agency?.projets;
       console.log(this.AgencyP,'ici')
       console.log(this.Agency,'ici')
@@ -189,6 +194,8 @@ export class AgencyComponent implements OnInit, AfterViewInit {
         result = this.Agency.projets;
       } else if (this.Agency.produits && this.Agency.produits.length > 0) {
         result = this.Agency.produits;
+      } else if (this.Agency.biens && this.Agency.biens.length > 0) {
+        result = this.Agency.biens;
       } else {
         result = this.Agency.services;
       }
@@ -437,4 +444,24 @@ startSendingData() {
     this.agencieService.setSharedData(this.Agency.id);
   }, 1000); // 1000 milliseconds = 1 second
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+setIdAgency() {
+  this.sharedService.setIdAgency(this.idAgency);
+}
+
+
 }

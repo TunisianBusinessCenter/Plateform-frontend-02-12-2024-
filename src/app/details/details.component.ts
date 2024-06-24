@@ -1,12 +1,14 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AgenciesService } from '../services/agencies/agencies.service';
-import { ProjetsService } from '../services/projets/projets.service';
 import { Location } from '@angular/common';
 import { SelectItem } from 'primeng/api';
 import { VisitorCounterService } from '../services/VisitorCounter/visitor-counter.service';
 import * as moment from 'moment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { filter } from 'rxjs';
+import { ProjetsService } from '../services/projets/projets.service';
+import { SharedAgenceImmobilierService } from '../services/shared-agence-immobilier.service';
 
 interface Duree {
   name: string;
@@ -75,7 +77,7 @@ export class DetailsComponent implements OnInit {
   visitorCount: number;
   routeId: string;
   isValid: boolean; // Do not initialize here
- 
+
   agencyId: any;
   NameAgency: any;
   AgencyID: any;
@@ -94,13 +96,19 @@ export class DetailsComponent implements OnInit {
   ProduitVendu: any;
   website_url: any;
   facebook_url: any;
+  displayMaximizable1: boolean;
+  idForAgency: any;
+  IDAgency: any;
+  mobile_apps: any;
   constructor(private activatedRoute: ActivatedRoute,
     private agencieService: AgenciesService,
+    private sharedAgency:SharedAgenceImmobilierService,
     private projetService: ProjetsService,
     private _location: Location,
     private router: Router,
     private modalService: NgbModal,
     private visitorCounterService: VisitorCounterService) {
+
     this.items = [];
     for (let i = 0; i < 10000; i++) {
       this.items.push({ label: 'Item ' + i, value: 'Item ' + i });
@@ -113,55 +121,37 @@ export class DetailsComponent implements OnInit {
     ];
   }
 
+
   ngOnInit(): void {
+this.idForAgency =this.sharedAgency.getIdAgency()
 
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        console.log('NavigationEnd event:', event);
+        // Scroll to the top of the page
+        window.scrollTo(0, 0);
+      });
 
-    this.idAgency = this.activatedRoute.snapshot.paramMap.get('id')
+    // Rest of your initialization code...
 
-    this.agencieService.getAgencieById(this.routerIdLink).subscribe(data => {
+    this.agencieService.getAgencieById(this.idForAgency).subscribe((data) => {
       this.Agency = data;
-    
+      console.log('getAgencieById', this.Agency);
+      this.mobile_apps = this.Agency.mobile_apps[0]?.mobile_cover_image_url;
+
+      this.ProjetEnCours = this.Agency?.projets.filter(
+        (project) =>
+          project.status === 'EN COURS' || project.status === 'EN COURS '
+      );
+      this.ProjetDispo = this.Agency?.projets.filter(
+        (project) => project.status === 'DISPONIBLE'
+      );
     }),
-    this.agencieService.getAllAgencies().subscribe((data: any[]) => {
-      console.log('foundAgency : s',data)
-      let foundAgency = data.find(agency => agency.name === this.NameAgency);
-      console.log('foundAgency :',foundAgency)
-      this.foundAgency=foundAgency?.mobile_apps[0]
-      this.AgencyBaniere = this.foundAgency?.mobile_cover_image_url;
-      console.log("AgencyBaniere", this.AgencyBaniere)
 
-      this.agencieService.setAgencyBaniere(this.AgencyBaniere);
-      console.log("agencyId", this.AgencyBaniere)
+   
+    
 
-      if (foundAgency) {
-        this.agencyId = foundAgency.id;
-        this.description = foundAgency.description
-        this.logo_url = foundAgency.logo_url
-        this.facebook_url= foundAgency.facebook_url
-        this.website_url= foundAgency.website_url
-        // this.ProjetEnCours = foundAgency.description
-        this.ProjetEnCours = foundAgency?.projets.filter(project => project.status === 'EN COURS' || project.status === 'EN COURS ');
-        this.check =this.ProjetEnCours
-        console.log('disponible',this.check)
-        if (this.check) {
-          this.isValid= true; // Initialize it to false or true based on your initial condition
-          console.log('disponible',this.isValid)
-        } 
-        this.ProjetId=this.ProjetEnCours.id
-        console.log('cours',this.ProjetEnCours)
-        this.ProjetDispo = foundAgency?.projets.filter(project => project.status === 'DISPONIBLE' || project.status === 'Disponible');
-        this.ProduitVendu = foundAgency?.projets.filter(project => project.status === 'VENDU');
-        
-        console.log('dispo',this.ProjetDispo)
-        
-        console.log("Found Agency", this.agencyId);
-        this.routerIdLink = this.agencyId;
-      } else {
-        console.log("Agency not found");
-        // Handle the case when the agency is not found
-      }
-    });
-  
     //   this.agencieService.getAgencieTunis().subscribe((images: any) => {
 
     //     this.images = images;
@@ -171,7 +161,7 @@ export class DetailsComponent implements OnInit {
     this.projetService.getProjetById(this.idProjet).subscribe(data => {
       console.log(data)
       this.Projet = data;
-      this.NameAgency =this.Projet.agencyName
+      this.NameAgency = this.Projet.agencyName
     })
     this.projetService.getListProjet().subscribe((data) => {
       this.agenciesProjet = data;
@@ -206,12 +196,12 @@ export class DetailsComponent implements OnInit {
   }
   showMaximizableDialog() {
     this.displayMaximizable = true;
-  
+
 
   }
   showMaximizableDialog1() {
-    this.displayMaximizabled1 = true;
-  
+    this.displayMaximizable1 = true;
+
 
   }
 
@@ -239,33 +229,50 @@ export class DetailsComponent implements OnInit {
   }
   showSubMenu: boolean = false;
 
-    toggleSubMenu() {
-        this.showSubMenu = !this.showSubMenu;
-    }
-    refreshPage(): void {
-      // Add a delay of 2 seconds (2000 milliseconds) before reloading the page
-      setTimeout(() => {
-        location.reload();
-      }, 1000);
-    }
-    openVerticallyCentered(content) {
-      this.modalService.open(content, { centered: true });
-    }
-
-
-    displayDialog: boolean = false;
-    selectedImage: string = '';
-    openImageInDialog(imageUrl: string): void {
-    
-      if (this.isMobile()) {
-        this.selectedImage = imageUrl;
-        this.displayDialog = true;
-        console.log(this.selectedImage,imageUrl)
-      }
-    }
-    private isMobile(): boolean {
-      // Set a threshold for mobile screen width (adjust as needed)
-      const mobileScreenWidth = 768;
-      return window.innerWidth < mobileScreenWidth;
+  toggleSubMenu() {
+    this.showSubMenu = !this.showSubMenu;
   }
-  }  
+
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
+  }
+
+
+  displayDialog: boolean = false;
+  selectedImage: string = '';
+  openImageInDialog(imageUrl: string): void {
+
+    if (this.isMobile()) {
+      this.selectedImage = imageUrl;
+      this.displayDialog = true;
+      console.log(this.selectedImage, imageUrl)
+    }
+  }
+  private isMobile(): boolean {
+    // Set a threshold for mobile screen width (adjust as needed)
+    const mobileScreenWidth = 768;
+    return window.innerWidth < mobileScreenWidth;
+  }
+  navigateAndRefresh(project: any) {
+    // Extract the id from the project object
+    const projectId = project.id;
+
+    // Navigate to the specified route
+   
+    this.router.navigate(['/details', projectId])
+      .then(() => {
+        // If navigation is successful, call the refresh function
+        this.refresh();
+      });
+  }
+  refresh(): void {
+    this.router.navigateByUrl("/refreshPromo", { skipLocationChange: true }).then(() => {
+      console.log(decodeURI(this._location.path()));
+      this.router.navigate([decodeURI(this._location.path())]);
+
+      // Set timeout to call the refresh function again after 2 seconds
+
+    });
+  }
+  
+}  

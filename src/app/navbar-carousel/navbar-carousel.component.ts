@@ -65,7 +65,6 @@ agencyData: any;
   ngOnInit(): void {
     this.agencyService.AgencyBaniere$.subscribe((AgencyBaniere) => {
       // Log the AgencyBaniere data to the console
-      console.log('NavbarCarouselComponent - AgencyBaniere:', AgencyBaniere);
 
       // ... other logic with AgencyBaniere data
     });
@@ -73,7 +72,6 @@ agencyData: any;
     // ... other existing code
   
     this.getCurrentRouteAndGetData();
-    console.log('NavbarCarouselComponent - AgencyBaniere:', this.AgencyBaniere);
 
     // setTimeout(() => {
     //   this.getById();
@@ -102,9 +100,7 @@ this.agencyService.getAllAgencies().subscribe(data => {
 
     // Check if agence.id is equal to the targetId
     if (this.agenceID === targetId) {
-      console.log('Found agency with matching id:', this.agenceID);
       this.roleMateriaux = true;
-      console.log('tttttttttttttttttttttttttttttttttttttttttttttttttttttthis.roleMateriaux: ', this.roleMateriaux);
     
   }
 
@@ -130,7 +126,6 @@ this.agencyService.getAllAgencies().subscribe(data => {
     this.currentId = segments[segments.length - 1];
 
     // Log the ID to the console
-    console.log('Current ID:', this.currentId);
 
     // Construct the URL based on the current route
     const url = `${currentRoute}`;
@@ -154,11 +149,9 @@ this.agencyService.getAllAgencies().subscribe(data => {
     // Check if the current route contains "/agency/5494"
     if (currentRoute.includes('/agency/6033') )  {
       this.check=true
-      console.log('check works')
 
     } else {
       this.check=false
-      console.log('check works')
 
     }
 
@@ -217,13 +210,12 @@ this.agencyService.getAllAgencies().subscribe(data => {
     return this.imagesPromo[this.selectedImageIndex];
   }
   redirect(): void {
-    // Navigate to the home route
     this.router.navigate(['/home']).then(() => {
       console.log('here')
-      // Reload the current route to refresh the page
       window.location.reload();
     });
   }
+  
 }
 
 

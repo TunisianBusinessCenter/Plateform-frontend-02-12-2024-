@@ -46,7 +46,7 @@
 
 
         <li>
-            <a [routerLink]="'/agency/' + agencyId">
+            <a >
                 <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
 
                 <span class="nav-text">
@@ -62,8 +62,8 @@
 
             <ul>
 
-                <li *ngIf="agencyId">
-                    <a [routerLink]="'/agency/' + agencyId">
+                <li *ngIf="idAgency">
+                    <a [routerLink]="'/agency/' + idAgency">
                         <i class="fa fa-home fa-2x"></i>
                         <span class="nav-text">
                             Page d'accueil
@@ -72,7 +72,7 @@
 
                 </li>
               <li>
-                <a  *ngIf="!agencyId">
+                <a  *ngIf="!idAgency">
                     <i class="fa fa-home fa-2x"></i>
                     <span class="nav-text">
                            Page d'accueil
@@ -83,7 +83,8 @@
                 <li class="dropdown">
                     <a>
                         <i class="fa fa-book fa-2x"></i>
-                        <span class="nav-text">Nos Produits</span>
+
+                        <span class="nav-text">Nos Menus</span>
                     </a>
 
                     <div class="dropdown-content">
@@ -115,7 +116,7 @@
                 </li> -->
 
                 <li class="dropdown">
-                    <a>
+                    <a (click)="openVerticallyCentered(content)">
                         <i class="fa fa-envelope fa-2x"></i>
                         <span class="nav-text">Contacter nous</span>
                     </a>
@@ -254,7 +255,9 @@
                 <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
                 Retour
             </button>
-            
+            <!-- <button   type="submit" class="btn animated-border-button   retour "  style="background-color: red;">
+                id : {{ idAgency }}
+              </button> -->
         </div>
     </div>
 
@@ -321,9 +324,9 @@
                 <p-card class="">
                     <h6 class="textInfoX">{{SousCategorie?.name}}</h6>
                 </p-card> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <p-card class="">
+                <!-- <p-card class="">
                     <p class="textInfoX"> PRIX: A CONSULTER</p>
-                </p-card>&nbsp;&nbsp;
+                </p-card>&nbsp;&nbsp; -->
             </div>
 
 

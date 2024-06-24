@@ -66,7 +66,6 @@ export class PromoteursNabeulComponent implements OnInit {
           return createdAtB - createdAtA;
         }
       });
-      console.log(this.AgenciesNabeul)
     })
     this.primengConfig.ripple = true;
   }

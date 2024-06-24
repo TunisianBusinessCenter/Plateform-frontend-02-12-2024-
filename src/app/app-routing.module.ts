@@ -64,9 +64,15 @@ import { CoffeeListComponent } from './coffee-list/coffee-list.component';
 import { CoffeeListTunisComponent } from './coffee-list/coffee-list-tunis/coffee-list-tunis.component';
 import { CoffeeListSousseComponent } from './coffee-list/coffee-list-sousse/coffee-list-sousse.component';
 import { CoffeeDetailsComponent } from './coffee-details/coffee-details.component';
+import { CoffeeListMonastirComponent } from './coffee-list/coffee-list-monastir/coffee-list-monastir.component';
+import { CoffeeListMahdiaComponent } from './coffee-list/coffee-list-mahdia/coffee-list-mahdia.component';
+import { CoffeeListSfaxComponent } from './coffee-list/coffee-list-sfax/coffee-list-sfax.component';
+import { CoffeeListNabeulComponent } from './coffee-list/coffee-list-nabeul/coffee-list-nabeul.component';
+import { CoffeeListBizerteComponent } from './coffee-list/coffee-list-bizerte/coffee-list-bizerte.component';
 
 
 const appRoutes: Routes = [
+
   { path: 'home', component: HomeComponent },
   { path: 'privacy', component: PrivacyComponent },
   { path: 'details/:id', component: DetailsComponent , canActivate: [GardVisitorService]},
@@ -77,6 +83,11 @@ const appRoutes: Routes = [
 
   { path: 'coffeeListTunis', component: CoffeeListTunisComponent },
   { path: 'coffeeListSousse', component: CoffeeListSousseComponent },
+  { path: 'coffeeListMonastir', component: CoffeeListMonastirComponent },
+  { path: 'coffeeListMahdia', component: CoffeeListMahdiaComponent },
+  { path: 'coffeeListSfax', component: CoffeeListSfaxComponent },
+  { path: 'coffeeListNabeul', component: CoffeeListNabeulComponent },
+  { path: 'coffeeListBizerte', component: CoffeeListBizerteComponent },
   { path: 'villa-details/:id', component: VillaDetailsComponent },
   { path: 'villa-exemple/:id', component: VillaExempleComponent },
   { path: 'details-materiaux/:id', component: DetailsMateriauxComponent },
@@ -138,6 +149,10 @@ const appRoutes: Routes = [
   {path:'home-lybia', component:HomeLybiaComponent},
   {path:'home-mauritanie', component:HomeMauritanieComponent},
  {path: 'telechargement', component:TelechargementComponent},
+ {path:"refresh",component:AgencesImmobDetailsPlusComponent},
+ {path:"refreshPromo",component:DetailsComponent},
+ {path:"refreshMat",component:DetailsMateriauxComponent},
+ {path:"refreshcafe",component:CoffeeDetailsComponent}
 
 
 ];

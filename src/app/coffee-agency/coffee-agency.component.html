@@ -1,224 +1,234 @@
-
 <!-- <div class="main-container" *ngIf="Agency?.role==='promoteur-immobilieres'"	 > -->
 
-	<div class="main-container" 	 >
-		<nav class="main-menu">
-			<style>
-				.banner {
-				  text-align: center;
-				  padding: 10px;
-				  background-color: #434388; /* Set your desired background color */
-				  color: #fff; /* Set the text color */
-				  font-size: 16px; /* Adjust the font size */
-				}
-			  
-				.logo-container {
-				  text-align: center;
-				  padding: 10px;
-				  border-radius: 5%;
-				  overflow: hidden;
-				  background-color: #fff;
-				}
-			  
-				.logo-container img {
-				  max-width: 100%;
-				  height: auto;
-				  border-radius: 40%;
-				}
-		  
-				hr {
-				  width: 20px;
-				  height: 20px;
-				  background-color: white;
-				}
-			  </style>
-			  
-		
-			
-			<li>
-				<a  >
-					<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
-	
-					<span class="nav-text">
-									<p>{{ Agency?.name }}</p>
-	
-					</span>
-				</a>
-			  
-			</li>
-		   
-		   <div>
-	
-			
-			   <ul>
-			
+<div class="main-container">
+	<nav class="main-menu">
+		<style>
+			.banner {
+				text-align: center;
+				padding: 10px;
+				background-color: #434388;
+				/* Set your desired background color */
+				color: #fff;
+				/* Set the text color */
+				font-size: 16px;
+				/* Adjust the font size */
+			}
+
+			.logo-container {
+				text-align: center;
+				padding: 10px;
+				border-radius: 5%;
+				overflow: hidden;
+				background-color: #fff;
+			}
+
+			.logo-container img {
+				max-width: 100%;
+				height: auto;
+				border-radius: 40%;
+			}
+
+			hr {
+				width: 20px;
+				height: 20px;
+				background-color: white;
+			}
+		</style>
+
+
+
+		<li>
+			<a>
+				<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+
+				<span class="nav-text">
+					<p>{{ Agency?.name }}</p>
+
+				</span>
+			</a>
+
+		</li>
+
+		<div>
+
+
+			<ul>
+
 				<li>
-					<a >
+					<a>
 						<i class="fa fa-home fa-2x"></i>
 						<span class="nav-text">
-							Page d'accueil 
+							Page d'accueil
 						</span>
 					</a>
-				  
+
 				</li>
-			   
+
 				<li class="dropdown">
-					<a >
-						<i class="fa fa-book fa-2x"></i>
-						<span class="nav-text" *ngIf="Agency?.role!=='materiaux-construction'   && Agency?.role!=='agence-service' " >Nos projets</span>
-						<span *ngIf="Agency?.role==='materiaux-construction' && ProduitEnCours.length > 0" class="nav-text">Nos produits</span>
-						<span *ngIf="Agency?.role==='agence-service' && ProduitEnCours.length > 0" class="nav-text">Nos Menus</span>
-						
+					<a>
+						<i class="fa fa-coffee fa-2x"></i>
+
+						<span class="nav-text">Nos Menus</span>
+
+
 					</a>
-					<div class="dropdown-content" >
+					<div class="dropdown-content">
 						<a *ngIf="ProjetEnCours.length > 0 ">En cours</a>
-	
+
 						<div class="submenu" *ngFor="let project of ProjetEnCours">
-	
-							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="['/details', project.id]">
+
+							<a style="background-color: #1e466e59;" (click)="refreshPage()"
+								[routerLink]="['/details', project.id]">
 								{{ project.name }}
-	
+
 							</a>
 						</div>
 						<!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
-	
+
 						<a *ngIf="ProjetDispo.length > 0">Disponible</a>
 						<div class="submenu" *ngFor="let project of ProjetDispo ; index as i">
-	
-							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="'/details/' + project.id">
+
+							<a style="background-color: #1e466e59;" (click)="refreshPage()"
+								[routerLink]="'/details/' + project.id">
 								{{ project.name }}
-	
+
 							</a>
 						</div>
 						<a *ngIf="ProduitVendu.length > 0">Vendu</a>
 						<div class="submenu" *ngFor="let project of ProduitVendu ; index as i">
-	
-							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="'/details/' + project.id">
+
+							<a style="background-color: #1e466e59;" (click)="refreshPage()"
+								[routerLink]="'/details/' + project.id">
 								{{ project.name }}
-	
+
 							</a>
 						</div>
-	
+
 					</div>
 					<div class="dropdown-content" *ngIf="Agency?.role==='materiaux-construction'">
 						<!-- <a *ngIf=" ProduitEnCours.length > 0">Produits</a> -->
-	
+
 						<div class="submenu" *ngFor="let project of ProduitEnCours">
-	
-							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="['/coffee-details', project.id]">
+
+							<a style="background-color: #1e466e59;" (click)="refreshPage()"
+								[routerLink]="['/coffee-details', project.id]">
 								{{ project.name }}
-	
+
 							</a>
 						</div>
 						<!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
-	
+
 					</div>
-				
+
 				</li>
 				<style>
 					.show-subnav {
-	display: block;
-	}
+						display: block;
+					}
 				</style>
-	
+
 				<!-- <li>
 					<a routerLink="/conception/ajouterConception">
 						<i class="fa fa-plus fa-2x"></i>
 						<span class="nav-text">Ajouter contenu </span>
 					</a>
 				</li> -->
-	
+
 				<li class="dropdown">
 					<!-- <a routerLink="/conception/registre"> -->
 					<a (click)="openVerticallyCentered(content)">
 						<i class="fa fa-envelope fa-2x"></i>
 						<span class="nav-text">Contacter nous</span>
 					</a>
-					
+
 				</li>
-				
-				
-	<style>
-	/* Initially hide the dropdown content */
-	.dropdown-content {
-	
-		display: none;
-    position: absolute;
-    background-color: #1f1e84;
-    min-width: 42px;
-    width: 248px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 5;
 
-	}
-	.dropdown-content > a {
-	margin: 0px 23px;
-	font-style: none;
-	transform-style: none;
-	color: yellow;
-	}
-	
-	/* Show the dropdown content when the parent is hovered */
-	.dropdown:hover .dropdown-content {
-	display: block;
-	}
-	
-	/* Style the dropdown options as blocks with margin */
-	.dropdown-content .submenu {
-	padding: 10px; /* Adjust the padding as needed */
-	}
-	
-	.dropdown-content .submenu a {
-	display: block;
-	font-size: 9px;
-	width: 222px;
-	margin: -7px 11px;
-	padding: 10px;
-	text-decoration: none;
-	color: white;
-	background-color: rgb(10, 10, 211)e84;
-	transition: background-color 0.3s;
-	border: solid 1px rgb(255 255 255 / 16%);
-	border-radius: 7px;
-	}
-	
-	/* Add a little margin between the dropdown options */
-	.dropdown-content .submenu a + a {
-	margin-top: 5px; /* Adjust the margin as needed */
-	
-	}
-	
-	/* Add hover effect */
-	.dropdown-content .submenu a {
-		font-size: 12px;
-    font-weight: bold;
-    transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease;
-	}
-	
-	.dropdown-content .submenu a:hover {
-	    font-size: 13px;
-    color: yellow;
-    border: solid 1px gray;
-    font-weight: 600;
 
-	}
-	
-	@media only screen and (max-width: 767px) {
-	
-	
-	.dropdown-content .submenu a:hover {
-		transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease; /* Add smooth transition for both background color and font size */
-	
-	}
-	}
-	</style>			
-	
-			
+				<style>
+					/* Initially hide the dropdown content */
+					.dropdown-content {
 
-	
-	
-			  
-			   
+						display: none;
+						position: absolute;
+						background-color: #1f1e84;
+						min-width: 42px;
+						width: 248px;
+						box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+						z-index: 5;
+
+					}
+
+					.dropdown-content>a {
+						margin: 0px 23px;
+						font-style: none;
+						transform-style: none;
+						color: yellow;
+					}
+
+					/* Show the dropdown content when the parent is hovered */
+					.dropdown:hover .dropdown-content {
+						display: block;
+					}
+
+					/* Style the dropdown options as blocks with margin */
+					.dropdown-content .submenu {
+						padding: 10px;
+						/* Adjust the padding as needed */
+					}
+
+					.dropdown-content .submenu a {
+						display: block;
+						font-size: 9px;
+						width: 222px;
+						margin: -7px 11px;
+						padding: 10px;
+						text-decoration: none;
+						color: white;
+						background-color: rgb(10, 10, 211)e84;
+						transition: background-color 0.3s;
+						border: solid 1px rgb(255 255 255 / 16%);
+						border-radius: 7px;
+					}
+
+					/* Add a little margin between the dropdown options */
+					.dropdown-content .submenu a+a {
+						margin-top: 5px;
+						/* Adjust the margin as needed */
+
+					}
+
+					/* Add hover effect */
+					.dropdown-content .submenu a {
+						font-size: 12px;
+						font-weight: bold;
+						transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+					}
+
+					.dropdown-content .submenu a:hover {
+						font-size: 13px;
+						color: yellow;
+						border: solid 1px gray;
+						font-weight: 600;
+
+					}
+
+					@media only screen and (max-width: 767px) {
+
+
+						.dropdown-content .submenu a:hover {
+							transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+							/* Add smooth transition for both background color and font size */
+
+						}
+					}
+				</style>
+
+
+
+
+
+
+
 				<li style="cursor: pointer;" class="dropdown">
 					<a (click)="showMaximizableDialog()">
 						<i class="fa fa-info-circle fa-2x"></i>
@@ -226,13 +236,13 @@
 							A propos
 						</span>
 					</a>
-				  
+
 				</li>
-			 
+
 			</ul>
-		   </div>
-		
-			<!-- <ul class="logout">
+		</div>
+
+		<!-- <ul class="logout">
 				<li>
 				   <a routerLink="conception/login">
 						 <i class="fa fa-power-off fa-2x"></i>
@@ -242,163 +252,153 @@
 					</a>
 				</li>  
 			</ul> -->
-			&nbsp;
-		</nav>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<app-navbar-carousel [AgencyBaniere]="this.AgencyBaniere"></app-navbar-carousel>
-	
-	
-	
-	<div class="carous-boutique" >
-		<div class="agency-responsive" [ngClass]="{'block-display': !isDesktop}">
-	
-				<div class="col cadre">
-					<div class="Card-logo ">
-						<img class="rounded-lg border card-img" src="{{ Agency?.logo_url }}" alt="Eco house company">
-						<!-- <div class="aproposAnachor " (click)="showMaximizableDialog()"><span><i class="pi pi-info-circle "></i>À PROPOS</span></div> -->
-	<!-- 
+		&nbsp;
+	</nav>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<app-navbar-carousel [AgencyBaniere]="this.AgencyBaniere"></app-navbar-carousel>
+
+
+
+<div class="carous-boutique">
+	<div class="agency-responsive" [ngClass]="{'block-display': !isDesktop}">
+
+		<div class="col cadre">
+			<div class="Card-logo ">
+				<img class="rounded-lg border card-img" src="{{ Agency?.logo_url }}" alt="Eco house company">
+				<!-- <div class="aproposAnachor " (click)="showMaximizableDialog()"><span><i class="pi pi-info-circle "></i>À PROPOS</span></div> -->
+				<!-- 
 						<p-button (click)="showMaximizableDialog()" icon="pi pi-info-circle" label="À PROPOS" ></p-button> -->
-						<p-button (click)="showMaximizableDialog()"  icon="pi pi-info-circle" label="À PROPOS"></p-button>
-	
-					</div>
-					<p-dialog   class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"  [style]="{width: '85vw', 'margin-left': '50px'}"
-					[maximizable]="true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
-					<div class="row modalTheme">
-						<div class="col-md-4">
-							<img class="rounded-lg border card-img-modal" src="{{ Agency?.logo_url }}" alt="Eco house company">
-						</div>
-						<div class="col-md-8">
-							<p class="scrollable-paragraph" id="agencyDescription">{{ Agency.description }}</p>
-						</div>
-					</div>
-					
-					<style>
-						.modalTheme {
-							/* Add your modal styling here */
-						}
-					
-						.scrollable-paragraph {
-							line-height: 1.5;
-							max-height: 325px; /* Set a maximum height for the paragraph to enable scrolling */
-							overflow-y: auto; /* Enable vertical scrolling if content overflows */
-							white-space: pre-line; /* Preserve newlines and line breaks */
-						}
-					</style>
-					
-					<script>
-						// JavaScript to add line breaks at points (.) with a space before it in the description
-						document.addEventListener("DOMContentLoaded", function () {
-							const descriptionElement = document.getElementById("agencyDescription");
-							if (descriptionElement) {
-								// Get the text content
-								let descriptionText = descriptionElement.textContent;
-					
-								// Add line breaks at points (.) with a space before it
-								descriptionText = descriptionText.replace(/ \./g, '.\n');
-					            
-								// Set the modified text back to the element
-								descriptionElement.textContent = descriptionText;
-							}
-						});
-					</script>
-					
-			
-				</p-dialog>
-					<p-dialog   class="p-diag" header="À Propos" [(visible)]="displayMaximizable1" [modal]="true"  [style]="{width: '85vw', 'margin-left': '50px'}"
-					[maximizable]="true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
-					<div class="row modalTheme">
-						<div class="col-md-4">
-							<img class="rounded-lg border card-img-modal" src="{{ Agency?.logo_url }}" alt="Eco house company">
-						</div>
-						<div class="col-md-8">
-							<p class="scrollable-paragraph" id="agencyDescription">{{ Agency.description }}</p>
-						</div>
-					</div>
-					
-					<style>
-						.modalTheme {
-							/* Add your modal styling here */
-						}
-					
-						.scrollable-paragraph {
-							line-height: 1.5;
-							max-height: 325px; /* Set a maximum height for the paragraph to enable scrolling */
-							overflow-y: auto; /* Enable vertical scrolling if content overflows */
-							white-space: pre-line; /* Preserve newlines and line breaks */
-						}
-					</style>
-					
-					<script>
-						// JavaScript to add line breaks at points (.) with a space before it in the description
-						document.addEventListener("DOMContentLoaded", function () {
-							const descriptionElement = document.getElementById("agencyDescription");
-							if (descriptionElement) {
-								// Get the text content
-								let descriptionText = descriptionElement.textContent;
-					
-								// Add line breaks at points (.) with a space before it
-								descriptionText = descriptionText.replace(/ \./g, '.\n');
-					            
-								// Set the modified text back to the element
-								descriptionElement.textContent = descriptionText;
-							}
-						});
-					</script>
-					
-			
-				</p-dialog>
-				
-				</div>
-				
-				
-	
-	
+				<p-button (click)="showMaximizableDialog()" icon="pi pi-info-circle" label="À PROPOS"></p-button>
+
 			</div>
+			<p-dialog class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"
+				[style]="{width: '85vw', 'margin-left': '50px'}" [maximizable]="true" [baseZIndex]="10000"
+				[draggable]="false" [resizable]="false">
+				<div class="row modalTheme">
+					<div class="col-md-4">
+						<img class="rounded-lg border card-img-modal" src="{{ Agency?.logo_url }}"
+							alt="Eco house company">
+					</div>
+					<div class="col-md-8">
+						<p class="scrollable-paragraph" id="agencyDescription">{{ Agency.description }}</p>
+					</div>
+				</div>
+
+				<style>
+					.modalTheme {
+						/* Add your modal styling here */
+					}
+
+					.scrollable-paragraph {
+						line-height: 1.5;
+						max-height: 325px;
+						/* Set a maximum height for the paragraph to enable scrolling */
+						overflow-y: auto;
+						/* Enable vertical scrolling if content overflows */
+						white-space: pre-line;
+						/* Preserve newlines and line breaks */
+					}
+				</style>
+
+				<script>
+					// JavaScript to add line breaks at points (.) with a space before it in the description
+					document.addEventListener("DOMContentLoaded", function () {
+						const descriptionElement = document.getElementById("agencyDescription");
+						if (descriptionElement) {
+							// Get the text content
+							let descriptionText = descriptionElement.textContent;
+
+							// Add line breaks at points (.) with a space before it
+							descriptionText = descriptionText.replace(/ \./g, '.\n');
+
+							// Set the modified text back to the element
+							descriptionElement.textContent = descriptionText;
+						}
+					});
+				</script>
+
+
+			</p-dialog>
+			<p-dialog class="p-diag" header="À Propos" [(visible)]="displayMaximizable1" [modal]="true"
+				[style]="{width: '85vw', 'margin-left': '50px'}" [maximizable]="true" [baseZIndex]="10000"
+				[draggable]="false" [resizable]="false">
+				<div class="row modalTheme">
+					<div class="col-md-4">
+						<img class="rounded-lg border card-img-modal" src="{{ Agency?.logo_url }}"
+							alt="Eco house company">
+					</div>
+					<div class="col-md-8">
+						<p class="scrollable-paragraph" id="agencyDescription">{{ Agency.description }}</p>
+					</div>
+				</div>
+
+				<style>
+					.modalTheme {
+						/* Add your modal styling here */
+					}
+
+					.scrollable-paragraph {
+						line-height: 1.5;
+						max-height: 325px;
+						/* Set a maximum height for the paragraph to enable scrolling */
+						overflow-y: auto;
+						/* Enable vertical scrolling if content overflows */
+						white-space: pre-line;
+						/* Preserve newlines and line breaks */
+					}
+				</style>
+
+				<script>
+					// JavaScript to add line breaks at points (.) with a space before it in the description
+					document.addEventListener("DOMContentLoaded", function () {
+						const descriptionElement = document.getElementById("agencyDescription");
+						if (descriptionElement) {
+							// Get the text content
+							let descriptionText = descriptionElement.textContent;
+
+							// Add line breaks at points (.) with a space before it
+							descriptionText = descriptionText.replace(/ \./g, '.\n');
+
+							// Set the modified text back to the element
+							descriptionElement.textContent = descriptionText;
+						}
+					});
+				</script>
+
+
+			</p-dialog>
+
+		</div>
+
+
+
+
 	</div>
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-
-	
+</div>
 
 
 
@@ -418,20 +418,42 @@
 
 
 
-	<div class="main">
-		<ul class="cards">
-		  <li class="cards_item" *ngFor="let data of reverseAg">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="main">
+	<ul class="cards">
+		<li class="cards_item" *ngFor="let data of reverseAg">
 			<div class="card">
 				<!-- coffee-details -->
-			  <div [routerLink]="'/coffee-details/' + data.id"  class="card_image"><img src="{{data?.imageUrl}}"></div>
-			  <div class="card_content">
-				<h2 class="card_title">{{data.name}}</h2>
-				<p class="card_text">{{data.agencyName}}</p>
-				<button [routerLink]="'/coffee-details/' + data.id" style="    background: #1f1e84;font-weight: bolder;" class="btn card_btn" >DÉCOUVREZ NOTRE MENU   </button>
-			  </div>
+				<div [routerLink]="'/coffee-details/' + data.id" class="card_image"><img src="{{data?.imageUrl}}"></div>
+				<div class="card_content">
+					<h2 class="card_title">{{data.name}}</h2>
+					<p class="card_text">{{data.agencyName}}</p>
+					<button [routerLink]="'/coffee-details/' + data.id"
+						style="    background: #1f1e84;font-weight: bolder;" class="btn card_btn">DÉCOUVREZ NOTRE MENU
+					</button>
+				</div>
 			</div>
-		  </li>
-		  <!-- <li class="cards_item">
+		</li>
+		<!-- <li class="cards_item">
 			<div class="card">
 			  <div class="card_image"><img src="https://picsum.photos/500/300/?image=5"></div>
 			  <div class="card_content">
@@ -481,134 +503,204 @@
 			  </div>
 			</div>
 		  </li> -->
-		</ul>
-	  </div>
-	  
+	</ul>
+</div>
 
-	  <style>
-		/* Font */
-@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+<style>
+	.box {
+		width: 86%;
+		margin-left: 53px;
+		margin: 11px 2px 0px 53px;
+		background: #1f1e84;
+		color: white;
+		border: solid 5px white;
+		border-style: double;
+		border-radius: 9px;
+		font-size: 21px;
+		padding: 10px 0;
+	}
 
-/* Design */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+	@media (max-width: 768px) {
+		.box {
+			width: 90%;
+			/* Adjust as needed */
+			margin: 11px 2px 0px 10px;
+			/* Adjust as needed */
+		}
+	}
+</style>
 
-html {
-  background-color: #ecf9ff;
-}
 
-body {
-  color: #272727;
-  font-family: 'Quicksand', serif;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0;
-  padding: 1rem;
-}
+<div class="">
+	<style>
+		/* Default styles */
+		.button {
+			width: 50%;
+			margin-left: 53px;
+			margin: -37px 11px 83px 25%;
+			background: #1f1e84;
+			color: white;
+			border: solid 5px white;
+			border-style: double;
+			border-radius: 9px;
+			font-size: 13px;
+			font-weight: bold;
+			padding: 7px 0;
+		}
 
-.main{
-  max-width: 1200px;
-  margin: 0 auto;
-}
+		/* Media query for smaller screens */
+		@media (max-width: 768px) {
+			.button {
+				width: 86%;
+				margin-left: 53px;
+				margin: 11px 2px 0px 53px;
+				background: #1f1e84;
+				color: white;
+				border: solid 5px white;
+				border-style: double;
+				border-radius: 9px;
+				font-size: 13px;
+				font-weight: bold;
+				padding: 7px 0;
+			}
+		}
+	</style>
 
-h1 {
-    font-size: 24px;
-    font-weight: 400;
-    text-align: center;
-}
 
-img {
-  height: auto;
-  max-width: 100%;
-  vertical-align: middle;
-}
+	<button class="button"><img src="assets/images/cup.png" width="30px"
+			alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VIDÉO DE PRÉSENTATION
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="assets/images/pizza.png" width="30px" alt=""> </button>
+</div>
 
-.btn {
-  color: #ffffff;
-  padding: 0.8rem;
-  font-size: 14px;
-  text-transform: uppercase;
-  border-radius: 4px;
-  font-weight: 400;
-  display: block;
-  width: 100%;
-  cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: transparent;
-}
-
-.btn:hover {
-  background-color: rgba(255, 255, 255, 0.12);
-}
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.cards_item {
-	display: flex;
-    padding: 1rem;
-    margin-bottom: 133px;
-}
-
-@media (min-width: 40rem) {
-  .cards_item {
-    width: 50%;
-  }
-}
-
-@media (min-width: 56rem) {
-  .cards_item {
-    width: 33.3333%;
-  }
-}
-
-.card {
-  background-color: white;
-  border-radius: 0.25rem;
-  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.card_content {
-  padding: 1rem;
-  background: linear-gradient(to bottom left, #ffffff 20%, #cbcbc8 100%);
-
-}
-
-.card_title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: capitalize;
-  margin: 0px;
-}
-
-.card_text {
-  font-size: 0.875rem;
-  line-height: 1.5;
-  margin-bottom: 1.25rem;    
-  font-weight: 400;
-}
-.made_by{
-  font-weight: 400;
-  font-size: 13px;
-  margin-top: 35px;
-  text-align: center;
-}
-	  </style>
+<div class="container">
+	<iframe class="promoVideo" [src]="urlSafe2">
+	</iframe>
+</div>
 
 
 
+<style>
+	/* Font */
+	@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+
+	/* Design */
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	html {
+		background-color: #ecf9ff;
+	}
+
+	body {
+		color: #272727;
+		font-family: 'Quicksand', serif;
+		font-style: normal;
+		font-weight: 400;
+		letter-spacing: 0;
+		padding: 1rem;
+	}
+
+	.main {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	h1 {
+		font-size: 24px;
+		font-weight: 400;
+		text-align: center;
+	}
+
+	img {
+		height: auto;
+		max-width: 100%;
+		vertical-align: middle;
+	}
+
+	.btn {
+		color: #ffffff;
+		padding: 0.8rem;
+		font-size: 14px;
+		text-transform: uppercase;
+		border-radius: 4px;
+		font-weight: 400;
+		display: block;
+		width: 100%;
+		cursor: pointer;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		background: transparent;
+	}
+
+	.btn:hover {
+		background-color: rgba(255, 255, 255, 0.12);
+	}
+
+	.cards {
+		display: flex;
+		flex-wrap: wrap;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.cards_item {
+		display: flex;
+		padding: 1rem;
+		margin-bottom: 133px;
+	}
+
+	@media (min-width: 40rem) {
+		.cards_item {
+			width: 50%;
+		}
+	}
+
+	@media (min-width: 56rem) {
+		.cards_item {
+			width: 33.3333%;
+		}
+	}
+
+	.card {
+		background-color: white;
+		border-radius: 0.25rem;
+		box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+	}
+
+	.card_content {
+		padding: 1rem;
+		background: linear-gradient(to bottom left, #ffffff 20%, #cbcbc8 100%);
+
+	}
+
+	.card_title {
+		font-size: 1.1rem;
+		font-weight: 700;
+		letter-spacing: 1px;
+		text-transform: capitalize;
+		margin: 0px;
+	}
+
+	.card_text {
+		font-size: 0.875rem;
+		line-height: 1.5;
+		margin-bottom: 1.25rem;
+		font-weight: 400;
+	}
+
+	.made_by {
+		font-weight: 400;
+		font-size: 13px;
+		margin-top: 35px;
+		text-align: center;
+	}
+</style>
 
 
 
@@ -623,62 +715,65 @@ img {
 
 
 
-<br> <br> 
 
-	
-	<!-- <div class="gradient-border" id="box" *ngIf="Agency?.projets?.length===0 || Agency?.produits?.length===0 ">
+
+
+<br> <br>
+
+
+<!-- <div class="gradient-border" id="box" *ngIf="Agency?.projets?.length===0 || Agency?.produits?.length===0 ">
 		Boutique en attente d'approbation &nbsp; <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
 	
 	  </div> -->
-	
-	<br><br><br>
-	<div class="tunsian-flag-img-background">
-		<div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups " >
-			<div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie!='coffee'">
-				<a (click)="showMaximizableDialog1()"  class="btn-hover-flag-img text-center "  aria-selected="true "
-					style="line-height: 1.5">
-					<span style="letter-spacing: 3px;">NOS</span>
-					<br>
-					<span style="letter-spacing: 3px;">REFERENCES</span>
-				</a>
-			</div>
-			<div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie=='coffee'">
-				<a [attr.href]="Agency.instagram_url"  class="btn-hover-flag-img text-center "  aria-selected="true "
-					style="line-height: 1.5">
-					<span style="letter-spacing: 3px;">NOTRE</span>
-					<br>
-					<span style="letter-spacing: 3px;">INSTAGRAM</span>
-				</a>
-			</div>
-			<div class="btn-group mr-2" role="group " aria-label="Second group ">
-				<a [attr.href]="Agency.website_url" target="_blank" class="btn-hover-flag-img text-center "  aria-selected="true "
-					style="line-height: 1.5">
-					<span style="letter-spacing: 3px;">NOTRE </span>
-					<br>
-					<span style="letter-spacing: 3px;">SITE WEB</span>
-				</a>
-			</div>
-			<div class="btn-group mr-2" role="group " aria-label="Third group ">
-				<a [attr.href]="Agency.facebook_url" target="_blank" class="btn-hover-flag-img text-center " aria-selected="true " 
-					style="line-height: 1.5">
-					<span style="letter-spacing: 3px;">PAGE</span>
-					<br>
-					<span style="letter-spacing: 3px;">FACEBOOK</span>
-				</a>
-			</div>
-			<div class="btn-group mr-2 " role="group " aria-label="Third group ">
-				<a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  "  aria-selected="true "
-					style="line-height: 1.5;">
-					<span style="letter-spacing: 3px;">CONTACTEZ-</span>
-				
-				
-					<br>
-					<span style="letter-spacing: 3px;">
-						NOUS
-					</span>
-				</a>
-			</div>
-			<!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
+
+<br><br><br>
+<div class="tunsian-flag-img-background">
+	<div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
+		<div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie!='equipement'">
+			<!-- <a (click)="showMaximizableDialog1()"  class="btn-hover-flag-img text-center "  aria-selected="true " -->
+			<a class="btn-hover-flag-img text-center " aria-selected="true " style="line-height: 1.5">
+				<span style="letter-spacing: 3px;">NOS</span>
+				<br>
+				<span style="letter-spacing: 3px;">REFERENCES</span>
+			</a>
+		</div>
+		<div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie=='equipement'">
+			<a [attr.href]="Agency?.instagram_url" class="btn-hover-flag-img text-center " aria-selected="true "
+				style="line-height: 1.5">
+				<span style="letter-spacing: 3px;">PAGE</span>
+				<br>
+				<span style="letter-spacing: 3px;">INSTAGRAM</span>
+			</a>
+		</div>
+		<div class="btn-group mr-2" role="group " aria-label="Second group ">
+			<a [attr.href]="Agency?.website_url" target="_blank" class="btn-hover-flag-img text-center "
+				aria-selected="true " style="line-height: 1.5">
+				<span style="letter-spacing: 3px;">NOTRE </span>
+				<br>
+				<span style="letter-spacing: 3px;">SITE WEB</span>
+			</a>
+		</div>
+		<div class="btn-group mr-2" role="group " aria-label="Third group ">
+			<a [attr.href]="Agency?.facebook_url" target="_blank" class="btn-hover-flag-img text-center "
+				aria-selected="true " style="line-height: 1.5">
+				<span style="letter-spacing: 3px;">PAGE</span>
+				<br>
+				<span style="letter-spacing: 3px;">FACEBOOK</span>
+			</a>
+		</div>
+		<div class="btn-group mr-2 " role="group " aria-label="Third group ">
+			<a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
+				style="line-height: 1.5;">
+				<span style="letter-spacing: 3px;">CONTACTEZ-</span>
+
+
+				<br>
+				<span style="letter-spacing: 3px;">
+					NOUS
+				</span>
+			</a>
+		</div>
+		<!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
 				<a class="btn-hover-flag-img text-center " aria-selected="true "
 					style="line-height: 1.5">
 					<span>COMMERCES</span>
@@ -686,9 +781,9 @@ img {
 					<span> Services et Arts</span>
 				</a>
 			</div> -->
-		</div>
 	</div>
-	<!-- <div class="tunsian-flag-img-background">
+</div>
+<!-- <div class="tunsian-flag-img-background">
 		<div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
 			<div class="btn-group mr-2" role="group " aria-label="First group ">
 				<a class="btn-hover-flag-img text-center " href="promoteurs-tunis " aria-selected="true "
@@ -732,105 +827,94 @@ img {
 			</div>
 		</div>
 	</div> -->
-	<ng-template #content let-modal>
-		<div class="modal-header">
-			<h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
-			<a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
-		</div>
-		<div class="modal-body">
-			<form>
-				<div class=" cardModal">
-					<div>
-						<label for="email" class="textInput">Email</label>
-						<input class="form-control inputDevis" type="email" name="email" placeholder="Votre Email">
-					</div><br>
-					<div>
-						<label for="Nom" class="textInput">Téléphone</label>
-						<input class="form-control inputDevis" type="text" [(ngModule)]="numText" name="Nom"
-							placeholder="Téléphone">
-					</div> <br>
-					<label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1" name="description"
-						rows="3"></textarea>
-					<br>
-					<!-- <div *ngFor="let agencies of Agency">
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
+		<a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class=" cardModal">
+				<div>
+					<label for="email" class="textInput">Email</label>
+					<input class="form-control inputDevis" type="email" name="email" placeholder="Votre Email">
+				</div><br>
+				<div>
+					<label for="Nom" class="textInput">Téléphone</label>
+					<input class="form-control inputDevis" type="text" [(ngModule)]="numText" name="Nom"
+						placeholder="Téléphone">
+				</div> <br>
+				<label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
+				<textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
+				<br>
+				<!-- <div *ngFor="let agencies of Agency">
 						<div *ngFor="let categorie of agencies?.produits">
 							<div *ngFor="let categories of categorie?.categoryList"> -->
-					<!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
-					<div class="example-button-row">
-						<a mat-raised-button style="border-color: #8B0000;
+				<!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
+				<div class="example-button-row">
+					<a mat-raised-button style="border-color: #8B0000;
 									background-color: #8B0000; color:aliceblue"
-							href="mailto:dcgeneral@gmail.com?subject=Sujet&body=num:{{numText}} Message:{{contactText}}">Valider</a>
-						<button type="button" class="btn btn-light" (click)="modal.close('Close click')">
-							Close
-						</button>
-						<!-- </div>
+						href="mailto:dcgeneral@gmail.com?subject=Sujet&body=num:{{numText}} Message:{{contactText}}">Valider</a>
+					<button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+						Close
+					</button>
+					<!-- </div>
 							</div>
 						</div> -->
-	  
-					</div>
-	  
+
 				</div>
-	  
-				<div class="modal-footer valider">
-	  
-				</div>
-			</form>
-		</div>
-	  </ng-template>
-	  <ng-template #content let-modal>
-		<div class="modal-header">
-			<br><br>
-			<h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
-			<a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
-		</div>
-		<div class="modal-body">
-			<form>
-				<div class="">
-					<div>
-						<label for="email" class="textInput">Email</label>
-						<input class="form-control inputDevis" type="email" name="email" placeholder="Votre Email">
-					</div><br>
-					<div>
-						<label for="Nom" class="textInput">Téléphone</label>
-						<input class="form-control inputDevis" type="text" [(ngModule)]="numText" name="Nom"
-							placeholder="Téléphone">
-					</div> <br>
-					<label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1" name="description"
-						rows="3"></textarea>
-					<br>
-					<!-- <div *ngFor="let agencies of Agency">
+
+			</div>
+
+			<div class="modal-footer valider">
+
+			</div>
+		</form>
+	</div>
+</ng-template>
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<br><br>
+		<h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
+		<a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class="">
+				<div>
+					<label for="email" class="textInput">Email</label>
+					<input class="form-control inputDevis" type="email" name="email" placeholder="Votre Email">
+				</div><br>
+				<div>
+					<label for="Nom" class="textInput">Téléphone</label>
+					<input class="form-control inputDevis" type="text" [(ngModule)]="numText" name="Nom"
+						placeholder="Téléphone">
+				</div> <br>
+				<label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
+				<textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
+				<br>
+				<!-- <div *ngFor="let agencies of Agency">
 						<div *ngFor="let categorie of agencies?.produits">
 							<div *ngFor="let categories of categorie?.categoryList"> -->
-					<!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
-					<div class="example-button-row">
-						<a mat-raised-button style="border-color: #8B0000;
+				<!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
+				<div class="example-button-row">
+					<a mat-raised-button style="border-color: #8B0000;
 									background-color: #8B0000; color:aliceblue"
-							href="mailto:dcgeneral@gmail.com?subject=Sujet&body=num:{{numText}} Message:{{contactText}}">Valider</a>
-						<a type="a" class="btn btn-light" (click)="modal.close('Close click')">
-							Close
-						</a>
-						<!-- </div>
+						href="mailto:dcgeneral@gmail.com?subject=Sujet&body=num:{{numText}} Message:{{contactText}}">Valider</a>
+					<a type="a" class="btn btn-light" (click)="modal.close('Close click')">
+						Close
+					</a>
+					<!-- </div>
 							</div>
 						</div> -->
-	  
-					</div>
-	  
+
 				</div>
-	  
-				<div class="modal-footer valider">
-	  
-				</div>
-			</form>
-		</div>
-	  </ng-template>
-  
 
+			</div>
 
+			<div class="modal-footer valider">
 
-
-		
-	
-
-
+			</div>
+		</form>
+	</div>
+</ng-template>

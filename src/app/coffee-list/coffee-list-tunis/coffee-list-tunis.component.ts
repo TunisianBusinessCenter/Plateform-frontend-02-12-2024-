@@ -46,8 +46,18 @@ export class CoffeeListTunisComponent implements OnInit {
     this.Servicemateriaux.getMateriauxEquipement().subscribe((data: any) => {
       // Filter the data where phone_number_commercial is "yes"
       this.AgenciesCoffee = data.filter((item: any) => item.phone_number_commercial === "yes" && item.region === "tunis");
-      console.log(this.AgenciesCoffee);
-      this.AgenciesCoffee
+      this.AgenciesCoffee.sort((a: any, b: any) => {
+        // Extract the number from the beginning of the name
+        const numA = parseInt(a.name.match(/^\d+/));
+        const numB = parseInt(b.name.match(/^\d+/));
+        
+        // Handle cases where the number might not be present
+        if (isNaN(numA)) return 1;
+        if (isNaN(numB)) return -1;
+
+        return numA - numB;
+    });
+
   });
  
   }

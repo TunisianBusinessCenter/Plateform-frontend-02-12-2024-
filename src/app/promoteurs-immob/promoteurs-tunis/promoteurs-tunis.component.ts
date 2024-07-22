@@ -14,10 +14,12 @@ export class PromoteursTunisComponent implements OnInit {
 
   responsiveOptions
   idA: number;
+  allAgencies: any;
 
 
 
   constructor(private agencieService: AgenciesService, private sharedDataService: AgenciesService) {
+    
     this.responsiveOptions = [
       {
         breakpoint: '2000px',
@@ -46,8 +48,10 @@ export class PromoteursTunisComponent implements OnInit {
       }
     ];
   }
+  searchText = "";
 
   ngOnInit(): void {
+ 
     this.agencieService.getAgencieTunis().subscribe((data: any) => {
       this.AgenciesTunis = data;
   
@@ -70,7 +74,7 @@ export class PromoteursTunisComponent implements OnInit {
           return createdAtB - createdAtA;
         }
       });
-  
+  console.log(this.AgenciesTunis)
       // Log the sorted array to the console
     });
   }

@@ -1,5 +1,5 @@
 <!-- <div class="main-container" *ngIf="Agency?.role==='promoteur-immobilieres'"	 > -->
-<app-navbar-carousel ></app-navbar-carousel>
+<app-navbar-carousel></app-navbar-carousel>
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -58,7 +58,7 @@
       <ul>
 
         <li>
-          <a [routerLink]="'/coffeeAgency/' + agencyId">
+          <a (click)="backClicked()">
             <i class="fa fa-home fa-2x"></i>
             <span class="nav-text">
               Page d'accueil
@@ -78,10 +78,15 @@
           <div class="dropdown-content">
 
             <div class="submenu" *ngFor="let image of agency">
-              <a style="background-color: #1e466e59;" (click)="navigateAndRefresh(image)"
+              <a *ngIf="varChanges==0" style="background-color: #1e466e59;" (click)="navigateAndRefresh(image)"
                 [routerLink]="['/coffee-details', image?.id]">
                 <!-- [routerLink]="['/descriptionCoffee', agency.biens.sous_biens[0].id]" -->
-                {{ image?.name }}
+                {{ image?.name | hideBracedTextContent }}
+              </a>
+              <a *ngIf="varChanges==1" style="background-color: #1e466e59;" (click)="navigateAndRefresh(image)"
+                [routerLink]="['/coffee-details', image?.id]">
+                <!-- [routerLink]="['/descriptionCoffee', agency.biens.sous_biens[0].id]" -->
+                {{ image?.name | braceTextExtractor}}
               </a>
             </div>
 
@@ -106,7 +111,7 @@
 
         <li class="dropdown">
           <!-- <a routerLink="/conception/registre"> -->
-					<a >
+          <a>
             <i class="fa fa-envelope fa-2x"></i>
             <span class="nav-text">Contacter nous</span>
           </a>
@@ -253,7 +258,7 @@
           <!-- <i class="fa fa-arrow-left" aria-hidden="true"></i> -->
           Retour
         </button>
-   
+
         <br> <br><br><br><br>
 
 
@@ -267,7 +272,8 @@
 
           <div id="menu">
             <div class="heading">
-              <h3 style="">{{sousBiens?.name}}</h3>
+              <h3 *ngIf="varChanges == 0">{{sousBiens?.name | hideBracedTextContent}}</h3>
+              <h3 *ngIf="varChanges == 1">{{sousBiens?.name | braceTextExtractor}}</h3>
               <div id="wrapper">
 
                 <img [src]="sousBiens?.imageUrl" (click)="openImageInDialog(sousBiens?.image_url)"
@@ -353,7 +359,13 @@
                 }
               </style>
               <br>
-              <h3>NOS DÉLICES</h3>
+              <h3 *ngIf="varChanges==0">NOS DÉLICES </h3>
+              <h3 *ngIf="varChanges==1">OUR DELIGHTS</h3>
+              <div class="languagewrapper">
+
+
+              </div>
+
               <select style="     padding: 8px 72px 8px 25px;
         border: solid 2px #00000054;
         border-radius: 5px;
@@ -362,10 +374,25 @@
         font-size: 16px;
         text-align: center;
     " [(ngModel)]="selectedCategory">
-                <option value="">Toutes Les Catégories</option>
-                <option *ngFor="let category of categoryList" [value]="category">{{ category }}</option>
+                <ng-container *ngIf="varChanges==0">
+                  <option value="">Toutes Les Catégories</option>
+
+                </ng-container>
+                <ng-container *ngIf="varChanges==1">
+                  <option value="">All Categories</option>
+
+                </ng-container>
+                <ng-container *ngIf="varChanges==0">
+                  <option *ngFor="let category of categoryList" [value]="category">{{ category | hideBracedTextContent }}</option>
+
+                </ng-container>
+                <ng-container *ngIf="varChanges==1">
+                  <option *ngFor="let category of categoryList" [value]="category">{{ category | braceTextExtractor }}</option>
+
+                </ng-container>
               </select>
             </div>
+
             <!-- Add a dropdown menu for category filtering -->
 
 
@@ -377,12 +404,21 @@
                   <img [src]="image?.image_url" (click)="openImageInDialog(image.image_url)">
                   <div class="details">
                     <div class="details-sub">
-                      <h2 style="    text-align: center;
+                      <h2 *ngIf="varChanges==0" style="    text-align: center;
                       margin: -7px 0;
-                      font: 500 15px / 32px Roboto, sans-serif;" class="price">{{image?.name}}</h2><br>
+                      font: 500 15px / 32px Roboto, sans-serif;" class="price"> {{ image?.name |
+                        hideBracedTextContent}}</h2>
+
+                      <h2 *ngIf="varChanges==1" style="    text-align: center;
+                         margin: -7px 0;
+                         font: 500 15px / 32px Roboto, sans-serif;" class="price"> {{ image?.name | braceTextExtractor
+                        }}</h2>
+                      <br>
                       <!-- Add other details as needed -->
                     </div>
-                    <button [routerLink]="['/descriptionCoffee', sousBiens?.id, image?.id]">Découvrir <i
+                    <button *ngIf="varChanges==0" [routerLink]="['/descriptionCoffee', sousBiens?.id, image?.id]">Découvrir <i
+                        class="fas fa-eye"></i></button>
+                    <button *ngIf="varChanges==1" [routerLink]="['/descriptionCoffee', sousBiens?.id, image?.id]">Discover <i
                         class="fas fa-eye"></i></button>
                   </div>
                 </div>
@@ -833,54 +869,53 @@ style="line-height: 1.5;">
 </div>
 </div> <br><br><br><br><br><br>
  -->
- <p-dialog class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"
- [style]="{width: '85vw', 'margin-left': '50px'}" [maximizable]="true" [baseZIndex]="10000"
- [draggable]="false" [resizable]="false">
- <div class="row modalTheme">
-   <div class="col-md-4">
-     <img class="rounded-lg border card-img-modal"  src="{{logo}}"
-       alt="Eco house company">
-   </div>
-   <div class="col-md-8">
-     <p class="scrollable-paragraph" id="agencyDescription">{{ agencyDescription }}</p>
-   </div>
- </div>
+          <p-dialog class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"
+            [style]="{width: '85vw', 'margin-left': '50px'}" [maximizable]="true" [baseZIndex]="10000"
+            [draggable]="false" [resizable]="false">
+            <div class="row modalTheme">
+              <div class="col-md-4">
+                <img class="rounded-lg border card-img-modal" src="{{logo}}" alt="Eco house company">
+              </div>
+              <div class="col-md-8">
+                <p class="scrollable-paragraph" id="agencyDescription">{{ agencyDescription }}</p>
+              </div>
+            </div>
 
- <style>
-   .modalTheme {
-     /* Add your modal styling here */
-   }
+            <style>
+              .modalTheme {
+                /* Add your modal styling here */
+              }
 
-   .scrollable-paragraph {
-     line-height: 1.5;
-     max-height: 325px;
-     /* Set a maximum height for the paragraph to enable scrolling */
-     overflow-y: auto;
-     /* Enable vertical scrolling if content overflows */
-     white-space: pre-line;
-     /* Preserve newlines and line breaks */
-   }
- </style>
+              .scrollable-paragraph {
+                line-height: 1.5;
+                max-height: 325px;
+                /* Set a maximum height for the paragraph to enable scrolling */
+                overflow-y: auto;
+                /* Enable vertical scrolling if content overflows */
+                white-space: pre-line;
+                /* Preserve newlines and line breaks */
+              }
+            </style>
 
- <script>
-   // JavaScript to add line breaks at points (.) with a space before it in the description
-   document.addEventListener("DOMContentLoaded", function () {
-     const descriptionElement = document.getElementById("agencyDescription");
-     if (descriptionElement) {
-       // Get the text content
-       let descriptionText = descriptionElement.textContent;
+            <script>
+              // JavaScript to add line breaks at points (.) with a space before it in the description
+              document.addEventListener("DOMContentLoaded", function () {
+                const descriptionElement = document.getElementById("agencyDescription");
+                if (descriptionElement) {
+                  // Get the text content
+                  let descriptionText = descriptionElement.textContent;
 
-       // Add line breaks at points (.) with a space before it
-       descriptionText = descriptionText.replace(/ \./g, '.\n');
+                  // Add line breaks at points (.) with a space before it
+                  descriptionText = descriptionText.replace(/ \./g, '.\n');
 
-       // Set the modified text back to the element
-       descriptionElement.textContent = descriptionText;
-     }
-   });
- </script>
+                  // Set the modified text back to the element
+                  descriptionElement.textContent = descriptionText;
+                }
+              });
+            </script>
 
 
-</p-dialog>
+          </p-dialog>
           <p-dialog [(visible)]="displayMaximizable5" [modal]="true" [maximizable]="true" [baseZIndex]="10000"
             [draggable]="false" [resizable]="false">
             <div class="modal-header">
@@ -953,9 +988,7 @@ style="line-height: 1.5;">
 
 
               </div>
-              
-              <div class="main-container">
-            
-              </div>
 
-          
+              <div class="main-container">
+
+              </div>

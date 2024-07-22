@@ -97,6 +97,9 @@ export class CoffeeAgencyComponent implements OnInit {
   ProduitVendu: any;
   sharedVariable: any;
   message: string;
+  changeVariable=0;
+  missingMenuText: string;
+  @ViewChild('cardTitle') cardTitle: ElementRef;
 
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -158,13 +161,17 @@ export class CoffeeAgencyComponent implements OnInit {
     ];
   }
   ngAfterViewInit() {
+    this.setSharedVariable();
+
+    if (this.cardTitle.nativeElement.innerText === 'English menu not exist') {
+      this.handleMissingEnglishMenu();
+    }
     this.idAgency = this.activatedRoute.snapshot.paramMap.get('id')
     this.agencieService.getAgencieById(this.idAgency).subscribe(data => {
       console.log(data, "test")
       this.Agency = data;
       this.reverseAgPromoteurs = this.Agency?.projets?.reverse();
     })
-    this.setSharedVariable();
   }
 
   ngOnInit(): void {
@@ -221,7 +228,7 @@ export class CoffeeAgencyComponent implements OnInit {
       this.reverseAg = this.Agency?.produits.reverse()
       this.reverseAgBiens = this.Agency?.biens?.reverse();
 
-this.setIdCoffee() 
+this.setIdCoffee()
 
       //promo produit
       for (let ImagePromoProduit of this.Agency?.produits) {
@@ -431,7 +438,8 @@ getRouterLink(): string[] {
  setSharedVariable() {
   let data = this.Agency;
   this.agencieService.setSharedVariable(data);
-  console.log("this data", data); // Corrected to use the 'data' variable
+  console.log("this data", data); 
+  // Corrected to use the 'data' variable
   //  this.message ="data sended successfully"
 }
 openVerticallyCentered(content) {
@@ -476,4 +484,27 @@ setIdCoffee() {
   this.coffeeService.setIdAgency(this.Agency.id)
 
 }
+
+
+changeVar() {
+  this.changeVariable= 1
+  console.log(this.changeVariable)
+
+}
+changeVarSecondTime() {
+  this.changeVariable= 0
+  this.missingMenuText =""
+  console.log(this.changeVariable)
+
+}
+setChangeVariable() {
+
+  this.coffeeService.setVarChange(this.changeVariable)
+console.log('changeVariable',this.changeVariable)
+}
+handleMissingEnglishMenu(): string {
+  this.missingMenuText = 'The English Menu Does Not Exist';
+  return this.missingMenuText;
+}
+
 }

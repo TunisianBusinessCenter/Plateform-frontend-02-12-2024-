@@ -13,7 +13,7 @@ export class PromoteursNabeulComponent implements OnInit {
 
   public AgenciesNabeul:any
   responsiveOptions
-
+searchText=""
   constructor(private agencieService: AgenciesService,
     private primengConfig: PrimeNGConfig) { 
     this.responsiveOptions = [

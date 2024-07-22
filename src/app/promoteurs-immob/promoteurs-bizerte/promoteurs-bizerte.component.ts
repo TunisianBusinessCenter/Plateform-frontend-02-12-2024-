@@ -10,7 +10,7 @@ export class PromoteursBizerteComponent implements OnInit {
   
   public AgenciesBizerte: any
   responsiveOptions
-
+searchText=""
   constructor(private agencieService: AgenciesService) {
     this.responsiveOptions = [
       {

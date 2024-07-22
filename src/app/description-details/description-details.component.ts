@@ -183,4 +183,5 @@ export class DescriptionDetailsComponent implements OnInit {
   showMaximizableDialog() {
     this.displayMaximizable = true;
   }
+  
 }

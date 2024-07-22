@@ -44,6 +44,7 @@ export class CoffeeDetailsComponent implements OnInit {
   idCoffee :any
   agencyDescription: any;
   logo: any;
+  changeVariable = 0; // Initialize changeVariable to 0 by default
   constructor( private coffeeService:CoffeeAgencyService,private biensImoobService: AgenceImmobilieresService, private activatedRoute: ActivatedRoute, private _location: Location, private as: AgenciesService, private router: Router, private produitService: ProduitsService,    private modalService: NgbModal,
   ) {
     this.idProduit = this.activatedRoute.snapshot.paramMap.get('id')
@@ -80,11 +81,14 @@ export class CoffeeDetailsComponent implements OnInit {
   }
   agencyId: string;
   currentId: any = '';
-
+  varChanges  :any
   id$: Observable<any>;
   private idSubscription: Subscription;
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
+    this.varChanges = this.coffeeService.getVarChange()
+    console.log(this.varChanges); // Check the value
+
     this.idCoffee = this.coffeeService.getIdAgency()
 
     const storedId = this.as.getStoredId();
@@ -119,6 +123,7 @@ export class CoffeeDetailsComponent implements OnInit {
   showMaximizableDialog() {
     this.displayMaximizable = true;
   }
+  
   backClicked() {
     this._location.back();
   }
@@ -188,5 +193,16 @@ export class CoffeeDetailsComponent implements OnInit {
   openVerticallyCentered(content) {
     this.modalService.open(content, { centered: true });
   }
-}
+  changeVar() {
+    this.changeVariable= 1
+    console.log(this.changeVariable)
+
+  }
+  changeVarSecondTime() {
+    this.changeVariable= 0
+    console.log(this.changeVariable)
+
+  }
+  
+ }
 

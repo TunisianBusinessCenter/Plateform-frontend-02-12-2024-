@@ -47,7 +47,6 @@
       flex-wrap: wrap;
       justify-content: center;
       padding-top: 0px;
-      margin-left: 70px;
     }
     .tunsian-flag-img-background .btn-hover-flag-img {
       width: 214px;
@@ -83,11 +82,11 @@
     color: #fff;
     background-color: #0ec6d5;
   }
-  
   .title {
-    margin-left: 69px;
+    margin-left: 129px;
     margin-bottom: -15px;
     margin-top: 50px;
+  
   }
   .badge-primary {
     color: #fff;
@@ -409,7 +408,16 @@
     }
     
   }
- 
+  .images{
+    margin-bottom: 30px;
+      margin-top: -60px;
+  }
+  @media only screen and (max-width: 894px) {
+    .images {
+     visibility: hidden;
+    }
+    
+  }
   
 
   @media screen and (max-width:1100px) {
@@ -466,7 +474,7 @@
     margin-bottom: 0px;
     height: 32px;
     width: 120px;
-    margin-left: 70px;
+    margin-left: 129px;
   }
   
   .animated-border-button:before,
@@ -546,6 +554,17 @@
     margin-left: 60px;
 }
   @media screen and (max-width:630px) {
+    .mat-tab-group {
+      display: flex;
+      flex-direction: column;
+      max-width: 100%;
+      margin-top: -60px;
+  }
+    .title{
+      margin-left: 85px;
+      margin-bottom: -15px;
+      margin-top: 0px;
+  }
     .animated-border-button {
       background-color:#3f51b5;
       border: none;
@@ -560,76 +579,134 @@
       margin-bottom: 0px;
       height: 32px;
       width: 120px;
-      margin-left: 65px;
-      margin-top: 0px;
+      margin-left: 70px;
+      margin-top: -30px;
     }
-    ::ng-deep.p-carousel .p-carousel-content .p-carousel-prev{
-      width: 1rem;
-      height: 1rem;
-      color: rgba(0, 0, 0, 0.6);
-      border: 0 none;
-      background: transparent;
-      border-radius: 50%;
-      transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
-      margin: 0.5rem;
+    :host ::ng-deep .p-carousel-container {
+      display: flex;
+      flex-direction: row;
+      margin-left: 55px;
   }
-  ::ng-deep .p-carousel .p-carousel-content .p-carousel-next {
-      width: 1rem;
-      height: 1rem;
-      color: rgba(0, 0, 0, 0.6);
-      border: 0 none;
-      background: transparent;
-      border-radius: 50%;
-      transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
-      margin: 0.5rem;  
   }
-  ::ng-deep.p-carousel-container {
-    display: flex;
-    flex-direction: row;
-    margin-left: 55px;
-}
-.title{
-  margin-left: 69px;
-  margin-bottom: -15px;
-  margin-top: -10px;
-}
-}
+  @media screen and (max-width:700px) {
+   
+    :host ::ng-deep .p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
+      visibility: hidden;
+    }
+  
+    :host ::ng-deep .p-carousel .p-carousel-indicators .p-carousel-indicator button {
+      visibility: hidden;
+    }
+    .btn-toolbar{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding-top: -4px;
+      margin-top: -75px;
+      margin-left: 60px;
+      margin-bottom: -66px;
+
+  }
+   
+  }
   ::ng-deep .mat-tab-header-pagination {
     display:none;
-} 
-
-::ng-deep .mat-tab-header {
-  overflow-x: scroll !important;
-}
-
-::ng-deep .mat-tab-label-container {
-  overflow: visible !important;
-}
-
-::ng-deep .mat-tab-header::-webkit-scrollbar {
-  display: none;
-}
-.card-body{
-  height: 82px;
-  margin: -14px;
-  margin-left: -2px;
- }
- .card-footer{
-  height: 57px;
- }
- .card-title{
-   font-size: 15px;
- }
- .card-text{
-  color:#9b9b9b!important;
-  font-size:13px;
- }
- @media screen and (max-width:450px) {
+  } 
+  
+  ::ng-deep .mat-tab-header {
+    overflow-x: scroll !important;
+  }
+  
+  ::ng-deep .mat-tab-label-container {
+    overflow: visible !important;
+  }
+  
+  ::ng-deep .mat-tab-header::-webkit-scrollbar {
+    display: none;
+  }
+  .card-body{
+    height: 82px;
+    margin: -14px;
+    margin-left: -2px;
+   }
+   .card-footer{
+    height: 57px;
+   }
    .card-title{
-     font-size: 11px;
+     font-size: 15px;
    }
    .card-text{
-     color:#9b9b9b!important;
-     font-size:11px;
+    color:#9b9b9b!important;
+    font-size:13px;
+   }
+   @media screen and (max-width:450px) {
+     .card-title{
+       font-size: 11px;
+     }
+     .card-text{
+       color:#9b9b9b!important;
+       font-size:11px;
+      }
+   }
+   :host ::ng-deep .p-carousel .p-carousel-content .p-carousel-prev {
+    width: 4rem !important;
+    z-index: 1;
+    height: 4rem !important;
+    color: rgba(0, 0, 0, 0.6) !important;
+    border: solid 5px rgb(253 253 253) !important;
+    background: #1f1e84a8 !important;
+    border-radius: 50%;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+   
+    margin: 3px -45px 1px 0px !important;
+  }
+  
+  :host ::ng-deep .p-carousel .p-carousel-content .p-carousel-next {
+    width: 4rem !important;
+    z-index: 1;
+    height: 4rem !important;
+    color: rgba(0, 0, 0, 0.6) !important;
+    border: solid 5px rgb(253 253 253) !important;
+    background: #1f1e84a8 !important;
+    border-radius: 50%;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+  
+  
+    margin: 3px 10px 2px -45px !important;
+  }
+  
+  :host ::ng-deep .pi-chevron-left:before {
+    content: "\e900";
+    color: white;
+  }
+  
+  :host ::ng-deep .pi-chevron-right:before {
+    content: "\e901";
+    color: white;
+  }
+  
+  @media only screen and (max-width: 767px) {
+    :host ::ng-deep .p-carousel .p-carousel-content .p-carousel-prev {
+      width: 2rem !important;
+      z-index: 1;
+      height: 2rem !important;
+      color: rgba(0, 0, 0, 0.6) !important;
+      border: solid 2px rgb(253 253 253) !important;
+      background: #1f1e84a8 !important;
+      border-radius: 50%;
+      transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+      margin: 3px -22px 2px 0px !important;
     }
- }
+    :host ::ng-deep .p-carousel .p-carousel-content .p-carousel-next {
+      width: 2rem !important;
+      z-index: 1;
+      height: 2rem !important;
+      color: rgba(0, 0, 0, 0.6) !important;
+      border: solid 2px rgb(253 253 253) !important;
+      background: #1f1e84a8 !important;
+      border-radius: 50%;
+      transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    
+      margin: 3px 10px 2px -22px !important;
+    }
+  }

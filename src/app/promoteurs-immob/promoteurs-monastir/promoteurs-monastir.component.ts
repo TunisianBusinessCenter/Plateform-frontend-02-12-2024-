@@ -10,7 +10,7 @@ export class PromoteursMonastirComponent implements OnInit {
 
   public AgenciesMonastir:any
   responsiveOptions
-
+searchText=""
   constructor(private agencieService: AgenciesService , private sharedDataService:AgenciesService) {
 
     this.responsiveOptions = [
@@ -63,7 +63,7 @@ export class PromoteursMonastirComponent implements OnInit {
           return createdAtB - createdAtA;
         }
       });
-    })
+     })
   }
   clickMe(agencyId: number) {
     this.sharedDataService.updateAgencyId(agencyId);

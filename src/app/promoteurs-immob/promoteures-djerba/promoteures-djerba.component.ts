@@ -9,6 +9,7 @@ import { AgenciesService } from 'src/app/services/agencies/agencies.service';
 export class PromoteuresDjerbaComponent implements OnInit {
   responsiveOptions
   AgenciesDjerba:any
+  searchText=""
   constructor(private agencieService: AgenciesService) {
     this.responsiveOptions = [
       {

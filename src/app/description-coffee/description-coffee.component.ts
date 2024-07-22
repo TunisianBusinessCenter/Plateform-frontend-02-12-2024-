@@ -50,6 +50,7 @@ export class DescriptionCoffeeComponent implements OnInit {
   mobile_apps: any;
   ProjetEnCours: any;
   coffeeMenu: any;
+  varChanges: any;
   constructor(private activatedRoute: ActivatedRoute,
     private produitService: ProduitsService,
     private _location: Location,
@@ -64,6 +65,8 @@ export class DescriptionCoffeeComponent implements OnInit {
 
  
   ngOnInit(): void {
+    this.varChanges = this.coffeeService.getVarChange()
+
 this.idCoffee = this.coffeeService.getIdAgency()
 this.agencieService.getAgencieById(this.idCoffee).subscribe(data => {
   this.Agency =data

@@ -7,10 +7,15 @@ import { MeilleursBiensService } from 'src/app/services/meilleurs-bien/meilleurs
   styleUrls: ['./meilleurs-bien-sfax.component.css']
 })
 export class MeilleursBienSfaxComponent implements OnInit {
+  AgenciesSfax: any;
 
   constructor(private meilleursBiensService: MeilleursBiensService) { }
-
   ngOnInit(): void {
+    this.meilleursBiensService.getMeilleursBiensSfax().subscribe((data: any) => {
+      this.AgenciesSfax = data.filter((agency: any) => agency.phone_number_commercial != "yes");
+      console.log(this.AgenciesSfax)
+   
+    })
   }
 
 }

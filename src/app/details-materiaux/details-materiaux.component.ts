@@ -59,6 +59,7 @@ export class DetailsMateriauxComponent implements OnInit {
   @ViewChild('cCarouselInner') cCarouselInner!: ElementRef;
   carouselVp: any;
   carouselInnerWidth: any;
+  idAgencyMenu: any;
   constructor(private activatedRoute: ActivatedRoute,
     private produitService:ProduitsService,
     private agencieService:AgenciesService,
@@ -126,8 +127,8 @@ this.idAgency = this.sharedService.getIdAgency()
       this.idSousCategorie= this.activatedRoute.snapshot.paramMap.get('id')
       this.agencieService.getAgencieById(this.idAgency).subscribe((data:any) => {
         console.log(data)
-        this.description=data.description
-        this.logo_url=data.logo_url
+        this.description=data?.description
+        this.logo_url=data?.logo_url
         this.ProduitEnCours = data?.produits;
       })
   ///methode1:
@@ -265,5 +266,14 @@ refresh(): void {
   });
 }
 
- 
+getAgency() {
+  this.agencieService.getAllMateriaux().subscribe((data: any) => {
+    const filteredAgencies = data.filter(agency => agency.name === this.NameAgency);
+    if (filteredAgencies.length > 0) {
+      this.idAgencyMenu = filteredAgencies[0].id;
+      console.log(this.idAgencyMenu);
+      this.router.navigate(['/agency', this.idAgencyMenu]);
+    }
+  });
+}
 }

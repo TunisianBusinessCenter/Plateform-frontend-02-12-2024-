@@ -13,7 +13,7 @@ export class PromoteursSousseComponent implements OnInit {
 
 
   responsiveOptions
-
+searchText=""
   constructor(private agencieService: AgenciesService, private sharedDataService: AgenciesService) {
     this.responsiveOptions = [
       {

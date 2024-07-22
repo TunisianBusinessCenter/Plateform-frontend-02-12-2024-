@@ -1503,6 +1503,10 @@ font-size: 19px;
   width: 361px;
   transform: scale(1);
   position: relative;
+  margin-top: 103px;
+  /* text-align: center; */
+  margin-left: 39px;
+
 }
 .modalTheme {
   margin: 20px;
@@ -1533,5 +1537,26 @@ font-size: 19px;
 .card-img-modal {
   width: 100%;
   margin-bottom: 20px;
+
+}
+:host ::ng-deep mat-tab-header {
+  display: flex;
+    margin-left: 59px;
+    width: 75%;
+    /* overflow: hidden; */
+    /* position: relative; */
+    flex-shrink: 1;
+    justify-content: flex-end;
+    font-size: 17px;
+    margin-top: 10px;
+ display: none;
+}
+
+
+.selectContainer {
+  background-color: #0056b3;
+  color: white;
+  width: 100px;
+  height: 100px;
 
 }

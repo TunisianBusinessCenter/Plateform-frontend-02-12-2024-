@@ -127,6 +127,8 @@ import { CoffeeListSfaxComponent } from './coffee-list/coffee-list-sfax/coffee-l
 import { CoffeeListNabeulComponent } from './coffee-list/coffee-list-nabeul/coffee-list-nabeul.component';
 import { CoffeeListBizerteComponent } from './coffee-list/coffee-list-bizerte/coffee-list-bizerte.component';
 import { BoldParenthesesDirective } from './description-coffee/bold-parentheses.directive';
+import { HideBracedTextContentPipe } from './coffee-details/hide-braced-text-content.pipe';
+import { BraceTextExtractorPipe } from './coffee-details/brace-text-extractor.pipe';
 
 
 
@@ -212,7 +214,10 @@ const routes: Routes = [
     CoffeeListSfaxComponent,
     CoffeeListNabeulComponent,
     CoffeeListBizerteComponent,
-    BoldParenthesesDirective
+    BoldParenthesesDirective,
+    HideBracedTextContentPipe,
+    BraceTextExtractorPipe
+    
   
   ],
   imports: [

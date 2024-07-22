@@ -1,4 +1,5 @@
-<app-navbar-carousel-home></app-navbar-carousel-home>
+<app-navbar-carousel-promo></app-navbar-carousel-promo>
+<app-sidebar></app-sidebar>
 <div>
     <div class="responsive">
 
@@ -9,6 +10,7 @@
     
 </div>
 <br> <br><br> 
+<p></p>
 <mat-tab-group mat-align-tabs="center">
    
     <mat-tab>
@@ -21,7 +23,7 @@
 
          <div class="tab-pane tab-pane-parent fade show active px-0" id="pills-home" role="tabpanel"
                 aria-labelledby="pills-home-tab" style="padding: 5px; overflow: hidden; ">
-                <p-carousel  [numVisible]="5" [numScroll]="5" [circular]="true"
+                <p-carousel  [numVisible]="5" [numScroll]="5" [circular]="true" [value]="AgenciesSfax"
                     [autoplayInterval]="7000"  styleClass="custom-carousel">
 
                     <ng-template pTemplate="header">
@@ -114,12 +116,12 @@
 
                 </p-carousel>
             </div>
-        <div class="gradient-border"
+        <!-- <div class="gradient-border"
         id="box">
         En cour de construction &nbsp;
         <i class="fa fa-exclamation-triangle" aria-hidden="true"> </i>
     
-    </div> <br><br><br><br><br>
+    </div> <br><br><br><br><br> -->
 
     </mat-tab>
     <mat-tab>
@@ -170,7 +172,7 @@
     </mat-tab>
 
 </mat-tab-group>
-
+<br><br><br>
 <div class="tunsian-flag-img-background" style="height: -170">
     <div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
         <div class="btn-group mr-2" role="group " aria-label="First group ">
@@ -222,3 +224,4 @@
 
     <!--	<hr style="margin-block-start: 2%"> -->
 </div>
+<br><br>

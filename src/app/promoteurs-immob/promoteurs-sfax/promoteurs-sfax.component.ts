@@ -10,7 +10,7 @@ export class PromoteursSfaxComponent implements OnInit {
 
  public AgenciesSfax: any
  responsiveOptions
- 
+ searchText=""
   constructor(private agencieService: AgenciesService) {
     this.responsiveOptions = [
       {

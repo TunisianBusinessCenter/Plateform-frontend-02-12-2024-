@@ -65,7 +65,9 @@ export class AgenciesService {
   }
 
   getImageExemple(){
+
     return this.http.get('https://api.unsplash.com/photos/?client_id=1a28e59e586593faf822eb102154d46e8f56c830d3e5d896a0293804233f991a&per_page=30&page=1')
+    
   }
   private agencyIdSource = new BehaviorSubject<number>(null);
   currentAgencyId = this.agencyIdSource.asObservable();
@@ -133,5 +135,16 @@ export class AgenciesService {
 
   getStoredId(): string {
     return localStorage.getItem('coffeeId');
+  }
+  detectLanguage(text: string): 'rtl' | 'ltr' {
+    const arabicRegex = /[\u0600-\u06FF]/;
+    const frenchRegex = /[À-ÿ]/; // Basic check for French-specific characters
+    
+    if (arabicRegex.test(text)) {
+      return 'rtl';
+    } else if (frenchRegex.test(text)) {
+      return 'ltr';
+    }
+    return 'ltr'; // Default direction
   }
 }

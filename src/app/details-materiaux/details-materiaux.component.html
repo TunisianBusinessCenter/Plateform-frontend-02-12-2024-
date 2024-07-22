@@ -52,17 +52,9 @@
 			
 			   <ul>
 			
-				<li *ngIf="idAgency">
-					<a  [routerLink]="'/agency/' + idAgency">
-						<i class="fa fa-home fa-2x"></i>
-						<span class="nav-text">
-							Page d'accueil 
-						</span>
-					</a>
-				  
-				</li>
-			   <li *ngIf="!idAgency">
-          <a>
+				
+			   <li >
+          <a (click)="backClicked()">
             <i class="fa fa-home fa-2x"></i>
             <span class="nav-text">
               Page d'accueil

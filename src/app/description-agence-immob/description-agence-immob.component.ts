@@ -38,6 +38,7 @@ export class DescriptionAgenceImmobComponent implements OnInit {
   closeResult: string;
   biens: any;
   agenceName: any;
+  idAgencyMenu: any;
 
   constructor(private biensImoobService:AgenceImmobilieresService,
     private agencieService:AgenciesService,
@@ -61,7 +62,7 @@ export class DescriptionAgenceImmobComponent implements OnInit {
 
   ngOnInit(): void {
     this.idAgence = this.sharedService.getIdAgency();
-    this.getAgency()
+    this.Id()
 
     this.primengConfig.ripple = true;
 
@@ -76,6 +77,7 @@ export class DescriptionAgenceImmobComponent implements OnInit {
     this.biensImoobService.getSousBiensById(this.idsousBiens).subscribe(data => {
       this.sousBiens = data;
       console.log(this.sousBiens.imagesList[0])
+      console.log(this.sousBiens)
     });
     
   ///methode1:
@@ -111,12 +113,62 @@ export class DescriptionAgenceImmobComponent implements OnInit {
     this._location.back();
   }
   
-  getAgency(){
+  Id(){
     this.agencieService.getAgencieById(this.idAgence).subscribe((data:any) => {
       this.biens=data?.biens
       this.agenceName = data?.name
       console.log(this.biens);
       
     })
+  }
+
+
+
+
+
+
+
+
+
+
+
+  navigateAndRefresh(project: any) {
+    // Extract the id from the project object
+    const projectId = project?.sous_biens[0]?.id;
+
+    // Navigate to the specified route
+   
+    this.router.navigate(['/descriptionAgence_Immob', projectId])
+      .then(() => {
+        // If navigation is successful, call the refresh function
+        this.refresh();
+      });
+  }
+  refresh(): void {
+    this.router.navigateByUrl("/refreshPromo", { skipLocationChange: true }).then(() => {
+      console.log(decodeURI(this._location.path()));
+      this.router.navigate([decodeURI(this._location.path())]);
+
+      // Set timeout to call the refresh function again after 2 seconds
+
+    });
+  }
+  getAgencyId() {
+    this.agencieService.getAllAgencies().subscribe((data: any) => {
+      const filteredAgencies = data.filter(agency => agency.name === this.Projet.agencyName);
+      if (filteredAgencies.length > 0) {
+        this.idAgencyMenu = filteredAgencies[0].id;
+        console.log(this.idAgencyMenu);
+        this.router.navigate(['/agency', this.idAgencyMenu]);
+      }
+    });
+  }
+  isArabic(text: string): boolean {
+    const arabicCharPattern = /[\u0600-\u06FF]/;
+    return arabicCharPattern.test(text);
+  }
+
+  getDirection(text: string): string {
+    return this.isArabic(text) ? 'rtl' : 'ltr';
   }
 }

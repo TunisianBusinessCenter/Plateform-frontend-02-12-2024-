@@ -100,7 +100,7 @@ export class AgencyComponent implements OnInit, AfterViewInit {
 
 
   constructor(private activatedRoute: ActivatedRoute,
-    private sharedService:SharedAgenceImmobilierService,
+    private sharedService: SharedAgenceImmobilierService,
     private agencieService: AgenciesService,
     private projetService: ProjetsService,
     private produitService: ProduitsService,
@@ -111,7 +111,7 @@ export class AgencyComponent implements OnInit, AfterViewInit {
     private router: Router,
     public _seoService: ShareService,
     private renderer: Renderer2, private el: ElementRef,
-    private route:ActivatedRoute,
+    private route: ActivatedRoute,
     private modalService: NgbModal,
 
   ) {
@@ -123,12 +123,12 @@ export class AgencyComponent implements OnInit, AfterViewInit {
       this.AgencyBaniere = this.Agency.mobile_apps[0].mobile_cover_image_url;
       this.agencieService.setAgencyBaniere(this.AgencyBaniere);
 
-      console.log('AgencyBaniere',this.AgencyBaniere)
+      console.log('AgencyBaniere', this.AgencyBaniere)
       this.reverseAgPromoteurs = this.Agency?.projets?.reverse();
     })
-       // Log the dynamically generated routerLink to the console
-       const routerLink = ['/', this.Agency?.id];
-       console.log('Generated routerLink:', routerLink);
+    // Log the dynamically generated routerLink to the console
+    const routerLink = ['/', this.Agency?.id];
+    console.log('Generated routerLink:', routerLink);
     this.responsiveOptions = [
       {
         breakpoint: '2700px',
@@ -157,17 +157,26 @@ export class AgencyComponent implements OnInit, AfterViewInit {
       }
     ];
   }
-  ngAfterViewInit() {
-    this.idAgency = this.activatedRoute.snapshot.paramMap.get('id')
-    this.agencieService.getAgencieById(this.idAgency).subscribe(data => {
-      console.log(data, "test")
-      this.Agency = data;
-      this.reverseAgPromoteurs = this.Agency?.projets?.reverse();
-    })
-    this.setSharedVariable();
-  }
+ 
+    ngAfterViewInit() {
+      this.idAgency = this.activatedRoute.snapshot.paramMap.get('id');
+      this.agencieService.getAgencieById(this.idAgency).subscribe(data => {
+        console.log(data, "test");
+        this.Agency = data;
+    
+        // Ensure projets array exists and sort it by id in ascending order
+        if (this.Agency?.projets) {
+          this.reverseAgPromoteurs = [...this.Agency.projets].sort((a, b) => a.id - b.id);
+        }
+    
+        console.log(this.reverseAgPromoteurs);
+      });
+      this.setSharedVariable();
 
+    }
+    
   ngOnInit(): void {
+
     this.setIdAgency()
     this.startSendingData()
     this.changeMetadata(
@@ -187,8 +196,8 @@ export class AgencyComponent implements OnInit, AfterViewInit {
       this.Agency = data;
       this.agenceImmob = this.Agency?.biens
       this.AgencyP = this.Agency?.projets;
-      console.log(this.AgencyP,'ici')
-      console.log(this.Agency,'ici')
+      console.log(this.AgencyP, 'ici')
+      console.log(this.Agency, 'ici')
       let result;
       if (this.Agency.projets && this.Agency.projets.length > 0) {
         result = this.Agency.projets;
@@ -199,14 +208,14 @@ export class AgencyComponent implements OnInit, AfterViewInit {
       } else {
         result = this.Agency.services;
       }
-      
-      
-      this.ProjetEnCours  = result.filter(project => project.status === 'EN COURS' || project.status === 'EN COURS ')
-      
+
+
+      this.ProjetEnCours = result.filter(project => project.status === 'EN COURS' || project.status === 'EN COURS ')
+
       // this.ProduitEnCours  = result.filter(project => project.status === 'EN COURS');
-      this.ProduitEnCours  = result
-      console.log('cours',this.ProduitEnCours)
-      this.ProjetDispo = result.filter(project => project.status === 'DISPONIBLE'       || project.status === 'Disponible'      );
+      this.ProduitEnCours = result
+      console.log('cours', this.ProduitEnCours)
+      this.ProjetDispo = result.filter(project => project.status === 'DISPONIBLE' || project.status === 'Disponible');
       this.ProduitDispo = result.filter(project => project.status === 'VENDU');
       this.ProduitVendu = result.filter(project => project.status === 'VENDU');
       // this.reverseAgPromoteurs= this.Agency.projets.reverse();
@@ -217,9 +226,9 @@ export class AgencyComponent implements OnInit, AfterViewInit {
       //Video_Url
       this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.Agency?.videoUrl);
       this.reverseAg = this.Agency?.produits?.reverse();
-      this.reverseAgBiens = this.Agency?.biens?.reverse();
+      this.reverseAgBiens = this.Agency?.biens
 
-
+console.log("testtesttesttesttesttesttesttesttesttesttesttesttesttest",this.reverseAgBiens)
 
       //promo produit
       for (let ImagePromoProduit of this.Agency?.produits) {
@@ -399,54 +408,51 @@ export class AgencyComponent implements OnInit, AfterViewInit {
     const instagramShareURL = `https://www.instagram.com/?url=${encodeURIComponent(this.Agency.videoUrl2)}`;
     window.open(instagramShareURL, '_blank');
   }
-//   fn() {
+  //   fn() {
 
-//     if (this.Agency.name == "LA PLAINE") {
+  //     if (this.Agency.name == "LA PLAINE") {
 
-//       let url = "https://play.google.com/store/apps/details?id=com.im.android.lapleine&hl=fr&gl=US"
+  //       let url = "https://play.google.com/store/apps/details?id=com.im.android.lapleine&hl=fr&gl=US"
 
-// console.log
-//     }
-   
+  // console.log
+  //     }
 
-//   }
 
-checkRoute() {
+  //   }
+
+  checkRoute() {
 
     window.open(this.Agency?.videoUrl, '_blank');
     console.log('Generated routerLink:', this.Agency?.videoUrl);
 
-}
+  }
 
 
-getRouterLink(): string[] {
-  // Log the dynamically generated routerLink to the console
-  const routerLink = ['/', this.Agency?.id];
-  console.log('Generated routerLink:', routerLink);
-  
-  return routerLink;
-}
- setSharedVariable() {
-  let data = this.Agency;
-  this.agencieService.setSharedVariable(data);
-  console.log("this data", data); // Corrected to use the 'data' variable
-  //  this.message ="data sended successfully"
-}
-openVerticallyCentered(content) {
-  this.modalService.open(content, { centered: true });
-}
-// sendData() {
-//   this.agencieService.setSharedData(this.Agency.id);
-// }
-startSendingData() {
-  setInterval(() => {
- 
-    this.agencieService.setSharedData(this.Agency.id);
-  }, 1000); // 1000 milliseconds = 1 second
-}
+  getRouterLink(): string[] {
+    // Log the dynamically generated routerLink to the console
+    const routerLink = ['/', this.Agency?.id];
+    console.log('Generated routerLink:', routerLink);
 
+    return routerLink;
+  }
+  setSharedVariable() {
+    let data = this.Agency;
+    this.agencieService.setSharedVariable(data);
+    console.log("this data", data); // Corrected to use the 'data' variable
+    //  this.message ="data sended successfully"
+  }
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
+  }
+  // sendData() {
+  //   this.agencieService.setSharedData(this.Agency.id);
+  // }
+  startSendingData() {
+    setInterval(() => {
 
-
+      this.agencieService.setSharedData(this.Agency.id);
+    }, 1000); // 1000 milliseconds = 1 second
+  }
 
 
 
@@ -459,9 +465,19 @@ startSendingData() {
 
 
 
-setIdAgency() {
-  this.sharedService.setIdAgency(this.idAgency);
-}
 
 
+
+  setIdAgency() {
+    this.sharedService.setIdAgency(this.idAgency);
+  }
+
+  isArabic(text: string): boolean {
+    const arabicCharPattern = /[\u0600-\u06FF]/;
+    return arabicCharPattern.test(text);
+  }
+
+  getDirection(text: string): string {
+    return this.isArabic(text) ? 'rtl' : 'ltr';
+  }
 }

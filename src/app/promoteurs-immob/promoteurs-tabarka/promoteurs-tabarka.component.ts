@@ -39,7 +39,7 @@ export class PromoteursTabarkaComponent implements OnInit {
       }
     ];
   }
-
+  searchText=""
   ngOnInit(): void {
     this.agencieService.getAgencieTabarka().subscribe((data:any)=>{
       this.AgenciesTabarka=data

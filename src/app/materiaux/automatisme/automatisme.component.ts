@@ -49,16 +49,28 @@ export class AutomatismeComponent implements OnInit {
     ];
   }
 //filtrage  
-  ngOnInit(): void {
-    this.Servicemateriaux.getMateriauxAutomatisme().subscribe((data: any) => {
-      this.MateriauxAutomatisme = data;
-      console.log(this.MateriauxAutomatisme)
-      this.filtredAutomatisme1 = data;
-      this.filtredAutomatisme = this.filtredAutomatisme1.filter((item: { name: string; }) => item.name);
-      console.log(this.filtredAutomatisme)
-      this.filtredAutomatisme2 = this.filtredAutomatisme;
-    })
-  }
+ngOnInit(): void {
+  this.Servicemateriaux.getMateriauxAutomatisme().subscribe((data: any) => {
+    this.MateriauxAutomatisme = data.sort((a: any, b: any) => {
+      const dateA = this.parseDate(a.createdAt);
+      const dateB = this.parseDate(b.createdAt);
+      return dateB.getTime() - dateA.getTime();
+    });
+    console.log(this.MateriauxAutomatisme);
+  });
+}
+
+parseDate(dateString: string): Date {
+  const parts = dateString.split(/[\s/:]/);
+  const day = parseInt(parts[0], 10);
+  const month = parseInt(parts[1], 10) - 1; // Months are zero-based
+  const year = parseInt(parts[2], 10);
+  const hours = parseInt(parts[3], 10);
+  const minutes = parseInt(parts[4], 10);
+  const seconds = parseInt(parts[5], 10);
+  return new Date(year, month, day, hours, minutes, seconds);
+}
+
   //rechercher  
   Search() {
     if (this.searchText !== "") {

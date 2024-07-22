@@ -3,82 +3,77 @@
 
     <!-- <div class="main-container" *ngIf="Agency?.role==='promoteur-immobilieres'"	 > -->
 
-<!-- <div class="main-container" *ngIf="Agency?.role==='promoteur-immobilieres'"	 > -->
-	<div class="main-container" 	 >
-		<nav class="main-menu">
-			<style>
-				.banner {
-				  text-align: center;
-				  padding: 10px;
-				  background-color: #434388; /* Set your desired background color */
-				  color: #fff; /* Set the text color */
-				  font-size: 16px; /* Adjust the font size */
-				}
-			  
-				.logo-container {
-				  text-align: center;
-				  padding: 10px;
-				  border-radius: 5%;
-				  overflow: hidden;
-				  background-color: #fff;
-				}
-			  
-				.logo-container img {
-				  max-width: 100%;
-				  height: auto;
-				  border-radius: 40%;
-				}
-			  
-				.hr {
-				  width: 20px;
-				  height: 20px;
-				  background-color: white;
-				}
-			  </style>
-			  
-			
-			<li>
-				<a  [routerLink]="'/agency/' + idAgence">
-					<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
-	
-				
-                    <span class="nav-text" >
+    <!-- <div class="main-container" *ngIf="Agency?.role==='promoteur-immobilieres'"	 > -->
+    <div class="main-container">
+        <nav class="main-menu">
+            <style>
+                .banner {
+                    text-align: center;
+                    padding: 10px;
+                    background-color: #434388;
+                    /* Set your desired background color */
+                    color: #fff;
+                    /* Set the text color */
+                    font-size: 16px;
+                    /* Adjust the font size */
+                }
+
+                .logo-container {
+                    text-align: center;
+                    padding: 10px;
+                    border-radius: 5%;
+                    overflow: hidden;
+                    background-color: #fff;
+                }
+
+                .logo-container img {
+                    max-width: 100%;
+                    height: auto;
+                    border-radius: 40%;
+                }
+
+                .hr {
+                    width: 20px;
+                    height: 20px;
+                    background-color: white;
+                }
+            </style>
+
+
+            <li>
+                <a [routerLink]="'/agency/' + idAgence">
+                    <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+
+
+                    <span class="nav-text">
                         {{agenceName}}
 
-        </span>
-				</a>
-			  
-			</li>
-		   
-		   <div>
-			<hr>
-      <hr>	<br>
-			
-			   <ul>
-			
-				<li *ngIf="idAgence">
-					<a  [routerLink]="'/agency/' + idAgence">
-						<i class="fa fa-home fa-2x"></i>
-						<span class="nav-text">
-							Page d'accueil 
-						</span>
-					</a>
-				  
-				</li>
-			   <li *ngIf="!idAgence">
-          <a>
-            <i class="fa fa-home fa-2x"></i>
-            <span class="nav-text">
-              Page d'accueil
-            </span>
-          </a>
-         </li>
-				<li class="dropdown">
-					<a >
-						<i class="fa fa-book fa-2x"></i>
-						<span class="nav-text">Nos Produits</span>
-					</a>
-					<!-- <div class="dropdown-content" >
+                    </span>
+                </a>
+
+            </li>
+
+            <div>
+                <hr>
+                <hr> <br>
+
+                <ul>
+
+                 
+                    <li >
+                        <a (click)="backClicked()" >
+                            <i class="fa fa-home fa-2x"></i>
+                            <span class="nav-text">
+                                Page d'accueil
+                            </span>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a>
+                            <i class="fa fa-book fa-2x"></i>
+                            <span class="nav-text">Nos Produits</span>
+                        </a>
+                        <!-- <div class="dropdown-content" >
 						<a *ngIf="ProjetEnCours.length > 0 || ProduitEnCours.length > 0">En cours</a>
 	
 						<div class="submenu" *ngFor="let project of ProjetEnCours">
@@ -99,136 +94,141 @@
 						</div>
 	
 					</div> -->
-					<div class="dropdown-content" >
-						<!-- <a *ngIf=" ProduitEnCours?.length > 0">Produits</a> -->
-	
-						<div class="submenu" *ngFor="let project of biens">
-	
-							<a style="background-color: #1e466e59;" (click)="refreshPage()" [routerLink]="['/agences-immob-details-plus', project.id]">
-								{{ project?.name }} 
-	
-							</a>
-						</div>
-						<!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
-	
-					</div>
-          
-				</li>
-				<style>
-					.show-subnav {  
-	    display: block;
-	}
-				</style>
-	
-				<!-- <li>
+                        <div class="dropdown-content">
+                            <!-- <a *ngIf=" ProduitEnCours?.length > 0">Produits</a> -->
+
+                            <div class="submenu" *ngFor="let project of biens">
+
+                                <a style="background-color: #1e466e59;"   (click)="navigateAndRefresh(project)"
+                                    >
+                                    {{ project?.name }}
+
+                                </a>
+                            </div>
+                            <!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
+
+                        </div>
+
+                    </li>
+                    <style>
+                        .show-subnav {
+                            display: block;
+                        }
+                    </style>
+
+                    <!-- <li>
 					<a routerLink="/conception/ajouterConception">
 						<i class="fa fa-plus fa-2x"></i>
 						<span class="nav-text">Ajouter contenu </span>
 					</a>
 				</li> -->
-	
-				<li class="dropdown">
-					<a >
-						<i class="fa fa-envelope fa-2x"></i>
-						<span class="nav-text">Contacter nous</span>
-					</a>
-					
-				</li>
-				
-        <style>
-          /* Initially hide the dropdown content */
-          .dropdown-content {
-          
-            display: none;
-            position: absolute;
-            background-color: #1f1e84;
-            min-width: 42px;
-            width: 248px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 5;
-        
-          }
-          .dropdown-content > a {
-          margin: 0px 23px;
-          font-style: none;
-          transform-style: none;
-          color: yellow;
-          }
-          
-          /* Show the dropdown content when the parent is hovered */
-          .dropdown:hover .dropdown-content {
-          display: block;
-          }
-          
-          /* Style the dropdown options as blocks with margin */
-          .dropdown-content .submenu {
-          padding: 10px; /* Adjust the padding as needed */
-          }
-          
-          .dropdown-content .submenu a {
-          display: block;
-          font-size: 9px;
-          width: 222px;
-          margin: -7px 11px;
-          padding: 10px;
-          text-decoration: none;
-          color: white;
-          background-color: rgb(10, 10, 211)e84;
-          transition: background-color 0.3s;
-          border: solid 1px rgb(255 255 255 / 16%);
-          border-radius: 7px;
-          }
-          
-          /* Add a little margin between the dropdown options */
-          .dropdown-content .submenu a + a {
-          margin-top: 5px; /* Adjust the margin as needed */
-          
-          }
-          
-          /* Add hover effect */
-          .dropdown-content .submenu a {
-            font-size: 12px;
-            font-weight: bold;
-            transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease;
-          }
-          
-          .dropdown-content .submenu a:hover {
-              font-size: 13px;
-            color: yellow;
-            border: solid 1px gray;
-            font-weight: 600;
-        
-          }
-          
-          @media only screen and (max-width: 767px) {
-          
-          
-          .dropdown-content .submenu a:hover {
-            transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease; /* Add smooth transition for both background color and font size */
-          
-          }
-          }
-          </style>			
-          
-				
-	
-	
-			  
-			   
-				<li>
-					<a >
-						<i class="fa fa-info-circle fa-2x"></i>
-						<span class="nav-text">
-							A propos
-						</span>
-					</a>
-				  
-				</li>
-			 
-			</ul>
-		   </div>
-		
-			<!-- <ul class="logout">
+
+                    <li class="dropdown">
+                        <a>
+                            <i class="fa fa-envelope fa-2x"></i>
+                            <span class="nav-text">Contacter nous</span>
+                        </a>
+
+                    </li>
+
+                    <style>
+                        /* Initially hide the dropdown content */
+                        .dropdown-content {
+
+                            display: none;
+                            position: absolute;
+                            background-color: #1f1e84;
+                            min-width: 42px;
+                            width: 248px;
+                            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                            z-index: 5;
+
+                        }
+
+                        .dropdown-content>a {
+                            margin: 0px 23px;
+                            font-style: none;
+                            transform-style: none;
+                            color: yellow;
+                        }
+
+                        /* Show the dropdown content when the parent is hovered */
+                        .dropdown:hover .dropdown-content {
+                            display: block;
+                        }
+
+                        /* Style the dropdown options as blocks with margin */
+                        .dropdown-content .submenu {
+                            padding: 10px;
+                            /* Adjust the padding as needed */
+                        }
+
+                        .dropdown-content .submenu a {
+                            display: block;
+                            font-size: 9px;
+                            width: 222px;
+                            margin: -7px 11px;
+                            padding: 10px;
+                            text-decoration: none;
+                            color: white;
+                            background-color: rgb(10, 10, 211)e84;
+                            transition: background-color 0.3s;
+                            border: solid 1px rgb(255 255 255 / 16%);
+                            border-radius: 7px;
+                        }
+
+                        /* Add a little margin between the dropdown options */
+                        .dropdown-content .submenu a+a {
+                            margin-top: 5px;
+                            /* Adjust the margin as needed */
+
+                        }
+
+                        /* Add hover effect */
+                        .dropdown-content .submenu a {
+                            font-size: 12px;
+                            font-weight: bold;
+                            transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+                        }
+
+                        .dropdown-content .submenu a:hover {
+                            font-size: 13px;
+                            color: yellow;
+                            border: solid 1px gray;
+                            font-weight: 600;
+
+                        }
+
+                        @media only screen and (max-width: 767px) {
+
+
+                            .dropdown-content .submenu a:hover {
+                                transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+                                /* Add smooth transition for both background color and font size */
+
+                            }
+                        }
+                    </style>
+
+
+
+
+
+
+                    <li>
+                        <a>
+                            <i class="fa fa-info-circle fa-2x"></i>
+                            <span class="nav-text">
+                                A propos
+                            </span>
+                        </a>
+
+                    </li>
+
+                </ul>
+            </div>
+
+            <!-- <ul class="logout">
 				<li>
 				   <a routerLink="conception/login">
 						 <i class="fa fa-power-off fa-2x"></i>
@@ -238,10 +238,10 @@
 					</a>
 				</li>  
 			</ul> -->
-		
-		</nav>
-		
-	</div>
+
+        </nav>
+
+    </div>
 
 
 
@@ -276,21 +276,25 @@
                 <button (click)="backClicked()" type="submit" class="btn animated-border-button retour">
                     <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
                     Retour
-                </button>&nbsp;&nbsp;&nbsp;&nbsp;   
-                <br>           
+                </button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <br>
             </div>
         </div>
 
-        <div>
-            <h3 class="titreDesc">{{sousBiens?.name}}</h3>
-        </div>
+        <!-- <div>
+            <h3 class="titreDesc"></h3>
+        </div> -->
 
-        
-        <div class="descriptionAgence">
-            <h2 class="titleAgence">Description</h2><br>
-            <h4>{{sousBiens?.description}}</h4>
+<br>
+        <div  class="descriptionAgence">
+            
+            <h2 class="titleAgence">{{sousBiens?.name}} :</h2><br>
+            <h4 [dir]="getDirection(sousBiens?.description)">{{sousBiens?.description}}</h4>
+            
+            <h4>{{sousBiens?.agencyName}}</h4>
         </div>
-        <div class="row cards p" >
+        <br>
+        <div class="row cards p">
             <div class="cardx" style="display: flex;
         text-align: center;
         flex-direction: row-reverse;
@@ -587,3 +591,5 @@
     }
 </style>
 <br><br>
+
+

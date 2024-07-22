@@ -72,49 +72,28 @@
 
 
 					</a>
-					<div class="dropdown-content">
-						<a *ngIf="ProjetEnCours.length > 0 ">En cours</a>
 
-						<div class="submenu" *ngFor="let project of ProjetEnCours">
-
-							<a style="background-color: #1e466e59;" (click)="refreshPage()"
-								[routerLink]="['/details', project.id]">
-								{{ project.name }}
-
-							</a>
-						</div>
-						<!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
-
-						<a *ngIf="ProjetDispo.length > 0">Disponible</a>
-						<div class="submenu" *ngFor="let project of ProjetDispo ; index as i">
-
-							<a style="background-color: #1e466e59;" (click)="refreshPage()"
-								[routerLink]="'/details/' + project.id">
-								{{ project.name }}
-
-							</a>
-						</div>
-						<a *ngIf="ProduitVendu.length > 0">Vendu</a>
-						<div class="submenu" *ngFor="let project of ProduitVendu ; index as i">
-
-							<a style="background-color: #1e466e59;" (click)="refreshPage()"
-								[routerLink]="'/details/' + project.id">
-								{{ project.name }}
-
-							</a>
-						</div>
-
-					</div>
 					<div class="dropdown-content" *ngIf="Agency?.role==='materiaux-construction'">
 						<!-- <a *ngIf=" ProduitEnCours.length > 0">Produits</a> -->
 
 						<div class="submenu" *ngFor="let project of ProduitEnCours">
 
-							<a style="background-color: #1e466e59;" (click)="refreshPage()"
-								[routerLink]="['/coffee-details', project.id]">
-								{{ project.name }}
-
+							<a *ngIf="missingMenuText == 'The English Menu Does Not Exist'"
+								(click)="setChangeVariable()" style="background-color: #1e466e59;color:#9f9f8e;"
+								(click)="refreshPage()">
+								{{ changeVariable === 0 ? (project.name | hideBracedTextContent ) : (changeVariable ===
+								1
+								? (project.name | braceTextExtractor )|| handleMissingEnglishMenu() : project.name ) }}
 							</a>
+
+							<a *ngIf="missingMenuText !== 'The English Menu Does Not Exist'"
+								(click)="setChangeVariable()" style="background-color: #1e466e59;"
+								(click)="refreshPage()" [routerLink]="['/coffee-details', project.id]">
+								{{ changeVariable === 0 ? (project.name | hideBracedTextContent ) : (changeVariable ===
+								1 ? (project.name | braceTextExtractor )|| handleMissingEnglishMenu() : project.name )
+								}}
+							</a>
+
 						</div>
 						<!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
 
@@ -439,17 +418,38 @@
 
 
 <div class="main">
+
+	<div class="languagemenu" style="text-align: center;    margin-left: 38px;">
+		<a style="cursor: pointer;" (click)="changeVarSecondTime()"><img
+				src="https://cdn2.iconfinder.com/data/icons/flags_gosquared/64/France_flat.png" alt="Français"
+				title="Français" class="flag"></a>
+		<a style="cursor: pointer;" (click)="changeVar()"><img
+				src="https://cdn2.iconfinder.com/data/icons/flags_gosquared/64/United-Kingdom_flat.png" alt="English"
+				title="English" class="flag"></a>
+
+	</div>
+
 	<ul class="cards">
 		<li class="cards_item" *ngFor="let data of reverseAg">
 			<div class="card">
 				<!-- coffee-details -->
 				<div [routerLink]="'/coffee-details/' + data.id" class="card_image"><img src="{{data?.imageUrl}}"></div>
 				<div class="card_content">
-					<h2 class="card_title">{{data.name}}</h2>
+					<!-- <h2 *ngIf="changeVariable === 1"  class="card_title">{{data.name | braceTextExtractor}}</h2> -->
+					<h2 *ngIf="changeVariable === 1" class="card_title">
+						{{ (data.name | braceTextExtractor) || handleMissingEnglishMenu() }}
+					</h2>
+					<h2 *ngIf="changeVariable === 0" class="card_title">{{data.name | hideBracedTextContent}}</h2>
 					<p class="card_text">{{data.agencyName}}</p>
-					<button [routerLink]="'/coffee-details/' + data.id"
-						style="    background: #1f1e84;font-weight: bolder;" class="btn card_btn">DÉCOUVREZ NOTRE MENU
+					<button *ngIf="changeVariable==0" [disabled]="missingMenuText === 'The English Menu Does Not Exist'"
+						(click)="setChangeVariable()" [routerLink]="'/coffee-details/' + data.id"
+						style="background: #1f1e84;font-weight: bolder;" class="btn card_btn">DÉCOUVREZ NOTRE MENU
 					</button>
+					<button *ngIf="changeVariable==1" [disabled]="missingMenuText === 'The English Menu Does Not Exist'"
+						(click)="setChangeVariable()" [routerLink]="'/coffee-details/' + data.id"
+						style="background: #1f1e84;font-weight: bolder;" class="btn card_btn">discover our menu 
+					</button>
+
 				</div>
 			</div>
 		</li>
@@ -773,6 +773,7 @@
 				</span>
 			</a>
 		</div>
+
 		<!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
 				<a class="btn-hover-flag-img text-center " aria-selected="true "
 					style="line-height: 1.5">

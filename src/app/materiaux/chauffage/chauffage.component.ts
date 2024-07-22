@@ -9,8 +9,8 @@ import { MateriauxService } from 'src/app/services/materiaux/materiaux.service';
 export class ChauffageComponent implements OnInit {
 
   searchText = "";
-  public allAgencies:any
-  public allAgencies1:any
+  public allAgencies: any
+  public allAgencies1: any
   responsiveOptions;
   public MateriauxChauffage: any
   filtredChauffage: any
@@ -18,7 +18,7 @@ export class ChauffageComponent implements OnInit {
   filtredChauffage2: any
 
 
-  constructor(private Servicemateriaux: MateriauxService) { 
+  constructor(private Servicemateriaux: MateriauxService) {
     this.responsiveOptions = [
       {
         breakpoint: '2000px',
@@ -50,14 +50,23 @@ export class ChauffageComponent implements OnInit {
 
   ngOnInit(): void {
     this.Servicemateriaux.getMateriauxChauffage().subscribe((data: any) => {
-      this.MateriauxChauffage = data;
-      console.log(this.MateriauxChauffage)
-      this.filtredChauffage1 = data;
-
-      this.filtredChauffage = this.filtredChauffage1.filter((item: { name: string; }) => item.name);
-      console.log(this.filtredChauffage)
-      this.filtredChauffage2 = this.filtredChauffage;
-    })
+      this.MateriauxChauffage = data.sort((a: any, b: any) => {
+        const dateA = this.parseDate(a.createdAt);
+        const dateB = this.parseDate(b.createdAt);
+        return dateB.getTime() - dateA.getTime();
+      });
+      console.log(this.MateriauxChauffage);
+    });
+  }
+  parseDate(dateString: string): Date {
+    const parts = dateString.split(/[\s/:]/);
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // Months are zero-based
+    const year = parseInt(parts[2], 10);
+    const hours = parseInt(parts[3], 10);
+    const minutes = parseInt(parts[4], 10);
+    const seconds = parseInt(parts[5], 10);
+    return new Date(year, month, day, hours, minutes, seconds);
   }
   Search() {
     if (this.searchText !== "") {

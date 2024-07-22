@@ -1,234 +1,236 @@
-
-
 <!-- wrapper -->
 
 
 
 
 
-<app-navbar-carousel ></app-navbar-carousel>
+<app-navbar-carousel></app-navbar-carousel>
 
 
 
 <!-- <div class="main-container" *ngIf="Agency?.role==='promoteur-immobilieres'"	 > -->
-    <div class="main-container">
-        <nav class="main-menu">
-            <style>
-                
-                .banner {
-                    text-align: center;
-                    padding: 10px;
-                    background-color: #434388;
-                    /* Set your desired background color */
-                    color: #fff;
-                    /* Set the text color */
-                    font-size: 16px;
-                    /* Adjust the font size */
-                }
-    
-                .logo-container {
-                    text-align: center;
-                    padding: 10px;
-                    border-radius: 5%;
-                    overflow: hidden;
-                    background-color: #fff;
-                }
-    
-                .logo-container img {
-                    max-width: 100%;
-                    height: auto;
-                    border-radius: 40%;
-                }
-    
-                .hr {
-                    width: 20px;
-                    height: 20px;
-                    background-color: white;
-                }
-            </style>
-    
-    
-    
-            <li>
-                <a >
-                    <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
-    
-                    <span class="nav-text">
-                        <p>{{ agencyName }}</p>
-    
-                    </span>
-                </a>
-    
-            </li>
-    
-            <div>
-    
-    
-                <ul>
-    
-                    <li *ngIf="agencyId">
-                        <a [routerLink]="'/coffeeAgency/' + agencyId">
-                            <i class="fa fa-home fa-2x"></i>
-                            <span class="nav-text">
-                                Page d'accueil
-                            </span>
-                        </a>
-    
-                    </li>
-                  <li>
-                    <a  *ngIf="!agencyId">
+<div class="main-container">
+    <nav class="main-menu">
+        <style>
+            .banner {
+                text-align: center;
+                padding: 10px;
+                background-color: #434388;
+                /* Set your desired background color */
+                color: #fff;
+                /* Set the text color */
+                font-size: 16px;
+                /* Adjust the font size */
+            }
+
+            .logo-container {
+                text-align: center;
+                padding: 10px;
+                border-radius: 5%;
+                overflow: hidden;
+                background-color: #fff;
+            }
+
+            .logo-container img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 40%;
+            }
+
+            .hr {
+                width: 20px;
+                height: 20px;
+                background-color: white;
+            }
+        </style>
+
+
+
+        <li>
+            <a>
+                <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+
+                <span class="nav-text">
+                    <p>{{ agencyName }}</p>
+
+                </span>
+            </a>
+
+        </li>
+
+        <div>
+
+
+            <ul>
+
+                <li *ngIf="agencyId">
+                    <a [routerLink]="'/coffeeAgency/' + agencyId">
                         <i class="fa fa-home fa-2x"></i>
                         <span class="nav-text">
-                               Page d'accueil
+                            Page d'accueil
                         </span>
                     </a>
-                  </li>
-    
-                    <li class="dropdown">
-                        <a>
-                            <!-- <i class="fa fa-book fa-2x"></i>
-                            <i class="fa fa-utensils fa-2x"></i> -->
-                            <i class="fa fa-coffee fa-2x"></i>
 
-                            <span class="nav-text">Nos Menus</span>
-                        </a>
-    
-                        <div class="dropdown-content">
-                            <!-- <a *ngIf=" ProduitEnCours?.length > 0">Produits</a> -->
-    
-                            <div class="submenu" *ngFor="let project of coffeeMenu">
-    
-                                <a style="background-color: #1e466e59;" (click)="refreshPage()"
-                                    [routerLink]="['/coffee-details/', project.id]">
-                                    {{ project.name }}
-    
-                                </a>
-                          
-                            </div>
-                            <!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
-    
+                </li>
+                <li>
+                    <a *ngIf="!agencyId">
+                        <i class="fa fa-home fa-2x"></i>
+                        <span class="nav-text">
+                            Page d'accueil
+                        </span>
+                    </a>
+                </li>
+
+                <li class="dropdown">
+                    <a>
+                        <!-- <i class="fa fa-book fa-2x"></i>
+                            <i class="fa fa-utensils fa-2x"></i> -->
+                        <i class="fa fa-coffee fa-2x"></i>
+
+                        <span class="nav-text">Nos Menus</span>
+                    </a>
+
+                    <div class="dropdown-content">
+                        <!-- <a *ngIf=" ProduitEnCours?.length > 0">Produits</a> -->
+
+                        <div class="submenu" *ngFor="let project of coffeeMenu">
+
+                            <a *ngIf="varChanges==0" style="background-color: #1e466e59;" (click)="refreshPage()"
+                                [routerLink]="['/coffee-details/', project.id]">
+                                {{ project.name | hideBracedTextContent }}
+
+                            </a>
+                            <a *ngIf="varChanges==1" style="background-color: #1e466e59;" (click)="refreshPage()"
+                                [routerLink]="['/coffee-details/', project.id]">
+                                {{ project.name | braceTextExtractor}}
+
+                            </a>
+
                         </div>
-                    </li>
-                    <style>
-                        .show-subnav {
-                            display: block;
-                        }
-                    </style>
-    
-                    <!-- <li>
+                        <!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
+
+                    </div>
+                </li>
+                <style>
+                    .show-subnav {
+                        display: block;
+                    }
+                </style>
+
+                <!-- <li>
                         <a routerLink="/conception/ajouterConception">
                             <i class="fa fa-plus fa-2x"></i>
                             <span class="nav-text">Ajouter contenu </span>
                         </a>
                     </li> -->
-    
-                    <li class="dropdown">
-                        <a (click)="openVerticallyCentered(content)">
-                            <i class="fa fa-envelope fa-2x"></i>
-                            <span class="nav-text">Contacter nous</span>
-                        </a>
-    
-                    </li>
-    
-    
-                    <style>
-                        /* Initially hide the dropdown content */
-                        .dropdown-content {
-    
-                            display: none;
-                            position: absolute;
-                            background-color: #1f1e84;
-                            min-width: 42px;
-                            width: 248px;
-                            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-                            z-index: 5;
-    
-                        }
-    
-                        .dropdown-content>a {
-                            margin: 0px 23px;
-                            font-style: none;
-                            transform-style: none;
-                            color: yellow;
-                        }
-    
-                        /* Show the dropdown content when the parent is hovered */
-                        .dropdown:hover .dropdown-content {
-                            display: block;
-                        }
-    
-                        /* Style the dropdown options as blocks with margin */
-                        .dropdown-content .submenu {
-                            padding: 10px;
-                            /* Adjust the padding as needed */
-                        }
-    
-                        .dropdown-content .submenu a {
-                            display: block;
-                            font-size: 9px;
-                            width: 222px;
-                            margin: -7px 11px;
-                            padding: 10px;
-                            text-decoration: none;
-                            color: white;
-                            background-color: rgb(10, 10, 211)e84;
-                            transition: background-color 0.3s;
-                            border: solid 1px rgb(255 255 255 / 16%);
-                            border-radius: 7px;
-                        }
-    
-                        /* Add a little margin between the dropdown options */
-                        .dropdown-content .submenu a+a {
-                            margin-top: 5px;
-                            /* Adjust the margin as needed */
-    
-                        }
-    
-                        /* Add hover effect */
-                        .dropdown-content .submenu a {
-                            font-size: 12px;
-                            font-weight: bold;
-                            transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
-                        }
-    
+
+                <li class="dropdown">
+                    <a (click)="openVerticallyCentered(content)">
+                        <i class="fa fa-envelope fa-2x"></i>
+                        <span class="nav-text">Contacter nous</span>
+                    </a>
+
+                </li>
+
+
+                <style>
+                    /* Initially hide the dropdown content */
+                    .dropdown-content {
+
+                        display: none;
+                        position: absolute;
+                        background-color: #1f1e84;
+                        min-width: 42px;
+                        width: 248px;
+                        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                        z-index: 5;
+
+                    }
+
+                    .dropdown-content>a {
+                        margin: 0px 23px;
+                        font-style: none;
+                        transform-style: none;
+                        color: yellow;
+                    }
+
+                    /* Show the dropdown content when the parent is hovered */
+                    .dropdown:hover .dropdown-content {
+                        display: block;
+                    }
+
+                    /* Style the dropdown options as blocks with margin */
+                    .dropdown-content .submenu {
+                        padding: 10px;
+                        /* Adjust the padding as needed */
+                    }
+
+                    .dropdown-content .submenu a {
+                        display: block;
+                        font-size: 9px;
+                        width: 222px;
+                        margin: -7px 11px;
+                        padding: 10px;
+                        text-decoration: none;
+                        color: white;
+                        background-color: rgb(10, 10, 211)e84;
+                        transition: background-color 0.3s;
+                        border: solid 1px rgb(255 255 255 / 16%);
+                        border-radius: 7px;
+                    }
+
+                    /* Add a little margin between the dropdown options */
+                    .dropdown-content .submenu a+a {
+                        margin-top: 5px;
+                        /* Adjust the margin as needed */
+
+                    }
+
+                    /* Add hover effect */
+                    .dropdown-content .submenu a {
+                        font-size: 12px;
+                        font-weight: bold;
+                        transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+                    }
+
+                    .dropdown-content .submenu a:hover {
+                        font-size: 13px;
+                        color: yellow;
+                        border: solid 1px gray;
+                        font-weight: 600;
+
+                    }
+
+                    @media only screen and (max-width: 767px) {
+
+
                         .dropdown-content .submenu a:hover {
-                            font-size: 13px;
-                            color: yellow;
-                            border: solid 1px gray;
-                            font-weight: 600;
-    
+                            transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+                            /* Add smooth transition for both background color and font size */
+
                         }
-    
-                        @media only screen and (max-width: 767px) {
-    
-    
-                            .dropdown-content .submenu a:hover {
-                                transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
-                                /* Add smooth transition for both background color and font size */
-    
-                            }
-                        }
-                    </style>
-    
-    
-    
-    
-    
-    
-                    <li>
-                        <a (click)="showMaximizableDialog()">
-                            <i class="fa fa-info-circle fa-2x"></i>
-                            <span class="nav-text">
-                                A propos
-                            </span>
-                        </a>
-    
-                    </li>
-    
-                </ul>
-            </div>
-    
-            <!-- <ul class="logout">
+                    }
+                </style>
+
+
+
+
+
+
+                <li>
+                    <a (click)="showMaximizableDialog()">
+                        <i class="fa fa-info-circle fa-2x"></i>
+                        <span class="nav-text">
+                            A propos
+                        </span>
+                    </a>
+
+                </li>
+
+            </ul>
+        </div>
+
+        <!-- <ul class="logout">
                     <li>
                        <a routerLink="conception/login">
                              <i class="fa fa-power-off fa-2x"></i>
@@ -238,214 +240,245 @@
                         </a>
                     </li>  
                 </ul> -->
-        </nav>
-    
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    </nav>
 
-    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 >
-  <style>
-
-
-.card-wrapper{
-    max-width: 1100px;
-    margin: 0 8px 25px 54px;
+<style>
+    .card-wrapper {
+        max-width: 1100px;
+        margin: 0 8px 25px 54px;
     }
-img{
-width: 100%;
-display: block;
-}
-.img-display{
-overflow: hidden;
-}
-.img-showcase{
-display: flex;
-width: 100%;
-transition: all 0.5s ease;
-}
-.img-showcase img{
-min-width: 100%;
-}
-.img-select{
-display: flex;
-}
-.img-item{
-margin: 0.3rem;
-}
-.img-item:nth-child(1),
-.img-item:nth-child(2),
-.img-item:nth-child(3){
-margin-right: 0;
-}
-.img-item:hover{
-opacity: 0.8;
-}
-.product-content{
-padding: 2rem 1rem;
-}
-.product-title{
-    font-size: 20px;
-    text-transform: capitalize;
-    font-weight: 700;
-    line-height: 1;
-    width: auto;
-    position: relative;
-    color: #12263a;
-    margin: 1rem 0;
-}
 
-.product-link{
-text-decoration: none;
-text-transform: uppercase;
-font-weight: 400;
-font-size: 0.9rem;
-display: inline-block;
-margin-bottom: 0.5rem;
-background: #256eff;
-color: #fff;
-padding: 0 0.3rem;
-transition: all 0.5s ease;
-}
-.product-link:hover{
-opacity: 0.9;
-}
-.product-rating{
-color: #ffc107;
-}
-.product-rating span{
-font-weight: 600;
-color: #252525;
-}
-.product-price{
-margin: 1rem 0;
-font-size: 1rem;
-font-weight: 700;
+    img {
+        width: 100%;
+        display: block;
+    }
 
-}
+    .img-display {
+        overflow: hidden;
+    }
 
-.last-price span{
-color: #f64749;
-text-decoration: line-through;
-}
-.new-price span{
-color: #256eff;
-}
-.product-detail h2{
-text-transform: capitalize;
-color: #12263a;
-padding-bottom: 0.6rem;
-}
-.product-detail p{
-font-size: 0.9rem;
-padding: 0.3rem;
-opacity: 0.8;
-}
-.product-detail ul{
-margin: 1rem 0;
-font-size: 0.9rem;
-}
-.product-detail ul li{
-margin: 0;
-list-style: none;
-background: url(https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/checked.png) left center no-repeat;
-background-size: 18px;
-padding-left: 1.7rem;
-margin: 0.4rem 0;
-font-weight: 600;
-opacity: 0.9;
-}
-.product-detail ul li span{
-font-weight: 400;
-}
-.purchase-info{
-margin: 1.5rem 0;
-}
-.purchase-info input,
-.purchase-info .btn{
-border: 1.5px solid #ddd;
-border-radius: 25px;
-text-align: center;
-padding: 0.45rem 0.8rem;
-outline: 0;
-margin-right: 0.2rem;
-margin-bottom: 1rem;
-}
-.purchase-info input{
-width: 60px;
-}
-.purchase-info .btn{
-cursor: pointer;
-color: #fff;
-}
-.purchase-info .btn:first-of-type{
-background: #256eff;
-}
-.purchase-info .btn:last-of-type{
-background: #f64749;
-}
-.purchase-info .btn:hover{
-opacity: 0.9;
-}
-.social-links{
-display: flex;
-align-items: center;
-}
-.social-links a{
-display: flex;
-align-items: center;
-justify-content: center;
-width: 32px;
-height: 32px;
-color: #000;
-border: 1px solid #000;
-margin: 0 0.2rem;
-border-radius: 50%;
-text-decoration: none;
-font-size: 0.8rem;
-transition: all 0.5s ease;
-}
-.social-links a:hover{
-background: #000;
-border-color: transparent;
-color: #fff;
-}
-
-@media screen and (min-width: 992px){
-.card{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1.5rem;
-}
-.card-wrapper{
-    height: 55vh;
+    .img-showcase {
         display: flex;
-        justify-content: center;
+        width: 100%;
+        transition: all 0.5s ease;
+    }
+
+    .img-showcase img {
+        min-width: 100%;
+    }
+
+    .img-select {
+        display: flex;
+    }
+
+    .img-item {
+        margin: 0.3rem;
+    }
+
+    .img-item:nth-child(1),
+    .img-item:nth-child(2),
+    .img-item:nth-child(3) {
+        margin-right: 0;
+    }
+
+    .img-item:hover {
+        opacity: 0.8;
+    }
+
+    .product-content {
+        padding: 2rem 1rem;
+    }
+
+    .product-title {
+        font-size: 20px;
+        text-transform: capitalize;
+        font-weight: 700;
+        line-height: 1;
+        width: auto;
+        position: relative;
+        color: #12263a;
+        margin: 1rem 0;
+    }
+
+    .product-link {
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 0.9rem;
+        display: inline-block;
+        margin-bottom: 0.5rem;
+        background: #256eff;
+        color: #fff;
+        padding: 0 0.3rem;
+        transition: all 0.5s ease;
+    }
+
+    .product-link:hover {
+        opacity: 0.9;
+    }
+
+    .product-rating {
+        color: #ffc107;
+    }
+
+    .product-rating span {
+        font-weight: 600;
+        color: #252525;
+    }
+
+    .product-price {
+        margin: 1rem 0;
+        font-size: 1rem;
+        font-weight: 700;
+
+    }
+
+    .last-price span {
+        color: #f64749;
+        text-decoration: line-through;
+    }
+
+    .new-price span {
+        color: #256eff;
+    }
+
+    .product-detail h2 {
+        text-transform: capitalize;
+        color: #12263a;
+        padding-bottom: 0.6rem;
+    }
+
+    .product-detail p {
+        font-size: 0.9rem;
+        padding: 0.3rem;
+        opacity: 0.8;
+    }
+
+    .product-detail ul {
+        margin: 1rem 0;
+        font-size: 0.9rem;
+    }
+
+    .product-detail ul li {
+        margin: 0;
+        list-style: none;
+        background: url(https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/checked.png) left center no-repeat;
+        background-size: 18px;
+        padding-left: 1.7rem;
+        margin: 0.4rem 0;
+        font-weight: 600;
+        opacity: 0.9;
+    }
+
+    .product-detail ul li span {
+        font-weight: 400;
+    }
+
+    .purchase-info {
+        margin: 1.5rem 0;
+    }
+
+    .purchase-info input,
+    .purchase-info .btn {
+        border: 1.5px solid #ddd;
+        border-radius: 25px;
+        text-align: center;
+        padding: 0.45rem 0.8rem;
+        outline: 0;
+        margin-right: 0.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .purchase-info input {
+        width: 60px;
+    }
+
+    .purchase-info .btn {
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .purchase-info .btn:first-of-type {
+        background: #256eff;
+    }
+
+    .purchase-info .btn:last-of-type {
+        background: #f64749;
+    }
+
+    .purchase-info .btn:hover {
+        opacity: 0.9;
+    }
+
+    .social-links {
+        display: flex;
         align-items: center;
-        margin-left: 25%;
-}
-.product-imgs{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.product-content{
-    padding-top: 0;
-}
-}
-  </style>
+    }
+
+    .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        color: #000;
+        border: 1px solid #000;
+        margin: 0 0.2rem;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 0.8rem;
+        transition: all 0.5s ease;
+    }
+
+    .social-links a:hover {
+        background: #000;
+        border-color: transparent;
+        color: #fff;
+    }
+
+    @media screen and (min-width: 992px) {
+        .card {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 1.5rem;
+        }
+
+        .card-wrapper {
+            height: 55vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 25%;
+        }
+
+        .product-imgs {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-content {
+            padding-top: 0;
+        }
+    }
+</style>
 
 
 
@@ -485,7 +518,7 @@ color: #fff;
 
 
 <div class="container">
-    <div class="responsive-container"  style="display: flex;">
+    <div class="responsive-container" style="display: flex;">
         <div class="responsive">
             <button (click)="backClicked()" type="submit" class="btn animated-border-button retour">
                 <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
@@ -555,7 +588,7 @@ color: #fff;
             }
         </style>
         <div>
-          
+
 
 
             <br>
@@ -577,26 +610,29 @@ color: #fff;
             </button>
         </div> -->
         <div class="mb-0 lh-214">
-<div class="textDesc" id="textDescr">
-    <h2 class = "product-title">{{SousCategorie?.name}}</h2>
-    <a href = "#" class = "product-link">{{SousCategorie?.category}}</a>
-    <div class = "product-rating">
-        <i class = "fas fa-star"></i>
-        <i class = "fas fa-star"></i>
-        <i class = "fas fa-star"></i>
-        <i class = "fas fa-star"></i>
-        <i class = "fas fa-star-half-alt"></i>
-      </div>
-</div>
+            <div class="textDesc" id="textDescr">
+                <h2 *ngIf="varChanges==0" class="product-title">{{SousCategorie?.name | hideBracedTextContent}}</h2>
+                <h2 *ngIf="varChanges==1" class="product-title">{{SousCategorie?.name | braceTextExtractor}}</h2>
+                <a *ngIf="varChanges==0" class="product-link">{{SousCategorie?.category | hideBracedTextContent}}</a>
+                <a *ngIf="varChanges==1" class="product-link">{{SousCategorie?.category | braceTextExtractor}}</a>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
             <div *ngIf="SousCategorie?.description === null">
                 <p class="scrollable-paragraph paragrapheDesc">Description manquant!</p>
             </div>
-            <div *ngIf="SousCategorie?.description !== null" >
-                <div class="content-p" >
-                    <p  [innerHTML]="getDescriptionWithBoldText()"  class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
-                        <ng-container   *ngIf="SousCategorie?.description">
-                            <ng-container    *ngFor="let sentence of SousCategorie?.description.split('-')">
-                                {{ sentence.trim() }} 
+            <div *ngIf="SousCategorie?.description !== null">
+                <div class="content-p">
+                    <p *ngIf="varChanges==0" [innerHTML]="getDescriptionWithBoldText() | hideBracedTextContent"
+                        class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
+                        <ng-container *ngIf="SousCategorie?.description">
+                            <ng-container *ngFor="let sentence of SousCategorie?.description.split('-') ">
+                                {{ sentence.trim() }}
                                 <hr style="    margin: 4px 0;
                         color: inherit;
                         border: 0;
@@ -605,11 +641,26 @@ color: #fff;
                     ">
                             </ng-container>
                         </ng-container>
-                        
+
                     </p>
-                    
-            
-  
+                    <p *ngIf="varChanges==1" [innerHTML]="getDescriptionWithBoldText() | braceTextExtractor"
+                        class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
+                        <ng-container *ngIf="SousCategorie?.description">
+                            <ng-container *ngFor="let sentence of SousCategorie?.description.split('-') ">
+                                {{ sentence.trim() }}
+                                <hr style="    margin: 4px 0;
+                        color: inherit;
+                        border: 0;
+                        border-top: var(--bs-border-width) solid;
+                        opacity: 0;
+                    ">
+                            </ng-container>
+                        </ng-container>
+
+                    </p>
+
+
+
                 </div>
             </div>
         </div>
@@ -685,27 +736,30 @@ color: #fff;
             </form>
         </div>
     </ng-template>
-   
+
 </div>
 
 <div class="tunsian-flag-img-background">
     <div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
         <div class="btn-group mr-2" role="group " aria-label="First group ">
-            <a  [attr.href]="Agency?.instagram_url"  class="btn-hover-flag-img text-center " aria-selected="true " style="line-height: 1.5">
+            <a [attr.href]="Agency?.instagram_url" class="btn-hover-flag-img text-center " aria-selected="true "
+                style="line-height: 1.5">
                 <span style="letter-spacing: 3px;">PAGE</span>
                 <br>
                 <span style="letter-spacing: 3px;">INSTAGRAM</span>
             </a>
         </div>
         <div class="btn-group mr-2" role="group " aria-label="Second group ">
-            <a  [attr.href]="Agency?.website_url" class="btn-hover-flag-img text-center " aria-selected="true " style="line-height: 1.5">
+            <a [attr.href]="Agency?.website_url" class="btn-hover-flag-img text-center " aria-selected="true "
+                style="line-height: 1.5">
                 <span style="letter-spacing: 3px;">NOTRE </span>
                 <br>
                 <span style="letter-spacing: 3px;">SITE WEB</span>
             </a>
         </div>
         <div class="btn-group mr-2" role="group " aria-label="Third group ">
-            <a  [attr.href]="Agency?.facebook_url" class="btn-hover-flag-img text-center " aria-selected="true " style="line-height: 1.5">
+            <a [attr.href]="Agency?.facebook_url" class="btn-hover-flag-img text-center " aria-selected="true "
+                style="line-height: 1.5">
                 <span style="letter-spacing: 3px;">PAGE</span>
                 <br>
                 <span style="letter-spacing: 3px;">FACEBOOK</span>
@@ -779,15 +833,3 @@ color: #fff;
     </div>
 
 </p-dialog>
-
-
-
-
-
-
-
-
-
-
-
-

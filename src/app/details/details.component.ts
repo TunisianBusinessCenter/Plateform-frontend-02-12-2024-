@@ -100,6 +100,8 @@ export class DetailsComponent implements OnInit {
   idForAgency: any;
   IDAgency: any;
   mobile_apps: any;
+  filteredAgencies: any[];
+  idAgencyMenu: any[];
   constructor(private activatedRoute: ActivatedRoute,
     private agencieService: AgenciesService,
     private sharedAgency:SharedAgenceImmobilierService,
@@ -123,6 +125,7 @@ export class DetailsComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // this.getAgency()
 this.idForAgency =this.sharedAgency.getIdAgency()
 
     this.router.events
@@ -145,7 +148,8 @@ this.idForAgency =this.sharedAgency.getIdAgency()
           project.status === 'EN COURS' || project.status === 'EN COURS '
       );
       this.ProjetDispo = this.Agency?.projets.filter(
-        (project) => project.status === 'DISPONIBLE'
+        (project) => project.status === 'DISPONIBLE' 
+        // || 'Disponible'
       );
     }),
 
@@ -159,9 +163,10 @@ this.idForAgency =this.sharedAgency.getIdAgency()
     this.idProjet = this.activatedRoute.snapshot.paramMap.get('id')
 
     this.projetService.getProjetById(this.idProjet).subscribe(data => {
-      console.log(data)
+      console.log (data)
       this.Projet = data;
       this.NameAgency = this.Projet.agencyName
+      console.log(this.NameAgency)
     })
     this.projetService.getListProjet().subscribe((data) => {
       this.agenciesProjet = data;
@@ -274,5 +279,18 @@ this.idForAgency =this.sharedAgency.getIdAgency()
 
     });
   }
-  
+  getAgency() {
+    this.agencieService.getAllAgencies().subscribe((data: any) => {
+      const filteredAgencies = data.filter(agency => agency.name === this.Projet.agencyName);
+      if (filteredAgencies.length > 0) {
+        this.idAgencyMenu = filteredAgencies[0].id;
+        console.log(this.idAgencyMenu);
+        this.router.navigate(['/agency', this.idAgencyMenu]);
+      }
+    });
+  }
+
+
 }  
+
+

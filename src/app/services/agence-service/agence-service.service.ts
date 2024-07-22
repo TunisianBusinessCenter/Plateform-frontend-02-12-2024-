@@ -52,7 +52,7 @@ export class AgenceServiceService {
     getSousServiceById(IdService:number){
       return this.http.get('https://app.titv-store-api.com/services/sous/'+IdService)
     }
-
+ 
   
 }
 

@@ -47,14 +47,21 @@ export class PeintureComponent implements OnInit {
     ];
    }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
     this.Servicemateriaux.getMateriauxDecoration().subscribe((data: any) => {
       this.MateriauxDecoration = data;
-      console.log(this.MateriauxDecoration)
-      this.filtredDecoration = this.MateriauxDecoration.reverse();
-
-    })
+      console.log(this.MateriauxDecoration);
+  
+      // Filter out items with specific IDs
+      this.filtredDecoration = this.MateriauxDecoration.filter((item: any) => {
+        return item.id !== 6567 && item.id !== 6956;
+      });
+  
+      // Optionally, reverse the filtered array
+      this.filtredDecoration.reverse();
+    });
   }
+  
   Search() {
     if (this.searchText !== "") {
       let searchValue = this.searchText.toLocaleLowerCase();

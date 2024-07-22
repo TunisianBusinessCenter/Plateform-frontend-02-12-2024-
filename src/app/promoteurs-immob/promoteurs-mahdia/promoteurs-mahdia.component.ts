@@ -10,7 +10,7 @@ export class PromoteursMahdiaComponent implements OnInit {
 
   public AgenciesMahdia: any
   responsiveOptions
-
+searchText=""
   constructor(private agencieService: AgenciesService) {
     this.responsiveOptions = [
       {

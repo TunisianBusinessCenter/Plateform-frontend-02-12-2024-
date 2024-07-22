@@ -51,19 +51,33 @@ export class MeubleComponent implements OnInit {
 
   ngOnInit(): void {
     this.Servicemateriaux.getMateriauxMeuble().subscribe((data: any) => {
-      this.MateriauxMeuble = data;
-  
-      // Filtrer les éléments ayant un tableau non vide pour la propriété 'videoUrl'
-      const meubleAvecApps = this.MateriauxMeuble.filter((element: any) => element.videoUrl && element.videoUrl.length > 0);
-  
-      // Filtrer les éléments ayant un tableau vide pour la propriété 'videoUrl'
-      const meubleSansApps = this.MateriauxMeuble.filter((element: any) => !element.videoUrl || element.videoUrl.length === 0);
-  
-      // Déplacer les éléments sans 'videoUrl' en tête du tableau
-      this.filtredMeuble = meubleAvecApps.concat(meubleSansApps);
+      this.MateriauxMeuble = data.sort((a: any, b: any) => {
+        const dateA = this.parseDate(a.createdAt);
+        const dateB = this.parseDate(b.createdAt);
+        return dateB.getTime() - dateA.getTime();
+      });
+      console.log(this.MateriauxMeuble);
+    });
+  this.Servicemateriaux.getMateriauxMeuble().subscribe((data: any) => {
+    this.MateriauxMeuble = data.sort((a: any, b: any) => {
+      const dateA = this.parseDate(a.createdAt);
+      const dateB = this.parseDate(b.createdAt);
+      return dateB.getTime() - dateA.getTime();
+    });
+    console.log(this.MateriauxMeuble);
   });
-  
-  
+  }
+
+
+  parseDate(dateString: string): Date {
+    const parts = dateString.split(/[\s/:]/);
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // Months are zero-based
+    const year = parseInt(parts[2], 10);
+    const hours = parseInt(parts[3], 10);
+    const minutes = parseInt(parts[4], 10);
+    const seconds = parseInt(parts[5], 10);
+    return new Date(year, month, day, hours, minutes, seconds);
   }
   Search() {
     if (this.searchText !== "") {

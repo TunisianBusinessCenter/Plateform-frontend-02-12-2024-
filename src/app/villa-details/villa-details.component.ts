@@ -17,6 +17,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs';
 import { ProjetsService } from '../services/projets/projets.service';
 import { SharedAgenceImmobilierService } from '../services/shared-agence-immobilier.service';
+import { MatTabGroup } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-villa-details',
@@ -67,6 +68,12 @@ export class VillaDetailsComponent implements OnInit {
   idVilla: any;
   IDAgency: any;
   mobile_apps: any;
+  filteredAgencies: any;
+  idAgencyMenu: any;
+  ProjetPiece: any;
+selectedCategory: any;
+@ViewChild('tabGroup') tabGroup: MatTabGroup;
+
   constructor(
     private projetService: ProjetsService,
     private agencieService: AgenciesService,
@@ -80,10 +87,15 @@ export class VillaDetailsComponent implements OnInit {
     private sharedSevice: SharedAgenceImmobilierService,
 
     private emailService: VillaDetailsServiceService
-  ) {}
+  ) { }
 
   public email_promoteur: String = 'dcgenerale@gmail.com';
-
+  ngAfterViewInit() {
+    console.log(this.tabGroup); // Check if tabGroup is defined
+    if (this.tabGroup) {
+      this.tabGroup.selectedIndex = this.selectedIndex;
+    }
+  }
   ngOnInit(): void {
     this.idVilla = this.sharedSevice.getIdAgency();
 
@@ -98,6 +110,7 @@ export class VillaDetailsComponent implements OnInit {
       );
       this.ProjetDispo = this.Agency?.projets.filter(
         (project) => project.status === 'DISPONIBLE'
+        //  || 'Diponible'
       );
     }),
       this.router.events
@@ -121,6 +134,7 @@ export class VillaDetailsComponent implements OnInit {
 
     this.projetService.getProjetById(this.idProjet).subscribe((data) => {
       this.Projet = data;
+      this.ProjetPiece=this.Projet?.pieces
       this.AgencyProjet = this.Projet.agencyName;
       console.log('projet', this.Projet);
       this.email_promoteur = this.Projet.emailCommercial;
@@ -139,7 +153,7 @@ export class VillaDetailsComponent implements OnInit {
     this.projetService.getPieceById(this.idPiece).subscribe((data) => {
       console.log(data);
       this.Piece = data;
-      this.testPieceName2 = this.Piece.projetName;
+      this.testPieceName2 = this.Piece?.projetName;
       // this.testpiecess(this.testPieceName2, this.testPieceName)
     });
 
@@ -222,5 +236,51 @@ export class VillaDetailsComponent implements OnInit {
   }
   openVerticallyCentered(content) {
     this.modalService.open(content, { centered: true });
+  }
+  getAgency() {
+    this.agencieService.getAllAgencies().subscribe((data: any) => {
+      const filteredAgencies = data.filter(agency => agency.name === this.AgencyProjet);
+      // Handle the filtered agencies as needed, for example:
+      // If you want to store it in a class variable
+      this.filteredAgencies = filteredAgencies[0]?.id
+      this.idAgencyMenu = this.filteredAgencies
+      console.log(this.idAgencyMenu);
+      this.router.navigate(['/agency', this.idAgencyMenu]);
+
+    });
+  }
+  displayDialog: boolean = false;
+  selectedImage: string = '';
+  openImageInDialog(imageUrl: string): void {
+
+    if (this.isMobile()) {
+      this.selectedImage = imageUrl;
+      this.displayDialog = true;
+      console.log(this.selectedImage, imageUrl)
+    }
+  }
+  private isMobile(): boolean {
+    // Set a threshold for mobile screen width (adjust as needed)
+    const mobileScreenWidth = 768;
+    return window.innerWidth < mobileScreenWidth;
+  }
+  selectedIndex = 0;
+
+  selectTab(index: number) {
+    console.log(this.tabGroup); // Check if tabGroup is defined
+    this.selectedIndex = index;
+    if (this.tabGroup) {
+      this.tabGroup.selectedIndex = index;
+    }
+  }
+  onTabChange(event: any) {
+    this.selectedIndex = event.index;
+  }
+
+  onDropdownChange(event: any) {
+    const index = this.Projet.categoryList.indexOf(event.target.value);
+    if (index !== -1) {
+      this.selectTab(index);
+    }
   }
 }

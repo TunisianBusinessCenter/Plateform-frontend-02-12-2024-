@@ -15,16 +15,11 @@
 			  
 			</li>
 			<ul>
-				<li *ngIf="idForAgency">
-					<a [routerLink]="'/agency/' + idForAgency">
-						<i class="fa fa-home fa-2x"></i>
-						<span class="nav-text">Page d'accueil</span>
-					</a>
-				</li>
-				<li *ngIf="!idForAgency">
+			
+				<li (click)=" backClicked()">
 					<a>
 						<i class="fa fa-home fa-2x"></i>
-						<span class="nav-text">Page d'accueil</span>
+						<span class="nav-text">Page d'accueil </span>
 					</a>
 				</li>
 

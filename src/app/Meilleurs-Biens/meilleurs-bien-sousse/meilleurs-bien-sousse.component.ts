@@ -47,7 +47,10 @@ export class MeilleursBienSousseComponent implements OnInit {
     this.meilleursBiensService.getMeilleursBiensSousse().subscribe((data: any) => {
       // Filter data where phone_number_commercial is "yes"
       this.AgenciesSousse = data.filter((agency: any) => agency.phone_number_commercial != "yes");
+      this.AgenciesSousse.sort((a: any, b: any) => a.id - b.id);
+
       console.log(this.AgenciesSousse);
+
     });
   }
   

@@ -18,6 +18,8 @@ import { filter } from 'rxjs';
 import { ProjetsService } from '../services/projets/projets.service';
 import { SharedAgenceImmobilierService } from '../services/shared-agence-immobilier.service';
 import { MatTabGroup } from '@angular/material/tabs';
+import Swal from "sweetalert2";
+import { PromoteurImmobiliersService } from '../agence/promoteur-immobiliers/promoteur-immobiliers.service';
 
 @Component({
   selector: 'app-villa-details',
@@ -71,10 +73,13 @@ export class VillaDetailsComponent implements OnInit {
   filteredAgencies: any;
   idAgencyMenu: any;
   ProjetPiece: any;
-selectedCategory: any;
-@ViewChild('tabGroup') tabGroup: MatTabGroup;
+  selectedCategory: any;
+  @ViewChild('tabGroup') tabGroup: MatTabGroup;
+  AgencyEmail: any;
+  isLoading: boolean = true;
 
   constructor(
+    private http:HttpClient,
     private projetService: ProjetsService,
     private agencieService: AgenciesService,
     private activatedRoute: ActivatedRoute,
@@ -84,23 +89,40 @@ selectedCategory: any;
     private renderer: Renderer2,
     private el: ElementRef,
     private modalService: NgbModal,
-    private sharedSevice: SharedAgenceImmobilierService,
-
-    private emailService: VillaDetailsServiceService
+    private sharedSevice: PromoteurImmobiliersService,
+    private emailService: VillaDetailsServiceService,
+     
   ) { }
 
   public email_promoteur: String = 'dcgenerale@gmail.com';
   ngAfterViewInit() {
+    
+
     console.log(this.tabGroup); // Check if tabGroup is defined
     if (this.tabGroup) {
       this.tabGroup.selectedIndex = this.selectedIndex;
-    }
+    }    
+    
+
   }
   ngOnInit(): void {
+// Simulate loading delay
+setTimeout(() => {
+  this.isLoading = false;
+}, 2000); // 2 seconds delay
+    // Listen for router events to scroll to top
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      window.scrollTo(0, 0); // Scroll to top
+    });
     this.idVilla = this.sharedSevice.getIdAgency();
 
-    this.agencieService.getAgencieById(this.idVilla).subscribe((data) => {
+    this.agencieService.getAgencieById(this.idVilla).subscribe((data:any) => {
       this.Agency = data;
+      this.AgencyEmail = this.Agency.email;
+      this.setDataAgency();
+
       console.log('getAgencieById', this.Agency);
       this.mobile_apps = this.Agency.mobile_apps[0]?.mobile_cover_image_url;
 
@@ -113,28 +135,23 @@ selectedCategory: any;
         //  || 'Diponible'
       );
     }),
-      this.router.events
-        .pipe(filter((event) => event instanceof NavigationEnd))
-        .subscribe((event: NavigationEnd) => {
-          // Scroll to the top of the page
-          window.scrollTo(0, 0);
-        });
 
-    this.projetService.getListProjet().subscribe((data: any) => {
-      this.allProject = data;
-      // console.log(this.allProject)
-      for (let piece of this.allProject) {
-        this.testPieceName = piece?.categoryList;
-        // console.log(this.testPieceName)
 
-        // this.testpiecess(this.testPieceName2,this.testPieceName)
-      }
-    });
+      this.projetService.getListProjet().subscribe((data: any) => {
+        this.allProject = data;
+        // console.log(this.allProject)
+        for (let piece of this.allProject) {
+          this.testPieceName = piece?.categoryList;
+          // console.log(this.testPieceName)
+
+          // this.testpiecess(this.testPieceName2,this.testPieceName)
+        }
+      });
     this.idProjet = this.activatedRoute.snapshot.paramMap.get('id');
 
     this.projetService.getProjetById(this.idProjet).subscribe((data) => {
       this.Projet = data;
-      this.ProjetPiece=this.Projet?.pieces
+      this.ProjetPiece = this.Projet?.pieces
       this.AgencyProjet = this.Projet.agencyName;
       console.log('projet', this.Projet);
       this.email_promoteur = this.Projet.emailCommercial;
@@ -158,6 +175,8 @@ selectedCategory: any;
     });
 
     this.checkScreenWidth();
+      
+
   }
 
   @HostListener('window:resize', ['$event'])
@@ -283,4 +302,84 @@ selectedCategory: any;
       this.selectTab(index);
     }
   }
+  photos: string[] = [
+    'assets/images/gray.png',
+    'assets/images/gray.png',
+    'assets/images/gray.png',
+    'assets/images/gray.png'  
+  ];
+  piece: string[] = [
+    'assets/images/gray.png',
+    'assets/images/gray.png',
+    'assets/images/gray.png',
+    'assets/images/gray.png'  
+  ];
+  
+  setDataAgency () {
+    let dataAgency = this.Agency
+    console.log(dataAgency,this.Agency)
+    this.agencieService.setSharedVariable(dataAgency)
+  }
+  emailSource: string = '';
+  emailDest:  any = '';
+  subject: string = '';
+  message: string = '';
+  senderEmail() {
+    // Get form data
+    this.emailDest = this.AgencyEmail;
+    const data = {
+      emailsource: this.emailSource,
+      emaildest: this.emailDest,
+      subject: this.subject,
+      message: `${this.message}\n\nFrom: ${this.emailSource}`
+    };
+  
+    // Check if any of the required fields are empty
+    if (!data.emailsource || !data.emaildest || !data.subject || !this.message) {
+      Swal.fire({
+        title: 'Error!',
+        text: "Veuillez remplir tous les champs obligatoires.",
+        icon: 'error',
+        confirmButtonText: 'Fermer'
+      });
+      return; // Stop further execution if form is incomplete
+    }
+  
+    // If the form is valid, send the email
+    this.http.post('https://contact-tunimmob.vercel.app/boutiques/SendEmail', data)
+      .subscribe({
+        next: (response) => {
+          Swal.fire({
+            title: 'Success!',
+            text: "L'email a été envoyé avec succès.",
+            icon: 'success',
+            confirmButtonText: 'Fermer'
+          });
+          console.log('Email sent successfully!', response);
+          
+          // Reset form fields
+          this.emailSource = '';
+          this.emailDest = '';
+          this.subject = '';
+          this.message = '';
+        },
+        error: (error) => {
+          Swal.fire({
+            title: 'Error!',
+            text: "Une erreur s'est produite lors de l'envoi de l'email.",
+            icon: 'error',
+            confirmButtonText: 'Fermer'
+          });
+          console.error('Error sending email', error);
+        }
+      });
+  }
+  
+  isValidEmail(email: string): boolean {
+    const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return pattern.test(email);
+  }
+  formatAgencyName(name: string): string {
+    return name.replace(/\s+/g, '-');
+}
 }

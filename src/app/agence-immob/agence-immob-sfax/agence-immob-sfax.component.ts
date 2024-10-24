@@ -44,7 +44,7 @@ export class AgenceImmobSfaxComponent implements OnInit {
   ngOnInit(): void {
     this.agencieImmobService.getAgencieMonastir().subscribe((data: any) => {
       this.AgenciesSfax = data;
-      console.log(this.AgenciesSfax)
+      // console.log(this.AgenciesSfax)
     })
   }
 

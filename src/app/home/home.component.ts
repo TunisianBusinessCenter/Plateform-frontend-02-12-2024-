@@ -63,6 +63,8 @@ export class HomeComponent implements OnInit {
   numText = "";
   agencies: any;
   firstMagazin: any;
+  isLoading: boolean =false
+  mag: any;
   constructor(private magazineservice: MagazineService,
     private breakpointObserver: BreakpointObserver,
 
@@ -190,7 +192,7 @@ export class HomeComponent implements OnInit {
         }
       }
       this.firstMagazin = this.Magazine[0]
-
+console.log("magazine text",this.firstMagazin)
     });
 
 
@@ -394,10 +396,7 @@ export class HomeComponent implements OnInit {
 
     });
   }
-  private scrollDown(offset: number): void {
-    // Scroll the window down by the specified offset
-    window.scrollTo({ top: offset, behavior: 'auto' });
-  }
+
   chunkArray(array: any[], size: number): any[] {
     const chunkedArray = [];
     for (let i = 0; i < array.length; i += size) {
@@ -406,5 +405,14 @@ export class HomeComponent implements OnInit {
     return chunkedArray;
   }
 
+  
+
+    magazine ()
+    {
+      this.magazineservice.getMagazine().subscribe((data:any)=>{
+this.mag=data?.name
+console.log("data",this.mag)
+      })
+    }
 }
 

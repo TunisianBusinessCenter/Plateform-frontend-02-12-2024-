@@ -7,6 +7,16 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs';
 import { ProduitsService } from '../services/produits/produits.service';
 import { SharedAgenceImmobilierService } from '../services/shared-agence-immobilier.service';
+import { MatTabGroup } from '@angular/material/tabs';
+import { ButtonModule } from 'primeng/button';
+import Swal from 'sweetalert2';
+import { HttpClient } from '@angular/common/http';
+import { AgenceMatService } from '../agence/agence-mat/agence-mat.service';
+
+interface SousCat {
+  name: string,
+  value: string
+}
 
 
 @Component({
@@ -22,9 +32,11 @@ import { SharedAgenceImmobilierService } from '../services/shared-agence-immobil
 `]
 })
 export class DetailsMateriauxComponent implements OnInit {
+  
   private storageKey = 'idAgency'
   @ViewChild("myElem") MyProp: ElementRef;
-  @ViewChild('tabGroup') tabGroup: any;
+  
+
   @ViewChild('scrollContainer') scrollContainer: ElementRef | undefined;
   public idAgency: any
   public Agency: any
@@ -32,7 +44,7 @@ export class DetailsMateriauxComponent implements OnInit {
   public idProduit:any
   public Produit:any
   public webSite:any
-  activeTabIndex: number = 0;
+
 
   public idSousCategorie:any
   public SousCategorie:any
@@ -55,11 +67,21 @@ export class DetailsMateriauxComponent implements OnInit {
   AgencyBaniere: any;
   produit: any; // Replace 'any' with the actual type of your data
   leftValue = 0;
-
+  @ViewChild('tabGroup', { static: false }) tabGroup: any;
+  selectedIndex = 0;
   @ViewChild('cCarouselInner') cCarouselInner!: ElementRef;
   carouselVp: any;
   carouselInnerWidth: any;
   idAgencyMenu: any;
+  ServicesDivers: any;
+  filtredServicesDivers2: any;
+  filtredServicesDivers1: any;
+  filteredSousServices: any;
+  categoryList: any;
+  sousServices: any;
+  responsiveOptions: { breakpoint: string; numVisible: number; numScroll: number; }[];
+  ProduitId: any;
+  AgencyEmail: any;
   constructor(private activatedRoute: ActivatedRoute,
     private produitService:ProduitsService,
     private agencieService:AgenciesService,
@@ -67,10 +89,37 @@ export class DetailsMateriauxComponent implements OnInit {
     private router:Router,
     private sanitizer:DomSanitizer,
     private modalService: NgbModal,
-    private sharedService:SharedAgenceImmobilierService
+    private sharedService:AgenceMatService,
+    private http:HttpClient
 
     ) {
-      
+      this.responsiveOptions = [
+        {
+          breakpoint: '2000px',
+          numVisible: 5,
+          numScroll: 5
+        },
+        {
+          breakpoint: '1724px',
+          numVisible: 4,
+          numScroll: 4
+        },
+        {
+          breakpoint: '1250px',
+          numVisible: 3,
+          numScroll: 3
+        },
+        {
+          breakpoint: '954px',
+          numVisible: 2,
+          numScroll: 2
+        },
+        {
+          breakpoint: '667px',
+          numVisible: 1,
+          numScroll: 1
+        }
+      ];
      }
 
   ngOnInit(): void {
@@ -91,9 +140,15 @@ this.idAgency = this.sharedService.getIdAgency()
 
 
       this.idProduit= this.activatedRoute.snapshot.paramMap.get('id')
-      this.produitService.getProduitById(this.idProduit).subscribe(data => {
+      this.produitService.getProduitById(this.idProduit).subscribe((data:any) => {
         this.Produit = data;
-        
+        this.ProduitId = data.produits;
+        this.categoryList = this.Produit.categoryList;
+        this.sousServices = this.Produit?.sous_cat;
+
+        this.filteredSousServices = this.sousServices; // Show all initially
+        console.log(' : s',this.Produit.sous_cat,this.filteredSousServices,this.sousServices)
+
         this.NameAgency = this.Produit?.agencyName;
         console.log('this name Agency',this.NameAgency)
         this.agencieService.getAllMateriaux().subscribe((data: any[]) => {
@@ -127,9 +182,15 @@ this.idAgency = this.sharedService.getIdAgency()
       this.idSousCategorie= this.activatedRoute.snapshot.paramMap.get('id')
       this.agencieService.getAgencieById(this.idAgency).subscribe((data:any) => {
         console.log(data)
+        this.Agency=data
+        this.AgencyEmail =this.Agency.email
+
         this.description=data?.description
         this.logo_url=data?.logo_url
         this.ProduitEnCours = data?.produits;
+      
+        this.setSharedVariable()
+
       })
   ///methode1:
     // this.router.events.subscribe((evt) => {
@@ -163,16 +224,10 @@ this.idAgency = this.sharedService.getIdAgency()
 getTheFirstDescription(){
   
 }
-scrollToPreviousCategory() {
-  this.tabGroup.selectedIndex = Math.max(this.tabGroup.selectedIndex - 1, 0);
-  this.scrollToView();
-}
+
 
 // Function to scroll to the next category
-scrollToNextCategory() {
-  this.tabGroup.selectedIndex = Math.min(this.tabGroup.selectedIndex + 1, this.tabGroup._tabs.length - 1);
-  this.scrollToView();
-}
+
 
 // Function to scroll the selected category into view
 scrollToView() {
@@ -181,17 +236,8 @@ scrollToView() {
   }
 }
 
-goToPreviousTab() {
-  if (this.activeTabIndex > 0) {
-    this.activeTabIndex--;
-  }
-}
 
-goToNextTab() {
-  if (this.activeTabIndex < (this.Produit?.categoryList.length - 1)) {
-    this.activeTabIndex++;
-  }
-}
+
 
 prevClick() {
   const totalMovementSize = this.getTotalMovementSize();
@@ -211,11 +257,21 @@ carouselConfig = {
 };
 
 cards = [
-  { title: 'Card 1', description: 'Details of Card 1', imageUrl: 'path/to/image1.jpg' },
-  { title: 'Card 2', description: 'Details of Card 2', imageUrl: 'path/to/image2.jpg' },
-  { title: 'Card 3', description: 'Details of Card 3', imageUrl: 'path/to/image3.jpg' },
-  { title: 'Card 4', description: 'Details of Card 4', imageUrl: 'path/to/image4.jpg' }
+  { title: 'Card 1', description: 'Details of Card 1', imageUrl: 'assets/icons/empty.png' },
+  { title: 'Card 2', description: 'Details of Card 2', imageUrl: 'assets/icons/empty.png' },
+  { title: 'Card 3', description: 'Details of Card 3', imageUrl: 'assets/icons/empty.png' },
+  { title: 'Card 4', description: 'Details of Card 4', imageUrl: 'assets/icons/empty.png' }
 ];
+emtpyCategoryList = [
+  { title: 'Produit 1'},
+  { title: 'Produit 2'},
+  { title: 'Produit 3'},
+  { title: 'Produit 4'},
+  { title: 'Produit 5'},
+  { title: 'Produit 6'}
+ 
+];
+
 nextClick() {
   const totalMovementSize = this.getTotalMovementSize();
   const carouselVpWidth = this.carouselVp.nativeElement.getBoundingClientRect().width;
@@ -275,5 +331,108 @@ getAgency() {
       this.router.navigate(['/agency', this.idAgencyMenu]);
     }
   });
+}
+
+selectTab(index: number) {
+  this.selectedIndex = index;
+  if (this.tabGroup) {
+    this.tabGroup.selectedIndex = index;
+  }
+}
+
+onTabChange(event: any) {
+  this.selectedIndex = event.index;
+}
+
+onDropdownChange(event: any) {
+  const index = this.Produit.categoryList.indexOf(event.target.value);
+  if (index !== -1) {
+    this.selectTab(index);
+  }
+}
+setSharedVariable() {
+  let data = this.Agency;
+  this.agencieService.setSharedVariable(data);
+  console.log("this data", data); // Corrected to use the 'data' variable
+  //  this.message ="data sended successfully"
+}
+public selectedSousCategorie!:SousCat;
+
+filterSousCategorie(event : any)  {
+    
+  console.log(this.selectedSousCategorie)
+
+  if(this.selectedSousCategorie){
+
+  this.ServicesDivers =  this.filtredServicesDivers2.filter((item : any) => item.sous_categorie ==  this.selectedSousCategorie.value);
+  // console.log(this.selectedSousCategorie.value)
+  }else{
+   this.ServicesDivers = this.filtredServicesDivers1
+  }
+}
+
+
+filterServices(category: string): void {
+  this.filteredSousServices = this.sousServices.filter(sous_service => sous_service.category === category);
+}
+
+emailSource: string = '';
+emailDest:  any = '';
+subject: string = '';
+message: string = '';
+senderEmail() {
+  // Get form data
+  this.emailDest = this.AgencyEmail;
+  const data = {
+    emailsource: this.emailSource,
+    emaildest: this.emailDest,
+    subject: this.subject,
+    message: `${this.message}\n\nFrom: ${this.emailSource}`
+  };
+
+  // Check if any of the required fields are empty
+  if (!data.emailsource || !data.emaildest || !data.subject || !this.message) {
+    Swal.fire({
+      title: 'Error!',
+      text: "Veuillez remplir tous les champs obligatoires.",
+      icon: 'error',
+      confirmButtonText: 'Fermer'
+    });
+    return; // Stop further execution if form is incomplete
+  }
+
+  // If the form is valid, send the email
+  this.http.post('https://contact-tunimmob.vercel.app/boutiques/SendEmail', data)
+    .subscribe({
+      next: (response) => {
+        Swal.fire({
+          title: 'Success!',
+          text: "L'email a été envoyé avec succès.",
+          icon: 'success',
+          confirmButtonText: 'Fermer'
+        });
+        console.log('Email sent successfully!', response);
+        
+        // Reset form fields
+        this.emailSource = '';
+        this.emailDest = '';
+        this.subject = '';
+        this.message = '';
+      },
+      error: (error) => {
+        Swal.fire({
+          title: 'Error!',
+          text: "Une erreur s'est produite lors de l'envoi de l'email.",
+          icon: 'error',
+          confirmButtonText: 'Fermer'
+        });
+        console.error('Error sending email', error);
+      }
+    });
+}
+
+isValidEmail(email: string): boolean {
+  const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return pattern.test(email);
 }
 }

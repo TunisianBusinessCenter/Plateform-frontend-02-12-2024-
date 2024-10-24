@@ -50,7 +50,7 @@ export class PeintureComponent implements OnInit {
    ngOnInit(): void {
     this.Servicemateriaux.getMateriauxDecoration().subscribe((data: any) => {
       this.MateriauxDecoration = data;
-      console.log(this.MateriauxDecoration);
+      // console.log(this.MateriauxDecoration);
   
       // Filter out items with specific IDs
       this.filtredDecoration = this.MateriauxDecoration.filter((item: any) => {
@@ -75,4 +75,7 @@ export class PeintureComponent implements OnInit {
       this.allAgencies = this.allAgencies1
     }
   }
+  formatAgencyName(name: string): string {
+    return name.replace(/\s+/g, '-');
+}
 }

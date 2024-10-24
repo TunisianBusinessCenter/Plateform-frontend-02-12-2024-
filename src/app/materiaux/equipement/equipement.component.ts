@@ -52,15 +52,15 @@ export class EquipementComponent implements OnInit {
   ngOnInit(): void {
     this.agencieService.getAllAgencies().subscribe((data: any) => {
       this.allAgencies = data
-      console.log('cc', this.allAgencies)
+      // console.log('cc', this.allAgencies)
       this.allAgencies1= data
     })
 
     this.Servicemateriaux.getMateriauxEquipement().subscribe((data: any) => {
       this.MateriauxEquipement =data.filter((agency: any) => agency.phone_number_commercial != "yes");       
-      console.log(this.MateriauxEquipement)
+      // console.log(this.MateriauxEquipement)
       this.filtredEquipement = this.MateriauxEquipement.reverse();
-          console.log("reverce equipement",this.filtredEquipement)
+          // console.log("reverce equipement",this.filtredEquipement)
           this.filtredEquipement.sort((a: any, b: any) => {
             // Extract the number from the beginning of the name
             const numA = parseInt(a.name.match(/^\d+/));
@@ -92,4 +92,8 @@ export class EquipementComponent implements OnInit {
   clickMe(agencyId: number) {
     this.sharedDataService.updateAgencyId(agencyId);
   }
+  formatAgencyName(name: string): string {
+    return name.replace(/\s+/g, '-');
+}
+
 }

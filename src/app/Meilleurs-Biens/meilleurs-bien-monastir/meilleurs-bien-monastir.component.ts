@@ -43,7 +43,7 @@ export class MeilleursBienMonastirComponent implements OnInit {
       this.AgenciesMonastir = data.filter((agency: any) => agency.phone_number_commercial != "yes");
       this.AgenciesMonastir.sort((a: any, b: any) => a.id - b.id);
 
-      console.log(this.AgenciesMonastir)
+      // console.log(this.AgenciesMonastir)
    
     })
   }

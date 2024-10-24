@@ -179,7 +179,7 @@
   }
   .marginfooterX{
     padding-left:32px;
-    padding-right: 32px;
+    padding-right: 0px;
   }
 }
 /* @media only screen and (max-width: 800px) {
@@ -204,7 +204,7 @@
   }
   .marginfooterR{
     margin-top: -12px;
-    margin-left: 40px;
+    /* margin-left: 40px; */
     width: 90%;
   }
   .marginfooterL{
@@ -216,18 +216,18 @@
 
 @media only screen and (max-width: 650px) {
   .marginfooterX{
-    padding-left:70px;
-    padding-right: 70px;
-    width: 80%;
+    padding-left:54px;
+    padding-right: 0px;
+    width: 100%;
   }
   .marginfooterR{
     margin-top: -12px;
-    margin-left: 40px;
+    /* margin-left: 40px; */
     width: 80%;
   }
   .marginfooterL{
     margin-top: 13px;
-    margin-left: 37px;
+    margin-left: 22px;
     width: 80%;
   }
 }

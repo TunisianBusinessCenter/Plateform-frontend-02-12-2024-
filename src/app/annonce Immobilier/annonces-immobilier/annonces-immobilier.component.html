@@ -1,0 +1,113 @@
+<app-sidebar></app-sidebar>
+<app-navbar-carousel></app-navbar-carousel>
+<div class="main-container" style="margin-top: -48px;">
+  <!-- Main content section -->
+  <div class="content">
+    <!-- Search section -->
+    <style>
+      .spanColor {
+        color: #c70039;
+      }
+    </style>
+<h2 class="move-right" style="font-size: 18px;">
+  <span style="font-size: 25px !important;" class="spanColor">Tunisie Immobilier</span> Annonce
+</h2>
+
+    <!-- Filters -->
+    <div class="form-group">
+      <!-- Apartment Type Filter -->
+      <select id="appartement" [(ngModel)]="selectedApartmentType">
+        <option value="">-- Type d'Appartement          --</option>
+        <option value="Appartements">Appartements</option>
+        <option value="Bureaux">Bureaux</option>
+        <option value="Commerces">Commerces</option>
+        <option value="Duplexes">Duplexes</option>
+        <option value="Industriel">Industriel</option>
+        <option value="Lots">Lots</option>
+        <option value="Studios">Studios</option>
+        <option value="Terrain agricole">Terrain agricole</option>
+        <option value="Terrains">Terrains</option>
+        <option value="Villas / maisons">Villas / maisons</option>
+      </select>
+
+      <!-- Annonce Type Filter -->
+      <select id="type-annonce" [(ngModel)]="selectedAnnonceType">
+        <option value="">-- Type d'annonce --</option>
+        <option value="Location">Annonces</option>
+        <option value="Location">Location</option>
+        <option value="Vente">Vente</option>
+        <option value="Location Vacances">Location Vacances</option>
+      </select>
+
+      <!-- Location Filter -->
+      <select id="governement" [(ngModel)]="selectedLocation">
+        <option value="">-- Ville --</option>
+        <option value="Tunis">Tunis</option>
+        <option value="Ariana">Ariana</option>
+        <option value="Ben Arous">Ben Arous</option>
+        <option value="Manouba">Manouba</option>
+        <option value="Nabeul">Nabeul</option>
+        <option value="Zaghouan">Zaghouan</option>
+        <option value="Bizerte">Bizerte</option>
+        <option value="Béja">Béja</option>
+        <option value="Jendouba">Jendouba</option>
+        <option value="Kef">Kef</option>
+        <option value="Siliana">Siliana</option>
+        <option value="Sousse">Sousse</option>
+        <option value="Monastir">Monastir</option>
+        <option value="Mahdia">Mahdia</option>
+        <option value="Sfax">Sfax</option>
+        <option value="Kairouan">Kairouan</option>
+        <option value="Kasserine">Kasserine</option>
+        <option value="Sidi Bouzid">Sidi Bouzid</option>
+        <option value="Gabès">Gabès</option>
+        <option value="Médenine">Médenine</option>
+        <option value="Tataouine">Tataouine</option>
+        <option value="Gafsa">Gafsa</option>
+        <option value="Tozeur">Tozeur</option>
+        <option value="Kébili">Kébili</option>
+      </select>
+
+      <!-- Search Button -->
+      <button style="background-color: #8b0000;" type="button" (click)="onSearch()">CHERCHER</button>
+    </div>
+
+    <!-- Annonces Section -->
+    <h2>Annonces</h2>
+    <div class="annonces">
+      <!-- Loop through filtered announcements -->
+      <div class="annonce" *ngFor="let annonce of filteredAnnouncements">
+        <div style="position: relative; padding: 2px;">
+          <!-- Ville and Annonce type buttons -->
+          <button
+            style="width: 94px; background-color: #8b0000; height: 30px; border: none; font-size: 13px; margin-right: 5px;"
+            class="btn btn-primary">
+            {{ annonce.ville }}
+          </button>
+          <!-- <button style="width: 94px; background-color: #3f51b5; border: none; height: 30px; font-size: 13px;" class="btn btn-primary">
+            {{ annonce.Annonce }}
+          </button> -->
+          <button
+            style="width: 94px; background-color: #3f51b5; border: none; height: 30px; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+            class="btn btn-primary">
+            {{ annonce.Annonce }}
+          </button>
+
+        </div>
+
+        <!-- Annonce Image and Details -->
+        <a [routerLink]="['/annonceImmobilierDetails', annonce._id]">
+          <img [src]="annonce.Annoncephoto" alt="Annonce 1">
+        </a>
+
+        <div class="annonce-content">
+          <h3>{{ annonce.AnnonceName }}</h3>
+          <p>{{ annonce.description.length > 80 ? (annonce.description | slice:0:80) + '...' : annonce.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right column (if needed) -->
+</div>

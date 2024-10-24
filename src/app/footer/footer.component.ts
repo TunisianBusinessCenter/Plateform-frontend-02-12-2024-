@@ -49,7 +49,7 @@ export class FooterComponent implements OnInit {
   click(){
     this.as.sharedVariable$.subscribe((data) => {
       this.sharedVariable = data;
-      console.log('got me', this.sharedVariable);
+      // console.log('got me', this.sharedVariable);
     });
   
   }

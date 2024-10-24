@@ -64,5 +64,7 @@ searchText=""
       });
     })
   }
-
+  formatAgencyName(name: string): string {
+    return name.replace(/\s+/g, '-');
+}
 }

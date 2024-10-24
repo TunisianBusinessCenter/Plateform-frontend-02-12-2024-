@@ -82,11 +82,9 @@ export class NavbarCarouselHomeComponent implements OnInit {
     // Check if the current route contains "/agency/5494"
     if (currentRoute.includes('/agency/6033')) {
       this.check = true
-      console.log('check works')
 
     } else {
       this.check = false
-      console.log('check works')
 
     }
 
@@ -108,7 +106,7 @@ export class NavbarCarouselHomeComponent implements OnInit {
     // Replace the hard-coded ID (113) with the receivedAgencyId
     this.sharedDataService.currentAgencyId.subscribe((agencyId) => {
       this.receivedAgencyId = agencyId;
-      console.log("yessssssssssssssssssss   from carousel", this.receivedAgencyId);
+      // console.log("yes from carousel", this.receivedAgencyId);
 
       // Move the rest of the logic inside the subscription callback
       if (this.receivedAgencyId) {
@@ -126,11 +124,11 @@ export class NavbarCarouselHomeComponent implements OnInit {
           },
           (error) => {
             // Handle errors here
-            console.error('Error fetching agency details:', error);
+            // console.error('Error fetching agency details:', error);
           }
         );
       } else {
-        console.error('Received Agency ID is undefined or null.');
+        // console.error('Received Agency ID is undefined or null.');
       }
     });
   }
@@ -140,7 +138,7 @@ export class NavbarCarouselHomeComponent implements OnInit {
       window.location.reload();
     });
   }
-  
+
 }
 
 

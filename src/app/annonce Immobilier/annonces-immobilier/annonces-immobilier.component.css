@@ -1,0 +1,211 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Sidebar (left) */
+.sidebar {
+  width: 50px;
+  height: 100vh;
+  background-color: #333;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Main content container */
+.main-container {
+  display: flex;
+  justify-content: flex-start; /* Align items to the start */
+  margin-left: 68px; /* Space for the left sidebar */
+  width: calc(100% - 60px); /* Ensure content fits */
+  flex-wrap: wrap; /* Allow wrapping of child elements */
+  padding: 0; /* Remove padding */
+}
+
+/* Main content area (left of the right column) */
+.content {
+  flex: 2;
+  padding-right: 20px;
+}
+
+/* Right column */
+.right-column {
+  flex: 1;
+  border-left: 1px solid #ddd;
+  padding-left: 20px;
+}
+
+/* Right column card */
+.right-column .cardMost {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+/* Annonces grid */
+.annonces {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px; /* Adjust the gap between cards */
+}
+
+/* Individual announcement (card) */
+.annonce {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid #ddd; */
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%; /* Use full width for responsive design */
+  max-width: 500px; /* Set a max-width */
+  margin: 10px auto; /* Center align */
+}
+
+.annonce img {
+  width: 100%;
+  height: auto;
+  max-height: 400px; /* Adjust the image height as per new width */
+}
+
+/* Announcement content */
+.annonce-content {
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+}
+
+.annonce-content h3 {
+  margin-top: 0;
+    font-size: 15PX;
+    font-weight: 600;
+}
+
+.annonce-content p {
+  /* margin: 10px 0; */
+  font-size: 1em;
+}
+
+/* Announcement meta info styling */
+.annonce-meta {
+  margin-top: 15px;
+  color: #666;
+  font-size: 0.9em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.meta-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.meta-info span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.meta-info i {
+  color: #4CAF50;
+}
+
+/* Search section */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group select,
+.form-group button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.form-group button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.form-group button:hover {
+  background-color: #45a049;
+}
+
+/* Responsive Design */
+@media (min-width: 600px) {
+  /* Horizontal layout for search section */
+  .form-group {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .form-group select,
+  .form-group button {
+    width: auto;
+    flex: 1;
+    margin: 0;
+  }
+
+  .form-group button {
+    flex-grow: 0;
+  }
+
+  /* Grid layout for annonces */
+  .annonces {
+    grid-template-columns: repeat(2, 1fr); /* Two cards in a row */
+  }
+}
+
+@media (min-width: 900px) {
+  /* For wider screens, show 3 cards in a row */
+  .annonces {
+    grid-template-columns: repeat(3, 1fr); /* Three cards in a row */
+  }
+}
+
+/* Adjust layout on wider screens for the right column */
+
+
+/* Mobile-specific styles */
+@media (max-width: 600px) {
+  .right-column {
+    order: 2; /* Position it second */
+    width: 100%; /* Full width on mobile */
+    border-left: none; /* Remove border for mobile */
+    padding-left: 0; /* Remove left padding */
+  }
+
+  .content {
+    order: 1; /* Ensure content remains first */
+    flex: 1; /* Full width on mobile */
+  }
+
+  .annonce {
+    width: 100%; /* Full width on mobile */
+  }
+
+  .annonce img {
+    max-height: 265px; /* Keep the original image height on mobile */
+  }
+
+  /* Adjusted layout for better UX */
+  .meta-info {
+    flex-direction: column;
+  }
+}

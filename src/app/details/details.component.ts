@@ -6,9 +6,13 @@ import { SelectItem } from 'primeng/api';
 import { VisitorCounterService } from '../services/VisitorCounter/visitor-counter.service';
 import * as moment from 'moment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { filter } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
 import { ProjetsService } from '../services/projets/projets.service';
 import { SharedAgenceImmobilierService } from '../services/shared-agence-immobilier.service';
+import { TestService } from '../services/test.service';
+import Swal from 'sweetalert2';
+import { HttpClient } from '@angular/common/http';
+import { PromoteurImmobiliersService } from '../agence/promoteur-immobiliers/promoteur-immobiliers.service';
 
 interface Duree {
   name: string;
@@ -38,6 +42,7 @@ interface Duree {
   `]
 })
 export class DetailsComponent implements OnInit {
+  private routerSubscription: Subscription;
 
   public idProjet: any
   public Projet: any
@@ -102,14 +107,20 @@ export class DetailsComponent implements OnInit {
   mobile_apps: any;
   filteredAgencies: any[];
   idAgencyMenu: any[];
+  AgencyEmail: any;
+  linkedin_url: any;
+  instagram_url: any;
   constructor(private activatedRoute: ActivatedRoute,
     private agencieService: AgenciesService,
-    private sharedAgency:SharedAgenceImmobilierService,
+    private sharedAgency:PromoteurImmobiliersService,
     private projetService: ProjetsService,
     private _location: Location,
     private router: Router,
     private modalService: NgbModal,
-    private visitorCounterService: VisitorCounterService) {
+    private testVariable:TestService,
+    private visitorCounterService: VisitorCounterService,
+    private http:HttpClient
+  ) {
 
     this.items = [];
     for (let i = 0; i < 10000; i++) {
@@ -124,23 +135,30 @@ export class DetailsComponent implements OnInit {
   }
 
 
+  ngOnDestroy() {
+    // Unsubscribe from the router events when the component is destroyed
+  }
+  ngAfterViewInit() {
+
+    this.setSharedVariable()
+  }
   ngOnInit(): void {
     // this.getAgency()
+
 this.idForAgency =this.sharedAgency.getIdAgency()
 
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        console.log('NavigationEnd event:', event);
-        // Scroll to the top of the page
-        window.scrollTo(0, 0);
-      });
+console.log(' ForAgency',this.idForAgency)
 
     // Rest of your initialization code...
 
-    this.agencieService.getAgencieById(this.idForAgency).subscribe((data) => {
+    this.agencieService.getAgencieById(this.idForAgency).subscribe(data => {
       this.Agency = data;
-      console.log('getAgencieById', this.Agency);
+      this.facebook_url = this.Agency?.facebook_url
+      this.linkedin_url = this.Agency?.linkedin_url
+      this.instagram_url = this.Agency?.instagram_url
+      this.AgencyEmail = this.Agency.email;
+
+      // console.log('getAgencieById', this.Agency);
       this.mobile_apps = this.Agency.mobile_apps[0]?.mobile_cover_image_url;
 
       this.ProjetEnCours = this.Agency?.projets.filter(
@@ -148,9 +166,10 @@ this.idForAgency =this.sharedAgency.getIdAgency()
           project.status === 'EN COURS' || project.status === 'EN COURS '
       );
       this.ProjetDispo = this.Agency?.projets.filter(
-        (project) => project.status === 'DISPONIBLE' 
+        (project) => project.status === 'DISPONIBLE' || 'Disponible'
         // || 'Disponible'
       );
+    
     }),
 
    
@@ -162,11 +181,12 @@ this.idForAgency =this.sharedAgency.getIdAgency()
     // })
     this.idProjet = this.activatedRoute.snapshot.paramMap.get('id')
 
-    this.projetService.getProjetById(this.idProjet).subscribe(data => {
-      console.log (data)
+    this.projetService.getProjetById(this.idProjet).subscribe((data:any) => {
+      // console.log (data)
       this.Projet = data;
+
       this.NameAgency = this.Projet.agencyName
-      console.log(this.NameAgency)
+      // console.log(this.NameAgency)
     })
     this.projetService.getListProjet().subscribe((data) => {
       this.agenciesProjet = data;
@@ -175,18 +195,12 @@ this.idForAgency =this.sharedAgency.getIdAgency()
     this.idPiece = this.activatedRoute.snapshot.paramMap.get('category')
 
     this.projetService.getPieceById(this.idPiece).subscribe(data => {
-      console.log(data)
+      // console.log(data)
       this.Piece = data;
 
     });
     ///methode1:
-    this.router.events.subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-        return;
-      }
-      window.scrollTo({ top: 200, behavior: 'auto' });
-
-    });
+   
     //methode2:
     // const element = document.getElementById("box");
     // element.scrollIntoView({ block: "start", behavior: "auto" });
@@ -194,6 +208,7 @@ this.idForAgency =this.sharedAgency.getIdAgency()
     this.routeId = this.activatedRoute.snapshot.params['id'];
 
     this.visitorCount = this.visitorCounterService.getVisitorCount(this.routeId);
+    
   }
 
   backClicked() {
@@ -250,7 +265,7 @@ this.idForAgency =this.sharedAgency.getIdAgency()
     if (this.isMobile()) {
       this.selectedImage = imageUrl;
       this.displayDialog = true;
-      console.log(this.selectedImage, imageUrl)
+      // console.log(this.selectedImage, imageUrl)
     }
   }
   private isMobile(): boolean {
@@ -284,13 +299,100 @@ this.idForAgency =this.sharedAgency.getIdAgency()
       const filteredAgencies = data.filter(agency => agency.name === this.Projet.agencyName);
       if (filteredAgencies.length > 0) {
         this.idAgencyMenu = filteredAgencies[0].id;
-        console.log(this.idAgencyMenu);
+        // console.log(this.idAgencyMenu);
         this.router.navigate(['/agency', this.idAgencyMenu]);
       }
     });
   }
 
+  setSharedVariable() {
+    let data = this.Agency;
+    this.agencieService.setSharedVariable(data);
+    // console.log("this data", data); 
+    
+    //  this.message ="data sended successfully"
+  }
 
+
+
+  emailSource: string = '';
+  emailDest:  any = '';
+  subject: string = '';
+  message: string = '';
+  senderEmail() {
+    // Get form data
+    this.emailDest = this.AgencyEmail;
+    const data = {
+      emailsource: this.emailSource,
+      emaildest: this.emailDest,
+      subject: this.subject,
+      message: `${this.message}\n\nFrom: ${this.emailSource}`
+    };
+  
+    // Check if any of the required fields are empty
+    if (!data.emailsource || !data.emaildest || !data.subject || !this.message) {
+      Swal.fire({
+        title: 'Error!',
+        text: "Veuillez remplir tous les champs obligatoires.",
+        icon: 'error',
+        confirmButtonText: 'Fermer'
+      });
+      return; // Stop further execution if form is incomplete
+    }
+  
+    // If the form is valid, send the email
+    this.http.post('https://contact-tunimmob.vercel.app/boutiques/SendEmail', data)
+      .subscribe({
+        next: (response) => {
+          Swal.fire({
+            title: 'Success!',
+            text: "L'email a été envoyé avec succès.",
+            icon: 'success',
+            confirmButtonText: 'Fermer'
+          });
+          console.log('Email sent successfully!', response);
+          
+          // Reset form fields
+          this.emailSource = '';
+          this.emailDest = '';
+          this.subject = '';
+          this.message = '';
+        },
+        error: (error) => {
+          Swal.fire({
+            title: 'Error!',
+            text: "Une erreur s'est produite lors de l'envoi de l'email.",
+            icon: 'error',
+            confirmButtonText: 'Fermer'
+          });
+          console.error('Error sending email', error);
+        }
+      });
+  }
+  
+  isValidEmail(email: string): boolean {
+    const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return pattern.test(email);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  setVariableTest() {
+    let data = this.Agency.name
+    this.testVariable.setSharedVariable1(data)
+  }
 }  
 
 

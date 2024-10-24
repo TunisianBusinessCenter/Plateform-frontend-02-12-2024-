@@ -55,7 +55,7 @@ export class ProtectionComponent implements OnInit {
         const dateB = this.parseDate(b.createdAt);
         return dateB.getTime() - dateA.getTime();
       });
-      console.log(`this is protection materiaux`,this.MateriauxProtection)
+      // console.log(`this is protection materiaux`,this.MateriauxProtection)
 
     });
   }
@@ -82,4 +82,7 @@ export class ProtectionComponent implements OnInit {
       this.allAgencies = this.allAgencies1
     }
   }
+  formatAgencyName(name: string): string {
+    return name.replace(/\s+/g, '-');
+}
 }

@@ -47,7 +47,7 @@ export class AgenceImmobTunisComponent implements OnInit {
     
       this.AgenciesTunis = data;
      
-        console.log(this.AgenciesTunis)
+        // console.log(this.AgenciesTunis)
          
 
     })

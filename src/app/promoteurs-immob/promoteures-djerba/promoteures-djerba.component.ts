@@ -63,4 +63,7 @@ export class PromoteuresDjerbaComponent implements OnInit {
       });
     })
   }
+  formatAgencyName(name: string): string {
+    return name.replace(/\s+/g, '-');
+}
 }

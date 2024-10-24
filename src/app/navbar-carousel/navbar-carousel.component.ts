@@ -86,14 +86,7 @@ agencyData: any;
 this.getById()
 // Assuming 'id' is the value you want to check against agence.id
 const targetId = this.route.snapshot.paramMap.get('id');
-this.checkRoute();
-if (event instanceof NavigationEnd) {
-  this.checkRoute();
-  // Reload the page if the condition is met
-  if (this.check) {
-    window.location.reload();
-  }
-}
+
 
 this.agencyService.getAllAgencies().subscribe(data => {
   this.allAgencies = data;
@@ -133,11 +126,11 @@ this.agencyService.getAllAgencies().subscribe(data => {
     // Make the HTTP request
     this.http.get(url).subscribe(
       (data) => {
-        console.log('Response:', data);
+        // console.log('Response:', data);
         // Handle the response data as needed
       },
       (error) => {
-        console.error('Error:', error);
+        // console.error('Error:', error);
         // Handle the error
       }
     );
@@ -146,7 +139,6 @@ this.agencyService.getAllAgencies().subscribe(data => {
   checkRoute() {
     const currentRoute = this.router.url;
   
-    // Check if the current route contains "/agency/5494"
     if (currentRoute.includes('/agency/6033') )  {
       this.check=true
 
@@ -173,7 +165,6 @@ this.agencyService.getAllAgencies().subscribe(data => {
     // Replace the hard-coded ID (113) with the receivedAgencyId
     this.sharedDataService.currentAgencyId.subscribe((agencyId) => {
       this.receivedAgencyId = agencyId;
-      console.log("yessssssssssssssssssss   from carousel", this.receivedAgencyId);
   
       // Move the rest of the logic inside the subscription callback
       if (this.receivedAgencyId) {
@@ -195,11 +186,11 @@ this.agencyService.getAllAgencies().subscribe(data => {
           },
           (error) => {
             // Handle errors here
-            console.error('Error fetching agency details:', error);
+            // console.error('Error fetching agency details:', error);
           }
         );
       } else {
-        console.error('Received Agency ID is undefined or null.');
+        // console.error('Received Agency ID is undefined or null.');
       }
     });
   }

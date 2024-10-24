@@ -45,7 +45,7 @@ export class AgenceImmobBizerteComponent implements OnInit {
   ngOnInit(): void {
     this.agencieImmobService.getAgencieBizerte().subscribe((data: any) => {
       this.AgenciesBizerte = data;
-      console.log(this.AgenciesBizerte)
+      // console.log(this.AgenciesBizerte)
     })
   }
 

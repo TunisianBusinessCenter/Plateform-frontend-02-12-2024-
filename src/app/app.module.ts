@@ -129,6 +129,17 @@ import { CoffeeListBizerteComponent } from './coffee-list/coffee-list-bizerte/co
 import { BoldParenthesesDirective } from './description-coffee/bold-parentheses.directive';
 import { HideBracedTextContentPipe } from './coffee-details/hide-braced-text-content.pipe';
 import { BraceTextExtractorPipe } from './coffee-details/brace-text-extractor.pipe';
+import { ImageModalComponent } from './description-agence-immob/image-modal/image-modal.component';
+import { CommerceServiceAgencyComponent } from './commerce-service-agency/commerce-service-agency.component';
+import { MeilleursBiensComponent } from './agence/meilleurs-biens/meilleurs-biens.component';
+import { AgenceImmobComponent } from './agence/agence-immob/agence-immob.component';
+import { DetailsAgenceImmobilierComponent } from './details-agence-immobilier/details-agence-immobilier.component';
+import { AgenceMatComponent } from './agence/agence-mat/agence-mat.component';
+import { AnnoncesImmobilierDetailsComponent } from './annonce Immobilier/annonces-immobilier-details/annonces-immobilier-details.component';
+import { AnnoncesImmobilierComponent } from './annonce Immobilier/annonces-immobilier/annonces-immobilier.component';
+import { PromoteurImmobiliersComponent } from './agence/promoteur-immobiliers/promoteur-immobiliers.component';
+
+
 
 
 
@@ -216,8 +227,18 @@ const routes: Routes = [
     CoffeeListBizerteComponent,
     BoldParenthesesDirective,
     HideBracedTextContentPipe,
-    BraceTextExtractorPipe
-    
+    BraceTextExtractorPipe,
+    ImageModalComponent,
+    CommerceServiceAgencyComponent,
+    MeilleursBiensComponent,
+    AgenceImmobComponent,
+    DetailsAgenceImmobilierComponent,
+    AgenceMatComponent,
+    AnnoncesImmobilierDetailsComponent,
+    AnnoncesImmobilierComponent,
+    PromoteurImmobiliersComponent
+ 
+ 
   
   ],
   imports: [

@@ -69,15 +69,32 @@ import { CoffeeListMahdiaComponent } from './coffee-list/coffee-list-mahdia/coff
 import { CoffeeListSfaxComponent } from './coffee-list/coffee-list-sfax/coffee-list-sfax.component';
 import { CoffeeListNabeulComponent } from './coffee-list/coffee-list-nabeul/coffee-list-nabeul.component';
 import { CoffeeListBizerteComponent } from './coffee-list/coffee-list-bizerte/coffee-list-bizerte.component';
+import { CommerceServiceAgencyComponent } from './commerce-service-agency/commerce-service-agency.component';
+import { MeilleursBiensComponent } from './agence/meilleurs-biens/meilleurs-biens.component';
+import { ModelContactComponent } from './agency/model-contact/model-contact.component';
+import { AgenceImmobComponent } from './agence/agence-immob/agence-immob.component';
+import { DetailsAgenceImmobilierComponent } from './details-agence-immobilier/details-agence-immobilier.component';
+import { AgenceMatComponent } from './agence/agence-mat/agence-mat.component';
+import { AnnoncesImmobilierComponent } from './annonce Immobilier/annonces-immobilier/annonces-immobilier.component';
+import { AnnoncesImmobilierDetailsComponent } from './annonce Immobilier/annonces-immobilier-details/annonces-immobilier-details.component';
+import { PromoteurImmobiliersComponent } from './agence/promoteur-immobiliers/promoteur-immobiliers.component';
 
 
 const appRoutes: Routes = [
 
   { path: 'home', component: HomeComponent },
   { path: 'privacy', component: PrivacyComponent },
-  { path: 'details/:id', component: DetailsComponent , canActivate: [GardVisitorService]},
-  { path: 'agency/:id', component: AgencyComponent },
+
+  { path: 'Promoteurs/:id/:name', component: PromoteurImmobiliersComponent },
+  { path: 'Materiaux/:id/:name', component: AgenceMatComponent },
+  { path: 'agence-immo/:id', component: AgenceImmobComponent },
+  { path: 'meilleur-bien/:id', component: MeilleursBiensComponent },
+  { path: 'commerce-service/:id', component: CommerceServiceAgencyComponent },
+
+
   { path: 'coffeeAgency/:id', component: CoffeeAgencyComponent },
+  { path: 'details/:id', component: DetailsComponent, canActivate: [GardVisitorService] },
+  { path: 'agency/:id/:name', component: AgencyComponent },
   { path: 'coffee-details/:id', component: CoffeeDetailsComponent },
   { path: 'descriptionCoffee/:id1/:id', component: DescriptionCoffeeComponent },
 
@@ -93,66 +110,71 @@ const appRoutes: Routes = [
   { path: 'details-materiaux/:id', component: DetailsMateriauxComponent },
   { path: 'agences-de-services', component: AgencesDeServicesComponent },
   { path: 'agences-immobiliere-details/:id', component: AgencesImmobDetailsComponent },
-  { path: 'agences-immob-details-plus/:id' , component: AgencesImmobDetailsPlusComponent}, 
+  { path: 'details-agences-immobilier/:id', component: DetailsAgenceImmobilierComponent },
+  { path: 'agences-immob-details-plus/:id', component: AgencesImmobDetailsPlusComponent },
   { path: 'descriptionDetails/:id1/:id', component: DescriptionDetailsComponent },
   { path: 'descriptionAgence_Immob/:id', component: DescriptionAgenceImmobComponent },
   { path: 'devisProduit', component: DevisProduitComponent },
   { path: 'devisService', component: DevisServicesComponent },
   { path: 'details-service/:id', component: DetailsServicesComponent },
   { path: 'descriptionService/:id', component: DescriptionServiceComponent },
-  {path:'contact',component:ContactComponent},
-{ path: 'agence-immob-sousse', component: AgenceImmobSousseComponent },
- { path: 'agence-immob-tunis', component: AgenceImmobTunisComponent },
-{ path: 'agence-immob-monastir', component: AgenceImmobMonastirComponent },
- { path: 'agence-immob-mahdia', component: AgenceImmobMahdiaComponent },
- { path: 'agence-immob-sfax', component: AgenceImmobSfaxComponent },
- { path: 'agence-immob-nabeul', component: AgenceImmobNabeulComponent },
- { path: 'agence-immob-bizerte', component: AgenceImmobBizerteComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'agence-immob-sousse', component: AgenceImmobSousseComponent },
+  { path: 'agence-immob-tunis', component: AgenceImmobTunisComponent },
+  { path: 'agence-immob-monastir', component: AgenceImmobMonastirComponent },
+  { path: 'agence-immob-mahdia', component: AgenceImmobMahdiaComponent },
+  { path: 'agence-immob-sfax', component: AgenceImmobSfaxComponent },
+  { path: 'agence-immob-nabeul', component: AgenceImmobNabeulComponent },
+  { path: 'agence-immob-bizerte', component: AgenceImmobBizerteComponent },
 
- { path: 'promoteurs-tunis', component: PromoteursTunisComponent },
- { path: 'promoteurs-sousse', component: PromoteursSousseComponent },
- { path: 'promoteurs-monastir', component: PromoteursMonastirComponent },
- { path: 'promoteurs-mahdia', component: PromoteursMahdiaComponent },
- { path: 'promoteurs-sfax', component: PromoteursSfaxComponent },
- { path: 'promoteurs-nabeul', component: PromoteursNabeulComponent },
- { path: 'promoteurs-bizerte', component: PromoteursBizerteComponent },
- { path: 'promoteurs-tabarka', component: PromoteursTabarkaComponent },
- { path: 'promoteurs-djerba', component: PromoteuresDjerbaComponent },
+  { path: 'promoteurs-tunis', component: PromoteursTunisComponent },
+  { path: 'promoteurs-sousse', component: PromoteursSousseComponent },
+  { path: 'promoteurs-monastir', component: PromoteursMonastirComponent },
+  { path: 'promoteurs-mahdia', component: PromoteursMahdiaComponent },
+  { path: 'promoteurs-sfax', component: PromoteursSfaxComponent },
+  { path: 'promoteurs-nabeul', component: PromoteursNabeulComponent },
+  { path: 'promoteurs-bizerte', component: PromoteursBizerteComponent },
+  { path: 'promoteurs-tabarka', component: PromoteursTabarkaComponent },
+  { path: 'promoteurs-djerba', component: PromoteuresDjerbaComponent },
+
+  { path: 'equipement', component: EquipementComponent },
+  { path: 'automatisme', component: AutomatismeComponent },
+  { path: 'chauffage', component: ChauffageComponent },
+  { path: 'energie', component: EnergieComponent },
+  { path: 'meuble', component: MeubleComponent },
+  { path: 'protection', component: ProtectionComponent },
+  { path: 'menuiserie', component: MenuiserieComponent },
+  { path: 'peinture', component: PeintureComponent },
 
 
- { path: 'equipement', component: EquipementComponent },
- { path: 'automatisme', component: AutomatismeComponent },
- { path: 'chauffage', component: ChauffageComponent },
- { path: 'energie', component: EnergieComponent },
- { path: 'meuble', component: MeubleComponent },
- { path: 'protection', component: ProtectionComponent },
-{ path: 'menuiserie', component: MenuiserieComponent },
- { path: 'peinture', component: PeintureComponent },
+  { path: 'meilleurs-bien-tunis', component: MeilleursBienTunisComponent },
+  { path: 'meilleurs-bien-sousse', component: MeilleursBienSousseComponent },
+  { path: 'meilleurs-bien-monastir', component: MeilleursBienMonastirComponent },
+  { path: 'meilleurs-bien-mahdia', component: MeilleursBienMahdiaComponent },
+  { path: 'meilleurs-bien-sfax', component: MeilleursBienSfaxComponent },
+  { path: 'meilleurs-bien-nabeul', component: MeilleursBienNabeulComponent },
+  { path: 'meilleurs-bien-bizerte', component: MeilleursBienBizerteComponent },
 
- 
-{ path: 'meilleurs-bien-tunis', component: MeilleursBienTunisComponent },
-{ path: 'meilleurs-bien-sousse', component: MeilleursBienSousseComponent },
-{ path: 'meilleurs-bien-monastir', component: MeilleursBienMonastirComponent },
-{ path: 'meilleurs-bien-mahdia', component: MeilleursBienMahdiaComponent },
-{ path: 'meilleurs-bien-sfax', component: MeilleursBienSfaxComponent },
-{ path: 'meilleurs-bien-nabeul', component: MeilleursBienNabeulComponent },
-{ path: 'meilleurs-bien-bizerte', component: MeilleursBienBizerteComponent },
-  
-  { path: 'meilleurs-biens-agency/:id', component:MeilleursBiensAgencyComponent},
-  { path: 'conception', 
-        loadChildren:() =>import('./conception-client/conception-client.module').then(x=>x.ConceptionClientModule)},
-  {path: 'conception/login', component:LoginComponent},
-  {path: 'conception/registre', component:RegistreComponent},
-  {path: '', component:ChoixComponent},
-  {path:'home-algerie', component:HomeAlgerieComponent},
-  {path:'home-maroc', component:HomeMarocComponent},
-  {path:'home-lybia', component:HomeLybiaComponent},
-  {path:'home-mauritanie', component:HomeMauritanieComponent},
- {path: 'telechargement', component:TelechargementComponent},
- {path:"refresh",component:AgencesImmobDetailsPlusComponent},
- {path:"refreshPromo",component:DetailsComponent},
- {path:"refreshMat",component:DetailsMateriauxComponent},
- {path:"refreshcafe",component:CoffeeDetailsComponent}
+  { path: 'meilleurs-biens-agency/:id', component: MeilleursBiensAgencyComponent },
+  {
+    path: 'conception',
+    loadChildren: () => import('./conception-client/conception-client.module').then(x => x.ConceptionClientModule)
+  },
+  { path: 'conception/login', component: LoginComponent },
+  { path: 'conception/registre', component: RegistreComponent },
+  { path: '', component: ChoixComponent },
+  { path: 'home-algerie', component: HomeAlgerieComponent },
+  { path: 'home-maroc', component: HomeMarocComponent },
+  { path: 'home-lybia', component: HomeLybiaComponent },
+  { path: 'home-mauritanie', component: HomeMauritanieComponent },
+  { path: 'telechargement', component: TelechargementComponent },
+  { path: "refresh", component: AgencesImmobDetailsPlusComponent },
+  { path: "refreshPromo", component: DetailsComponent },
+  { path: "refreshMat", component: DetailsMateriauxComponent },
+  { path: "refreshcafe", component: CoffeeDetailsComponent },
+  { path: "testmodel", component: ModelContactComponent },
+  { path: "annonceImmobilier", component: AnnoncesImmobilierComponent },
+  { path: "annonceImmobilierDetails/:id", component: AnnoncesImmobilierDetailsComponent }
 
 
 ];

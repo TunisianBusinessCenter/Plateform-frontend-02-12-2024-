@@ -45,7 +45,7 @@ export class AgenceImmobMonastirComponent implements OnInit {
   ngOnInit(): void {
     this.agencieImmobService.getAgencieMonastir().subscribe((data: any) => {
       this.AgenciesMonastir = data;
-      console.log(this.AgenciesMonastir)
+      // console.log(this.AgenciesMonastir)
     })
   }
 

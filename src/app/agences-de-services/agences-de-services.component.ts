@@ -18,6 +18,10 @@ interface SousCat {
 })
 export class AgencesDeServicesComponent implements OnInit {
 
+  categoryList: string[] = [];
+  sousServices: any[] = [];
+  filteredSousServices: any[] = [];
+  responsiveOptions: any[]; // PrimeNG responsive options
   public AgencieAssurances: any
   public AgencieBanque: any
   public AgenciesLeasing: any
@@ -34,7 +38,6 @@ export class AgencesDeServicesComponent implements OnInit {
 
   public RoleOk = false
 
-  responsiveOptions;
   public search: string  = '';
   public valueSearch! : string ;
   public searchList : string[] =[]
@@ -89,56 +92,62 @@ export class AgencesDeServicesComponent implements OnInit {
   ngOnInit(): void {
     this.agenceServicesServices.getAgencieAssurances().subscribe((data: any) => {
       this.AgencieAssurances = data;
-      console.log(this.AgencieAssurances)
+      // console.log(this.AgencieAssurances)
     })
+    this.agenceServicesServices.getServiceById(9935).subscribe((data: any) => {
+      // console.log('Service data:', data);
+      this.categoryList = data.categoryList;
+      this.sousServices = data.sous_services;
+      this.filteredSousServices = this.sousServices; // Show all initially
+    });
     this.agencieCoffee$ = this.as.getAllAgencies().pipe(
       map((data: any) => data.filter(item => item.categorie === 'coffee'))
     );
     this.agenceServicesServices.getAgencieBanque().subscribe((data: any) => {
       this.AgencieBanque = data;
-      console.log(this.AgencieBanque)
+      // console.log(this.AgencieBanque)
     })
     this.agenceServicesServices.getAgencieleasing().subscribe((data: any) => {
       this.AgenciesLeasing = data;
-      console.log(this.AgenciesLeasing)
+      // console.log(this.AgenciesLeasing)
     })
     this.agenceServicesServices.getAgencieAartisanat().subscribe((data: any) => {
       this.BureauxAartisanat = data;
-      console.log(this.BureauxAartisanat)
+      // console.log(this.BureauxAartisanat)
     })
     this.agenceServicesServices.getAgencieCommerces().subscribe((data: any) => {
       this.BureauxCommerces = data;
-      console.log(this.BureauxCommerces)
+      // console.log(this.BureauxCommerces)
     })
     this.agenceServicesServices.getAgencieDecorations().subscribe((data: any) => {
       this.AgenciesDecoration = data;
-      console.log(this.AgenciesDecoration)
+      // console.log(this.AgenciesDecoration)
     })
 
     this.agenceServicesServices.getAgencieServicesDivers().subscribe((data: any) => {
       this.ServicesDivers = data;
-      console.log(this.ServicesDivers)
+      // console.log(this.ServicesDivers)
       this.filtredServicesDivers1= data
 
       this.filtredServicesDivers = this.filtredServicesDivers1.filter((item: { sous_categorie: string; }) => item.sous_categorie);
-      console.log(this.filtredServicesDivers)
+      // console.log(this.filtredServicesDivers)
       this.filtredServicesDivers2 = this.filtredServicesDivers;
     })
       
     this.agenceServicesServices.getAgencieServicesDivers().subscribe((data: any) => {
       this.ServicesDivers = data;
-      console.log(this.ServicesDivers)
+      // console.log(this.ServicesDivers)
       this.filtredServicesDivers1= data
 
       this.filtredServicesDivers = this.filtredServicesDivers1.filter((item: { sous_categorie: string; }) => item.sous_categorie);
-      console.log(this.filtredServicesDivers)
+      // console.log(this.filtredServicesDivers)
       this.filtredServicesDivers2 = this.filtredServicesDivers;
     })
       
    
     this.agenceServicesServices.getAgencieBureauxDeEtudes().subscribe((data: any) => {
       this.BureauxDeEtude = data;
-      console.log(this.BureauxDeEtude)
+      // console.log(this.BureauxDeEtude)
     })
   }
 
@@ -152,12 +161,15 @@ export class AgencesDeServicesComponent implements OnInit {
     if(this.selectedSousCategorie){
 
     this.ServicesDivers =  this.filtredServicesDivers2.filter((item : any) => item.sous_categorie ==  this.selectedSousCategorie.value);
-    console.log(this.selectedSousCategorie.value)
+    // console.log(this.selectedSousCategorie.value)
     }else{
      this.ServicesDivers = this.filtredServicesDivers1
     }
   }
   
 
-
+  filterServices(category: string): void {
+    this.filteredSousServices = this.sousServices.filter(sous_service => sous_service.category === category);
+  }
+  
 }

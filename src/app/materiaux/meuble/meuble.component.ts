@@ -56,7 +56,7 @@ export class MeubleComponent implements OnInit {
         const dateB = this.parseDate(b.createdAt);
         return dateB.getTime() - dateA.getTime();
       });
-      console.log(this.MateriauxMeuble);
+      // console.log(this.MateriauxMeuble);
     });
   this.Servicemateriaux.getMateriauxMeuble().subscribe((data: any) => {
     this.MateriauxMeuble = data.sort((a: any, b: any) => {
@@ -64,7 +64,7 @@ export class MeubleComponent implements OnInit {
       const dateB = this.parseDate(b.createdAt);
       return dateB.getTime() - dateA.getTime();
     });
-    console.log(this.MateriauxMeuble);
+    // console.log(this.MateriauxMeuble);
   });
   }
 
@@ -95,4 +95,7 @@ export class MeubleComponent implements OnInit {
   clickMe(agencyId: number) {
     this.sharedDataService.updateAgencyId(agencyId);
   }
+  formatAgencyName(name: string): string {
+    return name.replace(/\s+/g, '-');
+}
 }

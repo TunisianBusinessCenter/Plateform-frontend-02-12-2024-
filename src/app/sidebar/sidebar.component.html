@@ -58,7 +58,7 @@
     
           
             <li>
-                <a href="mailto:dcgenerale@gmail.com" >
+                <a (click)="openVerticallyCentered(content)" >
                     
                      <i class="fa fa-envelope-o fa-2x"></i>
                      <span class="nav-text">
@@ -66,6 +66,7 @@
                      </span>
                  </a>
              </li>
+             
              <li>
                 <a (click)="showMaximizableDialog()">
                     <i class="fa fa-info-circle fa-2x"></i>
@@ -148,7 +149,136 @@
 
 
 
+<ng-template #content let-modal>
+	<div style="display: flex; display: flex;    flex-direction: row;
+    align-items: flex-start;" class="modal-header">
+		<br><br>
+		<h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
+		<a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
+	</div>
+	<div class="modal-body">
+		<form (ngSubmit)="senderEmail()">
+			<div class="">
+				<div>
+					<label for="email" class="textInput"> Email:</label>
+					<input type="email" id="emailSource" [(ngModel)]="emailSource" name="emailSource" required
+						placeholder="Votre email" />
+					<div class="send-button" style="color: red;" *ngIf="emailSource && !isValidEmail(emailSource)"
+						class="error">
+						S'il vous plaît, mettez une adresse email valide.
+					</div>
+				</div><br>
+				<div>
+					<label for="Nom" class="textInput">Objet:</label>
+					<input type="text" id="subject" [(ngModel)]="subject" name="subject" required placeholder="objet" />
+				</div> <br>
+				<label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
+				<textarea style="height: 168px;" id="message" [(ngModel)]="message" name="message" required
+					placeholder="message ..."></textarea>
+				<br>
+				<!-- <div *ngFor="let agencies of Agency">
+						<div *ngFor="let categorie of agencies?.produits">
+							<div *ngFor="let categories of categorie?.categoryList"> -->
+				<!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
+				<div class="example-button-row">
+					<button type="submit" style="border-color: #8B0000;
+									background-color: #8B0000; color:aliceblue">Envoyer</button>&nbsp;&nbsp;&nbsp;
+					<a class="btn btn-light" (click)="modal.close('Close click')">
+						Fermer
+					</a>
 
+
+				</div>
+
+			</div>
+
+			<div class="modal-footer valider">
+
+			</div>
+
+
+
+			<!-- <div class="main-menu"></div> -->
+			<!-- <div class="content-container">
+    <button class="center-button">Click Me</button>
+</div> -->
+
+			<style>
+				/* .main-menu {
+		background: #1f1e84;
+		border-right: 1px solid;
+		position: fixed;
+		bottom: 0;
+		border: none;
+		height: 100%;
+		left: 0;
+		width: 60px;
+		overflow: hidden;
+		transition: width .05s linear;
+		-webkit-transform: translateZ(0) scale(1, 1);
+		z-index: 5;
+		zoom: 1.1119;
+	} */
+
+				.content-container {
+					/* margin-left: 60px; */
+					height: auto;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
+
+				.center-button {
+					padding: 7px 52px;
+					font-size: 13px;
+					cursor: pointer;
+					font-weight: bold;
+					border-radius: 4px;
+					color: white;
+					background: #1f1e84;
+				}
+			</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<!-- Home Video Modal -->
+		
+				
+
+
+			<!-- container -->
 
 
 

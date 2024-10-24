@@ -37,9 +37,14 @@
                             <hr class="hrstyle">
                             <p class="mb-md-0 mb-6 responsive-text"
                                 style="color:#696969;font-size:.900rem;font-family: poppins,sans-serif;font-family: system-ui;">
-                                Toute la liste des agences immobiliers dans cette région sont
+                                Toute la liste des agences immobiliers
+                            </p>
+                            <br>
+                            <p>
+                                dans cette région sont
                                 agrées
                             </p>
+
                         </div>
 
                     </div>
@@ -50,7 +55,7 @@
                             <div class="p-mb-3"></div>
                             <div>
                                 <div class="card shadow-hover-1 border-gray" data-animate="fadeInUp">
-                                    <a [routerLink]="['/agency', Agency.id]" class="text-dark hover-primary">
+                                    <a [routerLink]="['/agence-immo', Agency.id]" class="text-dark hover-primary">
                                         <div class="css">
                                             <div class="hover-change-image bg-hover-overlay rounded-lg card-img-top">
                                                 <img src="{{Agency.logo_url}}" alt="Responsive image"

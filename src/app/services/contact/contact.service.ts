@@ -26,5 +26,7 @@ export class ContactService {
         )
       )
   }
-  
+  sendEmail(data:any){
+    return this.http.post('https://contact-tunimmob.vercel.app/boutiques/SendEmail',data)
+  }
 }

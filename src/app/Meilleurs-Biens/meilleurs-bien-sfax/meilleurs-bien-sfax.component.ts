@@ -13,7 +13,7 @@ export class MeilleursBienSfaxComponent implements OnInit {
   ngOnInit(): void {
     this.meilleursBiensService.getMeilleursBiensSfax().subscribe((data: any) => {
       this.AgenciesSfax = data.filter((agency: any) => agency.phone_number_commercial != "yes");
-      console.log(this.AgenciesSfax)
+      // console.log(this.AgenciesSfax)
    
     })
   }

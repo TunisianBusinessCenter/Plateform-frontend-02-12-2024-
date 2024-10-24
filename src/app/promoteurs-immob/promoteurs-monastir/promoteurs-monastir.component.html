@@ -68,8 +68,7 @@
                             <div class="p-mb-3  " ></div>
                             <div class=" p-carousel-cont">
                                 <div class="card shadow-hover-1 border-gray " data-animate="fadeInUp">
-                                    <a [routerLink]="['/agency', Agency.id]" class="text-dark hover-primary" (click)="clickMe(Agency.id)">
-                                        <div class="css">
+                                    <a [routerLink]="['/Promoteurs', Agency.id, formatAgencyName(Agency.name)]" class="text-dark hover-primary" (click)="clickMe(Agency.id)">                                        <div class="css">
                                             <div class="hover-change-image bg-hover-overlay rounded-lg card-img-top">
                                                 <img src="{{Agency.logo_url}}" alt="Responsive image"
                                                     style="width: 100%; max-width: 100%;">
@@ -115,11 +114,7 @@
                                                         Instagram
                                                     </a>
                                                 </li>
-                                                <li>
-                                                    <a href="{{Agency.linkedlin_url}}" class="icon-linkedin">
-                                                        LinkedIn
-                                                    </a>
-                                                </li>
+                                             
                                             </ul>
                                         </ul>
                                     </div>
@@ -192,7 +187,7 @@
         </ng-template><br><br>
     </mat-tab>
 </mat-tab-group>
-
+<br><br><br>
 <div class="tunsian-flag-img-background" style="height: -170">
     <div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
         <div class="btn-group mr-2" role="group " aria-label="First group ">

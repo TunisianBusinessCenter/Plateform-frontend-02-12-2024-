@@ -89,7 +89,8 @@
                                 <div class="p-mb-3"></div>
                                 <div>
                                     <div class="card shadow-hover-1 border-gray" data-animate="fadeInUp">
-                                        <a [routerLink]="['/agency', Agency.id]" class="text-dark hover-primary">
+                                        <a [routerLink]="['/Materiaux', Agency.id, formatAgencyName(Agency.name)]"
+                                        class="text-dark hover-primary">
                                             <div class="css">
                                                 <div
                                                     class="hover-change-image bg-hover-overlay rounded-lg card-img-top">
@@ -139,11 +140,7 @@
                                                             Instagram
                                                         </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="{{Agency.linkedlin_url}}" class="icon-linkedin">
-                                                            LinkedIn
-                                                        </a>
-                                                    </li>
+                                                 
                                                 </ul>
                                             </ul>
                                         </div>

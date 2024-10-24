@@ -20,4 +20,6 @@ export class ProduitsService {
   getSousCategorieById(IdCategorie:number){
     return this.http.get('https://app.titv-store-api.com/produits/sous/'+IdCategorie)
   }
+
+  
 }

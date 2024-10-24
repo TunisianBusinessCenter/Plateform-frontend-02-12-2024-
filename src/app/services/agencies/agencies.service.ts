@@ -84,7 +84,9 @@ export class AgenciesService {
 
   setSharedVariable(data: any) {
     this.sharedVariableSource.next(data);
+    console.log(data)
   }
+
   // private idSource = new BehaviorSubject<number>(0);
   currentId$ = this.idSource.asObservable();
 
@@ -147,4 +149,6 @@ export class AgenciesService {
     }
     return 'ltr'; // Default direction
   }
+
+  
 }

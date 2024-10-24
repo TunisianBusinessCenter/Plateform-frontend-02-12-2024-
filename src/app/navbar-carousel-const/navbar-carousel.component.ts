@@ -51,9 +51,9 @@ this.agencyService.getAllAgencies().subscribe(data => {
 
     // Check if agence.id is equal to the targetId
     if (this.agenceID === targetId) {
-      console.log('Found agency with matching id:', this.agenceID);
+      // console.log('Found agency with matching id:', this.agenceID);
       this.roleMateriaux = true;
-      console.log('tttttttttttttttttttttttttttttttttttttttttttttttttttttthis.roleMateriaux: ', this.roleMateriaux);
+      // console.log('tttttttttttttttttttttttttttttttttttttttttttttttttttttthis.roleMateriaux: ', this.roleMateriaux);
     
   }
 
@@ -64,11 +64,11 @@ this.agencyService.getAllAgencies().subscribe(data => {
   }
 
   slideActivate(ngbSlideEvent: NgbSlideEvent) {
-    console.log(ngbSlideEvent.source);
-    console.log(ngbSlideEvent.paused);
-    console.log(NgbSlideEventSource.INDICATOR);
-    console.log(NgbSlideEventSource.ARROW_LEFT);
-    console.log(NgbSlideEventSource.ARROW_RIGHT);
+    // console.log(ngbSlideEvent.source);
+    // console.log(ngbSlideEvent.paused);
+    // console.log(NgbSlideEventSource.INDICATOR);
+    // console.log(NgbSlideEventSource.ARROW_LEFT);
+    // console.log(NgbSlideEventSource.ARROW_RIGHT);
   }
 
   checkRoute() {
@@ -77,11 +77,11 @@ this.agencyService.getAllAgencies().subscribe(data => {
     // Check if the current route contains "/agency/5494"
     if (currentRoute.includes('/agency/6033') )  {
       this.check=true
-      console.log('check works')
+      // console.log('check works')
 
     } else {
       this.check=false
-      console.log('check works')
+      // console.log('check works')
 
     }
 

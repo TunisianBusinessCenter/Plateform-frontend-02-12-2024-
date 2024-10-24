@@ -55,7 +55,7 @@ export class ChauffageComponent implements OnInit {
         const dateB = this.parseDate(b.createdAt);
         return dateB.getTime() - dateA.getTime();
       });
-      console.log(this.MateriauxChauffage);
+      // console.log(this.MateriauxChauffage);
     });
   }
   parseDate(dateString: string): Date {
@@ -81,4 +81,8 @@ export class ChauffageComponent implements OnInit {
       this.allAgencies = this.allAgencies1
     }
   }
+
+  formatAgencyName(name: string): string {
+    return name.replace(/\s+/g, '-');
+}
 }

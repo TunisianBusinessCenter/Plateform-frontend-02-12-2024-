@@ -49,9 +49,9 @@ export class MeilleursBienTunisComponent implements OnInit {
       this.AgenciesTunis = data.filter((agency: any) => agency.phone_number_commercial != "yes");
   
       // Tri par 'id' en ordre croissant
-      this.AgenciesTunis.sort((a: any, b: any) => a.id - b.id);
+      // this.AgenciesTunis.sort((a: any, b: any) => a.id - b.id);
   
-      console.log(this.AgenciesTunis);
+      // console.log(this.AgenciesTunis);
   });
   
 }

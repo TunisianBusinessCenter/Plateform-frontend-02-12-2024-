@@ -34,8 +34,12 @@
                                 </h2>
                                 <hr class="hrstyle">
                                 <p class="mb-md-0 mb-6"
-                                    style="color:#696969;font-size:.900rem;font-family: poppins,sans-serif;font-family: system-ui;">
-                                    Toute la liste des agences immobiliers dans cette région sont
+                                    style="color:#696969;font-size:.900rem;font-family: poppins,sans-serif;font-family: system-ui;width: 303px;width: 303px;">
+                                    Toute la liste des agences immobiliers
+                                </p>
+                                <br>
+                                <p>
+                                    dans cette région sont
                                     agrées
                                 </p>
                             </div>
@@ -48,7 +52,7 @@
                                 <div class="p-mb-3"></div>
                                 <div>
                                     <div class="card shadow-hover-1 border-gray" data-animate="fadeInUp">
-                                        <a [routerLink]="['/agency', Agency.id]" class="text-dark hover-primary">
+                                        <a [routerLink]="['/agence-immo', Agency.id]" class="text-dark hover-primary">
                                             <div class="css">
                                                 <div
                                                     class="hover-change-image bg-hover-overlay rounded-lg card-img-top">
@@ -67,7 +71,7 @@
                                         </a>
                                         <div class="card-body pt-3 border-dark" >
                                             <h2 class="card-title fs-16 lh-2 mb-0" >
-                                                <a routerLink="agency" class="text-dark hover-primary">
+                                                <a routerLink="agency" class="text-dark hover-primary" >
                                                     {{ Agency.name }}.
                                                 </a>
                                             </h2>

@@ -1,0 +1,270 @@
+
+  :host ::ng-deep .p-galleria .p-galleria-thumbnail-container {
+	background: #ffffff;
+	padding: 1rem 0rem;
+	margin: 0 -20px 0 -16px;
+	
+  }
+  :host ::ng-deep .p-galleria-thumbnail-wrapper {
+   overflow: hidden;
+	
+  }
+  
+  :host ::ng-deep .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-prev {
+    background-color: #9a9a9abf;
+    color: #ffffff;
+    width: 3rem;
+    height: 3rem;
+    margin: 0 -22px 0 0;
+    margin: 0px -38px 0 132px;
+    ition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    border: solid 5px #ffffff;
+    z-index: 1;
+  }
+  
+  :host ::ng-deep .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-next {
+	margin: 0.5rem;
+    background-color: #9a9a9abf;
+    margin: 0 136px 0 -40px;
+    color: #ffffff;
+    width: 3rem;
+    height: 3rem;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    border: solid 5px #ffffff;
+    z-index: 1;
+  }
+  
+  :host ::ng-deep .p-disabled,
+  .p-component:disabled {
+	opacity: 1 !important;
+  }
+  
+ 
+  @media only screen and (max-width: 700px) {
+
+	:host ::ng-deep .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-prev {
+	  background-color: #1f1e84a8;
+	  color: #ffffff;
+	  width: 2rem;
+	  height: 2rem;
+	  margin: 0 -22px 0 0;
+	  margin: 0px -27px 0px 14px;
+	  ition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+	  border: solid 3px #ffffff;
+	  z-index: 1;
+	}
+  
+	:host ::ng-deep .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-next {
+	  margin: 0.5rem;
+	  background-color: #1f1e84a8;
+	  margin: 0 18px 0 -24px;
+	  color: #ffffff;
+	  width: 2rem;
+	  height: 2rem;
+	  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+	  border: solid 3px #ffffff;
+	  z-index: 1;
+	}
+  
+	:host ::ng-deep .p-galleria-thumbnail-next span {
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  font-size: 10px;
+	}
+  
+	:host ::ng-deep .p-galleria-thumbnail-prev span {
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  font-size: 10px;
+	}
+  }
+  
+  .taill-galery {
+	display: block;
+	height: 100px;
+  }
+  
+  @media only screen and (max-width: 767px) {
+	.taill-galery {
+	  display: block;
+	  height: 70px;
+	}
+  }
+  @media only screen and (max-width: 767px) {
+	.taill-galery {
+	  display: block;
+	  height: 70px;
+	}
+  }
+    /* Container that wraps both the button and the gallery */
+    .button-gallery-container {
+        display: flex;
+        align-items: center; /* Align button and image vertically */
+    }
+
+    /* Style for the Retour button */
+    .retour-btn {
+        color: #ffffff;
+        border: none;
+        padding: 7px 35px;
+        background: #3f51b5;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        margin-right: 20px;
+    }
+
+    /* For mobile devices */
+    @media (max-width: 768px) {
+        .retour-btn {
+            padding: 5px 24px;
+            background: #1f1e84;
+            color: white;
+            font-size: 14px;
+            margin-left: 0;
+        }
+
+        .responsive-image {
+            width: 100%;
+        }
+
+        .button-gallery-container {
+            display: block; /* Stacks button and image vertically in mobile */
+        }
+    }
+
+    /* For larger screens */
+    @media (min-width: 769px) {
+        .retour-btn {
+            margin-left: 128px;
+
+        }
+
+        .responsive-image {
+            width: 80%;
+        }
+    }
+  
+      /* Flexbox for aligning button and gallery */
+      .button-gallery-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    /* Details section styling */
+    .details-section {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-top: 20px;
+        width: 56%;  
+        margin-left: auto; /* Center horizontally */
+        margin-bottom: 30px;
+        margin-right: auto; /* Center horizontally */
+    }
+    
+    /* Make sure the container allows centering */
+    .collapse-tabs.new-property-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center children horizontally */
+    }
+    
+    .description-text {
+        font-size: 16px;
+        color: #555;
+        border: solid 2px #b9b9b9ad;
+        line-height: 1.6;
+        padding: 10px;
+        margin-bottom: 15px;
+        height: 200px;
+        border-radius: 2px;
+        overflow-y: auto;
+    }
+
+    .details-btn {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        font-size: 14px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .details-btn:hover {
+        background-color: #0056b3;
+    }
+
+    @media (max-width: 768px) {
+        /* Stack button and gallery vertically */
+       
+        .details-section {
+  
+            width: 100%;  
+            
+        }   
+        .responsive-image {
+            width: 100%;
+        }
+
+        .description-text {
+            font-size: 14px;
+        }
+
+        .details-btn {
+            width: 100%;
+            font-size: 12px;
+        }
+    }
+    @media only screen and (max-width: 510px) {
+        .taill-galery {
+          display: block;
+          height: 50px;
+        }
+      }
+      
+      @media only screen and (max-width: 430px) {
+        .taill-galery {
+          display: block;
+          height: 47px;
+        }
+      
+      }
+      
+
+      /* show scrollBar */
+      .description-text {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        height: 200px; /* Set a fixed height */
+        overflow-y: scroll; /* Always show the vertical scrollbar */
+    }
+    
+    /* Custom scrollbar styling */
+    .description-text::-webkit-scrollbar {
+        width: 8px; /* Width of the scrollbar */
+    }
+    
+    .description-text::-webkit-scrollbar-track {
+        background: #f1f1f1; /* Track background (scroll route) */
+        border-radius: 5px;
+    }
+    
+    .description-text::-webkit-scrollbar-thumb {
+        background: #888; /* Scrollbar thumb color */
+        border-radius: 5px;
+    }
+    
+    .description-text::-webkit-scrollbar-thumb:hover {
+        background: #555; /* Scrollbar thumb color on hover */
+    }
+    

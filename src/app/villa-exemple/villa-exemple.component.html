@@ -1,18 +1,52 @@
-<duet-tab-group>
-    <duet-tab label="Yhteenveto">Tab 1 content</duet-tab>
-    <duet-tab label="Säästösuunnitelma" selected>Tab 2 content</duet-tab>
-    <duet-tab label="Säästöt">Tab 3 content</duet-tab>
-    <duet-tab label="Eläkesuunnitelma">Tab 4 content</duet-tab>
-    <duet-tab label="Asiointi">Tab 5 content</duet-tab>
-  </duet-tab-group>
-  
-  <script>
-    // Select the above tab group component
-    var tabs = document.querySelector("duet-tab-group")
-  
-    // Listen for change events in the tabs
-    tabs.addEventListener("duetTabChange", function (e) {
-      console.log("Change detected in tabs:", e.detail)
-    })
-  </script>
-  
+<div class="main-container">
+  <app-sidebar></app-sidebar>
+
+  <div class="content-container">
+    <!-- Retour Button at the left, above the responsive buttons -->
+    <button class="retour-btn">Retour</button>
+
+    <!-- Two responsive divs with image and paragraph -->
+    <div class="responsive-content">
+      <!-- First div with image -->
+      <div class="image-container">
+        <img src="assets/coffee.jpg" alt="Descriptive Image">
+      </div>
+
+      <!-- Second div with scrollable paragraph -->
+      <div class="paragraph-container">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque egestas felis nec nulla convallis, vitae
+          pretium neque vehicula. Duis scelerisque augue id vehicula malesuada. Sed feugiat orci ac odio ornare, nec
+          pharetra lectus aliquet. Vivamus nec interdum purus, ut facilisis lacus. Phasellus ut ullamcorper odio...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" *ngIf="isModalOpen" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <img [src]="modalImage" alt="Modal Image">
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div>grid 1</div>
+  <div>grid 2</div>
+  <div>grid 3</div>
+  <div>grid 4</div>
+</div>  
+<style>
+  .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px; /* Adjusts space between grid items */
+  padding: 16px; /* Optional padding around the grid */
+}
+
+.container div {
+  background-color: #f0f0f0; /* Light gray background for visibility */
+  border: 1px solid #ccc; /* Light border for separation */
+  padding: 20px; /* Padding inside each grid item */
+  text-align: center; /* Center text inside grid items */
+}
+</style>

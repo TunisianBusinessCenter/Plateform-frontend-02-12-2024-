@@ -366,13 +366,13 @@
 
               </div>
 
-              <select style="     padding: 8px 72px 8px 25px;
-        border: solid 2px #00000054;
-        border-radius: 5px;
-        margin: -1px 0px 14px 0;
-        font-weight: 500;
-        font-size: 16px;
-        text-align: center;
+              <select style="    padding: 8px 72px 8px 25px;
+              border: solid 2px #00000054;
+              border-radius: 5px;
+              margin: -1px 0px 14px 0;
+              font-weight: 500;
+              font-size: 14px;
+              text-align: center;
     " [(ngModel)]="selectedCategory">
                 <ng-container *ngIf="varChanges==0">
                   <option value="">Toutes Les Catégories</option>
@@ -383,11 +383,13 @@
 
                 </ng-container>
                 <ng-container *ngIf="varChanges==0">
-                  <option *ngFor="let category of categoryList" [value]="category">{{ category | hideBracedTextContent }}</option>
+                  <option *ngFor="let category of categoryList" [value]="category">{{ category | hideBracedTextContent
+                    }}</option>
 
                 </ng-container>
                 <ng-container *ngIf="varChanges==1">
-                  <option *ngFor="let category of categoryList" [value]="category">{{ category | braceTextExtractor }}</option>
+                  <option *ngFor="let category of categoryList" [value]="category">{{ category | braceTextExtractor }}
+                  </option>
 
                 </ng-container>
               </select>
@@ -416,9 +418,11 @@
                       <br>
                       <!-- Add other details as needed -->
                     </div>
-                    <button *ngIf="varChanges==0" [routerLink]="['/descriptionCoffee', sousBiens?.id, image?.id]">Découvrir <i
+                    <button *ngIf="varChanges==0"
+                      [routerLink]="['/descriptionCoffee', sousBiens?.id, image?.id]">Découvrir <i
                         class="fas fa-eye"></i></button>
-                    <button *ngIf="varChanges==1" [routerLink]="['/descriptionCoffee', sousBiens?.id, image?.id]">Discover <i
+                    <button *ngIf="varChanges==1"
+                      [routerLink]="['/descriptionCoffee', sousBiens?.id, image?.id]">Discover <i
                         class="fas fa-eye"></i></button>
                   </div>
                 </div>

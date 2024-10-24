@@ -68,5 +68,7 @@ searchText=""
   clickMe(agencyId: number) {
     this.sharedDataService.updateAgencyId(agencyId);
   }
-
+  formatAgencyName(name: string): string {
+    return name.replace(/\s+/g, '-');
+}
 }

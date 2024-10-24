@@ -55,7 +55,7 @@ export class MenuiserieComponent implements OnInit {
         const dateB = this.parseDate(b.createdAt);
         return dateB.getTime() - dateA.getTime();
       });
-      console.log("this is menuiserie",this.MateriauxMenuiserie);
+      // console.log("this is menuiserie",this.MateriauxMenuiserie);
     });
   }
 
@@ -83,4 +83,7 @@ export class MenuiserieComponent implements OnInit {
       this.allAgencies = this.allAgencies1
     }
   }
+  formatAgencyName(name: string): string {
+    return name.replace(/\s+/g, '-');
+}
 }

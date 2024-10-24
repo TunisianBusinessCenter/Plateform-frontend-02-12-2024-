@@ -14,7 +14,7 @@ export class MeilleursBienNabeulComponent implements OnInit {
   ngOnInit(): void {
     this.meilleursBiensService.getMeilleursBiensNabeul().subscribe((data: any) => {
       this.AgenciesNabeul = data.filter((agency: any) => agency.phone_number_commercial != "yes");
-      console.log(this.AgenciesNabeul)
+      // console.log(this.AgenciesNabeul)
    
     })
   }

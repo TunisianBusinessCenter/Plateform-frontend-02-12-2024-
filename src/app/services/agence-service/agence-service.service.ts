@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +53,13 @@ export class AgenceServiceService {
     getSousServiceById(IdService:number){
       return this.http.get('https://app.titv-store-api.com/services/sous/'+IdService)
     }
- 
+    private sharedVariableSource1 = new BehaviorSubject<any>(null);
+    sharedVariable1$ = this.sharedVariableSource1.asObservable();
+  
+    setSharedVariable1(data: any) {
+      this.sharedVariableSource1.next(data);
+      // console.log("data comming from service",data)
+    }
   
 }
 

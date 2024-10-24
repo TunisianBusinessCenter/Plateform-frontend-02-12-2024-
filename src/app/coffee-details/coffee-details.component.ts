@@ -34,6 +34,7 @@ export class CoffeeDetailsComponent implements OnInit {
   intervaleSubscription: Subscription;
   idA: any;
   agency: any;
+  Agency :any
   agencyName: any;
   displayMaximizable5: boolean;
   date: date[];
@@ -101,7 +102,7 @@ export class CoffeeDetailsComponent implements OnInit {
 
       this.as.getAgencieById(this.idCoffee).subscribe((data: any) => {
         this.agency = data.produits;
-
+        this.Agency=data
         this.agencyName = data.name;
         this.AgencyBaniere = data?.mobile_apps[0]?.mobile_cover_image_url;
 

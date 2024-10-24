@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AgenciesService } from 'src/app/services/agencies/agencies.service';
 
 @Component({
   selector: 'app-promoteurs-tunis',
   templateUrl: './promoteurs-tunis.component.html',
-  styleUrls: ['./promoteurs-tunis.component.css']
+  styleUrls: ['./promoteurs-tunis.component.css'],
+  
 })
 export class PromoteursTunisComponent implements OnInit {
 
   public AgenciesTunis: any
   public lengthBoutique: any
   public testArraySort: any
+  slides: any[] = new Array(3).fill({ id: -1, src: '', title: '', subtitle: '' });
 
   responsiveOptions
   idA: number;
@@ -18,7 +21,7 @@ export class PromoteursTunisComponent implements OnInit {
 
 
 
-  constructor(private agencieService: AgenciesService, private sharedDataService: AgenciesService) {
+  constructor(private agencieService: AgenciesService, private sharedDataService: AgenciesService,private router:Router) {
     
     this.responsiveOptions = [
       {
@@ -74,7 +77,7 @@ export class PromoteursTunisComponent implements OnInit {
           return createdAtB - createdAtA;
         }
       });
-  console.log(this.AgenciesTunis)
+  // console.log(this.AgenciesTunis)
       // Log the sorted array to the console
     });
   }
@@ -84,4 +87,13 @@ export class PromoteursTunisComponent implements OnInit {
   clickMe(agencyId: number) {
     this.sharedDataService.updateAgencyId(agencyId);
   }
+  stopPropagation(event: Event) {
+    // Stop the event from propagating to the parent
+    event.stopPropagation();
+    console.log('Click propagation stopped.');
+  }
+  formatAgencyName(name: string): string {
+    return name.replace(/\s+/g, '-');
+}
+
 }

@@ -729,51 +729,70 @@
 <br><br><br>
 <div class="tunsian-flag-img-background">
 	<div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
-		<div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie!='equipement'">
-			<!-- <a (click)="showMaximizableDialog1()"  class="btn-hover-flag-img text-center "  aria-selected="true " -->
-			<a class="btn-hover-flag-img text-center " aria-selected="true " style="line-height: 1.5">
-				<span style="letter-spacing: 3px;">NOS</span>
+
+
+		<div class="btn-group mr-2" role="group" aria-label="Third group">
+			<a [attr.href]="Agency?.facebook_url ? Agency?.facebook_url : null" target="_blank"
+				class="btn-hover-flag-img text-center" [ngClass]="{'disabled-btn': !Agency?.facebook_url}"
+				[attr.aria-disabled]="!Agency?.facebook_url ? 'true' : null"
+				[style.pointer-events]="!Agency?.facebook_url ? 'none' : 'auto'" style="line-height: 1.5;">
+				<span style="letter-spacing: 3px;"> <i class="fab fa-facebook" style="font-size: 18px;"></i>
+					<!-- Facebook Icon -->
+				</span>
 				<br>
-				<span style="letter-spacing: 3px;">REFERENCES</span>
+				<span style="letter-spacing: 3px;">PAGE FACEBOOK</span>
 			</a>
 		</div>
-		<div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie=='equipement'">
-			<a [attr.href]="Agency?.instagram_url" class="btn-hover-flag-img text-center " aria-selected="true "
-				style="line-height: 1.5">
-				<span style="letter-spacing: 3px;">PAGE</span>
+
+		<div class="btn-group mr-2" role="group " aria-label="First group ">
+			<a [attr.href]="Agency.instagram_url" class="btn-hover-flag-img text-center " aria-selected="true "
+				style="line-height: 1.5" target="_blank"
+				aria-selected="true " style="line-height: 1.5" [ngClass]="{'disabled-btn': !Agency.linkedin_url}"
+				[attr.aria-disabled]="!Agency.linkedin_url ? 'true' : null"
+				[style.pointer-events]="!Agency.linkedin_url ? 'none' : 'auto'"
+				>
+				<span style="letter-spacing: 3px;"> <i class="fab fa-instagram" style="font-size: 18px;"></i>
+					<!-- Instagram Icon -->
+				</span>
 				<br>
-				<span style="letter-spacing: 3px;">INSTAGRAM</span>
+				<span style="letter-spacing: 3px;">NOTRE INSTAGRAM</span>
 			</a>
 		</div>
-		<div class="btn-group mr-2" role="group " aria-label="Second group ">
-			<a [attr.href]="Agency?.website_url" target="_blank" class="btn-hover-flag-img text-center "
-				aria-selected="true " style="line-height: 1.5">
-				<span style="letter-spacing: 3px;">NOTRE </span>
+		<style>
+			.disabled-btn {
+				opacity: 0.6;
+				cursor: not-allowed;
+
+
+			}
+		</style>
+		
+
+		<div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie!='coffee'">
+			<a [attr.href]="Agency.linkedin_url" target="_blank" class="btn-hover-flag-img text-center "
+				aria-selected="true " style="line-height: 1.5" [ngClass]="{'disabled-btn': !Agency.linkedin_url}"
+				[attr.aria-disabled]="!Agency.linkedin_url ? 'true' : null"
+				[style.pointer-events]="!Agency.linkedin_url ? 'none' : 'auto'">
+				<span style="letter-spacing: 3px;"><i class="fab fa-tiktok" style="font-size: 18px;"></i>
+					<!-- Instagram Icon --></span>
 				<br>
-				<span style="letter-spacing: 3px;">SITE WEB</span>
-			</a>
-		</div>
-		<div class="btn-group mr-2" role="group " aria-label="Third group ">
-			<a [attr.href]="Agency?.facebook_url" target="_blank" class="btn-hover-flag-img text-center "
-				aria-selected="true " style="line-height: 1.5">
-				<span style="letter-spacing: 3px;">PAGE</span>
-				<br>
-				<span style="letter-spacing: 3px;">FACEBOOK</span>
+				<span style="letter-spacing: 3px;">NOTRE TIKTOK</span>
 			</a>
 		</div>
 		<div class="btn-group mr-2 " role="group " aria-label="Third group ">
 			<a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
 				style="line-height: 1.5;">
-				<span style="letter-spacing: 3px;">CONTACTEZ-</span>
+				<span style="letter-spacing: 3px;"> <i class="fas fa-phone-alt" style="font-size: 16px;"></i>
+					<!-- Contact Icon -->
+				</span>
 
 
 				<br>
 				<span style="letter-spacing: 3px;">
-					NOUS
+					CONTACTEZ-NOUS
 				</span>
 			</a>
 		</div>
-
 		<!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
 				<a class="btn-hover-flag-img text-center " aria-selected="true "
 					style="line-height: 1.5">
@@ -837,16 +856,15 @@
 		<form>
 			<div class=" cardModal">
 				<div>
-					<label for="email" class="textInput">Email</label>
-					<input class="form-control inputDevis" type="email" name="email" placeholder="Votre Email">
+					<label for="email" class="textInput">Email:</label>
+					<input class="form-control inputDevis" type="email" id="emailSource" [(ngModel)]="emailSource" name="emailSource" required placeholder="Votre email"/>
 				</div><br>
 				<div>
-					<label for="Nom" class="textInput">Téléphone</label>
-					<input class="form-control inputDevis" type="text" [(ngModule)]="numText" name="Nom"
-						placeholder="Téléphone">
+					<label for="Nom" class="textInput">Objet:</label>
+					<input class="form-control inputDevis" type="text" id="subject" [(ngModel)]="subject" name="subject" required  placeholder="objet"/>
 				</div> <br>
 				<label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
-				<textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
+				<textarea class="form-control inputDevis" id="message" [(ngModel)]="message" name="message" required placeholder="message ..."></textarea>
 				<br>
 				<!-- <div *ngFor="let agencies of Agency">
 						<div *ngFor="let categorie of agencies?.produits">

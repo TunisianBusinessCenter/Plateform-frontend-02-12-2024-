@@ -1,73 +1,102 @@
-/* Reset some default styles */
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+.main-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+app-sidebar {
+  width: 50px;
+  height: 100vh;
+  background-color: #333;
+  position: relative;
+  z-index: 2;
+}
+
+.content-container {
+  flex-grow: 1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: #f0f0f0;
+  padding-left: 20px;
+  position: relative;
+  margin-right: 3px;
+}
+
+/* Retour Button */
+.retour-btn {
+  margin-top: 20px;
+  padding: 5px 10px;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  align-self: flex-start;
+  width: 150px;
+  height: 40px;
+}
+
+/* Container for image and paragraph */
+.responsive-content {
+  display: flex;
+  height: 450px;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+/* First div with image */
+.image-container {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+/* Second div with scrollable paragraph */
+.paragraph-container {
+  flex: 1;
+  max-width: 50%;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-right: 150px; /* Added margin */
+}
+
+
+.paragraph-container p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .responsive-content {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
   }
-  
-  /* Navigation styles */
-  header {
-	background-color: #333;
-	color: #fff;
-	padding: 20px;
+
+  .image-container, .paragraph-container {
+    max-width: 100%;
+    height: auto;
   }
-  
-  nav {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+
+  .image-container img {
+    max-height: 300px;
   }
-  
-  .logo {
-	font-size: 20px;
-	font-weight: bold;
-  }
-  
-  .toggle-btn {
-	display: none;
-	cursor: pointer;
-  }
-  
-  .toggle-btn .bar {
-	width: 25px;
-	height: 3px;
-	background-color: #fff;
-	margin: 5px 0;
-  }
-  
-  .nav-menu {
-	display: flex;
-	list-style-type: none;
-  }
-  
-  .nav-menu li {
-	margin-left: 20px;
-  }
-  
-  .nav-menu a {
-	color: #fff;
-	text-decoration: none;
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 768px) {
-	.toggle-btn {
-	  display: block;
-	}
-  
-	.nav-menu {
-	  position: absolute;
-	  top: 70px;
-	  left: 0;
-	  width: 100%;
-	  background-color: #333;
-	  flex-direction: column;
-	  align-items: center;
-	  padding: 20px 0;
-	  display: none;
-	}
-  
-	.nav-menu li {
-	  margin: 10px 0;
-	}
-  }
+}

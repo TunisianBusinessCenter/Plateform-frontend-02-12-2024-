@@ -55,7 +55,7 @@ export class EnergieComponent implements OnInit {
         const dateB = this.parseDate(b.createdAt);
         return dateB.getTime() - dateA.getTime();
       });
-      console.log(this.MateriauxEnergie);
+      // console.log(this.MateriauxEnergie);
     });
   }
   parseDate(dateString: string): Date {
@@ -81,4 +81,9 @@ export class EnergieComponent implements OnInit {
       this.allAgencies = this.allAgencies1
     }
   }
+
+  
+  formatAgencyName(name: string): string {
+    return name.replace(/\s+/g, '-');
+}
 }

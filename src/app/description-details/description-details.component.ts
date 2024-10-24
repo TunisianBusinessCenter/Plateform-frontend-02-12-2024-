@@ -7,6 +7,10 @@ import { ContactService } from '../services/contact/contact.service';
 import { AgenciesService } from '../services/agencies/agencies.service';
 import { ProduitsService } from '../services/produits/produits.service';
 import { SharedAgenceImmobilierService } from '../services/shared-agence-immobilier.service';
+import Swal from 'sweetalert2';
+import { HttpClient } from '@angular/common/http';
+import { AgenceMatComponent } from '../agence/agence-mat/agence-mat.component';
+import { AgenceMatService } from '../agence/agence-mat/agence-mat.service';
 
 
 
@@ -45,6 +49,8 @@ export class DescriptionDetailsComponent implements OnInit {
   ProjetDispo: any;
   routerIdLink: any;
   idAgency: any;
+  idAgencyy: any;
+  AgencyEmail: any;
   constructor(private activatedRoute: ActivatedRoute,
     private produitService: ProduitsService,
     private _location: Location,
@@ -54,7 +60,8 @@ export class DescriptionDetailsComponent implements OnInit {
     private agencieService: AgenciesService,
     private renderer: Renderer2, private el: ElementRef,
     private projetService:ProduitsService,
-    private sharedService:SharedAgenceImmobilierService
+    private sharedService:AgenceMatService,
+    private http:HttpClient
 
     ) { }
 
@@ -64,12 +71,16 @@ export class DescriptionDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.idAgency = this.sharedService.getIdAgency()
-    this.agencieService.getAgencieById(this.idAgency).subscribe((data:any) => {
+    this.idAgencyy = this.sharedService.getIdAgency()
+    this.agencieService.getAgencieById(this.idAgencyy).subscribe((data:any) => {
       console.log(data)
+      this.Agency=data
+      
+      this.AgencyEmail =this.Agency.email
       this.description=data?.description
       this.logo_url=data?.logo_url
       this.ProduitEnCours = data?.produits;
+      this.setSharedVariable()
     })
     this.agencieService.getAllMateriaux().subscribe((data: any[]) => {
       // Assuming data is an array of agencies
@@ -159,7 +170,7 @@ export class DescriptionDetailsComponent implements OnInit {
   
   checkScreenWidth() {
     const screenWidth = window.innerWidth;
-    if (screenWidth <= 800) {
+    if (screenWidth <= 900) {
       this.isDesktop = false;
     } else {
       this.isDesktop = true;
@@ -183,5 +194,84 @@ export class DescriptionDetailsComponent implements OnInit {
   showMaximizableDialog() {
     this.displayMaximizable = true;
   }
-  
+  isImageLoading: boolean = true;
+
+  // You may need to include logic to set SousCategorie in your component
+
+  onImageLoad(): void {
+      this.isImageLoading = false;
+  }
+
+  onImageError(): void {
+      this.isImageLoading = false;
+  }
+  setSharedVariable() {
+    let data = this.Agency;
+    this.agencieService.setSharedVariable(data);
+    console.log("this data", data); // Corrected to use the 'data' variable
+    //  this.message ="data sended successfully"
+  }
+
+  emailSource: string = '';
+emailDest:  any = '';
+subject: string = '';
+message: string = '';
+senderEmail() {
+  // Get form data
+  this.emailDest = this.AgencyEmail;
+  const data = {
+    emailsource: this.emailSource,
+    emaildest: this.emailDest,
+    subject: this.subject,
+    message: `${this.message}\n\nFrom: ${this.emailSource}`
+  };
+
+  // Check if any of the required fields are empty
+  if (!data.emailsource || !data.emaildest || !data.subject || !this.message) {
+    Swal.fire({
+      title: 'Error!',
+      text: "Veuillez remplir tous les champs obligatoires.",
+      icon: 'error',
+      confirmButtonText: 'Fermer'
+    });
+    return; // Stop further execution if form is incomplete
+  }
+
+  // If the form is valid, send the email
+  this.http.post('https://contact-tunimmob.vercel.app/boutiques/SendEmail', data)
+    .subscribe({
+      next: (response) => {
+        Swal.fire({
+          title: 'Success!',
+          text: "L'email a été envoyé avec succès.",
+          icon: 'success',
+          confirmButtonText: 'Fermer'
+        });
+        console.log('Email sent successfully!', response);
+        
+        // Reset form fields
+        this.emailSource = '';
+        this.emailDest = '';
+        this.subject = '';
+        this.message = '';
+      },
+      error: (error) => {
+        Swal.fire({
+          title: 'Error!',
+          text: "Une erreur s'est produite lors de l'envoi de l'email.",
+          icon: 'error',
+          confirmButtonText: 'Fermer'
+        });
+        console.error('Error sending email', error);
+      }
+    });
+}
+
+isValidEmail(email: string): boolean {
+  const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return pattern.test(email);
+}
+formatAgencyName(name: string): string {
+  return name.replace(/\s+/g, '-');
+}
 }

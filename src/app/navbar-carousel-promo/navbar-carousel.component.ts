@@ -53,7 +53,7 @@ this.agencyService.getAllAgencies().subscribe(data => {
     if (this.agenceID === targetId) {
       console.log('Found agency with matching id:', this.agenceID);
       this.roleMateriaux = true;
-      console.log('tttttttttttttttttttttttttttttttttttttttttttttttttttttthis.roleMateriaux: ', this.roleMateriaux);
+      // console.log('tttttttttttttttttttttttttttttttttttttttttttttttttttttthis.roleMateriaux: ', this.roleMateriaux);
     
   }
 
@@ -77,11 +77,11 @@ this.agencyService.getAllAgencies().subscribe(data => {
     // Check if the current route contains "/agency/5494"
     if (currentRoute.includes('/agency/6033') )  {
       this.check=true
-      console.log('check works')
+      // console.log('check works')
 
     } else {
       this.check=false
-      console.log('check works')
+      // console.log('check works')
 
     }
 
@@ -103,7 +103,7 @@ this.agencyService.getAllAgencies().subscribe(data => {
     // Replace the hard-coded ID (113) with the receivedAgencyId
     this.sharedDataService.currentAgencyId.subscribe((agencyId) => {
       this.receivedAgencyId = agencyId;
-      console.log("yessssssssssssssssssss   from carousel", this.receivedAgencyId);
+      // console.log("yessssssssssssssssssss   from carousel", this.receivedAgencyId);
   
       // Move the rest of the logic inside the subscription callback
       if (this.receivedAgencyId) {
@@ -121,11 +121,11 @@ this.agencyService.getAllAgencies().subscribe(data => {
           },
           (error) => {
             // Handle errors here
-            console.error('Error fetching agency details:', error);
+            // console.error('Error fetching agency details:', error);
           }
         );
       } else {
-        console.error('Received Agency ID is undefined or null.');
+        // console.error('Received Agency ID is undefined or null.');
       }
     });
   }

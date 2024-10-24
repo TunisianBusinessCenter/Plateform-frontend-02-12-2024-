@@ -8,6 +8,9 @@ import { SharedAgenceImmobilierService } from '../services/shared-agence-immobil
 import { ProjetsService } from '../services/projets/projets.service';
 import { ProduitsService } from '../services/produits/produits.service';
 import { ShareService } from '../services/share/share.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import Swal from 'sweetalert2';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-agency',
@@ -95,11 +98,16 @@ export class AgencyComponent implements OnInit, AfterViewInit {
   AgencyBaniere: Object;
   ProduitVendu: any;
   sharedVariable: any;
-  message: string;
   agenceImmob: any;
+  agencyProduits: any;
 
+  isMobile: boolean = false;
+  AgencyReel: any;
+  urlSafe3: SafeResourceUrl;
+  AgencyEmail: any;
 
   constructor(private activatedRoute: ActivatedRoute,
+    private breakpointObserver: BreakpointObserver,
     private sharedService: SharedAgenceImmobilierService,
     private agencieService: AgenciesService,
     private projetService: ProjetsService,
@@ -113,14 +121,19 @@ export class AgencyComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2, private el: ElementRef,
     private route: ActivatedRoute,
     private modalService: NgbModal,
+    private http: HttpClient,
 
   ) {
+    this.breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
+      this.isMobile = result.matches;
+    });
     this.idAgency = this.activatedRoute.snapshot.paramMap.get('id')
     this.agencieService.getAgencieById(this.idAgency).subscribe(data => {
       console.log(data)
 
       this.Agency = data;
       this.AgencyBaniere = this.Agency.mobile_apps[0].mobile_cover_image_url;
+      this.AgencyReel = this.Agency?.mobile_apps[0]?.appstore_url
       this.agencieService.setAgencyBaniere(this.AgencyBaniere);
 
       console.log('AgencyBaniere', this.AgencyBaniere)
@@ -176,7 +189,12 @@ export class AgencyComponent implements OnInit, AfterViewInit {
     }
     
   ngOnInit(): void {
-
+    this.breakpointObserver.observe([
+      Breakpoints.Handset
+    ]).subscribe(result => {
+      this.isMobile = result.matches;
+    });
+  
     this.setIdAgency()
     this.startSendingData()
     this.changeMetadata(
@@ -191,9 +209,12 @@ export class AgencyComponent implements OnInit, AfterViewInit {
     })
 
     this.idAgency = this.activatedRoute.snapshot.paramMap.get('id')
-    this.agencieService.getAgencieById(this.idAgency).subscribe(data => {
+    this.agencieService.getAgencieById(this.idAgency).subscribe((data:any) => {
       console.log(data)
       this.Agency = data;
+      this.agencyProduits = data?.produits?.sort((a, b) => Number(a.id) - Number(b.id));
+
+      console.log(this.agencyProduits)
       this.agenceImmob = this.Agency?.biens
       this.AgencyP = this.Agency?.projets;
       console.log(this.AgencyP, 'ici')
@@ -222,6 +243,7 @@ export class AgencyComponent implements OnInit, AfterViewInit {
 
       //Video_Url2
       this.urlSafe2 = this.sanitizer.bypassSecurityTrustResourceUrl(this.Agency.videoUrl2);
+      this.urlSafe3 = this.sanitizer.bypassSecurityTrustResourceUrl(this.Agency?.twitter_url);
       console.log('ccccccccccccc', this.Agency.videoUrl2)
       //Video_Url
       this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.Agency?.videoUrl);
@@ -258,6 +280,7 @@ console.log("testtesttesttesttesttesttesttesttesttesttesttesttesttest",this.reve
       this.agencieService.getAgencieById(this.idAgency).subscribe(data => {
         console.log(data)
         this.Agency = data;
+        this.AgencyEmail =this.Agency.email
         console.log(this.Agency.role)
         //promo service
         for (let ImagePromoservice of this.Agency?.services) {
@@ -273,6 +296,7 @@ console.log("testtesttesttesttesttesttesttesttesttesttesttesttesttest",this.reve
       this.agencieService.getAgencieById(this.idAgency).subscribe(data => {
         console.log(data)
         this.Agency = data;
+
         console.log(this.Agency.role)
         //promo biens
         for (let ImagePromobien of this.Agency?.biens) {
@@ -381,6 +405,7 @@ console.log("testtesttesttesttesttesttesttesttesttesttesttesttesttest",this.reve
   displayMaximizable: boolean;
   showMaximizableDialog() {
     this.displayMaximizable = true;
+    console.log('hereeeeeeeeeeeeeeeeeeeeeeee')
   }
   displayMaximizable1: boolean;
   showMaximizableDialog1() {
@@ -450,11 +475,69 @@ console.log("testtesttesttesttesttesttesttesttesttesttesttesttesttest",this.reve
   startSendingData() {
     setInterval(() => {
 
-      this.agencieService.setSharedData(this.Agency.id);
+      this.agencieService.setSharedData(this.Agency?.id);
     }, 1000); // 1000 milliseconds = 1 second
   }
 
-
+  emailSource: string = '';
+  emailDest:  any = '';
+  subject: string = '';
+  message: string = '';
+  senderEmail() {
+    // Get form data
+    this.emailDest = this.AgencyEmail;
+    const data = {
+      emailsource: this.emailSource,
+      emaildest: this.emailDest,
+      subject: this.subject,
+      message: `${this.message}\n\nFrom: ${this.emailSource}`
+    };
+  
+    // Check if any of the required fields are empty
+    if (!data.emailsource || !data.emaildest || !data.subject || !this.message) {
+      Swal.fire({
+        title: 'Error!',
+        text: "Veuillez remplir tous les champs obligatoires.",
+        icon: 'error',
+        confirmButtonText: 'Fermer'
+      });
+      return; // Stop further execution if form is incomplete
+    }
+  
+    // If the form is valid, send the email
+    this.http.post('https://contact-tunimmob.vercel.app/boutiques/SendEmail', data)
+      .subscribe({
+        next: (response) => {
+          Swal.fire({
+            title: 'Success!',
+            text: "L'email a été envoyé avec succès.",
+            icon: 'success',
+            confirmButtonText: 'Fermer'
+          });
+          console.log('Email sent successfully!', response);
+          
+          // Reset form fields
+          this.emailSource = '';
+          this.emailDest = '';
+          this.subject = '';
+          this.message = '';
+        },
+        error: (error) => {
+          Swal.fire({
+            title: 'Error!',
+            text: "Une erreur s'est produite lors de l'envoi de l'email.",
+            icon: 'error',
+            confirmButtonText: 'Fermer'
+          });
+          console.error('Error sending email', error);
+        }
+      });
+  }
+  
+  isValidEmail(email: string): boolean {
+    const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return pattern.test(email);
+  }
 
 
 
@@ -480,4 +563,11 @@ console.log("testtesttesttesttesttesttesttesttesttesttesttesttesttest",this.reve
   getDirection(text: string): string {
     return this.isArabic(text) ? 'rtl' : 'ltr';
   }
+
+
+
+
+
+
+  
 }

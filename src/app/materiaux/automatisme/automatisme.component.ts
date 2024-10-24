@@ -56,7 +56,7 @@ ngOnInit(): void {
       const dateB = this.parseDate(b.createdAt);
       return dateB.getTime() - dateA.getTime();
     });
-    console.log(this.MateriauxAutomatisme);
+    // console.log(this.MateriauxAutomatisme);
   });
 }
 
@@ -85,4 +85,7 @@ parseDate(dateString: string): Date {
       this.allAgencies = this.allAgencies1
     }
   }
+  formatAgencyName(name: string): string {
+    return name.replace(/\s+/g, '-');
+}
 }

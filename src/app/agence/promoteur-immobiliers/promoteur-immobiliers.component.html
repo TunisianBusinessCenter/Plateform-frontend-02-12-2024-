@@ -1,0 +1,1017 @@
+<!-- side-bar	 -->
+<div class="main-container">
+    <nav class="main-menu">
+        <style>
+            .banner {
+                text-align: center;
+                padding: 10px;
+                background-color: #434388;
+                /* Set your desired background color */
+                color: #fff;
+                /* Set the text color */
+                font-size: 16px;
+                /* Adjust the font size */
+            }
+
+            .logo-container {
+                text-align: center;
+                padding: 10px;
+                border-radius: 5%;
+                overflow: hidden;
+                background-color: #fff;
+            }
+
+            .logo-container img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 40%;
+            }
+
+            hr {
+                width: 20px;
+                height: 20px;
+                background-color: white;
+            }
+        </style>
+
+
+
+        <li>
+            <a>
+                <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+
+                <span class="nav-text">
+                    <p>{{ Agency?.name }}</p>
+
+                </span>
+            </a>
+
+        </li>
+
+        <div>
+
+
+            <ul>
+
+                <li>
+                    <a>
+                        <i class="fa fa-home fa-2x"></i>
+                        <span class="nav-text">
+                            Page d'accueil
+                        </span>
+                    </a>
+
+                </li>
+
+                <li class="dropdown">
+                    <a>
+                        <i class="fa fa-book fa-2x"></i>
+
+
+                        <!-- <span *ngIf="Agency.categorie==='ProDeAartisanat' || Agency.categorie==='Commerces' "  class="nav-text">Nos
+							Produits</span> -->
+                        <span class="nav-text">Nos
+                            Projets</span>
+
+                    </a>
+
+
+                    <div class="dropdown-content">
+
+                        <div class="submenu" *ngFor="let projet of Agency?.projets">
+
+                            <a style="background-color: #1e466e59;" (click)="refreshPage()"
+                                [routerLink]="['/details', projet.id]">
+                                {{ projet.name }}
+
+                            </a>
+                        </div>
+                        <!-- <a *ngIf="ProjetDispo.length > 0 || ProduitDispo.length > 0">Disponible</a> -->
+
+                    </div>
+                </li>
+                <style>
+                    .show-subnav {
+                        display: block;
+                    }
+                </style>
+
+                <!-- <li>
+					<a routerLink="/conception/ajouterConception">
+						<i class="fa fa-plus fa-2x"></i>
+						<span class="nav-text">Ajouter contenu </span>
+					</a>
+				</li> -->
+
+                <li class="dropdown">
+                    <!-- <a routerLink="/conception/registre"> -->
+                    <a (click)="openVerticallyCentered(content)">
+                        <i class="fa fa-envelope fa-2x"></i>
+                        <span class="nav-text">Contacter nous</span>
+                    </a>
+
+                </li>
+
+
+                <style>
+                    /* Initially hide the dropdown content */
+                    .dropdown-content {
+
+                        display: none;
+                        position: absolute;
+                        background-color: #1f1e84;
+                        min-width: 42px;
+                        width: 248px;
+                        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                        z-index: 5;
+
+                    }
+
+                    .dropdown-content>a {
+                        margin: 0px 23px;
+                        font-style: none;
+                        transform-style: none;
+                        color: yellow;
+                    }
+
+                    /* Show the dropdown content when the parent is hovered */
+                    .dropdown:hover .dropdown-content {
+                        display: block;
+                    }
+
+                    /* Style the dropdown options as blocks with margin */
+                    .dropdown-content .submenu {
+                        padding: 10px;
+                        /* Adjust the padding as needed */
+                    }
+
+                    .dropdown-content .submenu a {
+                        display: block;
+                        font-size: 9px;
+                        width: 222px;
+                        margin: -7px 11px;
+                        padding: 10px;
+                        text-decoration: none;
+                        color: white;
+                        background-color: rgb(10, 10, 211)e84;
+                        transition: background-color 0.3s;
+                        border: solid 1px rgb(255 255 255 / 16%);
+                        border-radius: 7px;
+                    }
+
+                    /* Add a little margin between the dropdown options */
+                    .dropdown-content .submenu a+a {
+                        margin-top: 5px;
+                        /* Adjust the margin as needed */
+
+                    }
+
+                    /* Add hover effect */
+                    .dropdown-content .submenu a {
+                        font-size: 12px;
+                        font-weight: bold;
+                        transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+                    }
+
+                    .dropdown-content .submenu a:hover {
+                        font-size: 13px;
+                        color: yellow;
+                        border: solid 1px gray;
+                        font-weight: 600;
+
+                    }
+
+                    @media only screen and (max-width: 767px) {
+
+
+                        .dropdown-content .submenu a:hover {
+                            transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+                            /* Add smooth transition for both background color and font size */
+
+                        }
+                    }
+                </style>
+
+
+
+
+
+
+
+                <li style="cursor: pointer;" class="dropdown">
+                    <a (click)="showMaximizableDialog()">
+                        <i class="fa fa-info-circle fa-2x"></i>
+                        <span class="nav-text">
+                            A propos
+                        </span>
+                    </a>
+
+                </li>
+
+            </ul>
+        </div>
+
+        <!-- <ul class="logout">
+				<li>
+				   <a routerLink="conception/login">
+						 <i class="fa fa-power-off fa-2x"></i>
+						<span class="nav-text">
+							Logout
+						</span>
+					</a>
+				</li>  
+			</ul> -->
+        &nbsp;
+    </nav>
+
+</div>
+<!-- app-navbar-carousel -->
+<app-navbar-carousel [AgencyBaniere]="this.AgencyBaniere"></app-navbar-carousel>
+
+<div class="main">
+    <ul class="cards">
+
+        <li class="cards_item1">
+            <div class="card1">
+                <div class="card_image" style="    justify-content: center;
+				display: flex;
+				align-items: center;min-width: 200px;">
+
+                    <img *ngIf="Agency?.logo_url" style="    height: auto;
+                max-width: 94%;
+                
+                margin-top: 11px;
+                vertical-align: middle;" src="{{ Agency?.logo_url }}">
+                    <img *ngIf="!Agency?.logo_url" style="    height: auto;
+                max-width: 94%;
+                
+                margin-top: 11px;
+                vertical-align: middle;" src="assets/images/MAQUETTE-LOGO.jpg">
+
+                </div>
+                <div class="card_content my-2" style="justify-content: center;
+    display: flex;">
+
+
+
+                    <button style="    font-weight: bold;
+					letter-spacing: 2px;
+					width: 219px;
+					padding: 11px 0;
+					" (click)="showMaximizableDialog()" class="btnT card_btn  "> À PROPOS</button>
+                </div>
+            </div>
+        </li>
+        <li class="cards_item" *ngIf="!isMobile">
+            <div class="card1">
+                <div class="card_image"><img src="assets/Grapghique-platform/2--BANIERE-VIDEO.jpg"></div>
+                <div class="card_content">
+
+                    <button data-toggle="modal" data-target="#homeVideo" class="img-responsive"
+                        style="font-weight: bold;letter-spacing: 2px;" class="btnT card_btn"> <img
+                            style="height: auto; max-width: 7%; vertical-align: middle; margin-right: 8px;"
+                            src="assets/images/HomePage/reel.png" alt="">Réels</button>
+
+                </div>
+            </div>
+        </li>
+
+    </ul>
+</div>
+<div *ngIf="isMobile" class="carous-boutique">
+    <div class="agency-responsive" [ngClass]="{'block-display': !isDesktop}">
+
+
+
+        <div class="col video" style="margin:auto;">
+
+            <div class="Card-video">
+
+                <button class="img-responsive btnT card_btn" style="font-weight: bold;
+				letter-spacing: 2px;
+				cursor: not-allowed;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;">
+                    <img style="height: auto; max-width: 9%; vertical-align: middle; margin-right: 8px;"
+                        src="assets/images/HomePage/reel.png" alt="">
+                    Réels
+                </button>
+                <br><br>
+
+                <iframe style="width: 100%;
+							   margin-left: 0px;
+							   border-radius: 5px;
+							   width: 100%;" width="315" height="560" [src]="urlSafe3" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen="false" class="anurodh-random-class" id="anurodh-random-id">
+                </iframe>
+
+                <!-- <img  src="assets/images/HomePage/reel.png" alt=""> -->
+
+            </div>
+            <br>
+
+
+        </div>
+
+
+
+
+    </div>
+</div>
+<!-- <h3 class="made_by">Made with ♡</h3> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="content-container">
+
+    <div class="card" *ngFor="let projet of Agency?.projets ">
+
+        <img [routerLink]="['/details', projet.id]" src="{{projet?.photos[0]}}" class="card-image">
+        <div class="card-content">
+            <h3 class="card-title">{{projet.name}}</h3>
+            <h4 class="card-subtitle">{{projet.agencyName}}</h4>
+            <button [routerLink]="['/details', projet.id]" class="card-button">DÉCOUVREZ ENCORE
+                PLUS...</button>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Top content -->
+<div class="top-content" style="margin: 1px 19px 17px 65px;">
+
+
+
+    <div class="containerM">
+
+        <!-- Carousel row -->
+        <div class="row">
+            <div class="col col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                <!-- Carousel -->
+                <!-- <div id="carousel-example" class="carousel slide"> -->
+                <div id="carousel-example">
+                    <!-- <ol class="carousel-indicators">
+						<li data-target="#carousel-example" data-slide-to="0" class="active"></li>
+						<li data-target="#carousel-example" data-slide-to="1"></li>
+						<li data-target="#carousel-example" data-slide-to="2"></li>
+					</ol> -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active ">
+
+
+                            <button style="font-size: 14px;background-color: #dc3346;
+border-color: #dc3346; width: 100%;    height: 47px; " class="btn btn-primary ">DÉCOUVREZ ENCORE PLUS...</button>
+                            <br>
+
+                            <div class="embed-responsive embed-responsive-16by9">
+
+
+
+
+                                <iframe class="embed-responsive-item" [src]="urlSafe2" allowfullscreen>
+
+                                </iframe>
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="carousel-item">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item"
+                                    src="https://player.vimeo.com/video/84910153?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;color=ffffff"
+                                    allowfullscreen></iframe>
+                            </div>
+
+                        </div>
+                        <div class="carousel-item">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/oiKj0Z_Xnjc"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="carousel-control-next" href="#carousel-example" role="button" data-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a> -->
+                </div>
+                <!-- End carousel -->
+            </div>
+        </div>
+        <!-- End carousel row -->
+    </div>
+</div>
+
+<style>
+    .embed-responsive-16by9 {
+        position: relative;
+        display: block;
+        width: 100%;
+        padding-top: 56.25%;
+        /* 16:9 aspect ratio */
+        height: 0;
+    }
+
+    .embed-responsive-16by9 iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .containerM {
+        padding-top: 3px;
+        padding-bottom: 20px;
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br>
+<br>
+<div class="tunsian-flag-img-background">
+    <div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
+
+
+        <div class="btn-group mr-2" role="group" aria-label="Third group">
+            <a [attr.href]="Agency.facebook_url ? Agency.facebook_url : null" target="_blank"
+                class="btn-hover-flag-img text-center" [ngClass]="{'disabled-btn': !Agency.facebook_url}"
+                [attr.aria-disabled]="!Agency.facebook_url ? 'true' : null"
+                [style.pointer-events]="!Agency.facebook_url ? 'none' : 'auto'" style="line-height: 1.5;">
+                <span style="letter-spacing: 3px;"> <i class="fab fa-facebook" style="font-size: 21px;"></i>
+                    <!-- Facebook Icon -->
+                </span>
+                <br>
+                <span style="letter-spacing: 3px;">PAGE FACEBOOK</span>
+            </a>
+        </div>
+
+        <div class="btn-group mr-2" role="group " aria-label="First group ">
+            <a [attr.href]="Agency.instagram_url" class="btn-hover-flag-img text-center " aria-selected="true "
+                style="line-height: 1.5" target="_blank" aria-selected="true " style="line-height: 1.5"
+                [ngClass]="{'disabled-btn': !Agency.instagram_url}"
+                [attr.aria-disabled]="!Agency.instagram_url ? 'true' : null"
+                [style.pointer-events]="!Agency.instagram_url ? 'none' : 'auto'">
+                <span style="letter-spacing: 3px;"> <i class="fab fa-instagram" style="font-size: 21px;"></i>
+                    <!-- Instagram Icon -->
+                </span>
+                <br>
+                <span style="letter-spacing: 3px;">NOTRE INSTAGRAM</span>
+            </a>
+        </div>
+        <style>
+            .disabled-btn {
+                opacity: 0.6;
+                cursor: not-allowed;
+
+
+            }
+        </style>
+
+
+        <div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie!='coffee'">
+            <a [attr.href]="Agency.linkedin_url" target="_blank" class="btn-hover-flag-img text-center "
+                aria-selected="true " style="line-height: 1.5" [ngClass]="{'disabled-btn': !Agency.linkedin_url}"
+                [attr.aria-disabled]="!Agency.linkedin_url ? 'true' : null"
+                [style.pointer-events]="!Agency.linkedin_url ? 'none' : 'auto'">
+                <span style="letter-spacing: 3px;"><i class="fab fa-tiktok" style="font-size: 21px;"></i>
+                    <!-- Instagram Icon --></span>
+                <br>
+                <span style="letter-spacing: 3px;">NOTRE TIKTOK</span>
+            </a>
+        </div>
+        <div class="btn-group mr-2 " role="group " aria-label="Third group ">
+            <a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
+                style="line-height: 1.5;">
+                <span style="letter-spacing: 3px;"> <i class="fas fa-phone-alt" style="font-size: 18px;"></i>
+                    <!-- Contact Icon -->
+                </span>
+
+
+                <br>
+                <span style="letter-spacing: 3px;">
+                    CONTACTEZ-NOUS
+                </span>
+            </a>
+        </div>
+        <!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
+				<a class="btn-hover-flag-img text-center " aria-selected="true "
+					style="line-height: 1.5">
+					<span>COMMERCES</span>
+					<br>
+					<span> Services et Arts</span>
+				</a>
+			</div> -->
+    </div>
+</div>
+<!-- <div class="tunsian-flag-img-background">
+		<div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
+			<div class="btn-group mr-2" role="group " aria-label="First group ">
+				<a class="btn-hover-flag-img text-center " href="promoteurs-tunis " aria-selected="true "
+					style="line-height: 1.5">
+					<span>Promoteurs</span>
+					<br>
+					<span>Immobiliers</span>
+				</a>
+			</div>
+			<div class="btn-group mr-2" role="group " aria-label="Second group ">
+				<a class="btn-hover-flag-img text-center " href="equipement " aria-selected="true "
+					style="line-height: 1.5">
+					<span>Materiaux</span>
+					<br>
+					<span>de construction</span>
+				</a>
+			</div>
+			<div class="btn-group mr-2" role="group " aria-label="Third group ">
+				<a class="btn-hover-flag-img text-center " aria-selected="true " href="agence-immob-tunis"
+					style="line-height: 1.5">
+					<span>Agences</span>
+					<br>
+					<span>Immobilières</span>
+				</a>
+			</div>
+			<div class="btn-group mr-2 " role="group " aria-label="Third group ">
+				<a class="btn-hover-flag-img text-center  " href="meilleurs-bien-sousse" aria-selected="true "
+					style="line-height: 1.5;">
+					<span>Selection Des</span>
+					<br>
+					<span>Meilleurs Biens</span>
+				</a>
+			</div>
+			<div class="btn-group mr-2" role="group " aria-label="Fourth group ">
+				<a class="btn-hover-flag-img text-center " href="agences-de-services" aria-selected="true "
+					style="line-height: 1.5">
+					<span>COMMERCES</span>
+					<br>
+					<span> Services et Arts</span>
+				</a>
+			</div>
+		</div>
+	</div> -->
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
+        <a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="senderEmail()">
+            <div class=" cardModal">
+                <div>
+                    <label for="email" class="textInput">Email:</label>
+                    <input class="form-control inputDevis" class="form-control inputDevis" type="email" id="emailSource"
+                        [(ngModel)]="emailSource" name="emailSource" required placeholder="Votre email" />
+                </div><br>
+                <div>
+                    <label for="Nom" class="textInput">Objet:</label>
+                    <input class="form-control inputDevis" class="form-control inputDevis" type="text" id="subject"
+                        [(ngModel)]="subject" name="subject" required placeholder="objet" />
+                </div> <br>
+                <label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
+                <textarea style="height: 168px;" class="form-control inputDevis" class="form-control inputDevis"
+                    id="message" [(ngModel)]="message" name="message" required placeholder="message ..."></textarea>
+                <br>
+                <!-- <div *ngFor="let agencies of Agency">
+						<div *ngFor="let categorie of agencies?.produits">
+							<div *ngFor="let categories of categorie?.categoryList"> -->
+                <!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
+                <div style="    display: flex;" class="example-button-row">
+                    <button type="submit" class="btn btn-default" style="border-color: #8B0000;
+					background-color: #8B0000; color:aliceblue">Envoyer</button>&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+                        Fermer
+                    </button>
+                    <!-- </div>
+							</div>
+						</div> -->
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer valider">
+
+            </div>
+        </form>
+    </div>
+</ng-template>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <br><br>
+        <h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
+        <a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="">
+                <div>
+                    <label for="email" class="textInput">Email</label>
+                    <input class="form-control inputDevis" type="email" name="email" placeholder="Votre Email">
+                </div><br>
+                <div>
+                    <label for="Nom" class="textInput">Téléphone</label>
+                    <input class="form-control inputDevis" type="text" [(ngModule)]="numText" name="Nom"
+                        placeholder="Téléphone">
+                </div> <br>
+                <label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
+                <br>
+                <!-- <div *ngFor="let agencies of Agency">
+						<div *ngFor="let categorie of agencies?.produits">
+							<div *ngFor="let categories of categorie?.categoryList"> -->
+                <!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
+                <div class="example-button-row">
+                    <a mat-raised-button style="border-color: #8B0000;
+									background-color: #8B0000; color:aliceblue"
+                        href="mailto:dcgeneral@gmail.com?subject=Sujet&body=num:{{numText}} Message:{{contactText}}">Valider</a>
+                    <a type="a" class="btn btn-light" (click)="modal.close('Close click')">
+                        Close
+                    </a>
+                    <!-- </div>
+							</div>
+						</div> -->
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer valider">
+
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<!-- <div class="main-menu"></div> -->
+<!-- <div class="content-container">
+    <button class="center-button">Click Me</button>
+</div> -->
+
+<style>
+    /* .main-menu {
+		background: #1f1e84;
+		border-right: 1px solid;
+		position: fixed;
+		bottom: 0;
+		border: none;
+		height: 100%;
+		left: 0;
+		width: 60px;
+		overflow: hidden;
+		transition: width .05s linear;
+		-webkit-transform: translateZ(0) scale(1, 1);
+		z-index: 5;
+		zoom: 1.1119;
+	} */
+
+    .content-container {
+        /* margin-left: 60px; */
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .center-button {
+        padding: 7px 52px;
+        font-size: 13px;
+        cursor: pointer;
+        font-weight: bold;
+        border-radius: 4px;
+        color: white;
+        background: #1f1e84;
+    }
+</style>
+
+
+<!-- Home Video Modal -->
+<div class="modal fade" id="homeVideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    style="margin-top: 140px;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 200%;right: 217px;">
+            <button type="button" class="btn btn-default" data-dismiss="modal">X</button>
+            <div class="embed-responsive embed-responsive-16by9" style="width: 600px; max-width: 100%; margin: 0 auto;">
+                <iframe id="youtubeVideo" class="embed-responsive-item" [src]="urlSafe3" allowfullscreen></iframe>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<style>
+    #homeVideo .embed-responsive {
+        width: 600px;
+        /* Set your desired width */
+        max-width: 100%;
+        /* Ensure responsiveness */
+        margin: 0 auto;
+        /* Center the video */
+    }
+
+    h1 {
+        color: #fff;
+    }
+
+    section {
+        padding-top: 2em;
+        padding-bottom: 2em;
+    }
+
+    section h1 {
+        margin-bottom: 1em;
+    }
+
+    section img {
+        border: #ddd solid 1px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #homeVideo button.btn.btn-default {
+        background: black;
+        border-radius: 50%;
+        position: absolute;
+        right: 0;
+        z-index: 5;
+        color: white;
+    }
+</style>
+
+
+
+
+<!-- container -->
+
+<p-dialog class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"
+    [style]="{width: '85vw', 'margin-left': '50px'}" [maximizable]="true" [baseZIndex]="10000" [draggable]="false"
+    [resizable]="false">
+    <div class="row modalTheme">
+        <div class="col-md-4">
+            <img class="rounded-lg border card-img-modal" src="{{ Agency?.logo_url }}" alt="Eco house company">
+        </div>
+        <!-- app.component.html -->
+        <div class="col-md-8">
+            <p [dir]="getDirection(Agency?.description)" class="scrollable-paragraph" id="agencyDescription">
+                {{ Agency?.description }}
+            </p>
+        </div>
+
+
+    </div>
+
+    <style>
+        .modalTheme {
+            /* Add your modal styling here */
+        }
+
+        .scrollable-paragraph {
+            line-height: 1.5;
+            max-height: 325px;
+            /* Set a maximum height for the paragraph to enable scrolling */
+            overflow-y: auto;
+            /* Enable vertical scrolling if content overflows */
+            white-space: pre-line;
+            /* Preserve newlines and line breaks */
+        }
+    </style>
+
+    <script>
+        // JavaScript to add line breaks at points (.) with a space before it in the description
+        document.addEventListener("DOMContentLoaded", function () {
+            const descriptionElement = document.getElementById("agencyDescription");
+            if (descriptionElement) {
+                // Get the text content
+                let descriptionText = descriptionElement.textContent;
+
+                // Add line breaks at points (.) with a space before it
+                descriptionText = descriptionText.replace(/ \./g, '.\n');
+
+                // Set the modified text back to the element
+                descriptionElement.textContent = descriptionText;
+            }
+        });
+    </script>
+
+
+</p-dialog>
+<p-dialog class="p-diag" header="À Propos" [(visible)]="displayMaximizable1" [modal]="true"
+    [style]="{width: '85vw', 'margin-left': '50px'}" [maximizable]="true" [baseZIndex]="10000" [draggable]="false"
+    [resizable]="false">
+    <div class="row modalTheme">
+        <div class="col-md-4">
+            <img class="rounded-lg border card-img-modal" src="{{ Agency?.logo_url }}" alt="Eco house company">
+        </div>
+        <div class="col-md-8">
+            <p class="scrollable-paragraph" id="agencyDescription">{{ Agency?.description }}</p>
+        </div>
+    </div>
+
+    <style>
+        .modalTheme {
+            /* Add your modal styling here */
+        }
+
+        .scrollable-paragraph {
+            line-height: 1.5;
+            max-height: 325px;
+            /* Set a maximum height for the paragraph to enable scrolling */
+            overflow-y: auto;
+            /* Enable vertical scrolling if content overflows */
+            white-space: pre-line;
+            /* Preserve newlines and line breaks */
+        }
+    </style>
+
+    <script>
+        // JavaScript to add line breaks at points (.) with a space before it in the description
+        document.addEventListener("DOMContentLoaded", function () {
+            const descriptionElement = document.getElementById("agencyDescription");
+            if (descriptionElement) {
+                // Get the text content
+                let descriptionText = descriptionElement.textContent;
+
+                // Add line breaks at points (.) with a space before it
+                descriptionText = descriptionText.replace(/ \./g, '.\n');
+
+                // Set the modified text back to the element
+                descriptionElement.textContent = descriptionText;
+            }
+        });
+    </script>
+
+
+</p-dialog>

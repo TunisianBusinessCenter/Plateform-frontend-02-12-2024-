@@ -17,7 +17,7 @@
             <ul>
 
                 <li>
-                    <a (click)="getAgency()">
+                    <a [routerLink]="['/Promoteurs', Agency.id, formatAgencyName(Agency.name)]">
                         <i class="fa fa-home fa-2x"></i>
                         <span class="nav-text">Page d'accueil </span>
                     </a>
@@ -152,6 +152,8 @@
                         color: yellow;
                         border: solid 1px gray;
                         font-weight: 600;
+                        gap: 1;
+                        padding: 5px 0 5px 15px;
 
                     }
 
@@ -185,14 +187,37 @@
 
 <app-navbar-carousel [AgencyBaniere]="this.mobile_apps"></app-navbar-carousel>
 
-<button  type="submit" class="animated-border-button " (click)=" backClicked()">
-    <!-- <i class="fa fa-arrow-left" aria-hidden="true"></i> -->
-    Retour
-</button>
 
 
+<style>
+    /* Default margin */
+    .element {
+        margin-left: 50px;
+    }
+
+    /* Responsive adjustments for smaller screens */
+    @media (max-width: 768px) {
+        .element {
+            margin-left: 20px;
+            /* Adjust as needed */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .element {
+            margin-left: 10px;
+            /* Adjust as needed */
+        }
+    }
+</style>
 <main id="content">
     <div style="margin-top: -10px;" class="px-3 px-lg-6 px-xxl-13  py-lg-10 my-profile">
+        <button *ngIf="Projet?.categoryList" type="submit" class="animated-border-button " (click)=" backClicked()">
+            Retour
+        </button>
+       
+        </div>
+    <div *ngIf="Projet?.categoryList" style="margin-top: -10px;" class="px-3 px-lg-6 px-xxl-13  py-lg-10 my-profile">
         <!-- *ngFor="let pieces of allProject?.categoryList"
         *ngFor="let Testpiece of allProject?.pieces" -->
 
@@ -201,178 +226,156 @@
             <div class="tabs-container">
                 <mat-tab-group #tabGroup mat-stretch-tabs="false" mat-align-tabs="start">
                     <mat-tab *ngFor="let Pieces of Projet?.categoryList">
+                        
                         <div class="horizontal-menu-container ">
-                            
+
                             <ul class="horizontal-list">
                                 <li *ngFor="let Pieces of Projet?.categoryList; let i = index" (click)="selectTab(i)">
                                     {{ Pieces }}
                                 </li>
                             </ul>
+
+
+
                             <div class="dropdown">
-                                <select (change)="onDropdownChange($event)" [ngModel]="Projet?.categoryList[selectedIndex]">
+                                <select id="main-select" (change)="onDropdownChange($event)"
+                                    [ngModel]="Projet?.categoryList[selectedIndex]">
                                     <option *ngFor="let Pieces of Projet?.categoryList">{{ Pieces }}</option>
                                 </select>
                             </div>
+
+
+
                         </div>
-                        <br><br>
+                        
+                        <br>
                         <style>
-                            
                             .tabs-container {
                                 margin-bottom: 20px;
                             }
-            
+
+
+
                             .horizontal-menu-container {
                                 display: flex;
                                 justify-content: space-between;
                                 align-items: center;
                                 margin-bottom: 10px;
                                 flex-direction: column;
-                                margin-left: -35px;
+                                margin-left: 13px;
+                                margin-top: 5px;
                             }
-            
+
+
+
                             .horizontal-list {
                                 list-style-type: none;
-                                /* Remove default bullets */
                                 padding: 0;
-                                /* Remove default padding */
                                 display: flex;
-                                /* Display list items in a row */
                                 margin: 0;
                             }
-            
+
+
+
                             .horizontal-list li {
                                 margin-right: 10px;
-                                /* Space between list items */
                                 padding: 10px 20px;
-                                /* Add padding for button-like appearance */
-                                background-color: red;
-                                /* Initial background color */
+                                background-color: #8b0000;
                                 color: white;
-                                /* Text color */
                                 border-radius: 5px;
-                                /* Rounded corners */
                                 cursor: pointer;
-                                /* Pointer cursor on hover */
                                 transition: background-color 0.3s ease;
-                                /* Smooth transition for background color */
+                                min-width: 180px;
+                                text-align: center;
                             }
-            
+
                             .horizontal-list li:hover {
-                                background-color: #0056b3;
-                                /* Background color on hover */
+                                background-color: #000000;
                             }
-            
-                            /* Hide the dropdown by default */
+
                             .dropdown {
                                 display: none;
                             }
-            
-                            /* Responsive design: display dropdown menu on mobile */
-                            @media (max-width: 768px) {
-                                .horizontal-list {
-                                    display: none;
-                                    /* Hide the horizontal list */
-                                }
-            
-                                .dropdown {
-                                    display: block;
-                                    /* Show the dropdown */
-                                }
-            
-                                .dropdown select {
-                                    width: 100%;
-                                    padding: 10px 20px;
-                                    border: 1px solid #007bff;
-                                    border-radius: 5px;
-                                    background-color: white;
-                                    color: #007bff;
-                                    cursor: pointer;
-                                    font-size: 16px;
-                                }
-                            }
 
-                         
-                     
+                            @media (max-width: 768px) {
+              .horizontal-list {
+                display: none;
+              }
+
+              .dropdown {
+                display: block;
+                position: relative;
+              }
+
+              .dropdown select {
+                width: 100%;
+                padding: 14px 67px 14px 10px;
+                border: 2px solid white;
+                background-color: #8b0000;
+                color: #ffffff;
+                cursor: pointer;
+                font-size: 15px;
+                border-radius: 7px;
+                font-weight: 800;
+                min-width: 279px;
+                appearance: none;
+              }
+
+              .dropdown::after {
+                content: '▼';
+                position: absolute;
+                right: 22px;
+                top: 50%;
+                transform: translateY(-50%);
+                pointer-events: none;
+                color: #ffffff;
+                font-size: 16px;
+              }
+
+              .dropdown select option {
+                background-color: #8b0000;
+                padding: 5px;
+              }
+
+              #main-select option:nth-child(n+1) {
+                /* Styles for sub options */
+                color: white;
+                background-color: #8b0000;
+                margin-top: 5px;
+                text-align: left;
+              }
+
+              .borderlist {
+                list-style-position: inside;
+                border: 1px solid black;
+              }
+
+              ul {
+                list-style-type: none;
+                /* Remove bullet points if desired */
+                padding: 0;
+                /* Remove default padding */
+              }
+
+              li {
+                margin-bottom: 10px;
+                /* Adjust the spacing as needed */
+              }
+
+              li:last-child {
+                margin-bottom: 0;
+                /* Remove margin from the last item */
+              }
+            }
+
                         </style>
 
                         <div>
+                            
                             <!-- Content for each tab -->
                             <div *ngFor="let piece of Projet?.pieces">
                                 <div class="row responsive-villa" *ngIf="Pieces === piece?.category"
                                     [ngClass]="{'block-display': !isDesktop}" style="display: flex;">
-                                    <div class="col-5 classcol7">
-                                        <h6 class="appname">Vidéo de présentation</h6>
-                                        <div *ngIf="Projet?.videoUrlProjet" class="video">
-                                            <iframe class="responsive-iframe" [src]="urlSafe"></iframe>
-                                        </div>
-                                        <div *ngIf="Projet?.videoUrlProjet === null">
-                                            <div class="text-primary">
-                                                <a>
-                                                    <img class="appimage" src="assets/v3.jpg"
-                                                        alt="application en cour de construction">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <h1 class="detail">Détails de la propriété</h1>
-                                        <div style="display: flex; align-items: center;" class="cardxi">
-                                            <div class="icon-container">
-                                                <mat-icon class="background">apps</mat-icon>
-                                            </div>
-                                            <div style="display: flex; align-items: center;margin-top: 13px;">
-                                                <p class="type">TYPE : {{ piece?.type }}</p>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div style="display: flex; align-items: center;" class="cardxi">
-                                            <div class="icon-container">
-                                                <mat-icon class="background">open_with</mat-icon>
-                                            </div>
-                                            <div style="display: flex; align-items: center;margin-top: 13px;">
-                                                <p class="type"
-                                                    [ngStyle]="{'font-size': piece?.surface?.length > 30 ? '14px' : '16px'}">
-                                                    SURFACE : {{ piece?.surface }} (M²)
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div style="display: flex; align-items: center;" class="cardxi">
-                                            <div class="icon-container">
-                                                <mat-icon class="background">account_balance_wallet</mat-icon>
-                                            </div>
-                                            <div style="display: flex; align-items: center;margin-top: 13px;">
-                                                <p style="text-transform: capitalize !important;" class="type">PRIX : {{
-                                                    piece?.prixMdt }} (Mdt)</p>
-                                            </div>
-                                        </div>
-                                        <div class="">
-                                            <br><br>
-                                            <div class="responsiveP">
-                                                <h3
-                                                    style="font: 500 20px/32px Roboto, Helvetica Neue, sans-serif; letter-spacing: normal; margin: 7px 0 16px; color: black; text-align: center;">
-                                                    Description de la propriété
-                                                </h3>
-                                                <div class="mb-0 lh-214 cadre-noir">
-                                                    <div *ngIf="Projet?.description === null">
-                                                        <p class="scrollable-paragraph paragrapheDesc">
-                                                            descriptionmanquant!</p>
-                                                    </div>
-                                                    <div *ngIf="Projet?.description !== null">
-                                                        <p class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
-                                                            <ng-container *ngIf="Projet?.description">
-                                                                <ng-container
-                                                                    *ngFor="let sentence of Projet?.description.split('#')">
-                                                                    {{ sentence.trim() }}
-                                                                    <hr
-                                                                        style="margin: 4px 0; color: inherit; border: 0; border-top: var(--bs-border-width) solid; opacity: 0;">
-                                                                </ng-container>
-                                                            </ng-container>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="col-7 classcol5">
                                         <style>
                                             #cl {
@@ -418,36 +421,155 @@
                                         </p-dialog>
                                         <div class="container23" style="color: black">
                                             <div class="right-side">
+                                                
                                                 <h3
-                                                    style="font: 500 20px/32px Roboto, Helvetica Neue, sans-serif; letter-spacing: normal; margin: 0 0 16px; color: black; text-align: center;">
+                                                style="font: 500 20px/32px Roboto, Helvetica Neue, sans-serif; letter-spacing: normal; margin: 7px 0 16px; color: black; text-align: center;">
+                                                Description de la propriété                                            </h3>
+                                            <div class="mb-0 lh-214 cadre-noir">
+                                                <div *ngIf="Projet?.description === null">
+                                                    <p class="scrollable-paragraph paragrapheDesc">
+                                                        descriptionmanquant!</p>
+                                                </div>
+                                                <div *ngIf="Projet?.description !== null">
+                                                    <p class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
+                                                        <ng-container *ngIf="Projet?.description">
+                                                            <ng-container
+                                                                *ngFor="let sentence of Projet?.description.split('#')">
+                                                                {{ sentence.trim() }}
+                                                                <hr
+                                                                    style="margin: 4px 0; color: inherit; border: 0; border-top: var(--bs-border-width) solid; opacity: 0;">
+                                                            </ng-container>
+                                                        </ng-container>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-5 classcol7">
+                                        <h6 class="appname">Vidéo de présentation</h6>
+                                        <div *ngIf="Projet?.videoUrlProjet" class="video">
+                                            <iframe class="responsive-iframe" [src]="urlSafe"></iframe>
+                                        </div>
+                                        <div *ngIf="Projet?.videoUrlProjet === null || Projet?.videoUrlProjet=== '' ">
+                                            <div class="text-primary">
+                                                <a>
+                                                    <img class="appimage" src="assets/v3.jpg"
+                                                        alt="application en cour de construction">
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <h1 class="detail">Détails de la propriété</h1>
+                                       <div class="itemRed" style="    height: 154px;">
+                                        <div style="display: flex; align-items: center;" class="cardxi">
+                                            <div class="icon-container">
+                                                <mat-icon class="background">apps</mat-icon>
+                                            </div>&nbsp;&nbsp;
+                                            <div style="display: flex; align-items: center;margin-top: 13px;">
+                                                <p class="type">TYPE : {{ piece?.type }}</p>
+                                            </div>
+                                        </div>
+
+                                        <style>
+                                            .itemRed .cardxi {
+    margin-bottom: 6px; /* Adjust this value to control the vertical space */
+}
+
+.itemRed .cardxi:last-child {
+    margin-bottom: 0; /* Remove margin for the last item */
+}
+
+                                        </style>
+                                        <div style="display: flex; align-items: center;" class="cardxi">
+                                            <div class="icon-container">
+                                                <mat-icon class="background">open_with</mat-icon>
+                                            </div>&nbsp;&nbsp;
+                                            <div style="display: flex; align-items: center;margin-top: 13px;">
+                                                <p class="type"
+                                                    [ngStyle]="{'font-size': piece?.surface?.length > 30 ? '14px' : '16px'}">
+                                                    SURFACE : {{ piece?.surface }} (M²)
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div style="display: flex; align-items: center;" class="cardxi">
+                                            <div class="icon-container">
+                                                <mat-icon class="background">account_balance_wallet</mat-icon>
+                                            </div>&nbsp;&nbsp;
+                                            <div style="display: flex; align-items: center;margin-top: 13px;">
+                                                <p style="text-transform: capitalize !important;" class="type">PRIX : {{
+                                                    piece?.prixMdt }} (Mdt)</p>
+                                            </div>
+                                        </div>
+                                       </div>
+                                        <div class="">
+                                            <br><br>
+                                            <div class="responsiveP">
+                                             
+                                                <form (ngSubmit)="senderEmail()" style="padding: 24px;">
+                                                    <h3
+                                                    style="    font: 500 19px / 32px Roboto, Helvetica Neue, sans-serif;
+                                                    letter-spacing: normal;
+                                                    margin: -18px 0 19px;
+                                                    color: black;
+                                                    text-align: center;">
                                                     Contactez nous
                                                 </h3>
-                                                <form (ngSubmit)="sendEmail()">
                                                     <div class="form-group">
                                                         <label for="email"
                                                             style="display: block; font-weight: bold; color: black;">Email:</label>
-                                                        <input type="email" id="from" name="from"
-                                                            placeholder="Your Email" [(ngModel)]="email.from" required>
+                                                            <input
+                                                            type="email"
+                                                            id="emailSource"
+                                                            [(ngModel)]="emailSource"
+                                                            name="emailSource"
+                                                            required
+                                                            placeholder="Votre email"
+                                                            (input)="validateEmail()"
+                                                          />
+                                                          <style>
+                                                            .send-button {
+  background-color: #007bff; /* Default background color */
+  color: white; /* Text color */
+  border: none; /* No border */
+  padding: 10px 20px; /* Padding */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.send-button:disabled {
+  background-color: #c0c0c0; /* Background color when disabled */
+  color: #666; /* Text color when disabled */
+  cursor: not-allowed; /* Change cursor to indicate the button is disabled */
+}
+
+                                                          </style>
+                                                          <div class="send-button" style="color: red;" *ngIf="emailSource && !isValidEmail(emailSource)" class="error">
+                                                            S'il vous plaît, mettez une adresse email valide.
+                                                          </div>
                                                     </div>
+                                                  
                                                     <div class="form-group">
                                                         <label for="name" class="label-style">Subject:</label>
-                                                        <input type="text" id="subject" class="input-black"
-                                                            name="subject" placeholder="Subject"
-                                                            [(ngModel)]="email.subject" required>
+                                                        <input type="text" id="subject" [(ngModel)]="subject" name="subject" required  placeholder="subject"/>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="message"
                                                             style="display: block; font-weight: bold; color: black;">Message:</label>
-                                                        <textarea style="height: 100px;" id="message" name="message"
-                                                            placeholder="Your Message" [(ngModel)]="email.body"
-                                                            required></textarea>
+                                                            <textarea style="height: 126px;" id="message" [(ngModel)]="message" name="message" required placeholder="message" ></textarea>
+
                                                     </div>
                                                     <button type="submit"
-                                                        style="background: #8B0000; float: right;">Envoyer</button>
+                                                        style="background: #8B0000; float: right;" [disabled]="!isValidEmail(emailSource)">Envoyer</button>
+                                                        
                                                 </form>
                                             </div>
+                                            
+                                            <br><br><br><br>
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -456,10 +578,191 @@
             </div>
 
             <!-- Responsive menu and dropdown -->
-           
+
+
+            <!-- <div class="tabs-container">
+                <mat-tab-group #tabGroup mat-stretch-tabs="false" mat-align-tabs="start">
+                    <mat-tab *ngFor="let Pieces of Projet?.categoryList">
+                        
+                        <div class="horizontal-menu-container ">
+
+                            <ul class="horizontal-list"> -->
+
+
+
+
+
+
 
         </div>
     </div>
+    <div *ngIf="!Projet?.categoryList" style="margin-top: -10px;" class="px-3 px-lg-6 px-xxl-13 py-lg-10 my-profile">
+        <div class="container updateMenuDetails">
+            <div class="tabs-container">
+
+
+
+                
+                <!-- <div class="horizontal-menu-container">
+                    <ul class="horizontal-list">
+                        <li>Category 1</li>
+                        <li>Category 2</li>
+                        <li>Category 3</li>
+                    </ul>
+    
+                    <div class="dropdown">
+                        <select id="main-select">
+                            <option>Category 1</option>
+                            <option>Category 2</option>
+                            <option>Category 3</option>
+                        </select>
+                    </div>
+                </div> -->
+    
+                <br>
+              
+    
+                <!-- <div *ngFor="let piece of Projet?.pieces">
+                    <div class="row responsive-villa" *ngIf="Pieces === piece?.category"
+                        [ngClass]="{'block-display': !isDesktop}" style="display: flex;">
+                        <div class="col-7 classcol5"> -->
+
+
+
+
+
+
+
+
+
+                <div>
+                    <div class="row responsive-villa" style="display: flex;" [ngClass]="{'block-display': !isDesktop}">
+                        
+                        <div class="col-7 classcol5">
+                            <style>
+                                #cl {
+                                    margin-bottom: 11px;
+                                    width: 92%;
+                                    margin-left: 43px;
+                                }
+    
+                                @media (max-width: 768px) {
+                                    #cl {
+                                        font-size: 13px;
+                                        margin-right: -86px;
+                                        margin-top: 1px;
+                                        margin-left: 0;
+                                    }
+                                }
+                            </style>
+                            <div class="row" id="cl">
+                                <div class="col-6">
+                                    <h1 class="appname">Sample Property Name</h1>
+                                </div>
+                                <br><br><br>
+                                <div class="col-6">
+                                    <h3 class="disponible">Disponible</h3><br><br>
+                                </div>
+                            </div>
+                            
+                            <p-galleria [value]="photos" [responsiveOptions]="responsiveOptions"
+                            [containerStyle]="{'max-width': '800px'}" [numVisible]="3">
+                            <ng-template pTemplate="item" let-item>
+                                <img (click)="openImageInDialog(item)" [src]="item" class="pgalleria" alt="pgalleria" />
+                            </ng-template>
+                            <ng-template pTemplate="thumbnail" let-item>
+                                <div class="grid grid-nogutter justify-content-center">
+                                    <img [src]="item" class="imgPgalleria" alt="galleria" />
+                                </div>
+                            </ng-template>
+                        </p-galleria>
+                        
+                        <p-dialog header="Aperçu d'image" [(visible)]="displayDialog" [modal]="true"
+                            [responsive]="true" [contentStyle]="{'min-width': '100%','overflow': 'visible'}">
+                            <img [src]="selectedImage" style="width: 100%;">
+                        </p-dialog>
+                        
+                            <p-dialog header="Aperçu d'image" [(visible)]="displayDialog" [modal]="true"
+                                [responsive]="true" [contentStyle]="{'min-width': '100%','overflow': 'visible'}">
+                                <img src="assets/sample-image.jpg" style="width: 100%;">
+                            </p-dialog>
+                            <div class="container23" style="color: black">
+                                <div class="right-side">
+                                    <h3 style="font: 500 20px/32px Roboto, Helvetica Neue, sans-serif; letter-spacing: normal; margin: 7px 0 16px; color: black; text-align: center;">
+                                        Description de la propriété
+                                    </h3>
+                                    <div class="mb-0 lh-214 cadre-noir">
+                                        <p class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5 classcol7">
+                            <h6 class="appname">Vidéo de présentation</h6>
+                            <div class="video">
+                                <iframe class="responsive-iframe" src="https://www.youtube.com/embed/sampleVideo"></iframe>
+                            </div>
+    
+                            <h1 class="detail">Détails de la propriété</h1>
+                            <div style="display: flex; align-items: center;" class="cardxi">
+                                <div class="icon-container">
+                                    <mat-icon class="background">apps</mat-icon>
+                                </div>&nbsp;&nbsp;
+                                <div style="display: flex; align-items: center;margin-top: 13px;">
+                                    <p class="type">TYPE: Sample Type</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div style="display: flex; align-items: center;" class="cardxi">
+                                <div class="icon-container">
+                                    <mat-icon class="background">open_with</mat-icon>
+                                </div>&nbsp;&nbsp;
+                                <div style="display: flex; align-items: center;margin-top: 13px;">
+                                    <p class="type">SURFACE: 100 (M²)</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div style="display: flex; align-items: center;" class="cardxi">
+                                <div class="icon-container">
+                                    <mat-icon class="background">account_balance_wallet</mat-icon>
+                                </div>&nbsp;&nbsp;
+                                <div style="display: flex; align-items: center;margin-top: 13px;">
+                                    <p class="type">PRIX: 300 (Mdt)</p>
+                                </div>
+                            </div>
+                            <div class="">
+                                <br><br>
+                                <div class="responsiveP">
+                                    <form style="padding: 24px;">
+                                        <h3 style="font: 500 20px/32px Roboto, Helvetica Neue, sans-serif; letter-spacing: normal; margin: -16px 0 19px;; color: black; text-align: center;">
+                                            Contactez nous
+                                        </h3>
+                                        <div class="form-group">
+                                            <label for="email" style="display: block; font-weight: bold; color: black;">Email:</label>
+                                            <input type="email" id="from" name="from" placeholder="Your Email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="label-style">Objet:</label>
+                                            <input type="text" id="subject" class="input-black" name="subject" placeholder="objet" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message" style="display: block; font-weight: bold; color: black;">Message:</label>
+                                            <textarea style="height: 100px;" id="message" name="message" placeholder="Your Message" required></textarea>
+                                        </div>
+                                        <button type="submit" style="background: #8B0000; float: right;">Envoyer</button>
+                                    </form>
+                                </div>
+                                <br><br><br><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </main> <br><br><br>
 <!-- <div class="gradient-border" id="box" >
     En cour de construction &nbsp; <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
@@ -468,52 +771,77 @@
 
 
 
-<div class="tunsian-flag-img-background">
+  <div class="tunsian-flag-img-background">
     <div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
+
+        <div class="btn-group mr-2" role="group" aria-label="Third group">
+            <a [attr.href]="Agency.facebook_url ? Agency.facebook_url : null" target="_blank"
+                class="btn-hover-flag-img text-center" 
+            >
+                <span style="letter-spacing: 3px;"> <i class="fab fa-facebook" style="font-size: 21px;"></i>
+                    <!-- Facebook Icon -->
+                </span>
+                <br>
+                <span style="letter-spacing: 3px;">PAGE FACEBOOK</span>
+            </a>
+        </div>
         <div class="btn-group mr-2" role="group " aria-label="First group ">
-            <a class="btn-hover-flag-img text-center " aria-selected="true " style="line-height: 1.5">
-                <span style="letter-spacing: 3px;">NOS</span>
+            <a [attr.href]="Agency.instagram_url" class="btn-hover-flag-img text-center " aria-selected="true "
+                style="line-height: 1.5" target="_blank"
+                [ngClass]="{'disabled-btn': !Agency.instagram_url}"
+                [attr.aria-disabled]="!Agency.instagram_url ? 'true' : null"
+                [style.pointer-events]="!Agency.instagram_url ? 'none' : 'auto'" style="line-height: 1.5;"
+                >
+                <span style="letter-spacing: 3px;"> <i class="fab fa-instagram" style="font-size: 21px;"></i>
+                    <!-- Instagram Icon -->
+                </span>
                 <br>
-                <span style="letter-spacing: 3px;">REFERENCES</span>
+                <span style="letter-spacing: 3px;">NOTRE INSTAGRAM</span>
             </a>
         </div>
-        <div class="btn-group mr-2" role="group " aria-label="Second group ">
-            <a [attr.href]="Agency?.website_url" target="_blank" class="btn-hover-flag-img text-center "
-                aria-selected="true " style="line-height: 1.5">
-                <span style="letter-spacing: 3px;">NOTRE </span>
+        <style>
+            .disabled-btn {
+                opacity: 0.6;
+                cursor: not-allowed;
+
+
+            }
+        </style>
+        
+
+        <div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie!='coffee'">
+            <a [attr.href]="Agency.linkedin_url" target="_blank" class="btn-hover-flag-img text-center "
+                aria-selected="true " style="line-height: 1.5" [ngClass]="{'disabled-btn': !Agency.linkedin_url}"
+                [attr.aria-disabled]="!Agency.linkedin_url ? 'true' : null"
+                [style.pointer-events]="!Agency.linkedin_url ? 'none' : 'auto'">
+                <span style="letter-spacing: 3px;"><i class="fab fa-tiktok" style="font-size: 21px;"></i>
+                    <!-- Instagram Icon --></span>
                 <br>
-                <span style="letter-spacing: 3px;">SITE WEB</span>
-            </a>
-        </div>
-        <div class="btn-group mr-2" role="group " aria-label="Third group ">
-            <a [attr.href]="Agency?.facebook_url" target="_blank" class="btn-hover-flag-img text-center "
-                aria-selected="true " style="line-height: 1.5">
-                <span style="letter-spacing: 3px;">PAGE</span>
-                <br>
-                <span style="letter-spacing: 3px;" type="submit"> FACEBOOK</span>
+                <span style="letter-spacing: 3px;">NOTRE TIKTOK</span>
             </a>
         </div>
         <div class="btn-group mr-2 " role="group " aria-label="Third group ">
             <a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
                 style="line-height: 1.5;">
-                <span style="letter-spacing: 3px;">CONTACTEZ-</span>
+                <span style="letter-spacing: 3px;"> <i class="fas fa-phone-alt" style="font-size: 18px;"></i>
+                    <!-- Contact Icon -->
+                </span>
 
 
                 <br>
                 <span style="letter-spacing: 3px;">
-                    NOUS
+                    CONTACTEZ-NOUS
                 </span>
             </a>
         </div>
         <!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
-            <a class="btn-hover-flag-img text-center " aria-selected="true "
-                style="line-height: 1.5">
-                <span>COMMERCES</span>
-                <br>
-                <span> Services et Arts</span>
-            </a>
-        </div> 
-    -->
+                <a class="btn-hover-flag-img text-center " aria-selected="true "
+                    style="line-height: 1.5">
+                    <span>COMMERCES</span>
+                    <br>
+                    <span> Services et Arts</span>
+                </a>
+            </div> -->
     </div>
 </div>
 <br>
@@ -531,7 +859,7 @@
             <img class="rounded-lg border card-img-modal" src="{{ Agency?.logo_url }}" alt="Eco house company">
         </div>
         <div class="col-md-8">
-            <p class="scrollable-paragraph">{{Agency?.description}}</p>
+            <p class="scrollable-paragraph">{{Agency?.description}}</p> 
 
         </div>
         <style>
@@ -540,7 +868,7 @@
             }
 
             .scrollable-paragraph {
-                max-height: 325px;
+                /* max-height: 325px; */
                 /* Set a maximum height for the paragraph to enable scrolling */
                 overflow-y: auto;
                 /* Enable vertical scrolling if content overflows */
@@ -575,30 +903,32 @@
         <a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
     </div>
     <div class="modal-body">
-        <form>
+        <form (ngSubmit)="senderEmail()">
             <div class="">
                 <div>
-                    <label for="email" class="textInput">Email</label>
-                    <input class="form-control inputDevis" type="email" name="email" placeholder="Votre Email">
+                    <label for="email" class="textInput"> Email:</label>
+                    <input type="email" id="emailSource" [(ngModel)]="emailSource" name="emailSource" required placeholder="Votre email"/>
+                    <div class="send-button" style="color: red;" *ngIf="emailSource && !isValidEmail(emailSource)" class="error">
+                        S'il vous plaît, mettez une adresse email valide.
+                      </div>
                 </div><br>
                 <div>
-                    <label for="Nom" class="textInput">Téléphone</label>
-                    <input class="form-control inputDevis" type="text" [(ngModule)]="numText" name="Nom"
-                        placeholder="Téléphone">
+                    <label for="Nom" class="textInput">Objet:</label>
+                    <input type="text" id="subject" [(ngModel)]="subject" name="subject" required  placeholder="objet"/>
                 </div> <br>
                 <label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
+                <textarea style="height: 168px;" id="message" [(ngModel)]="message" name="message" required placeholder="message ..."></textarea>
                 <br>
                 <!-- <div *ngFor="let agencies of Agency">
 					<div *ngFor="let categorie of agencies?.produits">
 						<div *ngFor="let categories of categorie?.categoryList"> -->
                 <!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
                 <div class="example-button-row">
-                    <a mat-raised-button style="border-color: #8B0000;
+                    <button type="submit"  style="border-color: #8B0000;
 								background-color: #8B0000; color:aliceblue"
-                        href="mailto:dcgeneral@gmail.com?subject=Sujet&body=num:{{numText}} Message:{{contactText}}">Valider</a>
-                    <a type="a" class="btn btn-light" (click)="modal.close('Close click')">
-                        Close
+                        >Envoyer</button>&nbsp;&nbsp;&nbsp;
+                    <a  class="btn btn-light" (click)="modal.close('Close click')">
+                        Fermer
                     </a>
 
 
@@ -606,9 +936,8 @@
 
             </div>
 
-            <div class="modal-footer valider">
+            <div  class="modal-footer valider">
 
             </div>
-        </form>
-    </div>
-</ng-template>
+           
+          

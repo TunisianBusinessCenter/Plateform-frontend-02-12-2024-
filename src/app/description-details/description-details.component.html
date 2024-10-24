@@ -46,7 +46,7 @@
 
 
         <li>
-            <a >
+            <a>
                 <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
 
                 <span class="nav-text">
@@ -62,8 +62,8 @@
 
             <ul>
 
-                <li *ngIf="agencyId">
-                    <a [routerLink]="'/agency/' + agencyId">
+                <li *ngIf="idAgencyy">
+                    <a [routerLink]="['/Materiaux/' + idAgencyy,formatAgencyName(Agency.name)]">
                         <i class="fa fa-home fa-2x"></i>
                         <span class="nav-text">
                             Page d'accueil
@@ -71,20 +71,20 @@
                     </a>
 
                 </li>
-              <li>
-                <a  *ngIf="!agencyId">
-                    <i class="fa fa-home fa-2x"></i>
-                    <span class="nav-text">
-                           Page d'accueil
-                    </span>
-                </a>
-              </li>
+                <li>
+                    <a *ngIf="!idAgencyy">
+                        <i class="fa fa-home fa-2x"></i>
+                        <span class="nav-text">
+                            Page d'accueil
+                        </span>
+                    </a>
+                </li>
 
                 <li class="dropdown">
                     <a>
                         <i class="fa fa-book fa-2x"></i>
 
-                        <span class="nav-text">Nos Menus</span>
+                        <span class="nav-text">Nos Produits</span>
                     </a>
 
                     <div class="dropdown-content">
@@ -249,7 +249,7 @@
 <app-navbar-carousel></app-navbar-carousel>
 
 <div class="container">
-    <div class="responsive-container"  style="display: flex;">
+    <div class="responsive-container" style="display: flex;">
         <div class="responsive">
             <button (click)="backClicked()" type="submit" class="btn animated-border-button retour">
                 <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
@@ -321,9 +321,13 @@
         <div>
             <div class="displayCard ">
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <p-card class="">
-                    <h6 class="textInfoX">{{SousCategorie?.name}}</h6>
+                <p-card *ngIf="SousCategorie?.name" class="">
+                    <h6 class="textInfoX">&nbsp;&nbsp;{{SousCategorie?.name}}</h6>
                 </p-card> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <p-card class="bground" *ngIf="!SousCategorie?.name" class="">
+                    <h6 class="textInfoX">&nbsp;&nbsp;Loading</h6>
+                </p-card> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                
                 <!-- <p-card class="">
                     <p class="textInfoX"> PRIX: A CONSULTER</p>
                 </p-card>&nbsp;&nbsp; -->
@@ -332,8 +336,15 @@
 
             <br>
 
-            <div class="imagDesc1" id="imagDesc1">
+            <div *ngIf="SousCategorie?.image_url" class="imagDesc1" id="imagDesc1">
                 <p-image class="imageDesc" src="{{SousCategorie?.image_url}}" alt="Image" width="100%" height="100%"
+                    [preview]="true">
+                    <!-- <p-image   class="imageDesc" src="{{SousCategorie?.image_url}}" alt="Image" width="640px" height="100%" [preview]="true"> -->
+
+                </p-image>
+            </div>
+            <div *ngIf="!SousCategorie?.image_url" class="imagDesc1" id="imagDesc1">
+                <p-image class="imageDesc" src="assets/icons/empty.png" alt="Image" width="100%" height="100%"
                     [preview]="true">
                     <!-- <p-image   class="imageDesc" src="{{SousCategorie?.image_url}}" alt="Image" width="640px" height="100%" [preview]="true"> -->
 
@@ -350,16 +361,33 @@
         </div> -->
         <div class="mb-0 lh-214">
             <p class="textDesc" id="textDescr">Description</p>
-
+            <!-- 
             <div *ngIf="SousCategorie?.description === null">
                 <p class="scrollable-paragraph paragrapheDesc">Description manquant!</p>
-            </div>
+            </div> -->
             <div *ngIf="SousCategorie?.description !== null">
                 <div class="content-p">
                     <p class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
                         <ng-container *ngIf="SousCategorie?.description">
-                            <ng-container *ngFor="let sentence of SousCategorie?.description.split('.')">
+                            <ng-container *ngFor="let sentence of SousCategorie?.description.split('//')">
                                 {{ sentence.trim() }}
+                                <hr style="    margin: 4px 0;
+                        color: inherit;
+                        border: 0;
+                        border-top: var(--bs-border-width) solid;
+                        opacity: 0;
+                    ">
+                            </ng-container>
+                        </ng-container>
+                    </p>
+                </div>
+            </div>
+            <div *ngIf="SousCategorie?.description == null">
+                <div class="content-p">
+                    <p class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
+                        <ng-container>
+                            <ng-container>
+                                Description manquant!
                                 <hr style="    margin: 4px 0;
                         color: inherit;
                         border: 0;
@@ -404,31 +432,31 @@
             <a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
         </div>
         <div class="modal-body">
-            <form>
+            <form (ngSubmit)="senderEmail()">
                 <div class="card cardModal">
                     <div>
-                        <label for="email" class="textInput">Email</label>
-                        <input class="form-control inputDevis" type="email" name="email" placeholder="Votre Email">
+                        <label for="email" class="textInput">Email:</label>
+                        <input class="form-control inputDevis" type="email" id="emailSource" [(ngModel)]="emailSource" name="emailSource" required placeholder="Votre email"/>
                     </div><br>
                     <div>
-                        <label for="Nom" class="textInput">Téléphone</label>
-                        <input class="form-control inputDevis" type="text" [(ngModule)]="numText" name="Nom"
-                            placeholder="Téléphone">
+                        <label for="Nom" class="textInput">Objet:</label>
+                        <input class="form-control inputDevis" type="text" id="subject" [(ngModel)]="subject" name="subject" required  placeholder="objet"/>
+                        
                     </div> <br>
                     <label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
-                        rows="3"></textarea>
+                   
+                        <textarea style="height: 168px;" class="form-control" id="message" [(ngModel)]="message" name="message" required placeholder="message ..."></textarea>
                     <br>
                     <!-- <div *ngFor="let agencies of Agency">
                         <div *ngFor="let categorie of agencies?.produits">
                             <div *ngFor="let categories of categorie?.categoryList"> -->
                     <!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
-                    <div class="example-button-row">
-                        <a mat-raised-button style="border-color: #8B0000;
-                                    background-color: #8B0000; color:aliceblue"
-                            href="mailto:dcgeneral@gmail.com?subject=Sujet&body=num:{{numText}} Message:{{contactText}}">Valider</a>
+                    <div style="    display: flex;" class="example-button-row">
+                        <button type="submit" class="btn btn-default"  style="border-color: #8B0000;
+                        background-color: #8B0000; color:aliceblue"
+                >Envoyer</button>&nbsp;&nbsp;&nbsp;
                         <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
-                            Close
+                            Fermer
                         </button>
                         <!-- </div>
                             </div>
@@ -452,49 +480,81 @@
 <br><br>
 <div class="tunsian-flag-img-background">
     <div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
-        <div class="btn-group mr-2" role="group " aria-label="First group ">
-            <a class="btn-hover-flag-img text-center " aria-selected="true " style="line-height: 1.5">
-                <span style="letter-spacing: 3px;">NOS</span>
-                <br>
-                <span style="letter-spacing: 3px;">REFERENCES</span>
-            </a>
-        </div>
-        <div class="btn-group mr-2" role="group " aria-label="Second group ">
-            <a class="btn-hover-flag-img text-center " aria-selected="true " style="line-height: 1.5">
-                <span style="letter-spacing: 3px;">NOTRE </span>
-                <br>
-                <span style="letter-spacing: 3px;">SITE WEB</span>
-            </a>
-        </div>
-        <div class="btn-group mr-2" role="group " aria-label="Third group ">
-            <a class="btn-hover-flag-img text-center " aria-selected="true " style="line-height: 1.5">
-                <span style="letter-spacing: 3px;">PAGE</span>
-                <br>
-                <span style="letter-spacing: 3px;">FACEBOOK</span>
-            </a>
-        </div>
-        <div class="btn-group mr-2 " role="group " aria-label="Third group ">
-            <a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
-                style="line-height: 1.5;">
-                <span style="letter-spacing: 3px;">CONTACTEZ-</span>
-
-
-                <br>
-                <span style="letter-spacing: 3px;">
-                    NOUS
-                </span>
-            </a>
-        </div>
-        <!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
-            <a class="btn-hover-flag-img text-center " aria-selected="true "
-                style="line-height: 1.5">
-                <span>COMMERCES</span>
-                <br>
-                <span> Services et Arts</span>
-            </a>
+  
+  
+      <div class="btn-group mr-2" role="group" aria-label="Third group">
+        <a [attr.href]="Agency.facebook_url ? Agency.facebook_url : null" target="_blank"
+          class="btn-hover-flag-img text-center" [ngClass]="{'disabled-btn': !Agency.facebook_url}"
+          [attr.aria-disabled]="!Agency.facebook_url ? 'true' : null"
+          [style.pointer-events]="!Agency.facebook_url ? 'none' : 'auto'" style="line-height: 1.5;">
+          <span style="letter-spacing: 3px;"> <i class="fab fa-facebook" style="font-size: 18px;"></i>
+            <!-- Facebook Icon -->
+          </span>
+          <br>
+          <span style="letter-spacing: 3px;">PAGE FACEBOOK</span>
+        </a>
+      </div>
+  
+      <div class="btn-group mr-2" role="group " aria-label="First group ">
+        <a [attr.href]="Agency.instagram_url" class="btn-hover-flag-img text-center " aria-selected="true "
+          style="line-height: 1.5" target="_blank"
+          aria-selected="true " style="line-height: 1.5" [ngClass]="{'disabled-btn': !Agency.instagram_url}"
+          [attr.aria-disabled]="!Agency.instagram_url ? 'true' : null"
+          [style.pointer-events]="!Agency.instagram_url ? 'none' : 'auto'"
+          >
+          <span style="letter-spacing: 3px;"> <i class="fab fa-instagram" style="font-size: 18px;"></i>
+            <!-- Instagram Icon -->
+          </span>
+          <br>
+          <span style="letter-spacing: 3px;">NOTRE INSTAGRAM</span>
+        </a>
+      </div>
+      <style>
+        .disabled-btn {
+          opacity: 0.6;
+          cursor: not-allowed;
+  
+  
+        }
+      </style>
+      
+  
+      <div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie!='coffee'">
+        <a [attr.href]="Agency.linkedin_url" target="_blank" class="btn-hover-flag-img text-center "
+          aria-selected="true " style="line-height: 1.5" [ngClass]="{'disabled-btn': !Agency.linkedin_url}"
+          [attr.aria-disabled]="!Agency.linkedin_url ? 'true' : null"
+          [style.pointer-events]="!Agency.linkedin_url ? 'none' : 'auto'">
+          <span style="letter-spacing: 3px;"><i class="fab fa-tiktok" style="font-size: 18px;"></i>
+            <!-- Instagram Icon --></span>
+          <br>
+          <span style="letter-spacing: 3px;">NOTRE TIKTOK</span>
+        </a>
+      </div>
+      <div class="btn-group mr-2 " role="group " aria-label="Third group ">
+        <a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
+          style="line-height: 1.5;">
+          <span style="letter-spacing: 3px;"> <i class="fas fa-phone-alt" style="font-size: 16px;"></i>
+            <!-- Contact Icon -->
+          </span>
+  
+  
+          <br>
+          <span style="letter-spacing: 3px;">
+            CONTACTEZ-NOUS
+          </span>
+        </a>
+      </div>
+      <!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
+          <a class="btn-hover-flag-img text-center " aria-selected="true "
+            style="line-height: 1.5">
+            <span>COMMERCES</span>
+            <br>
+            <span> Services et Arts</span>
+          </a>
         </div> -->
     </div>
-</div> <br><br><br><br>
+  </div>
+<br><br><br><br>
 
 <p-dialog class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"
     [style]="{width: '85vw', 'margin-left': '50px'}" [maximizable]="true" [baseZIndex]="10000" [draggable]="false"
@@ -541,3 +601,4 @@
     </div>
 
 </p-dialog>
+

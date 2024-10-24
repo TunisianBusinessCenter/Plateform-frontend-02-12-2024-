@@ -1,5 +1,5 @@
 .tunsian-flag-img-background .btn-hover-flag-img {
-  width: 214px;
+  /* width: 214px; */
   margin: 20px;
   text-decoration: none;
   background-color: #1f1e84;
@@ -42,7 +42,7 @@
   }
 
   .tunsian-flag-img-background .btn-hover-flag-img {
-    width: 214px;
+    /* width: 214px; */
     margin: 20px;
     background-color: #1f1e84;
     color: #ffffff;
@@ -62,7 +62,7 @@
     margin: 3px;
     background-color: #1f1e84;
     color: #ffffff;
-    font-size: 16px;
+    font-size: 13px;
     padding: 5px 10px;
     border: none;
     cursor: pointer;

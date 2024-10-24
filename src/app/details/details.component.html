@@ -4,18 +4,18 @@
 	<nav class="main-menu">
 		<div>
 			<li>
-				<a   >
+				<a>
 					<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
-	
-					<span class="nav-text" >
-									<p>{{ Projet?.agencyName }}</p>
-	
+
+					<span class="nav-text">
+						<p>{{ Projet?.agencyName }}</p>
+
 					</span>
 				</a>
-			  
+
 			</li>
 			<ul>
-			
+
 				<li (click)=" backClicked()">
 					<a>
 						<i class="fa fa-home fa-2x"></i>
@@ -24,38 +24,38 @@
 				</li>
 
 				<li class="dropdown">
-					<a >
+					<a>
 						<i class="fa fa-book fa-2x"></i>
 						<span class="nav-text">Nos projets</span>
 					</a>
-					<div class="dropdown-content" >
-						<a *ngIf="ProjetEnCours?.length > 0" >En cours</a>
-						
+					<div class="dropdown-content">
+						<a *ngIf="ProjetEnCours?.length > 0">En cours</a>
+
 
 						<div class="submenu" *ngFor="let project of ProjetEnCours">
 
-							<a style="background-color: #1e466e59;" (click)="navigateAndRefresh(project)" >
+							<a style="background-color: #1e466e59;" (click)="navigateAndRefresh(project)">
 								{{ project.name }}
 							</a>
 						</div>
-					
-						<a *ngIf="ProjetDispo?.length > 0" >Disponible</a>
-						
+
+						<a *ngIf="ProjetDispo?.length > 0">Disponible</a>
+
 						<div class="submenu" *ngFor="let project of ProjetDispo ; index as i">
-	
-							<a style="background-color: #1e466e59;" (click)="navigateAndRefresh(project)" >
+
+							<a style="background-color: #1e466e59;" (click)="navigateAndRefresh(project)">
 								{{ project?.name }}
-	
+
 							</a>
 
 						</div>
-						<a *ngIf="ProduitVendu?.length > 0" >Vendu</a>
-						
+						<a *ngIf="ProduitVendu?.length > 0">Vendu</a>
+
 						<div class="submenu" *ngFor="let project of ProduitVendu ; index as i">
-	
-							<a style="background-color: #1e466e59;" (click)="navigateAndRefresh(project)" >
+
+							<a style="background-color: #1e466e59;" (click)="navigateAndRefresh(project)">
 								{{ project?.name }}
-	
+
 							</a>
 
 						</div>
@@ -63,8 +63,8 @@
 				</li>
 				<style>
 					.show-subnav {
-    display: block;
-}
+						display: block;
+					}
 				</style>
 
 				<!-- <li>
@@ -80,84 +80,88 @@
 						<i class="fa fa-envelope fa-2x"></i>
 						<span class="nav-text">Contacter nous</span>
 					</a>
-					
+
 				</li>
-				
-				
+
+
 				<style>
 					/* Initially hide the dropdown content */
 					.dropdown-content {
-					
+
 						display: none;
-					position: absolute;
-					background-color: #1f1e84;
-					min-width: 42px;
-					width: 248px;
-					box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-					z-index: 5;
-				
+						position: absolute;
+						background-color: #1f1e84;
+						min-width: 42px;
+						width: 248px;
+						box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+						z-index: 5;
+
 					}
-					.dropdown-content > a {
-					margin: 0px 23px;
-					font-style: none;
-					transform-style: none;
-					color: yellow;
+
+					.dropdown-content>a {
+						margin: 0px 23px;
+						font-style: none;
+						transform-style: none;
+						color: yellow;
 					}
-					
+
 					/* Show the dropdown content when the parent is hovered */
 					.dropdown:hover .dropdown-content {
-					display: block;
+						display: block;
 					}
-					
+
 					/* Style the dropdown options as blocks with margin */
 					.dropdown-content .submenu {
-					padding: 10px; /* Adjust the padding as needed */
+						padding: 10px;
+						/* Adjust the padding as needed */
 					}
-					
+
 					.dropdown-content .submenu a {
-					display: block;
-					font-size: 9px;
-					width: 222px;
-					margin: -7px 11px;
-					padding: 10px;
-					text-decoration: none;
-					color: white;
-					background-color: rgb(10, 10, 211)e84;
-					transition: background-color 0.3s;
-					border: solid 1px rgb(255 255 255 / 16%);
-					border-radius: 7px;
+						display: block;
+						font-size: 9px;
+						width: 222px;
+						margin: -7px 11px;
+						padding: 10px;
+						text-decoration: none;
+						color: white;
+						background-color: rgb(10, 10, 211)e84;
+						transition: background-color 0.3s;
+						border: solid 1px rgb(255 255 255 / 16%);
+						border-radius: 7px;
 					}
-					
+
 					/* Add a little margin between the dropdown options */
-					.dropdown-content .submenu a + a {
-					margin-top: 5px; /* Adjust the margin as needed */
-					
+					.dropdown-content .submenu a+a {
+						margin-top: 5px;
+						/* Adjust the margin as needed */
+
 					}
-					
+
 					/* Add hover effect */
 					.dropdown-content .submenu a {
 						font-size: 12px;
-					font-weight: bold;
-					transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease;
+						font-weight: bold;
+						transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
 					}
-					
+
 					.dropdown-content .submenu a:hover {
 						font-size: 13px;
-					color: yellow;
-					border: solid 1px gray;
-					font-weight: 600;
-				
+						color: yellow;
+						border: solid 1px gray;
+						font-weight: 600;
+
 					}
-					
+
 					@media only screen and (max-width: 767px) {
-					
-					
-					.dropdown-content .submenu a:hover {
-						transition: background-color 0.2s ease, font-size 0.3s ,text-align 0.1s ease; /* Add smooth transition for both background color and font size */
-					
+
+
+						.dropdown-content .submenu a:hover {
+							transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+							/* Add smooth transition for both background color and font size */
+
+						}
 					}
-					}
-					</style>			
+				</style>
 
 				<li>
 					<a (click)="showMaximizableDialog()">
@@ -197,32 +201,48 @@
 
 <main id="content" class="bg-patten-03">
 	<div class="px-3 px-lg-6 px-xxl-13 py-5 py-lg-10 my-profile">
-		<div class="collapse-tabs new-property-step">
+		<div class="collapse-tabs new-property-step" style="margin-left: 30px;">
 			<div class="container updateMenu">
-				<button type="submit" class="animated-border-button " (click)=" backClicked()">
-					<!-- <i class="fa fa-arrow-left" aria-hidden="true"></i> -->
-					Retour
-				</button>
-			
+				
+				<div class="">
+					<button   type="submit" class="animated-border-button  " (click)=" backClicked()">
+						Retour
+					</button>
+										<style>
+											.newContainer {
+												width: 500px;
+												height: 39px;
+											}
+										</style>
+									</div>
+
 				<br> <br><br><br><br>
-				
+
 				<div class="displayCard" id="middleSection">
-					<p-card class="p-card1" header="{{Projet?.agencyName}}" >
-						<p class="textInfo" >{{Projet?.name}}</p>
-					</p-card> &nbsp;&nbsp;
-				
-					<p-card class="p-card2" style="text-align: center;">
-						<div class="iconText">
-							<i class="fas fa-award" style="font-size:20px;color:#ffe233;"></i>
-							<p class="textInfo">Haut Standing</p>
+
+					<p-card *ngIf="Projet?.agencyName" class="p-card2" style="text-align: center;">
+						<div class="iconText  ">
+							<!-- <i class="fas fa-star" style="font-size:20px;color:#ffe233;"></i> -->
+							<p class="textInfo py-2">{{Projet?.agencyName}}</p>
+
 						</div>
 
 					</p-card>
 					&nbsp;&nbsp;
-					<p-card class="p-card3">
-						<div class="iconText" (click)="showMaximizableDialog1()">
-							<i class="fas fa-solid fa-calculator" style="font-size:20px;color:#ffe233;"></i>
-							<p class="textInfo" >Obtenir un financement</p>
+
+
+					<p-card class="p-card2" style="text-align: center;">
+						<div class="iconText ">
+							<!-- <i class="fas fa-award" style="font-size:20px;color:#ffe233;"></i> -->
+							<p class="textInfo py-2  borderStyle">HAUT STANDING</p>
+						</div>
+
+					</p-card>
+					&nbsp;&nbsp;
+					<p-card class="p-card2">
+						<div class="iconText " (click)="showMaximizableDialog1()">
+							<!-- <i class="fas fa-solid fa-calculator" style="font-size:20px;color:#ffe233;"></i> -->
+							<p class="textInfo py-2 borderStyle">  OBTENIR UN FINANCEMENT</p>
 						</div>
 						<p-dialog [(visible)]="displayMaximizable1" [modal]="true" [maximizable]="true"
 							[baseZIndex]="10000" [draggable]="false" [resizable]="false">
@@ -312,12 +332,12 @@
 						</p-dialog>
 					</p-card>
 					&nbsp;&nbsp;
-					<p-card class="p-card4">
+					<!-- <p-card class="p-card4">
 						<div class="iconText">
 							<i class="fas fa-light fa-clock" style="font-size:20px;color:#ffe233;"></i>
 							<p class="textInfo">Livraison Dans Les Délais</p>
 						</div>
-					</p-card>
+					</p-card> -->
 				</div>
 				<!-- <div style="display:block;" class="marg">
 					<h2 class="fs-35 font-weight-600 lh-15 text-heading "
@@ -337,20 +357,40 @@
 
 
 				<div class="containerText ">
-					<div class="title"> {{Projet?.name}}
+
+					<div class="title" > {{Projet?.name}}
 					</div>
-					<div class="description">
-						<mat-icon style="color: #858585;font-size: 16px;">location_on</mat-icon>
+					<div class="description" >
+						<!-- <mat-icon style="color: #858585;font-size: 16px;">location_on</mat-icon> -->
 						{{Projet?.adresse}}
 					</div>
 				</div>
-			
+
 				<p-galleria [value]="Projet?.photos" [numScroll]="1" [responsiveOptions]="responsiveOptions"
 					[containerStyle]="{'min-width': '100%'}" [numVisible]="5" thumbnailsPosition="bottom">
 
 					<ng-template pTemplate="item" let-item>
 						<br>
-						<img [src]="item" [src]="item" (click)="openImageInDialog(item)" style="width: 80%; display: block;">
+						<img [src]="item" [src]="item" (click)="openImageInDialog(item)"
+     class="responsive-image">
+<style>
+    .responsive-image {
+  display: block;
+}
+
+@media (max-width: 768px) { /* For mobile devices */
+  .responsive-image {
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) { /* For web */
+  .responsive-image {
+    width: 80%;
+  }
+}
+
+</style>
 					</ng-template>
 
 					<ng-template pTemplate="thumbnail" style="color:rgb(255, 240, 240) ;" let-item>
@@ -368,22 +408,24 @@
 				<p-dialog header="Aperçu d'image" [(visible)]="displayDialog" [modal]="true" [responsive]="true"
 					[contentStyle]="{'min-width': '100%','overflow': 'visible'}">
 
-					<img  [src]="selectedImage" style="width: 100%;">
+					<img [src]="selectedImage" style="width: 100%;">
 				</p-dialog>
-			
+
 				<br>
 				<br>
-				<div class="responsable" *ngIf="Projet?.numCommercial!==null && Projet?.emailCommercial!==null">
-					<button class="btn  responsableBtn">
-						<mat-icon style="font-size: 20px;margin-top: 4px;">supervised_user_circle</mat-icon>
+				<div class="responsable py-4" *ngIf="Projet?.numCommercial!==null && Projet?.emailCommercial!==null">
+					<button *ngIf="Projet?.nomCommercial" class="btn  responsableBtn">
 						<h1 class="textResponsable"> <span>{{Projet?.nomCommercial}}</span> &nbsp; </h1>
 					</button>&nbsp;&nbsp;&nbsp;
+					<button *ngIf="!Projet?.nomCommercial" class="btn  responsableBtn">
+						<h1 class="textResponsable"> <span>RESPONSABLE COMMERCIAL</span> &nbsp; </h1>
+					</button>&nbsp;&nbsp;&nbsp;
 					<button class="btn  responsableBtn">
-						<mat-icon style="font-size: 20px;margin-top: 4px;">perm_phone_msg</mat-icon>
+						<!-- <mat-icon style="font-size: 20px;margin-top: 4px;">perm_phone_msg</mat-icon> -->
 						<h1 class="textResponsable"><span>Tél:</span> &nbsp; {{Projet?.numCommercial}}</h1>
 					</button>&nbsp;&nbsp;&nbsp;
 					<button class="btn  responsableBtn">
-						<mat-icon style="font-size: 20px;margin-top: 4px;"></mat-icon>
+						<!-- <mat-icon style="font-size: 20px;margin-top: 4px;"></mat-icon> -->
 						<h1 class="textResponsable"> &nbsp; {{Projet?.emailCommercial}}</h1>
 					</button>
 				</div>
@@ -393,15 +435,15 @@
 
 					<div class="responsable" *ngIf="agence.name===Projet?.agencyName && Projet?.numCommercial===null">
 						<button class="btn  responsableBtn">
-							<mat-icon style="font-size: 20px;margin-top: 4px;">supervised_user_circle</mat-icon>
+							<!-- <mat-icon style="font-size: 20px;margin-top: 4px;">supervised_user_circle</mat-icon> -->
 							<h1 class="textResponsable"> <span>Responsable commercial</span> &nbsp; </h1>
 						</button>&nbsp;&nbsp;&nbsp;
 						<button class="btn  responsableBtn">
-							<mat-icon style="font-size: 20px;margin-top: 4px;">perm_phone_msg</mat-icon>
+							<!-- <mat-icon style="font-size: 20px;margin-top: 4px;">perm_phone_msg</mat-icon> -->
 							<h1 class="textResponsable"><span>Tél:</span> &nbsp; {{agence?.phone_number}}</h1>
 						</button>&nbsp;&nbsp;&nbsp;
 						<button class="btn  responsableBtn">
-							<mat-icon style="font-size: 20px;margin-top: 4px;">alternate_email</mat-icon>
+							<!-- <mat-icon style="font-size: 20px;margin-top: 4px;">alternate_email</mat-icon> -->
 							<h1 class="textResponsable"><span>Email:</span> &nbsp; {{agence?.email}}</h1>
 						</button>
 					</div>
@@ -423,22 +465,14 @@
 									style="margin-top: 7px;">
 									<li class="list-inline-item badge badge-orange mr-2" style="font-size: 13px;">
 										{{Projet?.agencyName}}</li>
-									<li class="list-inline-item badge badge-primary mr-3" style="font-size: 13px;">En
-										Cours</li>
-									&nbsp;
-									<li class="list-inline-item mt-1 mt-sm-0" style="color: #858585;">
-										<mat-icon>av_timer</mat-icon>
-									</li>
-									<li class="list-inline-item mt-1 mt-sm-0" style="color: #858585;font-size: 12px;">
-										{{ getDateDifference() }}
-									</li>
-									&nbsp;
-									<li class="list-inline-item mt-1 mt-sm-0" style="color: #858585;">
+
+								
+									<!-- <li class="list-inline-item mt-1 mt-sm-0" style="color: #858585;">
 										<mat-icon>remove_red_eye</mat-icon>
 									</li>
 									<li class="list-inline-item mt-1 mt-sm-0" style="color: #858585;font-size: 12px;">
 										{{visitorCount}}
-									</li>
+									</li> -->
 									<!-- <li class="list-inline-item mt-2 mt-sm-0"><i class="fal fa-eye mr-1"></i> 1039 vues</li> -->
 								</ul>
 
@@ -486,11 +520,11 @@
 											style="margin-bottom:17px;">
 											<button class="btn buttonVillas">
 												<div class="villas">
-													<mat-icon style="font-size: 20px;">account_balance</mat-icon>
+													<mat-icon style=" 	font-size: 20px;">account_balance</mat-icon>
 													&nbsp;
 													{{piece}} &nbsp;
 													<mat-icon>trending_flat</mat-icon>
-													
+
 												</div>
 											</button>
 											<br>
@@ -508,60 +542,87 @@
 
 	<div class="tunsian-flag-img-background">
 		<div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
+	
+	
+			<div class="btn-group mr-2" role="group" aria-label="Third group">
+				<a [attr.href]="Agency?.facebook_url ? Agency?.facebook_url : null" target="_blank"
+					class="btn-hover-flag-img text-center" [ngClass]="{'disabled-btn': !Agency?.facebook_url}"
+					[attr.aria-disabled]="!Agency?.facebook_url ? 'true' : null"
+					[style.pointer-events]="!Agency?.facebook_url ? 'none' : 'auto'" style="line-height: 1.5;">
+					<span style="letter-spacing: 3px;"> <i class="fab fa-facebook" style="font-size: 21px;"></i>
+						<!-- Facebook Icon -->
+					</span>
+					<br>
+					<span style="letter-spacing: 3px;">PAGE FACEBOOK</span>
+				</a>
+			</div>
+	
 			<div class="btn-group mr-2" role="group " aria-label="First group ">
-				<a class="btn-hover-flag-img text-center "  aria-selected="true "
-					style="line-height: 1.5">
-					<span style="letter-spacing: 3px;">NOS</span>
+				<a [attr.href]="Agency?.instagram_url" class="btn-hover-flag-img text-center " aria-selected="true "
+					style="line-height: 1.5" target="_blank"
+					aria-selected="true " style="line-height: 1.5" [ngClass]="{'disabled-btn': !Agency?.instagram_url}"
+				[attr.aria-disabled]="!Agency?.instagram_url ? 'true' : null"
+				[style.pointer-events]="!Agency?.instagram_url ? 'none' : 'auto'"
+					>
+					<span style="letter-spacing: 3px;"> <i class="fab fa-instagram" style="font-size: 21px;"></i>
+						<!-- Instagram Icon -->
+					</span>
 					<br>
-					<span style="letter-spacing: 3px;">REFERENCES</span>
+					<span style="letter-spacing: 3px;">NOTRE INSTAGRAM</span>
 				</a>
 			</div>
-			<div class="btn-group mr-2" role="group " aria-label="Second group ">
-				<a [attr.href]="Agency.website_url" target="_blank" class="btn-hover-flag-img text-center "  aria-selected="true "
-					style="line-height: 1.5">
-					<span style="letter-spacing: 3px;">NOTRE </span>
+			<style>
+				.disabled-btn {
+					opacity: 0.6;
+					cursor: not-allowed;
+	
+	
+				}
+			</style>
+			
+	
+			<div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie!='coffee'">
+				<a [attr.href]="Agency?.linkedin_url" target="_blank" class="btn-hover-flag-img text-center "
+					aria-selected="true " style="line-height: 1.5" [ngClass]="{'disabled-btn': !Agency?.linkedin_url}"
+					[attr.aria-disabled]="!Agency?.linkedin_url ? 'true' : null"
+					[style.pointer-events]="!Agency?.linkedin_url ? 'none' : 'auto'">
+					<span style="letter-spacing: 3px;"><i class="fab fa-tiktok" style="font-size: 21px;"></i>
+						<!-- Instagram Icon --></span>
 					<br>
-					<span style="letter-spacing: 3px;">SITE WEB</span>
-				</a>
-			</div>
-			<div class="btn-group mr-2" role="group " aria-label="Third group ">
-				<a [attr.href]="Agency.facebook_url" target="_blank" class="btn-hover-flag-img text-center " aria-selected="true " 
-					style="line-height: 1.5">
-					<span style="letter-spacing: 3px;">PAGE</span>
-					<br>
-					<span style="letter-spacing: 3px;">FACEBOOK</span>
+					<span style="letter-spacing: 3px;">NOTRE TIKTOK</span>
 				</a>
 			</div>
 			<div class="btn-group mr-2 " role="group " aria-label="Third group ">
-				<a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  "  aria-selected="true "
+				<a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
 					style="line-height: 1.5;">
-					<span style="letter-spacing: 3px;">CONTACTEZ-</span>
-				
-				
+					<span style="letter-spacing: 3px;"> <i class="fas fa-phone-alt" style="font-size: 18px;"></i>
+						<!-- Contact Icon -->
+					</span>
+	
+	
 					<br>
 					<span style="letter-spacing: 3px;">
-						NOUS
+						CONTACTEZ-NOUS
 					</span>
 				</a>
 			</div>
 			<!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
-				<a class="btn-hover-flag-img text-center " aria-selected="true "
-					style="line-height: 1.5">
-					<span>COMMERCES</span>
-					<br>
-					<span> Services et Arts</span>
-				</a>
-			</div> -->
+					<a class="btn-hover-flag-img text-center " aria-selected="true "
+						style="line-height: 1.5">
+						<span>COMMERCES</span>
+						<br>
+						<span> Services et Arts</span>
+					</a>
+				</div> -->
 		</div>
-	</div> <br><br><br><br>
+	</div>
+	<br><br><br><br>
 	<style>
-		.containerDiv {
-
-		}
+		.containerDiv {}
 	</style>
-<div class="containerDiv">
+	<div class="containerDiv">
 
-</div>
+	</div>
 	<!--<div class="gradient-border"
 		id="box">
 		En cour de construction &nbsp;
@@ -573,107 +634,96 @@
 
 </main>
 
-<p-dialog   class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"  [style]="{width: '85vw', 'margin-left': '50px'}"
-[maximizable]="true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
-<div class="row modalTheme">
-    <div class="col-md-4">
-        <img class="rounded-lg border card-img-modal" src="{{ Agency.logo_url }}" alt="Eco house company">
-    </div>
-    <div class="col-md-8">
-        <p class="scrollable-paragraph">{{Agency.description}}
-            
-        </p>
-        
-    </div>
-	<style>
-		.modalTheme {
-			/* Add your modal styling here */
-		}
-	
-		.scrollable-paragraph {
-			max-height: 325px; /* Set a maximum height for the paragraph to enable scrolling */
-			overflow-y: auto; /* Enable vertical scrolling if content overflows */
-			white-space: pre-line; /* Preserve newlines and line breaks */
-		}
-	</style>
-	
-	<script>
-		// JavaScript to add line breaks at points (.) with a space before it in the description
-		document.addEventListener("DOMContentLoaded", function () {
-			const descriptionElement = document.getElementById("agencyDescription");
-			if (descriptionElement) {
-				// Get the text content
-				let descriptionText = descriptionElement.textContent;
-	
-				// Add line breaks at points (.) with a space before it
-				descriptionText = descriptionText.replace(/ \./g, '.\n');
-	
-				// Set the modified text back to the element
-				descriptionElement.textContent = descriptionText;
+<p-dialog class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"
+	[style]="{width: '85vw', 'margin-left': '50px'}" [maximizable]="true" [baseZIndex]="10000" [draggable]="false"
+	[resizable]="false">
+	<div class="row modalTheme">
+		<div class="col-md-4">
+			<img class="rounded-lg border card-img-modal" src="{{ Agency?.logo_url }}" alt="Eco house company">
+		</div>
+		<div class="col-md-8">
+			<p class="scrollable-paragraph">{{Agency?.description}}
+
+			</p>
+
+		</div>
+		<style>
+			.modalTheme {
+				/* Add your modal styling here */
 			}
-		});
-	</script>
-</div>
+
+			.scrollable-paragraph {
+				max-height: 325px;
+				/* Set a maximum height for the paragraph to enable scrolling */
+				overflow-y: auto;
+				/* Enable vertical scrolling if content overflows */
+				white-space: pre-line;
+				/* Preserve newlines and line breaks */
+			}
+		</style>
+
+		<script>
+			// JavaScript to add line breaks at points (.) with a space before it in the description
+			document.addEventListener("DOMContentLoaded", function () {
+				const descriptionElement = document.getElementById("agencyDescription");
+				if (descriptionElement) {
+					// Get the text content
+					let descriptionText = descriptionElement.textContent;
+
+					// Add line breaks at points (.) with a space before it
+					descriptionText = descriptionText.replace(/ \./g, '.\n');
+
+					// Set the modified text back to the element
+					descriptionElement.textContent = descriptionText;
+				}
+			});
+		</script>
+	</div>
 
 </p-dialog>
 <ng-template #content let-modal>
-	<div class="modal-header">
-		<br><br>
-		<h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
-		<a class=" closeButton" (click)="modal.dismiss('Cross click')"></a>
-	</div>
-	<div class="modal-body">
-		<form>
-			<div class="">
-				<div>
-					<label for="email" class="textInput">Email</label>
-					<input class="form-control inputDevis" type="email" name="email" placeholder="Votre Email">
-				</div><br>
-				<div>
-					<label for="Nom" class="textInput">Téléphone</label>
-					<input class="form-control inputDevis" type="text" [(ngModule)]="numText" name="Nom"
-						placeholder="Téléphone">
-				</div> <br>
-				<label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
-				<textarea class="form-control" id="exampleFormControlTextarea1" name="description"
-					rows="3"></textarea>
-				<br>
-				<!-- <div *ngFor="let agencies of Agency">
+    <div style="display: flex; display: flex;    flex-direction: row;
+    align-items: flex-start;" class="modal-header">
+        <br><br>
+        <h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
+        <a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="senderEmail()">
+            <div class="">
+                <div>
+                    <label for="email" class="textInput"> Email:</label>
+                    <input type="email" id="emailSource" [(ngModel)]="emailSource" name="emailSource" required placeholder="Votre email"/>
+                    <div class="send-button" style="color: red;" *ngIf="emailSource && !isValidEmail(emailSource)" class="error">
+                        S'il vous plaît, mettez une adresse email valide.
+                      </div>
+                </div><br>
+                <div>
+                    <label for="Nom" class="textInput">Objet:</label>
+                    <input type="text" id="subject" [(ngModel)]="subject" name="subject" required  placeholder="objet"/>
+                </div> <br>
+                <label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
+                <textarea style="height: 168px;" id="message" [(ngModel)]="message" name="message" required placeholder="message ..."></textarea>
+                <br>
+                <!-- <div *ngFor="let agencies of Agency">
 					<div *ngFor="let categorie of agencies?.produits">
 						<div *ngFor="let categories of categorie?.categoryList"> -->
-				<!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
-			
-				
-			
-				<div class="example-button-row">
-					<a mat-raised-button style="border-color: #8B0000;
+                <!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
+                <div class="example-button-row">
+                    <button type="submit"  style="border-color: #8B0000;
 								background-color: #8B0000; color:aliceblue"
-						href="mailto:dcgeneral@gmail.com?subject=Sujet&body=num:{{numText}} Message:{{contactText}}">Valider</a>
-					<button type="button" class="btn btn-light" (click)="modal.close('Close click')">
-						Close 
-					</button> 
-					<!-- </div>
-						</div>
-					</div>  -->
-
-  
-				</div>
-  
-			</div>
-  
-			<div class="modal-footer valider">
-  
-			</div>
-		</form>
-	</div>
-  </ng-template>
-  
+                        >Envoyer</button>&nbsp;&nbsp;&nbsp;
+                    <a  class="btn btn-light" (click)="modal.close('Close click')">
+                        Fermer
+                    </a>
 
 
+                </div>
 
+            </div>
 
+            <div  class="modal-footer valider">
 
-
-
-
-  
+            </div>
+           
+          

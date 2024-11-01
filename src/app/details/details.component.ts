@@ -147,7 +147,7 @@ export class DetailsComponent implements OnInit {
 
 this.idForAgency =this.sharedAgency.getIdAgency()
 
-console.log(' ForAgency',this.idForAgency)
+// console.log(' ForAgency',this.idForAgency)
 
     // Rest of your initialization code...
 
@@ -221,8 +221,6 @@ console.log(' ForAgency',this.idForAgency)
   }
   showMaximizableDialog1() {
     this.displayMaximizable1 = true;
-
-
   }
 
 

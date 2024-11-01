@@ -1,4 +1,4 @@
-<app-sidebar></app-sidebar>
+
 <app-navbar-carousel></app-navbar-carousel>
 <div class="main-container" style="margin-top: -48px;">
   <!-- Main content section -->
@@ -9,7 +9,7 @@
         color: #c70039;
       }
     </style>
-<h2 class="move-right" style="font-size: 18px;">
+<h2 class="move-right" style="font-size: 18px;margin-top: 32px;">
   <span style="font-size: 25px !important;" class="spanColor">Tunisie Immobilier</span> Annonce
 </h2>
 
@@ -73,41 +73,329 @@
     </div>
 
     <!-- Annonces Section -->
-    <h2>Annonces</h2>
-    <div class="annonces">
-      <!-- Loop through filtered announcements -->
-      <div class="annonce" *ngFor="let annonce of filteredAnnouncements">
-        <div style="position: relative; padding: 2px;">
-          <!-- Ville and Annonce type buttons -->
-          <button
-            style="width: 94px; background-color: #8b0000; height: 30px; border: none; font-size: 13px; margin-right: 5px;"
-            class="btn btn-primary">
-            {{ annonce.ville }}
-          </button>
-          <!-- <button style="width: 94px; background-color: #3f51b5; border: none; height: 30px; font-size: 13px;" class="btn btn-primary">
-            {{ annonce.Annonce }}
-          </button> -->
-          <button
-            style="width: 94px; background-color: #3f51b5; border: none; height: 30px; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
-            class="btn btn-primary">
-            {{ annonce.Annonce }}
-          </button>
+  <div style="display: flex;">
+    <!-- <h2   style="font-size: 16px;" class="btn btn-success">Ajouter Annonces <i class="fa fa-plus"></i></h2> -->
+     <!-- Annonce Model -->
+     <p-dialog width="100rem" [(visible)]="displayMaximizable1" [modal]="true" [maximizable]="true"
+     [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+   
+     <div class="modal-header" style="cursor:default;">
+       <img alt="image ici" width="30%;">
+       <h4 class="modal-title titleModal">Ajouter  annonce</h4>
+     </div>
+     
+     <div class="modal-body">
+       <div class="card cardModal">
+         <div class="modalInputBlock1">
+           <span class="p-float-label">
+             <input name="AnnonceName" required pInputText />
+             <label for="AnnonceName">Nom de l'Annonce</label>
+           </span>
+   
+           &nbsp;
+           <p-dropdown 
+             placeholder="Sélectionner l'emplacement" 
+             [options]="cities" 
+             [(ngModel)]="selectedCity" 
+             optionLabel="name" 
+             [showClear]="true">
+           </p-dropdown>&nbsp;
+   
+           <p-dropdown 
+             placeholder="Type d'annonce" 
+             [options]="annonceTypes" 
+             [(ngModel)]="selectedAnnonce" 
+             optionLabel="name" 
+             [showClear]="true">
+           </p-dropdown>&nbsp;
+   
+           <p-dropdown 
+             placeholder="Type de bien" 
+             [options]="propertyTypes" 
+             [(ngModel)]="selectedPropertyType" 
+             optionLabel="name" 
+             [showClear]="true">
+           </p-dropdown>
+         </div>
+         <br>
+         <label for="exampleFormControlTextarea1" class="textInput">Description</label>
+         <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
+           formControlName="description" rows="3"></textarea>
+         <br>
+       </div>
+       
+       <div class="card cardModal">
+         <div class="p-fluid p-grid">
+           <div class="p-field p-col-12 ">
+             <span class="p-float-label">
+               <input type="text" id="Adresse" pInputText />
+               <label for="Adresse">Adresse</label>
+             </span>
+           </div>
+         </div>
+         <br>
+         <div class="modalInputBlock1">
+           <span class="p-float-label">
+             <input type="text" id="Votre Téléphone" pInputText />
+             <label for="Votre Téléphone">Nom (author)</label>
+           </span>&nbsp;
+         </div> 
+         <br>
+   
+         <div class="p-fluid p-grid">
+           <div class="p-field p-col-12 ">
+             <span class="p-float-label">
+               <input type="text" id="Votre Activité" pInputText />
+               <label for="Votre Activité">Numéro de téléphone</label>
+             </span>
+           </div>
+         </div><br>
+   
+         <div class="p-fluid p-grid">
+           <div class="p-field p-col-12 ">
+             <span class="p-float-label">
+               <input type="text" id="Votre Ville" pInputText />
+               <label for="Votre Ville">Prix</label>
+             </span>
+           </div>
+         </div>
+         &nbsp;
+   
+         <div class="p-fluid p-grid">
+           <div class="p-field p-col-12 ">
+             <span class="p-float-label">
+               <input type="text" id="Votre Ville" pInputText />
+               <label for="Votre Ville">Surface</label>
+             </span>
+           </div>
+         </div>
+         <br>
+         
+         <p class="politique">En validant ce formulaire, vous autorisez l'entreprise à
+           recevoir vos informations et à vous contacter,
+           et vous acceptez <span style="text-decoration: underline;">la politique de
+             protection des données personnelles</span> </p>
+       </div>
+       
+       <!-- New Section for Image Upload -->
+    <!-- New Section for Image Upload -->
+<div class="card cardModal">
+  <h5>Upload Images</h5>
+  
+  <!-- Single image upload -->
+  <label class="upload-btn" for="imageUpload1">Upload Image 1</label>
+  <input type="file" id="imageUpload1" (change)="onFileChange($event, 1)" accept="image/*" />
+  
+  <br><br>
+  
+  <!-- Multiple images upload -->
+  <label class="upload-btn" for="imageUploadGroup">Upload Group of Images</label>
+  <input type="file" id="imageUploadGroup" (change)="onFilesChange($event)" accept="image/*" multiple />
+  
+  <br><br>
+  
+  <img *ngIf="imageSrc" [src]="imageSrc" alt="Uploaded Image" style="max-width: 100%; height: auto;" />
+  
+  <div *ngIf="imageGroup.length > 0" style="margin-top: 10px;">
+    <h6>Uploaded Images:</h6>
+    <div style="display: flex; flex-wrap: wrap;">
+      <img *ngFor="let img of imageGroup" [src]="img" alt="Uploaded Group Image" style="max-width: 150px; margin: 5px;" />
+    </div>
+  </div>
+</div>
 
-        </div>
+       <div class="modal-footer valider">
+         <a class="contacterBtn">
+           <i class="pi pi-check">&nbsp;</i>Contacter</a>
+         <a href="" class="fermerBtn" icon="pi pi-times" (click)="displayMaximizable1=false">
+           <i class="pi pi-times">&nbsp;</i>Fermer</a>
+       </div>
+     </div>
+   </p-dialog>
+   
+ <!-- end Annonce Model -->
 
-        <!-- Annonce Image and Details -->
-        <a [routerLink]="['/annonceImmobilierDetails', annonce._id]">
-          <img [src]="annonce.Annoncephoto" alt="Annonce 1">
-        </a>
+  </div>
+  <style>
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 17px;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
 
-        <div class="annonce-content">
-          <h3>{{ annonce.AnnonceName }}</h3>
-          <p>{{ annonce.description.length > 80 ? (annonce.description | slice:0:80) + '...' : annonce.description }}
-          </p>
-        </div>
+.pagination button {
+  margin: 0 5px;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #8b0000;
+    border: none;
+  border-radius: 5px; /* Rounded button corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.pagination button:hover {
+  background-color: #e25c5c;
+}
+
+.pagination button:disabled {
+  background-color: #8b00005c;
+    cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 10px;
+  color: #8b0000;
+}
+
+  </style>
+  <div class="annonces">
+    <div    
+    class="annonce" *ngFor="let annonce of paginatedAnnouncements">
+      <div style="position: relative; padding: 2px;">
+        <button style="width: 94px; background-color: #8b0000; height: 30px; border: none; font-size: 13px; margin-right: 5px;"
+          class="btn btn-primary">
+          {{ annonce.ville }}
+        </button>
+        <button style="width: 94px; background-color: #3f51b5; border: none; height: 30px; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+          class="btn btn-primary">
+          {{ annonce.Annonce }}
+        </button>
+      </div>
+  
+      <a [routerLink]="['/annonceImmobilierDetails', annonce._id]">
+        <img  [@cardAnimation] [src]="annonce.Annoncephoto" alt="Annonce 1">
+      </a>
+  
+      <div class="annonce-content">
+        <h3>{{ annonce.AnnonceName }}</h3>
+        <p>{{ annonce.description.length > 80 ? (annonce.description | slice:0:80) + '...' : annonce.description }}</p>
       </div>
     </div>
+  </div>
+  
+  <!-- Pagination Controls -->
+  <div class="pagination">
+    <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">Précédent</button>
+    <span>Page {{ currentPage }}</span>
+    <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage * itemsPerPage >= filteredAnnouncements.length">Suivant</button>
+  </div>
+  
   </div>
 
   <!-- Right column (if needed) -->
 </div>
+
+
+<ng-template #content let-modal>
+	<div style="display: flex; display: flex;    flex-direction: row;
+    align-items: flex-start;" class="modal-header">
+		<br><br>
+		<h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
+		<a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
+	</div>
+	<div class="modal-body">
+		<form (ngSubmit)="senderEmail()">
+			<div class="">
+				<div>
+					<label for="email" class="textInput"> Email:</label>
+					<input type="email" id="emailSource" [(ngModel)]="emailSource" name="emailSource" required
+						placeholder="Votre email" />
+					<div class="send-button" style="color: red;" *ngIf="emailSource && !isValidEmail(emailSource)"
+						class="error">
+						S'il vous plaît, mettez une adresse email valide.
+					</div>
+				</div><br>
+				<div>
+					<label for="Nom" class="textInput">Objet:</label>
+					<input type="text" id="subject" [(ngModel)]="subject" name="subject" required placeholder="objet" />
+				</div> <br>
+				<label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
+				<textarea style="height: 168px;" id="message" [(ngModel)]="message" name="message" required
+					placeholder="message ..."></textarea>
+				<br>
+				<!-- <div *ngFor="let agencies of Agency">
+						<div *ngFor="let categorie of agencies?.produits">
+							<div *ngFor="let categories of categorie?.categoryList"> -->
+				<!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
+				<div class="example-button-row">
+					<button type="submit" style="border-color: #8B0000;
+									background-color: #8B0000; color:aliceblue">Envoyer</button>&nbsp;&nbsp;&nbsp;
+					<a class="btn btn-light" (click)="modal.close('Close click')">
+						Fermer
+					</a>
+
+
+				</div>
+
+			</div>
+
+			<div class="modal-footer valider">
+
+			</div>
+
+
+
+			<!-- <div class="main-menu"></div> -->
+			<!-- <div class="content-container">
+    <button class="center-button">Click Me</button>
+</div> -->
+
+			<style>
+				/* .main-menu {
+		background: #1f1e84;
+		border-right: 1px solid;
+		position: fixed;
+		bottom: 0;
+		border: none;
+		height: 100%;
+		left: 0;
+		width: 60px;
+		overflow: hidden;
+		transition: width .05s linear;
+		-webkit-transform: translateZ(0) scale(1, 1);
+		z-index: 5;
+		zoom: 1.1119;
+	} */
+
+				.content-container {
+					/* margin-left: 60px; */
+					height: auto;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
+
+				.center-button {
+					padding: 7px 52px;
+					font-size: 13px;
+					cursor: pointer;
+					font-weight: bold;
+					border-radius: 4px;
+					color: white;
+					background: #1f1e84;
+				}
+			</style>
+
+
+			<!-- Home Video Modal -->
+		
+				
+
+
+			<!-- container -->
+
+
+
+
+
+      

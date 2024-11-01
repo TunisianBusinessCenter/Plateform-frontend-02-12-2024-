@@ -1,102 +1,96 @@
-.main-container {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-app-sidebar {
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
   width: 50px;
-  height: 100vh;
+  height: 100vh; /* Full height of the viewport */
   background-color: #333;
-  position: relative;
-  z-index: 2;
 }
 
-.content-container {
-  flex-grow: 1;
-  height: 100vh;
+/* Wrapper for content */
+.content-wrapper {
+  margin-left: 60px; /* Aligns with sidebar width */
+  padding: 20px;
+  overflow: auto; /* Allows for scrolling if content exceeds height */
+}
+
+/* Main container */
+.myContainer {
+  display: flex;
+  flex-wrap: wrap; /* Ensure items wrap onto the next line */
+  max-width: calc(100% - 60px); /* Adjust for sidebar width */
+}
+
+/* Column styles */
+.divCol1, .divCol2 {
+  flex: 1 1 100%; /* Full width on mobile */
+  max-width: 100%; /* Ensure full width on mobile */
+  margin: 10px;
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Video container */
+.video-container {
+  margin-bottom: 20px;
+  max-width: 100%; /* Prevent overflow */
+}
+
+/* Button group */
+.button-group {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  background-color: #f0f0f0;
-  padding-left: 20px;
-  position: relative;
-  margin-right: 3px;
+  gap: 10px;
 }
 
-/* Retour Button */
-.retour-btn {
-  margin-top: 20px;
-  padding: 5px 10px;
-  background-color: #3f51b5;
+button {
+  padding: 10px;
+  background-color: #1f1e84;
   color: white;
   border: none;
   cursor: pointer;
-  font-size: 14px;
-  align-self: flex-start;
-  width: 150px;
-  height: 40px;
+  width: 100%; /* Full width */
+  text-align: left;
 }
 
-/* Container for image and paragraph */
-.responsive-content {
+button:hover {
+  background-color: #3333cc;
+}
+
+/* Form styles */
+form {
   display: flex;
-  height: 450px;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 20px;
-  overflow: hidden;
+  flex-direction: column;
+  gap: 10px;
 }
 
-/* First div with image */
-.image-container {
-  flex: 1;
-  max-width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.image-container img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
-}
-
-/* Second div with scrollable paragraph */
-.paragraph-container {
-  flex: 1;
-  max-width: 50%;
-  overflow-y: auto;
+form input, form textarea {
+  width: 100%; /* Full width */
   padding: 10px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-right: 150px; /* Added margin */
+  border: 1px solid #ccc;
 }
 
-
-.paragraph-container p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-/* Responsive Design */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .responsive-content {
-    flex-direction: column;
-    width: 100%;
-    height: auto;
+  .myContainer {
+    flex-direction: column; /* Stack elements vertically */
+    margin-left: 0; /* Remove left margin for mobile */
+    padding: 10px; /* Adjust padding for mobile */
   }
 
-  .image-container, .paragraph-container {
-    max-width: 100%;
-    height: auto;
+  .divCol1,
+  .divCol2 {
+    flex: 1 1 100%; /* Full width on mobile */
+    margin: 0; /* Remove margins for better fit */
   }
 
-  .image-container img {
-    max-height: 300px;
+  button {
+    width: 100%; /* Ensure buttons are full width */
+  }
+
+  /* Video iframe adjustments */
+  .video-container iframe {
+    width: 100%; /* Full width on mobile */
+    height: auto; /* Maintain aspect ratio */
   }
 }

@@ -46,12 +46,20 @@ export class VillaDetailsComponent implements OnInit {
   responsiveOptions: any[] = [
     {
       breakpoint: '1192px',
-      numVisible: 3,
+      numVisible: 4
+    },
+    {
+      breakpoint: '1000px',
+      numVisible: 3
     },
     {
       breakpoint: '700px',
-      numVisible: 1,
+      numVisible: 3
     },
+    {
+      breakpoint: '510px',
+      numVisible: 3
+    }
   ];
   AgencyProjet: Object;
   agencyId: any;
@@ -98,7 +106,7 @@ export class VillaDetailsComponent implements OnInit {
   ngAfterViewInit() {
     
 
-    console.log(this.tabGroup); // Check if tabGroup is defined
+    //   .log(this.tabGroup);  
     if (this.tabGroup) {
       this.tabGroup.selectedIndex = this.selectedIndex;
     }    
@@ -123,7 +131,7 @@ setTimeout(() => {
       this.AgencyEmail = this.Agency.email;
       this.setDataAgency();
 
-      console.log('getAgencieById', this.Agency);
+      // console.log('getAgencieById', this.Agency);
       this.mobile_apps = this.Agency.mobile_apps[0]?.mobile_cover_image_url;
 
       this.ProjetEnCours = this.Agency?.projets.filter(
@@ -137,23 +145,14 @@ setTimeout(() => {
     }),
 
 
-      this.projetService.getListProjet().subscribe((data: any) => {
-        this.allProject = data;
-        // console.log(this.allProject)
-        for (let piece of this.allProject) {
-          this.testPieceName = piece?.categoryList;
-          // console.log(this.testPieceName)
-
-          // this.testpiecess(this.testPieceName2,this.testPieceName)
-        }
-      });
+     
     this.idProjet = this.activatedRoute.snapshot.paramMap.get('id');
 
     this.projetService.getProjetById(this.idProjet).subscribe((data) => {
       this.Projet = data;
       this.ProjetPiece = this.Projet?.pieces
       this.AgencyProjet = this.Projet.agencyName;
-      console.log('projet', this.Projet);
+      // console.log('projet', this.Projet);
       this.email_promoteur = this.Projet.emailCommercial;
 
       //Video_Url
@@ -162,17 +161,15 @@ setTimeout(() => {
       );
     });
 
-    this.agencieService.getAllAgencies().subscribe((data) => {
-      this.Agency = data;
-    });
+    // this.agencieService.getAllAgencies().subscribe((data) => {
+    //   this.Agency = data;
+    // });
     this.idPiece = this.activatedRoute.snapshot.paramMap.get('id');
 
-    this.projetService.getPieceById(this.idPiece).subscribe((data) => {
-      console.log(data);
-      this.Piece = data;
-      this.testPieceName2 = this.Piece?.projetName;
-      // this.testpiecess(this.testPieceName2, this.testPieceName)
-    });
+    // this.projetService.getPieceById(this.idPiece).subscribe((data) => {
+    //   this.Piece = data;
+    //   this.testPieceName2 = this.Piece?.projetName;
+    // });
 
     this.checkScreenWidth();
       
@@ -230,17 +227,17 @@ setTimeout(() => {
       if (this.email.from) {
         emailData.body += `\nContact the sender email At:${this.email.from}`;
         this.sendingEmail = true;
-        console.log('Email Data:', emailData);
+        // console.log('Email Data:', emailData);
 
         this.emailService
           .sendEmail(emailData)
           .subscribe(
             (response) => {
-              console.log('Email Sent Successfully:', response);
+              // console.log('Email Sent Successfully:', response);
               this.resetForm();
             },
             (error) => {
-              console.error('Email Sending Failed:', error);
+              // console.error('Email Sending Failed:', error);
             }
           )
           .add(() => {
@@ -263,7 +260,7 @@ setTimeout(() => {
       // If you want to store it in a class variable
       this.filteredAgencies = filteredAgencies[0]?.id
       this.idAgencyMenu = this.filteredAgencies
-      console.log(this.idAgencyMenu);
+      // console.log(this.idAgencyMenu);
       this.router.navigate(['/agency', this.idAgencyMenu]);
 
     });
@@ -275,7 +272,7 @@ setTimeout(() => {
     if (this.isMobile()) {
       this.selectedImage = imageUrl;
       this.displayDialog = true;
-      console.log(this.selectedImage, imageUrl)
+      // console.log(this.selectedImage, imageUrl)
     }
   }
   private isMobile(): boolean {
@@ -286,7 +283,7 @@ setTimeout(() => {
   selectedIndex = 0;
 
   selectTab(index: number) {
-    console.log(this.tabGroup); // Check if tabGroup is defined
+    // console.log(this.tabGroup);  
     this.selectedIndex = index;
     if (this.tabGroup) {
       this.tabGroup.selectedIndex = index;
@@ -317,7 +314,7 @@ setTimeout(() => {
   
   setDataAgency () {
     let dataAgency = this.Agency
-    console.log(dataAgency,this.Agency)
+    //   .log(dataAgency,this.Agency)
     this.agencieService.setSharedVariable(dataAgency)
   }
   emailSource: string = '';
@@ -355,7 +352,7 @@ setTimeout(() => {
             icon: 'success',
             confirmButtonText: 'Fermer'
           });
-          console.log('Email sent successfully!', response);
+          //   .log('Email sent successfully!', response);
           
           // Reset form fields
           this.emailSource = '';
@@ -370,7 +367,7 @@ setTimeout(() => {
             icon: 'error',
             confirmButtonText: 'Fermer'
           });
-          console.error('Error sending email', error);
+          //   .error('Error sending email', error);
         }
       });
   }
@@ -379,7 +376,18 @@ setTimeout(() => {
     const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return pattern.test(email);
   }
-  formatAgencyName(name: string): string {
-    return name.replace(/\s+/g, '-');
+
+
+
+
+
+
+
+formatAgencyName(name: string): string {
+  if (!name) {
+      return ''; // Return an empty string or handle it in another appropriate way
+  }
+  return name.replace(/\s+/g, '-');
 }
+
 }

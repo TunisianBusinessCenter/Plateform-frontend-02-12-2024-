@@ -78,6 +78,7 @@ import { AgenceMatComponent } from './agence/agence-mat/agence-mat.component';
 import { AnnoncesImmobilierComponent } from './annonce Immobilier/annonces-immobilier/annonces-immobilier.component';
 import { AnnoncesImmobilierDetailsComponent } from './annonce Immobilier/annonces-immobilier-details/annonces-immobilier-details.component';
 import { PromoteurImmobiliersComponent } from './agence/promoteur-immobiliers/promoteur-immobiliers.component';
+import { AddAnnonceComponent } from './annonce Immobilier/add-annonce/add-annonce.component';
 
 
 const appRoutes: Routes = [
@@ -174,7 +175,8 @@ const appRoutes: Routes = [
   { path: "refreshcafe", component: CoffeeDetailsComponent },
   { path: "testmodel", component: ModelContactComponent },
   { path: "annonceImmobilier", component: AnnoncesImmobilierComponent },
-  { path: "annonceImmobilierDetails/:id", component: AnnoncesImmobilierDetailsComponent }
+  { path: "annonceImmobilierDetails/:id", component: AnnoncesImmobilierDetailsComponent },
+  { path: "addAnnonceImmobilier", component: AddAnnonceComponent}
 
 
 ];

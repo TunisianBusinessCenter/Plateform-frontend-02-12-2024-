@@ -20,6 +20,7 @@ import { NavbarCarouselComponent } from './navbar-carousel/navbar-carousel.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 import { ToastModule } from 'primeng/toast';
@@ -138,6 +139,7 @@ import { AgenceMatComponent } from './agence/agence-mat/agence-mat.component';
 import { AnnoncesImmobilierDetailsComponent } from './annonce Immobilier/annonces-immobilier-details/annonces-immobilier-details.component';
 import { AnnoncesImmobilierComponent } from './annonce Immobilier/annonces-immobilier/annonces-immobilier.component';
 import { PromoteurImmobiliersComponent } from './agence/promoteur-immobiliers/promoteur-immobiliers.component';
+import { AddAnnonceComponent } from './annonce Immobilier/add-annonce/add-annonce.component';
 
 
 
@@ -236,7 +238,8 @@ const routes: Routes = [
     AgenceMatComponent,
     AnnoncesImmobilierDetailsComponent,
     AnnoncesImmobilierComponent,
-    PromoteurImmobiliersComponent
+    PromoteurImmobiliersComponent,
+    AddAnnonceComponent
  
  
   
@@ -256,6 +259,7 @@ const routes: Routes = [
     NgbAlertModule,
     MatNativeDateModule,
     MatTooltipModule,
+    MatPaginatorModule,
     FormsModule,
     ReactiveFormsModule,
     MatTabsModule,

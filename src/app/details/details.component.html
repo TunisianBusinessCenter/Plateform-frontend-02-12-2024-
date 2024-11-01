@@ -539,16 +539,15 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="tunsian-flag-img-background">
 		<div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
 	
 	
 			<div class="btn-group mr-2" role="group" aria-label="Third group">
-				<a [attr.href]="Agency?.facebook_url ? Agency?.facebook_url : null" target="_blank"
-					class="btn-hover-flag-img text-center" [ngClass]="{'disabled-btn': !Agency?.facebook_url}"
-					[attr.aria-disabled]="!Agency?.facebook_url ? 'true' : null"
-					[style.pointer-events]="!Agency?.facebook_url ? 'none' : 'auto'" style="line-height: 1.5;">
+				<a [attr.href]="Agency.facebook_url ? Agency.facebook_url : null" target="_blank"
+					class="btn-hover-flag-img text-center" [ngClass]="{'disabled-btn': !Agency.facebook_url}"
+					[attr.aria-disabled]="!Agency.facebook_url ? 'true' : null"
+					[style.pointer-events]="!Agency.facebook_url ? 'none' : 'auto'" style="line-height: 1.5;">
 					<span style="letter-spacing: 3px;"> <i class="fab fa-facebook" style="font-size: 21px;"></i>
 						<!-- Facebook Icon -->
 					</span>
@@ -558,12 +557,25 @@
 			</div>
 	
 			<div class="btn-group mr-2" role="group " aria-label="First group ">
-				<a [attr.href]="Agency?.instagram_url" class="btn-hover-flag-img text-center " aria-selected="true "
-					style="line-height: 1.5" target="_blank"
-					aria-selected="true " style="line-height: 1.5" [ngClass]="{'disabled-btn': !Agency?.instagram_url}"
-				[attr.aria-disabled]="!Agency?.instagram_url ? 'true' : null"
-				[style.pointer-events]="!Agency?.instagram_url ? 'none' : 'auto'"
-					>
+				<a [attr.href]="Agency.website_url" class="btn-hover-flag-img text-center " aria-selected="true "
+					style="line-height: 1.5" target="_blank" aria-selected="true " style="line-height: 1.5"
+					[ngClass]="{'disabled-btn': !Agency.website_url}"
+					[attr.aria-disabled]="!Agency.website_url ? 'true' : null"
+					[style.pointer-events]="!Agency.website_url ? 'none' : 'auto'">
+					<span style="letter-spacing: 3px;"> <i class="fas fa-globe" style="font-size: 21px;"></i>
+						<!-- Instagram Icon -->
+					</span>
+					<br>
+					<span style="letter-spacing: 3px;">NOTRE SITE WEB</span>
+				</a>
+			</div>
+	
+			<div class="btn-group mr-2" role="group " aria-label="First group ">
+				<a [attr.href]="Agency.instagram_url" class="btn-hover-flag-img text-center " aria-selected="true "
+					style="line-height: 1.5" target="_blank" aria-selected="true " style="line-height: 1.5"
+					[ngClass]="{'disabled-btn': !Agency.instagram_url}"
+					[attr.aria-disabled]="!Agency.instagram_url ? 'true' : null"
+					[style.pointer-events]="!Agency.instagram_url ? 'none' : 'auto'">
 					<span style="letter-spacing: 3px;"> <i class="fab fa-instagram" style="font-size: 21px;"></i>
 						<!-- Instagram Icon -->
 					</span>
@@ -579,19 +591,19 @@
 	
 				}
 			</style>
-			
 	
+	<!-- 
 			<div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie!='coffee'">
-				<a [attr.href]="Agency?.linkedin_url" target="_blank" class="btn-hover-flag-img text-center "
-					aria-selected="true " style="line-height: 1.5" [ngClass]="{'disabled-btn': !Agency?.linkedin_url}"
-					[attr.aria-disabled]="!Agency?.linkedin_url ? 'true' : null"
-					[style.pointer-events]="!Agency?.linkedin_url ? 'none' : 'auto'">
+				<a [attr.href]="Agency.linkedin_url" target="_blank" class="btn-hover-flag-img text-center "
+					aria-selected="true " style="line-height: 1.5" [ngClass]="{'disabled-btn': !Agency.linkedin_url}"
+					[attr.aria-disabled]="!Agency.linkedin_url ? 'true' : null"
+					[style.pointer-events]="!Agency.linkedin_url ? 'none' : 'auto'">
 					<span style="letter-spacing: 3px;"><i class="fab fa-tiktok" style="font-size: 21px;"></i>
-						<!-- Instagram Icon --></span>
+					   </span>
 					<br>
 					<span style="letter-spacing: 3px;">NOTRE TIKTOK</span>
 				</a>
-			</div>
+			</div> -->
 			<div class="btn-group mr-2 " role="group " aria-label="Third group ">
 				<a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
 					style="line-height: 1.5;">

@@ -51,7 +51,7 @@ this.agencyService.getAllAgencies().subscribe(data => {
 
     // Check if agence.id is equal to the targetId
     if (this.agenceID === targetId) {
-      console.log('Found agency with matching id:', this.agenceID);
+      // console.log('Found agency with matching id:', this.agenceID);
       this.roleMateriaux = true;
       // console.log('tttttttttttttttttttttttttttttttttttttttttttttttttttttthis.roleMateriaux: ', this.roleMateriaux);
     
@@ -64,11 +64,11 @@ this.agencyService.getAllAgencies().subscribe(data => {
   }
 
   slideActivate(ngbSlideEvent: NgbSlideEvent) {
-    console.log(ngbSlideEvent.source);
-    console.log(ngbSlideEvent.paused);
-    console.log(NgbSlideEventSource.INDICATOR);
-    console.log(NgbSlideEventSource.ARROW_LEFT);
-    console.log(NgbSlideEventSource.ARROW_RIGHT);
+    // console.log(ngbSlideEvent.source);
+    // console.log(ngbSlideEvent.paused);
+    // console.log(NgbSlideEventSource.INDICATOR);
+    // console.log(NgbSlideEventSource.ARROW_LEFT);
+    // console.log(NgbSlideEventSource.ARROW_RIGHT);
   }
 
   checkRoute() {
@@ -114,9 +114,9 @@ this.agencyService.getAllAgencies().subscribe(data => {
             this.role=agencyData.role
             this.id=agencyData.id
 
-            console.log('Agency Name:', this.name);
-            console.log('Agency Role:', this.role);
-            console.log('Agency id:', this.id);
+            // console.log('Agency Name:', this.name);
+            // console.log('Agency Role:', this.role);
+            // console.log('Agency id:', this.id);
 
           },
           (error) => {
@@ -131,7 +131,7 @@ this.agencyService.getAllAgencies().subscribe(data => {
   }
   redirect(): void {
     this.router.navigate(['/home']).then(() => {
-      console.log('here')
+      // console.log('here')
       window.location.reload();
     });
   }

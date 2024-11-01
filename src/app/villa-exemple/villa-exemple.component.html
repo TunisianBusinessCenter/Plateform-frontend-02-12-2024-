@@ -1,52 +1,153 @@
-<div class="main-container">
-  <app-sidebar></app-sidebar>
+<div class="sidebar"></div>
 
-  <div class="content-container">
-    <!-- Retour Button at the left, above the responsive buttons -->
-    <button class="retour-btn">Retour</button>
+<div class="myContainer">
+  <div class="divCol1">
+    <!-- p-galleria Component for the Image Carousel -->
+    <p-galleria [value]="piece?.photos" [responsiveOptions]="responsiveOptions"
+      [containerStyle]="{'max-width': '800px'}" [numVisible]="3">
+      <ng-template pTemplate="item" let-item>
+        <img (click)="openImageInDialog(item)" [src]="item" class="pgalleria" alt="pgalleria" />
+      </ng-template>
+      <ng-template pTemplate="thumbnail" let-item>
+        <div class="grid grid-nogutter justify-content-center">
+          <img [src]="item" class="imgPgalleria" alt="galleria" />
+        </div>
+      </ng-template>
+    </p-galleria>
+  </div>
 
-    <!-- Two responsive divs with image and paragraph -->
-    <div class="responsive-content">
-      <!-- First div with image -->
-      <div class="image-container">
-        <img src="assets/coffee.jpg" alt="Descriptive Image">
-      </div>
-
-      <!-- Second div with scrollable paragraph -->
-      <div class="paragraph-container">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque egestas felis nec nulla convallis, vitae
-          pretium neque vehicula. Duis scelerisque augue id vehicula malesuada. Sed feugiat orci ac odio ornare, nec
-          pharetra lectus aliquet. Vivamus nec interdum purus, ut facilisis lacus. Phasellus ut ullamcorper odio...</p>
-      </div>
+  <div class="divCol1">
+    <div class="video-container">
+      <!-- YouTube Video -->
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/your-video-id" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <h3>Titre</h3>
+    <div class="button-group">
+      <button>TYPE : APPARTEMENTS S+1</button>
+      <button>SURFACE : +50 (M²)</button>
+      <button>PRIX : (Mdt)</button>
     </div>
   </div>
 
-  <!-- Modal -->
-  <div class="modal" *ngIf="isModalOpen" (click)="closeModal()">
-    <div class="modal-content" (click)="$event.stopPropagation()">
-      <img [src]="modalImage" alt="Modal Image">
+  <div class="divCol2">
+    <h2>Description</h2>
+    <div>
+      <p>Your description goes here...</p>
     </div>
+  </div>
+
+  <div class="divCol2">
+    <!-- Contact Form -->
+    <h3>Contact Form</h3>
+    <form>
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" />
+      </div>
+      <div>
+        <label for="message">Message</label>
+        <textarea id="message"></textarea>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
   </div>
 </div>
-
-<div class="container">
-  <div>grid 1</div>
-  <div>grid 2</div>
-  <div>grid 3</div>
-  <div>grid 4</div>
-</div>  
 <style>
-  .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 16px; /* Adjusts space between grid items */
-  padding: 16px; /* Optional padding around the grid */
-}
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 100vh;
+    /* Full height of the viewport */
+    background-color: #333;
+  }
 
-.container div {
-  background-color: #f0f0f0; /* Light gray background for visibility */
-  border: 1px solid #ccc; /* Light border for separation */
-  padding: 20px; /* Padding inside each grid item */
-  text-align: center; /* Center text inside grid items */
-}
+
+  /* Main container */
+  .myContainer {
+    margin-left: 60px;
+    /* Adjusts for the sidebar */
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .divCol1,
+  .divCol2 {
+    flex: 1 1 45%;
+    margin: 10px;
+    border: solid 2px #4641453b;
+    padding: 36px;
+  }
+
+  .video-container {
+    margin-bottom: 20px;
+  }
+
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  button {
+    padding: 10px;
+    background-color: #1f1e84;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+  }
+
+  button:hover {
+    background-color: #3333cc;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  form input,
+  form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+
+  @media (max-width: 768px) {
+    .myContainer {
+      flex-direction: column;
+
+    }
+
+    .divCol1,
+    .divCol2 {
+      flex: 1 1 100%;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+  
 </style>
+
+
+
+
+
+
+
+

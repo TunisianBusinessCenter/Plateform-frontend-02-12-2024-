@@ -73,7 +73,7 @@ export class DescriptionDetailsComponent implements OnInit {
     
     this.idAgencyy = this.sharedService.getIdAgency()
     this.agencieService.getAgencieById(this.idAgencyy).subscribe((data:any) => {
-      console.log(data)
+      // console.log(data)
       this.Agency=data
       
       this.AgencyEmail =this.Agency.email
@@ -84,15 +84,11 @@ export class DescriptionDetailsComponent implements OnInit {
     })
     this.agencieService.getAllMateriaux().subscribe((data: any[]) => {
       // Assuming data is an array of agencies
-      console.log('foundAgency : ',data)
       let foundAgency = data.find(agency => agency.name === this.agencyName);
-      console.log('foundAgency :',foundAgency)
       this.foundAgency=foundAgency?.mobile_apps[0]
       this.AgencyBaniere = this.foundAgency?.mobile_cover_image_url;
-      console.log("AgencyBaniere", this.AgencyBaniere)
 
       this.agencieService.setAgencyBaniere(this.AgencyBaniere);
-      console.log("agencyId", this.AgencyBaniere)
 
       if (foundAgency) {
         this.agencyId = foundAgency.id;
@@ -104,13 +100,10 @@ export class DescriptionDetailsComponent implements OnInit {
       
      
         this.ProjetId=this.ProduitEnCours.id
-        console.log('cours',this.ProduitEnCours)
         this.ProjetDispo = foundAgency?.projets.filter(project => project.status === 'DISPONIBLE');
-        console.log('dispo',this.ProjetDispo)
-        console.log("Found Agency", this.agencyId);
+ 
         this.routerIdLink = this.agencyId;
       } else {
-        console.log("Agency not found");
         // Handle the case when the agency is not found
       }
     });
@@ -119,7 +112,6 @@ export class DescriptionDetailsComponent implements OnInit {
     this.produitService.getSousCategorieById(this.idSousCategorie).subscribe(Response => {
       this.SousCategorie = Response;
 
-      console.log('here',this.SousCategorie)
 
     });
 
@@ -128,12 +120,9 @@ export class DescriptionDetailsComponent implements OnInit {
       this.firstId = params['id1'];
     
       // Do something with the ids
-      console.log('First ID:', this.firstId);
     });
     this.projetService.getProduitById(this.firstId).subscribe((data:any) => {
-      console.log(data)
       this.agencyName = data.agencyName;
-      console.log("agencyName :",this.agencyName)
       // this.NameAgency =this.Projet.agencyName
     })
     this.FormData = this.builder.group({
@@ -177,14 +166,10 @@ export class DescriptionDetailsComponent implements OnInit {
     }
   }
   onSubmit(FormData) {
-    console.log(FormData)
     this.contact.PostMessage(FormData)
       .subscribe(response => {
         location.href = 'https://mailthis.to/confirm'
-        console.log(response)
       }, error => {
-        console.warn(error.responseText)
-        console.log({ error })
       })
   }
   backClicked() {
@@ -208,8 +193,7 @@ export class DescriptionDetailsComponent implements OnInit {
   setSharedVariable() {
     let data = this.Agency;
     this.agencieService.setSharedVariable(data);
-    console.log("this data", data); // Corrected to use the 'data' variable
-    //  this.message ="data sended successfully"
+  
   }
 
   emailSource: string = '';
@@ -247,7 +231,6 @@ senderEmail() {
           icon: 'success',
           confirmButtonText: 'Fermer'
         });
-        console.log('Email sent successfully!', response);
         
         // Reset form fields
         this.emailSource = '';
@@ -262,7 +245,6 @@ senderEmail() {
           icon: 'error',
           confirmButtonText: 'Fermer'
         });
-        console.error('Error sending email', error);
       }
     });
 }
@@ -272,6 +254,6 @@ isValidEmail(email: string): boolean {
   return pattern.test(email);
 }
 formatAgencyName(name: string): string {
-  return name.replace(/\s+/g, '-');
+  return name?.replace(/\s+/g, '-');
 }
 }

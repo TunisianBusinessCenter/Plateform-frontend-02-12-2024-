@@ -77,14 +77,14 @@ export class AgenciesService {
   }
   processData(data: any) {
     // Your logic to process the data goes here
-    console.log('Processing data in the service:', data);
+    // console.log('Processing data in the service:', data);
   }
   private sharedVariableSource = new BehaviorSubject<any>(null);
   sharedVariable$ = this.sharedVariableSource.asObservable();
 
   setSharedVariable(data: any) {
     this.sharedVariableSource.next(data);
-    console.log(data)
+    // console.log(data)
   }
 
   // private idSource = new BehaviorSubject<number>(0);

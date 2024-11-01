@@ -104,11 +104,11 @@ this.agencyService.getAllAgencies().subscribe(data => {
   }
 
   slideActivate(ngbSlideEvent: NgbSlideEvent) {
-    console.log(ngbSlideEvent.source);
-    console.log(ngbSlideEvent.paused);
-    console.log(NgbSlideEventSource.INDICATOR);
-    console.log(NgbSlideEventSource.ARROW_LEFT);
-    console.log(NgbSlideEventSource.ARROW_RIGHT);
+    // console.log(ngbSlideEvent.source);
+    // console.log(ngbSlideEvent.paused);
+    // console.log(NgbSlideEventSource.INDICATOR);
+    // console.log(NgbSlideEventSource.ARROW_LEFT);
+    // console.log(NgbSlideEventSource.ARROW_RIGHT);
   }
   getCurrentRouteAndGetData() {
     // Get the current route
@@ -177,11 +177,11 @@ this.agencyService.getAllAgencies().subscribe(data => {
             this.categorie=agencyData.categorie
             this.banner=agencyData.mobile_apps
             this.banner=agencyData.mobile_apps[0].mobile_cover_image_url;
-            console.log('Agency Banner:', this.banner);
+            // console.log('Agency Banner:', this.banner);
 
-            console.log('Agency Name:', this.name);
-            console.log('Agency Role:', this.role);
-            console.log('Agency id:', this.id);
+            // console.log('Agency Name:', this.name);
+            // console.log('Agency Role:', this.role);
+            // console.log('Agency id:', this.id);
 
           },
           (error) => {
@@ -202,7 +202,7 @@ this.agencyService.getAllAgencies().subscribe(data => {
   }
   redirect(): void {
     this.router.navigate(['/home']).then(() => {
-      console.log('here')
+      // console.log('here')
       window.location.reload();
     });
   }

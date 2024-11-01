@@ -192,7 +192,7 @@ export class HomeComponent implements OnInit {
         }
       }
       this.firstMagazin = this.Magazine[0]
-console.log("magazine text",this.firstMagazin)
+// console.log("magazine text",this.firstMagazin)
     });
 
 

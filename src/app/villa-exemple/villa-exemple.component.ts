@@ -25,8 +25,27 @@ export class VillaExempleComponent implements OnInit {
     { title: 'Card 3', image: 'assets/icons/bleu.png' }
     
   ];
-
-
+  piece: any = {
+    photos: [
+      'https://www.example.com/images/image1.jpg',
+      'https://www.example.com/images/image2.jpg',
+      'https://www.example.com/images/image3.jpg'
+    ]
+  };
+  responsiveOptions: any[] = [
+    {
+      breakpoint: '1024px',
+      numVisible: 3
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 2
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 1
+    }
+  ];
   scrollLeft() {
     if (this.currentIndex > 0) {
       this.currentIndex--;
@@ -36,7 +55,10 @@ export class VillaExempleComponent implements OnInit {
       });
     }
   }
-
+  openImageInDialog(item: string) {
+    // Handle the logic for opening the image in a dialog or lightbox
+    console.log('Opening image:', item);
+  }
   scrollRight() {
     if (this.currentIndex < this.slider.nativeElement.children.length - 1) {
       this.currentIndex++;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -9,6 +9,9 @@ import { CommerceServiceService } from 'src/app/commerce-service-agency/commerce
 import { AgenciesService } from 'src/app/services/agencies/agencies.service';
 import { AgenceMatService } from '../agence-mat/agence-mat.service';
 import { PromoteurImmobiliersService } from './promoteur-immobiliers.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+
 @Component({
   selector: 'app-promoteur-immobiliers',
   templateUrl: './promoteur-immobiliers.component.html',
@@ -26,20 +29,23 @@ export class PromoteurImmobiliersComponent implements OnInit {
   urlSafe2: any;
   facebook_url: any;
   AgencyEmail: any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  dataSource: MatTableDataSource<any>;
 
-  constructor(private http:HttpClient , private PromoteurImmobilier : PromoteurImmobiliersService,private sanitizer: DomSanitizer,private activatedRoute: ActivatedRoute,private agencieService: AgenciesService,    private modalService: NgbModal,    private breakpointObserver: BreakpointObserver,
-  ) { 
+  constructor(private http: HttpClient, private PromoteurImmobilier: PromoteurImmobiliersService, private sanitizer: DomSanitizer, private activatedRoute: ActivatedRoute, private agencieService: AgenciesService, private modalService: NgbModal, private breakpointObserver: BreakpointObserver,
+  ) {
     this.breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
       this.isMobile = result.matches;
     });
 
     this.idAgency = this.activatedRoute.snapshot.paramMap.get('id')
-    this.agencieService.getAgencieById(this.idAgency).subscribe((data:any) => {
+    this.agencieService.getAgencieById(this.idAgency).subscribe((data: any) => {
       // console.log(data)
-
+      this.dataSource = new MatTableDataSource(this.Agency?.projets);
+      this.dataSource.paginator = this.paginator;
       this.Agency = data;
-      console.log(this.Agency)
-      this.AgencyEmail =this.Agency.email
+      // console.log(this.Agency)
+      this.AgencyEmail = this.Agency.email
       this.facebook_url = this.Agency.facebook_url
 
       this.urlSafe3 = this.sanitizer.bypassSecurityTrustResourceUrl(this.Agency?.twitter_url);
@@ -105,18 +111,18 @@ export class PromoteurImmobiliersComponent implements OnInit {
   PromoteurImmobiliers() {
 
     this.PromoteurImmobilier.setIdAgency(this.Agency?.id)
-    console.log('this is my log')
+    // console.log('this is my log')
 
   }
-  
+
   setSharedVariable() {
     let data = this.Agency;
     this.agencieService.setSharedVariable(data);
-    console.log("this data", data); 
+    // console.log("this data", data); 
     //  this.message ="data sended successfully"
   }
   emailSource: string = '';
-  emailDest:  any = '';
+  emailDest: any = '';
   subject: string = '';
   message: string = '';
   senderEmail() {
@@ -128,7 +134,7 @@ export class PromoteurImmobiliersComponent implements OnInit {
       subject: this.subject,
       message: `${this.message}\n\nFrom: ${this.emailSource}`
     };
-  
+
     // Check if any of the required fields are empty
     if (!data.emailsource || !data.emaildest || !data.subject || !this.message) {
       Swal.fire({
@@ -139,7 +145,7 @@ export class PromoteurImmobiliersComponent implements OnInit {
       });
       return; // Stop further execution if form is incomplete
     }
-  
+
     // If the form is valid, send the email
     this.http.post('https://contact-tunimmob.vercel.app/boutiques/SendEmail', data)
       .subscribe({
@@ -150,8 +156,8 @@ export class PromoteurImmobiliersComponent implements OnInit {
             icon: 'success',
             confirmButtonText: 'Fermer'
           });
-          console.log('Email sent successfully!', response);
-          
+          // console.log('Email sent successfully!', response);
+
           // Reset form fields
           this.emailSource = '';
           this.emailDest = '';
@@ -165,11 +171,11 @@ export class PromoteurImmobiliersComponent implements OnInit {
             icon: 'error',
             confirmButtonText: 'Fermer'
           });
-          console.error('Error sending email', error);
+          // console.error('Error sending email', error);
         }
       });
   }
-  
+
   isValidEmail(email: string): boolean {
     const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return pattern.test(email);

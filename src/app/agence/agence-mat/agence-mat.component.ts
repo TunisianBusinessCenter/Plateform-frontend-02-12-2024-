@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { DomSanitizer } from '@angular/platform-browser';
 import Swal from 'sweetalert2';
@@ -25,7 +25,16 @@ export class AgenceMatComponent implements OnInit {
     urlSafe2: any;
     facebook_url: any;
     AgencyEmail: any;
+  list: any;
+  private modalRef: NgbModalRef | null = null; // Initialize as null
+
+  private parseDate(dateString: string): Date {
+    const [day, month, year, time] = dateString.split(/\/|\s/);
+    const [hour, minute, second] = time.split(':');
   
+    // Month is 0-indexed in JavaScript Date, so subtract 1 from the month
+    return new Date(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute), Number(second));
+  }
     constructor(private http:HttpClient , private agenceMateriaux : AgenceMatService,private sanitizer: DomSanitizer,private activatedRoute: ActivatedRoute,private agencieService: AgenciesService,    private modalService: NgbModal,    private breakpointObserver: BreakpointObserver,
     ) { 
       this.breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
@@ -36,20 +45,32 @@ export class AgenceMatComponent implements OnInit {
         // console.log(data)
   
         this.Agency = data;
+        this.reverseAgPromoteurs = this.Agency?.produits.reverse();
+  
+        // Sort the projets array by createdAt
+        if (this.reverseAgPromoteurs) {
+          this.reverseAgPromoteurs.sort((a, b) => {
+            const createdAtA = this.parseDate(a.createdAt);
+            const createdAtB = this.parseDate(b.createdAt);
+    
+            return createdAtA.getTime() - createdAtB.getTime();
+          });
+        }
+        
         this.AgencyEmail =this.Agency.email
         this.facebook_url = this.Agency.facebook_url
   
         this.urlSafe3 = this.sanitizer.bypassSecurityTrustResourceUrl(this.Agency?.twitter_url);
-        this.urlSafe2 = this.sanitizer.bypassSecurityTrustResourceUrl(this.Agency.videoUrl2);
+        this.urlSafe2 = this.sanitizer.bypassSecurityTrustResourceUrl(this.Agency?.videoUrl2);
   
         this.AgencyBaniere = this.Agency.mobile_apps[0]?.mobile_cover_image_url;
         this.AgencyReel = this.Agency?.mobile_apps[0]?.appstore_url
         this.agencieService.setAgencyBaniere(this.AgencyBaniere);
   
         // console.log('AgencyBaniere', this.AgencyBaniere)
-        this.reverseAgPromoteurs = this.Agency?.projets?.reverse();
       })
     }
+    
     ngAfterViewInit() {
       this.setSharedVariable();
       this.CommerceService()
@@ -144,7 +165,8 @@ export class AgenceMatComponent implements OnInit {
               title: 'Success!',
               text: "L'email a été envoyé avec succès.",
               icon: 'success',
-              confirmButtonText: 'Fermer'
+              timer: 1000,  // Closes after 3 seconds
+              timerProgressBar: true  // Shows a progress bar
             });
             console.log('Email sent successfully!', response);
             
@@ -153,6 +175,8 @@ export class AgenceMatComponent implements OnInit {
             this.emailDest = '';
             this.subject = '';
             this.message = '';
+            this.closeModal();
+
           },
           error: (error) => {
             Swal.fire({
@@ -169,6 +193,19 @@ export class AgenceMatComponent implements OnInit {
     isValidEmail(email: string): boolean {
       const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       return pattern.test(email);
+    }
+    openModal(content: any) {
+      this.modalRef = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+    }
+    
+    closeModal() {
+      if (this.modalRef) {
+        this.modalRef.close();
+        this.modalRef = null; // Reset after closing
+        console.log('Modal closed successfully.');
+      } else {
+        console.log('Modal reference is undefined; modal might not have been opened.');
+      }
     }
   }
   

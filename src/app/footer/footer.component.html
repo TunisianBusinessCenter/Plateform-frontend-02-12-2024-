@@ -184,7 +184,26 @@
 						<div class="input">
 							<input placeholder="Votre E-mail" type="text">
 						</div>
-						<div class="button">Inscrivez-vous</div>
+						<!-- <div class="button">Inscrivez-vous</div> -->
+						<!-- In your component.html -->
+<div 
+class="button" 
+
+[ngStyle]="{
+	'background-color': sharedVariable?.role === 'promoteur-immobilieres' ? '#347aab' : 
+						sharedVariable?.role === 'agence-service' ? '#e3b77b' : 
+						sharedVariable?.role === 'meilleurs-biens' ? '#414367' : 
+						sharedVariable?.role === 'agence-immobilieres' ? '#206229' : 
+						sharedVariable?.role === 'materiaux-construction' ? '#508fe1' : 'initial'
+  }"
+  
+
+
+
+>
+Inscrivez-vous
+</div>
+
 					</div>
 				</form>
 				<style>

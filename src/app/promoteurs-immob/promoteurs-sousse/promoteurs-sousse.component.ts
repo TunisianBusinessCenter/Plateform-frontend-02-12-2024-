@@ -42,7 +42,51 @@ export class PromoteursSousseComponent implements OnInit {
         numScroll: 1
       }
     ];
+    
   }
+
+  staticAgenciesSousse = [
+    {
+      name: 'Veuillez patienter...',
+      logo_url: 'assets/carousel.jpg',
+      region: 'Sousse',
+      projets: 'static',
+      createdAt: '01/01/2020',
+      margin: ''
+    },
+    {
+      name: 'Veuillez patienter...',
+      logo_url: 'assets/carousel.jpg',
+      region: 'Sousse',
+      projets: 'static',
+      createdAt: '02/01/2020',
+      margin: ''
+    },
+    {
+      name: 'Veuillez patienter...',
+      logo_url: 'assets/carousel.jpg',
+      region: 'Sousse',
+      projets: 'static',
+      createdAt: '02/01/2020',
+      margin: ''
+    },
+    {
+      name: 'Veuillez patienter...',
+      logo_url: 'assets/carousel.jpg',
+      region: 'Sousse',
+      projets: 'static',
+      createdAt: '02/01/2020',
+      margin: ''
+    },
+    {
+      name: 'Veuillez patienter...',
+      logo_url: 'assets/carousel.jpg',
+      region: 'Sousse',
+      projets: 'static',
+      createdAt: '02/01/2020',
+      margin: ''
+    } 
+  ];
   ngOnInit(): void {
     this.agencieService.getAgencieSousse().subscribe((data: any) => {
       this.AgenciesSousse = data;

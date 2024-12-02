@@ -31,6 +31,11 @@ export class AnnoncesImmobilierComponent implements OnInit {
   selectedAnnonceType: string = ''; // Bound to annonce type select
   selectedLocation: string = ''; // Bound to location select
   displayMaximizable1: boolean;
+  paginatedAnnouncementsStatic = [
+    { image: 'https://via.placeholder.com/300?text=Loading' },
+    { image: 'https://via.placeholder.com/300?text=Loading' },
+    { image: 'https://via.placeholder.com/300?text=Loading' }
+  ];
   cities = [
     { name: 'Tunis' },
     { name: 'Ariana' },
@@ -88,7 +93,7 @@ export class AnnoncesImmobilierComponent implements OnInit {
   fetchAnnouncements(): void {
     this.announcementService.getAnnouncements().subscribe((data: Announcement[]) => {
       this.announcements = data; // Save full announcement list
-      this.filteredAnnouncements = data; // Initialize filtered list to full list
+      this.filteredAnnouncements = data.reverse(); // Initialize filtered list to full list
       this.updatePaginatedAnnouncements(); // Set the first page
 
       console.log(this.announcements); // Debugging

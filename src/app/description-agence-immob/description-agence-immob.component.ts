@@ -1,12 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ProjetsService } from '../services/projets/projets.service';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 import { AgenceImmobilieresService } from '../services/agence-immob/agence-immobilieres.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from '../services/contact/contact.service';
 import { PrimeNGConfig } from 'primeng-lts/api';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { SharedAgenceImmobilierService } from '../services/shared-agence-immobilier.service';
 import { AgenciesService } from '../services/agencies/agencies.service';
 import { MagazineService } from '../services/magazine/magazine.service';
@@ -36,14 +36,15 @@ interface Duree {
   `]
 })
 export class DescriptionAgenceImmobComponent implements OnInit {
+  private modalRef: NgbModalRef | null = null; // Initialize as null
   ServicesDivers: any;
   filtredServicesDivers2: any;
   filtredServicesDivers1: any;
   filteredSousServices: any;
-  public idProjet:any
-  public Projet:any
-  public idsousBiens:any
-  public sousBiens:any
+  public idProjet: any
+  public Projet: any
+  public idsousBiens: any
+  public sousBiens: any
   FormData: FormGroup;
   closeResult: string;
   biens: any;
@@ -73,7 +74,7 @@ export class DescriptionAgenceImmobComponent implements OnInit {
     },
     {
       breakpoint: '700px',
-      numVisible: 3
+      numVisible: 1
     },
     {
       breakpoint: '510px',
@@ -83,21 +84,19 @@ export class DescriptionAgenceImmobComponent implements OnInit {
   Bien: any;
   AgencyEmail: any;
 
-  constructor(private biensImoobService:AgenceImmobilieresService,
+  constructor(private biensImoobService: AgenceImmobilieresService,
     private magazineservice: MagazineService,
-    private agencieService:AgenciesService,
+    private agencieService: AgenciesService,
     private activatedRoute: ActivatedRoute,
-    private _location:Location,
-    private router:Router,
+    private _location: Location,
+    private router: Router,
     private builder: FormBuilder,
-    private contact:ContactService,
-    private sharedService:SharedAgenceImmobilierService,
-    private meilleursBiens : MeilleursBiensService,
+    private contact: ContactService,
+    private sharedService: SharedAgenceImmobilierService,
+    private meilleursBiens: MeilleursBiensService,
     private primengConfig: PrimeNGConfig,
-    private http : HttpClient,
-    private modalService: NgbModal) { 
-
-   
+    private http: HttpClient,
+    private modalService: NgbModal) {
 
 
 
@@ -116,15 +115,17 @@ export class DescriptionAgenceImmobComponent implements OnInit {
 
 
 
-      
-    }
-    
-    openVerticallyCentered(content) {
-      this.modalService.open(content, { centered: true });
-    }
- 
-  
-    idAgence: any;
+
+
+
+  }
+
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
+  }
+
+
+  idAgence: any;
 
 
   ngOnInit(): void {
@@ -145,11 +146,11 @@ export class DescriptionAgenceImmobComponent implements OnInit {
       for (let linkBook of this.Magazine) {
         if (linkBook.id === 3933) {
           this.linkFBook = linkBook.flip_book_link
-       
+
         }
       }
       this.firstMagazin = this.Magazine[0]
-// console.log("magazine text",this.firstMagazin)
+      // console.log("magazine text",this.firstMagazin)
     });
     this.idAgence = this.meilleursBiens.getIdAgency();
     this.Id()
@@ -161,37 +162,37 @@ export class DescriptionAgenceImmobComponent implements OnInit {
       Email: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
       description: new FormControl('', [Validators.required]),
     });
-   
-    this.idsousBiens= this.activatedRoute.snapshot.paramMap.get('id')
-    
-    this.biensImoobService.getSousBiensById(this.idsousBiens).subscribe((data:any) => {
+
+    this.idsousBiens = this.activatedRoute.snapshot.paramMap.get('id')
+
+    this.biensImoobService.getSousBiensById(this.idsousBiens).subscribe((data: any) => {
       this.sousBiens = data;
       this.BienId = data.biens;
       this.categoryList = this.sousBiens.categoryList;
       this.sousServices = this.sousBiens?.imagesList;
 
       this.filteredSousServices = this.sousServices; // Show all initially
-      console.log(' sssssssssssssssssssssssssssssssssss',this.sousBiens,this.filteredSousServices)
+      console.log(' sssssssssssssssssssssssssssssssssss', this.sousBiens, this.filteredSousServices)
       // console.log(this.sousBiens.imagesList[0])
       // console.log(this.sousBiens)
     });
-    
-  ///methode1:
-  // this.router.events.subscribe((evt) => {
-  //   if (!(evt instanceof NavigationEnd)) {
-  //       return;
-  //   }
-  //    window.scrollTo({ top: 250, behavior: 'auto' }); 
-  
-  //    });
-//methode2:
-  // const element = document.getElementById("box");
-  // element.scrollIntoView({ block: "start", behavior: "auto" });
+
+    ///methode1:
+    // this.router.events.subscribe((evt) => {
+    //   if (!(evt instanceof NavigationEnd)) {
+    //       return;
+    //   }
+    //    window.scrollTo({ top: 250, behavior: 'auto' }); 
+
+    //    });
+    //methode2:
+    // const element = document.getElementById("box");
+    // element.scrollIntoView({ block: "start", behavior: "auto" });
   }
-  
 
 
- 
+
+
 
   onSubmit(FormData) {
     console.log(FormData)
@@ -223,14 +224,14 @@ export class DescriptionAgenceImmobComponent implements OnInit {
     const mobileScreenWidth = 768;
     return window.innerWidth < mobileScreenWidth;
   }
-  Id(){
-    this.agencieService.getAgencieById(this.idAgence).subscribe((data:any) => {
-      this.biens=data?.biens
+  Id() {
+    this.agencieService.getAgencieById(this.idAgence).subscribe((data: any) => {
+      this.biens = data?.biens
       this.agenceName = data?.name
-      this.Bien=data
-      this.AgencyEmail=this.Bien.email
+      this.Bien = data
+      this.AgencyEmail = this.Bien.email
       console.log(this.biens);
-      this.Agency=data
+      this.Agency = data
       this.setSharedVariable()
     })
   }
@@ -250,7 +251,7 @@ export class DescriptionAgenceImmobComponent implements OnInit {
     const projectId = project?.sous_biens[0]?.id;
 
     // Navigate to the specified route
-   
+
     this.router.navigate(['/descriptionAgence_Immob', projectId])
       .then(() => {
         // If navigation is successful, call the refresh function
@@ -290,37 +291,37 @@ export class DescriptionAgenceImmobComponent implements OnInit {
     // console.log("this data", data); 
     //  this.message ="data sended successfully"
   }
-  cons(){
+  cons() {
     // console.log("data is empty")
   }
-  filterSousCategorie(event : any)  {
-    
+  filterSousCategorie(event: any) {
+
     console.log(this.selectedSousCategorie)
-  
-    if(this.selectedSousCategorie){
-  
-    this.ServicesDivers =  this.filtredServicesDivers2.filter((item : any) => item.sous_categorie ==  this.selectedSousCategorie.value);
-    // console.log(this.selectedSousCategorie.value)
-    }else{
-     this.ServicesDivers = this.filtredServicesDivers1
+
+    if (this.selectedSousCategorie) {
+
+      this.ServicesDivers = this.filtredServicesDivers2.filter((item: any) => item.sous_categorie == this.selectedSousCategorie.value);
+      // console.log(this.selectedSousCategorie.value)
+    } else {
+      this.ServicesDivers = this.filtredServicesDivers1
     }
   }
-  
-  
+
+
   filterServices(category: string): void {
     this.filteredSousServices = this.sousServices.filter(sous_service => sous_service.category === category);
   }
   displayModal: boolean = false; // Controls modal visibility
 
   // Function to open the modal and display the clicked image
-  openModal(imageUrl: string) {
+  openModal1(imageUrl: string) {
     this.selectedImage = imageUrl;
     this.displayModal = true;
   }
   zoomLevel: number = 1;          // Zoom level factor
   zoomStyle: string = '';         // Zoom style string for image
-   // Method to zoom in the image
-   zoomIn() {
+  // Method to zoom in the image
+  zoomIn() {
     this.zoomLevel += 0.1;
     this.updateZoomStyle();
   }
@@ -346,7 +347,7 @@ export class DescriptionAgenceImmobComponent implements OnInit {
 
   }
   emailSource: string = '';
-  emailDest:  any = '';
+  emailDest: any = '';
   subject: string = '';
   message: string = '';
   senderEmail() {
@@ -358,7 +359,7 @@ export class DescriptionAgenceImmobComponent implements OnInit {
       subject: this.subject,
       message: `${this.message}\n\nFrom: ${this.emailSource}`
     };
-  
+
     // Check if any of the required fields are empty
     if (!data.emailsource || !data.emaildest || !data.subject || !this.message) {
       Swal.fire({
@@ -369,7 +370,7 @@ export class DescriptionAgenceImmobComponent implements OnInit {
       });
       return; // Stop further execution if form is incomplete
     }
-  
+
     // If the form is valid, send the email
     this.http.post('https://contact-tunimmob.vercel.app/boutiques/SendEmail', data)
       .subscribe({
@@ -378,15 +379,17 @@ export class DescriptionAgenceImmobComponent implements OnInit {
             title: 'Success!',
             text: "L'email a été envoyé avec succès.",
             icon: 'success',
-            confirmButtonText: 'Fermer'
+            timer: 1000,  // Closes after 3 seconds
+            timerProgressBar: true  // Shows a p
           });
           console.log('Email sent successfully!', response);
-          
+
           // Reset form fields
           this.emailSource = '';
           this.emailDest = '';
           this.subject = '';
           this.message = '';
+          this.closeModal()
         },
         error: (error) => {
           Swal.fire({
@@ -399,10 +402,22 @@ export class DescriptionAgenceImmobComponent implements OnInit {
         }
       });
   }
-  
+
   isValidEmail(email: string): boolean {
     const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return pattern.test(email);
   }
+  openModal(content: any) {
+    this.modalRef = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+  }
 
+  closeModal() {
+    if (this.modalRef) {
+      this.modalRef.close();
+      this.modalRef = null; // Reset after closing
+      // console.log('Modal closed successfully.');
+    } else {
+      // console.log('Modal reference is undefined; modal might not have been opened.');
+    }
+  }
 }

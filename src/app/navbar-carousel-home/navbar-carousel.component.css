@@ -830,4 +830,16 @@ ngb-carousel:focus {
 		opacity: 0;
 		transition: opacity 0.2s ease-in-out;
 	  }
-	  
+	  .picsum-img-wrapper {
+		 /* Default height */
+		 height: initial; /* Set height to zero on mobile */
+
+	}
+	
+	/* Mobile-specific styling */
+	@media (max-width: 768px) { /* Adjust max-width as needed for your mobile breakpoint */
+		.picsum-img-wrapper {
+			height: 127px;
+		}
+	}
+	

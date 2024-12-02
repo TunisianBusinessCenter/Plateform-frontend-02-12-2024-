@@ -7,7 +7,7 @@ import { CommerceServiceService } from '../commerce-service-agency/commerce-serv
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AgenceMatService } from '../agence/agence-mat/agence-mat.service';
 interface SousCat {
   name: string,
@@ -20,8 +20,8 @@ interface SousCat {
   styleUrls: ['./details-services.component.css']
 })
 export class DetailsServicesComponent implements OnInit {
-  @ViewChild("myElem") MyProp: ElementRef;
-
+@ViewChild("myElem") MyProp: ElementRef;
+private modalRef: NgbModalRef | null = null; // Initialize as null
 public AllAgency:any
 public idService:any
 public Service:any
@@ -91,6 +91,8 @@ public Service:any
     this.agencieService.getAgencieById(this.idAgence).subscribe((data:any) => {
 
       this.CommerceServiceAgency = data;
+      this.AgencyEmail =this.CommerceServiceAgency.email
+
       console.log(this.CommerceServiceAgency)
       this.urlSafe= this.sanitizer.bypassSecurityTrustResourceUrl(this.CommerceServiceAgency.videoUrl2);
       this.urlSafe1= this.CommerceServiceAgency?.services
@@ -114,7 +116,6 @@ public Service:any
       this.filteredSousServices = this.sousServices; // Show all initially
       console.log(data)
       this.Service = data;
-      this.AgencyEmail =this.Service.email
       this.categoryList = data.categoryList;
       this.sousServices = data.sous_services;
 
@@ -270,7 +271,8 @@ public Service:any
             title: 'Success!',
             text: "L'email a été envoyé avec succès.",
             icon: 'success',
-            confirmButtonText: 'Fermer'
+            timer: 1000,  // Closes after 3 seconds
+            timerProgressBar: true  // Shows a progress bar
           });
           console.log('Email sent successfully!', response);
           
@@ -279,6 +281,7 @@ public Service:any
           this.emailDest = '';
           this.subject = '';
           this.message = '';
+          this.closeModal()
         },
         error: (error) => {
           Swal.fire({
@@ -298,5 +301,18 @@ public Service:any
   }
   openVerticallyCentered(content) {
     this.modalService.open(content, { centered: true });
+  }
+  openModal(content: any) {
+    this.modalRef = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+  }
+  
+  closeModal() {
+    if (this.modalRef) {
+      this.modalRef.close();
+      this.modalRef = null; // Reset after closing
+      // console.log('Modal closed successfully.');
+    } else {
+      // console.log('Modal reference is undefined; modal might not have been opened.');
+    }
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { DomSanitizer } from '@angular/platform-browser';
 import Swal from 'sweetalert2';
@@ -18,6 +18,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./promoteur-immobiliers.component.css']
 })
 export class PromoteurImmobiliersComponent implements OnInit {
+  private modalRef: NgbModalRef | null = null; // Initialize as null
   idAgency: any;
   Agency: any;
   AgencyBaniere: any;
@@ -31,9 +32,18 @@ export class PromoteurImmobiliersComponent implements OnInit {
   AgencyEmail: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource: MatTableDataSource<any>;
-
-  constructor(private http: HttpClient, private PromoteurImmobilier: PromoteurImmobiliersService, private sanitizer: DomSanitizer, private activatedRoute: ActivatedRoute, private agencieService: AgenciesService, private modalService: NgbModal, private breakpointObserver: BreakpointObserver,
+  list: any;
+  routerSubscription: any;
+ private parseDate(dateString: string): Date {
+    const [day, month, year, time] = dateString.split(/\/|\s/);
+    const [hour, minute, second] = time.split(':');
+  
+    // Month is 0-indexed in JavaScript Date, so subtract 1 from the month
+    return new Date(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute), Number(second));
+  }
+  constructor(private router:Router, private http: HttpClient, private PromoteurImmobilier: PromoteurImmobiliersService, private sanitizer: DomSanitizer, private activatedRoute: ActivatedRoute, private agencieService: AgenciesService, private modalService: NgbModal, private breakpointObserver: BreakpointObserver,
   ) {
+    
     this.breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
       this.isMobile = result.matches;
     });
@@ -44,7 +54,18 @@ export class PromoteurImmobiliersComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.Agency?.projets);
       this.dataSource.paginator = this.paginator;
       this.Agency = data;
-      // console.log(this.Agency)
+      this.list = this.Agency?.projets;
+  
+      // Sort the projets array by createdAt
+      if (this.list) {
+        this.list.sort((a, b) => {
+          const createdAtA = this.parseDate(a.createdAt);
+          const createdAtB = this.parseDate(b.createdAt);
+  
+          return createdAtA.getTime() - createdAtB.getTime();
+        });
+      }
+      
       this.AgencyEmail = this.Agency.email
       this.facebook_url = this.Agency.facebook_url
 
@@ -63,7 +84,19 @@ export class PromoteurImmobiliersComponent implements OnInit {
     this.setSharedVariable();
     this.PromoteurImmobiliers()
   }
+ 
+
+  loadingLogo = true;
   ngOnInit(): void {
+    if (this.Agency?.logo_url) {
+      // Simulate image loading
+      const img = new Image();
+      img.src = this.Agency?.logo_url;
+      img.onload = () => {
+        this.loadingLogo = false;
+      };
+    
+  }
     this.PromoteurImmobiliers()
   }
   showMaximizableDialog() {
@@ -84,25 +117,6 @@ export class PromoteurImmobiliersComponent implements OnInit {
   showMaximizableDialog1() {
     this.displayMaximizable = true;
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -154,7 +168,8 @@ export class PromoteurImmobiliersComponent implements OnInit {
             title: 'Success!',
             text: "L'email a été envoyé avec succès.",
             icon: 'success',
-            confirmButtonText: 'Fermer'
+            timer: 1000,  // Closes after 3 seconds
+            timerProgressBar: true  // Shows a progress bar
           });
           // console.log('Email sent successfully!', response);
 
@@ -163,6 +178,7 @@ export class PromoteurImmobiliersComponent implements OnInit {
           this.emailDest = '';
           this.subject = '';
           this.message = '';
+          this.closeModal()
         },
         error: (error) => {
           Swal.fire({
@@ -180,5 +196,17 @@ export class PromoteurImmobiliersComponent implements OnInit {
     const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return pattern.test(email);
   }
-
+  openModal(content: any) {
+    this.modalRef = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+  }
+  
+  closeModal() {
+    if (this.modalRef) {
+      this.modalRef.close();
+      this.modalRef = null; // Reset after closing
+      // console.log('Modal closed successfully.');
+    } else {
+      // console.log('Modal reference is undefined; modal might not have been opened.');
+    }
+  }
 }

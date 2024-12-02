@@ -1,51 +1,59 @@
-<div id="content">
+<div>
 	<app-navbar-carousel-home></app-navbar-carousel-home>
 	<app-sidebar></app-sidebar>
 	<div class="allAgSearch">
 
 	</div>
 
-	<main id="content">
-		<div *ngIf="Magazine" class="box">
-			<div class="slick-slider arrows-inner nobile-bold-itali"
-				data-slick-options='{"slidesToShow": 3,"autoplay":false,"dots":true,"arrows":true,"responsive":[{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
-				<p-carousel *ngIf="Magazine" [value]="Magazine" [numVisible]="4" [numScroll]="4" [circular]="true"
-					[responsiveOptions]="responsiveOptions" styleClass="custom-carousel">
-					<ng-template let-AgencyMagazine pTemplate="item">
-						<div class="product-item">
-							<div class="product-item-content">
-								<div>
-							
-									<span *ngIf="AgencyMagazine?.name" style="margin-left: 0%; margin-bottom: 2%"
-										class="badge badge-indigo">
-										Edition : {{AgencyMagazine?.name}}
-									</span>
-							&nbsp;		
-									<span *ngIf="AgencyMagazine?.name" style="background: darkblue;margin-left: 0%; margin-bottom: 2%"
-									class="badge badge-indigo">
-									
-										 <span>Téléch.{{AgencyMagazine?.nbr_telechargement}}</span>
-								
-								</span>
-
-									<div class="mb-3">
-										<img src={{AgencyMagazine?.imageUrl}} class="image" alt="The third slider"
-											class="product-image">
-									</div>
+	<main id="content" id="content">
+		<div class="box">
+			<!-- div 1 (dynamic) or div 2 (static) -->
+			<div *ngIf="isDataLoaded; else staticDiv">
+				<div class="slick-slider arrows-inner nobile-bold-itali"
+					data-slick-options='{"slidesToShow": 3,"autoplay":false,"dots":true,"arrows":true,"responsive":[{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
+					<p-carousel  [value]="dynamicData" [numVisible]="4" [numScroll]="4" [circular]="true"
+						[responsiveOptions]="responsiveOptions" styleClass="custom-carousel">
+						<ng-template let-item pTemplate="item">
+							<div class="product-item">
+								<div class="product-item-content">
 									<div>
-										<!-- href="{{AgencyMagazine?.url}}" -->
-										<a target="_blank" type="submit"
-											style="margin-top: 2%; text-decoration:none;margin-top: -9px;margin-bottom: 20px;font-weight: 600;"
-											class="btn btn-primary " href="{{AgencyMagazine?.download_link}}">
-											Télecharger &nbsp; <i class="fa fa-download" aria-hidden="true"
-												style="margin-top: 3px;"></i>
-										</a>
-											<!-- <a type="submit"
-											style="color: white; margin-top: 2%; text-decoration: none; margin-top: -9px; margin-bottom: 3px; font-weight: 800; background-color: #8B0000; border: none;"
-											class="btn btn-primary">
-											N. Télechargement :{{AgencyMagazine?.nbr_telechargement}}
-										</a> -->
-										<a type="submit" style="text-decoration: none;
+
+										<span *ngIf="item?.name" style="margin-left: 0%; margin-bottom: 2%"
+											class="badge badge-indigo">
+											Edition : {{item?.name}}
+										</span>
+										&nbsp;
+									
+											<span style="background: darkblue;margin-left: 0%; margin-bottom: 2%"
+											class="badge ">Téléch.{{item?.nbr_telechargement}}</span>
+
+										<div class="mb-3">
+											<img  [class.loading]="isLoading1"
+											(load)="imageLoaded()" [src]="item?.imageUrl" class="product-image" alt="Dynamic content">
+											
+<style>
+	.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  transition: filter 0.5s ease;
+}
+
+.product-image.loading {
+  filter: blur(10px);
+}
+
+</style>											  
+										</div>
+										<div>
+											<a target="_blank" class="btn btn-primary" [href]="item?.download_link">
+												Télecharger &nbsp; <i class="fa fa-download" aria-hidden="true"></i>
+											</a>&nbsp;
+											<a type="submit" style="text-decoration: none;
 										margin-top: -9px;
 										/* font-size: 14px; */
 										display: flex;
@@ -60,66 +68,143 @@
 
 											LE TOP DES ANNONCES &nbsp;<span>IMMOBILIÈRES</span>
 										</a>
-
-
-									
+										</div>
 									</div>
-
 								</div>
-
 							</div>
-
-						</div>
-
-					</ng-template>
-				</p-carousel>
-
-
+						</ng-template>
+					</p-carousel>
+				</div>
 			</div>
 
-		</div>
-		<div *ngIf="!Magazine" class="box">
-			<div class="slick-slider arrows-inner nobile-bold-itali"
-				data-slick-options='{"slidesToShow": 3,"autoplay":false,"dots":true,"arrows":true,"responsive":[{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
-				<p-carousel [value]="[
-				{name: 'Magazine Name ', imageUrl: 'assets/empty.png', download_link: 'url_to_download1', nbr_telechargement: 000},
-				{name: 'Magazine Name ', imageUrl: 'assets/empty.png', download_link: 'url_to_download2', nbr_telechargement: 000},
-				{name: 'Magazine Name ', imageUrl: 'assets/empty.png', download_link: 'url_to_download3', nbr_telechargement: 000},
-				{name: 'Magazine Name ', imageUrl: 'assets/empty.png', download_link: 'url_to_download3', nbr_telechargement: 000}
-			]" [numVisible]="4" [numScroll]="4" [circular]="true" [responsiveOptions]="responsiveOptions"
-					styleClass="custom-carousel">
-					<ng-template let-staticItem pTemplate="item">
-						<div class="product-item">
-							<div class="product-item-content">
-								<div>
-									<span style="margin-left: 0%; margin-bottom: 2%" class="badge badge-indigo">
-										Edition : {{staticItem.name}}
-									</span>
-									<div class="mb-3">
-										<img src="{{staticItem.imageUrl}}" class="image" alt="The third slider"
-											class="product-image">
-									</div>
+			<!-- Static div (shown when data is not loaded) -->
+			<ng-template #staticDiv>
+				<div class="slick-slider arrows-inner nobile-bold-itali"
+					data-slick-options='{"slidesToShow": 3,"autoplay":false,"dots":true,"arrows":true,"responsive":[{"breakpoint": 768,"settings": {"slidesToShow": 2}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'>
+					<p-carousel [value]="[{
+						name: 'Magazine Name ', imageUrl: 'assets/empty.png', download_link: 'url_to_download1', nbr_telechargement: 000},
+						{name: 'Magazine Name ', imageUrl: 'assets/empty.png', download_link: 'url_to_download2', nbr_telechargement: 000},
+						{name: 'Magazine Name ', imageUrl: 'assets/empty.png', download_link: 'url_to_download3', nbr_telechargement: 000},
+						{name: 'Magazine Name ', imageUrl: 'assets/empty.png', download_link: 'url_to_download3', nbr_telechargement: 000}
+					]" [numVisible]="4" [numScroll]="4" [circular]="true" [responsiveOptions]="responsiveOptions"
+						styleClass="custom-carousel">
+						<ng-template let-item pTemplate="item">
+							<div class="product-item skeleton-loader">
+								<div class="product-item-content">
 									<div>
-										<a target="_blank" type="submit"
-											style="margin-top: 2%; text-decoration:none;margin-top: -9px;margin-bottom: 20px;font-weight: 600;"
-											class="btn btn-primary">
-											Télecharger &nbsp; <i class="fa fa-download" aria-hidden="true"
-												style="margin-top: 3px;"></i>
-										</a>
-										<a type="submit"
-											style="margin-top: 2%; text-decoration: none; margin-top: -9px; margin-bottom: 3px; font-weight: 800; background-color: #8B0000; border: none;"
-											class="btn btn-primary">
-											N. Télechargement &nbsp;: {{staticItem.nbr_telechargement}}
-										</a>
+										<span class="badge badge-indigo skeleton-text">Edition: Loading...</span>
+										<div class="mb-3">
+											<div class="skeleton-image"></div>
+										</div>
+										<div>
+											<a class="btn btn-primary skeleton-btn">Télécharger&nbsp; <i
+													class="fa fa-download" aria-hidden="true"></i></a>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</ng-template>
-				</p-carousel>
-			</div>
+						</ng-template>
+					</p-carousel>
+				</div>
+			</ng-template>
 		</div>
+		<style>
+			/* Skeleton loader styles */
+			.skeleton-loader {
+				opacity: 0.7;
+			}
 
+			.skeleton-text,
+			.skeleton-image,
+			.skeleton-btn {
+				background: linear-gradient(90deg, #dddddd8c 25%, #e0e0e000 50%, #f0f0f08a 75%);
+				background-size: 200% 100%;
+				animation: loading 1.5s infinite ease-in-out;
+			}
+
+			.skeleton-text {
+				height: 20px;
+				width: 100%;
+				margin-bottom: 8px;
+			}
+
+			.skeleton-image {
+				height: 150px;
+				width: 100%;
+				margin-bottom: 10px;
+				background-color: #e0e0e0;
+			}
+
+			.skeleton-btn {
+				/* height: 40px;
+				width: 80%; */
+				margin-bottom: 10px;
+				background-color: #e0e0e0;
+			}
+
+			@keyframes loading {
+				0% {
+					background-position: -200% 0;
+				}
+
+				100% {
+					background-position: 200% 0;
+				}
+			}
+		</style>
+
+		<style>
+			/* Skeleton loader styles */
+			.skeleton-loader {
+				opacity: 0.7;
+			}
+
+			.skeleton-text,
+			.skeleton-image,
+			.skeleton-btn {
+				background: linear-gradient(90deg, #dddddd8c 25%, #e0e0e000 50%, #f0f0f08a 75%);
+				background-size: 200% 100%;
+				animation: loading 1.5s infinite ease-in-out;
+			}
+
+			.skeleton-text {
+				height: 20px;
+				width: 100%;
+				margin-bottom: 8px;
+			}
+
+			.skeleton-image {
+				height: 350px;
+				width: 118%;
+				margin-left: -14px;
+				margin-bottom: 10px;
+			}
+
+			.skeleton-btn {
+				/* height: 40px;
+				width: 80%; */
+				margin-bottom: 10px;
+			}
+
+			@keyframes loading {
+				0% {
+					background-position: -200% 0;
+				}
+
+				100% {
+					background-position: 200% 0;
+				}
+			}
+
+			/* Additional styles to make skeleton look consistent */
+			.skeleton-loader .product-item-content>div {
+				margin: 10px;
+			}
+
+			.skeleton-btn:hover {
+				background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+			}
+		</style>
 
 
 
@@ -671,7 +756,3 @@
 				</div>
 
 			</div> -->
-
-
-
-			

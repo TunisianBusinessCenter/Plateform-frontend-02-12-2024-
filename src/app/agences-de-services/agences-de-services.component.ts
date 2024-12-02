@@ -53,6 +53,7 @@ export class AgencesDeServicesComponent implements OnInit {
     {name: 'Sociétés des Services', value: 'SocDesServices '},
   ];
   agencieCoffee: any;
+  ServiceSoc: any;
 
   constructor(private agenceServicesServices: AgenceServiceService,private as:AgenciesService) {
     this.responsiveOptions = [
@@ -134,8 +135,9 @@ export class AgencesDeServicesComponent implements OnInit {
       this.filtredServicesDivers2 = this.filtredServicesDivers;
     })
       
-    this.agenceServicesServices.getAgencieServicesDivers().subscribe((data: any) => {
-      this.ServicesDivers = data;
+    this.agenceServicesServices.getAgencieServiceSoc().subscribe((data: any) => {
+      this.ServiceSoc = data;
+      console.log("this.ServiceSoc",this.ServiceSoc)
       // console.log(this.ServicesDivers)
       this.filtredServicesDivers1= data
 
@@ -146,7 +148,7 @@ export class AgencesDeServicesComponent implements OnInit {
       
    
     this.agenceServicesServices.getAgencieBureauxDeEtudes().subscribe((data: any) => {
-      this.BureauxDeEtude = data;
+      this.BureauxDeEtude = data.reverse();
       // console.log(this.BureauxDeEtude)
     })
   }

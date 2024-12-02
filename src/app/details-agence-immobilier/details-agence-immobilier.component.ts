@@ -6,7 +6,7 @@ import { AgenceImmobilieresService } from '../services/agence-immob/agence-immob
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from '../services/contact/contact.service';
 import { PrimeNGConfig } from 'primeng-lts/api';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { SharedAgenceImmobilierService } from '../services/shared-agence-immobilier.service';
 import { AgenciesService } from '../services/agencies/agencies.service';
 import { MagazineService } from '../services/magazine/magazine.service';
@@ -24,7 +24,7 @@ interface Duree {
   styleUrls: ['./details-agence-immobilier.component.css']
 })
 export class DetailsAgenceImmobilierComponent implements OnInit {
-
+  private modalRef: NgbModalRef | null = null; // Initialize as null
   ServicesDivers: any;
   filtredServicesDivers2: any;
   filtredServicesDivers1: any;
@@ -369,7 +369,8 @@ export class DetailsAgenceImmobilierComponent implements OnInit {
             title: 'Success!',
             text: "L'email a été envoyé avec succès.",
             icon: 'success',
-            confirmButtonText: 'Fermer'
+            timer: 1000,  // Closes after 3 seconds
+            timerProgressBar: true  // Shows a progress bar
           });
           console.log('Email sent successfully!', response);
           
@@ -378,6 +379,7 @@ export class DetailsAgenceImmobilierComponent implements OnInit {
           this.emailDest = '';
           this.subject = '';
           this.message = '';
+          this.closeModal()
         },
         error: (error) => {
           Swal.fire({
@@ -395,5 +397,17 @@ export class DetailsAgenceImmobilierComponent implements OnInit {
     const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return pattern.test(email);
   }
-
+  openModal1(content: any) {
+    this.modalRef = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+  }
+  
+  closeModal() {
+    if (this.modalRef) {
+      this.modalRef.close();
+      this.modalRef = null; // Reset after closing
+      // console.log('Modal closed successfully.');
+    } else {
+      // console.log('Modal reference is undefined; modal might not have been opened.');
+    }
+  }
 }

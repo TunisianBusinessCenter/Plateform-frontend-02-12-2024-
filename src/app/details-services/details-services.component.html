@@ -1,74 +1,73 @@
 <!-- <div class="main-container" *ngIf="Agency?.role==='promoteur-immobilieres'"	 > -->
-  <div class="main-container">
-    <nav class="main-menu">
-      <style>
-        .banner {
-          text-align: center;
-          padding: 10px;
-          background-color: #434388;
-          /* Set your desired background color */
-          color: #fff;
-          /* Set the text color */
-          font-size: 16px;
-          /* Adjust the font size */
-        }
+<div class="main-container">
+  <nav class="main-menu">
+    <style>
+      .banner {
+        text-align: center;
+        padding: 10px;
+        background-color: #434388;
+        /* Set your desired background color */
+        color: #fff;
+        /* Set the text color */
+        font-size: 16px;
+        /* Adjust the font size */
+      }
+
+      .logo-container {
+        text-align: center;
+        padding: 10px;
+        border-radius: 5%;
+        overflow: hidden;
+        background-color: #fff;
+      }
+
+      .logo-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 40%;
+      }
+
+      .hr {
+        width: 20px;
+        height: 20px;
+        background-color: white;
+      }
+    </style>
+
+
+
+    <li>
+      <a>
+        <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+
+        <span class="nav-text">
+          <p>{{NameAgency}}</p>
+
+        </span>
+      </a>
+
+    </li>
+
+    <div>
   
-        .logo-container {
-          text-align: center;
-          padding: 10px;
-          border-radius: 5%;
-          overflow: hidden;
-          background-color: #fff;
-        }
-  
-        .logo-container img {
-          max-width: 100%;
-          height: auto;
-          border-radius: 40%;
-        }
-  
-        .hr {
-          width: 20px;
-          height: 20px;
-          background-color: white;
-        }
-      </style>
-  
-  
-  
-      <li>
-        <a>
-          <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
-  
-          <span class="nav-text">
-            <p>{{NameAgency}}</p>
-  
-          </span>
-        </a>
-  
-      </li>
-  
-      <div>
-        <hr>
-        <hr> <br>
-  
-        <ul>
-  
-  
-          <li>
-            <a (click)="backClicked()">
-              <i class="fa fa-home fa-2x"></i>
-              <span class="nav-text">
-                Page d'accueil
-              </span>
-            </a>
-          </li>
-          <li class="dropdown"  >
-            <a>
-              <i class="fa fa-book fa-2x"></i>
-              <span class="nav-text">Nos Services</span>
-            </a>
-            <!-- <div class="dropdown-content" >
+
+      <ul style="    margin-top: 159px;">
+
+
+        <li>
+          <a (click)="backClicked()">
+            <i class="fa fa-home fa-2x"></i>
+            <span class="nav-text">
+              Page d'accueil
+            </span>
+          </a>
+        </li>
+        <li class="dropdown">
+          <a>
+            <i class="fa fa-book fa-2x"></i>
+            <span class="nav-text">Nos Services</span>
+          </a>
+          <!-- <div class="dropdown-content" >
               <a *ngIf="ProjetEnCours.length > 0 || ServiceEnCours.length > 0">En cours</a>
     
               <div class="submenu" *ngFor="let project of ProjetEnCours">
@@ -89,140 +88,140 @@
               </div>
     
             </div> -->
-            <div class="dropdown-content">
-              <!-- <a *ngIf=" ServiceEnCours?.length > 0">Services</a> -->
-  
-              <div class="submenu" *ngFor="let project of CommerceServiceAgency?.services">
-  
-                <a style="background-color: #1e466e59;" (click)="navigateAndRefresh(project)">
-                  {{ project?.name }}
-  
-                </a>
-              </div>
-              <!-- <a *ngIf="ProjetDispo.length > 0 || ServiceDispo.length > 0">Disponible</a> -->
-  
+          <div class="dropdown-content">
+            <!-- <a *ngIf=" ServiceEnCours?.length > 0">Services</a> -->
+
+            <div class="submenu" *ngFor="let project of CommerceServiceAgency?.services">
+
+              <a style="background-color: #1e466e59;" (click)="navigateAndRefresh(project)">
+                {{ project?.name }}
+
+              </a>
             </div>
-  
-          </li>
-          <style>
-            .show-subnav {
-              display: block;
-            }
-          </style>
-  
-          <!-- <li>
+            <!-- <a *ngIf="ProjetDispo.length > 0 || ServiceDispo.length > 0">Disponible</a> -->
+
+          </div>
+
+        </li>
+        <style>
+          .show-subnav {
+            display: block;
+          }
+        </style>
+
+        <!-- <li>
             <a routerLink="/conception/ajouterConception">
               <i class="fa fa-plus fa-2x"></i>
               <span class="nav-text">Ajouter contenu </span>
             </a>
           </li> -->
-  
-          <li class="dropdown">
-            <a (click)="openVerticallyCentered(content)">
-              <i class="fa fa-envelope fa-2x"></i>
-              <span class="nav-text">Contacter nous</span>
-            </a>
-  
-          </li>
-  
-          <style>
-            /* Initially hide the dropdown content */
-            .dropdown-content {
-  
-              display: none;
-              position: absolute;
-              background-color: #1f1e84;
-              min-width: 42px;
-              width: 248px;
-              box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-              z-index: 5;
-  
-            }
-  
-            .dropdown-content>a {
-              margin: 0px 23px;
-              font-style: none;
-              transform-style: none;
-              color: yellow;
-            }
-  
-            /* Show the dropdown content when the parent is hovered */
-            .dropdown:hover .dropdown-content {
-              display: block;
-            }
-  
-            /* Style the dropdown options as blocks with margin */
-            .dropdown-content .submenu {
-              padding: 10px;
-              /* Adjust the padding as needed */
-            }
-  
-            .dropdown-content .submenu a {
-              display: block;
-              font-size: 9px;
-              width: 222px;
-              margin: -7px 11px;
-              padding: 10px;
-              text-decoration: none;
-              color: white;
-              background-color: rgb(10, 10, 211)e84;
-              transition: background-color 0.3s;
-              border: solid 1px rgb(255 255 255 / 16%);
-              border-radius: 7px;
-            }
-  
-            /* Add a little margin between the dropdown options */
-            .dropdown-content .submenu a+a {
-              margin-top: 5px;
-              /* Adjust the margin as needed */
-  
-            }
-  
-            /* Add hover effect */
-            .dropdown-content .submenu a {
-              font-size: 12px;
-              font-weight: bold;
-              transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
-            }
-  
+
+        <li class="dropdown">
+          <a (click)="openModal(content)">
+            <i class="fa fa-envelope fa-2x"></i>
+            <span class="nav-text">Contacter nous</span>
+          </a>
+
+        </li>
+
+        <style>
+          /* Initially hide the dropdown content */
+          .dropdown-content {
+
+            display: none;
+            position: absolute;
+            background-color: #e3b77b;
+            min-width: 42px;
+            width: 248px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 5;
+
+          }
+
+          .dropdown-content>a {
+            margin: 0px 23px;
+            font-style: none;
+            transform-style: none;
+            color: yellow;
+          }
+
+          /* Show the dropdown content when the parent is hovered */
+          .dropdown:hover .dropdown-content {
+            display: block;
+          }
+
+          /* Style the dropdown options as blocks with margin */
+          .dropdown-content .submenu {
+            padding: 10px;
+            /* Adjust the padding as needed */
+          }
+
+          .dropdown-content .submenu a {
+            display: block;
+            font-size: 9px;
+            width: 222px;
+            margin: -7px 11px;
+            padding: 10px;
+            text-decoration: none;
+            color: white;
+            background-color: rgb(10, 10, 211)e84;
+            transition: background-color 0.3s;
+            border: solid 1px rgb(255 255 255 / 16%);
+            border-radius: 7px;
+          }
+
+          /* Add a little margin between the dropdown options */
+          .dropdown-content .submenu a+a {
+            margin-top: 5px;
+            /* Adjust the margin as needed */
+
+          }
+
+          /* Add hover effect */
+          .dropdown-content .submenu a {
+            font-size: 12px;
+            font-weight: bold;
+            transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+          }
+
+          .dropdown-content .submenu a:hover {
+            font-size: 13px;
+            color: yellow;
+            border: solid 1px gray;
+            font-weight: 600;
+
+          }
+
+          @media only screen and (max-width: 767px) {
+
+
             .dropdown-content .submenu a:hover {
-              font-size: 13px;
-              color: yellow;
-              border: solid 1px gray;
-              font-weight: 600;
-  
+              transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
+              /* Add smooth transition for both background color and font size */
+
             }
-  
-            @media only screen and (max-width: 767px) {
-  
-  
-              .dropdown-content .submenu a:hover {
-                transition: background-color 0.2s ease, font-size 0.3s, text-align 0.1s ease;
-                /* Add smooth transition for both background color and font size */
-  
-              }
-            }
-          </style>
-  
-  
-  
-  
-  
-  
-          <li>
-            <a (click)="showMaximizableDialog()">
-              <i class="fa fa-info-circle fa-2x"></i>
-              <span class="nav-text">
-                A propos
-              </span>
-            </a>
-  
-          </li>
-  
-        </ul>
-      </div>
-  
-      <!-- <ul class="logout">
+          }
+        </style>
+
+
+
+
+
+
+        <li>
+          <a (click)="showMaximizableDialog()">
+            <i class="fa fa-info-circle fa-2x"></i>
+            <span class="nav-text">
+              A propos
+            </span>
+          </a>
+
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- <ul class="logout">
           <li>
              <a routerLink="conception/login">
                <i class="fa fa-power-off fa-2x"></i>
@@ -232,88 +231,94 @@
             </a>
           </li>  
         </ul> -->
-  
-    </nav>
-  
-  </div>
-  
-  
-  <app-navbar-carousel  ></app-navbar-carousel>
-  
-  
-  
-  
-  
-  <div class="responsive-container">
-  
-  
-    <div class="responsive">
-  
-  
-      <button style="    border-radius: 3px;" (click)="backClicked()" type="submit" class="btn animated-border-button    ">
-        <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
-        Retour
-      </button>
-  
-    
-  
-      <br>
-    
-    
-     
-    </div>
-  </div>
-  
-  <div class="" *ngIf="!Service?.name">
-    <div class="col-lg-5 " style="margin-top: 20px;">
-      <h2 class="text-heading nameProd" style="text-transform: uppercase;">
-       Nom du produit
-      </h2>
-      <hr class="hrstyle">
-    </div>
-  </div>
-  <div class="">
-    <div class="col-lg-5 " style="margin-top: 20px;">
-      <h2 class="text-heading nameProd" style="text-transform: uppercase;">
-        {{Service?.name}}
-      </h2>
-      <hr class="hrstyle">
-    </div>
-  </div>
 
-  <div class="category-carousel">
-    <div class="dropdown">
-      <select  id="main-select" (change)="filterServices($event.target.value)" class="category-select">
-        <option *ngFor="let category of categoryList" [value]="category">{{ category }}</option>
-      </select>
-    </div>
-    <!-- Select dropdown for mobile view -->
-    <!-- <select  id="main-select" (change)="filterServices($event.target.value)" class="category-select">
+  </nav>
+
+</div>
+
+
+<app-navbar-carousel></app-navbar-carousel>
+
+
+
+
+
+<div class="responsive-container">
+
+
+  <div class="responsive">
+
+
+    <button style="    border-radius: 3px;" (click)="backClicked()" type="submit"
+      class="btn animated-border-button    ">
+      <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
+      Retour
+    </button>
+
+
+
+    <br>
+
+
+
+  </div>
+</div>
+
+<div class="" *ngIf="!Service?.name">
+  <div class="col-lg-5 " style="margin-top: 20px;">
+    <h2 class="text-heading nameProd" style="text-transform: uppercase;">
+      Nom du produit
+    </h2>
+    <hr class="hrstyle">
+  </div>
+</div>
+<div class="">
+  <div class="col-lg-5 " style="margin-top: 20px;">
+    <h2 class="text-heading nameProd" style="text-transform: uppercase;">
+      {{Service?.name}}
+    </h2>
+    <hr class="hrstyle">
+  </div>
+</div>
+
+<div class="category-carousel">
+  <div class="dropdown">
+    <select id="main-select" (change)="filterServices($event.target.value)" class="category-select">
+      <option *ngFor="let category of categoryList" [value]="category">{{ category }}</option>
+    </select>
+  </div>
+  <!-- Select dropdown for mobile view -->
+  <!-- <select  id="main-select" (change)="filterServices($event.target.value)" class="category-select">
       <option *ngFor="let category of categoryList" [value]="category">{{ category }}</option>
     </select> -->
 
-    <!-- Buttons for larger screens -->
-    <div class="button-container">
-        <button *ngFor="let category of categoryList" 
-                (click)="filterServices(category)"
-                class="category-button">{{ category }}
-        </button>
-    </div>
+  <!-- Buttons for larger screens -->
+  <div class="button-container">
+    <button *ngFor="let category of categoryList" (click)="filterServices(category)" class="category-button">{{ category
+      }}
+    </button>
   </div>
+</div>
 
 <p-carousel [value]="filteredSousServices" numVisible="3" numScroll="1" [responsiveOptions]="responsiveOptions">
-    <ng-template pTemplate="item" let-sous_service>
-        <div class="sous-service-card">
-            <img [routerLink]="['/descriptionService', sous_service?.id]" [src]="sous_service.image_url" alt="{{ sous_service.name }}" class="sous-service-image" />
-            <h4 style="    font-family: revert;
+  <ng-template pTemplate="item" let-sous_service>
+    <div class="sous-service-card">
+      <img [routerLink]="['/descriptionService', sous_service?.id]" [src]="sous_service.image_url"
+        alt="{{ sous_service.name }}" class="sous-service-image" />
+      <h4 style="    font-family: revert;
             font-size: 14px;
             font-weight: bold;
           " class="py-2">{{ sous_service.name }}</h4>
-            <button [routerLink]="['/descriptionService', sous_service?.id]" class="btn btn-primary" style="background-color: #1f1e84;font-weight: bold;font-family: Arial, Helvetica, sans-serif;font-size: 12px;">PLUS DE DÉTAILS</button>
-        </div>
-    </ng-template>
+      <button [routerLink]="['/descriptionService', sous_service?.id]" class="btn btn-primary" style="    background-color: #e3b77b;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            color: #5A3E2B;
+            border: none;">PLUS DE DÉTAILS</button>
+    </div>
+  </ng-template>
 </p-carousel>
-     
+
 <!-- 
 
 <section class="image-section" style="      margin-bottom: 60px;
@@ -382,7 +387,7 @@ margin-left: 53px;
   }
 </style>
 <style>
-    .category-carousel {
+  .category-carousel {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -391,43 +396,45 @@ margin-left: 53px;
     width: 77%;
     margin-left: 64px;
     flex-direction: column;
-}
+  }
 
-/* Select dropdown - visible on mobile */
-.category-select {
+  /* Select dropdown - visible on mobile */
+  .category-select {
     padding: 10px 15px;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     cursor: pointer;
-    display: none; /* Hidden by default on larger screens */
-}
+    display: none;
+    /* Hidden by default on larger screens */
+  }
 
-/* Buttons - visible on larger screens */
-.button-container {
-  display: flex;
-  gap: 22px;
-  margin-left: 28px;
-  /* flex-direction: row; */
+  /* Buttons - visible on larger screens */
+  .button-container {
+    display: flex;
+    gap: 22px;
+    margin-left: 28px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 
-}
+  .category-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #5A3E2B;
+    background-color: #e3b77b;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
 
-.category-button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  color: white;
-  background-color: #1f1e84;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-/*   
+  /*   
 .category-button:hover {
     background-color: #e0e0e0;
 } */
 
-.sous-service-card {
+  .sous-service-card {
     padding: 15px;
     height: auto;
     margin-left: 13px;
@@ -436,30 +443,31 @@ margin-left: 53px;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-}
+  }
+
   /* .sous-service-card:hover {
     transform: translateY(-5px);
 } */
 
-.sous-service-image {
+  .sous-service-image {
     width: 100%;
     height: auto;
     border-radius: 5px;
     margin-bottom: 10px;
-}
+  }
 
-/* Media query for mobile view */
-@media only screen and (max-width: 768px) {
+  /* Media query for mobile view */
+  @media only screen and (max-width: 768px) {
+
     /* Show select dropdown and hide buttons on mobile */
     .category-select {
-        display: block;
+      display: block;
     }
 
     .button-container {
-        display: none;
+      display: none;
     }
-}
-
+  }
 </style>
 
 
@@ -597,154 +605,156 @@ margin-left: 53px;
 
 
 
-  
-    <div >
-  
-      <div>
-  
-  
-      </div>
-  
-      <section style="margin: 0px 28px 0 28px;">
-  
-        <div class="container">
-          <div class="background-vd">
-            <iframe *ngIf="urlSafe" class="promoVideo"  [src]="urlSafe"></iframe>
-  
-            <img *ngIf="!urlSafe" class="promoVideo"
-              src="assets/v3.jpg" alt="Placeholder Image">
-            <!-- Placeholder image if no video is available -->
-          </div>
-        </div>
-      </section>
-    </div>
-  
-  
-    <ng-template #content let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
-        <a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
-      </div>
-      <div class="modal-body">
-        <form (ngSubmit)="senderEmail()">
-          <div class="cardModal">
-            <div>
-              <label for="email" class="textInput">Email:</label>
-              <input class="form-control inputDevis" type="email" id="emailSource" [(ngModel)]="emailSource" name="emailSource" required placeholder="Votre email"/>
-              <div class="send-button" style="color: #8b0000;" *ngIf="emailSource && !isValidEmail(emailSource)" class="error">
-                S'il vous plaît, mettez une adresse email valide.
-                </div>
-            </div><br>
-            <div>
-              <label for="Nom" class="textInput">Objet:</label>
-              <input class="form-control inputDevis" type="text" id="subject" [(ngModel)]="subject" name="subject" required  placeholder="objet"/>
 
-            </div> <br>
-            <label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
-            <textarea style="height: 168px;" class="form-control inputDevis" id="message" [(ngModel)]="message" name="message" required placeholder="message ..."></textarea>
-            <br>
-            <!-- <div *ngFor="let agencies of Agency">
+<div>
+
+  <div>
+
+
+  </div>
+
+  <section style="margin: 0px 28px 0 28px;">
+
+    <div class="container">
+      <div class="background-vd">
+        <iframe *ngIf="urlSafe" class="promoVideo" [src]="urlSafe"></iframe>
+
+        <img *ngIf="!urlSafe" class="promoVideo" src="assets/v3.jpg" alt="Placeholder Image">
+        <!-- Placeholder image if no video is available -->
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
+    <a class="pi pi-times closeButton" (click)="modal.dismiss('Cross click')"></a>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="senderEmail()">
+      <div class="cardModal">
+        <div>
+          <label for="email" class="textInput">Email:</label>
+          <input class="form-control inputDevis" type="email" id="emailSource" [(ngModel)]="emailSource"
+            name="emailSource" required placeholder="Votre email" />
+          <div class="send-button" style="color: #8b0000;" *ngIf="emailSource && !isValidEmail(emailSource)"
+            class="error">
+            S'il vous plaît, mettez une adresse email valide.
+          </div>
+        </div><br>
+        <div>
+          <label for="Nom" class="textInput">Objet:</label>
+          <input class="form-control inputDevis" type="text" id="subject" [(ngModel)]="subject" name="subject" required
+            placeholder="objet" />
+
+        </div> <br>
+        <label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
+        <textarea style="height: 168px;" class="form-control inputDevis" id="message" [(ngModel)]="message"
+          name="message" required placeholder="message ..."></textarea>
+        <br>
+        <!-- <div *ngFor="let agencies of Agency">
                     <div *ngFor="let categorie of agencies?.Services">
                         <div *ngFor="let categories of categorie?.categoryList"> -->
-            <!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
-            <div style="    display: flex;" class="example-button-row">
-              <button type="submit" class="btn btn-default"  style="border-color: #8B0000;
-              background-color: #8B0000; color:aliceblue"
-          >Envoyer</button>&nbsp;&nbsp;&nbsp;
-              <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
-                Fermer
-              </button>
-              <!-- </div>
+        <!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
+        <div style="    display: flex;" class="example-button-row">
+          <button type="submit" class="btn btn-default" style="border-color: #8B0000;
+              background-color: #8B0000; color:aliceblue">Envoyer</button>&nbsp;&nbsp;&nbsp;
+          <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+            Fermer
+          </button>
+          <!-- </div>
                         </div>
                     </div> -->
-  
-            </div>
-  
-          </div>
-  
-          <div class="modal-footer valider">
-  
-          </div>
-        </form>
+
+        </div>
+
       </div>
-    </ng-template>
-  
-  
-  
-  
-    <br>
-    <br>
-  
-  
-  
-    <div class="tunsian-flag-img-background">
-      
-      <div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
-    
-    
-        <div class="btn-group mr-2" role="group" aria-label="Third group">
-          <a [attr.href]="CommerceServiceAgency.facebook_url ? CommerceServiceAgency.facebook_url : null" target="_blank"
-            class="btn-hover-flag-img text-center" [ngClass]="{'disabled-btn': !CommerceServiceAgency.facebook_url}"
-            [attr.aria-disabled]="!CommerceServiceAgency.facebook_url ? 'true' : null"
-            [style.pointer-events]="!CommerceServiceAgency.facebook_url ? 'none' : 'auto'" style="line-height: 1.5;">
-            <span style="letter-spacing: 3px;"> <i class="fab fa-facebook" style="font-size: 18px;"></i>
-              <!-- Facebook Icon -->
-            </span>
-            <br>
-            <span style="letter-spacing: 3px;">PAGE FACEBOOK</span>
-          </a>
-        </div>
-    
-        <div class="btn-group mr-2" role="group " aria-label="First group ">
-          <a [attr.href]="CommerceServiceAgency.instagram_url" class="btn-hover-flag-img text-center " aria-selected="true "
-            style="line-height: 1.5" target="_blank"
-            aria-selected="true " style="line-height: 1.5" [ngClass]="{'disabled-btn': !CommerceServiceAgency.instagram_url}"
-            [attr.aria-disabled]="!CommerceServiceAgency.instagram_url ? 'true' : null"
-            [style.pointer-events]="!CommerceServiceAgency.instagram_url ? 'none' : 'auto'"
-            >
-            <span style="letter-spacing: 3px;"> <i class="fab fa-instagram" style="font-size: 18px;"></i>
-              <!-- Instagram Icon -->
-            </span>
-            <br>
-            <span style="letter-spacing: 3px;">NOTRE INSTAGRAM</span>
-          </a>
-        </div>
-        <style>
-          .disabled-btn {
-            opacity: 0.6;
-            cursor: not-allowed;
-    
-    
-          }
-        </style>
-        
-    
-        <div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="CommerceServiceAgency?.categorie!='coffee'">
-          <a [attr.href]="CommerceServiceAgency.linkedin_url" target="_blank" class="btn-hover-flag-img text-center "
-            aria-selected="true " style="line-height: 1.5" [ngClass]="{'disabled-btn': !CommerceServiceAgency.linkedin_url}"
-            [attr.aria-disabled]="!CommerceServiceAgency.linkedin_url ? 'true' : null"
-            [style.pointer-events]="!CommerceServiceAgency.linkedin_url ? 'none' : 'auto'">
-            <span style="letter-spacing: 3px;"><i class="fab fa-tiktok" style="font-size: 18px;"></i>
-              <!-- Instagram Icon --></span>
-            <br>
-            <span style="letter-spacing: 3px;">NOTRE TIKTOK</span>
-          </a>
-        </div>
-        <div class="btn-group mr-2 " role="group " aria-label="Third group ">
-          <a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
-            style="line-height: 1.5;">
-            <span style="letter-spacing: 3px;"> <i class="fas fa-phone-alt" style="font-size: 16px;"></i>
-              <!-- Contact Icon -->
-            </span>
-    
-    
-            <br>
-            <span style="letter-spacing: 3px;">
-              CONTACTEZ-NOUS
-            </span>
-          </a>
-        </div>
-        <!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
+
+      <div class="modal-footer valider">
+
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+
+
+
+<br>
+<br>
+
+
+
+<div class="tunsian-flag-img-background">
+
+  <div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
+
+
+    <div class="btn-group mr-2" role="group" aria-label="Third group">
+      <a [attr.href]="CommerceServiceAgency.facebook_url ? CommerceServiceAgency.facebook_url : null" target="_blank"
+        class="btn-hover-flag-img text-center" [ngClass]="{'disabled-btn': !CommerceServiceAgency.facebook_url}"
+        [attr.aria-disabled]="!CommerceServiceAgency.facebook_url ? 'true' : null"
+        [style.pointer-events]="!CommerceServiceAgency.facebook_url ? 'none' : 'auto'" style="line-height: 1.5;">
+        <span style="letter-spacing: 3px;"> <i class="fab fa-facebook" style="font-size: 18px;"></i>
+          <!-- Facebook Icon -->
+        </span>
+        <br>
+        <span style="letter-spacing: 3px;">PAGE FACEBOOK</span>
+      </a>
+    </div>
+
+    <div class="btn-group mr-2" role="group " aria-label="First group ">
+      <a [attr.href]="CommerceServiceAgency.instagram_url" class="btn-hover-flag-img text-center " aria-selected="true "
+        style="line-height: 1.5" target="_blank" aria-selected="true " style="line-height: 1.5"
+        [ngClass]="{'disabled-btn': !CommerceServiceAgency.instagram_url}"
+        [attr.aria-disabled]="!CommerceServiceAgency.instagram_url ? 'true' : null"
+        [style.pointer-events]="!CommerceServiceAgency.instagram_url ? 'none' : 'auto'">
+        <span style="letter-spacing: 3px;"> <i class="fab fa-instagram" style="font-size: 18px;"></i>
+          <!-- Instagram Icon -->
+        </span>
+        <br>
+        <span style="letter-spacing: 3px;">NOTRE INSTAGRAM</span>
+      </a>
+    </div>
+    <style>
+      .disabled-btn {
+        opacity: 0.6;
+        cursor: not-allowed;
+
+
+      }
+    </style>
+
+
+    <div class="btn-group mr-2" role="group " aria-label="First group "
+      *ngIf="CommerceServiceAgency?.categorie!='coffee'">
+      <a [attr.href]="CommerceServiceAgency.linkedin_url" target="_blank" class="btn-hover-flag-img text-center "
+        aria-selected="true " style="line-height: 1.5" [ngClass]="{'disabled-btn': !CommerceServiceAgency.linkedin_url}"
+        [attr.aria-disabled]="!CommerceServiceAgency.linkedin_url ? 'true' : null"
+        [style.pointer-events]="!CommerceServiceAgency.linkedin_url ? 'none' : 'auto'">
+        <span style="letter-spacing: 3px;"><i class="fab fa-tiktok" style="font-size: 18px;"></i>
+          <!-- Instagram Icon --></span>
+        <br>
+        <span style="letter-spacing: 3px;">NOTRE TIKTOK</span>
+      </a>
+    </div>
+    <div class="btn-group mr-2 " role="group " aria-label="Third group ">
+      <a (click)="openModal(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
+        style="line-height: 1.5;">
+        <span style="letter-spacing: 3px;"> <i class="fas fa-phone-alt" style="font-size: 16px;"></i>
+          <!-- Contact Icon -->
+        </span>
+
+
+        <br>
+        <span style="letter-spacing: 3px;">
+          CONTACTEZ-NOUS
+        </span>
+      </a>
+    </div>
+    <!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
             <a class="btn-hover-flag-img text-center " aria-selected="true "
               style="line-height: 1.5">
               <span>COMMERCES</span>
@@ -752,12 +762,12 @@ margin-left: 53px;
               <span> Services et Arts</span>
             </a>
           </div> -->
-      </div>
-    </div>
-    
-     <br>
-  
-    <!-- 
+  </div>
+</div>
+
+<br>
+
+<!-- 
   <div id="carouselExampleControls" class="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -972,25 +982,25 @@ margin-left: 53px;
     $(multipleItemCarousel).addClass("slide");
   }
   </script> -->
-  
-  
-    <p-dialog class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"
-      [style]="{width: '85vw', 'margin-left': '50px'}" [maximizable]="true" [baseZIndex]="10000" [draggable]="false"
-      [resizable]="false">
-      <div class="row modalTheme">
-        <div class="col-md-4">
-          <img class="rounded-lg border card-img-modal" src="" alt="Eco house company">
-        </div>
-        <div class="col-md-8">
-          <p class="scrollable-paragraph"> 
-  
-          </p>
-  
-        </div>
-      </div>
-  
-    </p-dialog>
-    <br>
+
+
+<p-dialog class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"
+  [style]="{width: '85vw', 'margin-left': '50px'}" [maximizable]="true" [baseZIndex]="10000" [draggable]="false"
+  [resizable]="false">
+  <div class="row modalTheme">
+    <div class="col-md-4">
+      <img class="rounded-lg border card-img-modal" src="" alt="Eco house company">
+    </div>
+    <div class="col-md-8">
+      <p class="scrollable-paragraph">
+
+      </p>
+
+    </div>
+  </div>
+
+</p-dialog>
+<br>
 
 
 
@@ -1030,124 +1040,123 @@ margin-left: 53px;
 
 
 
-    
-    <style>
-      :host ::ng-deep .mat-tab-header {
-        display: none;
-      }
 
-      .tabs-container {
-        margin-bottom: 20px;
-      }
+<style>
+  :host ::ng-deep .mat-tab-header {
+    display: none;
+  }
 
-      .horizontal-menu-container {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        margin-bottom: 10px;
-        flex-direction: row;
-        margin-left: 13px;
-        margin-top: 5px;
-      }
+  .tabs-container {
+    margin-bottom: 20px;
+  }
 
-      .horizontal-list {
-        list-style-type: none;
-        padding: 0;
-        display: flex;
-        margin: 0;
-      }
+  .horizontal-menu-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-direction: row;
+    margin-left: 13px;
+    margin-top: 5px;
+  }
 
-      .horizontal-list li {
-        margin-right: 10px;
-        padding: 10px 20px;
-        background-color: #0200b6;
-        color: white;
-        border-radius: 5px;
-        font-size: 13px;
-        cursor: pointer;
-        min-width: 246px;
-        transition: background-color 0.3s ease;
-        font-weight: 600;
-        text-align: center;
-      }
+  .horizontal-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    margin: 0;
+  }
 
-      .horizontal-list li:hover {
-        background-color: #000000;
-      }
+  .horizontal-list li {
+    margin-right: 10px;
+    padding: 10px 20px;
+    background-color: #e3b77b;
+    color: white;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    min-width: 246px;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+    text-align: center;
+  }
 
-      .dropdown {
-        display: none;
-      }
+  .horizontal-list li:hover {
+    background-color: #000000;
+  }
 
-      @media (max-width: 768px) {
-        .horizontal-list {
-          display: none;
-        }
+  .dropdown {
+    display: none;
+  }
 
-        .dropdown {
-          display: block;
-          position: relative;
-        }
+  @media (max-width: 768px) {
+    .horizontal-list {
+      display: none;
+    }
 
-        .dropdown select {
-          width: 100%;
-          padding: 14px 49px 14px 10px;
-          border: 2px solid white;
-          background-color: #0200b6;
-          color: #ffffff;
-          cursor: pointer;
-          font-size: 12px;
-          border-radius: 7px;
-          font-weight: 800;
-          min-width: 279px;
-          appearance: none;
-        }
+    .dropdown {
+      display: block;
+      position: relative;
+    }
 
-        .dropdown::after {
-          content: '▼';
-          position: absolute;
-          right: 22px;
-          top: 50%;
-          transform: translateY(-50%);
-          pointer-events: none;
-          color: #ffffff;
-          font-size: 16px;
-        }
+    .dropdown select {
+      width: 100%;
+      padding: 14px 49px 14px 10px;
+      border: 2px solid white;
+      background-color: #e3b77b;
+      color: #5A3E2B;
+      cursor: pointer;
+      font-size: 12px;
+      border-radius: 7px;
+      font-weight: 800;
+      min-width: 279px;
+      appearance: none;
+    }
 
-        .dropdown select option {
-          background-color: #0200b6;
-          padding: 5px;
-        }
+    .dropdown::after {
+      content: '▼';
+      position: absolute;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: #ffffff;
+      font-size: 16px;
+    }
 
-        #main-select option:nth-child(n+1) {
-          /* Styles for sub options */
-          color: white;
-          background-color: #0200b6;
-          margin-top: 5px;
-          text-align: left;
-        }
+    .dropdown select option {
+      background-color: #e3b77b;
+      padding: 5px;
+    }
 
-        .borderlist {
-          list-style-position: inside;
-          border: 1px solid black;
-        }
+    #main-select option:nth-child(n+1) {
+      /* Styles for sub options */
+      color: white;
+      background-color: #e3b77b;
+      margin-top: 5px;
+      text-align: left;
+    }
 
-        ul {
-          list-style-type: none;
-          /* Remove bullet points if desired */
-          padding: 0;
-          /* Remove default padding */
-        }
+    .borderlist {
+      list-style-position: inside;
+      border: 1px solid black;
+    }
 
-        li {
-          margin-bottom: 10px;
-          /* Adjust the spacing as needed */
-        }
+    ul {
+      list-style-type: none;
+      /* Remove bullet points if desired */
+      padding: 0;
+      /* Remove default padding */
+    }
 
-        li:last-child {
-          margin-bottom: 0;
-          /* Remove margin from the last item */
-        }
-      }
-    </style>
-    
+    li {
+      margin-bottom: 10px;
+      /* Adjust the spacing as needed */
+    }
+
+    li:last-child {
+      margin-bottom: 0;
+      /* Remove margin from the last item */
+    }
+  }
+</style>

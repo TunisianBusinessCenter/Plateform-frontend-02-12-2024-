@@ -5,13 +5,13 @@
 	cursor: pointer;
 	overflow: hidden;
 	outline: none;
-	color: #1f1e84;
+	color: #347aab;
 }
 
 .tunsian-flag-img-background .btn-hover-flag-img {
 	margin: 20px;
 	text-decoration: none;
-	background-color: #1f1e84;
+	background-color: #347aab;
 	color: #ffffff;
 	font-size: 16px;
 	padding: 10px 30px;
@@ -29,7 +29,7 @@
 }
 
 .tunsian-flag-img-background .btn-hover-flag-img:hover {
-	background-color: #1f1e84;
+	background-color: #347aab;
 	text-decoration: underline;
 }
 
@@ -99,7 +99,7 @@
 	/* outline-color: rgba(255, 255, 255, 0);
 	  outline-offset: 15px;
 	  text-shadow: 1px 1px 2px #427388; */
-	color: #1f1e84;
+	color: #347aab;
 	font-weight: 600;
 }
 
@@ -111,7 +111,7 @@
 
 .badge-primary {
 	color: #fff;
-	background-color: #3f51b5;
+	background-color: #347aab;
 	font-size: 15px;
 }
 
@@ -124,9 +124,9 @@
 }
 
 .hrstyle {
-	color: #3f51b5;
+	color: #347aab;
 	font-size: 18px;
-	border-top: 3px solid #3f51b5;
+	border-top: 3px solid #347aab;
 	border-radius: 5px;
 	width: 58px;
 	display: block;
@@ -168,8 +168,8 @@
 }
 
 .search {
-	background-color: #3f51b5;
-	border-color: #3f51b5;
+	background-color: #347aab;
+	border-color: #347aab;
 	height: 32px;
 	float: right;
 	width: 79px;
@@ -201,7 +201,7 @@
 }
 
 .villas:hover {
-	color: #1f1e84;
+	color: #347aab;
 	font-weight: 600;
 }
 
@@ -212,7 +212,7 @@
 
 
 .animated-border-button {
-	background-color: #3f51b5;
+	background-color: #347aab;
 	border: none;
 	outline: none;
 	position: relative;
@@ -240,13 +240,13 @@
 }
 
 .animated-border-button:before {
-	border-top: 2px solid #3f51b5;
+	border-top: 2px solid #347aab;
 	right: 0;
 	top: -4px;
 }
 
 .animated-border-button:after {
-	border-bottom: 2px solid #3f51b5;
+	border-bottom: 2px solid #347aab;
 	bottom: -4px;
 	left: 0;
 }
@@ -263,7 +263,7 @@
 	}
   } */
 .animated-border-button-pa {
-	background-color: #3f51b5;
+	background-color: #347aab;
 	border: none;
 	outline: none;
 	position: relative;
@@ -279,7 +279,7 @@
 }
 
 .animated-border-button-pa:hover {
-	background-color: #3f51b5;
+	background-color: #347aab;
 	border: none;
 	outline: none;
 	position: relative;
@@ -306,13 +306,13 @@
 }
 
 .animated-border-button-pa:before {
-	border-top: 2px solid #3f51b5;
+	border-top: 2px solid #347aab;
 	right: 0;
 	top: -4px;
 }
 
 .animated-border-button-pa:after {
-	border-bottom: 2px solid #3f51b5;
+	border-bottom: 2px solid #347aab;
 	bottom: -4px;
 	left: 0;
 }
@@ -422,7 +422,7 @@
 :host ::ng-deep .p-galleria .p-galleria-thumbnail-container {
 	background: #ffffff;
 	padding: 1rem 0rem;
-	margin: 0 -20px 0 -16px;
+	margin: 0 3px 0 14px;
 
 }
 
@@ -477,35 +477,36 @@
 		width: 120px;
 		margin-top: 5px;
 	}
+
 }
 
 @media only screen and (max-width: 700px) {
 	.animated-border-button {
-		background-color: #3f51b5;
-        border: none;
-        outline: none;
-        position: relative;
-        float: left;
-        color: #ffffff;
-        text-transform: initial;
-        font-size: 13px;
-        font-weight: 500;
-        border-radius: 0px;
-        margin-bottom: 16px;
-        height: 36px;
-        width: 118px;
-        margin-left: 0;
-        margin-top: 4px;
+		background-color: #347aab;
+		border: none;
+		outline: none;
+		position: relative;
+		float: left;
+		color: #ffffff;
+		text-transform: initial;
+		font-size: 13px;
+		font-weight: 500;
+		border-radius: 0px;
+		margin-bottom: 16px;
+		height: 36px;
+		width: 118px;
+		margin-left: 0;
+		margin-top: 4px;
 
 	}
 
 	:host ::ng-deep .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-prev {
-		background-color: #1f1e84a8;
+		background-color: #347aaba8;
 		color: #ffffff;
 		width: 2rem;
 		height: 2rem;
 		margin: 0 -22px 0 0;
-		margin: 0px -27px 0px 14px;
+		margin: 0px 2px 0px -13px;
 		ition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
 		border: solid 3px #ffffff;
 		z-index: 1;
@@ -513,8 +514,8 @@
 
 	:host ::ng-deep .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-next {
 		margin: 0.5rem;
-		background-color: #1f1e84a8;
-		margin: 0 18px 0 -24px;
+		background-color: #347aaba8;
+		margin: 0 0px 0 2px;
 		color: #ffffff;
 		width: 2rem;
 		height: 2rem;
@@ -651,7 +652,7 @@
 
 :host ::ng-deep.p-card-body {
 	height: 65px;
-	background-color: #1f1e84;
+	background-color: #347aab;
 	text-align: center;
 	color: white;
 }
@@ -713,6 +714,11 @@
 	.displayCard {
 		display: grid;
 		margin-top: -43px;
+		display: flex;
+		flex-direction: column;
+		align-content: stretch;
+		justify-content: flex-end;
+		flex-wrap: wrap;
 
 	}
 
@@ -722,7 +728,7 @@
 
 	:host ::ng-deep.p-card-body {
 		height: 45px;
-		background-color: #1f1e84;
+		background-color: #347aab;
 		text-align: center;
 	}
 
@@ -808,7 +814,7 @@
 
 	.p-card2 {
 		height: 33px;
-		width: 19rem;
+		width: auto;
 	}
 
 	.p-card3 {
@@ -1089,7 +1095,7 @@ nav.main-menu.expanded {
 }
 
 .main-menu {
-	background: #1f1e84;
+	background: #347aab;
 	border-right: 1px solid;
 	position: fixed;
 	/* top: 679px; */
@@ -1246,7 +1252,7 @@ nav.main-menu li.active>a,
   } */
 @media only screen and (max-width: 622px) {
 	.main-menu {
-		background: #1f1e84;
+		background: #347aab;
 		border-right: 1px solid;
 		position: fixed;
 		bottom: 0;
@@ -1416,4 +1422,20 @@ input:focus,
 textarea:focus {
 	color: rgba(139, 0, 0, 0.63);
 	outline: none;
+}
+
+.taill-galery {
+	width: 80px;
+	height: auto;
+}
+
+@media (max-width: 768px) {
+	.taill-galery {
+		width: 70px;
+	}
+}
+@media (max-width: 414px) {
+	.taill-galery {
+		width: 63px;
+	}
 }

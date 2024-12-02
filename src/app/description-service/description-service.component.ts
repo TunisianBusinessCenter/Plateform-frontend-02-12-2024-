@@ -2,7 +2,7 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import {Location} from '@angular/common';
 import { AgenceServiceService } from '../services/agence-service/agence-service.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AgenciesService } from '../services/agencies/agencies.service';
 import { CommerceServiceService } from '../commerce-service-agency/commerce-service.service';
@@ -17,6 +17,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DescriptionServiceComponent implements OnInit {
   @ViewChild("myElem") MyProp: ElementRef;
+  private modalRef: NgbModalRef | null = null; // Initialize as null
 
   public idSousService:any
   public SousService:any
@@ -149,7 +150,8 @@ export class DescriptionServiceComponent implements OnInit {
             title: 'Success!',
             text: "L'email a été envoyé avec succès.",
             icon: 'success',
-            confirmButtonText: 'Fermer'
+            timer: 1000,  // Closes after 3 seconds
+            timerProgressBar: true  // Shows a progress bar
           });
           console.log('Email sent successfully!', response);
           
@@ -158,6 +160,7 @@ export class DescriptionServiceComponent implements OnInit {
           this.emailDest = '';
           this.subject = '';
           this.message = '';
+          this.closeModal()
         },
         error: (error) => {
           Swal.fire({
@@ -195,5 +198,18 @@ export class DescriptionServiceComponent implements OnInit {
       // Set timeout to call the refresh function again after 2 seconds
   
     });
+  }
+  openModal(content: any) {
+    this.modalRef = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+  }
+  
+  closeModal() {
+    if (this.modalRef) {
+      this.modalRef.close();
+      this.modalRef = null; // Reset after closing
+      // console.log('Modal closed successfully.');
+    } else {
+      // console.log('Modal reference is undefined; modal might not have been opened.');
+    }
   }
 }

@@ -24,7 +24,10 @@ export class AppComponent implements OnInit {
   isLoading = true; // Initial loading state
 
   ngOnInit() {
-    
+    this.loader.loading$.subscribe((isLoading) => {
+  console.log('Loading State:', isLoading);
+});
+
     console.log(
       '%c 💻🔥 Douik Team Web 🔥💻', 
       'background: #f39d129a;; color: white; font-size: 20px; padding: 10px; border-radius: 5px; font-weight: bold; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);'
@@ -33,7 +36,7 @@ export class AppComponent implements OnInit {
       this.routerSubscription = this.router.events.subscribe((event) => {
         if (event instanceof NavigationEnd) {
           // Reset the scroll position to the top of the page
-          window.scrollTo(0, 0);
+          document.documentElement.scrollTop = 0; // Instantly scroll to top
         }
       });
   }

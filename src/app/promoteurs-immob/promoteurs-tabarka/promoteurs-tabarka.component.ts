@@ -39,6 +39,48 @@ export class PromoteursTabarkaComponent implements OnInit {
       }
     ];
   }
+  staticAgenciesTunis = [
+    {
+      name: 'Veuillez patienter...',
+      logo_url: 'assets/carousel.jpg',
+      region: 'Tabarka',
+      projets: 'static',
+      createdAt: '01/01/2020',
+      margin: ''
+    },
+    {
+      name: 'Veuillez patienter...',
+      logo_url: 'assets/carousel.jpg',
+      region: 'Tabarka',
+      projets: 'static',
+      createdAt: '02/01/2020',
+      margin: ''
+    },
+    {
+      name: 'Veuillez patienter...',
+      logo_url: 'assets/carousel.jpg',
+      region: 'Tabarka',
+      projets: 'static',
+      createdAt: '02/01/2020',
+      margin: ''
+    },
+    {
+      name: 'Veuillez patienter...',
+      logo_url: 'assets/carousel.jpg',
+      region: 'Tabarka',
+      projets: 'static',
+      createdAt: '02/01/2020',
+      margin: ''
+    },
+    {
+      name: 'Veuillez patienter...',
+      logo_url: 'assets/carousel.jpg',
+      region: 'Tabarka',
+      projets: 'static',
+      createdAt: '02/01/2020',
+      margin: ''
+    } 
+  ];
   searchText=""
   ngOnInit(): void {
     this.agencieService.getAgencieTabarka().subscribe((data:any)=>{
@@ -66,5 +108,9 @@ export class PromoteursTabarkaComponent implements OnInit {
   formatAgencyName(name: string): string {
     return name.replace(/\s+/g, '-');
 }
+isLoading1: boolean = true;
 
+imageLoaded() {
+  this.isLoading1 = false;
+}
 }

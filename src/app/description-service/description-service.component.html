@@ -49,10 +49,8 @@
           </li>
       
           <div>
-            <hr>
-            <hr> <br>
       
-            <ul>
+            <ul style="    margin-top: 159px;">
       
       
               <li>
@@ -118,7 +116,7 @@
               </li> -->
       
               <li class="dropdown">
-                <a (click)="openVerticallyCentered(content)">
+                <a (click)="openModal(content)">
                   <i class="fa fa-envelope fa-2x"></i>
                   <span class="nav-text">Contacter nous</span>
                 </a>
@@ -131,7 +129,7 @@
       
                   display: none;
                   position: absolute;
-                  background-color: #1f1e84;
+                  background-color: #e3b77b;
                   min-width: 42px;
                   width: 248px;
                   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -468,7 +466,7 @@
         </div>
     </ng-template>
     <br>
-    <button class="btn btnDevis" (click)="openVerticallyCentered(content)">
+    <button class="btn btnDevis" (click)="openModal(content)">
         <span>&nbsp; Demander un devis</span>
     </button>
 </div>
@@ -527,7 +525,7 @@
       </a>
     </div>
     <div class="btn-group mr-2 " role="group " aria-label="Third group ">
-      <a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
+      <a (click)="openModal(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
         style="line-height: 1.5;">
         <span style="letter-spacing: 3px;"> <i class="fas fa-phone-alt" style="font-size: 16px;"></i>
           <!-- Contact Icon -->

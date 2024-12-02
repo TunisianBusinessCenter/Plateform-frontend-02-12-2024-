@@ -7,7 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { MeilleursBiensService } from '../meilleurs-biens/meilleurs-biens.service';
 import { HttpClient } from '@angular/common/http';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-agence-immob',
@@ -15,7 +15,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./agence-immob.component.css']
 })
 export class AgenceImmobComponent implements OnInit {
-
+  private modalRef: NgbModalRef | null = null; // Initialize as null
   idAgency: any;
   Agency: any;
   AgencyBaniere: any;
@@ -150,7 +150,8 @@ export class AgenceImmobComponent implements OnInit {
             title: 'Success!',
             text: "L'email a été envoyé avec succès.",
             icon: 'success',
-            confirmButtonText: 'Fermer'
+            timer: 1000,  // Closes after 3 seconds
+            timerProgressBar: true  // Shows a progress bar
           });
           console.log('Email sent successfully!', response);
           
@@ -159,6 +160,7 @@ export class AgenceImmobComponent implements OnInit {
           this.emailDest = '';
           this.subject = '';
           this.message = '';
+          this.closeModal()
         },
         error: (error) => {
           Swal.fire({
@@ -179,6 +181,19 @@ export class AgenceImmobComponent implements OnInit {
   AgenceImmobService() {
     this.AgenceImmob.setIdAgency(this.idAgency)
   
+  }
+  openModal(content: any) {
+    this.modalRef = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+  }
+  
+  closeModal() {
+    if (this.modalRef) {
+      this.modalRef.close();
+      this.modalRef = null; // Reset after closing
+      // console.log('Modal closed successfully.');
+    } else {
+      // console.log('Modal reference is undefined; modal might not have been opened.');
+    }
   }
 }
 

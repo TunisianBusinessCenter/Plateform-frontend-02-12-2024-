@@ -19,7 +19,7 @@
                     <ng-template let-country pTemplate="item">
                         <div class="country-item res_Search" ng>
                             <img src="{{country?.logo_url}}" width="30px" />&nbsp;&nbsp;
-                            <div [routerLink]="['/agency', country?.id]">{{country?.name}}</div>
+                            <div [routerLink]="['/Promoteurs', country?.id,country.name]">{{country?.name}}</div>
                         </div>
                     </ng-template>
                 </p-listbox>
@@ -30,7 +30,7 @@
 </div>
 
 <br> <br><br> <br><br>
-<mat-tab-group mat-align-tabs="center">
+<mat-tab-group id="myElement" mat-align-tabs="center">
 
     <mat-tab>
         <ng-template mat-tab-label>
@@ -42,8 +42,9 @@
 
         <div class="tab-pane tab-pane-parent fade show active px-0" id="pills-home" role="tabpanel"
             aria-labelledby="pills-home-tab" style="padding: 5px; overflow: hidden; ">
-            <p-carousel [value]="AgenciesTunis" [numVisible]="5" [numScroll]="5" [circular]="true"
-                [autoplayInterval]="7000" [responsiveOptions]="responsiveOptions" styleClass="custom-carousel">
+            <p-carousel [value]="AgenciesTunis || staticAgenciesTunis" [numVisible]="5" [numScroll]="5"
+                [circular]="true" [autoplayInterval]="7000" [responsiveOptions]="responsiveOptions"
+                styleClass="custom-carousel">
 
                 <ng-template pTemplate="header">
                     <div class="row">
@@ -69,11 +70,49 @@
                             <div class="p-mb-3"></div>
                             <div>
                                 <div class="card shadow-hover-1 border-gray" data-animate="fadeInUp">
-                                    <a [routerLink]="['/Promoteurs', Agency.id, formatAgencyName(Agency.name)]" class="text-dark hover-primary" (click)="clickMe(Agency.id)">
+                                    <a [routerLink]="['/Promoteurs', Agency.id, formatAgencyName(Agency.name)]"
+                                        class="text-dark hover-primary" (click)="clickMe(Agency.id)">
                                         <div class="css">
                                             <div class="hover-change-image bg-hover-overlay rounded-lg card-img-top">
-                                                <img src="{{Agency.logo_url}}" alt="Responsive image"
+                                                <!-- <img src="{{Agency.logo_url}}" alt="Responsive image"
                                                     style="height: 100%; width: 100%">
+ -->
+
+
+
+
+
+
+
+
+                                                <img loading="lazy" [class.loading]="isLoading1" (load)="imageLoaded()"
+                                                    src="{{Agency.logo_url}}" class="product-image"
+                                                    alt="Dynamic content">
+
+                                                <style>
+                                                    .image-container {
+                                                        position: relative;
+                                                        overflow: hidden;
+                                                    }
+
+                                                    .product-image {
+                                                        width: 100%;
+                                                        height: auto;
+                                                        transition: filter 0.5s ease;
+                                                    }
+
+                                                    .product-image.loading {
+                                                        filter: blur(10px);
+                                                    }
+                                                </style>
+
+
+
+
+
+
+
+
                                                 <div class="card-img-overlay p-2 d-flex flex-column">
                                                     <div>
                                                         <span class="badge badge-orange mr-2">{{Agency.region}}</span>
@@ -116,7 +155,7 @@
                                                         Instagram
                                                     </a>
                                                 </li>
-                                              
+
                                             </ul>
                                         </ul>
                                     </div>
@@ -190,7 +229,7 @@
     </mat-tab>
 
 </mat-tab-group>
-
+<br><br><br><br><br><br><br>
 <div class="tunsian-flag-img-background" style="height: -170">
     <div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
         <div class="btn-group mr-2" role="group " aria-label="First group ">
@@ -229,21 +268,3 @@
 </div>
 
 <br><br><br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

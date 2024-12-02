@@ -5,14 +5,14 @@
 	cursor: pointer;
 	overflow: hidden;
 	outline: none;
-	color: #1f1e84;
+	color: #206229;
   }
   
   .tunsian-flag-img-background .btn-hover-flag-img {
 	/* width: 214px; */
 	margin: 20px;
 	text-decoration: none;
-	background-color: #1f1e84;
+	background-color: #206229;
 	color: #ffffff;
 	font-size: 16px;
 	padding: 10px 30px;
@@ -30,7 +30,7 @@
   }
   
   .tunsian-flag-img-background .btn-hover-flag-img:hover {
-	background-color: #1f1e84;
+	background-color: #206229;
 	text-decoration: underline;
   }
   
@@ -100,14 +100,14 @@
 	/* outline-color: rgba(255, 255, 255, 0);
 	  outline-offset: 15px;
 	  text-shadow: 1px 1px 2px #427388; */
-	color: #1f1e84;
+	color: #206229;
 	font-weight: 600;
   }
   
   
   .badge-primary {
 	color: #fff;
-	background-color: #3f51b5;
+	background-color: #206229;
 	font-size: 15px;
   }
   
@@ -120,9 +120,9 @@
   }
   
   .hrstyle {
-	color: #3f51b5;
+	color: #206229;
 	font-size: 18px;
-	border-top: 3px solid #3f51b5;
+	border-top: 3px solid #206229;
 	border-radius: 5px;
 	width: 58px;
 	display: block;
@@ -164,8 +164,8 @@
   }
   
   .search {
-	background-color: #3f51b5;
-	border-color: #3f51b5;
+	background-color: #206229;
+	border-color: #206229;
 	height: 32px;
 	float: right;
 	width: 79px;
@@ -197,7 +197,7 @@
   }
   
   .villas:hover {
-	color: #1f1e84;
+	color: #206229;
 	font-weight: 600;
   }
   
@@ -208,7 +208,7 @@
   
   
   .animated-border-button {
-	background-color: #3f51b5;
+	background-color: #206229;
 	border: none;
 	outline: none;
 	position: relative;
@@ -236,13 +236,13 @@
   }
   
   .animated-border-button:before {
-	border-top: 2px solid #3f51b5;
+	border-top: 2px solid #206229;
 	right: 0;
 	top: -4px;
   }
   
   .animated-border-button:after {
-	border-bottom: 2px solid #3f51b5;
+	border-bottom: 2px solid #206229;
 	bottom: -4px;
 	left: 0;
   }
@@ -259,7 +259,7 @@
 	}
   } */
   .animated-border-button-pa {
-	background-color: #3f51b5;
+	background-color: #206229;
 	border: none;
 	outline: none;
 	position: relative;
@@ -275,7 +275,7 @@
   }
   
   .animated-border-button-pa:hover {
-	background-color: #3f51b5;
+	background-color: #206229;
 	border: none;
 	outline: none;
 	position: relative;
@@ -302,13 +302,13 @@
   }
   
   .animated-border-button-pa:before {
-	border-top: 2px solid #3f51b5;
+	border-top: 2px solid #206229;
 	right: 0;
 	top: -4px;
   }
   
   .animated-border-button-pa:after {
-	border-bottom: 2px solid #3f51b5;
+	border-bottom: 2px solid #206229;
 	bottom: -4px;
 	left: 0;
   }
@@ -475,7 +475,7 @@
   }
   @media only screen and (max-width: 700px) {
 	.animated-border-button {
-	  background-color: #3f51b5;
+	  background-color: #206229;
 	  border: none;
 	  outline: none;
 	  position: relative;
@@ -495,7 +495,7 @@
 	}
   
 	:host ::ng-deep .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-prev {
-	  background-color: #1f1e84a8;
+	  background-color: #206229a8;
 	  color: #ffffff;
 	  width: 2rem;
 	  height: 2rem;
@@ -508,7 +508,7 @@
   
 	:host ::ng-deep .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-next {
 	  margin: 0.5rem;
-	  background-color: #1f1e84a8;
+	  background-color: #206229a8;
 	  margin: 0 18px 0 -24px;
 	  color: #ffffff;
 	  width: 2rem;
@@ -646,7 +646,7 @@
   
   :host ::ng-deep.p-card-body {
 	height: 65px;
-	background-color: #1f1e84;
+	background-color: #206229;
 	text-align: center;
 	color: white;
   }
@@ -717,7 +717,7 @@
   
 	:host ::ng-deep.p-card-body {
 	  height: 45px;
-	  background-color: #1f1e84;
+	  background-color: #206229;
 	  text-align: center;
 	}
   
@@ -1083,7 +1083,7 @@
   }
   
   .main-menu {
-	background: #1f1e84;
+	background: #206229;
 	border-right: 1px solid;
 	position: fixed;
 	/* top: 679px; */
@@ -1240,7 +1240,7 @@
   } */
   @media only screen and (max-width: 622px) {
 	.main-menu {
-	  background: #1f1e84;
+	  background: #206229;
 	  border-right: 1px solid;
 	  position: fixed;
 	  bottom: 0;

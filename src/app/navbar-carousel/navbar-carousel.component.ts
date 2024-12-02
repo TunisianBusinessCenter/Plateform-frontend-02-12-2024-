@@ -56,6 +56,7 @@ agencyData: any;
   selectedImageIndex: number;
   banner: any;
   currentId: string;
+  sharedVariable1: any;
  constructor(public router:Router,
   private agencyService: AgenciesService, private route:ActivatedRoute,private as:AgenciesService,private sharedDataService: AgenciesService,private http: HttpClient){
         this.check = false;
@@ -63,6 +64,7 @@ agencyData: any;
   }
   
   ngOnInit(): void {
+    this.click()
     this.agencyService.AgencyBaniere$.subscribe((AgencyBaniere) => {
       // Log the AgencyBaniere data to the console
 
@@ -206,7 +208,15 @@ this.agencyService.getAllAgencies().subscribe(data => {
       window.location.reload();
     });
   }
+  click(){
+    this.as.sharedVariable$.subscribe((data) => {
+      this.sharedVariable1 = data;
+      this.role=this.sharedVariable1.role
+      console.log('got me', this.sharedVariable1);
+      console.log('got me this.role',this.role);
+    });
   
+  }
 }
 
 

@@ -5,12 +5,12 @@
   cursor: pointer;
   overflow: hidden;
   outline: none;
-  color: #1f1e84;
+  color: #4289e5;
 }
 
 .tunsian-flag-img-background .btn-hover-flag-img {
   margin: 20px;
-  background-color: #1f1e84;
+  background-color: #4289e5;
   color: #ffffff;
   font-size: 14px;
   text-decoration: none;
@@ -53,7 +53,7 @@
   .tunsian-flag-img-background .btn-hover-flag-img {
     width: 214px;
     margin: 20px;
-    background-color: #1f1e84;
+    background-color: #4289e5;
     color: #ffffff;
     font-size: 8px;
     padding: 10px 30px;
@@ -88,7 +88,7 @@
     width: 291px;
     text-decoration: none;
     margin: 3px;
-    background-color: #1f1e84;
+    background-color: #4289e5;
     color: #ffffff;
     font-size: 13px;
     padding: 5px 10px;
@@ -99,9 +99,9 @@
 }
 
 .hrstyle {
-  color: #3f51b5;
+  color: #4289e5;
   font-size: 18px;
-  border-top: 3px solid #3f51b5;
+  border-top: 3px solid #4289e5;
   border-radius: 5px;
   width: 58px;
   display: block;
@@ -114,12 +114,12 @@
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
   color: #fff;
-  background-color: #1f1e84;
+  background-color: #4289e5;
   font-size: 12px;
 }
 
 .pointer {
-  color: #1f1e84;
+  color: #4289e5;
   font-weight: 500;
   font-size: 12px;
 }
@@ -131,7 +131,7 @@
 
 .badge-primary {
   color: #fff;
-  background-color: #3f51b5;
+  background-color: #4289e5;
   font-size: 14px;
   font-weight: 400;
   width: 100px;
@@ -155,7 +155,7 @@
   color: #ffffff;
   font-weight: 800;
   display: inline-flex;
-  text-shadow: #1f1e84 1px 0 10px;
+  text-shadow: #4289e5 1px 0 10px;
 }
 
 
@@ -241,7 +241,7 @@
 
 
 .gradient-border {
-  background: #1f1e84;
+  background: #4289e5;
   position: relative;
 }
 
@@ -311,7 +311,7 @@
 
 
 .animated-border-button {
-  background-color: #3f51b5;
+  background-color: #4289e5;
   border: none;
   outline: none;
   position: relative;
@@ -346,13 +346,13 @@
 }
 
 .animated-border-button:before {
-  border-top: 2px solid #3f51b5;
+  border-top: 2px solid #4289e5;
   right: 0;
   top: -4px;
 }
 
 .animated-border-button:after {
-  border-bottom: 2px solid #3f51b5;
+  border-bottom: 2px solid #4289e5;
   bottom: -4px;
   left: 0;
 }
@@ -474,8 +474,8 @@
 
 
 .search {
-  background-color: #3f51b5;
-  border-color: #3f51b5;
+  background-color: #4289e5;
+  border-color: #4289e5;
   height: 32px;
   float: right;
   width: 79px;
@@ -560,8 +560,8 @@
   width: 79%;
   margin: 0 auto;
   color: #fff;
-  background-color: #1f1e84;
-  border-color: #1f1e84;
+  background-color: #4289e5;
+  border-color: #4289e5;
   box-shadow: none;
   padding: 0.6875rem 2.1875rem;
   font-size: .875rem;
@@ -718,7 +718,7 @@
   margin-top: -52%;
   margin-left: -70%;
   border-radius: 100px;
-  background-color: #1f1e84;
+  background-color: #4289e5;
   transition: all 400ms;
   border: 1px solid #eee !important;
 }
@@ -832,7 +832,7 @@
 
 .siteweb {
   margin-top: 6px;
-  color: #1f1e84;
+  color: #4289e5;
   font-size: 15px
 }
 
@@ -1135,7 +1135,7 @@ a.btn:hover {
         } */
   .siteweb {
     margin-top: 6px;
-    color: #1f1e84;
+    color: #4289e5;
     font-size: 15px
   }
 
@@ -1151,7 +1151,7 @@ a.btn:hover {
           color: #ffffff;
           font-weight: 800;
           display: inline-flex;
-          text-shadow: #1f1e84 1px 0 10px;
+          text-shadow: #4289e5 1px 0 10px;
           
             }
             :host ::ng-deep.mat-card-actions, .mat-card-subtitle, .mat-card-content {
@@ -1337,7 +1337,7 @@ a.btn:hover {
   display: block;
   width: 225px;
   padding: 10px 0;
-  background-color: #1f1e84;
+  background-color: #4289e5;
   ;
   box-shadow: 0 0px 10px;
   color: #fff;
@@ -1359,7 +1359,7 @@ a.btn:hover {
   display: block;
   width: 225px;
   padding: 10px;
-  background-color: #1f1e84;
+  background-color: #4289e5;
   ;
   box-shadow: 0 0px 10px;
   color: #fff;
@@ -1507,8 +1507,8 @@ a.btn:hover {
     width: 90%;
     margin: 0 auto;
     color: #fff;
-    background-color: #1f1e84;
-    border-color: #1f1e84;
+    background-color: #4289e5;
+    border-color: #4289e5;
     box-shadow: none;
     padding: 0.6875rem 2.1875rem;
     font-size: .875rem;
@@ -1584,8 +1584,8 @@ a.btn:hover {
     width: 95%;
     margin: 0 auto;
     color: #fff;
-    background-color: #1f1e84;
-    border-color: #1f1e84;
+    background-color: #4289e5;
+    border-color: #4289e5;
     box-shadow: none;
     padding: 0.6875rem 2.1875rem;
     font-size: .875rem;
@@ -2113,8 +2113,8 @@ nav.main-menu.expanded {
 }
 
 .main-menu {
-  background: #1f1e84;
-  border-right: 1px solid;
+  background: #4289e5;
+  border-right: 0px solid;
   position: fixed;
   /* top: 679px; */
   bottom: 0;
@@ -2241,8 +2241,8 @@ nav.main-menu li.active>a,
 } */
 @media only screen and (max-width: 622px) {
   .main-menu {
-    background: #1f1e84;
-    border-right: 1px solid;
+    background: #4289e5;
+    border-right: 0px solid;
     position: fixed;
     bottom: 0;
     height: 100%;
@@ -2270,7 +2270,7 @@ nav.main-menu li.active>a,
 
 @media only screen and (max-width: 700px){
   .animated-border-button {
-  background-color:#3f51b5;
+  background-color:#4289e5;
   border: none;
   outline: none;
   position: relative;
@@ -2490,7 +2490,7 @@ nav.main-menu li.active>a,
   height: 4rem !important;
   color: rgba(0, 0, 0, 0.6) !important;
   border: solid 5px rgb(253 253 253) !important;
-  background: #1f1e84a8 !important;
+  background: #4289e5a8 !important;
   border-radius: 50%;
   transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
   
@@ -2503,7 +2503,7 @@ nav.main-menu li.active>a,
   height: 4rem !important;
   color: rgba(0, 0, 0, 0.6) !important;
   border: solid 5px rgb(253 253 253) !important;
-  background: #1f1e84a8 !important;
+  background: #4289e5a8 !important;
   border-radius: 50%;
   transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
   

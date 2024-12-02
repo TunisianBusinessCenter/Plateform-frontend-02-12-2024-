@@ -1,0 +1,118 @@
+/* General Form Styles */
+.add-annonce-form {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-annonce-form h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Input Field Styles */
+  .add-annonce-form label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .add-annonce-form input,
+  .add-annonce-form textarea,
+  .add-annonce-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  
+  .add-annonce-form input[type="file"] {
+    padding: 0;
+  }
+  
+  .add-annonce-form textarea {
+    height: 120px;
+    resize: vertical;
+  }
+  
+  /* Button Styles */
+  .add-annonce-form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+  }
+  
+  .add-annonce-form button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Uploaded Photos Thumbnails */
+  .add-annonce-form img {
+    margin: 5px;
+    border-radius: 4px;
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    .add-annonce-form {
+      padding: 15px;
+    }
+  
+    .add-annonce-form h2 {
+      font-size: 18px;
+    }
+  
+    .add-annonce-form input,
+    .add-annonce-form textarea,
+    .add-annonce-form select {
+      font-size: 14px;
+    }
+  
+    .add-annonce-form button {
+      padding: 10px;
+      font-size: 14px;
+    }
+  
+    .add-annonce-form img {
+      width: 80px;
+      height: 80px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .add-annonce-form {
+      max-width: 100%;
+      padding: 10px;
+      margin-left: 50px;
+
+    }
+  
+    .add-annonce-form h2 {
+      font-size: 16px;
+    }
+  
+    .add-annonce-form button {
+      padding: 8px;
+      font-size: 12px;
+    }
+  
+    .add-annonce-form img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  

@@ -912,3 +912,6 @@ body {
 		background: #f1f1f1;
 	}
 }
+::ng-deep .p-carousel .p-carousel-indicators .p-carousel-indicator {
+  display: none;
+  }

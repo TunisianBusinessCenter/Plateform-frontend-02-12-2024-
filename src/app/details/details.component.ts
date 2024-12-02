@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { SelectItem } from 'primeng/api';
 import { VisitorCounterService } from '../services/VisitorCounter/visitor-counter.service';
 import * as moment from 'moment';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { filter, Subscription } from 'rxjs';
 import { ProjetsService } from '../services/projets/projets.service';
 import { SharedAgenceImmobilierService } from '../services/shared-agence-immobilier.service';
@@ -56,9 +56,10 @@ export class DetailsComponent implements OnInit {
   displayMaximizabled1: boolean;
   contactText = "";
   numText = "";
+  private modalRef: NgbModalRef | null = null; // Initialize as null
   @HostListener('window:resize', ['$event'])
 
-  responsiveOptions: any[] = [
+ responsiveOptions: any[] = [
     {
       breakpoint: '1192px',
       numVisible: 4
@@ -69,7 +70,7 @@ export class DetailsComponent implements OnInit {
     },
     {
       breakpoint: '700px',
-      numVisible: 3
+      numVisible: 1
     },
     {
       breakpoint: '510px',
@@ -110,6 +111,7 @@ export class DetailsComponent implements OnInit {
   AgencyEmail: any;
   linkedin_url: any;
   instagram_url: any;
+  ProjetCat: any;
   constructor(private activatedRoute: ActivatedRoute,
     private agencieService: AgenciesService,
     private sharedAgency:PromoteurImmobiliersService,
@@ -166,7 +168,7 @@ this.idForAgency =this.sharedAgency.getIdAgency()
           project.status === 'EN COURS' || project.status === 'EN COURS '
       );
       this.ProjetDispo = this.Agency?.projets.filter(
-        (project) => project.status === 'DISPONIBLE' || 'Disponible'
+        (project) => project.status === 'DISPONIBLE' ||  project.status === 'Disponible'
         // || 'Disponible'
       );
     
@@ -184,6 +186,8 @@ this.idForAgency =this.sharedAgency.getIdAgency()
     this.projetService.getProjetById(this.idProjet).subscribe((data:any) => {
       // console.log (data)
       this.Projet = data;
+      this.ProjetCat = this.Projet?.pieces;
+      console.log(this.ProjetCat)
 
       this.NameAgency = this.Projet.agencyName
       // console.log(this.NameAgency)
@@ -346,7 +350,8 @@ this.idForAgency =this.sharedAgency.getIdAgency()
             title: 'Success!',
             text: "L'email a été envoyé avec succès.",
             icon: 'success',
-            confirmButtonText: 'Fermer'
+            timer: 1000,  // Closes after 3 seconds
+            timerProgressBar: true  // Shows a progress bar
           });
           console.log('Email sent successfully!', response);
           
@@ -355,6 +360,7 @@ this.idForAgency =this.sharedAgency.getIdAgency()
           this.emailDest = '';
           this.subject = '';
           this.message = '';
+          this.closeModal()
         },
         error: (error) => {
           Swal.fire({
@@ -390,6 +396,19 @@ this.idForAgency =this.sharedAgency.getIdAgency()
   setVariableTest() {
     let data = this.Agency.name
     this.testVariable.setSharedVariable1(data)
+  }
+  openModal(content: any) {
+    this.modalRef = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+  }
+  
+  closeModal() {
+    if (this.modalRef) {
+      this.modalRef.close();
+      this.modalRef = null; // Reset after closing
+      // console.log('Modal closed successfully.');
+    } else {
+      // console.log('Modal reference is undefined; modal might not have been opened.');
+    }
   }
 }  
 

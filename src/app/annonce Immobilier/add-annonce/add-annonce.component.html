@@ -1,0 +1,132 @@
+<app-navbar-carousel-home></app-navbar-carousel-home>
+<app-sidebar></app-sidebar>
+<div class="add-annonce-form">
+  <h2>Ajouter une nouvelle annonce :</h2>
+  <!-- City -->
+
+
+
+
+  <label for="ville">ville</label>
+
+  <select id="ville" [(ngModel)]="annonceData.ville">
+    <option value="">-- Select Location --</option>
+
+    <option value="Tunis">Tunis</option>
+    <option value="Ariana">Ariana</option>
+    <option value="Ben Arous">Ben Arous</option>
+    <option value="Manouba">Manouba</option>
+    <option value="Nabeul">Nabeul</option>
+    <option value="Zaghouan">Zaghouan</option>
+    <option value="Bizerte">Bizerte</option>
+    <option value="Béja">Béja</option>
+    <option value="Jendouba">Jendouba</option>
+    <option value="Kef">Kef</option>
+    <option value="Siliana">Siliana</option>
+    <option value="Sousse">Sousse</option>
+    <option value="Monastir">Monastir</option>
+    <option value="Mahdia">Mahdia</option>
+    <option value="Sfax">Sfax</option>
+    <option value="Kairouan">Kairouan</option>
+    <option value="Kasserine">Kasserine</option>
+    <option value="Sidi Bouzid">Sidi Bouzid</option>
+    <option value="Gabès">Gabès</option>
+    <option value="Médenine">Médenine</option>
+    <option value="Tataouine">Tataouine</option>
+    <option value="Gafsa">Gafsa</option>
+    <option value="Tozeur">Tozeur</option>
+    <option value="Kébili">Kébili</option>
+  </select>
+
+
+
+  <!-- Annonce Title -->
+
+  <select id="ville" [(ngModel)]="annonceData.Annonce">
+
+    <option value="">-- Type d'Annonce --</option>
+    <option value="Vente">Vente</option>
+    <option value="Location">Location Vacances</option>
+    <option value="Location">Location</option>
+  </select>
+  <select id="ville" [(ngModel)]="annonceData.appartement">
+
+    <option value="">-- Type de Bien --</option>
+    <option value="Appartements">Appartements</option>
+    <option value="Villas">Bureaux</option>
+    <option value="Commerces">Commerces</option>
+    <option value="Duplexes">Duplexes</option>
+    <option value="Industriel">Industriel</option>
+    <option value="Lots">Lots</option>
+    <option value="Studios">Studios</option>
+    <option value="Terrain agricole">Terrain agricole</option>
+    <option value="Villas">Villas / maisons</option>
+  </select>
+  <!-- Annonce Name -->
+  <label for="annonceName">Annonce Name</label>
+  <input type="text" id="annonceName" [(ngModel)]="annonceData.AnnonceName" placeholder="Enter annonce name" />
+
+  <!-- Annonce Photo -->
+  <label for="annoncephoto">Annonce Photo</label>
+  <input type="file" id="annoncephoto" (change)="onFilesSelected($event)" multiple />
+  <!-- Display Uploaded Photos -->
+  <div style="display: flex;" *ngIf="annonceData.photos.length > 0">
+    <h3>Uploaded Photos:</h3>
+    <div *ngFor="let photo of annonceData.photos">
+      <img [src]="photo" alt="Uploaded Photo" width="100" height="100" />
+    </div>
+  </div>
+
+  <!-- <button type="button" (click)="uploadFiles()">Upload Photos</button> -->
+
+  <!-- Address -->
+  <label for="adresse">Adresse</label>
+  <input type="text" id="adresse" [(ngModel)]="annonceData.adresse" placeholder="Enter address" />
+
+  <!-- Appartement -->
+  <!-- <label for="appartement">Appartement</label>
+  <input type="text" id="appartement" [(ngModel)]="annonceData.appartement"
+    placeholder="Enter appartement information" /> -->
+
+  <!-- Description -->
+  <label for="description">Description</label>
+  <textarea id="description" [(ngModel)]="annonceData.description" placeholder="Enter description"></textarea>
+
+  <!-- Email -->
+  <label for="emailuser">Email</label>
+  <input type="email" id="emailuser" [(ngModel)]="annonceData.emailuser" placeholder="Enter email" />
+
+  <!-- Approval Status -->
+  <!-- <label for="isApproved">Approval Status</label>
+  <select id="isApproved" [(ngModel)]="annonceData.isApproved">
+    <option value="false">Not Approved</option>
+    <option value="true">Approved</option>
+  </select> -->
+
+  <!-- Contact Person's Name -->
+  <label for="nom">Nom</label>
+  <input type="text" id="nom" [(ngModel)]="annonceData.nom" placeholder="Enter contact person's name" />
+
+  <!-- Contact Number -->
+  <label for="numero">Contact Number</label>
+  <input type="text" id="numero" [(ngModel)]="annonceData.numero[0]" placeholder="Enter contact number" />
+
+  <!-- Price -->
+  <label for="prix">Price</label>
+  <input type="number" id="prix" [(ngModel)]="annonceData.prix" placeholder="Enter price" />
+
+  <!-- Surface -->
+  <label for="surface">Surface</label>
+  <input type="text" id="surface" [(ngModel)]="annonceData.surface" placeholder="Enter surface area" />
+
+
+  <!-- File input for selecting a single photo for Annoncephoto -->
+  <label for="Annoncephoto">Annonce Photo (Single Image)</label>
+  <input type="file" id="Annoncephoto" (change)="onFileSelected($event)" accept="image/*" required />
+
+  <hr>
+  <hr>
+  <hr>
+  <!-- Submit Button -->
+  <button type="button" (click)="createAnnonce()">Create Annonce</button>
+</div>

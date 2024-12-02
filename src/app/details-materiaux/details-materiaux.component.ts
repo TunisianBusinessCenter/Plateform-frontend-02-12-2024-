@@ -3,7 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AgenciesService } from '../services/agencies/agencies.service';
 import {Location} from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs';
 import { ProduitsService } from '../services/produits/produits.service';
 import { SharedAgenceImmobilierService } from '../services/shared-agence-immobilier.service';
@@ -82,6 +82,8 @@ export class DetailsMateriauxComponent implements OnInit {
   responsiveOptions: { breakpoint: string; numVisible: number; numScroll: number; }[];
   ProduitId: any;
   AgencyEmail: any;
+  private modalRef: NgbModalRef | null = null; // Initialize as null
+
   constructor(private activatedRoute: ActivatedRoute,
     private produitService:ProduitsService,
     private agencieService:AgenciesService,
@@ -409,7 +411,8 @@ senderEmail() {
           title: 'Success!',
           text: "L'email a été envoyé avec succès.",
           icon: 'success',
-          confirmButtonText: 'Fermer'
+          timer: 1000,  // Closes after 3 seconds
+          timerProgressBar: true  // Shows a progress bar
         });
         console.log('Email sent successfully!', response);
         
@@ -418,6 +421,7 @@ senderEmail() {
         this.emailDest = '';
         this.subject = '';
         this.message = '';
+        this.closeModal()
       },
       error: (error) => {
         Swal.fire({
@@ -434,5 +438,18 @@ senderEmail() {
 isValidEmail(email: string): boolean {
   const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return pattern.test(email);
+} 
+openModal(content: any) {
+  this.modalRef = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+}
+
+closeModal() {
+  if (this.modalRef) {
+    this.modalRef.close();
+    this.modalRef = null; // Reset after closing
+    console.log('Modal closed successfully.');
+  } else {
+    console.log('Modal reference is undefined; modal might not have been opened.');
+  }
 }
 }

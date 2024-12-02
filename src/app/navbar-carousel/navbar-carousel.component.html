@@ -225,7 +225,14 @@
 <div *ngIf="router.url !=='/home-algerie' && router.url !=='/home-maroc'
  && router.url !=='/home-lybia'&& router.url !=='/home-mauritanie'" class="imageCentreTunisien">
 
-	<div id="image-container">
+	<div id="image-container" [ngStyle]="{
+		'background-color': sharedVariable1?.role === 'promoteur-immobilieres' ? '#347aab' : 
+							sharedVariable1?.role === 'agence-service' ? '#e3b77b' : 
+							sharedVariable1?.role === 'agence-immobilieres' ? '#206229' : 
+							sharedVariable1?.role === 'meilleurs-biens' ? '#414367' : 
+							sharedVariable1?.role === 'materiaux-construction' ? '#4289e5' : 'initial'
+	  }"
+	  >
 		<!-- <a id="text-link" href="#" style="top: 150px; left: 200px; width: 150px; height: 50px;"></a> -->
 		<img (click)="redirect()" class="imgbannier" src="../../assets/images/tunisieimmob/LOGO-Tunisian.png" alt="Your Image" />
 	</div>

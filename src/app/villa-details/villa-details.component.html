@@ -78,8 +78,8 @@
                     </a>
                 </li> -->
 
-                <li >
-                    <a (click)="openVerticallyCentered(content)">
+                <li>
+                    <a (click)="openModal(content)">
                         <!-- <a routerLink="/conception/registre"> -->
                         <i class="fa fa-envelope fa-2x"></i>
                         <span class="nav-text">Contacter nous</span>
@@ -93,7 +93,7 @@
 
                         display: none;
                         position: absolute;
-                        background-color: #1f1e84;
+                        background-color: #0e4e74;
                         min-width: 42px;
                         width: 248px;
                         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -280,7 +280,7 @@
                             .horizontal-list li {
                                 margin-right: 10px;
                                 padding: 10px 20px;
-                                background-color: #8b0000;
+                                background-color: #da1e37;
                                 color: white;
                                 border-radius: 5px;
                                 cursor: pointer;
@@ -311,7 +311,7 @@
                                     width: 100%;
                                     padding: 14px 67px 14px 10px;
                                     border: 2px solid white;
-                                    background-color: #8b0000;
+                                    background-color: #da1e37;
                                     color: #ffffff;
                                     cursor: pointer;
                                     font-size: 15px;
@@ -372,214 +372,234 @@
                         <div>
 
                             <!-- Content for each tab -->
-                            <div *ngFor="let piece of Projet?.pieces">
-                                <div class="row responsive-villa" *ngIf="Pieces === piece?.category"
-                                    [ngClass]="{'block-display': !isDesktop}" style="display: flex;">
-                                    <div class="col-7 classcol5">
-                                        <style>
-                                            #cl {
-                                                margin-bottom: 11px;
-                                                width: 92%;
-                                                margin-left: 43px;
-                                            }
+                            <div *ngIf="Projet?.pieces && Projet?.pieces.length > 0; else noDataPlaceholder">
 
-                                            @media (max-width: 768px) {
+                                <div *ngFor="let piece of Projet?.pieces">
+                                    <div class="row responsive-villa" *ngIf="Pieces === piece?.category"
+                                        [ngClass]="{'block-display': !isDesktop}" style="display: flex;">
+                                        <div class="col-7 classcol5">
+                                            <style>
                                                 #cl {
-                                                    font-size: 13px;
-                                                    margin-right: -86px;
-                                                    margin-top: 1px;
-                                                    margin-left: 0;
+                                                    margin-bottom: 11px;
+                                                    width: 92%;
+                                                    margin-left: 43px;
                                                 }
-                                            }
-                                        </style>
-                                        <div class="row " id="cl">
-                                            <div class="col-6 ">
-                                                <h1 class="appname">{{ piece?.name | lowercase }}</h1>
+
+                                                @media (max-width: 768px) {
+                                                    #cl {
+                                                        font-size: 13px;
+                                                        margin-right: -86px;
+                                                        margin-top: 1px;
+                                                        margin-left: 0;
+                                                    }
+                                                }
+                                            </style>
+                                            <div class="row " id="cl">
+                                                <div class="col-6 ">
+                                                    <h1 class="appname">{{ piece?.name | lowercase }}</h1>
+                                                </div>
+                                                <br> <br> <br>
+                                                <div class="col-6">
+                                                    <h3 class="disponible">Disponible</h3><br><br>
+                                                </div>
                                             </div>
-                                            <br> <br> <br>
-                                            <div class="col-6">
-                                                <h3 class="disponible">Disponible</h3><br><br>
+                                            <!-- [showItemNavigators]="true" -->
+                                            <p-galleria [value]="piece?.photos" [responsiveOptions]="responsiveOptions"
+                                                [containerStyle]="{'max-width': '800px'}" [numVisible]="3">
+                                                <ng-template pTemplate="item" let-item>
+                                                    <img (click)="openImageInDialog(item)" [src]="item"
+                                                        class="pgalleria" alt="pgalleria" />
+                                                </ng-template>
+                                                <ng-template pTemplate="thumbnail" let-item>
+                                                    <div class="grid grid-nogutter justify-content-center">
+                                                        <img [src]="item" class="imgPgalleria" alt="galleria" />
+                                                    </div>
+                                                </ng-template>
+                                            </p-galleria>
+                                            <p-dialog header="Aperçu d'image" [(visible)]="displayDialog" [modal]="true"
+                                                [responsive]="true"
+                                                [contentStyle]="{'min-width': '100%','overflow': 'visible'}">
+                                                <img [src]="selectedImage" style="width: 100%;">
+                                            </p-dialog>
+                                            <div class="container23" style="color: black">
+                                                <div class="right-side">
+
+                                                    <h3
+                                                        style="font: 500 20px/32px Roboto, Helvetica Neue, sans-serif; letter-spacing: normal; margin: 7px 0 16px; color: black; text-align: center;">
+                                                        Description de la propriété </h3>
+                                                    <div class="mb-0 lh-214 cadre-noir">
+                                                        <div *ngIf="Projet?.description === null">
+                                                            <p class="scrollable-paragraph paragrapheDesc">
+                                                                descriptionmanquant!</p>
+                                                        </div>
+                                                        <div *ngIf="Projet?.description !== null">
+                                                            <p class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
+                                                                <ng-container *ngIf="Projet?.description">
+                                                                    <ng-container
+                                                                        *ngFor="let sentence of Projet?.description.split('#')">
+                                                                        {{ sentence.trim() }}
+                                                                        <hr
+                                                                            style="margin: 4px 0; color: inherit; border: 0; border-top: var(--bs-border-width) solid; opacity: 0;">
+                                                                    </ng-container>
+                                                                </ng-container>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <p-galleria [value]="piece?.photos" [responsiveOptions]="responsiveOptions"
-                                            [containerStyle]="{'max-width': '800px'}" [numVisible]="3">
-                                            <ng-template pTemplate="item" let-item>
-                                                <img (click)="openImageInDialog(item)" [src]="item" class="pgalleria"
-                                                    alt="pgalleria" />
-                                            </ng-template>
-                                            <ng-template pTemplate="thumbnail" let-item>
-                                                <div class="grid grid-nogutter justify-content-center">
-                                                    <img [src]="item" class="imgPgalleria" alt="galleria" />
+                                        <div class="col-5 classcol7">
+                                            <h6 class="appname">Vidéo de présentation</h6>
+                                            <div *ngIf="Projet?.videoUrlProjet" class="video">
+                                                <iframe class="responsive-iframe" [src]="urlSafe"></iframe>
+                                            </div>
+                                            <div
+                                                *ngIf="Projet?.videoUrlProjet === null || Projet?.videoUrlProjet=== '' ">
+                                                <div class="text-primary">
+                                                    <a>
+                                                        <img class="appimage" src="assets/v3.jpg"
+                                                            alt="application en cour de construction">
+                                                    </a>
                                                 </div>
-                                            </ng-template>
-                                        </p-galleria>
-                                        <p-dialog header="Aperçu d'image" [(visible)]="displayDialog" [modal]="true"
-                                            [responsive]="true"
-                                            [contentStyle]="{'min-width': '100%','overflow': 'visible'}">
-                                            <img [src]="selectedImage" style="width: 100%;">
-                                        </p-dialog>
-                                        <div class="container23" style="color: black">
-                                            <div class="right-side">
+                                            </div>
 
-                                                <h3
-                                                    style="font: 500 20px/32px Roboto, Helvetica Neue, sans-serif; letter-spacing: normal; margin: 7px 0 16px; color: black; text-align: center;">
-                                                    Description de la propriété </h3>
-                                                <div class="mb-0 lh-214 cadre-noir">
-                                                    <div *ngIf="Projet?.description === null">
-                                                        <p class="scrollable-paragraph paragrapheDesc">
-                                                            descriptionmanquant!</p>
+                                            <h1 class="detail">Détails de la propriété</h1>
+                                            <div class="itemRed" style="    height: 154px;">
+                                                <div style="display: flex; align-items: center;" class="cardxi">
+                                                    <div class="icon-container">
+                                                        <mat-icon class="background">apps</mat-icon>
+                                                    </div>&nbsp;&nbsp;
+                                                    <div style="display: flex; align-items: center;margin-top: 13px;">
+                                                        <p class="type">TYPE : {{ piece?.type }}</p>
                                                     </div>
-                                                    <div *ngIf="Projet?.description !== null">
-                                                        <p class="scrollable-paragraph mb-0 lh-214 paragrapheDesc">
-                                                            <ng-container *ngIf="Projet?.description">
-                                                                <ng-container
-                                                                    *ngFor="let sentence of Projet?.description.split('#')">
-                                                                    {{ sentence.trim() }}
-                                                                    <hr
-                                                                        style="margin: 4px 0; color: inherit; border: 0; border-top: var(--bs-border-width) solid; opacity: 0;">
-                                                                </ng-container>
-                                                            </ng-container>
+                                                </div>
+
+                                                <style>
+                                                    .itemRed .cardxi {
+                                                        margin-bottom: 6px;
+                                                        /* Adjust this value to control the vertical space */
+                                                    }
+
+                                                    .itemRed .cardxi:last-child {
+                                                        margin-bottom: 0;
+                                                        /* Remove margin for the last item */
+                                                    }
+                                                </style>
+                                                <div style="display: flex; align-items: center;" class="cardxi">
+                                                    <div class="icon-container">
+                                                        <mat-icon class="background">open_with</mat-icon>
+                                                    </div>&nbsp;&nbsp;
+                                                    <div style="display: flex; align-items: center;margin-top: 13px;">
+                                                        <p class="type"
+                                                            [ngStyle]="{'font-size': piece?.surface?.length > 30 ? '14px' : '16px'}">
+                                                            SURFACE : {{ piece?.surface }} (M²)
                                                         </p>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-5 classcol7">
-                                        <h6 class="appname">Vidéo de présentation</h6>
-                                        <div *ngIf="Projet?.videoUrlProjet" class="video">
-                                            <iframe class="responsive-iframe" [src]="urlSafe"></iframe>
-                                        </div>
-                                        <div *ngIf="Projet?.videoUrlProjet === null || Projet?.videoUrlProjet=== '' ">
-                                            <div class="text-primary">
-                                                <a>
-                                                    <img class="appimage" src="assets/v3.jpg"
-                                                        alt="application en cour de construction">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <h1 class="detail">Détails de la propriété</h1>
-                                        <div class="itemRed" style="    height: 154px;">
-                                            <div style="display: flex; align-items: center;" class="cardxi">
-                                                <div class="icon-container">
-                                                    <mat-icon class="background">apps</mat-icon>
-                                                </div>&nbsp;&nbsp;
-                                                <div style="display: flex; align-items: center;margin-top: 13px;">
-                                                    <p class="type">TYPE : {{ piece?.type }}</p>
+                                                <div style="display: flex; align-items: center;" class="cardxi">
+                                                    <div class="icon-container">
+                                                        <mat-icon class="background">account_balance_wallet</mat-icon>
+                                                    </div>&nbsp;&nbsp;
+                                                    <div style="display: flex; align-items: center;margin-top: 13px;">
+                                                        <p style="text-transform: capitalize !important;" class="type">
+                                                            PRIX
+                                                            : {{
+                                                            piece?.prixMdt }} (Mdt)</p>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="">
+                                                <br><br>
+                                                <div class="responsiveP">
 
-                                            <style>
-                                                .itemRed .cardxi {
-                                                    margin-bottom: 6px;
-                                                    /* Adjust this value to control the vertical space */
-                                                }
-
-                                                .itemRed .cardxi:last-child {
-                                                    margin-bottom: 0;
-                                                    /* Remove margin for the last item */
-                                                }
-                                            </style>
-                                            <div style="display: flex; align-items: center;" class="cardxi">
-                                                <div class="icon-container">
-                                                    <mat-icon class="background">open_with</mat-icon>
-                                                </div>&nbsp;&nbsp;
-                                                <div style="display: flex; align-items: center;margin-top: 13px;">
-                                                    <p class="type"
-                                                        [ngStyle]="{'font-size': piece?.surface?.length > 30 ? '14px' : '16px'}">
-                                                        SURFACE : {{ piece?.surface }} (M²)
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div style="display: flex; align-items: center;" class="cardxi">
-                                                <div class="icon-container">
-                                                    <mat-icon class="background">account_balance_wallet</mat-icon>
-                                                </div>&nbsp;&nbsp;
-                                                <div style="display: flex; align-items: center;margin-top: 13px;">
-                                                    <p style="text-transform: capitalize !important;" class="type">PRIX
-                                                        : {{
-                                                        piece?.prixMdt }} (Mdt)</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="">
-                                            <br><br>
-                                            <div class="responsiveP">
-
-                                                <form (ngSubmit)="senderEmail()" style="padding: 24px;">
-                                                    <h3 style="    font: 500 19px / 32px Roboto, Helvetica Neue, sans-serif;
+                                                    <form (ngSubmit)="senderEmail()" style="padding: 24px;">
+                                                        <h3 style="    font: 500 19px / 32px Roboto, Helvetica Neue, sans-serif;
                                                     letter-spacing: normal;
                                                     margin: -18px 0 19px;
                                                     color: black;
                                                     text-align: center;">
-                                                        Contactez nous
-                                                    </h3>
-                                                    <div class="form-group">
-                                                        <label for="email"
-                                                            style="display: block; font-weight: bold; color: black;">Email:</label>
-                                                        <input type="email" id="emailSource" [(ngModel)]="emailSource"
-                                                            name="emailSource" required placeholder="Votre email"
-                                                            (input)="validateEmail()" />
-                                                        <style>
-                                                            .send-button {
-                                                                background-color: #007bff;
-                                                                /* Default background color */
-                                                                color: white;
-                                                                /* Text color */
-                                                                border: none;
-                                                                /* No border */
-                                                                padding: 10px 20px;
-                                                                /* Padding */
-                                                                font-size: 16px;
-                                                                /* Font size */
-                                                                cursor: pointer;
-                                                                /* Pointer cursor */
-                                                                transition: background-color 0.3s;
-                                                                /* Smooth transition for background color */
-                                                            }
+                                                            Contactez nous
+                                                        </h3>
+                                                        <div class="form-group">
+                                                            <label for="email"
+                                                                style="display: block; font-weight: bold; color: black;">Email:</label>
+                                                            <input type="email" id="emailSource"
+                                                                [(ngModel)]="emailSource" name="emailSource" required
+                                                                placeholder="Votre email" (input)="validateEmail()" />
+                                                            <style>
+                                                                .send-button {
+                                                                    background-color: #007bff;
+                                                                    /* Default background color */
+                                                                    color: white;
+                                                                    /* Text color */
+                                                                    border: none;
+                                                                    /* No border */
+                                                                    padding: 10px 20px;
+                                                                    /* Padding */
+                                                                    font-size: 16px;
+                                                                    /* Font size */
+                                                                    cursor: pointer;
+                                                                    /* Pointer cursor */
+                                                                    transition: background-color 0.3s;
+                                                                    /* Smooth transition for background color */
+                                                                }
 
-                                                            .send-button:disabled {
-                                                                background-color: #c0c0c0;
-                                                                /* Background color when disabled */
-                                                                color: #666;
-                                                                /* Text color when disabled */
-                                                                cursor: not-allowed;
-                                                                /* Change cursor to indicate the button is disabled */
-                                                            }
-                                                        </style>
-                                                        <div class="send-button" style="color: red;"
-                                                            *ngIf="emailSource && !isValidEmail(emailSource)"
-                                                            class="error">
-                                                            S'il vous plaît, mettez une adresse email valide.
+                                                                .send-button:disabled {
+                                                                    background-color: #c0c0c0;
+                                                                    /* Background color when disabled */
+                                                                    color: #666;
+                                                                    /* Text color when disabled */
+                                                                    cursor: not-allowed;
+                                                                    /* Change cursor to indicate the button is disabled */
+                                                                }
+                                                            </style>
+                                                            <div class="send-button" style="color: red;"
+                                                                *ngIf="emailSource && !isValidEmail(emailSource)"
+                                                                class="error">
+                                                                S'il vous plaît, mettez une adresse email valide.
+                                                            </div>
                                                         </div>
-                                                    </div>
 
-                                                    <div class="form-group">
-                                                        <label for="name" class="label-style">Subject:</label>
-                                                        <input type="text" id="subject" [(ngModel)]="subject"
-                                                            name="subject" required placeholder="subject" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="message"
-                                                            style="display: block; font-weight: bold; color: black;">Message:</label>
-                                                        <textarea style="height: 126px;" id="message"
-                                                            [(ngModel)]="message" name="message" required
-                                                            placeholder="message"></textarea>
+                                                        <div class="form-group">
+                                                            <label for="name" class="label-style">Subject:</label>
+                                                            <input type="text" id="subject" [(ngModel)]="subject"
+                                                                name="subject" required placeholder="subject" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="message"
+                                                                style="display: block; font-weight: bold; color: black;">Message:</label>
+                                                            <textarea style="height: 126px;" id="message"
+                                                                [(ngModel)]="message" name="message" required
+                                                                placeholder="message"></textarea>
 
-                                                    </div>
-                                                    <button type="submit" style="background: #8B0000; float: right;"
-                                                        [disabled]="!isValidEmail(emailSource)">Envoyer</button>
+                                                        </div>
+                                                        <button type="submit" style="background: #da1e37; float: right;"
+                                                            [disabled]="!isValidEmail(emailSource)">Envoyer</button>
 
-                                                </form>
+                                                    </form>
+                                                </div>
+
+                                                <br><br><br><br>
                                             </div>
-
-                                            <br><br><br><br>
                                         </div>
-                                    </div>
 
+                                    </div>
                                 </div>
+
                             </div>
+                            <ng-template #noDataPlaceholder>
+                                <div class="no-data-container" style="text-align: center; padding: 0px 0px 0 27px;">
+                                    <img src="assets/No-data-cuate.png" alt="No data available"
+                                        style="max-width: 400px; ">
+                                    <h3 style="color: gray;margin: -62px 0 44px 0;">Aucune donnée disponible pour
+                                        le moment.</h3>
+                                    <br>
+                                    <!-- <p style="color: gray;">Veuillez revenir plus tard ou contactez-nous pour plus d'informations.</p> -->
+                                </div>
+                            </ng-template>
+                            <!-- skeleton -->
+
+
                         </div>
                     </mat-tab>
                 </mat-tab-group>
@@ -788,15 +808,15 @@
 
 
 
-  <div class="tunsian-flag-img-background">
+<div class="tunsian-flag-img-background">
     <div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
 
 
         <div class="btn-group mr-2" role="group" aria-label="Third group">
-            <a [attr.href]="Agency.facebook_url ? Agency.facebook_url : null" target="_blank"
-                class="btn-hover-flag-img text-center" [ngClass]="{'disabled-btn': !Agency.facebook_url}"
-                [attr.aria-disabled]="!Agency.facebook_url ? 'true' : null"
-                [style.pointer-events]="!Agency.facebook_url ? 'none' : 'auto'" style="line-height: 1.5;">
+            <a [attr.href]="Agency?.facebook_url ? Agency?.facebook_url : null" target="_blank"
+                class="btn-hover-flag-img text-center" [ngClass]="{'disabled-btn': !Agency?.facebook_url}"
+                [attr.aria-disabled]="!Agency?.facebook_url ? 'true' : null"
+                [style.pointer-events]="!Agency?.facebook_url ? 'none' : 'auto'" style="line-height: 1.5;">
                 <span style="letter-spacing: 3px;"> <i class="fab fa-facebook" style="font-size: 21px;"></i>
                     <!-- Facebook Icon -->
                 </span>
@@ -806,11 +826,11 @@
         </div>
 
         <div class="btn-group mr-2" role="group " aria-label="First group ">
-            <a [attr.href]="Agency.website_url" class="btn-hover-flag-img text-center " aria-selected="true "
+            <a [attr.href]="Agency?.website_url" class="btn-hover-flag-img text-center " aria-selected="true "
                 style="line-height: 1.5" target="_blank" aria-selected="true " style="line-height: 1.5"
-                [ngClass]="{'disabled-btn': !Agency.website_url}"
-                [attr.aria-disabled]="!Agency.website_url ? 'true' : null"
-                [style.pointer-events]="!Agency.website_url ? 'none' : 'auto'">
+                [ngClass]="{'disabled-btn': !Agency?.website_url}"
+                [attr.aria-disabled]="!Agency?.website_url ? 'true' : null"
+                [style.pointer-events]="!Agency?.website_url ? 'none' : 'auto'">
                 <span style="letter-spacing: 3px;"> <i class="fas fa-globe" style="font-size: 21px;"></i>
                     <!-- Instagram Icon -->
                 </span>
@@ -820,11 +840,11 @@
         </div>
 
         <div class="btn-group mr-2" role="group " aria-label="First group ">
-            <a [attr.href]="Agency.instagram_url" class="btn-hover-flag-img text-center " aria-selected="true "
+            <a [attr.href]="Agency?.instagram_url" class="btn-hover-flag-img text-center " aria-selected="true "
                 style="line-height: 1.5" target="_blank" aria-selected="true " style="line-height: 1.5"
-                [ngClass]="{'disabled-btn': !Agency.instagram_url}"
-                [attr.aria-disabled]="!Agency.instagram_url ? 'true' : null"
-                [style.pointer-events]="!Agency.instagram_url ? 'none' : 'auto'">
+                [ngClass]="{'disabled-btn': !Agency?.instagram_url}"
+                [attr.aria-disabled]="!Agency?.instagram_url ? 'true' : null"
+                [style.pointer-events]="!Agency?.instagram_url ? 'none' : 'auto'">
                 <span style="letter-spacing: 3px;"> <i class="fab fa-instagram" style="font-size: 21px;"></i>
                     <!-- Instagram Icon -->
                 </span>
@@ -841,7 +861,7 @@
             }
         </style>
 
-<!-- 
+        <!-- 
         <div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie!='coffee'">
             <a [attr.href]="Agency.linkedin_url" target="_blank" class="btn-hover-flag-img text-center "
                 aria-selected="true " style="line-height: 1.5" [ngClass]="{'disabled-btn': !Agency.linkedin_url}"
@@ -854,7 +874,7 @@
             </a>
         </div> -->
         <div class="btn-group mr-2 " role="group " aria-label="Third group ">
-            <a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
+            <a (click)="openModal(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
                 style="line-height: 1.5;">
                 <span style="letter-spacing: 3px;"> <i class="fas fa-phone-alt" style="font-size: 18px;"></i>
                     <!-- Contact Icon -->
@@ -974,32 +994,3 @@
             <div class="modal-footer valider">
 
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            

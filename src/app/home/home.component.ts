@@ -7,6 +7,9 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { DataServiceService } from '../services/conteur/data-service.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { trigger, style, transition, animate } from '@angular/animations';
+import { Carousel } from 'primeng-lts/carousel';
+
 interface Duree {
   name: string;
   code: string;
@@ -14,9 +17,35 @@ interface Duree {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+
+  animations: [
+    trigger('smoothAppear', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate('500ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ]),
+      transition(':leave', [
+        animate('500ms ease-in', style({ opacity: 0, transform: 'translateY(20px)' }))
+      ])
+    ])
+  ]
+
+
+
+
+
+
+
 })
 export class HomeComponent implements OnInit {
+  firstMagazin: any;
+  isLoading: boolean = true; // Initially set to true
+
+
+
+
+
   clickCounter1 = 0;
   clickCounter2 = 0;
   clickCounter3 = 0;
@@ -57,14 +86,15 @@ export class HomeComponent implements OnInit {
   displayMaximizable4: boolean;
   displayMaximizable5: boolean;
 
-
+  isDataLoaded: boolean = false;  // Declare the flag for data load status
+  dynamicData: any[] = []; // Store your dynamic data
   durees: Duree[];
   contactText = "";
   numText = "";
   agencies: any;
-  firstMagazin: any;
-  isLoading: boolean =false
   mag: any;
+  charge: boolean = false;
+
   constructor(private magazineservice: MagazineService,
     private breakpointObserver: BreakpointObserver,
 
@@ -75,6 +105,7 @@ export class HomeComponent implements OnInit {
     private title: Title,
     private dataService: DataServiceService) {
 
+      // Carousel.prototype.onTouchMove = () => { };
 
     this.getDataFromLocalStorage();
     this.lastItem4 = this.getLastItemFromData();
@@ -138,7 +169,13 @@ export class HomeComponent implements OnInit {
   showAlert() {
     this.showMessage = true;
   }
+  // Assuming each item in dynamicData has an additional property `isLoading`
+
   ngOnInit(): void {
+    console.log("magazine text", this.firstMagazin, this.charge)
+
+    // this.loadMagazines();
+
     this.getDataFromLocalStorage1()
     this.getDataFromLocalStorage2()
     this.getDataFromLocalStorage3()
@@ -172,7 +209,10 @@ export class HomeComponent implements OnInit {
     })
 
     this.magazineservice.getMagazine().subscribe((data: any) => {
+      this.dynamicData = data;  // Assign the fetched data to dynamicData
+      this.isDataLoaded = true;  // Set isDataLoaded to true when data is loaded
       this.Magazine = data.sort((a, b) => {
+
         // extraire les nombres dans les noms
         const numA = parseInt(a.name.match(/\d+/g)?.[0] || '0');
         const numB = parseInt(b.name.match(/\d+/g)?.[0] || '0');
@@ -188,11 +228,11 @@ export class HomeComponent implements OnInit {
       for (let linkBook of this.Magazine) {
         if (linkBook.id === 3933) {
           this.linkFBook = linkBook.flip_book_link
-       
+
         }
       }
-      this.firstMagazin = this.Magazine[0]
-// console.log("magazine text",this.firstMagazin)
+      this.charge = true
+      console.log("magazine text", this.firstMagazin, this.charge)
     });
 
 
@@ -209,6 +249,26 @@ export class HomeComponent implements OnInit {
     // element.scrollIntoView({ block: "start", behavior: "auto" });
 
   }
+  loadMagazines() {
+    this.magazineservice.getMagazine().subscribe((data: any) => {
+      this.Magazine = data.sort((a, b) => {
+        const numA = parseInt(a.name.match(/\d+/g)?.[0] || '0');
+        const numB = parseInt(b.name.match(/\d+/g)?.[0] || '0');
+        return numB - numA;
+      });
+
+      for (let linkBook of this.Magazine) {
+        if (linkBook.id === 3933) {
+          this.linkFBook = linkBook.flip_book_link;
+        }
+      }
+
+      this.firstMagazin = this.Magazine[this.Magazine.length - 1];
+
+      // Loading completed
+      this.isLoading = false; // Hide loading screen when data is ready
+    });
+  }
   private _filter(value: string): string[] {
     const filterValue = this._normalizeValue(value);
     return this.streets.filter(street => this._normalizeValue(street).includes(filterValue));
@@ -217,6 +277,11 @@ export class HomeComponent implements OnInit {
   private _normalizeValue(value: string): string {
     return value.toLowerCase().replace(/\s/g, '');
   }
+  onImageLoad(event: Event): void {
+    (event.target as HTMLImageElement).classList.remove('loading');
+
+  }
+
   afficheListAgencie() {
     this.agencieService.getAllAgencies().subscribe((data: any) => {
       this.allAgencies = data
@@ -405,14 +470,19 @@ export class HomeComponent implements OnInit {
     return chunkedArray;
   }
 
-  
 
-    magazine ()
-    {
-      this.magazineservice.getMagazine().subscribe((data:any)=>{
-this.mag=data?.name
-console.log("data",this.mag)
-      })
-    }
+
+  magazine() {
+    this.magazineservice.getMagazine().subscribe((data: any) => {
+      this.mag = data?.name
+      console.log("data", this.mag)
+    })
+  }
+  isLoading1: boolean = true;
+
+  imageLoaded() {
+    this.isLoading1 = false;
+  }
+  
 }
 

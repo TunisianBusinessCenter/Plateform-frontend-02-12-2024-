@@ -13,7 +13,7 @@ import { Location } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { VillaDetailsServiceService } from './villa-details-service.service';
 import { HttpClient } from '@angular/common/http';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs';
 import { ProjetsService } from '../services/projets/projets.service';
 import { SharedAgenceImmobilierService } from '../services/shared-agence-immobilier.service';
@@ -54,13 +54,14 @@ export class VillaDetailsComponent implements OnInit {
     },
     {
       breakpoint: '700px',
-      numVisible: 3
+      numVisible: 1
     },
     {
       breakpoint: '510px',
-      numVisible: 3
+      numVisible: 1
     }
   ];
+  private modalRef: NgbModalRef | null = null; // Initialize as null
   AgencyProjet: Object;
   agencyId: any;
   description: any;
@@ -119,11 +120,7 @@ setTimeout(() => {
   this.isLoading = false;
 }, 2000); // 2 seconds delay
     // Listen for router events to scroll to top
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      window.scrollTo(0, 0); // Scroll to top
-    });
+  
     this.idVilla = this.sharedSevice.getIdAgency();
 
     this.agencieService.getAgencieById(this.idVilla).subscribe((data:any) => {
@@ -350,7 +347,8 @@ setTimeout(() => {
             title: 'Success!',
             text: "L'email a été envoyé avec succès.",
             icon: 'success',
-            confirmButtonText: 'Fermer'
+            timer: 1000,  // Closes after 3 seconds
+            timerProgressBar: true  // Shows a progress bar
           });
           //   .log('Email sent successfully!', response);
           
@@ -359,6 +357,7 @@ setTimeout(() => {
           this.emailDest = '';
           this.subject = '';
           this.message = '';
+          this.closeModal()
         },
         error: (error) => {
           Swal.fire({
@@ -389,5 +388,17 @@ formatAgencyName(name: string): string {
   }
   return name.replace(/\s+/g, '-');
 }
+openModal(content: any) {
+  this.modalRef = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+}
 
+closeModal() {
+  if (this.modalRef) {
+    this.modalRef.close();
+    this.modalRef = null; // Reset after closing
+    // console.log('Modal closed successfully.');
+  } else {
+    // console.log('Modal reference is undefined; modal might not have been opened.');
+  }
+}
 }

@@ -202,3 +202,7 @@
       flex: -1 0 20%;
   }
 }
+html, body {
+  transition: none !important;
+  animation: none !important;
+}

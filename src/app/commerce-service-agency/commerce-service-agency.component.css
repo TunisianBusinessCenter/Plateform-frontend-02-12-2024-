@@ -117,7 +117,7 @@
     text-align: center;
     vertical-align: middle;
     font-size: 21px;
-    color: white;
+    color: #5A3E2B;;
   }
   
   
@@ -128,8 +128,8 @@
   }
   
   .main-menu {
-    background: #1f1e84;
-    border-right: 1px solid;
+    background: #E3B77B;
+    border-right: 0px solid;
     position: fixed;
     /* top: 679px; */
     bottom: 0;
@@ -146,7 +146,7 @@
   }
   
   .main-menu>div>ul {
-    margin: 92px 0;
+    margin: 159px 0;
   }
   
   .main-menu>div>ul>li {
@@ -261,8 +261,8 @@
   } */
   @media only screen and (max-width: 622px) {
     .main-menu {
-      background: #1f1e84;
-      border-right: 1px solid;
+      background: #E3B77B;
+      border-right: 0px solid;
       position: fixed;
       bottom: 0;
       height: 100%;
@@ -352,7 +352,7 @@
 	}
 
 	.btnT {
-		color: #ffffff;
+		color: #5A3E2B;
 		padding: 0.8rem;
 		font-size: 14px;
 		text-transform: uppercase;
@@ -362,7 +362,7 @@
 		width: 100%;
 		cursor: pointer;
 		border: 1px solid rgba(255, 255, 255, 0.2);
-		background: #1f1e84;
+		background: #E3B77B;
 		padding: 8px 0 8px 0px;
 	}
 
@@ -523,16 +523,17 @@
 	}
 
 	.card-button {
-		padding: 12px 7px;
-		font-size: 13px;
-		cursor: pointer;
-		font-weight: bold;
-		border-radius: 4px;
-		color: white;
-		background: #1f1e84;
-		margin-top: 10px;
-		align-self: stretch;
-		text-align: center;
+    padding: 12px 7px;
+    font-size: 13px;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 5px;
+    color: #5A3E2B;
+    background: #E3B77B;
+    border: none;
+    margin-top: 10px;
+    align-self: stretch;
+    text-align: center;
 	}
 
 	@media (max-width: 768px) {
@@ -610,8 +611,8 @@
     .tunsian-flag-img-background .btn-hover-flag-img {
       width: 214px;
       margin: 20px;
-      background-color: #1f1e84;
-      color: #ffffff;
+      background-color: #E3B77B;
+      color: #5A3E2B;
       font-size: 8px;
       padding: 10px 30px;
       border: none;
@@ -636,8 +637,8 @@
   
   .btn-primary {
     color: #fff;
-    background-color: #1f1e84;
-    border-color: #1f1e84;
+    background-color: #E3B77B;
+    border-color: #E3B77B;
     box-shadow: none;
     width: 79%;
     margin: 0 auto;
@@ -691,8 +692,8 @@
     /* width: 214px; */
     margin: 20px;
     text-decoration: none;
-    background-color: #1f1e84;
-    color: #ffffff;
+    background-color: #E3B77B;
+    color: #5A3E2B;
     font-size: 16px;
     padding: 10px 30px;
     border: none;
@@ -705,7 +706,7 @@
   }
   
   .tunsian-flag-img-background .btn-hover-flag-img:hover {
-    background-color: #1f1e84;
+    background-color: #E3B77B;
     text-decoration: underline;
   }
   
@@ -716,8 +717,8 @@
     /* width: 214px; */
     margin: 20px;
     text-decoration: none;
-    background-color: #1f1e84;
-    color: #ffffff;
+    background-color: #E3B77B;
+    color: #5A3E2B;
     font-size: 16px;
     padding: 10px 30px;
     border: none;
@@ -790,8 +791,8 @@
     .tunsian-flag-img-background .btn-hover-flag-img {
       width: 214px;
       margin: 20px;
-      background-color: #1f1e84;
-      color: #ffffff;
+      background-color: #E3B77B;
+      color: #5A3E2B;
       font-size: 8px;
       padding: 10px 30px;
       border: none;
@@ -806,8 +807,8 @@
     .tunsian-flag-img-background .btn-hover-flag-img {
       width: 291px;
       margin: 3px;
-      background-color: #1f1e84;
-      color: #ffffff;
+      background-color: #E3B77B;
+      color: #5A3E2B;
       font-size: 13px;
       padding: 5px 10px;
       border: none;
@@ -898,7 +899,7 @@
 
 :host ::ng-deep .p-button {
   min-width: 8rem;
-  background-color: #1f1e84;
+  background-color: #E3B77B;
   height: 25px;
   ;
   display: block;

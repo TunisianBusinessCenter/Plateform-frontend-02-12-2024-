@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { NgbCarouselConfig, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
 import { AgenciesService } from '../services/agencies/agencies.service';
@@ -137,6 +137,12 @@ export class NavbarCarouselHomeComponent implements OnInit {
       console.log('here')
       window.location.reload();
     });
+  }
+  isFixed: boolean = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isFixed = window.scrollY > 0; // Change 0 to the desired scroll threshold
   }
 
 }

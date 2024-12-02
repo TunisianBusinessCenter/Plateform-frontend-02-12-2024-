@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild,Renderer2,HostListener } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from '../services/contact/contact.service';
 import { AgenciesService } from '../services/agencies/agencies.service';
@@ -51,6 +51,10 @@ export class DescriptionDetailsComponent implements OnInit {
   idAgency: any;
   idAgencyy: any;
   AgencyEmail: any;
+  private modalRef: NgbModalRef | null = null; // Initialize as null
+  websiteRouter: any;
+  pdf: any;
+
   constructor(private activatedRoute: ActivatedRoute,
     private produitService: ProduitsService,
     private _location: Location,
@@ -111,6 +115,8 @@ export class DescriptionDetailsComponent implements OnInit {
 
     this.produitService.getSousCategorieById(this.idSousCategorie).subscribe(Response => {
       this.SousCategorie = Response;
+      this.websiteRouter =this.SousCategorie.website
+      console.log("pdf",this.SousCategorie.website)
 
 
     });
@@ -123,6 +129,7 @@ export class DescriptionDetailsComponent implements OnInit {
     });
     this.projetService.getProduitById(this.firstId).subscribe((data:any) => {
       this.agencyName = data.agencyName;
+      this.pdf=data.promoTitle
       // this.NameAgency =this.Projet.agencyName
     })
     this.FormData = this.builder.group({
@@ -229,7 +236,9 @@ senderEmail() {
           title: 'Success!',
           text: "L'email a été envoyé avec succès.",
           icon: 'success',
-          confirmButtonText: 'Fermer'
+          confirmButtonText: 'Fermer',
+          timer: 1000,  // Closes after 3 seconds
+          timerProgressBar: true  // Shows a progress bar
         });
         
         // Reset form fields
@@ -237,6 +246,7 @@ senderEmail() {
         this.emailDest = '';
         this.subject = '';
         this.message = '';
+        this.closeModal()
       },
       error: (error) => {
         Swal.fire({
@@ -256,4 +266,35 @@ isValidEmail(email: string): boolean {
 formatAgencyName(name: string): string {
   return name?.replace(/\s+/g, '-');
 }
+openModal(content: any) {
+  this.modalRef = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+}
+
+closeModal() {
+  if (this.modalRef) {
+    this.modalRef.close();
+    this.modalRef = null; // Reset after closing
+    // console.log('Modal closed successfully.');
+  } else {
+    // console.log('Modal reference is undefined; modal might not have been opened.');
+  }
+}
+
+handleDownload() {
+  // Extract the FILE_ID from the given URL
+  const match = this.pdf.match(/\/d\/(.+?)\/view/);
+  if (match && match[1]) {
+    const fileId = match[1];
+    // Construct the direct download link
+    const directDownloadLink = `https://drive.google.com/uc?export=download&id=${fileId}`;
+    // Redirect to the direct download link
+
+    // this.router.navigate([this.websiteRouter]);
+
+    window.location.href = directDownloadLink;
+  } else {
+    console.error('Invalid Google Drive URL');
+  }
+}
+
 }

@@ -34,6 +34,9 @@ export class AgenceServiceService {
   getAgencieBureauxDeEtudes(){
     return this.http.get('https://app.titv-store-api.com/search/agenceservice/Bureauxdeetudes')
   }
+  getAgencieServiceSoc(){
+    return this.http.get('https://app.titv-store-api.com/search/agenceservice/SocDesServices')
+  }
 
    /////////SERVICES///////////////
 

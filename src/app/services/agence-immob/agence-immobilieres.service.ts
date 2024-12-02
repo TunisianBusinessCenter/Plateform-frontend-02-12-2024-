@@ -36,6 +36,9 @@ export class AgenceImmobilieresService {
   getAgencieNabeul(){
     return this.http.get('https://app.titv-store-api.com/search/agenceimmob/nabeul')
   }
+  getAgencieDjerba(){
+    return this.http.get('https://app.titv-store-api.com/search/agenceimmob/djerba')
+  }
 
  /* getImageExemple(){
     return this.http.get('https://api.unsplash.com/photos/?client_id=1a28e59e586593faf822eb102154d46e8f56c830d3e5d896a0293804233f991a&per_page=30&page=1')

@@ -79,6 +79,8 @@ import { AnnoncesImmobilierComponent } from './annonce Immobilier/annonces-immob
 import { AnnoncesImmobilierDetailsComponent } from './annonce Immobilier/annonces-immobilier-details/annonces-immobilier-details.component';
 import { PromoteurImmobiliersComponent } from './agence/promoteur-immobiliers/promoteur-immobiliers.component';
 import { AddAnnonceComponent } from './annonce Immobilier/add-annonce/add-annonce.component';
+import { SousDetailsComponent } from './sous-details/sous-details.component';
+import { AgenceImmobDjerbaComponent } from './agence-immob/agence-immob-djerba/agence-immob-djerba.component';
 
 
 const appRoutes: Routes = [
@@ -107,6 +109,7 @@ const appRoutes: Routes = [
   { path: 'coffeeListNabeul', component: CoffeeListNabeulComponent },
   { path: 'coffeeListBizerte', component: CoffeeListBizerteComponent },
   { path: 'villa-details/:id', component: VillaDetailsComponent },
+  { path: 'sous-details/:id/:idProjet', component: SousDetailsComponent },
   { path: 'villa-exemple/:id', component: VillaExempleComponent },
   { path: 'details-materiaux/:id', component: DetailsMateriauxComponent },
   { path: 'agences-de-services', component: AgencesDeServicesComponent },
@@ -127,6 +130,7 @@ const appRoutes: Routes = [
   { path: 'agence-immob-sfax', component: AgenceImmobSfaxComponent },
   { path: 'agence-immob-nabeul', component: AgenceImmobNabeulComponent },
   { path: 'agence-immob-bizerte', component: AgenceImmobBizerteComponent },
+  { path: 'agence-immob-djerba', component: AgenceImmobDjerbaComponent },
 
   { path: 'promoteurs-tunis', component: PromoteursTunisComponent },
   { path: 'promoteurs-sousse', component: PromoteursSousseComponent },

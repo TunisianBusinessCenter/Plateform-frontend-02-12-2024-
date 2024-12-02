@@ -116,7 +116,7 @@
                 </li> -->
 
                 <li class="dropdown">
-                    <a (click)="openVerticallyCentered(content)">
+                    <a (click)="openModal(content)">
                         <i class="fa fa-envelope fa-2x"></i>
                         <span class="nav-text">Contacter nous</span>
                     </a>
@@ -130,7 +130,7 @@
 
                         display: none;
                         position: absolute;
-                        background-color: #1f1e84;
+                        background-color: #508fe1;
                         min-width: 42px;
                         width: 248px;
                         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -321,13 +321,44 @@
         <div>
             <div class="displayCard ">
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <p-card *ngIf="SousCategorie?.name" class="">
-                    <h6 class="textInfoX">&nbsp;&nbsp;{{SousCategorie?.name}}</h6>
-                </p-card> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <p-card class="bground" *ngIf="!SousCategorie?.name" class="">
+                <!-- Conditional p-card styling and skeleton -->
+                <p-card>
+                    <ng-container *ngIf="SousCategorie?.name; else skeletonContent">
+                        <h6 class="textInfoX">&nbsp;&nbsp;{{ SousCategorie?.name }}</h6>
+                    </ng-container>
+                    <ng-template #skeletonContent>
+                        <h6 class="textInfoX skeleton-text">&nbsp;&nbsp;Loading...</h6>
+                    </ng-template>
+                </p-card>
+                <style>
+                    @keyframes skeleton-loading {
+                        0% {
+                            background-color: #f0f0f0;
+                        }
+
+                        50% {
+                            background-color: #e0e0e0;
+                        }
+
+                        100% {
+                            background-color: #f0f0f0;
+                        }
+                    }
+
+                    @keyframes skeleton-text-loading {
+                        0% {
+                            background-position: 200% 0;
+                        }
+
+                        100% {
+                            background-position: -200% 0;
+                        }
+                    }
+                </style>
+                <!-- <p-card class="bground" *ngIf="!SousCategorie?.name" class="">
                     <h6 class="textInfoX">&nbsp;&nbsp;Loading</h6>
-                </p-card> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                
+                </p-card> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+
                 <!-- <p-card class="">
                     <p class="textInfoX"> PRIX: A CONSULTER</p>
                 </p-card>&nbsp;&nbsp; -->
@@ -371,6 +402,10 @@
                         <ng-container *ngIf="SousCategorie?.description">
                             <ng-container *ngFor="let sentence of SousCategorie?.description.split('//')">
                                 {{ sentence.trim() }}
+                                <!-- <a style="display: inline-block;" target="_blank" type="submit"
+														href="{{SousCategorie?.website}}">
+														{{SousCategorie?.website}}
+													</a> -->
                                 <hr style="    margin: 4px 0;
                         color: inherit;
                         border: 0;
@@ -425,7 +460,7 @@
             $('#galleryImage').attr("src", $(e.relatedTarget).data("large-src"));
         });
     </script>
-    <br>
+
     <ng-template #content let-modal>
         <div class="modal-header">
             <h4 class="modal-title" style="font-weight: 600;">Demander un devis</h4>
@@ -436,25 +471,27 @@
                 <div class="card cardModal">
                     <div>
                         <label for="email" class="textInput">Email:</label>
-                        <input class="form-control inputDevis" type="email" id="emailSource" [(ngModel)]="emailSource" name="emailSource" required placeholder="Votre email"/>
+                        <input class="form-control inputDevis" type="email" id="emailSource" [(ngModel)]="emailSource"
+                            name="emailSource" required placeholder="Votre email" />
                     </div><br>
                     <div>
                         <label for="Nom" class="textInput">Objet:</label>
-                        <input class="form-control inputDevis" type="text" id="subject" [(ngModel)]="subject" name="subject" required  placeholder="objet"/>
-                        
+                        <input class="form-control inputDevis" type="text" id="subject" [(ngModel)]="subject"
+                            name="subject" required placeholder="objet" />
+
                     </div> <br>
                     <label for="exampleFormControlTextarea1" class="textInput">Préciser Votre Demande</label>
-                   
-                        <textarea style="height: 168px;" class="form-control" id="message" [(ngModel)]="message" name="message" required placeholder="message ..."></textarea>
+
+                    <textarea style="height: 168px;" class="form-control" id="message" [(ngModel)]="message"
+                        name="message" required placeholder="message ..."></textarea>
                     <br>
                     <!-- <div *ngFor="let agencies of Agency">
                         <div *ngFor="let categorie of agencies?.produits">
                             <div *ngFor="let categories of categorie?.categoryList"> -->
                     <!-- *ngIf="agencies?.name===categorie?.agencyName && categories===SousCategorie?.category && categorie?.emailCommercial===null" -->
                     <div style="    display: flex;" class="example-button-row">
-                        <button type="submit" class="btn btn-default"  style="border-color: #8B0000;
-                        background-color: #8B0000; color:aliceblue"
-                >Envoyer</button>&nbsp;&nbsp;&nbsp;
+                        <button type="submit" class="btn btn-default" style="border-color: #8B0000;
+                        background-color: #8B0000; color:aliceblue">Envoyer</button>&nbsp;&nbsp;&nbsp;
                         <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
                             Fermer
                         </button>
@@ -472,89 +509,221 @@
             </form>
         </div>
     </ng-template>
-    <button class="btn btnDevis" (click)="openVerticallyCentered(content)">
-        <span>&nbsp; Demander un devis</span>
-    </button>
+    <!-- Add this link to the <head> section of your HTML to include Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+
+    <style>
+        .ourContainer {
+            height: 82px;
+            display: flex;
+            margin-left: 100px;
+            flex-wrap: wrap;
+            flex-direction: row;
+            align-content: space-around;
+            gap: 5px;
+            justify-content: flex-end;
+
+        }
+
+        .btnDevi,
+        .btnPdf {
+            font-size: 12px;
+
+        }
+
+        .btnDevi {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            height: 45px;
+            border-radius: 6px;
+            font-weight: bold;
+            color: white;
+            background: darkslateblue;
+            border: solid 2px #483d8b;
+            cursor: pointer;
+
+        }
+
+        .btnPdf {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            height: 45px;
+            border-radius: 6px;
+            font-weight: bold;
+            color: white;
+            background: red;
+            ;
+            /* border: solid 2px #ffffff; */
+            cursor: pointer;
+
+        }
+
+        .btnPdf {
+            width: 15%;
+        }
+
+        .btnDevi {
+            width: 15%;
+        }
+
+        @media screen and (max-width:768px) {
+            .btnPdf {
+                width: 50%;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .btnPdf,
+            .btnDevi {
+                width: 49%;
+            }
+
+            .ourContainer {
+
+                margin-left: 56px;
+
+            }
+
+        }
+    </style>
+    <div class="ourContainer">
+        <hr style="width: 100%; border: none; height: 2px; background-color: #ccc;">
+        <!-- <button class="btnPdf">
+            <i class="fas fa-file-pdf"></i>document PDF
+        </button>
+        <button style="background-color: red;" class="btnPdf" (click)="handleDownload()">
+            <i class="fas fa-file-pdf"></i> download direct document PDF TEST 1
+        </button> -->
+
+        <button [ngClass]="{'btn-red': pdf !== null, 'btn-gray': pdf === null || pdf === '' }" [disabled]="!pdf"
+            [title]="pdf ? 'Cliquez pour voir le document PDF' : 'PDF non disponible'" class="btnPdf">
+            <i class="fas fa-file-pdf"></i>
+            <a *ngIf="pdf" [href]="pdf" style="text-decoration: none; color: white;" target="_blank">document PDF</a>
+            <span *ngIf="!pdf" style="color: white;">document PDF</span>
+        </button>
+        <style>
+            .btn-red {
+                background-color: red;
+                cursor: pointer;
+            }
+
+            .btn-gray {
+                background-color: gray;
+                cursor: not-allowed;
+            }
+
+            .btnPdf {
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                color: white;
+            }
+        </style>
+        <button class="btnDevi" (click)="openVerticallyCentered(content)">
+            Demander un devis
+        </button>
+    </div>
+
+
+
+
 </div>
-<br><br>
-<br><br>
+
 <div class="tunsian-flag-img-background">
     <div class="btn-toolbar" role="toolbar " aria-label="Toolbar with button groups ">
-  
-  
-      <div class="btn-group mr-2" role="group" aria-label="Third group">
-        <a [attr.href]="Agency?.facebook_url ? Agency?.facebook_url : null" target="_blank"
-          class="btn-hover-flag-img text-center" [ngClass]="{'disabled-btn': !Agency?.facebook_url}"
-          [attr.aria-disabled]="!Agency?.facebook_url ? 'true' : null"
-          [style.pointer-events]="!Agency?.facebook_url ? 'none' : 'auto'" style="line-height: 1.5;">
-          <span style="letter-spacing: 3px;"> <i class="fab fa-facebook" style="font-size: 18px;"></i>
-            <!-- Facebook Icon -->
-          </span>
-          <br>
-          <span style="letter-spacing: 3px;">PAGE FACEBOOK</span>
-        </a>
-      </div>
-  
-      <div class="btn-group mr-2" role="group " aria-label="First group ">
-        <a [attr.href]="Agency?.instagram_url" class="btn-hover-flag-img text-center " aria-selected="true "
-          style="line-height: 1.5" target="_blank"
-          aria-selected="true " style="line-height: 1.5" [ngClass]="{'disabled-btn': !Agency?.instagram_url}"
-          [attr.aria-disabled]="!Agency?.instagram_url ? 'true' : null"
-          [style.pointer-events]="!Agency?.instagram_url ? 'none' : 'auto'"
-          >
-          <span style="letter-spacing: 3px;"> <i class="fab fa-instagram" style="font-size: 18px;"></i>
-            <!-- Instagram Icon -->
-          </span>
-          <br>
-          <span style="letter-spacing: 3px;">NOTRE INSTAGRAM</span>
-        </a>
-      </div>
-      <style>
-        .disabled-btn {
-          opacity: 0.6;
-          cursor: not-allowed;
-  
-  
-        }
-      </style>
-      
-  
-      <div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie!='coffee'">
-        <a [attr.href]="Agency?.linkedin_url" target="_blank" class="btn-hover-flag-img text-center "
-          aria-selected="true " style="line-height: 1.5" [ngClass]="{'disabled-btn': !Agency?.linkedin_url}"
-          [attr.aria-disabled]="!Agency?.linkedin_url ? 'true' : null"
-          [style.pointer-events]="!Agency?.linkedin_url ? 'none' : 'auto'">
-          <span style="letter-spacing: 3px;"><i class="fab fa-tiktok" style="font-size: 18px;"></i>
-            <!-- Instagram Icon --></span>
-          <br>
-          <span style="letter-spacing: 3px;">NOTRE TIKTOK</span>
-        </a>
-      </div>
-      <div class="btn-group mr-2 " role="group " aria-label="Third group ">
-        <a (click)="openVerticallyCentered(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
-          style="line-height: 1.5;">
-          <span style="letter-spacing: 3px;"> <i class="fas fa-phone-alt" style="font-size: 16px;"></i>
-            <!-- Contact Icon -->
-          </span>
-  
-  
-          <br>
-          <span style="letter-spacing: 3px;">
-            CONTACTEZ-NOUS
-          </span>
-        </a>
-      </div>
-      <!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
-          <a class="btn-hover-flag-img text-center " aria-selected="true "
-            style="line-height: 1.5">
-            <span>COMMERCES</span>
-            <br>
-            <span> Services et Arts</span>
-          </a>
+
+
+        <div class="btn-group mr-2" role="group" aria-label="Third group">
+            <a [attr.href]="Agency.facebook_url ? Agency.facebook_url : null" target="_blank"
+                class="btn-hover-flag-img text-center" [ngClass]="{'disabled-btn': !Agency.facebook_url}"
+                [attr.aria-disabled]="!Agency.facebook_url ? 'true' : null"
+                [style.pointer-events]="!Agency.facebook_url ? 'none' : 'auto'" style="line-height: 1.5;">
+                <span style="letter-spacing: 3px;"> <i class="fab fa-facebook" style="font-size: 21px;"></i>
+                    <!-- Facebook Icon -->
+                </span>
+                <br>
+                <span style="letter-spacing: 3px;">PAGE FACEBOOK</span>
+            </a>
+        </div>
+
+        <div class="btn-group mr-2" role="group " aria-label="First group ">
+            <a [attr.href]="Agency.website_url" class="btn-hover-flag-img text-center " aria-selected="true "
+                style="line-height: 1.5" target="_blank" aria-selected="true " style="line-height: 1.5"
+                [ngClass]="{'disabled-btn': !Agency.website_url}"
+                [attr.aria-disabled]="!Agency.website_url ? 'true' : null"
+                [style.pointer-events]="!Agency.website_url ? 'none' : 'auto'">
+                <span style="letter-spacing: 3px;"> <i class="fas fa-globe" style="font-size: 21px;"></i>
+                    <!-- Instagram Icon -->
+                </span>
+                <br>
+                <span style="letter-spacing: 3px;">NOTRE SITE WEB</span>
+            </a>
+        </div>
+
+        <div class="btn-group mr-2" role="group " aria-label="First group ">
+            <a [attr.href]="Agency.instagram_url" class="btn-hover-flag-img text-center " aria-selected="true "
+                style="line-height: 1.5" target="_blank" aria-selected="true " style="line-height: 1.5"
+                [ngClass]="{'disabled-btn': !Agency.instagram_url}"
+                [attr.aria-disabled]="!Agency.instagram_url ? 'true' : null"
+                [style.pointer-events]="!Agency.instagram_url ? 'none' : 'auto'">
+                <span style="letter-spacing: 3px;"> <i class="fab fa-instagram" style="font-size: 21px;"></i>
+                    <!-- Instagram Icon -->
+                </span>
+                <br>
+                <span style="letter-spacing: 3px;">NOTRE INSTAGRAM</span>
+            </a>
+        </div>
+        <style>
+            .disabled-btn {
+                opacity: 0.6;
+                cursor: not-allowed;
+
+
+            }
+        </style>
+
+        <!-- 
+        <div class="btn-group mr-2" role="group " aria-label="First group " *ngIf="Agency?.categorie!='coffee'">
+            <a [attr.href]="Agency.linkedin_url" target="_blank" class="btn-hover-flag-img text-center "
+                aria-selected="true " style="line-height: 1.5" [ngClass]="{'disabled-btn': !Agency.linkedin_url}"
+                [attr.aria-disabled]="!Agency.linkedin_url ? 'true' : null"
+                [style.pointer-events]="!Agency.linkedin_url ? 'none' : 'auto'">
+                <span style="letter-spacing: 3px;"><i class="fab fa-tiktok" style="font-size: 21px;"></i>
+                   </span>
+                <br>
+                <span style="letter-spacing: 3px;">NOTRE TIKTOK</span>
+            </a>
         </div> -->
+        <div class="btn-group mr-2 " role="group " aria-label="Third group ">
+            <a (click)="openModal(content)" class="btn-hover-flag-img text-center  " aria-selected="true "
+                style="line-height: 1.5;">
+                <span style="letter-spacing: 3px;"> <i class="fas fa-phone-alt" style="font-size: 18px;"></i>
+                    <!-- Contact Icon -->
+                </span>
+
+
+                <br>
+                <span style="letter-spacing: 3px;">
+                    CONTACTEZ-NOUS
+                </span>
+            </a>
+        </div>
+        <!-- <div class="btn-group mr-2" role="group " aria-label="Fourth group ">
+				<a class="btn-hover-flag-img text-center " aria-selected="true "
+					style="line-height: 1.5">
+					<span>COMMERCES</span>
+					<br>
+					<span> Services et Arts</span>
+				</a>
+			</div> -->
     </div>
-  </div>
-<br><br><br><br>
+</div>
+<br>
 
 <p-dialog class="p-diag" header="À Propos" [(visible)]="displayMaximizable" [modal]="true"
     [style]="{width: '85vw', 'margin-left': '50px'}" [maximizable]="true" [baseZIndex]="10000" [draggable]="false"
@@ -601,4 +770,3 @@
     </div>
 
 </p-dialog>
-

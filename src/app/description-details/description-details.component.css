@@ -1,5 +1,5 @@
 .animated-border-button {
-  background-color: #3f51b5;
+  background-color:#4289e5;
   border: none;
   outline: none;
   position: relative;
@@ -17,7 +17,7 @@
 
 @media (min-width: 300px) {
   .animated-border-button {
-    background-color: #3f51b5;
+    background-color:#4289e5;
     border: none;
     outline: none;
     position: relative;
@@ -46,13 +46,13 @@
 }
 
 .animated-border-button:before {
-  border-top: 2px solid #3f51b5;
+  border-top: 2px solid#4289e5;
   right: 0;
   top: -4px;
 }
 
 .animated-border-button:after {
-  border-bottom: 2px solid #3f51b5;
+  border-bottom: 2px solid#4289e5;
   bottom: -4px;
   left: 0;
 }
@@ -136,7 +136,7 @@
   /* width: 214px; */
   margin: 20px;
   text-decoration: none;
-  background-color: #1f1e84;
+  background-color:#4289e5;
   color: #ffffff;
   font-size: 13px;
   padding: 10px 30px;
@@ -179,7 +179,7 @@
   .tunsian-flag-img-background .btn-hover-flag-img {
     width: 214px;
     margin: 20px;
-    background-color: #1f1e84;
+    background-color:#4289e5;
     color: #ffffff;
     font-size: 8px;
     padding: 10px 30px;
@@ -195,7 +195,7 @@
   .tunsian-flag-img-background .btn-hover-flag-img {
     width: 291px;
     margin: 3px;
-    background-color: #1f1e84;
+    background-color:#4289e5;
     color: #ffffff;
     font-size: 13px;
     padding: 5px 10px;
@@ -375,7 +375,7 @@
 
 :host ::ng-deep.p-card-body {
   height: 33px;
-  background-color: #1f1e84;
+  background-color:#4289e5;
   text-align: center;
   width: 297px;
   margin-left: -10px;
@@ -385,7 +385,7 @@
 
   :host ::ng-deep.p-card-body {
     height: 33px;
-    background-color: #1f1e84;
+    background-color:#4289e5;
     text-align: left;
     width: 256px;
     margin-left: -10px;
@@ -1011,8 +1011,8 @@ nav.main-menu.expanded {
 }
 
 .main-menu {
-  background: #1f1e84;
-  border-right: 1px solid;
+  background:#4289e5;
+  border-right: 0px solid;
   position: fixed;
   /* top: 679px; */
   bottom: 0;
@@ -1142,8 +1142,8 @@ nav.main-menu li.active>a,
 } */
 @media only screen and (max-width: 622px) {
   .main-menu {
-    background: #1f1e84;
-    border-right: 1px solid;
+    background:#4289e5;
+    border-right: 0px solid;
     position: fixed;
     bottom: 0;
     height: 100%;

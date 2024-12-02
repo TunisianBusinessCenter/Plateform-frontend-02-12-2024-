@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbCarouselConfig, NgbModal, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselConfig, NgbModal, NgbModalRef, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AgenciesService } from '../services/agencies/agencies.service';
 import Swal from 'sweetalert2';
@@ -11,15 +11,15 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
+  private modalRef: NgbModalRef | null = null; // Initialize as null
   displayMaximizable:boolean
   sharedVariable: any;
   projetDispo: any;
   ProjetEnCours: any;
   ProduitVendu: any;
-  AgencyEmail='dcgenerale@gmail.com'
+  AgencyEmail='platformetunisieimmob@gmail.com'
   constructor(public router:Router,private route: ActivatedRoute,private as:AgenciesService,private modalService: NgbModal,private http:HttpClient) { }
-
+ 
   ngOnInit(): void {
     // this.click()
   }
@@ -79,7 +79,9 @@ senderEmail() {
       title: 'Error!',
       text: "Veuillez remplir tous les champs obligatoires.",
       icon: 'error',
-      confirmButtonText: 'Fermer'
+      confirmButtonText: 'Fermer',
+      timer: 3000,  // Closes after 3 seconds
+      timerProgressBar: true  // Shows a progress bar
     });
     return; // Stop further execution if form is incomplete
   }
@@ -92,7 +94,9 @@ senderEmail() {
           title: 'Success!',
           text: "L'email a été envoyé avec succès.",
           icon: 'success',
-          confirmButtonText: 'Fermer'
+          confirmButtonText: 'Fermer',
+          timer: 1000,  // Closes after 3 seconds
+          timerProgressBar: true  // Shows a progress bar
         });
         console.log('Email sent successfully!', response);
         
@@ -101,19 +105,35 @@ senderEmail() {
         this.emailDest = '';
         this.subject = '';
         this.message = '';
+        this.closeModal();
       },
       error: (error) => {
         Swal.fire({
           title: 'Error!',
           text: "Une erreur s'est produite lors de l'envoi de l'email.",
           icon: 'error',
-          confirmButtonText: 'Fermer'
+          confirmButtonText: 'Fermer',
+          timer: 3000,  // Closes after 3 seconds
+          timerProgressBar: true  // Shows a progress bar
         });
         console.error('Error sending email', error);
       }
     });
 }
 
+openModal(content: any) {
+  this.modalRef = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+}
+
+closeModal() {
+  if (this.modalRef) {
+    this.modalRef.close();
+    this.modalRef = null; // Reset after closing
+    console.log('Modal closed successfully.');
+  } else {
+    console.log('Modal reference is undefined; modal might not have been opened.');
+  }
+}
 isValidEmail(email: string): boolean {
   const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return pattern.test(email);

@@ -7,7 +7,7 @@
  <ngb-carousel (slide)="slideActivate($event)">
 
 	<ng-template ngbSlide>
-		<div class="picsum-img-wrapper">
+		<div class="picsum-img-wrapper" >
 		
 
 			<img style="width: 100%" src="../../assets/images/HomePage/new-ban/5--PUB-PLATE-FORME--WEB.jpg" alt="Angular Carousel 2">
@@ -15,7 +15,7 @@
 		</div>
 	</ng-template>
 	<ng-template ngbSlide>
-		<div class="picsum-img-wrapper">
+		<div class="picsum-img-wrapper" >
 		
 
 			<img style="width: 100%" src="../../assets/images/HomePage/new-ban/4--PUB-PLATE-FORME--WEB.jpg" alt="Angular Carousel 2">
@@ -23,7 +23,7 @@
 		</div>
 	</ng-template>
 	<ng-template ngbSlide>
-		<div class="picsum-img-wrapper">
+		<div class="picsum-img-wrapper" >
 			
 			<img  style="width: 100%" src="../../assets/images/HomePage/new-ban/3--PUB-PLATE-FORME--WEB.jpg" alt="Angular Carousel 2">
 
@@ -33,7 +33,7 @@
 
 	</ng-template>
 	<ng-template ngbSlide>
-		<div class="picsum-img-wrapper">
+		<div class="picsum-img-wrapper" >
 		
 			<img  style="width: 100%" src="../../assets/images/HomePage/new-ban/2--PUB-PLATE-FORME--WEB.jpg" alt="Angular Carousel 2">
 
@@ -76,32 +76,34 @@
 </div>
   
 
-<div *ngIf="router.url !=='/home-algerie' && router.url !=='/home-maroc'
- && router.url !=='/home-lybia'&& router.url !=='/home-mauritanie'" class="imageCentreTunisien">
+<div 
+  *ngIf="router.url !== '/home-algerie' && router.url !== '/home-maroc'
+      && router.url !== '/home-lybia' && router.url !== '/home-mauritanie'" 
+  [ngClass]="{'fixed-navbar': isFixed}" 
+  class="imageCentreTunisien"
+>
 
-	<img (click)="redirect()" src="../../assets/images/tunisieimmob/LOGO-Tunisian.png" class="imgbannier" alt="logo plate forme">
+  <img (click)="redirect()" src="../../assets/images/tunisieimmob/LOGO-Tunisian.png" class="imgbannier" alt="logo plate forme">
 
-	<!-- <img [routerLink]="roleMateriaux ? ['/equipement'] :
-	 []" src="../../assets/images/tunisieimmob/LOGO-PLATE.png"
-		class="imgbannier" alt="logo plate forme"> -->
-
-	<!-- 
- <div *ngIf="allAgencies.role==='meilleurs-biens'">
-	<img routerLink="/meilleurs-bien-sousse" src="../../assets/images/tunisieimmob/LOGO-PLATE.png"
-		class="imgbannier" alt="logo plate forme">
- </div>
-
- <div *ngIf="allAgencies.role==='agence-immobilieres'">
-	<img routerLink="/agence-immob-tunis" src="../../assets/images/tunisieimmob/LOGO-PLATE.png"
-		class="imgbannier" alt="logo plate forme">
- </div>
-
- <div *ngIf="allAgencies.role==='agence-service'">
-	<img routerLink="/agences-de-services" src="../../assets/images/tunisieimmob/LOGO-PLATE.png"
-		class="imgbannier" alt="logo plate forme">
- </div> -->
 </div>
+<style>
+/* .imageCentreTunisien {
+  padding: 10px;
+  transition: top 0.1s ease, background-color 0.1s ease, padding 0.1s ease; 
+}
 
+.fixed-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #1f1e84; 
+  padding: 5px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+} */
+
+</style>
 <div *ngIf="router.url ==='/home-algerie'" class="imageCentreTunisien">
 	<img src="../../assets/images/HomePage/LOGO-Algérien-busniss-center.png" class="imgbannier" alt="logo plate forme">
 </div>

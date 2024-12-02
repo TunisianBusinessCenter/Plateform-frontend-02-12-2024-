@@ -146,7 +146,7 @@
     display: flex;
     padding: 10px;
     justify-content: center;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
   }
 
   .nombre {
@@ -349,6 +349,8 @@
 
 .product-item .product-image {
   width: 107%;
+  min-width: 107%;
+  min-height: 345px;
   margin-left: -12px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   max-height: 451px;
@@ -393,7 +395,7 @@
 
 .badge {
   display: inline-block;
-  padding: 5px 8px;
+  padding: 5px 5px;
   font-size: 95%;
   font-weight: 500;
   line-height: 1;
@@ -1312,98 +1314,4 @@ body {
     /* padding-top: 15px; */
     margin-left: -29px;
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

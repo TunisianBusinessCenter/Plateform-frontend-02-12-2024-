@@ -140,6 +140,8 @@ import { AnnoncesImmobilierDetailsComponent } from './annonce Immobilier/annonce
 import { AnnoncesImmobilierComponent } from './annonce Immobilier/annonces-immobilier/annonces-immobilier.component';
 import { PromoteurImmobiliersComponent } from './agence/promoteur-immobiliers/promoteur-immobiliers.component';
 import { AddAnnonceComponent } from './annonce Immobilier/add-annonce/add-annonce.component';
+import { SousDetailsComponent } from './sous-details/sous-details.component';
+import { AgenceImmobDjerbaComponent } from './agence-immob/agence-immob-djerba/agence-immob-djerba.component';
 
 
 
@@ -239,7 +241,9 @@ const routes: Routes = [
     AnnoncesImmobilierDetailsComponent,
     AnnoncesImmobilierComponent,
     PromoteurImmobiliersComponent,
-    AddAnnonceComponent
+    AddAnnonceComponent,
+    SousDetailsComponent,
+    AgenceImmobDjerbaComponent
  
  
   

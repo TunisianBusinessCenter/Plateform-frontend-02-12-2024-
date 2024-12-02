@@ -128,7 +128,7 @@
   }
   
   .main-menu {
-    background: #1f1e84;
+    background: #206229;
     border-right: 1px solid;
     position: fixed;
     /* top: 679px; */
@@ -261,7 +261,7 @@
   } */
   @media only screen and (max-width: 622px) {
     .main-menu {
-      background: #1f1e84;
+      background: #206229;
       border-right: 1px solid;
       position: fixed;
       bottom: 0;
@@ -362,7 +362,7 @@
 		width: 100%;
 		cursor: pointer;
 		border: 1px solid rgba(255, 255, 255, 0.2);
-		background: #1f1e84;
+		background: #206229;
 		padding: 8px 0 8px 0px;
 	}
 
@@ -529,7 +529,7 @@
 		font-weight: bold;
 		border-radius: 4px;
 		color: white;
-		background: #1f1e84;
+		background: #206229;
 		margin-top: 10px;
 		align-self: stretch;
 		text-align: center;
@@ -610,7 +610,7 @@
     .tunsian-flag-img-background .btn-hover-flag-img {
       width: 214px;
       margin: 20px;
-      background-color: #1f1e84;
+      background-color: #206229;
       color: #ffffff;
       font-size: 8px;
       padding: 10px 30px;
@@ -636,8 +636,8 @@
   
   .btn-primary {
     color: #fff;
-    background-color: #1f1e84;
-    border-color: #1f1e84;
+    background-color: #206229;
+    border-color: #206229;
     box-shadow: none;
     width: 79%;
     margin: 0 auto;
@@ -689,7 +689,7 @@
 
   
   .tunsian-flag-img-background .btn-hover-flag-img:hover {
-    background-color: #1f1e84;
+    background-color: #206229;
     text-decoration: underline;
   }
   
@@ -700,7 +700,7 @@
     /* width: 214px; */
     margin: 20px;
     text-decoration: none;
-    background-color: #1f1e84;
+    background-color: #206229;
     color: #ffffff;
     font-size: 16px;
     padding: 10px 30px;
@@ -774,7 +774,7 @@
     .tunsian-flag-img-background .btn-hover-flag-img {
       width: 214px;
       margin: 20px;
-      background-color: #1f1e84;
+      background-color: #206229;
       color: #ffffff;
       font-size: 8px;
       padding: 10px 30px;
@@ -790,7 +790,7 @@
     .tunsian-flag-img-background .btn-hover-flag-img {
       width: 291px;
       margin: 3px;
-      background-color: #1f1e84;
+      background-color: #206229;
       color: #ffffff;
       font-size: 13px;
       padding: 5px 10px;
@@ -882,7 +882,7 @@
 
 :host ::ng-deep .p-button {
   min-width: 8rem;
-  background-color: #1f1e84;
+  background-color: #206229;
   height: 25px;
   ;
   display: block;
